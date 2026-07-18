@@ -102,7 +102,20 @@
   "Vézeronce-Curtin",
   "Échirolles"
  ],
- "sources": [],
- "generated_at": "2026-07-18T15:57:19",
- "event_count": 28
+ "sources": [
+  {
+   "id": "html-capi",
+   "name": "CAPI (Porte de l'Isère) — tout l'agenda",
+   "type": "html",
+   "url": "https://capi-agglo.fr/tout-lagenda/"
+  },
+  {
+   "id": "html-bourgoin",
+   "name": "Ville de Bourgoin-Jallieu — agenda",
+   "type": "html",
+   "url": "https://www.bourgoinjallieu.fr/agenda"
+  }
+ ],
+ "generated_at": "2026-07-18T15:59:28",
+ "event_count": 0
 }
