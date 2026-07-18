@@ -67,14 +67,14 @@ sources:
     type: html
     url: https://capi-agglo.fr/tout-lagenda/
     commune: L'Isle-d'Abeau
-    enabled: false
+    enabled: true
 
   - id: html-bourgoin
     name: Ville de Bourgoin-Jallieu — agenda
     type: html
     url: https://www.bourgoinjallieu.fr/agenda
     commune: Bourgoin-Jallieu
-    enabled: false
+    enabled: true
 
   - id: html-weekend-capi
     name: Mon week-end à la CAPI
