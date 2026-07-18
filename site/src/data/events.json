@@ -1,11 +1,12 @@
 [
  {
-  "title": "Exposition : Musée : \" Au fil de l’eau \"",
+  "title": "Exposition Musée : \" Au fil de l’eau \"",
   "start": "2026-03-07T00:00:00",
   "source_id": "html-bourgoin",
   "sector": "isere",
   "end": "2026-08-31",
   "description": "Une exposition inscrite dans la saison culturelle du Département de l’Isère.",
+  "tldr": null,
   "category": "expo",
   "tags": [],
   "audience": [
@@ -19,7 +20,7 @@
   "price_text": null,
   "url": "https://www.bourgoinjallieu.fr/agenda",
   "image": null,
-  "id": "exposition-musee-au-fil-de-leau-6142dbcf"
+  "id": "exposition-musee-au-fil-de-leau-27ff0d25"
  },
  {
   "title": "Faune berjalienne au parc des mûriers",
@@ -27,7 +28,8 @@
   "source_id": "html-bourgoin",
   "sector": "isere",
   "end": "2026-09-30",
-  "description": "À l’occasion du bicentenaire de la photographie, le musée de Bourgoin-Jallieu présente cette exposition.",
+  "description": "À l’occasion du bicentenaire de la photographie, le musée de Bourgoin-Jallieu propose cette exposition hors les murs.",
+  "tldr": "Exposition de photographies hors les murs proposée par le musée de Bourgoin-Jallieu.",
   "category": "expo",
   "tags": [],
   "audience": [
@@ -49,14 +51,15 @@
   "source_id": "html-bourgoin",
   "sector": "isere",
   "end": "2026-07-23",
-  "description": "Une exposition à voir à la méditahèque CAPI de Bourgoin-Jallieu.",
+  "description": "Une exposition à voir à la médiathèque CAPI de Bourgoin-Jallieu.",
+  "tldr": null,
   "category": "expo",
   "tags": [],
   "audience": [
    "tous"
   ],
   "commune": "Bourgoin-Jallieu",
-  "address": "Médiathèque CAPI",
+  "address": "Médiathèque CAPI de Bourgoin-Jallieu",
   "lat": 45.586,
   "lon": 5.273,
   "free": null,
@@ -71,8 +74,9 @@
   "source_id": "html-bourgoin",
   "sector": "isere",
   "end": "2026-09-26",
-  "description": "Opération terrasses d'été du 1er mai au 26 septembre 2026.",
-  "category": "spectacle",
+  "description": "Du 1er mai au 26 septembre 2026, profitez des terrasses d'été à Bourgoin-Jallieu.",
+  "tldr": "Profiter des terrasses d'été à Bourgoin-Jallieu.",
+  "category": "autre",
   "tags": [],
   "audience": [
    "tous"
@@ -93,18 +97,18 @@
   "source_id": "html-bourgoin",
   "sector": "isere",
   "end": "2026-09-13",
-  "description": "La Ville de Bourgoin-Jallieu vous propose plus de 100 animations d'été.",
+  "description": "Du 16 juin au 13 septembre 2026, la Ville de Bourgoin-Jallieu vous propose de nombreuses animations.",
+  "tldr": "Animations nombreuses proposées par la Ville de Bourgoin-Jallieu.",
   "category": "fete",
   "tags": [],
   "audience": [
-   "tous",
-   "famille"
+   "tous"
   ],
   "commune": "Bourgoin-Jallieu",
   "address": null,
   "lat": 45.586,
   "lon": 5.273,
-  "free": true,
+  "free": null,
   "price_text": null,
   "url": "https://www.bourgoinjallieu.fr/agenda",
   "image": null,
@@ -116,18 +120,18 @@
   "source_id": "html-bourgoin",
   "sector": "isere",
   "end": "2026-08-27",
-  "description": "Venez danser les jeudis soirs au cœur du centre-ville.",
+  "description": "Du 25 juin au 27 août 2026, venez danser les jeudis soirs au cœur du centre-ville.",
+  "tldr": null,
   "category": "fete",
   "tags": [],
   "audience": [
-   "tous",
-   "famille"
+   "tous"
   ],
   "commune": "Bourgoin-Jallieu",
   "address": "Place Carnot",
   "lat": 45.586,
   "lon": 5.273,
-  "free": true,
+  "free": null,
   "price_text": null,
   "url": "https://www.bourgoinjallieu.fr/agenda",
   "image": null,
@@ -139,11 +143,11 @@
   "source_id": "html-bourgoin",
   "sector": "isere",
   "end": "2026-09-13",
-  "description": "Pique-niques proposés par l'association Vibrations Mystiques et la ville de Bourgoin-Jallieu.",
+  "description": "Proposés par l'association 'Vibrations Mystiques' et la ville de Bourgoin-Jallieu.",
+  "tldr": null,
   "category": "fete",
   "tags": [],
   "audience": [
-   "famille",
    "tous"
   ],
   "commune": "Bourgoin-Jallieu",
@@ -157,12 +161,36 @@
   "id": "les-dimanches-c-est-pique-nique-b4e2435b"
  },
  {
+  "title": "Exposition d'Anne-Marie Pampiglione",
+  "start": "2026-07-07T00:00:00",
+  "source_id": "html-capi",
+  "sector": "isere",
+  "end": "2026-07-18",
+  "description": "L'espace Carnot accueillera une exposition de peintures (aquarelles) d'Anne-Marie Pampiglione.",
+  "tldr": null,
+  "category": "expo",
+  "tags": [],
+  "audience": [
+   "tous"
+  ],
+  "commune": "L'Isle-d'Abeau",
+  "address": "Office de Tourisme CAPI - Espace Carnot",
+  "lat": 45.62,
+  "lon": 5.23,
+  "free": null,
+  "price_text": null,
+  "url": "https://capi-agglo.fr/tout-lagenda/",
+  "image": null,
+  "id": "exposition-d-anne-marie-pampiglione-db2db994"
+ },
+ {
   "title": "Exposition : Anne-Marie PAMPIGLIONE aquarelliste",
   "start": "2026-07-07T00:00:00",
   "source_id": "html-bourgoin",
   "sector": "isere",
   "end": "2026-07-18",
-  "description": "Venez découvrir une quarantaine de tableaux sur des thèmes variés.",
+  "description": "Venez découvrir une quarantaine de tableaux sur des thèmes variés (nature, marine).",
+  "tldr": null,
   "category": "expo",
   "tags": [],
   "audience": [
@@ -185,6 +213,7 @@
   "sector": "isere",
   "end": "2026-08-25",
   "description": "7 séances au programme dans les parcs et jardins municipaux de la ville.",
+  "tldr": null,
   "category": "cinema",
   "tags": [],
   "audience": [
@@ -195,7 +224,7 @@
   "address": null,
   "lat": 45.586,
   "lon": 5.273,
-  "free": true,
+  "free": null,
   "price_text": null,
   "url": "https://www.bourgoinjallieu.fr/agenda",
   "image": null,
@@ -207,7 +236,8 @@
   "source_id": "html-bourgoin",
   "sector": "isere",
   "end": "2026-07-28",
-  "description": "Projections et cinéma hors pistes.",
+  "description": "Des projections de cinéma hors pistes à Bourgoin-Jallieu.",
+  "tldr": "Projections de cinéma proposées à Bourgoin-Jallieu.",
   "category": "cinema",
   "tags": [],
   "audience": [
@@ -229,7 +259,8 @@
   "source_id": "html-bourgoin",
   "sector": "isere",
   "end": "2026-07-18",
-  "description": "La grande Braderie des Commerçants revient à Bourgoin-Jallieu.",
+  "description": "Les 17 & 18 juillet, la grande Braderie des Commerçants revient à Bourgoin-Jallieu.",
+  "tldr": null,
   "category": "marche",
   "tags": [],
   "audience": [
@@ -239,7 +270,7 @@
   "address": "Centre-ville",
   "lat": 45.586,
   "lon": 5.273,
-  "free": true,
+  "free": null,
   "price_text": null,
   "url": "https://www.bourgoinjallieu.fr/agenda",
   "image": null,
@@ -251,7 +282,8 @@
   "source_id": "html-bourgoin",
   "sector": "isere",
   "end": null,
-  "description": "L’association RK Motorcycles 38 a prévu un programme festif.",
+  "description": "RK Motorcycles 38 (RKM), l’association organisatrice, a prévu un programme festif.",
+  "tldr": null,
   "category": "fete",
   "tags": [],
   "audience": [
@@ -273,7 +305,8 @@
   "source_id": "html-bourgoin",
   "sector": "isere",
   "end": null,
-  "description": "Partez à la découverte de Bourgoin et Jallieu à travers la Bourbre.",
+  "description": "Partez à la découverte de Bourgoin et Jallieu à travers la Bourbre et le canal de la Bourbre.",
+  "tldr": null,
   "category": "patrimoine",
   "tags": [],
   "audience": [
@@ -290,12 +323,84 @@
   "id": "parcours-urbains-leau-dans-la-ville-de-bourgoin-jallieu-7d82e84e"
  },
  {
+  "title": "Bib de rue",
+  "start": "2026-07-20T00:00:00",
+  "source_id": "html-capi",
+  "sector": "isere",
+  "end": null,
+  "description": "Les vacances d’été arrivent et « Bib de Rue » fait son grand retour sur la CAPI. Le réseau des médiathèques vous donne rendez-vous.",
+  "tldr": "Rendez-vous proposé par le réseau des médiathèques de la CAPI.",
+  "category": "jeunesse",
+  "tags": [],
+  "audience": [
+   "famille",
+   "enfants"
+  ],
+  "commune": "L'Isle-d'Abeau",
+  "address": null,
+  "lat": 45.62,
+  "lon": 5.23,
+  "free": null,
+  "price_text": null,
+  "url": "https://capi-agglo.fr/tout-lagenda/",
+  "image": null,
+  "id": "bib-de-rue-f2e348f9"
+ },
+ {
+  "title": "Bib de rue",
+  "start": "2026-07-21T00:00:00",
+  "source_id": "html-capi",
+  "sector": "isere",
+  "end": null,
+  "description": "Les vacances d’été arrivent et « Bib de Rue » fait son grand retour sur la CAPI. Le réseau des médiathèques vous donne rendez-vous.",
+  "tldr": "Rendez-vous proposé par le réseau des médiathèques de la CAPI.",
+  "category": "jeunesse",
+  "tags": [],
+  "audience": [
+   "famille",
+   "enfants"
+  ],
+  "commune": "L'Isle-d'Abeau",
+  "address": null,
+  "lat": 45.62,
+  "lon": 5.23,
+  "free": null,
+  "price_text": null,
+  "url": "https://capi-agglo.fr/tout-lagenda/",
+  "image": null,
+  "id": "bib-de-rue-4b9877b3"
+ },
+ {
+  "title": "Exposition de photographies",
+  "start": "2026-07-21T00:00:00",
+  "source_id": "html-capi",
+  "sector": "isere",
+  "end": "2026-08-01",
+  "description": "L'espace Carnot accueillera une exposition de photographies de Jean-Michel Pouzet.",
+  "tldr": null,
+  "category": "expo",
+  "tags": [],
+  "audience": [
+   "tous"
+  ],
+  "commune": "L'Isle-d'Abeau",
+  "address": "Office de Tourisme CAPI - Espace Carnot",
+  "lat": 45.62,
+  "lon": 5.23,
+  "free": null,
+  "price_text": null,
+  "url": "https://capi-agglo.fr/tout-lagenda/",
+  "image": null,
+  "id": "exposition-de-photographies-73374ed2"
+ },
+ {
   "title": "Exposition photos",
   "start": "2026-07-21T00:00:00",
   "source_id": "html-bourgoin",
   "sector": "isere",
   "end": "2026-08-01",
   "description": "L'espace Carnot accueille le photographe Jean-Michel Pouzet.",
+  "tldr": null,
   "category": "expo",
   "tags": [],
   "audience": [
@@ -317,7 +422,8 @@
   "source_id": "html-bourgoin",
   "sector": "isere",
   "end": null,
-  "description": "Les Cinés-été reviennent en plein air dans les parcs et jardins municipaux.",
+  "description": "A l'occasion des Festivi'été, les Cinés-été reviennent en plein air, dans les parcs de la ville.",
+  "tldr": null,
   "category": "cinema",
   "tags": [],
   "audience": [
@@ -328,7 +434,7 @@
   "address": "Boussieu",
   "lat": 45.586,
   "lon": 5.273,
-  "free": true,
+  "free": null,
   "price_text": null,
   "url": "https://www.bourgoinjallieu.fr/agenda",
   "image": null,
@@ -341,6 +447,7 @@
   "sector": "isere",
   "end": null,
   "description": "Plongez dans l’exposition 'Au fil de l’eau' en participant à des ateliers.",
+  "tldr": null,
   "category": "atelier",
   "tags": [],
   "audience": [
@@ -362,7 +469,8 @@
   "source_id": "html-bourgoin",
   "sector": "isere",
   "end": null,
-  "description": "Plongez dans l’exposition Au fil de l’eau en participant à des ateliers créatifs.",
+  "description": "Plongez dans l’exposition Au fil de l’eau en participant à des ateliers.",
+  "tldr": null,
   "category": "atelier",
   "tags": [],
   "audience": [
@@ -379,12 +487,60 @@
   "id": "musee-ateliers-aquarelle-pour-les-4-6-ans-e7816e17"
  },
  {
+  "title": "Sortie nature CAPI : Balade au fil de l’eau",
+  "start": "2026-07-22T00:00:00",
+  "source_id": "html-capi",
+  "sector": "isere",
+  "end": null,
+  "description": "C’est l’occasion de venir s’étonner, apprendre, ressentir, créer en découvrant vos espaces naturels capisérois.",
+  "tldr": null,
+  "category": "nature",
+  "tags": [],
+  "audience": [
+   "tous"
+  ],
+  "commune": "Saint-Savin",
+  "address": null,
+  "lat": 45.626,
+  "lon": 5.305,
+  "free": null,
+  "price_text": null,
+  "url": "https://capi-agglo.fr/tout-lagenda/",
+  "image": null,
+  "id": "sortie-nature-capi-balade-au-fil-de-leau-42a4a464"
+ },
+ {
+  "title": "Bib de rue",
+  "start": "2026-07-23T00:00:00",
+  "source_id": "html-capi",
+  "sector": "isere",
+  "end": null,
+  "description": "Les vacances d’été arrivent et « Bib de Rue » fait son grand retour sur la CAPI. Le réseau des médiathèques vous donne rendez-vous.",
+  "tldr": "Rendez-vous proposé par le réseau des médiathèques de la CAPI.",
+  "category": "jeunesse",
+  "tags": [],
+  "audience": [
+   "famille",
+   "enfants"
+  ],
+  "commune": "Villefontaine",
+  "address": null,
+  "lat": 45.613,
+  "lon": 5.15,
+  "free": null,
+  "price_text": null,
+  "url": "https://capi-agglo.fr/tout-lagenda/",
+  "image": null,
+  "id": "bib-de-rue-ccdd3eae"
+ },
+ {
   "title": "Micro-Folie : à la découverte du paysage",
   "start": "2026-07-23T00:00:00",
   "source_id": "html-bourgoin",
   "sector": "isere",
   "end": null,
-  "description": "Découverte culturelle dans le cadre de Festiv’Été.",
+  "description": "Découverte culturelle du paysage dans le cadre de Festiv’Été.",
+  "tldr": "Découverte culturelle du paysage dans le cadre de Festiv’Été.",
   "category": "autre",
   "tags": [],
   "audience": [
@@ -406,12 +562,12 @@
   "source_id": "html-bourgoin",
   "sector": "isere",
   "end": null,
-  "description": "Activité organisée dans le cadre des Festiv'été 2026 et de Sportez-vous bien.",
+  "description": "Dans le cadre des Festiv'été 2026 et de Sportez-vous bien.",
+  "tldr": null,
   "category": "nature",
   "tags": [],
   "audience": [
-   "famille",
-   "enfants"
+   "famille"
   ],
   "commune": "Bourgoin-Jallieu",
   "address": null,
@@ -429,7 +585,8 @@
   "source_id": "html-bourgoin",
   "sector": "isere",
   "end": "2026-07-28",
-  "description": "Collecte de don de sang bénévole.",
+  "description": "Collecte de sang organisée avec la participation de votre association pour le don de sang bénévole.",
+  "tldr": null,
   "category": "autre",
   "tags": [],
   "audience": [
@@ -439,7 +596,7 @@
   "address": null,
   "lat": 45.586,
   "lon": 5.273,
-  "free": true,
+  "free": null,
   "price_text": null,
   "url": "https://www.bourgoinjallieu.fr/agenda",
   "image": null,
@@ -451,7 +608,8 @@
   "source_id": "html-bourgoin",
   "sector": "isere",
   "end": null,
-  "description": "Projection en plein air dans le cadre des Festiv'été.",
+  "description": "A l'occasion des Festivi'été, les Cinés-été reviennent en plein air, dans les parcs de la ville.",
+  "tldr": null,
   "category": "cinema",
   "tags": [],
   "audience": [
@@ -462,7 +620,7 @@
   "address": "La Grive",
   "lat": 45.586,
   "lon": 5.273,
-  "free": true,
+  "free": null,
   "price_text": null,
   "url": "https://www.bourgoinjallieu.fr/agenda",
   "image": null,
@@ -474,7 +632,8 @@
   "source_id": "html-bourgoin",
   "sector": "isere",
   "end": null,
-  "description": "Visite sensorielle au musée à vivre en famille.",
+  "description": "Une visite sensorielle à faire en famille.",
+  "tldr": null,
   "category": "patrimoine",
   "tags": [],
   "audience": [
@@ -496,7 +655,8 @@
   "source_id": "html-bourgoin",
   "sector": "isere",
   "end": null,
-  "description": "Visite de l'exposition, accessible à tout public dès 8 ans.",
+  "description": "Une visite guidée pour tout public dès 8 ans.",
+  "tldr": null,
   "category": "patrimoine",
   "tags": [],
   "audience": [
@@ -518,7 +678,8 @@
   "source_id": "html-bourgoin",
   "sector": "isere",
   "end": null,
-  "description": "Projection de cinéma en plein air à Champfleuri.",
+  "description": "A l'occasion des Festivi'été, les Cinés-été reviennent en plein air, dans les parcs de la ville.",
+  "tldr": null,
   "category": "cinema",
   "tags": [],
   "audience": [
@@ -529,7 +690,7 @@
   "address": "Champfleuri",
   "lat": 45.586,
   "lon": 5.273,
-  "free": true,
+  "free": null,
   "price_text": null,
   "url": "https://www.bourgoinjallieu.fr/agenda",
   "image": null,
@@ -541,7 +702,8 @@
   "source_id": "html-bourgoin",
   "sector": "isere",
   "end": "2026-08-14",
-  "description": "Une exposition proposée par le pôle Archives de la CAPI.",
+  "description": "Le pôle Archives de la CAPI et son service mutualisé des archives vous proposent cette exposition.",
+  "tldr": null,
   "category": "expo",
   "tags": [],
   "audience": [
@@ -564,6 +726,7 @@
   "sector": "isere",
   "end": null,
   "description": "Match de rugby amical.",
+  "tldr": null,
   "category": "sport",
   "tags": [],
   "audience": [
@@ -585,7 +748,8 @@
   "source_id": "html-bourgoin",
   "sector": "isere",
   "end": "2026-09-22",
-  "description": "Exposition photographique présentée au sein du musée Clauorum.",
+  "description": "L'exposition photographique est présentée au sein du musée Clauorum de Bourgoin-Jallieu.",
+  "tldr": null,
   "category": "expo",
   "tags": [],
   "audience": [
@@ -607,7 +771,8 @@
   "source_id": "html-bourgoin",
   "sector": "isere",
   "end": null,
-  "description": "Projection de cinéma en plein air à Montbernier.",
+  "description": "A l'occasion des Festivi'été, les Cinés-été reviennent en plein air, dans les parcs de la ville.",
+  "tldr": null,
   "category": "cinema",
   "tags": [],
   "audience": [
@@ -618,7 +783,7 @@
   "address": "Montbernier",
   "lat": 45.586,
   "lon": 5.273,
-  "free": true,
+  "free": null,
   "price_text": null,
   "url": "https://www.bourgoinjallieu.fr/agenda",
   "image": null,
@@ -631,6 +796,7 @@
   "sector": "isere",
   "end": null,
   "description": "Un rendez-vous d'observation de l'éclipse organisé par la Société des Sciences Naturelles.",
+  "tldr": "Rendez-vous d'observation de l'éclipse organisé par la Société des Sciences Naturelles.",
   "category": "nature",
   "tags": [],
   "audience": [
@@ -653,6 +819,7 @@
   "sector": "isere",
   "end": "2026-08-29",
   "description": "L'espace Carnot accueillera une exposition hommage à l'artiste.",
+  "tldr": null,
   "category": "expo",
   "tags": [],
   "audience": [
@@ -674,19 +841,19 @@
   "source_id": "html-bourgoin",
   "sector": "isere",
   "end": null,
-  "description": "Séance de cinéma en plein air au parc des Lilattes.",
+  "description": "A l'occasion des Festivi'été, les Cinés-été reviennent en plein air, dans les parcs de la ville.",
+  "tldr": null,
   "category": "cinema",
   "tags": [],
   "audience": [
    "famille",
-   "enfants",
-   "ados"
+   "enfants"
   ],
   "commune": "Bourgoin-Jallieu",
   "address": "Parc des Lilattes",
   "lat": 45.586,
   "lon": 5.273,
-  "free": true,
+  "free": null,
   "price_text": null,
   "url": "https://www.bourgoinjallieu.fr/agenda",
   "image": null,
@@ -699,11 +866,11 @@
   "sector": "isere",
   "end": null,
   "description": "Participez à la traditionnelle Fête du Pays Berjallien, organisée par la Ville.",
+  "tldr": null,
   "category": "fete",
   "tags": [],
   "audience": [
-   "tous",
-   "famille"
+   "tous"
   ],
   "commune": "Bourgoin-Jallieu",
   "address": null,
@@ -721,12 +888,12 @@
   "source_id": "html-bourgoin",
   "sector": "isere",
   "end": null,
-  "description": "Un dernier moment de détente avant la rentrée scolaire proposé par la Ville.",
+  "description": "Offrez-vous un dernier moment de détente avant la rentrée scolaire avec la Ville.",
+  "tldr": null,
   "category": "fete",
   "tags": [],
   "audience": [
-   "famille",
-   "tous"
+   "famille"
   ],
   "commune": "Bourgoin-Jallieu",
   "address": null,
@@ -745,6 +912,7 @@
   "sector": "isere",
   "end": "2026-09-05",
   "description": "6 concerts dans un lieu enchanteur : le parc des Lilattes.",
+  "tldr": "Six concerts organisés dans le parc des Lilattes.",
   "category": "festival",
   "tags": [],
   "audience": [
