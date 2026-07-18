@@ -30,6 +30,7 @@ const audienceLabels = {
   <main class="wrap">
     <div class="detail-cols">
       <div>
+        {event.tldr && <p class="detail-tldr">💡 En clair : {event.tldr}</p>}
         <p class="detail-desc">{event.description || 'Pas de description pour cet événement — consultez la source pour en savoir plus.'}</p>
         <a class="backlink" href={base}>← Retour à l'agenda</a>
       </div>

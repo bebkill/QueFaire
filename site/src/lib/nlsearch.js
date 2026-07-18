@@ -71,6 +71,23 @@ const AUDIENCE_SYNONYMS = {
   seniors: /seniors?|aines/,
 };
 
+/** Vitesses moyennes par mode (km/h) et facteur de détour routier moyen.
+ *  Approximation isochrone « à vol d'oiseau corrigé » — un vrai moteur
+ *  isochrone (OpenRouteService/Valhalla) est prévu en roadmap. */
+export const SPEEDS = { walk: 4.5, bike: 15, car: 40 };
+const DETOUR = 1.3;
+
+export function travelMinutes(km, mode = 'car') {
+  return ((km * DETOUR) / (SPEEDS[mode] || SPEEDS.car)) * 60;
+}
+
+const TIME_RE = /a moins d[e'] ?(\d+) ?(min(?:utes?)?|mn|h(?:eures?)?)/;
+const MODE_RES = [
+  ['walk', /a pied|en marchant|balade|randonnee|rando\b/],
+  ['bike', /en velo|a velo|en bicyclette/],
+  ['car', /en voiture|en auto/],
+];
+
 const STOPWORDS = new Set(
   ('je cherche une un des de du la le les et ou a au aux pour avec dans sur ce cet cette moi me mon ma mes ' +
     'qui que quoi quel quelle quels quelles quand comment est sont suis peux peut peuvent vais va aller ' +
@@ -99,8 +116,25 @@ export function parseQuery(query, communes = [], now = new Date()) {
     free: null,
     communes: [],
     nearMe: false,
+    maxMinutes: null,
+    mode: 'car',
+    modeExplicit: false,
     text: '',
   };
+
+  const time = q.match(TIME_RE);
+  if (time) {
+    filter.maxMinutes = parseInt(time[1], 10) * (time[2].startsWith('h') ? 60 : 1);
+    consume(TIME_RE);
+  }
+  for (const [mode, re] of MODE_RES) {
+    if (re.test(q)) {
+      filter.mode = mode;
+      filter.modeExplicit = true; // « balade » implique la marche, « en voiture » etc.
+      break;
+    }
+  }
+  consume(/a pied|en marchant|en velo|a velo|en bicyclette|en voiture|en auto/);
 
   for (const { re, range } of DATE_PATTERNS) {
     if (re.test(q)) {

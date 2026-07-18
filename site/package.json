@@ -9,6 +9,10 @@
     "preview": "astro preview"
   },
   "dependencies": {
-    "astro": "^5.1.0"
+    "astro": "^5.1.0",
+    "leaflet": "^1.9.4"
+  },
+  "devDependencies": {
+    "playwright-core": "^1.61.1"
   }
 }

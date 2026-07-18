@@ -54,6 +54,10 @@ def crawl(sector_id: str, demo: bool, out: Path | None) -> int:
 
     events = [enrich(geocode(e, sector_id)) for e in events]
     events = dedupe(events)
+    if not demo:
+        from .clarify import clarify
+
+        events = clarify(events)  # fiches « en clair » — no-op sans LLM
     meta = export(sector, events, out)
     log.info(
         "Export OK : %d événements à venir pour « %s » (%d communes)",
@@ -107,14 +111,30 @@ def discover_openagenda(sector_id: str, communes: list[str] | None, strict: bool
             if title_match and entry["commune"] is None:
                 entry["commune"] = commune
 
+    # Le nombre d'événements à venir départage les agendas vivants des dormants
+    # (leçon du premier crawl : 8 agendas activés, 8 × 0 événement).
+    from .fetchers.openagenda import upcoming_count
+
+    for e in seen.values():
+        try:
+            e["_count"] = upcoming_count(e["url"])
+        except Exception:
+            e["_count"] = -1  # inconnu
+
     candidates = sorted(
-        seen.values(), key=lambda e: (not e["_official"], not e["commune"], e["name"])
+        seen.values(),
+        key=lambda e: (not e["_official"], -e["_count"], not e["commune"], e["name"]),
     )
     for e in candidates:
-        e["comment"] = ("officiel, " if e.pop("_official") else "") + \
-            "trouvé via : " + ", ".join(sorted(set(e.pop("_matches"))))
-    log.info("[discover-oa] %d agendas candidats (%d communes interrogées)",
-             len(candidates), len(targets))
+        count = e.pop("_count")
+        e["comment"] = (
+            ("officiel, " if e.pop("_official") else "")
+            + (f"{count} événements à venir, " if count >= 0 else "")
+            + "trouvé via : " + ", ".join(sorted(set(e.pop("_matches"))))
+        )
+    live = sum(1 for e in candidates if "0 événements" not in e["comment"])
+    log.info("[discover-oa] %d agendas candidats dont %d avec des événements à venir "
+             "(%d communes interrogées)", len(candidates), live, len(targets))
     return yaml.safe_dump(candidates, allow_unicode=True, sort_keys=False)
 
 
