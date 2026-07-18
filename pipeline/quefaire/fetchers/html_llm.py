@@ -71,6 +71,58 @@ def llm_available() -> bool:
         return False
 
 
+def extract_events_llm(text: str, source: Source, sector_id: str, context_url: str) -> list[Event]:
+    """Cœur réutilisable : texte brut (page agenda, posts sociaux…) → Events.
+
+    Utilisé par le fetcher html et par le fetcher réseaux sociaux.
+    """
+    from datetime import date
+
+    from autoagent import Agent
+
+    provider, _, model = os.environ["QUEFAIRE_LLM"].partition(":")
+    agent = Agent.from_model(provider, model)
+
+    prompt = EXTRACTION_PROMPT.format(
+        today=date.today().isoformat(),
+        categories=list(CATEGORIES),
+        url=context_url,
+        text=text[:24000],
+    )
+    result = agent.run(prompt)
+    raw = result.output.strip()
+    raw = re.sub(r"^```(json)?|```$", "", raw, flags=re.M).strip()
+    try:
+        items = json.loads(raw)
+    except json.JSONDecodeError:
+        log.error("[llm] %s : réponse LLM non parsable", source.id)
+        return []
+
+    events: list[Event] = []
+    for item in items if isinstance(items, list) else []:
+        when = parse_when(str(item.get("start", "")))
+        if not when or not item.get("title"):
+            continue
+        events.append(
+            Event(
+                title=item["title"],
+                description=(item.get("description") or "")[:1200],
+                start=when.isoformat(),
+                end=item.get("end"),
+                commune=item.get("commune") or source.commune,
+                address=item.get("address"),
+                category=item.get("category") or source.category_hint or "autre",
+                audience=item.get("audience") or [],
+                free=item.get("free"),
+                price_text=item.get("price_text"),
+                url=item.get("url") or context_url,
+                source_id=source.id,
+                sector=sector_id,
+            )
+        )
+    return events
+
+
 class HtmlLlmFetcher:
     def fetch(self, source: Source, sector_id: str) -> list[Event]:
         if not llm_available():
@@ -79,50 +131,9 @@ class HtmlLlmFetcher:
                 source.id,
             )
             return []
-        from datetime import date
-
-        from autoagent import Agent
-
-        provider, _, model = os.environ["QUEFAIRE_LLM"].partition(":")
-        agent = Agent.from_model(provider, model)
-
         html = http_get(source.url).text
-        prompt = EXTRACTION_PROMPT.format(
-            today=date.today().isoformat(),
-            categories=list(CATEGORIES),
-            url=source.url,
-            text=_page_text(html, source.scope_selector),
+        events = extract_events_llm(
+            _page_text(html, source.scope_selector), source, sector_id, source.url
         )
-        result = agent.run(prompt)
-        raw = result.output.strip()
-        raw = re.sub(r"^```(json)?|```$", "", raw, flags=re.M).strip()
-        try:
-            items = json.loads(raw)
-        except json.JSONDecodeError:
-            log.error("[html] %s : réponse LLM non parsable", source.id)
-            return []
-
-        events: list[Event] = []
-        for item in items if isinstance(items, list) else []:
-            when = parse_when(str(item.get("start", "")))
-            if not when or not item.get("title"):
-                continue
-            events.append(
-                Event(
-                    title=item["title"],
-                    description=(item.get("description") or "")[:1200],
-                    start=when.isoformat(),
-                    end=item.get("end"),
-                    commune=item.get("commune") or source.commune,
-                    address=item.get("address"),
-                    category=item.get("category") or source.category_hint or "autre",
-                    audience=item.get("audience") or [],
-                    free=item.get("free"),
-                    price_text=item.get("price_text"),
-                    url=item.get("url") or source.url,
-                    source_id=source.id,
-                    sector=sector_id,
-                )
-            )
         log.info("[html+llm] %s : %d événements extraits", source.id, len(events))
         return events

@@ -88,16 +88,35 @@ GitHub Pages. À configurer dans le dépôt :
 
 ## Référencer des sources
 
-Le registre est un simple YAML (`pipeline/sources/isere.yaml`). Pour aller
-plus vite, l'agent de découverte propose des entrées prêtes à coller :
+Le registre est un simple YAML (`pipeline/sources/isere.yaml`). Deux outils
+de découverte automatique produisent des entrées prêtes à coller :
 
 ```bash
+# Agendas OpenAgenda de toutes les communes du secteur (dédupliqués par UID,
+# officiels en premier). --strict ne garde que les agendas citant la commune.
+OPENAGENDA_KEY=... python -m quefaire discover-oa --sector isere
+OPENAGENDA_KEY=... python -m quefaire discover-oa --communes "Bourgoin-Jallieu,Crémieu" --strict
+
+# Agent LLM : visite les sites communaux, détecte flux RSS/iCal et pages agenda
 QUEFAIRE_LLM=gemini:gemini-3.5-flash python -m quefaire discover --sector isere
 ```
 
-Il visite les sites des communes du secteur, détecte flux RSS/iCal et agendas
-OpenAgenda, et ne propose que des URLs vérifiées. **Un humain relit puis passe
-`enabled: true`** — la qualité du registre reste maîtrisée.
+Dans les deux cas, **un humain relit puis passe `enabled: true`** — la
+qualité du registre reste maîtrisée.
+
+## Réseaux sociaux (Facebook, Instagram)
+
+Beaucoup de petites communes n'annoncent leurs événements que sur Facebook ou
+Instagram. Meta n'offrant pas d'API publique de lecture (et le scraping direct
+étant bloqué et contraire aux CGU), le pipeline passe par
+[RSS-Bridge](https://github.com/RSS-Bridge/rss-bridge) — une instance
+auto-hébergée qui transforme une page publique en flux RSS :
+
+1. déployer une instance RSS-Bridge et renseigner `RSSBRIDGE_URL` ;
+2. déclarer des sources `type: facebook` / `type: instagram` avec l'identifiant
+   de la page en `url` (des exemples sont dans `isere.yaml`) ;
+3. l'agent LLM (`QUEFAIRE_LLM`) transforme les posts récents en événements
+   datés — un post n'étant pas un événement structuré, cette voie exige le LLM.
 
 ## Feuille de route
 

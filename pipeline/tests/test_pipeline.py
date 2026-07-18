@@ -54,6 +54,54 @@ def test_dedupe_keeps_richest():
     assert kept[0].url == "https://exemple.fr"
 
 
+def test_discover_oa_dedupes_and_ranks(monkeypatch):
+    import quefaire.cli as cli
+
+    fake = {
+        "Grenoble": [
+            {"uid": 1, "title": "Agenda de la Ville de Grenoble", "slug": "grenoble",
+             "description": "", "url": "u", "official": True},
+            {"uid": 2, "title": "Sorties métal underground", "slug": "metal",
+             "description": "concerts à Grenoble", "url": "u", "official": False},
+        ],
+        "Vienne": [
+            {"uid": 1, "title": "Agenda de la Ville de Grenoble", "slug": "grenoble",
+             "description": "", "url": "u", "official": True},
+            {"uid": 3, "title": "Ville de Vienne", "slug": "vienne",
+             "description": "", "url": "u", "official": False},
+        ],
+    }
+    monkeypatch.setattr(
+        "quefaire.fetchers.openagenda.search_agendas", lambda q: fake.get(q, [])
+    )
+    import yaml
+
+    out = yaml.safe_load(cli.discover_openagenda("isere", ["Grenoble", "Vienne"], strict=False))
+    uids = [e["url"] for e in out]
+    assert sorted(uids) == [1, 2, 3]          # dédupliqué par UID
+    assert out[0]["url"] == 1                  # l'agenda officiel sort en premier
+    assert "Grenoble, Vienne" in out[0]["comment"]
+    assert all(e["enabled"] is False for e in out)  # validation humaine requise
+
+    strict = yaml.safe_load(cli.discover_openagenda("isere", ["Grenoble", "Vienne"], strict=True))
+    assert [e["url"] for e in strict] == [1, 3]  # strict : titre doit citer la commune
+
+
+def test_social_fetcher_skips_without_config(monkeypatch, caplog):
+    from quefaire.fetchers.social import SocialFetcher
+    from quefaire.models import Source
+
+    monkeypatch.delenv("RSSBRIDGE_URL", raising=False)
+    src = Source(id="fb-test", name="t", type="facebook", url="mairie")
+    assert SocialFetcher("facebook").fetch(src, "isere") == []
+
+
+def test_nord_isere_communes_geocoded():
+    for commune in ("Crémieu", "Morestel", "Saint-Chef", "La Verpillière", "Tignieu-Jameyzieu"):
+        ev = geocode(make(commune=commune), "isere")
+        assert ev.lat is not None, commune
+
+
 def test_demo_and_export_roundtrip(tmp_path):
     sector = load_sector("isere")
     events = [enrich(geocode(e, "isere")) for e in demo_events()]

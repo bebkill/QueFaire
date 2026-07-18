@@ -44,6 +44,8 @@ jobs:
           QUEFAIRE_LLM: ${{ vars.QUEFAIRE_LLM }}
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          # Sources facebook/instagram (optionnel) : instance RSS-Bridge
+          RSSBRIDGE_URL: ${{ vars.RSSBRIDGE_URL }}
         run: |
           if [ -n "$QUEFAIRE_LLM" ]; then pip install autoagent-core; fi
           python -m quefaire crawl --sector isere

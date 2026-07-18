@@ -3,12 +3,15 @@ from .html_llm import HtmlLlmFetcher
 from .ical import IcalFetcher
 from .openagenda import OpenAgendaFetcher
 from .rss import RssFetcher
+from .social import SocialFetcher
 
 FETCHERS = {
     "rss": RssFetcher(),
     "ical": IcalFetcher(),
     "openagenda": OpenAgendaFetcher(),
     "html": HtmlLlmFetcher(),
+    "facebook": SocialFetcher("facebook"),
+    "instagram": SocialFetcher("instagram"),
 }
 
 
