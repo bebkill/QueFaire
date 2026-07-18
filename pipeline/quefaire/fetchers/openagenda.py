@@ -61,11 +61,12 @@ class OpenAgendaFetcher:
         events: list[Event] = []
         after: list[str] = []
         for _ in range(10):  # pagination bornée
+            # `relative` est le filtre documenté de l'API v2 ; `timings[gte]=now`
+            # provoque un 400 (la valeur doit être une date, pas "now").
             params = {
                 "key": key,
                 "size": 100,
-                "timings[gte]": "now",
-                "detailed": 1,
+                "relative[]": ["current", "upcoming"],
             }
             for i, cursor in enumerate(after):
                 params[f"after[{i}]"] = cursor
