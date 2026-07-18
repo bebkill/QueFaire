@@ -1,0 +1,239 @@
+---
+import Base from '../layouts/Base.astro';
+import EventCard from '../components/EventCard.astro';
+import events from '../data/events.json';
+import sector from '../data/sector.json';
+
+const title = `Que faire en ${sector.name} ? Sorties, événements et activités`;
+---
+
+<Base title={title}>
+  <section class="hero">
+    <div class="wrap">
+      <h1>Que faire <em>en {sector.name}</em>&nbsp;?</h1>
+      <p class="sub">
+        Concerts, randos, marchés, spectacles… {sector.event_count} idées de sorties
+        collectées automatiquement auprès des communes et offices de tourisme.
+      </p>
+
+      <form class="searchbar" id="searchform" role="search">
+        <input
+          id="searchinput"
+          type="search"
+          placeholder="Ex : une sortie en famille ce week-end…"
+          aria-label="Rechercher une activité"
+          autocomplete="off"
+        />
+        <button type="submit">Chercher</button>
+      </form>
+
+      <p class="hints">
+        Essayez :
+        <button type="button" data-example>concert gratuit ce week-end</button> ·
+        <button type="button" data-example>balade en famille</button> ·
+        <button type="button" data-example>expo à Grenoble</button>
+      </p>
+
+      <div class="chips" id="chips">
+        <button class="chip" data-chip="weekend" aria-pressed="false">📅 Ce week-end</button>
+        <button class="chip" data-chip="today" aria-pressed="false">☀️ Aujourd'hui</button>
+        <button class="chip" data-chip="famille" aria-pressed="false">👨‍👩‍👧 En famille</button>
+        <button class="chip" data-chip="gratuit" aria-pressed="false">🆓 Gratuit</button>
+        <button class="chip" data-chip="nearme" aria-pressed="false">📍 Près de moi</button>
+      </div>
+    </div>
+  </section>
+
+  <main class="wrap">
+    <div class="toolbar">
+      <span class="count" id="count">{events.length} événements</span>
+      <span class="geostate" id="geostate"></span>
+      <button class="reset" id="reset" type="button">Tout réafficher</button>
+    </div>
+
+    <div class="grid" id="grid">
+      {events.map((event) => <EventCard event={event} />)}
+    </div>
+
+    <div class="empty" id="empty">
+      <div class="big">🔍</div>
+      <p>
+        Rien ne correspond à cette recherche pour l'instant.<br />
+        Élargissez les dates ou <button type="button" class="chip" id="empty-reset">réaffichez tout</button>.
+      </p>
+    </div>
+  </main>
+</Base>
+
+<script>
+  import { parseQuery, matches, distanceKm, fold } from '../lib/nlsearch.js';
+  import sector from '../data/sector.json';
+
+  const grid = document.getElementById('grid');
+  const cards = Array.from(grid.querySelectorAll('.card'));
+  const input = document.getElementById('searchinput');
+  const form = document.getElementById('searchform');
+  const countEl = document.getElementById('count');
+  const geostate = document.getElementById('geostate');
+  const resetBtn = document.getElementById('reset');
+  const emptyEl = document.getElementById('empty');
+  const chips = Array.from(document.querySelectorAll('[data-chip]'));
+
+  let userPos = null; // {lat, lon}
+  const state = { query: '', chips: new Set() };
+
+  const cardData = (card) => ({
+    date: card.dataset.date,
+    end: card.dataset.end,
+    cat: card.dataset.cat,
+    commune: card.dataset.commune,
+    audience: card.dataset.audience,
+    free: card.dataset.free,
+    text: card.dataset.text,
+    lat: parseFloat(card.dataset.lat),
+    lon: parseFloat(card.dataset.lon),
+  });
+
+  function chipFilter(filter) {
+    const now = new Date();
+    const iso = (d) => new Date(d.getTime() - d.getTimezoneOffset() * 60000).toISOString().slice(0, 10);
+    if (state.chips.has('today')) {
+      filter.dateFrom = iso(now);
+      filter.dateTo = iso(now);
+    }
+    if (state.chips.has('weekend')) {
+      const sat = new Date(now);
+      sat.setDate(sat.getDate() + ((6 - sat.getDay() + 7) % 7));
+      const sun = new Date(sat);
+      sun.setDate(sat.getDate() + 1);
+      filter.dateFrom = iso(now.getDay() === 5 ? now : sat);
+      filter.dateTo = iso(sun);
+    }
+    if (state.chips.has('famille') && !filter.audience.includes('famille')) {
+      filter.audience.push('famille');
+    }
+    if (state.chips.has('gratuit')) filter.free = true;
+    if (state.chips.has('nearme')) filter.nearMe = true;
+    return filter;
+  }
+
+  function requestGeoloc(cb) {
+    if (userPos) return cb();
+    if (!navigator.geolocation) {
+      geostate.textContent = 'Géolocalisation non disponible sur ce navigateur.';
+      return cb();
+    }
+    geostate.textContent = 'Localisation en cours…';
+    navigator.geolocation.getCurrentPosition(
+      (pos) => {
+        userPos = { lat: pos.coords.latitude, lon: pos.coords.longitude };
+        geostate.textContent = '';
+        cb();
+      },
+      () => {
+        geostate.textContent = `Position refusée — tri depuis le centre ${sector.name}.`;
+        userPos = { lat: sector.center.lat, lon: sector.center.lon };
+        cb();
+      },
+      { timeout: 8000 }
+    );
+  }
+
+  function apply() {
+    const filter = chipFilter(parseQuery(state.query, sector.communes));
+
+    if (filter.nearMe && !userPos) {
+      requestGeoloc(apply);
+      return;
+    }
+
+    let shown = 0;
+    const visible = [];
+    for (const card of cards) {
+      const data = cardData(card);
+      const ok = matches(data, filter);
+      card.classList.toggle('hidden', !ok);
+      const distEl = card.querySelector('[data-role="distance"]');
+      if (ok) {
+        shown += 1;
+        let dist = null;
+        if (filter.nearMe && userPos && !Number.isNaN(data.lat)) {
+          dist = distanceKm(userPos.lat, userPos.lon, data.lat, data.lon);
+        }
+        distEl.textContent = dist != null ? `~${Math.round(dist)} km` : '';
+        visible.push({ card, dist, date: data.date });
+      } else {
+        distEl.textContent = '';
+      }
+    }
+
+    // Tri : distance si « près de moi », sinon date.
+    visible.sort((a, b) =>
+      filter.nearMe && a.dist != null && b.dist != null
+        ? a.dist - b.dist || a.date.localeCompare(b.date)
+        : a.date.localeCompare(b.date)
+    );
+    for (const { card } of visible) grid.appendChild(card);
+
+    countEl.textContent = shown === 1 ? '1 événement' : `${shown} événements`;
+    emptyEl.classList.toggle('visible', shown === 0);
+    grid.style.display = shown === 0 ? 'none' : '';
+    const isFiltered = state.query.trim() !== '' || state.chips.size > 0;
+    resetBtn.classList.toggle('visible', isFiltered);
+  }
+
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    state.query = input.value;
+    // La requête peut activer des chips implicitement (retour visuel).
+    const parsed = parseQuery(state.query, sector.communes);
+    syncChips(parsed);
+    apply();
+  });
+
+  input.addEventListener('input', () => {
+    if (input.value === '') {
+      state.query = '';
+      apply();
+    }
+  });
+
+  function syncChips(parsed) {
+    for (const chip of chips) {
+      const key = chip.dataset.chip;
+      const active =
+        state.chips.has(key) ||
+        (key === 'gratuit' && parsed.free === true) ||
+        (key === 'famille' && parsed.audience.includes('famille')) ||
+        (key === 'nearme' && parsed.nearMe);
+      chip.setAttribute('aria-pressed', String(active));
+    }
+  }
+
+  for (const chip of chips) {
+    chip.addEventListener('click', () => {
+      const key = chip.dataset.chip;
+      if (state.chips.has(key)) state.chips.delete(key);
+      else state.chips.add(key);
+      chip.setAttribute('aria-pressed', String(state.chips.has(key)));
+      apply();
+    });
+  }
+
+  function resetAll() {
+    state.query = '';
+    state.chips.clear();
+    input.value = '';
+    for (const chip of chips) chip.setAttribute('aria-pressed', 'false');
+    apply();
+  }
+  resetBtn.addEventListener('click', resetAll);
+  document.getElementById('empty-reset').addEventListener('click', resetAll);
+
+  for (const btn of document.querySelectorAll('[data-example]')) {
+    btn.addEventListener('click', () => {
+      input.value = btn.textContent;
+      form.requestSubmit();
+    });
+  }
+</script>

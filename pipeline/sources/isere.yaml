@@ -1,0 +1,80 @@
+# Registre des sources — secteur Isère (38)
+#
+# C'est LE fichier à enrichir pour couvrir le territoire. Types supportés :
+#   rss        : flux RSS/Atom (le plus courant sur les sites communaux)
+#   ical       : agenda iCal/.ics publié (mairies, associations)
+#   openagenda : slug ou UID d'un agenda openagenda.com (OPENAGENDA_KEY requise)
+#   html       : page agenda sans flux — extraction par agent LLM (QUEFAIRE_LLM requis)
+#
+# `python -m quefaire discover --sector isere` propose de nouvelles entrées
+# (agent autoagent-core) ; on les vérifie puis on passe enabled: true.
+#
+# Les sources ci-dessous sont des candidates connues mais non vérifiées depuis
+# cet environnement (réseau restreint) : les activer une à une après test
+# `python -m quefaire crawl --sector isere`.
+
+sector:
+  name: Isère
+  country: FR
+  center_lat: 45.2
+  center_lon: 5.68
+
+sources:
+  # --- OpenAgenda (couverture large, 1 clé gratuite pour tout) ---------------
+  - id: oa-grenoble
+    name: Ville de Grenoble (OpenAgenda)
+    type: openagenda
+    url: grenoble
+    commune: Grenoble
+    enabled: false
+
+  - id: oa-echirolles
+    name: Ville d'Échirolles (OpenAgenda)
+    type: openagenda
+    url: ville-dechirolles
+    commune: Échirolles
+    enabled: false
+
+  - id: oa-smh
+    name: Saint-Martin-d'Hères (OpenAgenda)
+    type: openagenda
+    url: saint-martin-d-heres
+    commune: Saint-Martin-d'Hères
+    enabled: false
+
+  # --- Flux RSS communaux / intercommunaux -----------------------------------
+  - id: rss-vienne
+    name: Ville de Vienne — agenda
+    type: rss
+    url: https://www.vienne.fr/rss
+    commune: Vienne
+    enabled: false
+
+  - id: rss-bourgoin
+    name: Bourgoin-Jallieu — actualités et agenda
+    type: rss
+    url: https://www.bourgoinjallieu.fr/rss
+    commune: Bourgoin-Jallieu
+    enabled: false
+
+  # --- Offices de tourisme (pages agenda, extraction LLM) --------------------
+  - id: html-vercors
+    name: OT Villard-de-Lans / Vercors — agenda
+    type: html
+    url: https://www.villarddelans.com/agenda/
+    commune: Villard-de-Lans
+    enabled: false
+
+  - id: html-chamrousse
+    name: OT Chamrousse — agenda
+    type: html
+    url: https://www.chamrousse.com/agenda.html
+    commune: Chamrousse
+    enabled: false
+
+  - id: html-oisans
+    name: Oisans Tourisme — agenda
+    type: html
+    url: https://www.oisans.com/agenda/
+    commune: Le Bourg-d'Oisans
+    enabled: false

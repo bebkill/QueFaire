@@ -1,0 +1,45 @@
+---
+import sector from '../data/sector.json';
+import { CATEGORY_EMOJI, dateBadge, priceLabel } from '../lib/format.js';
+import { fold } from '../lib/nlsearch.js';
+
+const { event } = Astro.props;
+const base = import.meta.env.BASE_URL;
+const badge = dateBadge(event.start);
+const price = priceLabel(event);
+const foldedText = fold([event.title, event.description, event.commune, event.tags?.join(' ')].join(' '));
+---
+
+<a
+  class="card"
+  href={`${base}evenement/${event.id}/`}
+  style={`--cat: var(--c-${event.category})`}
+  data-date={event.start.slice(0, 10)}
+  data-end={(event.end || event.start).slice(0, 10)}
+  data-cat={event.category}
+  data-commune={event.commune || ''}
+  data-audience={event.audience.join(' ')}
+  data-free={String(event.free === true)}
+  data-lat={event.lat ?? ''}
+  data-lon={event.lon ?? ''}
+  data-text={foldedText}
+>
+  <div class="card-top">
+    <span class="emoji" aria-hidden="true">{CATEGORY_EMOJI[event.category]}</span>
+    <span class="cat-label">{sector.categories[event.category]}</span>
+    <span class="date">
+      <span class="day">{badge.day}</span>
+      <span class="mon">{badge.mon}</span>
+    </span>
+  </div>
+  <div class="card-body">
+    <h3>{event.title}</h3>
+    <p class="desc">{event.description}</p>
+    <div class="card-meta">
+      {event.commune && <span>📍 {event.commune}</span>}
+      {price && <span class={event.free ? 'free' : ''}>{price}</span>}
+      {event.audience.includes('famille') && <span class="badge-audience">👨‍👩‍👧 famille</span>}
+      <span class="dist" data-role="distance"></span>
+    </div>
+  </div>
+</a>

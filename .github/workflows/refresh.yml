@@ -1,0 +1,86 @@
+# Fraîcheur automatique : crawl des sources 2×/jour, commit des données,
+# build Astro et déploiement GitHub Pages. Aucune intervention manuelle.
+name: Refresh data & deploy
+
+on:
+  schedule:
+    - cron: "0 4 * * *"   # 6h heure de Paris (été)
+    - cron: "0 15 * * *"  # 17h — rattrape les annonces publiées dans la journée
+  workflow_dispatch: {}
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: refresh
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install pipeline
+        run: pip install -r pipeline/requirements.txt
+
+      - name: Run tests
+        run: pip install pytest && python -m pytest pipeline/tests -q
+
+      - name: Crawl sources
+        working-directory: pipeline
+        env:
+          # À renseigner dans Settings → Secrets pour activer les sources réelles :
+          OPENAGENDA_KEY: ${{ secrets.OPENAGENDA_KEY }}
+          # Extraction LLM des pages HTML (optionnel, ex: "gemini:gemini-3.5-flash")
+          QUEFAIRE_LLM: ${{ vars.QUEFAIRE_LLM }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: |
+          if [ -n "$QUEFAIRE_LLM" ]; then pip install autoagent-core; fi
+          python -m quefaire crawl --sector isere
+
+      - name: Commit refreshed data
+        run: |
+          git config user.name "quefaire-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add site/src/data
+          git diff --cached --quiet || git commit -m "data: rafraîchissement automatique ($(date -u +%F))"
+          git push
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: site/package-lock.json
+
+      - name: Build site
+        working-directory: site
+        env:
+          SITE_URL: https://${{ github.repository_owner }}.github.io
+          SITE_BASE: /${{ github.event.repository.name }}/
+        run: |
+          npm ci
+          npm run build
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: site/dist
+
+  deploy:
+    needs: refresh
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

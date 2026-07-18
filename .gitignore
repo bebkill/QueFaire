@@ -1,0 +1,14 @@
+# Node
+node_modules/
+site/dist/
+site/.astro/
+
+# Python
+__pycache__/
+*.pyc
+.pytest_cache/
+.venv/
+
+# Divers
+.DS_Store
+*.log

@@ -1,0 +1,51 @@
+---
+import Base from '../layouts/Base.astro';
+import sector from '../data/sector.json';
+---
+
+<Base title={`À propos — Que faire en ${sector.name} ?`}>
+  <main class="wrap prose">
+    <h1>À propos</h1>
+    <p>
+      Les sorties locales sont éparpillées : sites de mairies, offices de tourisme,
+      réseaux sociaux… <strong>Que faire ?</strong> les collecte automatiquement,
+      les déduplique et les présente au même endroit, avec une recherche en
+      langage naturel : <em>« une sortie en famille ce week-end »</em>,
+      <em>« un concert gratuit près de moi »</em>.
+    </p>
+
+    <h2>Comment ça marche</h2>
+    <ul>
+      <li>Un pipeline crawle régulièrement les sources référencées (flux RSS, agendas iCal, OpenAgenda, pages agenda).</li>
+      <li>Les événements sont normalisés (catégorie, public, gratuité), géolocalisés par commune et dédupliqués.</li>
+      <li>Le site est régénéré automatiquement à chaque collecte : les données restent fraîches sans intervention.</li>
+    </ul>
+
+    <h2>Sources actuellement référencées</h2>
+    {sector.sources.length === 0 ? (
+      <p>
+        🚧 Le site tourne pour l'instant avec un <strong>jeu de données de démonstration</strong>.
+        Les premières sources réelles ({sector.name}) sont en cours de vérification.
+      </p>
+    ) : (
+      <ul>
+        {sector.sources.map((s) => (
+          <li>
+            <a href={s.url.startsWith('http') ? s.url : `https://openagenda.com/agendas/${s.url}`} rel="noopener">{s.name}</a>{' '}
+            <code>{s.type}</code>
+          </li>
+        ))}
+      </ul>
+    )}
+    <p>
+      Une source manque ? Proposez-la : le registre est un simple fichier
+      <code>sources/{sector.id}.yaml</code> dans le dépôt du projet.
+    </p>
+
+    <h2>Et après ?</h2>
+    <ul>
+      <li><strong>D'autres territoires</strong> : l'architecture est multi-secteurs — ajouter une région, c'est ajouter un fichier de sources.</li>
+      <li><strong>Les professionnels</strong> : le même moteur pourra référencer artisans et commerçants (« je cherche un électricien », « un tailleur de pierre »).</li>
+    </ul>
+  </main>
+</Base>
