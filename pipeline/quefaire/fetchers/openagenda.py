@@ -17,6 +17,32 @@ from .base import http_get
 log = logging.getLogger("quefaire")
 
 API = "https://api.openagenda.com/v2/agendas/{uid}/events"
+API_AGENDAS = "https://api.openagenda.com/v2/agendas"
+
+
+def search_agendas(query: str, key: str | None = None, size: int = 20) -> list[dict]:
+    """Recherche d'agendas OpenAgenda ({uid, title, slug, description, url}).
+
+    Sert à la découverte automatique : trouver tous les agendas qui parlent
+    d'une commune, sans copier les UID à la main depuis le JSON de l'API.
+    """
+    key = key or os.environ.get("OPENAGENDA_KEY")
+    if not key:
+        raise RuntimeError("OPENAGENDA_KEY absente")
+    data = http_get(API_AGENDAS, params={"key": key, "search": query, "size": size}).json()
+    out = []
+    for ag in data.get("agendas", []):
+        out.append(
+            {
+                "uid": ag.get("uid"),
+                "title": ag.get("title"),
+                "slug": ag.get("slug"),
+                "description": (ag.get("description") or "")[:200],
+                "url": f"https://openagenda.com/agendas/{ag.get('slug') or ag.get('uid')}",
+                "official": bool(ag.get("official")),
+            }
+        )
+    return out
 
 
 def _lang(value, lang="fr") -> str:

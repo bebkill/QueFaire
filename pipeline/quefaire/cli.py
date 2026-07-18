@@ -62,6 +62,62 @@ def crawl(sector_id: str, demo: bool, out: Path | None) -> int:
     return 0
 
 
+def discover_openagenda(sector_id: str, communes: list[str] | None, strict: bool) -> str:
+    """Cherche les agendas OpenAgenda des communes du secteur et émet le YAML
+    des sources candidates, prêt à coller dans sources/<secteur>.yaml.
+
+    « Beaucoup d'agendas pour Grenoble » : on interroge l'API agendas pour
+    chaque commune, on déduplique par UID, et on trie les officiels d'abord.
+    La validation humaine (enabled: true) reste la dernière étape.
+    """
+    import yaml
+
+    from .fetchers.openagenda import search_agendas
+    from .geocode import commune_table
+    from .normalize import fold
+
+    targets = communes or [name for name, _, _ in commune_table(sector_id).values()]
+    seen: dict[int, dict] = {}
+    for commune in targets:
+        try:
+            agendas = search_agendas(commune)
+        except Exception as exc:
+            log.error("[discover-oa] %s : %s", commune, exc)
+            continue
+        for ag in agendas:
+            if not ag["uid"]:
+                continue
+            title_match = fold(commune) in fold(ag["title"] or "")
+            if strict and not title_match:
+                continue
+            entry = seen.setdefault(
+                ag["uid"],
+                {
+                    "id": f"oa-{ag['slug'] or ag['uid']}"[:40],
+                    "name": f"{ag['title']} (OpenAgenda)",
+                    "type": "openagenda",
+                    "url": ag["uid"],
+                    "commune": None,
+                    "enabled": False,
+                    "_official": ag["official"],
+                    "_matches": [],
+                },
+            )
+            entry["_matches"].append(commune)
+            if title_match and entry["commune"] is None:
+                entry["commune"] = commune
+
+    candidates = sorted(
+        seen.values(), key=lambda e: (not e["_official"], not e["commune"], e["name"])
+    )
+    for e in candidates:
+        e["comment"] = ("officiel, " if e.pop("_official") else "") + \
+            "trouvé via : " + ", ".join(sorted(set(e.pop("_matches"))))
+    log.info("[discover-oa] %d agendas candidats (%d communes interrogées)",
+             len(candidates), len(targets))
+    return yaml.safe_dump(candidates, allow_unicode=True, sort_keys=False)
+
+
 def main(argv: list[str] | None = None) -> int:
     logging.basicConfig(level=logging.INFO, format="%(levelname)s %(message)s")
     parser = argparse.ArgumentParser(prog="quefaire")
@@ -75,6 +131,15 @@ def main(argv: list[str] | None = None) -> int:
     p_disc = sub.add_parser("discover", help="Proposer de nouvelles sources (agent LLM)")
     p_disc.add_argument("--sector", default="isere")
     p_disc.add_argument("--communes", default=None, help="Liste de communes, séparées par des virgules")
+
+    p_oa = sub.add_parser(
+        "discover-oa",
+        help="Trouver les agendas OpenAgenda des communes du secteur (OPENAGENDA_KEY requise)",
+    )
+    p_oa.add_argument("--sector", default="isere")
+    p_oa.add_argument("--communes", default=None, help="Restreindre à ces communes (séparées par des virgules)")
+    p_oa.add_argument("--strict", action="store_true",
+                      help="Ne garder que les agendas dont le titre mentionne la commune")
 
     sub.add_parser("sectors", help="Lister les secteurs disponibles")
 
@@ -90,6 +155,10 @@ def main(argv: list[str] | None = None) -> int:
 
         communes = args.communes.split(",") if args.communes else None
         print(discover(load_sector(args.sector), communes))
+        return 0
+    if args.cmd == "discover-oa":
+        communes = [c.strip() for c in args.communes.split(",")] if args.communes else None
+        print(discover_openagenda(args.sector, communes, args.strict))
         return 0
     return 2
 

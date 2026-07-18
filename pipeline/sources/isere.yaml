@@ -57,6 +57,74 @@ sources:
     commune: Bourgoin-Jallieu
     enabled: false
 
+  # --- Nord-Isère -------------------------------------------------------------
+  # Sources identifiées (recherche web juillet 2026). Pas de flux RSS/iCal
+  # repérés : ce sont des pages agenda → extraction LLM (type html).
+  # `discover-oa` trouvera en plus les agendas OpenAgenda du territoire.
+
+  - id: html-capi
+    name: CAPI (Porte de l'Isère) — tout l'agenda
+    type: html
+    url: https://capi-agglo.fr/tout-lagenda/
+    commune: L'Isle-d'Abeau
+    enabled: false
+
+  - id: html-bourgoin
+    name: Ville de Bourgoin-Jallieu — agenda
+    type: html
+    url: https://www.bourgoinjallieu.fr/agenda
+    commune: Bourgoin-Jallieu
+    enabled: false
+
+  - id: html-weekend-capi
+    name: Mon week-end à la CAPI
+    type: html
+    url: https://www.monweekendalacapi.fr/
+    commune: Villefontaine
+    enabled: false
+
+  - id: html-balcons-dauphine
+    name: OT Balcons du Dauphiné — tout l'agenda (Crémieu, Morestel, Saint-Chef…)
+    type: html
+    url: https://www.balconsdudauphine-tourisme.com/agenda/tout-lagenda/
+    commune: Crémieu
+    enabled: false
+
+  - id: html-vals-dauphine
+    name: OT Les Vals du Dauphiné — agenda (La Tour-du-Pin, Pont-de-Beauvoisin…)
+    type: html
+    url: https://www.tourisme-valsdudauphine.fr/agenda/
+    commune: La Tour-du-Pin
+    enabled: false
+
+  # --- Réseaux sociaux ---------------------------------------------------------
+  # Types facebook / instagram : `url` = identifiant de la page.
+  # Nécessitent une instance RSS-Bridge (RSSBRIDGE_URL) + QUEFAIRE_LLM :
+  # les posts récents sont convertis en événements par l'agent LLM.
+  # Exemples à vérifier/compléter — beaucoup de petites communes n'annoncent
+  # leurs événements QUE sur Facebook.
+
+  - id: fb-bourgoin
+    name: Ville de Bourgoin-Jallieu (Facebook)
+    type: facebook
+    url: villedebourgoinjallieu
+    commune: Bourgoin-Jallieu
+    enabled: false
+
+  - id: fb-cremieu
+    name: Ville de Crémieu (Facebook)
+    type: facebook
+    url: mairiedecremieu
+    commune: Crémieu
+    enabled: false
+
+  - id: ig-capi
+    name: CAPI — Porte de l'Isère (Instagram)
+    type: instagram
+    url: capi_agglo
+    commune: L'Isle-d'Abeau
+    enabled: false
+
   # --- Offices de tourisme (pages agenda, extraction LLM) --------------------
   - id: html-vercors
     name: OT Villard-de-Lans / Vercors — agenda
