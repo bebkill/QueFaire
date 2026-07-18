@@ -1,0 +1,54 @@
+# Découverte de sources à la demande, sans installation locale.
+# Actions → « Discover sources » → Run workflow.
+# Le YAML des candidats sort dans le résumé du job (et en artefact) :
+# relire, coller dans pipeline/sources/<secteur>.yaml, passer enabled: true.
+name: Discover sources
+
+on:
+  workflow_dispatch:
+    inputs:
+      communes:
+        description: "Communes ciblées, séparées par des virgules (vide = tout le secteur)"
+        required: false
+        default: ""
+      strict:
+        description: "Ne garder que les agendas citant la commune dans leur titre"
+        type: boolean
+        default: true
+
+jobs:
+  discover:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install pipeline
+        run: pip install -r pipeline/requirements.txt
+
+      - name: Discover OpenAgenda agendas
+        working-directory: pipeline
+        env:
+          OPENAGENDA_KEY: ${{ secrets.OPENAGENDA_KEY }}
+        run: |
+          ARGS="--sector isere"
+          if [ -n "${{ inputs.communes }}" ]; then ARGS="$ARGS --communes '${{ inputs.communes }}'"; fi
+          if [ "${{ inputs.strict }}" = "true" ]; then ARGS="$ARGS --strict"; fi
+          eval python -m quefaire discover-oa $ARGS | tee /tmp/candidates.yaml
+          {
+            echo "## Agendas OpenAgenda candidats"
+            echo ""
+            echo "À relire puis coller dans \`pipeline/sources/isere.yaml\` (passer \`enabled: true\`) :"
+            echo ""
+            echo '```yaml'
+            cat /tmp/candidates.yaml
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: openagenda-candidates
+          path: /tmp/candidates.yaml
