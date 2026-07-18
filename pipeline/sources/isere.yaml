@@ -29,35 +29,35 @@ sources:
     type: openagenda
     url: "76399859"
     commune: Échirolles
-    enabled: true
+    enabled: false  # dormant : 0 événement à venir (discover-oa 18/07/2026)
 
   - id: oa-bourgoin-jallieu
     name: Ville de Bourgoin-Jallieu (OpenAgenda)
     type: openagenda
     url: "6694450"
     commune: Bourgoin-Jallieu
-    enabled: true
+    enabled: false  # dormant : 0 événement à venir (discover-oa 18/07/2026)
 
   - id: oa-crolles
     name: Ville de Crolles (OpenAgenda)
     type: openagenda
     url: "22097534"
     commune: Crolles
-    enabled: true
+    enabled: false  # dormant : 0 événement à venir (discover-oa 18/07/2026)
 
   - id: oa-saint-marcellin
     name: Ville de Saint-Marcellin (OpenAgenda)
     type: openagenda
     url: "34867028"
     commune: Saint-Marcellin
-    enabled: true
+    enabled: false  # dormant : 0 événement à venir (discover-oa 18/07/2026)
 
   - id: oa-le-grand-lemps
     name: Le Grand-Lemps (OpenAgenda)
     type: openagenda
     url: "88342736"
     commune: Le Grand-Lemps
-    enabled: true
+    enabled: false  # dormant : 0 événement à venir (discover-oa 18/07/2026)
 
   - id: oa-chamrousse-nature
     name: Pleine nature à Chamrousse (OpenAgenda)
@@ -65,7 +65,7 @@ sources:
     url: "53895680"
     commune: Chamrousse
     category_hint: nature
-    enabled: true
+    enabled: false  # dormant : 0 événement à venir (discover-oa 18/07/2026)
 
   - id: oa-vizille-domaine
     name: Domaine de Vizille — Musée de la Révolution française (OpenAgenda)
@@ -73,7 +73,7 @@ sources:
     url: "86540112"
     commune: Vizille
     category_hint: patrimoine
-    enabled: true
+    enabled: false  # dormant : 0 événement à venir (discover-oa 18/07/2026)
 
   - id: oa-voreppe-cinema
     name: Cinéma le Cap de Voreppe (OpenAgenda)
@@ -81,15 +81,7 @@ sources:
     url: "24918838"
     commune: Voreppe
     category_hint: cinema
-    enabled: true
-
-  # Agendas associatifs locaux repérés par discover-oa — à évaluer avant activation
-  - id: oa-meylanfolk
-    name: MeylanFolk (OpenAgenda)
-    type: openagenda
-    url: "19982906"
-    commune: Meylan
-    enabled: false
+    enabled: false  # dormant : 0 événement à venir (discover-oa 18/07/2026)
 
   - id: oa-hiboubox-villard
     name: HIBOUBOX — restaurant-concert à Villard-de-Lans (OpenAgenda)
@@ -97,6 +89,14 @@ sources:
     url: "1698621"
     commune: Villard-de-Lans
     category_hint: concert
+    enabled: true  # 9 événements à venir (discover-oa 18/07/2026)
+
+  # Agendas associatifs locaux repérés par discover-oa — à évaluer avant activation
+  - id: oa-meylanfolk
+    name: MeylanFolk (OpenAgenda)
+    type: openagenda
+    url: "19982906"
+    commune: Meylan
     enabled: false
 
   - id: oa-chateau-sassenage
@@ -154,14 +154,14 @@ sources:
     type: html
     url: https://www.monweekendalacapi.fr/
     commune: Villefontaine
-    enabled: false
+    enabled: true
 
   - id: html-balcons-dauphine
     name: OT Balcons du Dauphiné — tout l'agenda (Crémieu, Morestel, Saint-Chef…)
     type: html
     url: https://www.balconsdudauphine-tourisme.com/agenda/tout-lagenda/
     commune: Crémieu
-    enabled: false
+    enabled: true
 
   - id: html-vals-dauphine
     name: OT Les Vals du Dauphiné — agenda (La Tour-du-Pin, Pont-de-Beauvoisin…)
@@ -204,18 +204,18 @@ sources:
     type: html
     url: https://www.villarddelans.com/agenda/
     commune: Villard-de-Lans
-    enabled: false
+    enabled: true
 
   - id: html-chamrousse
     name: OT Chamrousse — agenda
     type: html
     url: https://www.chamrousse.com/agenda.html
     commune: Chamrousse
-    enabled: false
+    enabled: true
 
   - id: html-oisans
     name: Oisans Tourisme — agenda
     type: html
     url: https://www.oisans.com/agenda/
     commune: Le Bourg-d'Oisans
-    enabled: false
+    enabled: true
