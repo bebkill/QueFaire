@@ -33,6 +33,7 @@
   "Claix",
   "Corbelin",
   "Corenc",
+  "Corrençon-en-Vercors",
   "Crolles",
   "Crémieu",
   "Dolomieu",
@@ -86,6 +87,7 @@
   "Sassenage",
   "Seyssinet-Pariset",
   "Seyssins",
+  "Succieu",
   "Tignieu-Jameyzieu",
   "Trept",
   "Tullins",
@@ -104,52 +106,10 @@
  ],
  "sources": [
   {
-   "id": "oa-echirolles",
-   "name": "Ville d'Échirolles (OpenAgenda)",
+   "id": "oa-hiboubox-villard",
+   "name": "HIBOUBOX — restaurant-concert à Villard-de-Lans (OpenAgenda)",
    "type": "openagenda",
-   "url": "76399859"
-  },
-  {
-   "id": "oa-bourgoin-jallieu",
-   "name": "Ville de Bourgoin-Jallieu (OpenAgenda)",
-   "type": "openagenda",
-   "url": "6694450"
-  },
-  {
-   "id": "oa-crolles",
-   "name": "Ville de Crolles (OpenAgenda)",
-   "type": "openagenda",
-   "url": "22097534"
-  },
-  {
-   "id": "oa-saint-marcellin",
-   "name": "Ville de Saint-Marcellin (OpenAgenda)",
-   "type": "openagenda",
-   "url": "34867028"
-  },
-  {
-   "id": "oa-le-grand-lemps",
-   "name": "Le Grand-Lemps (OpenAgenda)",
-   "type": "openagenda",
-   "url": "88342736"
-  },
-  {
-   "id": "oa-chamrousse-nature",
-   "name": "Pleine nature à Chamrousse (OpenAgenda)",
-   "type": "openagenda",
-   "url": "53895680"
-  },
-  {
-   "id": "oa-vizille-domaine",
-   "name": "Domaine de Vizille — Musée de la Révolution française (OpenAgenda)",
-   "type": "openagenda",
-   "url": "86540112"
-  },
-  {
-   "id": "oa-voreppe-cinema",
-   "name": "Cinéma le Cap de Voreppe (OpenAgenda)",
-   "type": "openagenda",
-   "url": "24918838"
+   "url": "1698621"
   },
   {
    "id": "html-capi",
@@ -162,8 +122,38 @@
    "name": "Ville de Bourgoin-Jallieu — agenda",
    "type": "html",
    "url": "https://www.bourgoinjallieu.fr/agenda"
+  },
+  {
+   "id": "html-weekend-capi",
+   "name": "Mon week-end à la CAPI",
+   "type": "html",
+   "url": "https://www.monweekendalacapi.fr/"
+  },
+  {
+   "id": "html-balcons-dauphine",
+   "name": "OT Balcons du Dauphiné — tout l'agenda (Crémieu, Morestel, Saint-Chef…)",
+   "type": "html",
+   "url": "https://www.balconsdudauphine-tourisme.com/agenda/tout-lagenda/"
+  },
+  {
+   "id": "html-vercors",
+   "name": "OT Villard-de-Lans / Vercors — agenda",
+   "type": "html",
+   "url": "https://www.villarddelans.com/agenda/"
+  },
+  {
+   "id": "html-chamrousse",
+   "name": "OT Chamrousse — agenda",
+   "type": "html",
+   "url": "https://www.chamrousse.com/agenda.html"
+  },
+  {
+   "id": "html-oisans",
+   "name": "Oisans Tourisme — agenda",
+   "type": "html",
+   "url": "https://www.oisans.com/agenda/"
   }
  ],
- "generated_at": "2026-07-18T18:52:08",
- "event_count": 40
+ "generated_at": "2026-07-18T19:25:53",
+ "event_count": 62
 }
