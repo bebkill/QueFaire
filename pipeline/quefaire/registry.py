@@ -6,12 +6,14 @@ Ajouter une région se résume à ajouter un fichier + un CSV de communes.
 
 from __future__ import annotations
 
-from dataclasses import dataclass, field
+from dataclasses import dataclass, field, fields
 from pathlib import Path
 
 import yaml
 
 from .models import Source
+
+SOURCE_FIELDS = {f.name for f in fields(Source)}
 
 SOURCES_DIR = Path(__file__).resolve().parent.parent / "sources"
 
@@ -38,8 +40,13 @@ def load_sector(sector_id: str) -> Sector:
         )
     raw = yaml.safe_load(path.read_text(encoding="utf-8"))
     meta = raw.get("sector", {})
+    # Tolérant aux clés inconnues (ex: `comment` émis par discover-oa).
     sources = [
-        Source(**{**src, "id": src.get("id") or f"{sector_id}-{i}"})
+        Source(**{
+            **{k: v for k, v in src.items() if k in SOURCE_FIELDS},
+            "id": src.get("id") or f"{sector_id}-{i}",
+            "url": str(src.get("url", "")),
+        })
         for i, src in enumerate(raw.get("sources", []))
     ]
     return Sector(

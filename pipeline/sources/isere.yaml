@@ -21,25 +21,98 @@ sector:
 
 sources:
   # --- OpenAgenda (couverture large, 1 clé gratuite pour tout) ---------------
-  - id: oa-grenoble
-    name: Ville de Grenoble (OpenAgenda)
-    type: openagenda
-    url: grenoble
-    commune: Grenoble
-    enabled: false
+  # UID vérifiés via `discover-oa` (run Actions du 18/07/2026).
+  # Agendas communaux / institutionnels : activés.
 
   - id: oa-echirolles
     name: Ville d'Échirolles (OpenAgenda)
     type: openagenda
-    url: ville-dechirolles
+    url: "76399859"
     commune: Échirolles
+    enabled: true
+
+  - id: oa-bourgoin-jallieu
+    name: Ville de Bourgoin-Jallieu (OpenAgenda)
+    type: openagenda
+    url: "6694450"
+    commune: Bourgoin-Jallieu
+    enabled: true
+
+  - id: oa-crolles
+    name: Ville de Crolles (OpenAgenda)
+    type: openagenda
+    url: "22097534"
+    commune: Crolles
+    enabled: true
+
+  - id: oa-saint-marcellin
+    name: Ville de Saint-Marcellin (OpenAgenda)
+    type: openagenda
+    url: "34867028"
+    commune: Saint-Marcellin
+    enabled: true
+
+  - id: oa-le-grand-lemps
+    name: Le Grand-Lemps (OpenAgenda)
+    type: openagenda
+    url: "88342736"
+    commune: Le Grand-Lemps
+    enabled: true
+
+  - id: oa-chamrousse-nature
+    name: Pleine nature à Chamrousse (OpenAgenda)
+    type: openagenda
+    url: "53895680"
+    commune: Chamrousse
+    category_hint: nature
+    enabled: true
+
+  - id: oa-vizille-domaine
+    name: Domaine de Vizille — Musée de la Révolution française (OpenAgenda)
+    type: openagenda
+    url: "86540112"
+    commune: Vizille
+    category_hint: patrimoine
+    enabled: true
+
+  - id: oa-voreppe-cinema
+    name: Cinéma le Cap de Voreppe (OpenAgenda)
+    type: openagenda
+    url: "24918838"
+    commune: Voreppe
+    category_hint: cinema
+    enabled: true
+
+  # Agendas associatifs locaux repérés par discover-oa — à évaluer avant activation
+  - id: oa-meylanfolk
+    name: MeylanFolk (OpenAgenda)
+    type: openagenda
+    url: "19982906"
+    commune: Meylan
     enabled: false
 
-  - id: oa-smh
-    name: Saint-Martin-d'Hères (OpenAgenda)
+  - id: oa-hiboubox-villard
+    name: HIBOUBOX — restaurant-concert à Villard-de-Lans (OpenAgenda)
     type: openagenda
-    url: saint-martin-d-heres
-    commune: Saint-Martin-d'Hères
+    url: "1698621"
+    commune: Villard-de-Lans
+    category_hint: concert
+    enabled: false
+
+  - id: oa-chateau-sassenage
+    name: Visite du Château de Sassenage (OpenAgenda)
+    type: openagenda
+    url: "96257793"
+    commune: Sassenage
+    category_hint: patrimoine
+    enabled: false
+
+  - id: oa-mj-pontcharra
+    name: Léo Lagrange — Maison des jeunes de Pontcharra (OpenAgenda)
+    type: openagenda
+    url: "30056385"
+    commune: Pontcharra
+    category_hint: jeunesse
     enabled: false
 
   # --- Flux RSS communaux / intercommunaux -----------------------------------
