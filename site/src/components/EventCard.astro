@@ -7,7 +7,9 @@ const { event } = Astro.props;
 const base = import.meta.env.BASE_URL;
 const badge = dateBadge(event.start);
 const price = priceLabel(event);
-const foldedText = fold([event.title, event.description, event.commune, event.tags?.join(' ')].join(' '));
+const foldedText = fold(
+  [event.title, event.tldr, event.description, event.commune, event.tags?.join(' ')].join(' ')
+);
 ---
 
 <a
@@ -34,6 +36,7 @@ const foldedText = fold([event.title, event.description, event.commune, event.ta
   </div>
   <div class="card-body">
     <h3>{event.title}</h3>
+    {event.tldr && <p class="tldr">💡 {event.tldr}</p>}
     <p class="desc">{event.description}</p>
     <div class="card-meta">
       {event.commune && <span>📍 {event.commune}</span>}

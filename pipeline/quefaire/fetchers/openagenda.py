@@ -20,6 +20,17 @@ API = "https://api.openagenda.com/v2/agendas/{uid}/events"
 API_AGENDAS = "https://api.openagenda.com/v2/agendas"
 
 
+def upcoming_count(uid, key: str | None = None) -> int:
+    """Nombre d'événements en cours/à venir d'un agenda — pour écarter les
+    agendas dormants dès la découverte (beaucoup ont 0 événement à venir)."""
+    key = key or os.environ.get("OPENAGENDA_KEY")
+    data = http_get(
+        API.format(uid=uid),
+        params={"key": key, "size": 1, "relative[]": ["current", "upcoming"]},
+    ).json()
+    return int(data.get("total", 0))
+
+
 def search_agendas(query: str, key: str | None = None, size: int = 20) -> list[dict]:
     """Recherche d'agendas OpenAgenda ({uid, title, slug, description, url}).
 

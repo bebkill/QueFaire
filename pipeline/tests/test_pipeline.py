@@ -74,13 +74,18 @@ def test_discover_oa_dedupes_and_ranks(monkeypatch):
     monkeypatch.setattr(
         "quefaire.fetchers.openagenda.search_agendas", lambda q: fake.get(q, [])
     )
+    monkeypatch.setattr(
+        "quefaire.fetchers.openagenda.upcoming_count", lambda uid: {1: 12, 2: 3, 3: 0}[uid]
+    )
     import yaml
 
     out = yaml.safe_load(cli.discover_openagenda("isere", ["Grenoble", "Vienne"], strict=False))
     uids = [e["url"] for e in out]
     assert sorted(uids) == [1, 2, 3]          # dédupliqué par UID
     assert out[0]["url"] == 1                  # l'agenda officiel sort en premier
+    assert uids == [1, 2, 3]                   # puis tri par événements à venir (3 > 0)
     assert "Grenoble, Vienne" in out[0]["comment"]
+    assert "12 événements à venir" in out[0]["comment"]
     assert all(e["enabled"] is False for e in out)  # validation humaine requise
 
     strict = yaml.safe_load(cli.discover_openagenda("isere", ["Grenoble", "Vienne"], strict=True))

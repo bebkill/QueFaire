@@ -120,10 +120,25 @@ auto-hébergée qui transforme une page publique en flux RSS :
 
 ## Feuille de route
 
-- [ ] Activer les premières sources réelles Isère (OpenAgenda + RSS communaux)
-- [ ] Élargir la couverture : offices de tourisme Vercors / Oisans / Chartreuse (extraction LLM)
-- [ ] Nouveaux secteurs : `sources/<secteur>.yaml` + `data/communes_<secteur>.csv` + build multi-secteurs
-- [ ] Réseaux sociaux (pages Facebook communales) via API ou extraction LLM
+**Fait**
+- [x] Premières sources réelles Isère (OpenAgenda + extraction LLM des pages agenda)
+- [x] Carte des événements (Leaflet/OSM) synchronisée avec les filtres
+- [x] Filtre temps de trajet « à moins de X min » (à pied / vélo / voiture), y
+      compris en langage naturel — approximation à vol d'oiseau corrigé
+- [x] Fiches « en clair » : une phrase LLM lève l'ambiguïté des titres
+      (ex: « Faites-vous une terrasse » = dîners en terrasse, pas du bricolage)
+
+**Ensuite**
+- [ ] Vrai moteur isochrone (OpenRouteService ou Valhalla) à la place de
+      l'approximation à vol d'oiseau
+- [ ] Retours utilisateurs sur les événements (👍/👎, note) pour apprendre les
+      goûts et afficher un **score de match** personnalisé, affiné au fil de l'eau
+- [ ] Sources activités outdoor : **Décathlon Outdoor, Visorando, Wikiloc**
+      (balades et itinéraires — pas des événements datés : premier cas d'usage
+      du schéma `Place`, avec notes et avis existants pour « bien noté »)
+- [ ] Compte utilisateur : préférences, contributions, activités réalisées
+- [ ] Élargir la couverture : offices de tourisme Vercors / Oisans / Chartreuse
+- [ ] Nouveaux secteurs : `sources/<secteur>.yaml` + `data/communes_<secteur>.csv`
+- [ ] Réseaux sociaux : activer les sources Facebook/Instagram (RSS-Bridge)
 - [ ] Extension aux professionnels et commerçants (« je cherche un électricien »,
-      « un tailleur de pierre ») : même pipeline, schéma `Place` au lieu d'`Event`,
-      même recherche en langage naturel
+      « un tailleur de pierre ») : même pipeline, schéma `Place`, même recherche

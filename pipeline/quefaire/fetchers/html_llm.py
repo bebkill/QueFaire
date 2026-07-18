@@ -95,8 +95,16 @@ def extract_events_llm(text: str, source: Source, sector_id: str, context_url: s
     try:
         items = json.loads(raw)
     except json.JSONDecodeError:
-        log.error("[llm] %s : réponse LLM non parsable", source.id)
-        return []
+        # Dernier recours : premier tableau JSON trouvé dans la réponse
+        # (les modèles ajoutent parfois du texte autour malgré la consigne).
+        m = re.search(r"\[.*\]", raw, re.S)
+        try:
+            items = json.loads(m.group(0)) if m else None
+        except json.JSONDecodeError:
+            items = None
+        if items is None:
+            log.error("[llm] %s : réponse LLM non parsable (début : %.120s)", source.id, raw)
+            return []
 
     events: list[Event] = []
     for item in items if isinstance(items, list) else []:

@@ -62,6 +62,10 @@ class Event:
     sector: str
     end: Optional[str] = None
     description: str = ""
+    # « En clair » : une phrase générée qui dit concrètement de quoi il s'agit,
+    # quand le titre est ambigu (ex: « Faites-vous une terrasse » = dîners en
+    # terrasse, pas un atelier bricolage). Rempli par clarify.py si LLM dispo.
+    tldr: Optional[str] = None
     category: str = "autre"
     tags: list[str] = field(default_factory=list)
     audience: list[str] = field(default_factory=list)

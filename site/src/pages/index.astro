@@ -30,7 +30,7 @@ const title = `Que faire en ${sector.name} ? Sorties, événements et activités
       <p class="hints">
         Essayez :
         <button type="button" data-example>concert gratuit ce week-end</button> ·
-        <button type="button" data-example>balade en famille</button> ·
+        <button type="button" data-example>balade en famille à moins de 15 min</button> ·
         <button type="button" data-example>expo à Grenoble</button>
       </p>
 
@@ -40,6 +40,7 @@ const title = `Que faire en ${sector.name} ? Sorties, événements et activités
         <button class="chip" data-chip="famille" aria-pressed="false">👨‍👩‍👧 En famille</button>
         <button class="chip" data-chip="gratuit" aria-pressed="false">🆓 Gratuit</button>
         <button class="chip" data-chip="nearme" aria-pressed="false">📍 Près de moi</button>
+        <button class="chip" id="mapchip" aria-pressed="false">🗺️ Carte</button>
       </div>
     </div>
   </section>
@@ -47,8 +48,29 @@ const title = `Que faire en ${sector.name} ? Sorties, événements et activités
   <main class="wrap">
     <div class="toolbar">
       <span class="count" id="count">{events.length} événements</span>
+      <label class="timefilter">
+        ⏱ à moins de
+        <select id="timelimit">
+          <option value="">— (sans limite)</option>
+          <option value="10">10 min</option>
+          <option value="15">15 min</option>
+          <option value="30">30 min</option>
+          <option value="45">45 min</option>
+          <option value="60">1 h</option>
+        </select>
+        <select id="timemode">
+          <option value="car">en voiture</option>
+          <option value="bike">en vélo</option>
+          <option value="walk">à pied</option>
+        </select>
+      </label>
       <span class="geostate" id="geostate"></span>
       <button class="reset" id="reset" type="button">Tout réafficher</button>
+    </div>
+
+    <div id="mapwrap" hidden>
+      <div id="map"></div>
+      <p class="map-note">Temps de trajet estimés à vol d'oiseau corrigé — un calcul d'itinéraire précis arrive en roadmap.</p>
     </div>
 
     <div class="grid" id="grid">
@@ -66,7 +88,7 @@ const title = `Que faire en ${sector.name} ? Sorties, événements et activités
 </Base>
 
 <script>
-  import { parseQuery, matches, distanceKm, fold } from '../lib/nlsearch.js';
+  import { parseQuery, matches, distanceKm, travelMinutes, fold } from '../lib/nlsearch.js';
   import sector from '../data/sector.json';
 
   const grid = document.getElementById('grid');
@@ -78,9 +100,14 @@ const title = `Que faire en ${sector.name} ? Sorties, événements et activités
   const resetBtn = document.getElementById('reset');
   const emptyEl = document.getElementById('empty');
   const chips = Array.from(document.querySelectorAll('[data-chip]'));
+  const timeLimitEl = document.getElementById('timelimit');
+  const timeModeEl = document.getElementById('timemode');
+  const mapChip = document.getElementById('mapchip');
+  const mapWrap = document.getElementById('mapwrap');
 
   let userPos = null; // {lat, lon}
   const state = { query: '', chips: new Set() };
+  const MODE_LABELS = { walk: 'à pied', bike: 'en vélo', car: 'en voiture' };
 
   const cardData = (card) => ({
     date: card.dataset.date,
@@ -139,10 +166,21 @@ const title = `Que faire en ${sector.name} ? Sorties, événements et activités
     );
   }
 
-  function apply() {
+  function currentFilter() {
     const filter = chipFilter(parseQuery(state.query, sector.communes));
+    // Les sélecteurs de la barre d'outils complètent la requête (elle prime).
+    if (filter.maxMinutes == null && timeLimitEl.value) {
+      filter.maxMinutes = parseInt(timeLimitEl.value, 10);
+    }
+    if (!filter.modeExplicit) filter.mode = timeModeEl.value;
+    return filter;
+  }
 
-    if (filter.nearMe && !userPos) {
+  function apply() {
+    const filter = currentFilter();
+    const needsGeo = filter.nearMe || filter.maxMinutes != null;
+
+    if (needsGeo && !userPos) {
       requestGeoloc(apply);
       return;
     }
@@ -151,25 +189,33 @@ const title = `Que faire en ${sector.name} ? Sorties, événements et activités
     const visible = [];
     for (const card of cards) {
       const data = cardData(card);
-      const ok = matches(data, filter);
+      let ok = matches(data, filter);
+      let dist = null;
+      let minutes = null;
+      if (ok && needsGeo && userPos && !Number.isNaN(data.lat)) {
+        dist = distanceKm(userPos.lat, userPos.lon, data.lat, data.lon);
+        minutes = travelMinutes(dist, filter.mode);
+        if (filter.maxMinutes != null && minutes > filter.maxMinutes) ok = false;
+      }
       card.classList.toggle('hidden', !ok);
       const distEl = card.querySelector('[data-role="distance"]');
       if (ok) {
         shown += 1;
-        let dist = null;
-        if (filter.nearMe && userPos && !Number.isNaN(data.lat)) {
-          dist = distanceKm(userPos.lat, userPos.lon, data.lat, data.lon);
-        }
-        distEl.textContent = dist != null ? `~${Math.round(dist)} km` : '';
-        visible.push({ card, dist, date: data.date });
+        distEl.textContent =
+          filter.maxMinutes != null && minutes != null
+            ? `~${Math.round(minutes)} min ${MODE_LABELS[filter.mode]}`
+            : dist != null
+              ? `~${Math.round(dist)} km`
+              : '';
+        visible.push({ card, dist, date: data.date, data });
       } else {
         distEl.textContent = '';
       }
     }
 
-    // Tri : distance si « près de moi », sinon date.
+    // Tri : proximité si géolocalisé, sinon date.
     visible.sort((a, b) =>
-      filter.nearMe && a.dist != null && b.dist != null
+      needsGeo && a.dist != null && b.dist != null
         ? a.dist - b.dist || a.date.localeCompare(b.date)
         : a.date.localeCompare(b.date)
     );
@@ -178,16 +224,92 @@ const title = `Que faire en ${sector.name} ? Sorties, événements et activités
     countEl.textContent = shown === 1 ? '1 événement' : `${shown} événements`;
     emptyEl.classList.toggle('visible', shown === 0);
     grid.style.display = shown === 0 ? 'none' : '';
-    const isFiltered = state.query.trim() !== '' || state.chips.size > 0;
+    const isFiltered =
+      state.query.trim() !== '' || state.chips.size > 0 || timeLimitEl.value !== '';
     resetBtn.classList.toggle('visible', isFiltered);
+
+    updateMap(visible);
   }
+
+  // ---------------- Carte (Leaflet, chargé à la demande) ----------------
+  let leaflet = null; // { map, layer, L, userMarker }
+
+  async function initMap() {
+    const L = (await import('leaflet')).default;
+    await import('leaflet/dist/leaflet.css');
+    const map = L.map('map', { scrollWheelZoom: false }).setView(
+      [sector.center.lat, sector.center.lon], 9
+    );
+    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      maxZoom: 18,
+      attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+    }).addTo(map);
+    leaflet = { L, map, layer: L.layerGroup().addTo(map), userMarker: null };
+  }
+
+  function updateMap(visible) {
+    if (!leaflet || mapWrap.hidden) return;
+    const { L, map, layer } = leaflet;
+    layer.clearLayers();
+    const points = [];
+    const atSpot = new Map(); // géocodage à la commune → étale les marqueurs co-localisés
+    for (const { card, data } of visible) {
+      if (Number.isNaN(data.lat)) continue;
+      const spot = `${data.lat},${data.lon}`;
+      const n = atSpot.get(spot) || 0;
+      atSpot.set(spot, n + 1);
+      if (n > 0) {
+        const angle = n * 2.4; // spirale de tournesol : régulière et déterministe
+        const r = 0.0035 * Math.sqrt(n);
+        data.lat += r * Math.cos(angle);
+        data.lon += (r * Math.sin(angle)) / Math.cos((data.lat * Math.PI) / 180);
+      }
+      // Couleur résolue de la catégorie, lue sur la carte HTML elle-même.
+      const color = getComputedStyle(card.querySelector('.card-top')).borderBottomColor;
+      const title = card.querySelector('h3').textContent;
+      L.circleMarker([data.lat, data.lon], {
+        radius: 8, color, fillColor: color, fillOpacity: 0.75, weight: 2,
+      })
+        .bindPopup(
+          `<strong>${title}</strong><br>${data.commune || ''}<br><a href="${card.getAttribute('href')}">Voir la fiche →</a>`
+        )
+        .addTo(layer);
+      points.push([data.lat, data.lon]);
+    }
+    if (userPos) {
+      if (leaflet.userMarker) leaflet.userMarker.remove();
+      leaflet.userMarker = L.circleMarker([userPos.lat, userPos.lon], {
+        radius: 7, color: '#1c7ed6', fillColor: '#1c7ed6', fillOpacity: 1, weight: 3,
+      }).bindPopup('Vous êtes ici').addTo(map);
+      points.push([userPos.lat, userPos.lon]);
+    }
+    if (points.length) map.fitBounds(points, { padding: [30, 30], maxZoom: 13 });
+  }
+
+  mapChip.addEventListener('click', async () => {
+    mapWrap.hidden = !mapWrap.hidden;
+    mapChip.setAttribute('aria-pressed', String(!mapWrap.hidden));
+    if (!mapWrap.hidden) {
+      if (!leaflet) await initMap();
+      leaflet.map.invalidateSize();
+      apply();
+    }
+  });
+
+  timeLimitEl.addEventListener('change', apply);
+  timeModeEl.addEventListener('change', apply);
 
   form.addEventListener('submit', (e) => {
     e.preventDefault();
     state.query = input.value;
-    // La requête peut activer des chips implicitement (retour visuel).
+    // La requête peut activer chips et sélecteurs implicitement (retour visuel).
     const parsed = parseQuery(state.query, sector.communes);
     syncChips(parsed);
+    if (parsed.maxMinutes != null) {
+      const opt = Array.from(timeLimitEl.options).find((o) => o.value === String(parsed.maxMinutes));
+      timeLimitEl.value = opt ? opt.value : '';
+    }
+    if (parsed.modeExplicit) timeModeEl.value = parsed.mode;
     apply();
   });
 
@@ -224,6 +346,7 @@ const title = `Que faire en ${sector.name} ? Sorties, événements et activités
     state.query = '';
     state.chips.clear();
     input.value = '';
+    timeLimitEl.value = '';
     for (const chip of chips) chip.setAttribute('aria-pressed', 'false');
     apply();
   }
