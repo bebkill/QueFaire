@@ -104,6 +104,54 @@
  ],
  "sources": [
   {
+   "id": "oa-echirolles",
+   "name": "Ville d'Échirolles (OpenAgenda)",
+   "type": "openagenda",
+   "url": "76399859"
+  },
+  {
+   "id": "oa-bourgoin-jallieu",
+   "name": "Ville de Bourgoin-Jallieu (OpenAgenda)",
+   "type": "openagenda",
+   "url": "6694450"
+  },
+  {
+   "id": "oa-crolles",
+   "name": "Ville de Crolles (OpenAgenda)",
+   "type": "openagenda",
+   "url": "22097534"
+  },
+  {
+   "id": "oa-saint-marcellin",
+   "name": "Ville de Saint-Marcellin (OpenAgenda)",
+   "type": "openagenda",
+   "url": "34867028"
+  },
+  {
+   "id": "oa-le-grand-lemps",
+   "name": "Le Grand-Lemps (OpenAgenda)",
+   "type": "openagenda",
+   "url": "88342736"
+  },
+  {
+   "id": "oa-chamrousse-nature",
+   "name": "Pleine nature à Chamrousse (OpenAgenda)",
+   "type": "openagenda",
+   "url": "53895680"
+  },
+  {
+   "id": "oa-vizille-domaine",
+   "name": "Domaine de Vizille — Musée de la Révolution française (OpenAgenda)",
+   "type": "openagenda",
+   "url": "86540112"
+  },
+  {
+   "id": "oa-voreppe-cinema",
+   "name": "Cinéma le Cap de Voreppe (OpenAgenda)",
+   "type": "openagenda",
+   "url": "24918838"
+  },
+  {
    "id": "html-capi",
    "name": "CAPI (Porte de l'Isère) — tout l'agenda",
    "type": "html",
@@ -116,6 +164,6 @@
    "url": "https://www.bourgoinjallieu.fr/agenda"
   }
  ],
- "generated_at": "2026-07-18T15:59:28",
- "event_count": 0
+ "generated_at": "2026-07-18T16:14:03",
+ "event_count": 34
 }
