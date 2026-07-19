@@ -71,14 +71,29 @@ const AUDIENCE_SYNONYMS = {
   seniors: /seniors?|aines/,
 };
 
-/** Vitesses moyennes par mode (km/h) et facteur de détour routier moyen.
- *  Approximation isochrone « à vol d'oiseau corrigé » — un vrai moteur
- *  isochrone (OpenRouteService/Valhalla) est prévu en roadmap. */
-export const SPEEDS = { walk: 4.5, bike: 15, car: 40 };
-const DETOUR = 1.3;
+/** Estimation de temps de trajet « à vol d'oiseau corrigé ».
+ *  Étalonnée sur des trajets types (1 km à pied ≈ 14 min, 5 km vélo ≈ 25 min,
+ *  30 km voiture ≈ 40 min) : détour par mode, et vitesse voiture progressive
+ *  (urbain lent sur les premiers km, route au-delà). Un vrai moteur isochrone
+ *  (OpenRouteService/Valhalla) est prévu en roadmap ; la précision reste de
+ *  toute façon bornée par le géocodage à la commune. */
+export const SPEEDS = { walk: 4.8, bike: 15, car: 35 };
+const DETOUR = { walk: 1.15, bike: 1.25, car: 1.35 };
 
 export function travelMinutes(km, mode = 'car') {
-  return ((km * DETOUR) / (SPEEDS[mode] || SPEEDS.car)) * 60;
+  let speed = SPEEDS[mode] || SPEEDS.car;
+  if (mode === 'car') {
+    // Vitesse moyenne croissante avec la distance : 30 km/h en ville,
+    // jusqu'à ~65 km/h quand le trajet passe par la route.
+    speed = Math.min(65, 30 + km);
+  }
+  return ((km * (DETOUR[mode] || 1.3)) / speed) * 60;
+}
+
+/** Arrondi honnête : à 5 min près au-delà de 10 min — la précision réelle
+ *  (centre de commune) ne justifie pas mieux. */
+export function roundMinutes(min) {
+  return min > 10 ? Math.round(min / 5) * 5 : Math.max(1, Math.round(min));
 }
 
 const TIME_RE = /a moins d[e'] ?(\d+) ?(min(?:utes?)?|mn|h(?:eures?)?)/;

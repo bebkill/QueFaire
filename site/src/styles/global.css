@@ -154,10 +154,6 @@ a { color: inherit; }
   display: none;
 }
 .toolbar .reset.visible { display: inline; }
-.catfilter {
-  border: 1.5px solid var(--accent); background: var(--accent-soft); color: var(--accent);
-  border-radius: 999px; padding: 4px 12px; font-size: 0.82rem; font-weight: 700; cursor: pointer;
-}
 .timefilter { font-size: 0.88rem; color: var(--ink-soft); display: inline-flex; gap: 6px; align-items: center; }
 .timefilter select {
   border: 1.5px solid var(--line); border-radius: 8px; background: var(--card);
@@ -172,8 +168,16 @@ a { color: inherit; }
   box-shadow: var(--shadow); z-index: 1;
 }
 .map-note { font-size: 0.78rem; color: var(--ink-soft); margin: 6px 2px 0; }
-.flower-icon { background: none; border: none; }
-.flower-icon [data-cat]:hover circle:first-of-type { filter: brightness(1.06); }
+.cluster-icon { background: none; border: none; }
+.cluster-dot {
+  display: flex; align-items: center; justify-content: center;
+  border-radius: 50%; background: var(--accent); color: #fff;
+  font-weight: 800; font-size: 0.95rem; cursor: pointer;
+  border: 3px solid rgba(255, 255, 255, 0.9);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  transition: transform 0.12s;
+}
+.cluster-dot:hover { transform: scale(1.08); }
 .leaflet-popup-content { font-family: inherit; font-size: 0.88rem; line-height: 1.4; }
 .leaflet-popup-content a { color: var(--accent); font-weight: 600; }
 @media (prefers-color-scheme: dark) {
