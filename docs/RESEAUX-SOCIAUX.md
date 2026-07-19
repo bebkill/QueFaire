@@ -30,6 +30,27 @@ trafic revient vers Meta. Intuition légitime : « on leur ramène du monde,
 | **oEmbed Read** | HTML d'embed d'un post public dont on a l'URL | Review légère, mais usage **affichage uniquement** (extraire les données de l'embed est explicitement interdit) et il faut déjà connaître l'URL du post. Utile pour *afficher* le post source sur une fiche, pas pour collecter. |
 | **Consentement du propriétaire de la page** ✅ | La commune/l'asso connecte sa page → token de page → lecture de **son** feed (`pages_read_engagement`) ; Instagram pro : Instagram Login → lecture de **ses** médias | **La voie réaliste.** Les posts récupérés passent ensuite dans l'extraction LLM existante, comme avec RSS-Bridge. Pilote possible sans App Review complète : donner un rôle (testeur) aux admins de pages volontaires dans l'app Meta. Passage à l'échelle : App Review + vérification business. |
 
+## Et si un compte QueFaire s'abonnait aux pages ?
+
+Idée naturelle, vérifiée : **ça ne fonctionne pas.**
+
+- Le fil d'actualité d'un compte n'a **pas d'API** : Facebook a fermé
+  `/me/home` (permission `read_stream`) vers 2014-2015 et n'a jamais rouvert ;
+  l'API Instagram n'a jamais exposé la timeline des comptes suivis aux apps
+  tierces. Suivre une page n'ouvre aucun accès programmatique.
+- Exploiter ce compte imposerait du scraping **connecté** (cookies du compte),
+  soit exactement le cas où les CGU s'appliquent sans ambiguïté (a contrario
+  de *Bright Data*, qui a gagné parce que déconnecté) : détection
+  d'automatisation, bannissement rapide du compte — et de l'app Meta liée.
+  Créer un compte pour collecter est donc *pire* que le scraping anonyme.
+- L'équivalent légitime existe dans l'autre sens : ce n'est pas QueFaire qui
+  s'abonne à la page, c'est **la page qui connecte QueFaire** (voie
+  consentement ci-dessus) — une action unique de l'admin, et l'API fournit
+  ensuite les posts en continu (webhooks Pages : quasi temps réel).
+- Le modèle « on suit et on lit » marche en revanche très bien là où il est
+  prévu : Mastodon/Bluesky (API ouvertes), Telegram (Bot API), YouTube (RSS
+  natif) — trivial à ingérer si des communes y publient un jour.
+
 ## Recommandation
 
 1. **Court terme, sans Meta** : proposer aux communes/assos cibles de publier
