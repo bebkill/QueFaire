@@ -28,13 +28,12 @@
   "source_id": "html-capi",
   "sector": "isere",
   "end": null,
-  "description": "Les vacances d’été arrivent et « Bib de Rue » fait son grand retour sur la CAPI et certaines communes du territoire. Le réseau des médiathèques vous donne rendez-vous.",
+  "description": "Bib de rue revient ! Les vacances d’été arrivent …et « Bib de Rue » fait son grand retour sur la CAPI et donc sur certaines communes du territoire !",
   "tldr": null,
-  "category": "jeunesse",
+  "category": "autre",
   "tags": [],
   "audience": [
-   "famille",
-   "enfants"
+   "tous"
   ],
   "commune": "L'Isle-d'Abeau",
   "address": null,
@@ -96,13 +95,12 @@
   "source_id": "html-capi",
   "sector": "isere",
   "end": null,
-  "description": "Les vacances d’été arrivent et « Bib de Rue » fait son grand retour sur la CAPI et certaines communes du territoire. Le réseau des médiathèques vous donne rendez-vous.",
+  "description": "Bib de rue revient ! Les vacances d’été arrivent …et « Bib de Rue » fait son grand retour sur la CAPI et donc sur certaines communes du territoire !",
   "tldr": null,
-  "category": "jeunesse",
+  "category": "autre",
   "tags": [],
   "audience": [
-   "famille",
-   "enfants"
+   "tous"
   ],
   "commune": "L'Isle-d'Abeau",
   "address": null,
@@ -143,7 +141,7 @@
   "source_id": "html-capi",
   "sector": "isere",
   "end": null,
-  "description": "C’est l’occasion de venir s’étonner, apprendre, ressentir, créer en découvrant vos espaces naturels capisérois. Les beaux jours sont là, une seule envie : prendre l’air !",
+  "description": "Les beaux jours sont là, une seule envie : prendre l’air ! C’est l’occasion de venir s’étonner, apprendre, ressentir, créer en découvrant vos espaces naturels capisérois.",
   "tldr": null,
   "category": "nature",
   "tags": [],
@@ -187,37 +185,12 @@
   "source_id": "html-capi",
   "sector": "isere",
   "end": null,
-  "description": "Les vacances d’été arrivent et « Bib de Rue » fait son grand retour sur la CAPI et certaines communes du territoire. Le réseau des médiathèques vous donne rendez-vous.",
+  "description": "Bib de rue revient ! Les vacances d’été arrivent …et « Bib de Rue » fait son grand retour sur la CAPI et donc sur certaines communes du territoire !",
   "tldr": null,
-  "category": "jeunesse",
+  "category": "autre",
   "tags": [],
   "audience": [
-   "famille",
-   "enfants"
-  ],
-  "commune": "La Verpillière",
-  "address": null,
-  "lat": 45.632,
-  "lon": 5.147,
-  "free": null,
-  "price_text": null,
-  "url": "https://capi-agglo.fr/tout-lagenda/",
-  "image": null,
-  "id": "bib-de-rue-e1320413"
- },
- {
-  "title": "Bib de rue",
-  "start": "2026-07-23T00:00:00",
-  "source_id": "html-capi",
-  "sector": "isere",
-  "end": null,
-  "description": "Les vacances d’été arrivent et « Bib de Rue » fait son grand retour sur la CAPI et certaines communes du territoire. Le réseau des médiathèques vous donne rendez-vous.",
-  "tldr": null,
-  "category": "jeunesse",
-  "tags": [],
-  "audience": [
-   "famille",
-   "enfants"
+   "tous"
   ],
   "commune": "Villefontaine",
   "address": null,
@@ -228,6 +201,29 @@
   "url": "https://capi-agglo.fr/tout-lagenda/",
   "image": null,
   "id": "bib-de-rue-ccdd3eae"
+ },
+ {
+  "title": "Bib de rue",
+  "start": "2026-07-23T00:00:00",
+  "source_id": "html-capi",
+  "sector": "isere",
+  "end": null,
+  "description": "Bib de rue revient ! Les vacances d’été arrivent …et « Bib de Rue » fait son grand retour sur la CAPI et donc sur certaines communes du territoire !",
+  "tldr": null,
+  "category": "autre",
+  "tags": [],
+  "audience": [
+   "tous"
+  ],
+  "commune": "La Verpillière",
+  "address": null,
+  "lat": 45.632,
+  "lon": 5.147,
+  "free": null,
+  "price_text": null,
+  "url": "https://capi-agglo.fr/tout-lagenda/",
+  "image": null,
+  "id": "bib-de-rue-e1320413"
  },
  {
   "title": "KALUWO",
