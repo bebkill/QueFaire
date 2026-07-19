@@ -163,6 +163,13 @@ sources:
     commune: Crémieu
     enabled: true
 
+  - id: html-cafe-crem
+    name: OT Ile Crémieu
+    type: html
+    url: https://cafe-crem.fr/
+    commune: Villemoirieu
+    enabled: true
+
   - id: html-vals-dauphine
     name: OT Les Vals du Dauphiné — agenda (La Tour-du-Pin, Pont-de-Beauvoisin…)
     type: html
@@ -191,12 +198,19 @@ sources:
     commune: Crémieu
     enabled: false
 
+  - id: fb-cafecrem
+    name: Café-Crém (Facebook)
+    type: facebook
+    url: cafe.crem
+    commune: Crémieu
+    enabled: true
+
   - id: ig-capi
     name: CAPI — Porte de l'Isère (Instagram)
     type: instagram
-    url: capi_agglo
+    url: capiagglo
     commune: L'Isle-d'Abeau
-    enabled: false
+    enabled: true
 
   # --- Offices de tourisme (pages agenda, extraction LLM) --------------------
   - id: html-vercors
