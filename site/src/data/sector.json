@@ -27,7 +27,6 @@
   "Autrans-Méaudre-en-Vercors",
   "Beaurepaire",
   "Bourgoin-Jallieu",
-  "Brangues",
   "Chamrousse",
   "Charvieu-Chavagneux",
   "Chavanoz",
@@ -44,7 +43,6 @@
   "Grenoble",
   "Heyrieux",
   "Huez",
-  "Izieu",
   "L'Isle-d'Abeau",
   "La Balme-les-Grottes",
   "La Côte-Saint-André",
@@ -88,14 +86,12 @@
   "Sassenage",
   "Seyssinet-Pariset",
   "Seyssins",
-  "Succieu",
   "Tignieu-Jameyzieu",
   "Trept",
   "Tullins",
   "Varces-Allières-et-Risset",
   "Vienne",
   "Vif",
-  "Vignieu",
   "Villard-Bonnot",
   "Villard-de-Lans",
   "Villefontaine",
@@ -156,6 +152,6 @@
    "url": "https://www.oisans.com/agenda/"
   }
  ],
- "generated_at": "2026-07-19T06:27:11",
- "event_count": 62
+ "generated_at": "2026-07-19T06:41:55",
+ "event_count": 39
 }
