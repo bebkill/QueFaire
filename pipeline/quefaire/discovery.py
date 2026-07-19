@@ -7,18 +7,19 @@ sources/<secteur>.yaml. Un humain valide avant commit : la qualité du registre
 reste maîtrisée.
 
 Usage : python -m quefaire discover --sector isere
-Nécessite QUEFAIRE_LLM (cf. fetchers/html_llm.py) + autoagent-core installé.
+Nécessite QUEFAIRE_LLM (+ backup QUEFAIRE_LLM2, cf. quefaire.llm) et
+autoagent-core installé.
 """
 
 from __future__ import annotations
 
-import os
 import re
 
 import yaml
 
 from .fetchers.base import http_get
 from .geocode import commune_table
+from .llm import get_agent, llm_available
 from .registry import Sector
 
 FEED_HINT_RE = re.compile(
@@ -56,12 +57,9 @@ def scan_feeds(url: str) -> list[str]:
 
 def discover(sector: Sector, communes: list[str] | None = None) -> str:
     """Retourne un bloc YAML de sources candidates (à relire par un humain)."""
-    if not os.environ.get("QUEFAIRE_LLM"):
+    if not llm_available():
         raise RuntimeError("QUEFAIRE_LLM non configuré (ex: 'gemini:gemini-3.5-flash')")
-    from autoagent import Agent
-
-    provider, _, model = os.environ["QUEFAIRE_LLM"].partition(":")
-    agent = Agent.from_model(provider, model)
+    agent = get_agent()  # RuntimeError si principal ET backup indisponibles
 
     @agent.tool
     def fetch_page(url: str) -> str:

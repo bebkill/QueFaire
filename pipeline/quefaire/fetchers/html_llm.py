@@ -6,17 +6,19 @@ on récupère la page agenda, on la nettoie, et un agent LLM en extrait les
 
 Optionnel : ne s'active que si autoagent-core est installé ET qu'un modèle est
 configuré (QUEFAIRE_LLM, ex: "gemini:gemini-3.5-flash" ou "anthropic:claude-haiku-4-5",
-avec la clé API du provider dans l'environnement). Sinon la source est ignorée
-proprement — le pipeline reste 100 % fonctionnel sans LLM.
+avec la clé API du provider dans l'environnement ; QUEFAIRE_LLM2 sert de backup
+si le principal ne répond pas — voir quefaire.llm). Sinon la source est
+ignorée proprement — le pipeline reste 100 % fonctionnel sans LLM.
 """
 
 from __future__ import annotations
 
 import json
 import logging
-import os
 import re
+from datetime import date
 
+from ..llm import get_agent, llm_available
 from ..models import CATEGORIES, Event, Source, parse_when
 from .base import http_get
 
@@ -60,28 +62,12 @@ def _page_text(html: str, scope_selector: str | None) -> str:
     return text.strip()[:24000]
 
 
-def llm_available() -> bool:
-    if not os.environ.get("QUEFAIRE_LLM"):
-        return False
-    try:
-        import autoagent  # noqa: F401
-
-        return True
-    except ImportError:
-        return False
-
-
 def extract_events_llm(text: str, source: Source, sector_id: str, context_url: str) -> list[Event]:
     """Cœur réutilisable : texte brut (page agenda, posts sociaux…) → Events.
 
     Utilisé par le fetcher html et par le fetcher réseaux sociaux.
     """
-    from datetime import date
-
-    from autoagent import Agent
-
-    provider, _, model = os.environ["QUEFAIRE_LLM"].partition(":")
-    agent = Agent.from_model(provider, model)
+    agent = get_agent()
 
     prompt = EXTRACTION_PROMPT.format(
         today=date.today().isoformat(),
@@ -140,8 +126,12 @@ class HtmlLlmFetcher:
             )
             return []
         html = http_get(source.url).text
-        events = extract_events_llm(
-            _page_text(html, source.scope_selector), source, sector_id, source.url
-        )
+        try:
+            events = extract_events_llm(
+                _page_text(html, source.scope_selector), source, sector_id, source.url
+            )
+        except RuntimeError as exc:
+            log.warning("[html] %s ignoré : %s", source.id, exc)
+            return []
         log.info("[html+llm] %s : %d événements extraits", source.id, len(events))
         return events
