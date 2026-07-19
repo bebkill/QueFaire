@@ -23,7 +23,13 @@ jobs:
   refresh:
     runs-on: ubuntu-latest
     steps:
+      # La clé de déploiement (secret DATA_DEPLOY_KEY + deploy key en écriture
+      # dans Settings → Deploy keys) permet au commit des données de passer le
+      # ruleset de protection de main : « Deploy keys » figure dans sa bypass
+      # list — l'app GitHub Actions n'y est pas proposée sur un compte perso.
       - uses: actions/checkout@v4
+        with:
+          ssh-key: ${{ secrets.DATA_DEPLOY_KEY }}
 
       - uses: actions/setup-python@v5
         with:
@@ -55,12 +61,15 @@ jobs:
           if [ -n "$QUEFAIRE_LLM" ] || [ -n "$QUEFAIRE_LLM2" ]; then pip install autoagent-core; fi
           python -m quefaire crawl --sector isere
 
+      # [skip ci] : contrairement au GITHUB_TOKEN, un push par deploy key
+      # redéclenche les workflows — sans ce marqueur, chaque commit de données
+      # relancerait un crawl, en boucle.
       - name: Commit refreshed data
         run: |
           git config user.name "quefaire-bot"
           git config user.email "actions@users.noreply.github.com"
           git add site/src/data
-          git diff --cached --quiet || git commit -m "data: rafraîchissement automatique ($(date -u +%F))"
+          git diff --cached --quiet || git commit -m "data: rafraîchissement automatique ($(date -u +%F)) [skip ci]"
           git push
 
       - uses: actions/setup-node@v4
