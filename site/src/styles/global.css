@@ -202,6 +202,25 @@ a { color: inherit; }
 .card:hover { transform: translateY(-3px); box-shadow: var(--shadow-lift); }
 .card.hidden { display: none; }
 
+/* Fiche mise en évidence après un clic sur sa bulle de la carte : anneau
+   accentué + bandeau en tête de carte. */
+.card.map-selected {
+  outline: 3px solid var(--accent);
+  outline-offset: 2px;
+  box-shadow: var(--shadow-lift);
+}
+.card.map-selected::before {
+  content: '📍 Sélectionnée sur la carte';
+  display: block;
+  background: var(--accent);
+  color: var(--accent-ink);
+  text-align: center;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  padding: 5px 8px;
+}
+
 .card-top {
   background: color-mix(in srgb, var(--cat) 12%, var(--card));
   border-bottom: 3px solid var(--cat);

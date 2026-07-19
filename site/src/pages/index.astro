@@ -179,6 +179,7 @@ const title = `Que faire en ${sector.name} ? Sorties, événements et activités
   }
 
   function apply() {
+    clearMapSelection(); // les fiches changent : la sélection carte n'a plus de sens
     const filter = currentFilter();
     const needsGeo = filter.nearMe || filter.maxMinutes != null;
 
@@ -188,16 +189,26 @@ const title = `Que faire en ${sector.name} ? Sorties, événements et activités
     }
 
     let shown = 0;
+    let unlocated = 0;
     const visible = [];
     for (const card of cards) {
       const data = cardData(card);
       let ok = matches(data, filter);
       let dist = null;
       let minutes = null;
-      if (ok && needsGeo && userPos && !Number.isNaN(data.lat)) {
-        dist = distanceKm(userPos.lat, userPos.lon, data.lat, data.lon);
-        minutes = travelMinutes(dist, filter.mode);
-        if (filter.maxMinutes != null && minutes > filter.maxMinutes) ok = false;
+      if (ok && needsGeo && userPos) {
+        if (Number.isNaN(data.lat)) {
+          // Sans coordonnées, impossible de garantir la limite de temps : on
+          // exclut (la carte les ignore déjà — liste et carte restent cohérentes).
+          if (filter.maxMinutes != null) {
+            ok = false;
+            unlocated += 1;
+          }
+        } else {
+          dist = distanceKm(userPos.lat, userPos.lon, data.lat, data.lon);
+          minutes = travelMinutes(dist, filter.mode);
+          if (filter.maxMinutes != null && minutes > filter.maxMinutes) ok = false;
+        }
       }
       card.classList.toggle('hidden', !ok);
       const distEl = card.querySelector('[data-role="distance"]');
@@ -224,7 +235,11 @@ const title = `Que faire en ${sector.name} ? Sorties, événements et activités
     );
     for (const { card } of visible) grid.appendChild(card);
 
-    countEl.textContent = shown === 1 ? '1 événement' : `${shown} événements`;
+    countEl.textContent =
+      (shown === 1 ? '1 événement' : `${shown} événements`) +
+      (unlocated > 0
+        ? ` (+ ${unlocated} sans lieu précis, masqué${unlocated > 1 ? 's' : ''} par le filtre temps)`
+        : '');
     emptyEl.classList.toggle('visible', shown === 0);
     grid.style.display = shown === 0 ? 'none' : '';
     const isFiltered =
@@ -238,6 +253,22 @@ const title = `Que faire en ${sector.name} ? Sorties, événements et activités
   // ---------------- Carte (Leaflet, chargé à la demande) ----------------
   let leaflet = null; // { map, layer, L, userMarker }
   let lastVisible = [];
+  let selectedCard = null;
+  let popupCloseTimer = null;
+
+  /** Met en évidence la fiche correspondant à la bulle cliquée sur la carte. */
+  function selectCard(card) {
+    clearTimeout(popupCloseTimer); // le popup précédent se ferme : ne pas désélectionner
+    if (selectedCard) selectedCard.classList.remove('map-selected');
+    selectedCard = card;
+    card.classList.add('map-selected');
+    card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
+
+  function clearMapSelection() {
+    if (selectedCard) selectedCard.classList.remove('map-selected');
+    selectedCard = null;
+  }
 
   async function initMap() {
     const L = (await import('leaflet')).default;
@@ -252,6 +283,12 @@ const title = `Que faire en ${sector.name} ? Sorties, événements et activités
     leaflet = { L, map, layer: L.layerGroup().addTo(map), userMarker: null };
     // Le zoom change la granularité des clusters — sans recadrer la vue.
     map.on('zoomend', () => updateMap(lastVisible, false));
+    // Popup fermé = plus rien de sélectionné. Le délai laisse le clic sur une
+    // autre bulle (qui ferme ce popup pour ouvrir le sien) annuler l'effacement.
+    map.on('popupclose', () => {
+      clearTimeout(popupCloseTimer);
+      popupCloseTimer = setTimeout(clearMapSelection, 80);
+    });
   }
 
   /** Regroupe les points par proximité à l'écran (~70 px au zoom courant). */
@@ -321,6 +358,7 @@ const title = `Que faire en ${sector.name} ? Sorties, événements et activités
     for (const { card, data } of visible) {
       if (Number.isNaN(data.lat)) continue;
       items.push({
+        card,
         lat: data.lat, lon: data.lon, cat: data.cat, commune: data.commune,
         title: card.querySelector('h3').textContent,
         href: card.getAttribute('href'),
@@ -339,6 +377,7 @@ const title = `Que faire en ${sector.name} ? Sorties, événements et activités
           radius: 8, color: it.color, fillColor: it.color, fillOpacity: 0.75, weight: 2,
         })
           .bindPopup(`<strong>${it.title}</strong><br>${it.commune || ''}<br><a href="${it.href}">Voir la fiche →</a>`)
+          .on('click', () => selectCard(it.card))
           .addTo(layer);
         points.push([it.lat, it.lon]);
       }
