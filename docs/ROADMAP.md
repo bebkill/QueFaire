@@ -27,8 +27,12 @@
       l'approximation à vol d'oiseau
 - [ ] Élargir la couverture Isère : offices de tourisme Vercors / Oisans /
       Chartreuse
-- [ ] Réseaux sociaux : activer les sources Facebook/Instagram (nécessite une
-      instance RSS-Bridge, `RSSBRIDGE_URL`)
+- [ ] Réseaux sociaux : pilote hashtag Instagram (`#quefaire38`) via la
+      Hashtag Search API — compte pro QueFaire + App Review « Instagram
+      Public Content Access », modération humaine des événements collectés ;
+      voir `docs/RESEAUX-SOCIAUX.md` (RSS-Bridge relégué à l'expérimentation)
+- [ ] Soumission directe d'événements : formulaire sur le site et/ou adresse
+      mail (affiche → extraction LLM), avec file de modération
 
 ### Moyen terme
 

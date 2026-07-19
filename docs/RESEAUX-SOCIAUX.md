@@ -51,6 +51,37 @@ Idée naturelle, vérifiée : **ça ne fonctionne pas.**
   prévu : Mastodon/Bluesky (API ouvertes), Telegram (Bot API), YouTube (RSS
   natif) — trivial à ingérer si des communes y publient un jour.
 
+## La piste hashtag : officielle côté Instagram, inexistante côté Facebook
+
+Objectif : que n'importe qui — mairie, asso, **particulier** — puisse faire
+référencer un événement en ajoutant simplement un hashtag convenu
+(ex. `#quefaire38`) à son post, sans gestion d'abonnements par page.
+
+- **Instagram : oui, API officielle.** La [Hashtag Search API]
+  (https://developers.facebook.com/docs/instagram-platform/instagram-api-with-facebook-login/hashtag-search/)
+  (`ig_hashtag_search` → `recent_media`) retourne les posts **publics**
+  portant un hashtag : caption, type de média, **permalink** (pour renvoyer
+  vers le post — le modèle QueFaire). Prérequis : un compte Instagram
+  professionnel QueFaire (un seul, pas d'abonnements à gérer), une app Meta,
+  et l'App Review de la feature **Instagram Public Content Access** — plus
+  accessible que la PPCA Facebook. Limites structurantes : 30 hashtags
+  uniques / 7 jours (large : on en suit 1-3), ~`recent_media` ne couvre que
+  les posts récents (≈ 24 h) — compatible avec le crawl 2×/jour —, le nom de
+  l'auteur n'est pas fourni (on crédite via le lien du post), hashtags des
+  Stories non couverts, comptes privés invisibles.
+- **Facebook : non.** Aucune API de recherche par hashtag n'existe côté
+  pages/posts publics. La piste hashtag est donc Instagram-only chez Meta.
+- **Modération indispensable** : un hashtag public est ouvert au spam et au
+  hors-sujet. Cohérent avec la philosophie du registre : les événements
+  issus du hashtag passent par l'extraction LLM (qui écarte déjà les posts
+  sans événement daté) puis par une relecture humaine avant publication,
+  au moins au début.
+- **Équivalents hors Meta, encore plus simples** (complémentaires, zéro
+  App Review) : un **formulaire** sur le site (soumission → file de
+  modération), une **adresse mail** (« envoyez l'affiche, on s'occupe du
+  reste » — extraction LLM d'une photo/PDF), et les hashtags
+  Mastodon/Bluesky (API ouvertes, triviales) si l'usage local émerge.
+
 ## Recommandation
 
 1. **Court terme, sans Meta** : proposer aux communes/assos cibles de publier
