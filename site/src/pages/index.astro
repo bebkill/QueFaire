@@ -253,21 +253,23 @@ const title = `Que faire en ${sector.name} ? Sorties, événements et activités
   // ---------------- Carte (Leaflet, chargé à la demande) ----------------
   let leaflet = null; // { map, layer, L, userMarker }
   let lastVisible = [];
-  let selectedCard = null;
+  let selectedCards = [];
   let popupCloseTimer = null;
 
-  /** Met en évidence la fiche correspondant à la bulle cliquée sur la carte. */
-  function selectCard(card) {
+  /** Met en évidence les fiches liées à la bulle cliquée sur la carte —
+   *  une seule pour un marqueur isolé, toutes celles d'un cluster qui ne
+   *  peut pas s'éclater (événements au même point). */
+  function selectCards(cards) {
     clearTimeout(popupCloseTimer); // le popup précédent se ferme : ne pas désélectionner
-    if (selectedCard) selectedCard.classList.remove('map-selected');
-    selectedCard = card;
-    card.classList.add('map-selected');
-    card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    for (const c of selectedCards) c.classList.remove('map-selected');
+    selectedCards = cards;
+    for (const c of cards) c.classList.add('map-selected');
+    if (cards.length) cards[0].scrollIntoView({ behavior: 'smooth', block: 'center' });
   }
 
   function clearMapSelection() {
-    if (selectedCard) selectedCard.classList.remove('map-selected');
-    selectedCard = null;
+    for (const c of selectedCards) c.classList.remove('map-selected');
+    selectedCards = [];
   }
 
   async function initMap() {
@@ -321,13 +323,15 @@ const title = `Que faire en ${sector.name} ? Sorties, événements et activités
     const bounds = L.latLngBounds(cluster.items.map((i) => [i.lat, i.lon]));
     const spread = bounds.getNorthEast().distanceTo(bounds.getSouthWest());
     if (spread < 100 || map.getZoom() >= 15) {
-      // Tout au même endroit (géocodage à la commune) : liste plutôt que zoom.
+      // Tout au même endroit (géocodage à la commune) : liste plutôt que zoom,
+      // et mise en évidence de toutes les fiches du cluster dans la grille.
       const links = cluster.items
         .slice(0, 12)
         .map((i) => `<a href="${i.href}">${i.title}</a>`)
         .join('<br>');
       const more = cluster.items.length > 12 ? `<br>… et ${cluster.items.length - 12} autres` : '';
       L.popup({ maxHeight: 220 }).setLatLng([cluster.lat, cluster.lon]).setContent(links + more).openOn(map);
+      selectCards(cluster.items.map((i) => i.card));
     } else {
       map.fitBounds(bounds, { padding: [50, 50] });
     }
@@ -377,7 +381,7 @@ const title = `Que faire en ${sector.name} ? Sorties, événements et activités
           radius: 8, color: it.color, fillColor: it.color, fillOpacity: 0.75, weight: 2,
         })
           .bindPopup(`<strong>${it.title}</strong><br>${it.commune || ''}<br><a href="${it.href}">Voir la fiche →</a>`)
-          .on('click', () => selectCard(it.card))
+          .on('click', () => selectCards([it.card]))
           .addTo(layer);
         points.push([it.lat, it.lon]);
       }
