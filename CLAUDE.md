@@ -66,8 +66,11 @@ site/src/
 - `QUEFAIRE_LLM` (principal) et `QUEFAIRE_LLM2` (backup optionnel), format
   `provider:modèle` (ex. `gemini:gemini-3.5-flash`, `deepseek:deepseek-v4-flash`).
 - `pipeline/quefaire/llm.py` fait un test de connexion minimal au premier appel
-  du run et met la décision en cache (un seul test par process). Bascule sur le
-  backup si le principal ne répond pas (quota épuisé, erreur).
+  du run et met la décision en cache. Le quota peut aussi mourir **en cours de
+  run** (palier gratuit Gemini : 20 req/jour) : les appels passent par
+  `run_llm()`, qui déclasse le provider courant sur erreur de quota (429,
+  rate limit) et rejoue l'appel sur le backup. `get_agent()` reste réservé à
+  discovery (outils `@agent.tool`).
 - Lib : `autoagent-core` (providers supportés : OpenAI, Anthropic, DeepSeek,
   Gemini). Clés : `GEMINI_API_KEY`, `DEEPSEEK_API_KEY`, `ANTHROPIC_API_KEY`.
 - Tout consommateur LLM (html_llm, social, clarify, discovery) passe par

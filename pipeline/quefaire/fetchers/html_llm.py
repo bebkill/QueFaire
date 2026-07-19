@@ -18,7 +18,7 @@ import logging
 import re
 from datetime import date
 
-from ..llm import get_agent, llm_available
+from ..llm import llm_available, run_llm
 from ..models import CATEGORIES, Event, Source, parse_when
 from .base import http_get
 
@@ -67,15 +67,14 @@ def extract_events_llm(text: str, source: Source, sector_id: str, context_url: s
 
     Utilisé par le fetcher html et par le fetcher réseaux sociaux.
     """
-    agent = get_agent()
-
     prompt = EXTRACTION_PROMPT.format(
         today=date.today().isoformat(),
         categories=list(CATEGORIES),
         url=context_url,
         text=text[:24000],
     )
-    result = agent.run(prompt)
+    # run_llm : bascule automatiquement sur le backup si le quota meurt ici.
+    result = run_llm(prompt)
     raw = result.output.strip()
     raw = re.sub(r"^```(json)?|```$", "", raw, flags=re.M).strip()
     try:

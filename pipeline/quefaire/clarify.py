@@ -53,7 +53,7 @@ def _extract_json(raw: str) -> dict:
 
 def clarify(events: list[Event]) -> list[Event]:
     """Remplit event.tldr pour les titres ambigus. No-op sans LLM configuré."""
-    from .llm import get_agent, llm_available
+    from .llm import llm_available, run_llm
 
     if not llm_available():
         log.info("[clarify] sauté : pas de LLM configuré")
@@ -68,8 +68,8 @@ def clarify(events: list[Event]) -> list[Event]:
             for e in batch
         )
         try:
-            agent = get_agent()
-            result = agent.run(PROMPT.format(items=items))
+            # run_llm : bascule automatiquement sur le backup si le quota meurt ici.
+            result = run_llm(PROMPT.format(items=items))
             mapping = _extract_json(result.output)
         except RuntimeError as exc:
             log.warning("[clarify] sauté : %s", exc)

@@ -47,10 +47,14 @@ humaine. Ajouter une région = ajouter `sources/<secteur>.yaml` +
 
 `QUEFAIRE_LLM` (principal) et `QUEFAIRE_LLM2` (backup), format
 `provider:modèle`. Au premier appel du run, un test de connexion minimal
-départage ; la décision est mise en cache pour tout le process. Tous les
-consommateurs (html, social, clarify, discovery) passent par `get_agent()` et
-sautent proprement si aucun provider ne répond. Lib : `autoagent-core`
-(OpenAI, Anthropic, DeepSeek, Gemini).
+départage ; la décision est mise en cache pour tout le process. Le quota peut
+aussi s'épuiser en cours de run (palier gratuit Gemini : 20 requêtes/jour) :
+les appels passent par `run_llm()`, qui déclasse le provider courant sur une
+erreur de quota (429, rate limit…) et rejoue l'appel sur le candidat suivant.
+Les consommateurs (html, social, clarify) sautent proprement si plus aucun
+provider ne répond ; `discovery` utilise `get_agent()` (outils `@agent.tool`),
+sans bascule en cours d'exécution. Lib : `autoagent-core` (OpenAI, Anthropic,
+DeepSeek, Gemini).
 
 ### Dégradation gracieuse
 
