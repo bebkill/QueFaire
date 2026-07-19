@@ -111,7 +111,12 @@ def test_nord_isere_communes_geocoded():
 
 
 def _fake_autoagent(behaviors: dict):
-    """Module autoagent factice : behaviors[provider] = "texte" ou Exception."""
+    """Module autoagent factice.
+
+    behaviors[provider] = "texte" ou Exception (constant), ou une liste
+    consommée appel par appel (le dernier élément se répète) pour simuler
+    un quota qui meurt en cours de run.
+    """
 
     class FakeResult:
         def __init__(self, output):
@@ -127,6 +132,8 @@ def _fake_autoagent(behaviors: dict):
 
         def run(self, prompt):
             behavior = behaviors[self.provider]
+            if isinstance(behavior, list):
+                behavior = behavior.pop(0) if len(behavior) > 1 else behavior[0]
             if isinstance(behavior, Exception):
                 raise behavior
             return FakeResult(behavior)
@@ -141,6 +148,7 @@ def _reset_llm_cache():
 
     llm._resolved = None
     llm._resolution_done = False
+    llm._failed.clear()
     return llm
 
 
@@ -206,6 +214,66 @@ def test_llm_resolve_tests_connection_once_per_run(monkeypatch):
     llm.resolve()
     llm.resolve()
     assert calls == ["gemini"]  # un seul test de connexion pour tout le run
+
+
+def test_llm_failover_mid_run_on_quota(monkeypatch):
+    """Vécu en CI : le test de connexion passe (quota encore vivant), puis le
+    quota Gemini meurt quelques sources plus loin — run_llm doit basculer sur
+    le backup au lieu de laisser toutes les sources suivantes échouer en 429."""
+    llm = _reset_llm_cache()
+    monkeypatch.setenv("QUEFAIRE_LLM", "gemini:gemini-3.5-flash")
+    monkeypatch.setenv("QUEFAIRE_LLM2", "deepseek:deepseek-v4-flash")
+    monkeypatch.setitem(
+        sys.modules,
+        "autoagent",
+        _fake_autoagent({
+            # test de connexion OK, 1er appel réel OK, puis quota mort
+            "gemini": ["ok", "extraction gemini", RuntimeError("HTTP 429 quota exceeded")],
+            "deepseek": "extraction deepseek",
+        }),
+    )
+
+    assert llm.resolve() == ("gemini", "gemini-3.5-flash")
+    assert llm.run_llm("extrais").output == "extraction gemini"
+    # Le quota meurt ici : bascule transparente, l'appel aboutit sur le backup.
+    assert llm.run_llm("extrais").output == "extraction deepseek"
+    # La décision est déclassée pour tout le reste du run.
+    assert llm.resolve() == ("deepseek", "deepseek-v4-flash")
+
+
+def test_llm_failover_does_not_swallow_other_errors(monkeypatch):
+    llm = _reset_llm_cache()
+    monkeypatch.setenv("QUEFAIRE_LLM", "gemini:gemini-3.5-flash")
+    monkeypatch.setenv("QUEFAIRE_LLM2", "deepseek:deepseek-v4-flash")
+    monkeypatch.setitem(
+        sys.modules,
+        "autoagent",
+        _fake_autoagent({
+            "gemini": ["ok", ValueError("réponse mal formée")],
+            "deepseek": "ok",
+        }),
+    )
+
+    with pytest.raises(ValueError):  # pas une erreur de quota : elle remonte
+        llm.run_llm("extrais")
+    assert llm.resolve() == ("gemini", "gemini-3.5-flash")  # pas déclassé
+
+
+def test_llm_failover_exhausts_all_candidates(monkeypatch):
+    llm = _reset_llm_cache()
+    monkeypatch.setenv("QUEFAIRE_LLM", "gemini:gemini-3.5-flash")
+    monkeypatch.setenv("QUEFAIRE_LLM2", "deepseek:deepseek-v4-flash")
+    monkeypatch.setitem(
+        sys.modules,
+        "autoagent",
+        _fake_autoagent({
+            "gemini": ["ok", RuntimeError("429 quota")],
+            "deepseek": ["ok", RuntimeError("rate limit reached")],
+        }),
+    )
+
+    with pytest.raises(RuntimeError, match="Aucun LLM disponible"):
+        llm.run_llm("extrais")
 
 
 def test_demo_and_export_roundtrip(tmp_path):

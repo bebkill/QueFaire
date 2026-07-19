@@ -93,8 +93,10 @@ GitHub Pages. À configurer dans le dépôt :
 `deepseek:deepseek-v4-flash`). Au premier appel de chaque run, un test de
 connexion minimal départage : le principal (`QUEFAIRE_LLM`) est utilisé s'il
 répond, sinon le pipeline bascule automatiquement sur le backup — utile
-quand le quota gratuit d'un provider est épuisé (ex. Gemini). La décision
-est mise en cache pour tout le run : un seul test, pas un par source.
+quand le quota gratuit d'un provider est épuisé (ex. Gemini, 20 req/jour en
+palier gratuit). La bascule joue aussi **en cours de run** : si le quota du
+principal meurt entre deux sources, l'appel en échec est rejoué sur le
+backup et le principal est écarté pour le reste du run.
 DeepSeek est un bon choix de backup : 5 M tokens offerts à l'inscription,
 puis ~0,14 $/0,28 $ par million de tokens (input/output) — largement
 suffisant pour ce volume. Voir `pipeline/quefaire/llm.py`.
