@@ -83,11 +83,21 @@ GitHub Pages. À configurer dans le dépôt :
 
 1. **Settings → Pages** : source « GitHub Actions » ;
 2. **Secrets** (optionnels, activent les sources réelles) : `OPENAGENDA_KEY`,
-   et pour l'extraction LLM une clé de provider (`DEEPSEEK_API_KEY`,
-   `GEMINI_API_KEY` ou `ANTHROPIC_API_KEY`) + variable `QUEFAIRE_LLM` au format
-   `provider:modèle` (ex. `deepseek:deepseek-v4-flash`). DeepSeek est le choix
-   le plus économique : 5 M tokens offerts à l'inscription, puis ~0,14 $/0,28 $
-   par million de tokens (input/output) — largement suffisant pour ce volume.
+   et pour l'extraction LLM une clé de provider (`GEMINI_API_KEY`,
+   `DEEPSEEK_API_KEY` ou `ANTHROPIC_API_KEY`) + variable `QUEFAIRE_LLM` au
+   format `provider:modèle` (ex. `gemini:gemini-3.5-flash`).
+
+### Principal + backup LLM
+
+`QUEFAIRE_LLM2` déclare un second provider de secours (ex.
+`deepseek:deepseek-v4-flash`). Au premier appel de chaque run, un test de
+connexion minimal départage : le principal (`QUEFAIRE_LLM`) est utilisé s'il
+répond, sinon le pipeline bascule automatiquement sur le backup — utile
+quand le quota gratuit d'un provider est épuisé (ex. Gemini). La décision
+est mise en cache pour tout le run : un seul test, pas un par source.
+DeepSeek est un bon choix de backup : 5 M tokens offerts à l'inscription,
+puis ~0,14 $/0,28 $ par million de tokens (input/output) — largement
+suffisant pour ce volume. Voir `pipeline/quefaire/llm.py`.
 
 ## Référencer des sources
 

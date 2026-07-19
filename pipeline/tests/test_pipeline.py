@@ -2,8 +2,11 @@
 
 import json
 import sys
+import types
 from datetime import date, timedelta
 from pathlib import Path
+
+import pytest
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
@@ -105,6 +108,104 @@ def test_nord_isere_communes_geocoded():
     for commune in ("Crémieu", "Morestel", "Saint-Chef", "La Verpillière", "Tignieu-Jameyzieu"):
         ev = geocode(make(commune=commune), "isere")
         assert ev.lat is not None, commune
+
+
+def _fake_autoagent(behaviors: dict):
+    """Module autoagent factice : behaviors[provider] = "texte" ou Exception."""
+
+    class FakeResult:
+        def __init__(self, output):
+            self.output = output
+
+    class FakeAgent:
+        def __init__(self, provider):
+            self.provider = provider
+
+        @classmethod
+        def from_model(cls, provider, model):
+            return cls(provider)
+
+        def run(self, prompt):
+            behavior = behaviors[self.provider]
+            if isinstance(behavior, Exception):
+                raise behavior
+            return FakeResult(behavior)
+
+    module = types.ModuleType("autoagent")
+    module.Agent = FakeAgent
+    return module
+
+
+def _reset_llm_cache():
+    import quefaire.llm as llm
+
+    llm._resolved = None
+    llm._resolution_done = False
+    return llm
+
+
+def test_llm_resolve_prefers_primary_when_it_answers(monkeypatch):
+    llm = _reset_llm_cache()
+    monkeypatch.setenv("QUEFAIRE_LLM", "gemini:gemini-3.5-flash")
+    monkeypatch.setenv("QUEFAIRE_LLM2", "deepseek:deepseek-v4-flash")
+    monkeypatch.setitem(sys.modules, "autoagent", _fake_autoagent({"gemini": "ok", "deepseek": "ok"}))
+
+    assert llm.resolve() == ("gemini", "gemini-3.5-flash")
+
+
+def test_llm_resolve_falls_back_to_backup_on_quota_error(monkeypatch):
+    llm = _reset_llm_cache()
+    monkeypatch.setenv("QUEFAIRE_LLM", "gemini:gemini-3.5-flash")
+    monkeypatch.setenv("QUEFAIRE_LLM2", "deepseek:deepseek-v4-flash")
+    monkeypatch.setitem(
+        sys.modules,
+        "autoagent",
+        _fake_autoagent({"gemini": RuntimeError("429 quota exceeded"), "deepseek": "ok"}),
+    )
+
+    assert llm.resolve() == ("deepseek", "deepseek-v4-flash")
+
+
+def test_llm_resolve_none_when_both_fail(monkeypatch):
+    llm = _reset_llm_cache()
+    monkeypatch.setenv("QUEFAIRE_LLM", "gemini:gemini-3.5-flash")
+    monkeypatch.setenv("QUEFAIRE_LLM2", "deepseek:deepseek-v4-flash")
+    monkeypatch.setitem(
+        sys.modules,
+        "autoagent",
+        _fake_autoagent({"gemini": RuntimeError("quota"), "deepseek": RuntimeError("quota")}),
+    )
+
+    assert llm.resolve() is None
+    with pytest.raises(RuntimeError):
+        llm.get_agent()
+
+
+def test_llm_resolve_tests_connection_once_per_run(monkeypatch):
+    llm = _reset_llm_cache()
+    monkeypatch.setenv("QUEFAIRE_LLM", "gemini:gemini-3.5-flash")
+    monkeypatch.delenv("QUEFAIRE_LLM2", raising=False)
+    calls = []
+
+    class CountingAgent:
+        def __init__(self, provider):
+            self.provider = provider
+
+        @classmethod
+        def from_model(cls, provider, model):
+            calls.append(provider)
+            return cls(provider)
+
+        def run(self, prompt):
+            return types.SimpleNamespace(output="ok")
+
+    module = types.ModuleType("autoagent")
+    module.Agent = CountingAgent
+    monkeypatch.setitem(sys.modules, "autoagent", module)
+
+    llm.resolve()
+    llm.resolve()
+    assert calls == ["gemini"]  # un seul test de connexion pour tout le run
 
 
 def test_demo_and_export_roundtrip(tmp_path):

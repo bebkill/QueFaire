@@ -6,15 +6,14 @@ relit chaque lot d'événements et, pour ceux dont le titre ne dit pas
 clairement de quoi il s'agit, produit une phrase limpide affichée en tête de
 fiche (champ `tldr`).
 
-Optionnel : nécessite QUEFAIRE_LLM + autoagent-core (comme html_llm).
-Sans LLM, le pipeline saute cette étape sans erreur.
+Optionnel : nécessite QUEFAIRE_LLM (+ backup QUEFAIRE_LLM2) et autoagent-core
+(comme html_llm). Sans LLM, le pipeline saute cette étape sans erreur.
 """
 
 from __future__ import annotations
 
 import json
 import logging
-import os
 import re
 
 from .models import Event
@@ -54,15 +53,11 @@ def _extract_json(raw: str) -> dict:
 
 def clarify(events: list[Event]) -> list[Event]:
     """Remplit event.tldr pour les titres ambigus. No-op sans LLM configuré."""
-    from .fetchers.html_llm import llm_available
+    from .llm import get_agent, llm_available
 
     if not llm_available():
         log.info("[clarify] sauté : pas de LLM configuré")
         return events
-
-    from autoagent import Agent
-
-    provider, _, model = os.environ["QUEFAIRE_LLM"].partition(":")
 
     todo = [e for e in events if not e.tldr]
     done = 0
@@ -73,9 +68,12 @@ def clarify(events: list[Event]) -> list[Event]:
             for e in batch
         )
         try:
-            agent = Agent.from_model(provider, model)
+            agent = get_agent()
             result = agent.run(PROMPT.format(items=items))
             mapping = _extract_json(result.output)
+        except RuntimeError as exc:
+            log.warning("[clarify] sauté : %s", exc)
+            return events
         except Exception as exc:
             log.error("[clarify] lot %d : %s", i // BATCH_SIZE, exc)
             continue

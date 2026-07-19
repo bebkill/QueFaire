@@ -40,16 +40,19 @@ jobs:
         env:
           # À renseigner dans Settings → Secrets pour activer les sources réelles :
           OPENAGENDA_KEY: ${{ secrets.OPENAGENDA_KEY }}
-          # Extraction LLM des pages HTML (optionnel, ex: "deepseek:deepseek-v4-flash",
-          # "gemini:gemini-3.5-flash"). Accepté en variable OU en secret de dépôt.
+          # Extraction LLM des pages HTML (optionnel, ex: "gemini:gemini-3.5-flash").
+          # QUEFAIRE_LLM2 est un backup (ex: "deepseek:deepseek-v4-flash") : testé
+          # automatiquement si le principal ne répond pas (quota épuisé, erreur).
+          # Accepté en variable OU en secret de dépôt.
           QUEFAIRE_LLM: ${{ vars.QUEFAIRE_LLM || secrets.QUEFAIRE_LLM }}
+          QUEFAIRE_LLM2: ${{ vars.QUEFAIRE_LLM2 || secrets.QUEFAIRE_LLM2 }}
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           DEEPSEEK_API_KEY: ${{ secrets.DEEPSEEK_API_KEY }}
           # Sources facebook/instagram (optionnel) : instance RSS-Bridge
           RSSBRIDGE_URL: ${{ vars.RSSBRIDGE_URL }}
         run: |
-          if [ -n "$QUEFAIRE_LLM" ]; then pip install autoagent-core; fi
+          if [ -n "$QUEFAIRE_LLM" ] || [ -n "$QUEFAIRE_LLM2" ]; then pip install autoagent-core; fi
           python -m quefaire crawl --sector isere
 
       - name: Commit refreshed data

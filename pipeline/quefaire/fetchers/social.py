@@ -74,7 +74,11 @@ class SocialFetcher:
             if self.platform == "facebook"
             else f"https://www.instagram.com/{source.url}"
         )
-        events = extract_events_llm(corpus, source, sector_id, page_url)
+        try:
+            events = extract_events_llm(corpus, source, sector_id, page_url)
+        except RuntimeError as exc:
+            log.warning("[%s] %s ignoré : %s", self.platform, source.id, exc)
+            return []
         log.info(
             "[%s+llm] %s : %d posts → %d événements",
             self.platform, source.id, len(posts), len(events),
