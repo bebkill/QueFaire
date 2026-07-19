@@ -131,27 +131,10 @@ auto-hébergée qui transforme une page publique en flux RSS :
 3. l'agent LLM (`QUEFAIRE_LLM`) transforme les posts récents en événements
    datés — un post n'étant pas un événement structuré, cette voie exige le LLM.
 
-## Feuille de route
+## Documentation
 
-**Fait**
-- [x] Premières sources réelles Isère (OpenAgenda + extraction LLM des pages agenda)
-- [x] Carte des événements (Leaflet/OSM) synchronisée avec les filtres
-- [x] Filtre temps de trajet « à moins de X min » (à pied / vélo / voiture), y
-      compris en langage naturel — approximation à vol d'oiseau corrigé
-- [x] Fiches « en clair » : une phrase LLM lève l'ambiguïté des titres
-      (ex: « Faites-vous une terrasse » = dîners en terrasse, pas du bricolage)
-
-**Ensuite**
-- [ ] Vrai moteur isochrone (OpenRouteService ou Valhalla) à la place de
-      l'approximation à vol d'oiseau
-- [ ] Retours utilisateurs sur les événements (👍/👎, note) pour apprendre les
-      goûts et afficher un **score de match** personnalisé, affiné au fil de l'eau
-- [ ] Sources activités outdoor : **Décathlon Outdoor, Visorando, Wikiloc**
-      (balades et itinéraires — pas des événements datés : premier cas d'usage
-      du schéma `Place`, avec notes et avis existants pour « bien noté »)
-- [ ] Compte utilisateur : préférences, contributions, activités réalisées
-- [ ] Élargir la couverture : offices de tourisme Vercors / Oisans / Chartreuse
-- [ ] Nouveaux secteurs : `sources/<secteur>.yaml` + `data/communes_<secteur>.csv`
-- [ ] Réseaux sociaux : activer les sources Facebook/Instagram (RSS-Bridge)
-- [ ] Extension aux professionnels et commerçants (« je cherche un électricien »,
-      « un tailleur de pierre ») : même pipeline, schéma `Place`, même recherche
+- [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) — fonctionnement détaillé du
+  pipeline et du site (collecte, LLM principal/backup, recherche NL, carte).
+- [`docs/ROADMAP.md`](docs/ROADMAP.md) — ce qui est fait, ce qui vient.
+- [`CLAUDE.md`](CLAUDE.md) — contexte, commandes et conventions pour les
+  sessions de développement assistées.
