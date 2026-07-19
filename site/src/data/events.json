@@ -23,29 +23,6 @@
   "id": "jacky-dutoit-66224b91"
  },
  {
-  "title": "Bib de rue",
-  "start": "2026-07-20T00:00:00",
-  "source_id": "html-capi",
-  "sector": "isere",
-  "end": null,
-  "description": "Bib de rue revient ! Les vacances d’été arrivent …et « Bib de Rue » fait son grand retour sur la CAPI et donc sur certaines communes du territoire !",
-  "tldr": null,
-  "category": "autre",
-  "tags": [],
-  "audience": [
-   "tous"
-  ],
-  "commune": "L'Isle-d'Abeau",
-  "address": null,
-  "lat": 45.62,
-  "lon": 5.23,
-  "free": null,
-  "price_text": null,
-  "url": "https://capi-agglo.fr/tout-lagenda/",
-  "image": null,
-  "id": "bib-de-rue-f2e348f9"
- },
- {
   "title": "THIER",
   "start": "2026-07-20T18:00:00+02:00",
   "source_id": "oa-hiboubox-villard",
@@ -65,52 +42,6 @@
   "url": "https://openagenda.com/agendas/1698621/events/thier",
   "image": "https://cdn.openagenda.com/main/6d871e256b6f4f79aac7571b665b8a7b.base.image.jpg",
   "id": "thier-b7d146a6"
- },
- {
-  "title": "Exposition de photographies",
-  "start": "2026-07-21T00:00:00",
-  "source_id": "html-capi",
-  "sector": "isere",
-  "end": "2026-08-01",
-  "description": "L’espace Carnot accueillera une exposition de photographies de Jean-Michel Pouzet. L’exposition sera ouverte durant les horaires de l’Office de Tourisme.",
-  "tldr": null,
-  "category": "expo",
-  "tags": [],
-  "audience": [
-   "tous"
-  ],
-  "commune": "L'Isle-d'Abeau",
-  "address": "Office de Tourisme CAPI - Espace Carnot",
-  "lat": 45.62,
-  "lon": 5.23,
-  "free": null,
-  "price_text": null,
-  "url": "https://capi-agglo.fr/tout-lagenda/",
-  "image": null,
-  "id": "exposition-de-photographies-73374ed2"
- },
- {
-  "title": "Bib de rue",
-  "start": "2026-07-21T00:00:00",
-  "source_id": "html-capi",
-  "sector": "isere",
-  "end": null,
-  "description": "Bib de rue revient ! Les vacances d’été arrivent …et « Bib de Rue » fait son grand retour sur la CAPI et donc sur certaines communes du territoire !",
-  "tldr": null,
-  "category": "autre",
-  "tags": [],
-  "audience": [
-   "tous"
-  ],
-  "commune": "L'Isle-d'Abeau",
-  "address": null,
-  "lat": 45.62,
-  "lon": 5.23,
-  "free": null,
-  "price_text": null,
-  "url": "https://capi-agglo.fr/tout-lagenda/",
-  "image": null,
-  "id": "bib-de-rue-4b9877b3"
  },
  {
   "title": "ROOTS TRIO",
@@ -136,29 +67,6 @@
   "id": "roots-trio-4a357e89"
  },
  {
-  "title": "Sortie nature CAPI : Balade au fil de l’eau",
-  "start": "2026-07-22T00:00:00",
-  "source_id": "html-capi",
-  "sector": "isere",
-  "end": null,
-  "description": "Les beaux jours sont là, une seule envie : prendre l’air ! C’est l’occasion de venir s’étonner, apprendre, ressentir, créer en découvrant vos espaces naturels capisérois.",
-  "tldr": null,
-  "category": "nature",
-  "tags": [],
-  "audience": [
-   "tous"
-  ],
-  "commune": "Saint-Savin",
-  "address": null,
-  "lat": 45.626,
-  "lon": 5.305,
-  "free": null,
-  "price_text": null,
-  "url": "https://capi-agglo.fr/tout-lagenda/",
-  "image": null,
-  "id": "sortie-nature-capi-balade-au-fil-de-leau-42a4a464"
- },
- {
   "title": "IANIS",
   "start": "2026-07-22T20:30:00+02:00",
   "source_id": "oa-hiboubox-villard",
@@ -178,52 +86,6 @@
   "url": "https://openagenda.com/agendas/1698621/events/ianis-4574110",
   "image": "https://cdn.openagenda.com/main/2ac2df07549846e88f1a447356e0e720.base.image.jpg",
   "id": "ianis-39079c60"
- },
- {
-  "title": "Bib de rue",
-  "start": "2026-07-23T00:00:00",
-  "source_id": "html-capi",
-  "sector": "isere",
-  "end": null,
-  "description": "Bib de rue revient ! Les vacances d’été arrivent …et « Bib de Rue » fait son grand retour sur la CAPI et donc sur certaines communes du territoire !",
-  "tldr": null,
-  "category": "autre",
-  "tags": [],
-  "audience": [
-   "tous"
-  ],
-  "commune": "Villefontaine",
-  "address": null,
-  "lat": 45.613,
-  "lon": 5.15,
-  "free": null,
-  "price_text": null,
-  "url": "https://capi-agglo.fr/tout-lagenda/",
-  "image": null,
-  "id": "bib-de-rue-ccdd3eae"
- },
- {
-  "title": "Bib de rue",
-  "start": "2026-07-23T00:00:00",
-  "source_id": "html-capi",
-  "sector": "isere",
-  "end": null,
-  "description": "Bib de rue revient ! Les vacances d’été arrivent …et « Bib de Rue » fait son grand retour sur la CAPI et donc sur certaines communes du territoire !",
-  "tldr": null,
-  "category": "autre",
-  "tags": [],
-  "audience": [
-   "tous"
-  ],
-  "commune": "La Verpillière",
-  "address": null,
-  "lat": 45.632,
-  "lon": 5.147,
-  "free": null,
-  "price_text": null,
-  "url": "https://capi-agglo.fr/tout-lagenda/",
-  "image": null,
-  "id": "bib-de-rue-e1320413"
  },
  {
   "title": "KALUWO",
