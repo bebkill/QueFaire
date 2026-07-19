@@ -139,6 +139,24 @@
    "url": "https://www.balconsdudauphine-tourisme.com/agenda/tout-lagenda/"
   },
   {
+   "id": "html-cafe-crem",
+   "name": "OT Ile Crémieu",
+   "type": "html",
+   "url": "https://cafe-crem.fr/"
+  },
+  {
+   "id": "fb-cafecrem",
+   "name": "Café-Crém (Facebook)",
+   "type": "facebook",
+   "url": "cafe.crem"
+  },
+  {
+   "id": "ig-capi",
+   "name": "CAPI — Porte de l'Isère (Instagram)",
+   "type": "instagram",
+   "url": "capiagglo"
+  },
+  {
    "id": "html-vercors",
    "name": "OT Villard-de-Lans / Vercors — agenda",
    "type": "html",
@@ -157,6 +175,6 @@
    "url": "https://www.oisans.com/agenda/"
   }
  ],
- "generated_at": "2026-07-19T07:30:51",
- "event_count": 73
+ "generated_at": "2026-07-19T08:24:19",
+ "event_count": 67
 }
