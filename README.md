@@ -83,8 +83,11 @@ GitHub Pages. À configurer dans le dépôt :
 
 1. **Settings → Pages** : source « GitHub Actions » ;
 2. **Secrets** (optionnels, activent les sources réelles) : `OPENAGENDA_KEY`,
-   et pour l'extraction LLM `GEMINI_API_KEY` (ou `ANTHROPIC_API_KEY`) +
-   variable `QUEFAIRE_LLM`.
+   et pour l'extraction LLM une clé de provider (`DEEPSEEK_API_KEY`,
+   `GEMINI_API_KEY` ou `ANTHROPIC_API_KEY`) + variable `QUEFAIRE_LLM` au format
+   `provider:modèle` (ex. `deepseek:deepseek-v4-flash`). DeepSeek est le choix
+   le plus économique : 5 M tokens offerts à l'inscription, puis ~0,14 $/0,28 $
+   par million de tokens (input/output) — largement suffisant pour ce volume.
 
 ## Référencer des sources
 

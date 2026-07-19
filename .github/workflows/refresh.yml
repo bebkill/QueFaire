@@ -40,11 +40,12 @@ jobs:
         env:
           # À renseigner dans Settings → Secrets pour activer les sources réelles :
           OPENAGENDA_KEY: ${{ secrets.OPENAGENDA_KEY }}
-          # Extraction LLM des pages HTML (optionnel, ex: "gemini:gemini-3.5-flash").
-          # Accepté en variable OU en secret de dépôt.
+          # Extraction LLM des pages HTML (optionnel, ex: "deepseek:deepseek-v4-flash",
+          # "gemini:gemini-3.5-flash"). Accepté en variable OU en secret de dépôt.
           QUEFAIRE_LLM: ${{ vars.QUEFAIRE_LLM || secrets.QUEFAIRE_LLM }}
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          DEEPSEEK_API_KEY: ${{ secrets.DEEPSEEK_API_KEY }}
           # Sources facebook/instagram (optionnel) : instance RSS-Bridge
           RSSBRIDGE_URL: ${{ vars.RSSBRIDGE_URL }}
         run: |
