@@ -1,28 +1,5 @@
 [
  {
-  "title": "JACKY DUTOIT",
-  "start": "2026-07-19T20:30:00+02:00",
-  "source_id": "oa-hiboubox-villard",
-  "sector": "isere",
-  "end": "2026-07-19T22:30:00+02:00",
-  "description": "Un vagabond de la chanson française pose ses valises : guitare complice, voix qui raconte, et les poètes du répertoire qui retrouvent des couleurs neuves.",
-  "tldr": null,
-  "category": "concert",
-  "tags": [],
-  "audience": [
-   "enfants"
-  ],
-  "commune": "Villard-de-Lans",
-  "address": "41 rue des pionniers, 38250 Villard-de-lans",
-  "lat": 45.070553,
-  "lon": 5.550517,
-  "free": true,
-  "price_text": null,
-  "url": "https://openagenda.com/agendas/1698621/events/jacky-dutoit",
-  "image": "https://cdn.openagenda.com/main/8b5c1a2a29fd496e9b99b332d20860c6.base.image.jpg",
-  "id": "jacky-dutoit-66224b91"
- },
- {
   "title": "THIER",
   "start": "2026-07-20T18:00:00+02:00",
   "source_id": "oa-hiboubox-villard",
