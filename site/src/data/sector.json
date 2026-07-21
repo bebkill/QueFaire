@@ -143,7 +143,7 @@
   },
   {
    "id": "html-cafe-crem",
-   "name": "OT Ile Crémieu",
+   "name": "OT Café-Crém'",
    "type": "html",
    "url": "https://cafe-crem.fr/"
   },
@@ -170,14 +170,8 @@
    "name": "OT Chamrousse — agenda",
    "type": "html",
    "url": "https://www.chamrousse.com/agenda.html"
-  },
-  {
-   "id": "html-oisans",
-   "name": "Oisans Tourisme — agenda",
-   "type": "html",
-   "url": "https://www.oisans.com/agenda/"
   }
  ],
- "generated_at": "2026-07-21T11:40:12",
+ "generated_at": "2026-07-21T12:06:58",
  "event_count": 81
 }
