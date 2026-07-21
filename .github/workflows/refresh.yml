@@ -66,6 +66,11 @@ jobs:
           # Accepté en variable OU en secret de dépôt.
           QUEFAIRE_LLM: ${{ vars.QUEFAIRE_LLM || secrets.QUEFAIRE_LLM }}
           QUEFAIRE_LLM2: ${{ vars.QUEFAIRE_LLM2 || secrets.QUEFAIRE_LLM2 }}
+          # Modèle dédié à clarify (optionnel) : lui donne son propre quota, hors
+          # budget d'extraction (ex. crawl sur deepseek, clarify sur mistral).
+          # Sans lui, clarify réutilise QUEFAIRE_LLM/2.
+          QUEFAIRE_LLM_CLARIFY: ${{ vars.QUEFAIRE_LLM_CLARIFY || secrets.QUEFAIRE_LLM_CLARIFY }}
+          QUEFAIRE_LLM_CLARIFY2: ${{ vars.QUEFAIRE_LLM_CLARIFY2 || secrets.QUEFAIRE_LLM_CLARIFY2 }}
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           DEEPSEEK_API_KEY: ${{ secrets.DEEPSEEK_API_KEY }}
