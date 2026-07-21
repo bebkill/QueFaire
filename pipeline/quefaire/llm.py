@@ -171,30 +171,78 @@ def resolve() -> tuple[str, str] | None:
     return None
 
 
-def run_llm(prompt: str):
-    """agent.run(prompt) avec bascule automatique si le quota meurt en route.
+def _blank(result) -> bool:
+    """Réponse LLM vide/blanche. Ce n'est jamais une réponse valide : le
+    modèle doit au minimum rendre `[]` / `{}`. Vécu avec gemini-3.5-flash sur
+    les grosses pages agenda (sortie tronquée → complétion vide) — l'appel
+    « réussit » mais ne rend rien, ce qui produisait silencieusement 0 fiche."""
+    return not (getattr(result, "output", "") or "").strip()
 
-    Une erreur de quota (429, rate limit…) déclasse le provider courant pour
-    le reste du run et rejoue l'appel sur le candidat suivant. Les autres
-    erreurs remontent telles quelles. Lève RuntimeError quand plus aucun LLM
-    ne répond.
+
+def budget_healthy() -> bool:
+    """True tant qu'aucun provider n'a été déclassé (quota mort) pendant ce run.
+
+    Signal pour les consommateurs « confort » (clarify) : inutile de dépenser
+    un quota déjà tendu sur du non-essentiel. Une réponse vide isolée ne
+    déclasse pas (voir run_llm), donc n'entame pas ce budget."""
+    return not _failed
+
+
+def run_llm(prompt: str):
+    """agent.run(prompt) avec deux garde-fous.
+
+    - Erreur de quota (429, rate limit…) : déclasse le provider courant pour
+      tout le reste du run et rejoue l'appel sur le candidat suivant.
+    - Réponse vide : rejoue le MÊME appel sur les autres candidats, pour cet
+      appel seulement et sans déclasser (le vide est souvent propre à la page —
+      sortie trop longue —, le provider reste bon pour les autres sources) ;
+      si tous rendent du vide, la réponse vide est renvoyée telle quelle et
+      l'appelant gère (0 fiche).
+
+    Les autres erreurs remontent telles quelles. Lève RuntimeError quand plus
+    aucun LLM ne répond (quota).
     """
     while True:
         resolved = resolve()
         if resolved is None:
             raise RuntimeError("Aucun LLM disponible (QUEFAIRE_LLM / QUEFAIRE_LLM2)")
         provider, model = resolved
+        spec = f"{provider}:{model}"
         try:
-            return _make_agent(provider, model).run(prompt)
+            result = _make_agent(provider, model).run(prompt)
         except Exception as exc:
             if not is_quota_error(exc):
                 raise
-            spec = f"{provider}:{model}"
             log.warning(
                 "[llm] quota épuisé sur %s en cours de run — bascule sur le candidat suivant (%s)",
                 spec, exc,
             )
             _demote(spec)
+            continue
+
+        if not _blank(result):
+            return result
+
+        log.warning(
+            "[llm] réponse vide de %s — essai des candidats de secours pour cet appel", spec
+        )
+        for alt in _candidates():
+            if alt == spec:
+                continue
+            alt_provider, _, alt_model = alt.partition(":")
+            try:
+                alt_result = _make_agent(alt_provider, alt_model).run(prompt)
+            except Exception as exc:
+                if is_quota_error(exc):
+                    log.warning("[llm] secours %s : quota épuisé, déclassé (%s)", alt, exc)
+                    _demote(alt)
+                else:
+                    log.warning("[llm] secours %s indisponible : %s", alt, exc)
+                continue
+            if not _blank(alt_result):
+                log.info("[llm] secours %s a répondu pour cet appel", alt)
+                return alt_result
+        return result
 
 
 def get_agent():
