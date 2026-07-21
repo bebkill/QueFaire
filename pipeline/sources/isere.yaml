@@ -232,4 +232,4 @@ sources:
     type: html
     url: https://www.oisans.com/agenda/
     commune: Le Bourg-d'Oisans
-    enabled: true
+    enabled: false
