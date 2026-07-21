@@ -125,13 +125,22 @@ Beaucoup de petites communes n'annoncent leurs événements que sur Facebook ou
 Instagram. Meta n'offrant pas d'API publique de lecture (et le scraping direct
 étant bloqué et contraire aux CGU), le pipeline passe par
 [RSS-Bridge](https://github.com/RSS-Bridge/rss-bridge) — une instance
-auto-hébergée qui transforme une page publique en flux RSS :
+qui transforme une page publique en flux RSS :
 
-1. déployer une instance RSS-Bridge et renseigner `RSSBRIDGE_URL` ;
+1. une instance RSS-Bridge est disponible via `RSSBRIDGE_URL` ; le workflow CI
+   en lance une **éphémère** (service container) et pointe dessus par défaut ;
 2. déclarer des sources `type: facebook` / `type: instagram` avec l'identifiant
    de la page en `url` (des exemples sont dans `isere.yaml`) ;
 3. l'agent LLM (`QUEFAIRE_LLM`) transforme les posts récents en événements
    datés — un post n'étant pas un événement structuré, cette voie exige le LLM.
+
+> ⚠️ **Fiabilité.** Le service CI tourne sur une IP de datacenter que Meta
+> bloque massivement : les bridges Facebook/Instagram y échoueront le plus
+> souvent (le crawl le gère proprement — skip + log). Pour une collecte fiable,
+> renseigner la **variable de dépôt** `RSSBRIDGE_URL` vers une instance
+> auto-hébergée sur **IP résidentielle** (elle a priorité sur le service CI).
+> Voir [`docs/RESEAUX-SOCIAUX.md`](docs/RESEAUX-SOCIAUX.md) pour le contexte
+> (voies d'accès Meta, RGPD, alternatives).
 
 ## Documentation
 

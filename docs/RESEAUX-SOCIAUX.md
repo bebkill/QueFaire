@@ -97,6 +97,17 @@ référencer un événement en ajoutant simplement un hashtag convenu
    risque juridique (cf. Bright Data, logged-out) qu'un problème de fiabilité
    face aux blocages techniques de Meta.
 
+   *État de l'implémentation (2026-07)* : le fetcher `social.py` est câblé et le
+   workflow CI (`refresh.yml`) lance une instance RSS-Bridge **éphémère**
+   (service container, tous bridges activés) sur laquelle `RSSBRIDGE_URL` pointe
+   par défaut. Mais le runner GitHub est sur **IP de datacenter** — précisément
+   ce que Meta bloque : les bridges Facebook/Instagram y échoueront le plus
+   souvent (skip + log, aucun crash). C'est donc un branchement *mécanique*, pas
+   une collecte fiable. Pour une voie fiable, définir la **variable de dépôt**
+   `RSSBRIDGE_URL` vers une instance auto-hébergée sur IP résidentielle : elle a
+   priorité sur le service CI. La voie réellement recommandée reste le
+   **consentement du propriétaire de la page** (point 2 ci-dessus).
+
 Sources : docs Meta (PPCA, oEmbed Read, référence Graph API Page),
 Meta v. Bright Data (N.D. Cal., 23/01/2024), guides développeurs 2026 sur
 les APIs Instagram.

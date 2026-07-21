@@ -22,6 +22,20 @@ concurrency:
 jobs:
   refresh:
     runs-on: ubuntu-latest
+    # Instance RSS-Bridge éphémère pour les sources facebook/instagram (social.py).
+    # AVERTISSEMENT : le runner GitHub est sur IP de datacenter — Meta bloque
+    # massivement ces IP, donc les bridges Facebook/Instagram échoueront le plus
+    # souvent (voir docs/RESEAUX-SOCIAUX.md). Le crawl le gère proprement (skip +
+    # log), rien ne casse. Pour une collecte réellement fiable, pointer plutôt
+    # RSSBRIDGE_URL (variable de dépôt) vers une instance auto-hébergée sur IP
+    # résidentielle : elle a priorité sur ce service (voir l'étape Crawl).
+    services:
+      rss-bridge:
+        image: rssbridge/rss-bridge:latest
+        ports:
+          - 3000:80
+        env:
+          RSSBRIDGE_system_enabled_bridges: "*"
     steps:
       # La clé de déploiement (secret DATA_DEPLOY_KEY + deploy key en écriture
       # dans Settings → Deploy keys) permet au commit des données de passer le
@@ -55,8 +69,10 @@ jobs:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           DEEPSEEK_API_KEY: ${{ secrets.DEEPSEEK_API_KEY }}
-          # Sources facebook/instagram (optionnel) : instance RSS-Bridge
-          RSSBRIDGE_URL: ${{ vars.RSSBRIDGE_URL }}
+          # Sources facebook/instagram : instance RSS-Bridge. Par défaut le
+          # service éphémère du job (http://localhost:3000) ; une variable de
+          # dépôt RSSBRIDGE_URL (ex. instance résidentielle) a priorité.
+          RSSBRIDGE_URL: ${{ vars.RSSBRIDGE_URL || 'http://localhost:3000' }}
         run: |
           if [ -n "$QUEFAIRE_LLM" ] || [ -n "$QUEFAIRE_LLM2" ]; then pip install autoagent-core; fi
           python -m quefaire crawl --sector isere
