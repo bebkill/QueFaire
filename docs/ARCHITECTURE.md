@@ -29,7 +29,9 @@ humaine. Ajouter une région = ajouter `sources/<secteur>.yaml` +
    - `html_llm.py` : pages agenda sans flux — le texte de la page est envoyé à
      un agent LLM qui en extrait les événements en JSON ;
    - `social.py` : pages Facebook/Instagram via une instance RSS-Bridge
-     (`RSSBRIDGE_URL`), posts transformés en événements par le LLM.
+     (`RSSBRIDGE_URL` ; le workflow CI en lance une éphémère par défaut, mais
+     l'IP datacenter du runner est bloquée par Meta — voir
+     `docs/RESEAUX-SOCIAUX.md`), posts transformés en événements par le LLM.
 2. **Normalisation** (`normalize.py`) — catégorie, public visé et gratuité
    déduits par des règles lisibles (regex/mots-clés), pas de LLM.
 3. **Géocodage** (`geocode.py`) — commune → lat/lon via

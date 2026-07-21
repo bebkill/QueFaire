@@ -110,28 +110,52 @@ def test_nord_isere_communes_geocoded():
         assert ev.lat is not None, commune
 
 
+# base_url → label logique, pour que les providers OpenAI-compatibles branchés
+# via l'adaptateur openai (mistral, zai, kimi) restent identifiables côté test.
+_BASE_URL_LABEL = {
+    "https://api.mistral.ai/v1": "mistral",
+    "https://api.z.ai/api/paas/v4": "zai",
+    "https://api.moonshot.ai/v1": "kimi",
+}
+
+
 def _fake_autoagent(behaviors: dict):
     """Module autoagent factice.
 
-    behaviors[provider] = "texte" ou Exception (constant), ou une liste
-    consommée appel par appel (le dernier élément se répète) pour simuler
-    un quota qui meurt en cours de run.
+    behaviors[label] = "texte" ou Exception (constant), ou une liste consommée
+    appel par appel (le dernier élément se répète) pour simuler un quota qui
+    meurt en cours de run. Le label est le nom logique du provider : le provider
+    natif (from_model) ou, pour un provider OpenAI-compatible construit via
+    create_provider(ModelConfig(...)), le nom déduit de base_url.
     """
 
     class FakeResult:
         def __init__(self, output):
             self.output = output
 
+    class FakeModelConfig:
+        def __init__(self, provider, model, base_url=None, api_key_env=None):
+            self.provider = provider
+            self.model = model
+            self.base_url = base_url
+            self.api_key_env = api_key_env
+
+    class FakeProvider:
+        def __init__(self, config):
+            self.config = config
+            self.label = _BASE_URL_LABEL.get(config.base_url, config.provider)
+
     class FakeAgent:
         def __init__(self, provider):
-            self.provider = provider
+            # provider = nom natif (str, via from_model) ou FakeProvider.
+            self.label = provider.label if isinstance(provider, FakeProvider) else provider
 
         @classmethod
         def from_model(cls, provider, model):
             return cls(provider)
 
         def run(self, prompt):
-            behavior = behaviors[self.provider]
+            behavior = behaviors[self.label]
             if isinstance(behavior, list):
                 behavior = behavior.pop(0) if len(behavior) > 1 else behavior[0]
             if isinstance(behavior, Exception):
@@ -140,6 +164,8 @@ def _fake_autoagent(behaviors: dict):
 
     module = types.ModuleType("autoagent")
     module.Agent = FakeAgent
+    module.ModelConfig = FakeModelConfig
+    module.create_provider = lambda config: FakeProvider(config)
     return module
 
 
@@ -274,6 +300,71 @@ def test_llm_failover_exhausts_all_candidates(monkeypatch):
 
     with pytest.raises(RuntimeError, match="Aucun LLM disponible"):
         llm.run_llm("extrais")
+
+
+def test_make_agent_routes_native_vs_openai_compatible(monkeypatch):
+    """Groq est natif (from_model) ; Mistral passe par l'adaptateur openai avec
+    base_url + clé dédiée, car from_model ne permet pas de fixer base_url."""
+    llm = _reset_llm_cache()
+    recorded = {}
+
+    class FakeAgent:
+        def __init__(self, provider):
+            recorded["agent_provider"] = provider
+
+        @classmethod
+        def from_model(cls, provider, model):
+            recorded["from_model"] = (provider, model)
+            return cls(provider)
+
+    class FakeModelConfig:
+        def __init__(self, provider, model, base_url=None, api_key_env=None):
+            self.provider, self.model = provider, model
+            self.base_url, self.api_key_env = base_url, api_key_env
+
+    def fake_create_provider(config):
+        recorded["config"] = config
+        return config
+
+    module = types.ModuleType("autoagent")
+    module.Agent = FakeAgent
+    module.ModelConfig = FakeModelConfig
+    module.create_provider = fake_create_provider
+    monkeypatch.setitem(sys.modules, "autoagent", module)
+
+    # Groq : natif → from_model, aucune config OpenAI-compatible construite.
+    llm._make_agent("groq", "llama-3.3-70b-versatile")
+    assert recorded["from_model"] == ("groq", "llama-3.3-70b-versatile")
+    assert "config" not in recorded
+
+    # Mistral : adaptateur openai + base_url + clé Mistral.
+    llm._make_agent("mistral", "mistral-small-latest")
+    cfg = recorded["config"]
+    assert (cfg.provider, cfg.model) == ("openai", "mistral-small-latest")
+    assert cfg.base_url == "https://api.mistral.ai/v1"
+    assert cfg.api_key_env == "MISTRAL_API_KEY"
+
+
+def test_llm_backups_are_comma_separated_and_ordered(monkeypatch):
+    """QUEFAIRE_LLM2 peut lister plusieurs backups : la chaîne est essayée dans
+    l'ordre, un provider OpenAI-compatible (Mistral) inclus."""
+    llm = _reset_llm_cache()
+    monkeypatch.setenv("QUEFAIRE_LLM", "gemini:gemini-3.5-flash")
+    monkeypatch.setenv(
+        "QUEFAIRE_LLM2", "groq:llama-3.3-70b-versatile, mistral:mistral-small-latest"
+    )
+    monkeypatch.setitem(
+        sys.modules,
+        "autoagent",
+        _fake_autoagent({
+            "gemini": RuntimeError("429 quota exceeded"),
+            "groq": RuntimeError("rate limit reached"),
+            "mistral": "ok",
+        }),
+    )
+
+    # Gemini puis Groq épuisés → on retombe sur Mistral, dernier de la liste.
+    assert llm.resolve() == ("mistral", "mistral-small-latest")
 
 
 def test_demo_and_export_roundtrip(tmp_path):

@@ -65,14 +65,20 @@ site/src/
 
 - `QUEFAIRE_LLM` (principal) et `QUEFAIRE_LLM2` (backup optionnel), format
   `provider:modèle` (ex. `gemini:gemini-3.5-flash`, `deepseek:deepseek-v4-flash`).
+  Chaque variable accepte une **liste séparée par des virgules** pour empiler
+  plusieurs backups (ex. `QUEFAIRE_LLM2="deepseek:…,groq:…,mistral:…"`).
 - `pipeline/quefaire/llm.py` fait un test de connexion minimal au premier appel
   du run et met la décision en cache. Le quota peut aussi mourir **en cours de
   run** (palier gratuit Gemini : 20 req/jour) : les appels passent par
   `run_llm()`, qui déclasse le provider courant sur erreur de quota (429,
   rate limit) et rejoue l'appel sur le backup. `get_agent()` reste réservé à
   discovery (outils `@agent.tool`).
-- Lib : `autoagent-core` (providers supportés : OpenAI, Anthropic, DeepSeek,
-  Gemini). Clés : `GEMINI_API_KEY`, `DEEPSEEK_API_KEY`, `ANTHROPIC_API_KEY`.
+- Lib : `autoagent-core`. Providers natifs : OpenAI, Anthropic, DeepSeek,
+  Gemini, **Groq**. Providers OpenAI-compatibles branchés via l'adaptateur
+  openai + `base_url` (voir `_OPENAI_COMPATIBLE` dans `llm.py`) : **Mistral**,
+  z.ai (`zai`), Kimi (`kimi`/`moonshot`). Clés : `GEMINI_API_KEY`,
+  `DEEPSEEK_API_KEY`, `ANTHROPIC_API_KEY`, `GROQ_API_KEY`, `MISTRAL_API_KEY`,
+  `ZAI_API_KEY`, `MOONSHOT_API_KEY`.
 - Tout consommateur LLM (html_llm, social, clarify, discovery) passe par
   `llm.get_agent()` et **saute proprement** (log + skip) si aucun LLM n'est
   disponible — jamais de crash du crawl pour une intégration optionnelle.
