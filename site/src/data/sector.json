@@ -27,6 +27,7 @@
   "Autrans-Méaudre-en-Vercors",
   "Beaurepaire",
   "Bourgoin-Jallieu",
+  "Bouvesse-Quirieu",
   "Chamrousse",
   "Charvieu-Chavagneux",
   "Chavanoz",
@@ -34,6 +35,7 @@
   "Corbelin",
   "Corenc",
   "Corrençon-en-Vercors",
+  "Creys-Mépieu",
   "Crolles",
   "Crémieu",
   "Dolomieu",
@@ -43,7 +45,9 @@
   "Gières",
   "Grenoble",
   "Heyrieux",
+  "Hières-sur-Amby",
   "Huez",
+  "Izieu",
   "L'Isle-d'Abeau",
   "La Balme-les-Grottes",
   "La Côte-Saint-André",
@@ -69,6 +73,7 @@
   "Nivolas-Vermelle",
   "Pont-de-Chéruy",
   "Pontcharra",
+  "Porcieu-Amblagnieu",
   "Rives",
   "Roussillon",
   "Ruy-Montceau",
@@ -101,6 +106,7 @@
   "Vizille",
   "Voiron",
   "Voreppe",
+  "Vénérieu",
   "Vézeronce-Curtin",
   "Échirolles"
  ],
@@ -172,6 +178,6 @@
    "url": "https://www.oisans.com/agenda/"
   }
  ],
- "generated_at": "2026-07-21T09:42:49",
- "event_count": 26
+ "generated_at": "2026-07-21T11:40:12",
+ "event_count": 81
 }
