@@ -164,7 +164,7 @@ sources:
     enabled: true
 
   - id: html-cafe-crem
-    name: OT Ile Crémieu
+    name: OT Café-Crém'
     type: html
     url: https://cafe-crem.fr/
     commune: Villemoirieu
