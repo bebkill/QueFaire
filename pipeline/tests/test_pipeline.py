@@ -367,6 +367,87 @@ def test_llm_backups_are_comma_separated_and_ordered(monkeypatch):
     assert llm.resolve() == ("mistral", "mistral-small-latest")
 
 
+def test_llm_empty_response_falls_back_without_demoting(monkeypatch):
+    """Réponse vide du principal (vécu : gemini rend du vide sur les grosses
+    pages) → l'appel bascule sur un backup pour CET appel, sans déclasser le
+    principal, qui reste utilisé ensuite."""
+    llm = _reset_llm_cache()
+    monkeypatch.setenv("QUEFAIRE_LLM", "gemini:gemini-3.5-flash")
+    monkeypatch.setenv("QUEFAIRE_LLM2", "groq:llama-3.3-70b-versatile")
+    monkeypatch.setitem(
+        sys.modules,
+        "autoagent",
+        _fake_autoagent({
+            # test de connexion OK, 1er appel vide, puis réponses normales
+            "gemini": ["ok", "", "extraction gemini"],
+            "groq": "extraction groq",
+        }),
+    )
+
+    assert llm.resolve() == ("gemini", "gemini-3.5-flash")
+    # Réponse vide de gemini → secours groq pour cet appel.
+    assert llm.run_llm("extrais").output == "extraction groq"
+    # gemini n'a PAS été déclassé : il reste principal et répond au suivant.
+    assert llm.budget_healthy() is True
+    assert llm.resolve() == ("gemini", "gemini-3.5-flash")
+    assert llm.run_llm("extrais").output == "extraction gemini"
+
+
+def test_llm_empty_everywhere_returns_blank_without_demoting(monkeypatch):
+    """Si tous les candidats rendent du vide, run_llm renvoie la réponse vide
+    (l'appelant gère 0 fiche) sans déclasser personne."""
+    llm = _reset_llm_cache()
+    monkeypatch.setenv("QUEFAIRE_LLM", "gemini:gemini-3.5-flash")
+    monkeypatch.setenv("QUEFAIRE_LLM2", "groq:llama-3.3-70b-versatile")
+    monkeypatch.setitem(
+        sys.modules,
+        "autoagent",
+        _fake_autoagent({"gemini": ["ok", ""], "groq": ""}),
+    )
+
+    assert llm.resolve() == ("gemini", "gemini-3.5-flash")
+    assert llm.run_llm("extrais").output == ""
+    assert llm.budget_healthy() is True  # aucun déclassement
+    assert llm.resolve() == ("gemini", "gemini-3.5-flash")
+
+
+def test_clarify_skipped_when_budget_unhealthy(monkeypatch):
+    """Après une bascule quota (budget entamé), clarify se saute pour préserver
+    le quota et n'appelle pas le LLM."""
+    import quefaire.llm as llm
+    from quefaire.clarify import clarify
+
+    _reset_llm_cache()
+    monkeypatch.setenv("QUEFAIRE_LLM", "gemini:gemini-3.5-flash")
+    monkeypatch.setitem(sys.modules, "autoagent", _fake_autoagent({"gemini": "{}"}))
+    llm._failed.add("gemini:gemini-3.5-flash")  # une bascule a déjà eu lieu
+
+    def boom(*a, **k):
+        raise AssertionError("clarify ne doit pas appeler le LLM si le budget est entamé")
+
+    monkeypatch.setattr(llm, "run_llm", boom)
+    events = [make(title="Cet été, faites-vous une terrasse")]
+    out = clarify(events)
+    assert out is events
+    assert events[0].tldr in (None, "")
+
+
+def test_clarify_fills_tldr_when_budget_healthy(monkeypatch):
+    import quefaire.llm as llm  # noqa: F401
+    from quefaire.clarify import clarify
+
+    _reset_llm_cache()
+    monkeypatch.setenv("QUEFAIRE_LLM", "gemini:gemini-3.5-flash")
+    ev = make(title="Cet été, faites-vous une terrasse")
+    phrase = "Dîners servis en terrasse tout l'été."
+    monkeypatch.setitem(
+        sys.modules, "autoagent", _fake_autoagent({"gemini": json.dumps({ev.id: phrase})})
+    )
+
+    out = clarify([ev])
+    assert out[0].tldr == phrase
+
+
 def test_demo_and_export_roundtrip(tmp_path):
     sector = load_sector("isere")
     events = [enrich(geocode(e, "isere")) for e in demo_events()]
