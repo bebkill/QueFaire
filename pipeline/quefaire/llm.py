@@ -2,12 +2,26 @@
 principal + bascule automatique sur un backup en cas de quota épuisé.
 
 - QUEFAIRE_LLM  : provider principal (ex: "gemini:gemini-3.5-flash")
-- QUEFAIRE_LLM2 : backup optionnel (ex: "deepseek:deepseek-v4-flash")
+- QUEFAIRE_LLM2 : backup(s) optionnel(s)
+
+Chaque variable accepte **une liste ordonnée séparée par des virgules** : on
+peut donc empiler plusieurs backups sans multiplier les variables d'env, par
+exemple `QUEFAIRE_LLM2="deepseek:deepseek-v4-flash,groq:llama-3.3-70b-versatile,
+mistral:mistral-small-latest"`. La chaîne complète (principal puis backups, dans
+l'ordre) est essayée jusqu'au premier provider qui répond.
+
+Providers reconnus dans un spec `provider:modèle` :
+- natifs autoagent-core : openai, anthropic, deepseek, gemini, groq
+  (clés respectives OPENAI_API_KEY, ANTHROPIC_API_KEY, DEEPSEEK_API_KEY,
+  GEMINI_API_KEY, GROQ_API_KEY) ;
+- OpenAI-compatibles branchés par nous via l'adaptateur openai + base_url :
+  mistral (MISTRAL_API_KEY), zai (ZAI_API_KEY), kimi/moonshot
+  (MOONSHOT_API_KEY) — voir _OPENAI_COMPATIBLE.
 
 Au premier appel du run, un test de connexion minimal (un seul échange court)
 départage : le principal est utilisé si le quota répond, sinon on bascule sur
-le backup. La décision est mise en cache pour tout le run — pas de retest par
-source.
+le backup suivant. La décision est mise en cache pour tout le run — pas de
+retest par source.
 
 Le quota peut aussi mourir EN COURS de run (vécu : le palier gratuit Gemini
 est de 20 requêtes/jour — le test de connexion passe, puis le quota s'épuise
@@ -31,18 +45,60 @@ _failed: set[str] = set()  # specs "provider:modèle" déclassés pour ce run
 
 _QUOTA_RE = re.compile(r"429|quota|rate.?limit|resource.?exhausted", re.I)
 
+# Providers OpenAI-compatibles absents du cœur autoagent-core (qui ne connaît
+# nativement que openai/anthropic/deepseek/gemini/groq) : on les sert via
+# l'adaptateur openai en surchargeant base_url et la variable de clé.
+#   alias -> (base_url, variable d'environnement pour la clé)
+_OPENAI_COMPATIBLE = {
+    "mistral": ("https://api.mistral.ai/v1", "MISTRAL_API_KEY"),
+    "zai": ("https://api.z.ai/api/paas/v4", "ZAI_API_KEY"),
+    "kimi": ("https://api.moonshot.ai/v1", "MOONSHOT_API_KEY"),
+    "moonshot": ("https://api.moonshot.ai/v1", "MOONSHOT_API_KEY"),
+}
+
+
+def _make_agent(provider: str, model: str):
+    """Instancie un Agent autoagent-core pour (provider, modèle).
+
+    Provider natif → Agent.from_model (clé résolue par autoagent). Provider
+    OpenAI-compatible non natif (mistral, zai, kimi) → adaptateur openai avec
+    base_url et clé dédiée, car from_model ne permet pas de fixer base_url.
+    """
+    from autoagent import Agent
+
+    preset = _OPENAI_COMPATIBLE.get(provider.lower())
+    if preset is None:
+        return Agent.from_model(provider, model)
+
+    from autoagent import ModelConfig, create_provider
+
+    base_url, api_key_env = preset
+    config = ModelConfig(
+        provider="openai", model=model, base_url=base_url, api_key_env=api_key_env
+    )
+    return Agent(create_provider(config))
+
 
 def is_quota_error(exc: BaseException) -> bool:
     """Erreur de quota/limite de débit (récupérable en changeant de provider)."""
     return bool(_QUOTA_RE.search(str(exc)))
 
 
+def _all_specs() -> list[str]:
+    """Chaîne ordonnée des specs : QUEFAIRE_LLM puis QUEFAIRE_LLM2, chacun
+    pouvant lister plusieurs providers séparés par des virgules. Doublons ôtés
+    en gardant le premier."""
+    specs: list[str] = []
+    for var in ("QUEFAIRE_LLM", "QUEFAIRE_LLM2"):
+        for spec in (os.environ.get(var) or "").split(","):
+            spec = spec.strip()
+            if spec and spec not in specs:
+                specs.append(spec)
+    return specs
+
+
 def _candidates() -> list[str]:
-    return [
-        v
-        for v in (os.environ.get("QUEFAIRE_LLM"), os.environ.get("QUEFAIRE_LLM2"))
-        if v and v not in _failed
-    ]
+    return [s for s in _all_specs() if s not in _failed]
 
 
 def llm_available() -> bool:
@@ -66,10 +122,8 @@ def _test(provider: str, model: str) -> bool:
     Coût négligeable (quelques dizaines de tokens) comparé à la source
     d'extraction qu'on évite de gâcher sur un quota déjà mort.
     """
-    from autoagent import Agent
-
     try:
-        agent = Agent.from_model(provider, model)
+        agent = _make_agent(provider, model)
         result = agent.run("Réponds uniquement par le mot ok.")
         return bool(result.output)
     except Exception as exc:
@@ -101,9 +155,11 @@ def resolve() -> tuple[str, str] | None:
         _resolved = None
         return None
 
+    specs = _all_specs()
+    primary = specs[0] if specs else None
     for spec in _candidates():
         provider, _, model = spec.partition(":")
-        label = "principal" if spec == os.environ.get("QUEFAIRE_LLM") else "backup"
+        label = "principal" if spec == primary else "backup"
         if _test(provider, model):
             log.info("[llm] %s (%s) sélectionné", spec, label)
             _resolved = (provider, model)
@@ -128,10 +184,8 @@ def run_llm(prompt: str):
         if resolved is None:
             raise RuntimeError("Aucun LLM disponible (QUEFAIRE_LLM / QUEFAIRE_LLM2)")
         provider, model = resolved
-        from autoagent import Agent
-
         try:
-            return Agent.from_model(provider, model).run(prompt)
+            return _make_agent(provider, model).run(prompt)
         except Exception as exc:
             if not is_quota_error(exc):
                 raise
@@ -153,7 +207,6 @@ def get_agent():
     resolved = resolve()
     if resolved is None:
         raise RuntimeError("Aucun LLM disponible (QUEFAIRE_LLM / QUEFAIRE_LLM2)")
-    from autoagent import Agent
 
     provider, model = resolved
-    return Agent.from_model(provider, model)
+    return _make_agent(provider, model)
