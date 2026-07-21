@@ -67,12 +67,20 @@ site/src/
   `provider:modèle` (ex. `gemini:gemini-3.5-flash`, `deepseek:deepseek-v4-flash`).
   Chaque variable accepte une **liste séparée par des virgules** pour empiler
   plusieurs backups (ex. `QUEFAIRE_LLM2="deepseek:…,groq:…,mistral:…"`).
+- **Deux chaînes indépendantes** (classe `_Chain`) : *crawl* (`QUEFAIRE_LLM`
+  /`QUEFAIRE_LLM2`, extraction html/social + discover) et *clarify*
+  (`QUEFAIRE_LLM_CLARIFY`/`QUEFAIRE_LLM_CLARIFY2`). Donner un modèle dédié à
+  clarify lui offre son propre quota (ex. crawl sur `deepseek`, clarify sur
+  `mistral`) ; sans lui, clarify réutilise la chaîne du crawl et se saute si
+  celle-ci a déjà basculé (budget tendu).
 - `pipeline/quefaire/llm.py` fait un test de connexion minimal au premier appel
-  du run et met la décision en cache. Le quota peut aussi mourir **en cours de
-  run** (palier gratuit Gemini : 20 req/jour) : les appels passent par
+  d'une chaîne et met la décision en cache. Le quota peut aussi mourir **en
+  cours de run** (palier gratuit Gemini : 20 req/jour) : les appels passent par
   `run_llm()`, qui déclasse le provider courant sur erreur de quota (429,
-  rate limit) et rejoue l'appel sur le backup. `get_agent()` reste réservé à
-  discovery (outils `@agent.tool`).
+  rate limit) et rejoue sur le backup. Une **réponse vide** (vécu : Gemini sur
+  les grosses pages) rejoue l'appel sur les backups **pour cet appel seulement**
+  (sans déclasser). `get_agent()` reste réservé à discovery (outils
+  `@agent.tool`).
 - Lib : `autoagent-core`. Providers natifs : OpenAI, Anthropic, DeepSeek,
   Gemini, **Groq**. Providers OpenAI-compatibles branchés via l'adaptateur
   openai + `base_url` (voir `_OPENAI_COMPATIBLE` dans `llm.py`) : **Mistral**,

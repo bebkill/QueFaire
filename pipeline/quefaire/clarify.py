@@ -53,17 +53,19 @@ def _extract_json(raw: str) -> dict:
 
 def clarify(events: list[Event]) -> list[Event]:
     """Remplit event.tldr pour les titres ambigus. No-op sans LLM configuré."""
-    from .llm import budget_healthy, llm_available, run_llm
+    from .llm import clarify_chain
 
-    if not llm_available():
+    chain = clarify_chain()
+    if not chain.available():
         log.info("[clarify] sauté : pas de LLM configuré")
         return events
-    # clarify est du confort (phrase « en clair »), pas des événements : si une
-    # bascule de provider a déjà eu lieu ce run (quota mort), on préserve le
-    # quota restant — partagé avec le crawl suivant sur les paliers gratuits.
-    if not budget_healthy():
+    # clarify est du confort (phrase « en clair »), pas des événements. Avec un
+    # modèle dédié (QUEFAIRE_LLM_CLARIFY), il a son propre budget. Sinon il
+    # partage la chaîne du crawl : dans ce cas, si une bascule quota a déjà eu
+    # lieu ce run, on le saute pour préserver le quota restant.
+    if not chain.healthy():
         log.info(
-            "[clarify] sauté : bascule LLM déjà survenue ce run — on préserve le quota restant"
+            "[clarify] sauté : bascule LLM déjà survenue sur la chaîne — on préserve le quota restant"
         )
         return events
 
@@ -76,8 +78,8 @@ def clarify(events: list[Event]) -> list[Event]:
             for e in batch
         )
         try:
-            # run_llm : bascule automatiquement sur le backup si le quota meurt ici.
-            result = run_llm(PROMPT.format(items=items))
+            # chain.run : bascule automatiquement sur le backup si le quota meurt ici.
+            result = chain.run(PROMPT.format(items=items))
             mapping = _extract_json(result.output)
         except RuntimeError as exc:
             log.warning("[clarify] sauté : %s", exc)

@@ -64,15 +64,18 @@ class SocialFetcher:
             log.info("[%s] %s : aucun post", self.platform, source.id)
             return []
 
-        # Un seul appel LLM pour tous les posts récents de la page.
-        corpus = "\n\n---\n\n".join(
-            f"POST du {p['start'] or 'date inconnue'} :\n{strip_html(p['description'] or p['title'])}"
-            for p in posts
-        )
         page_url = (
             f"https://www.facebook.com/{source.url}"
             if self.platform == "facebook"
             else f"https://www.instagram.com/{source.url}"
+        )
+        # Un seul appel LLM pour tous les posts récents de la page. On joint le
+        # permalien de chaque post pour que l'événement pointe vers le post
+        # d'origine (et non la page), comme pour les liens des pages HTML.
+        corpus = "\n\n---\n\n".join(
+            f"POST du {p['start'] or 'date inconnue'} (lien : {p.get('link') or page_url}) :\n"
+            f"{strip_html(p['description'] or p['title'])}"
+            for p in posts
         )
         try:
             events = extract_events_llm(corpus, source, sector_id, page_url)

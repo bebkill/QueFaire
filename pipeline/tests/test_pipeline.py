@@ -172,9 +172,10 @@ def _fake_autoagent(behaviors: dict):
 def _reset_llm_cache():
     import quefaire.llm as llm
 
-    llm._resolved = None
-    llm._resolution_done = False
-    llm._failed.clear()
+    for chain in (llm._CRAWL, llm._CLARIFY):
+        chain._resolved = None
+        chain._resolution_done = False
+        chain._failed.clear()
     return llm
 
 
@@ -418,14 +419,15 @@ def test_clarify_skipped_when_budget_unhealthy(monkeypatch):
     from quefaire.clarify import clarify
 
     _reset_llm_cache()
+    monkeypatch.delenv("QUEFAIRE_LLM_CLARIFY", raising=False)
     monkeypatch.setenv("QUEFAIRE_LLM", "gemini:gemini-3.5-flash")
     monkeypatch.setitem(sys.modules, "autoagent", _fake_autoagent({"gemini": "{}"}))
-    llm._failed.add("gemini:gemini-3.5-flash")  # une bascule a déjà eu lieu
+    llm._CRAWL._failed.add("gemini:gemini-3.5-flash")  # une bascule a déjà eu lieu
 
-    def boom(*a, **k):
+    def boom(prompt):
         raise AssertionError("clarify ne doit pas appeler le LLM si le budget est entamé")
 
-    monkeypatch.setattr(llm, "run_llm", boom)
+    monkeypatch.setattr(llm._CRAWL, "run", boom)
     events = [make(title="Cet été, faites-vous une terrasse")]
     out = clarify(events)
     assert out is events
@@ -437,6 +439,7 @@ def test_clarify_fills_tldr_when_budget_healthy(monkeypatch):
     from quefaire.clarify import clarify
 
     _reset_llm_cache()
+    monkeypatch.delenv("QUEFAIRE_LLM_CLARIFY", raising=False)
     monkeypatch.setenv("QUEFAIRE_LLM", "gemini:gemini-3.5-flash")
     ev = make(title="Cet été, faites-vous une terrasse")
     phrase = "Dîners servis en terrasse tout l'été."
@@ -446,6 +449,58 @@ def test_clarify_fills_tldr_when_budget_healthy(monkeypatch):
 
     out = clarify([ev])
     assert out[0].tldr == phrase
+
+
+def test_clarify_uses_dedicated_chain_even_if_crawl_unhealthy(monkeypatch):
+    """Avec un modèle dédié (QUEFAIRE_LLM_CLARIFY), clarify tourne sur SON budget
+    même si la chaîne du crawl a déjà basculé."""
+    import quefaire.llm as llm
+    from quefaire.clarify import clarify
+
+    _reset_llm_cache()
+    monkeypatch.setenv("QUEFAIRE_LLM", "deepseek:deepseek-v4-flash")
+    monkeypatch.setenv("QUEFAIRE_LLM_CLARIFY", "mistral:mistral-small-latest")
+    llm._CRAWL._failed.add("deepseek:deepseek-v4-flash")  # le crawl a basculé
+    ev = make(title="Cet été, faites-vous une terrasse")
+    phrase = "Dîners servis en terrasse tout l'été."
+    monkeypatch.setitem(
+        sys.modules, "autoagent", _fake_autoagent({"mistral": json.dumps({ev.id: phrase})})
+    )
+
+    out = clarify([ev])
+    assert out[0].tldr == phrase  # clarify a tourné sur sa chaîne mistral dédiée
+
+
+def test_page_text_preserves_event_links():
+    from quefaire.fetchers.html_llm import _page_text
+
+    html = '<div>Concert de jazz le 5 août <a href="/agenda/jazz-42">en savoir plus</a></div>'
+    text = _page_text(html, None)
+    assert "/agenda/jazz-42" in text  # le href survit au nettoyage
+
+
+def test_extract_events_llm_absolutizes_event_url(monkeypatch):
+    """Le lien d'événement rendu par le LLM (souvent relatif) est résolu en
+    absolu depuis la page source pour un lien profond."""
+    import types as _types
+
+    from quefaire.fetchers import html_llm
+    from quefaire.models import Source
+
+    payload = json.dumps([
+        {"title": "Concert jazz", "start": (date.today() + timedelta(days=5)).isoformat(),
+         "url": "/agenda/jazz-42"},
+        {"title": "Sans lien", "start": (date.today() + timedelta(days=6)).isoformat(),
+         "url": None},
+    ])
+    monkeypatch.setattr(
+        html_llm, "run_llm", lambda prompt: _types.SimpleNamespace(output=payload)
+    )
+    src = Source(id="html-x", name="X", type="html", url="https://ot-ville.fr/agenda/",
+                 commune="Grenoble")
+    events = html_llm.extract_events_llm("texte", src, "isere", "https://ot-ville.fr/agenda/")
+    assert events[0].url == "https://ot-ville.fr/agenda/jazz-42"  # relatif → absolu
+    assert events[1].url == "https://ot-ville.fr/agenda/"  # pas de lien → page source
 
 
 def test_demo_and_export_roundtrip(tmp_path):

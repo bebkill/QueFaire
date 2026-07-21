@@ -17,6 +17,7 @@ import json
 import logging
 import re
 from datetime import date
+from urllib.parse import urljoin
 
 from ..llm import llm_available, run_llm
 from ..models import CATEGORIES, Event, Source, parse_when
@@ -34,7 +35,10 @@ Chaque élément : {{
   "commune": str ou null, "address": str ou null,
   "category": une valeur parmi {categories},
   "audience": liste parmi ["famille","enfants","ados","adultes","seniors","tous"],
-  "free": bool ou null, "price_text": str ou null, "url": str ou null
+  "free": bool ou null, "price_text": str ou null,
+  "url": str ou null (le lien direct vers la fiche de CET événement — souvent
+         donné entre parenthèses juste après le titre ou un « détails / en
+         savoir plus » ; recopie-le tel quel, sinon null)
 }}
 Ignore tout ce qui n'est pas un événement daté à venir.
 
@@ -55,6 +59,15 @@ def _page_text(html: str, scope_selector: str | None) -> str:
         if m:
             html = m.group(0)
     html = re.sub(r"<(script|style|nav|footer|header)[^>]*>.*?</\1>", " ", html, flags=re.S | re.I)
+    # Conserver les liens : <a href="URL">TEXTE</a> -> "TEXTE (URL)". Sans ça,
+    # les href disparaissent au strip des balises et chaque événement retombe
+    # sur l'URL de la page agenda au lieu de sa fiche propre.
+    html = re.sub(
+        r'<a\b[^>]*?href=(["\'])(.*?)\1[^>]*>(.*?)</a>',
+        lambda m: f"{m.group(3)} ({m.group(2)})",
+        html,
+        flags=re.S | re.I,
+    )
     html = re.sub(r"<br\s*/?>|</p>|</li>|</h[1-6]>|</div>", "\n", html, flags=re.I)
     text = re.sub(r"<[^>]+>", " ", html)
     text = re.sub(r"[ \t]+", " ", text)
@@ -96,6 +109,13 @@ def extract_events_llm(text: str, source: Source, sector_id: str, context_url: s
         when = parse_when(str(item.get("start", "")))
         if not when or not item.get("title"):
             continue
+        # Lien profond vers la fiche de l'événement : on résout le relatif en
+        # absolu à partir de la page source, et on retombe sur celle-ci si le
+        # LLM n'a pas trouvé de lien propre (ou en a rendu un invalide).
+        raw_url = (item.get("url") or "").strip()
+        url = urljoin(context_url, raw_url) if raw_url else context_url
+        if not url.startswith(("http://", "https://")):
+            url = context_url
         events.append(
             Event(
                 title=item["title"],
@@ -108,7 +128,7 @@ def extract_events_llm(text: str, source: Source, sector_id: str, context_url: s
                 audience=item.get("audience") or [],
                 free=item.get("free"),
                 price_text=item.get("price_text"),
-                url=item.get("url") or context_url,
+                url=url,
                 source_id=source.id,
                 sector=sector_id,
             )
