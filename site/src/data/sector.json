@@ -24,10 +24,12 @@
  },
  "communes": [
   "Allevard",
+  "Arandon-Passins",
   "Autrans-Méaudre-en-Vercors",
   "Beaurepaire",
   "Bourgoin-Jallieu",
   "Bouvesse-Quirieu",
+  "Brangues",
   "Chamrousse",
   "Charvieu-Chavagneux",
   "Chavanoz",
@@ -35,7 +37,6 @@
   "Corbelin",
   "Corenc",
   "Corrençon-en-Vercors",
-  "Creys-Mépieu",
   "Crolles",
   "Crémieu",
   "Dolomieu",
@@ -70,10 +71,10 @@
   "Monestier-de-Clermont",
   "Montalieu-Vercieu",
   "Morestel",
+  "Méaudre",
   "Nivolas-Vermelle",
   "Pont-de-Chéruy",
   "Pontcharra",
-  "Porcieu-Amblagnieu",
   "Rives",
   "Roussillon",
   "Ruy-Montceau",
@@ -172,6 +173,6 @@
    "url": "https://www.chamrousse.com/agenda.html"
   }
  ],
- "generated_at": "2026-07-21T16:17:55",
- "event_count": 82
+ "generated_at": "2026-07-22T06:27:24",
+ "event_count": 75
 }
