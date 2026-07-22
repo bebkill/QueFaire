@@ -180,6 +180,22 @@ a { color: inherit; }
 .cluster-dot:hover { transform: scale(1.08); }
 .leaflet-popup-content { font-family: inherit; font-size: 0.88rem; line-height: 1.4; }
 .leaflet-popup-content a { color: var(--accent); font-weight: 600; }
+
+/* Infobulle au survol d'un point : aperçu de l'événement (titre, catégorie,
+   date, commune). Le clic sur le point remonte jusqu'à la tuile de la liste. */
+.leaflet-tooltip.event-tip {
+  font-family: inherit; white-space: normal; max-width: 240px;
+  padding: 8px 10px; line-height: 1.35;
+  background: var(--card); color: var(--ink);
+  border: 1px solid var(--line); border-radius: 10px;
+  box-shadow: var(--shadow-lift);
+}
+.event-tip .tt-title { display: block; font-weight: 800; font-size: 0.9rem; margin-bottom: 3px; }
+.event-tip .tt-line { display: block; font-size: 0.8rem; color: var(--ink-soft); }
+.event-tip .tt-hint { display: block; margin-top: 5px; font-size: 0.72rem; color: var(--accent); font-weight: 600; }
+.leaflet-tooltip-top.event-tip::before { border-top-color: var(--card); }
+.leaflet-tooltip-bottom.event-tip::before { border-bottom-color: var(--card); }
+
 @media (prefers-color-scheme: dark) {
   #map .leaflet-tile { filter: brightness(0.75) contrast(1.05); }
   .leaflet-popup-content-wrapper, .leaflet-popup-tip { background: var(--card); color: var(--ink); }

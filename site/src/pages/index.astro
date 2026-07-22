@@ -89,6 +89,7 @@ const title = `Que faire en ${sector.name} ? Sorties, événements et activités
 
 <script>
   import { parseQuery, matches, distanceKm, travelMinutes, roundMinutes, fold } from '../lib/nlsearch.js';
+  import { CATEGORY_EMOJI, formatWhen } from '../lib/format.js';
   import sector from '../data/sector.json';
 
   const grid = document.getElementById('grid');
@@ -353,6 +354,21 @@ const title = `Que faire en ${sector.name} ? Sorties, événements et activités
       .addTo(layer);
   }
 
+  /** Contenu de l'infobulle affichée au survol d'un point : titre, catégorie,
+   *  date et commune — comme un aperçu de la tuile. */
+  function markerTooltip(it) {
+    const emoji = CATEGORY_EMOJI[it.cat] || '📌';
+    const cat = sector.categories[it.cat] || '';
+    const when = formatWhen(it.date, it.end);
+    const lines = [
+      `<span class="tt-title">${it.title}</span>`,
+      `<span class="tt-line">${emoji} ${cat}${when ? ` · ${when}` : ''}</span>`,
+    ];
+    if (it.commune) lines.push(`<span class="tt-line">📍 ${it.commune}</span>`);
+    lines.push('<span class="tt-hint">Cliquer pour voir la fiche dans la liste</span>');
+    return lines.join('');
+  }
+
   function updateMap(visible, fitView) {
     if (!leaflet || mapWrap.hidden) return;
     const { L, map, layer } = leaflet;
@@ -364,6 +380,7 @@ const title = `Que faire en ${sector.name} ? Sorties, événements et activités
       items.push({
         card,
         lat: data.lat, lon: data.lon, cat: data.cat, commune: data.commune,
+        date: data.date, end: data.end,
         title: card.querySelector('h3').textContent,
         href: card.getAttribute('href'),
         color: getComputedStyle(card.querySelector('.card-top')).borderBottomColor,
@@ -380,7 +397,11 @@ const title = `Que faire en ${sector.name} ? Sorties, événements et activités
         L.circleMarker([it.lat, it.lon], {
           radius: 8, color: it.color, fillColor: it.color, fillOpacity: 0.75, weight: 2,
         })
-          .bindPopup(`<strong>${it.title}</strong><br>${it.commune || ''}<br><a href="${it.href}">Voir la fiche →</a>`)
+          // Survol : aperçu de l'événement. Clic : on remonte jusqu'à sa tuile
+          // dans la liste (mise en évidence + défilement), sans popup.
+          .bindTooltip(markerTooltip(it), {
+            direction: 'top', offset: [0, -6], opacity: 1, className: 'event-tip',
+          })
           .on('click', () => selectCards([it.card]))
           .addTo(layer);
         points.push([it.lat, it.lon]);
