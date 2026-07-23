@@ -19,6 +19,7 @@ import re
 from datetime import date
 from urllib.parse import urljoin
 
+from ..cache import cache
 from ..llm import llm_available, run_llm
 from ..models import CATEGORIES, Event, Source, parse_when
 from .base import http_get
@@ -79,12 +80,23 @@ def extract_events_llm(text: str, source: Source, sector_id: str, context_url: s
     """Cœur réutilisable : texte brut (page agenda, posts sociaux…) → Events.
 
     Utilisé par le fetcher html et par le fetcher réseaux sociaux.
+
+    Cache adressé par contenu : si le texte de la page est inchangé depuis le
+    dernier crawl, on réutilise les événements extraits sans rappeler le LLM
+    (répétabilité, quota, résilience — voir quefaire.cache).
     """
+    text = text[:24000]
+    ckey = cache.key("extract", source.id, text)
+    cached = cache.get(ckey)
+    if cached is not None:
+        log.info("[cache] %s : %d événements (contenu inchangé)", source.id, len(cached))
+        return [Event(**d) for d in cached]
+
     prompt = EXTRACTION_PROMPT.format(
         today=date.today().isoformat(),
         categories=list(CATEGORIES),
         url=context_url,
-        text=text[:24000],
+        text=text,
     )
     # run_llm : bascule automatiquement sur le backup si le quota meurt ici.
     result = run_llm(prompt)
@@ -133,6 +145,7 @@ def extract_events_llm(text: str, source: Source, sector_id: str, context_url: s
                 sector=sector_id,
             )
         )
+    cache.put(ckey, [e.to_dict() for e in events])
     return events
 
 

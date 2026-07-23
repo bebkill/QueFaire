@@ -169,6 +169,16 @@ def _fake_autoagent(behaviors: dict):
     return module
 
 
+def _reset_cache():
+    """Cache de contenu vide et isolé du disque pour les tests."""
+    import quefaire.cache as c
+
+    c.cache._store = {}
+    c.cache._used = set()
+    c.cache._loaded = True  # empêche toute lecture de pipeline/cache/content.json
+    return c.cache
+
+
 def _reset_llm_cache():
     import quefaire.llm as llm
 
@@ -438,11 +448,12 @@ def test_llm_transient_error_falls_back_without_demoting(monkeypatch):
 
 
 def test_clarify_skipped_when_budget_unhealthy(monkeypatch):
-    """Après une bascule quota (budget entamé), clarify se saute pour préserver
-    le quota et n'appelle pas le LLM."""
+    """Après une bascule quota (budget entamé), clarify n'appelle pas le LLM
+    pour les nouveaux (préserve le quota) — le cache resterait servi."""
     import quefaire.llm as llm
     from quefaire.clarify import clarify
 
+    _reset_cache()
     _reset_llm_cache()
     monkeypatch.delenv("QUEFAIRE_LLM_CLARIFY", raising=False)
     monkeypatch.setenv("QUEFAIRE_LLM", "gemini:gemini-3.5-flash")
@@ -463,17 +474,38 @@ def test_clarify_fills_tldr_when_budget_healthy(monkeypatch):
     import quefaire.llm as llm  # noqa: F401
     from quefaire.clarify import clarify
 
+    _reset_cache()
     _reset_llm_cache()
     monkeypatch.delenv("QUEFAIRE_LLM_CLARIFY", raising=False)
     monkeypatch.setenv("QUEFAIRE_LLM", "gemini:gemini-3.5-flash")
     ev = make(title="Cet été, faites-vous une terrasse")
-    phrase = "Dîners servis en terrasse tout l'été."
+    phrase = "Dîners servis en terrasse jusqu'à minuit, réservation conseillée."
     monkeypatch.setitem(
-        sys.modules, "autoagent", _fake_autoagent({"gemini": json.dumps({ev.id: phrase})})
+        sys.modules, "autoagent", _fake_autoagent({"gemini": json.dumps({"0": phrase})})
     )
 
     out = clarify([ev])
     assert out[0].tldr == phrase
+
+
+def test_clarify_drops_redundant_paraphrase(monkeypatch):
+    """Une phrase qui ne fait que reprendre le titre/la description est écartée
+    (elle n'apporte rien au visiteur)."""
+    from quefaire.clarify import clarify
+
+    _reset_cache()
+    _reset_llm_cache()
+    monkeypatch.delenv("QUEFAIRE_LLM_CLARIFY", raising=False)
+    monkeypatch.setenv("QUEFAIRE_LLM", "gemini:gemini-3.5-flash")
+    ev = make(title="Concert de jazz au parc", description="Un concert de jazz au parc municipal.")
+    monkeypatch.setitem(
+        sys.modules,
+        "autoagent",
+        _fake_autoagent({"gemini": json.dumps({"0": "Un concert de jazz au parc municipal."})}),
+    )
+
+    out = clarify([ev])
+    assert out[0].tldr is None  # paraphrase redondante écartée
 
 
 def test_clarify_uses_dedicated_chain_even_if_crawl_unhealthy(monkeypatch):
@@ -482,14 +514,15 @@ def test_clarify_uses_dedicated_chain_even_if_crawl_unhealthy(monkeypatch):
     import quefaire.llm as llm
     from quefaire.clarify import clarify
 
+    _reset_cache()
     _reset_llm_cache()
     monkeypatch.setenv("QUEFAIRE_LLM", "deepseek:deepseek-v4-flash")
     monkeypatch.setenv("QUEFAIRE_LLM_CLARIFY", "mistral:mistral-small-latest")
     llm._CRAWL._failed.add("deepseek:deepseek-v4-flash")  # le crawl a basculé
     ev = make(title="Cet été, faites-vous une terrasse")
-    phrase = "Dîners servis en terrasse tout l'été."
+    phrase = "Dîners servis en terrasse jusqu'à minuit, ambiance guinguette."
     monkeypatch.setitem(
-        sys.modules, "autoagent", _fake_autoagent({"mistral": json.dumps({ev.id: phrase})})
+        sys.modules, "autoagent", _fake_autoagent({"mistral": json.dumps({"0": phrase})})
     )
 
     out = clarify([ev])
@@ -512,6 +545,7 @@ def test_extract_events_llm_absolutizes_event_url(monkeypatch):
     from quefaire.fetchers import html_llm
     from quefaire.models import Source
 
+    _reset_cache()
     payload = json.dumps([
         {"title": "Concert jazz", "start": (date.today() + timedelta(days=5)).isoformat(),
          "url": "/agenda/jazz-42"},
@@ -526,6 +560,53 @@ def test_extract_events_llm_absolutizes_event_url(monkeypatch):
     events = html_llm.extract_events_llm("texte", src, "isere", "https://ot-ville.fr/agenda/")
     assert events[0].url == "https://ot-ville.fr/agenda/jazz-42"  # relatif → absolu
     assert events[1].url == "https://ot-ville.fr/agenda/"  # pas de lien → page source
+
+
+def test_extraction_cache_hit_skips_llm(monkeypatch):
+    """Contenu de page inchangé → réutilisé sans rappeler le LLM ; contenu
+    différent → nouvel appel. Répétabilité + quota."""
+    import types as _types
+
+    from quefaire.fetchers import html_llm
+    from quefaire.models import Source
+
+    _reset_cache()
+    calls = {"n": 0}
+    payload = json.dumps(
+        [{"title": "Concert", "start": (date.today() + timedelta(days=5)).isoformat()}]
+    )
+
+    def fake_run(prompt):
+        calls["n"] += 1
+        return _types.SimpleNamespace(output=payload)
+
+    monkeypatch.setattr(html_llm, "run_llm", fake_run)
+    src = Source(id="html-x", name="X", type="html", url="https://ex.fr/a/", commune="Grenoble")
+
+    e1 = html_llm.extract_events_llm("même texte", src, "isere", "https://ex.fr/a/")
+    e2 = html_llm.extract_events_llm("même texte", src, "isere", "https://ex.fr/a/")
+    assert calls["n"] == 1  # 2ᵉ extraction servie par le cache
+    assert [e.id for e in e1] == [e.id for e in e2]
+
+    html_llm.extract_events_llm("texte modifié", src, "isere", "https://ex.fr/a/")
+    assert calls["n"] == 2  # contenu changé → nouvel appel LLM
+
+
+def test_cache_save_prunes_unused_keys(tmp_path, monkeypatch):
+    """save() ne conserve que les clés vues ce run (élague les sources
+    retirées / anciennes versions de page)."""
+    import quefaire.cache as c
+
+    _reset_cache()
+    monkeypatch.setattr(c, "CACHE_PATH", tmp_path / "content.json")
+    c.cache._store = {"extract:stale": ["vieux"], "extract:keep": ["gardé"]}
+    c.cache._used = set()
+    c.cache.get("extract:keep")  # seule clé touchée ce run
+    c.cache.put("extract:new", ["neuf"])
+    c.cache.save()
+
+    saved = json.loads((tmp_path / "content.json").read_text(encoding="utf-8"))
+    assert set(saved) == {"extract:keep", "extract:new"}  # 'stale' élaguée
 
 
 def test_http_get_retries_on_transient_network_error(monkeypatch):

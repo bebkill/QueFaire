@@ -59,6 +59,9 @@ def crawl(sector_id: str, demo: bool, out: Path | None) -> int:
 
         events = clarify(events)  # fiches « en clair » — no-op sans LLM
     meta = export(sector, events, out)
+    from .cache import cache
+
+    cache.save()  # no-op en démo / sans LLM (aucune clé touchée)
     log.info(
         "Export OK : %d événements à venir pour « %s » (%d communes)",
         meta["event_count"], meta["name"], len(meta["communes"]),
