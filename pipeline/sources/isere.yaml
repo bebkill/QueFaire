@@ -196,12 +196,40 @@ sources:
     type: facebook
     url: mairiedecremieu
     commune: Crémieu
-    enabled: false
+    enabled: true
+
+  - id: fb-villemoirieu
+    name: Ville de Villemoirieu (Facebook)
+    type: facebook
+    url: MairieVillemoirieu
+    commune: Villemoirieu
+    enabled: true
+
+  - id: fb-cremjeu
+    name: Association CremJeu (Facebook)
+    type: facebook
+    url: cremjeu
+    commune: Crémieu
+    enabled: true
+
+  - id: fb-TuerNestPasJOuer
+    name: Association Tuer N'est Pas Jouer (Facebook)
+    type: facebook
+    url: profile.php?id=61590560463507
+    commune: Villemoirieu
+    enabled: true
 
   - id: fb-cafecrem
     name: Café-Crém (Facebook)
     type: facebook
     url: cafe.crem
+    commune: Crémieu
+    enabled: true
+
+  - id: fb-bobines
+    name: Association Les Bobines (Facebook)
+    type: facebook
+    url: profile.php?id=100011115338866
     commune: Crémieu
     enabled: true
 
