@@ -528,6 +528,38 @@ def test_extract_events_llm_absolutizes_event_url(monkeypatch):
     assert events[1].url == "https://ot-ville.fr/agenda/"  # pas de lien → page source
 
 
+def test_http_get_retries_on_transient_network_error(monkeypatch):
+    """Un aléa réseau ponctuel (IncompleteRead) est rejoué au lieu de faire
+    perdre la source ; un statut HTTP explicite (404) n'est pas rejoué."""
+    from http.client import IncompleteRead
+
+    from quefaire.fetchers import base
+
+    monkeypatch.setattr(base.time, "sleep", lambda s: None)  # pas d'attente réelle
+
+    class FakeResp:
+        def raise_for_status(self):
+            pass
+
+    attempts = {"n": 0}
+
+    def flaky_get(url, **kwargs):
+        attempts["n"] += 1
+        if attempts["n"] == 1:
+            raise IncompleteRead(b"")  # 1er coup : échec transitoire
+        return FakeResp()
+
+    monkeypatch.setattr(base.requests, "get", flaky_get)
+    assert isinstance(base.http_get("https://exemple.fr/agenda"), FakeResp)
+    assert attempts["n"] == 2  # une reprise, puis succès
+
+    # Une erreur réseau persistante finit par remonter (source sautée en amont).
+    attempts["n"] = 0
+    monkeypatch.setattr(base.requests, "get", lambda url, **k: (_ for _ in ()).throw(IncompleteRead(b"")))
+    with pytest.raises(IncompleteRead):
+        base.http_get("https://exemple.fr/agenda")
+
+
 def test_demo_and_export_roundtrip(tmp_path):
     sector = load_sector("isere")
     events = [enrich(geocode(e, "isere")) for e in demo_events()]
