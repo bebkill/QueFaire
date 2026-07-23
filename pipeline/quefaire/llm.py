@@ -46,6 +46,11 @@ import re
 log = logging.getLogger("quefaire")
 
 _QUOTA_RE = re.compile(r"429|quota|rate.?limit|resource.?exhausted", re.I)
+# Erreurs serveur transitoires (surcharge/indispo/timeout) : récupérables en
+# rejouant l'appel sur un autre provider, mais SANS déclasser (elles passent
+# souvent au coup d'après). Vécu : Gemini renvoie des HTTP 503 par salves et
+# faisait perdre la source (ex. balcons-dauphine) faute de bascule.
+_TRANSIENT_RE = re.compile(r"HTTP\s*5\d\d|overloaded|unavailable|timeout|timed out|temporarily", re.I)
 
 # Providers OpenAI-compatibles absents du cœur autoagent-core (qui ne connaît
 # nativement que openai/anthropic/deepseek/gemini/groq) : on les sert via
@@ -64,6 +69,12 @@ def is_quota_error(exc: BaseException) -> bool:
     return bool(_QUOTA_RE.search(str(exc)))
 
 
+def is_transient_error(exc: BaseException) -> bool:
+    """Erreur serveur transitoire (5xx, surcharge, timeout) — à rejouer sur un
+    autre provider pour cet appel, sans déclasser le provider courant."""
+    return bool(_TRANSIENT_RE.search(str(exc)))
+
+
 def _make_agent(provider: str, model: str):
     """Instancie un Agent autoagent-core pour (provider, modèle).
 
@@ -73,9 +84,11 @@ def _make_agent(provider: str, model: str):
     """
     from autoagent import Agent
 
+    # temperature=0 : extraction/clarify déterministes autant que possible, pour
+    # que deux crawls rapprochés donnent le même résultat (répétabilité).
     preset = _OPENAI_COMPATIBLE.get(provider.lower())
     if preset is None:
-        return Agent.from_model(provider, model)
+        return Agent.from_model(provider, model, temperature=0)
 
     from autoagent import ModelConfig, create_provider
 
@@ -83,7 +96,7 @@ def _make_agent(provider: str, model: str):
     config = ModelConfig(
         provider="openai", model=model, base_url=base_url, api_key_env=api_key_env
     )
-    return Agent(create_provider(config))
+    return Agent(create_provider(config), temperature=0)
 
 
 def _blank(result) -> bool:
@@ -194,16 +207,38 @@ class _Chain:
     def _no_llm(self) -> RuntimeError:
         return RuntimeError(f"Aucun LLM disponible ({' / '.join(self.env_vars)})")
 
+    def _try_alternates(self, spec: str, prompt: str):
+        """Rejoue l'appel sur les autres candidats (pour cet appel seulement,
+        sans déclasser le provider courant). Renvoie la 1re réponse non vide,
+        ou None si aucun secours n'aboutit."""
+        for alt in self._candidates():
+            if alt == spec:
+                continue
+            alt_provider, _, alt_model = alt.partition(":")
+            try:
+                alt_result = _make_agent(alt_provider, alt_model).run(prompt)
+            except Exception as exc:
+                if is_quota_error(exc):
+                    log.warning("[llm] secours %s : quota épuisé, déclassé (%s)", alt, exc)
+                    self._demote(alt)
+                else:
+                    log.warning("[llm] secours %s indisponible : %s", alt, exc)
+                continue
+            if not _blank(alt_result):
+                log.info("[llm] secours %s a répondu pour cet appel", alt)
+                return alt_result
+        return None
+
     def run(self, prompt: str):
-        """agent.run(prompt) avec deux garde-fous.
+        """agent.run(prompt) avec trois garde-fous.
 
         - Erreur de quota (429, rate limit…) : déclasse le provider courant
           pour tout le reste du run et rejoue sur le candidat suivant.
-        - Réponse vide : rejoue le MÊME appel sur les autres candidats, pour
-          cet appel seulement et sans déclasser (le vide est souvent propre à
-          la page — sortie trop longue —, le provider reste bon ailleurs) ; si
-          tous rendent du vide, la réponse vide est renvoyée telle quelle et
-          l'appelant gère (0 fiche).
+        - Erreur serveur transitoire (5xx, surcharge, timeout) : rejoue l'appel
+          sur les autres candidats pour cet appel, SANS déclasser (elle passe
+          souvent au coup d'après) ; à défaut, l'erreur remonte.
+        - Réponse vide : idem (secours pour cet appel, sans déclasser) ; si tous
+          rendent du vide, la réponse vide est renvoyée et l'appelant gère.
 
         Les autres erreurs remontent. Lève RuntimeError si plus aucun LLM."""
         while True:
@@ -215,14 +250,22 @@ class _Chain:
             try:
                 result = _make_agent(provider, model).run(prompt)
             except Exception as exc:
-                if not is_quota_error(exc):
-                    raise
-                log.warning(
-                    "[llm] quota épuisé sur %s en cours de run — bascule sur le candidat suivant (%s)",
-                    spec, exc,
-                )
-                self._demote(spec)
-                continue
+                if is_quota_error(exc):
+                    log.warning(
+                        "[llm] quota épuisé sur %s en cours de run — bascule sur le candidat suivant (%s)",
+                        spec, exc,
+                    )
+                    self._demote(spec)
+                    continue
+                if is_transient_error(exc):
+                    log.warning(
+                        "[llm] erreur transitoire sur %s (%s) — essai des candidats de secours pour cet appel",
+                        spec, exc,
+                    )
+                    alt = self._try_alternates(spec, prompt)
+                    if alt is not None:
+                        return alt
+                raise
 
             if not _blank(result):
                 return result
@@ -230,23 +273,8 @@ class _Chain:
             log.warning(
                 "[llm] réponse vide de %s — essai des candidats de secours pour cet appel", spec
             )
-            for alt in self._candidates():
-                if alt == spec:
-                    continue
-                alt_provider, _, alt_model = alt.partition(":")
-                try:
-                    alt_result = _make_agent(alt_provider, alt_model).run(prompt)
-                except Exception as exc:
-                    if is_quota_error(exc):
-                        log.warning("[llm] secours %s : quota épuisé, déclassé (%s)", alt, exc)
-                        self._demote(alt)
-                    else:
-                        log.warning("[llm] secours %s indisponible : %s", alt, exc)
-                    continue
-                if not _blank(alt_result):
-                    log.info("[llm] secours %s a répondu pour cet appel", alt)
-                    return alt_result
-            return result
+            alt = self._try_alternates(spec, prompt)
+            return alt if alt is not None else result
 
     def agent(self):
         """Objet Agent avec le LLM résolu (usages @agent.tool, sans bascule)."""

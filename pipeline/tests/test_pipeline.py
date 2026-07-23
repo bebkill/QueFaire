@@ -146,12 +146,12 @@ def _fake_autoagent(behaviors: dict):
             self.label = _BASE_URL_LABEL.get(config.base_url, config.provider)
 
     class FakeAgent:
-        def __init__(self, provider):
+        def __init__(self, provider, **kwargs):
             # provider = nom natif (str, via from_model) ou FakeProvider.
             self.label = provider.label if isinstance(provider, FakeProvider) else provider
 
         @classmethod
-        def from_model(cls, provider, model):
+        def from_model(cls, provider, model, **kwargs):
             return cls(provider)
 
         def run(self, prompt):
@@ -223,11 +223,11 @@ def test_llm_resolve_tests_connection_once_per_run(monkeypatch):
     calls = []
 
     class CountingAgent:
-        def __init__(self, provider):
+        def __init__(self, provider, **kwargs):
             self.provider = provider
 
         @classmethod
-        def from_model(cls, provider, model):
+        def from_model(cls, provider, model, **kwargs):
             calls.append(provider)
             return cls(provider)
 
@@ -310,11 +310,11 @@ def test_make_agent_routes_native_vs_openai_compatible(monkeypatch):
     recorded = {}
 
     class FakeAgent:
-        def __init__(self, provider):
+        def __init__(self, provider, **kwargs):
             recorded["agent_provider"] = provider
 
         @classmethod
-        def from_model(cls, provider, model):
+        def from_model(cls, provider, model, **kwargs):
             recorded["from_model"] = (provider, model)
             return cls(provider)
 
@@ -410,6 +410,31 @@ def test_llm_empty_everywhere_returns_blank_without_demoting(monkeypatch):
     assert llm.run_llm("extrais").output == ""
     assert llm.budget_healthy() is True  # aucun déclassement
     assert llm.resolve() == ("gemini", "gemini-3.5-flash")
+
+
+def test_llm_transient_error_falls_back_without_demoting(monkeypatch):
+    """Erreur serveur transitoire (HTTP 503) → secours pour cet appel, sans
+    déclasser le principal (vécu : Gemini 503 faisait perdre une source)."""
+    llm = _reset_llm_cache()
+    monkeypatch.setenv("QUEFAIRE_LLM", "gemini:gemini-3.5-flash")
+    monkeypatch.setenv("QUEFAIRE_LLM2", "deepseek:deepseek-v4-flash")
+    monkeypatch.setitem(
+        sys.modules,
+        "autoagent",
+        _fake_autoagent({
+            # test OK, puis 503 sur le 1er appel réel, puis réponses normales
+            "gemini": ["ok", RuntimeError("HTTP 503 from …generateContent"), "extraction gemini"],
+            "deepseek": "extraction deepseek",
+        }),
+    )
+
+    assert llm.resolve() == ("gemini", "gemini-3.5-flash")
+    # 503 sur gemini → secours deepseek pour cet appel seulement
+    assert llm.run_llm("extrais").output == "extraction deepseek"
+    # gemini pas déclassé : reste principal et répond au suivant
+    assert llm.budget_healthy() is True
+    assert llm.resolve() == ("gemini", "gemini-3.5-flash")
+    assert llm.run_llm("extrais").output == "extraction gemini"
 
 
 def test_clarify_skipped_when_budget_unhealthy(monkeypatch):

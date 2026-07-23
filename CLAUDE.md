@@ -76,11 +76,18 @@ site/src/
 - `pipeline/quefaire/llm.py` fait un test de connexion minimal au premier appel
   d'une chaîne et met la décision en cache. Le quota peut aussi mourir **en
   cours de run** (palier gratuit Gemini : 20 req/jour) : les appels passent par
-  `run_llm()`, qui déclasse le provider courant sur erreur de quota (429,
-  rate limit) et rejoue sur le backup. Une **réponse vide** (vécu : Gemini sur
-  les grosses pages) rejoue l'appel sur les backups **pour cet appel seulement**
-  (sans déclasser). `get_agent()` reste réservé à discovery (outils
-  `@agent.tool`).
+  `run_llm()`, qui gère trois cas — **quota** (429/rate limit) → déclasse le
+  provider pour tout le run et bascule ; **erreur serveur transitoire** (5xx,
+  surcharge, timeout — vécu : salves de 503 Gemini) → rejoue sur les backups
+  **pour cet appel seulement**, sans déclasser ; **réponse vide** (Gemini sur
+  les grosses pages) → idem, secours pour cet appel. `get_agent()` reste réservé
+  à discovery (outils `@agent.tool`).
+- **Répétabilité** : les agents sont créés avec `temperature=0` (`_make_agent`)
+  pour que deux crawls rapprochés donnent le même résultat. La stabilité dépend
+  surtout du provider **principal** : préférer un provider payant/stable en tête
+  (ex. `QUEFAIRE_LLM=deepseek:…`) et reléguer le palier gratuit Gemini en dernier
+  backup (ou le retirer), sinon ses coupures (429/503) changent le résultat d'un
+  run à l'autre.
 - Lib : `autoagent-core`. Providers natifs : OpenAI, Anthropic, DeepSeek,
   Gemini, **Groq**. Providers OpenAI-compatibles branchés via l'adaptateur
   openai + `base_url` (voir `_OPENAI_COMPATIBLE` dans `llm.py`) : **Mistral**,
