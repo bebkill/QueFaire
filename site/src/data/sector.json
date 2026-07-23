@@ -27,25 +27,21 @@
   "Autrans-Méaudre-en-Vercors",
   "Beaurepaire",
   "Bourgoin-Jallieu",
-  "Bouvesse-Quirieu",
   "Chamrousse",
   "Charvieu-Chavagneux",
   "Chavanoz",
   "Claix",
   "Corbelin",
   "Corenc",
-  "Creys-Mépieu",
   "Crolles",
   "Crémieu",
   "Dolomieu",
   "Domène",
   "Eybens",
   "Fontaine",
-  "Frontonas",
   "Gières",
   "Grenoble",
   "Heyrieux",
-  "Hières-sur-Amby",
   "Huez",
   "L'Isle-d'Abeau",
   "La Balme-les-Grottes",
@@ -104,7 +100,6 @@
   "Vizille",
   "Voiron",
   "Voreppe",
-  "Vénérieu",
   "Vézeronce-Curtin",
   "Échirolles"
  ],
@@ -146,10 +141,40 @@
    "url": "https://cafe-crem.fr/"
   },
   {
+   "id": "fb-cremieu",
+   "name": "Ville de Crémieu (Facebook)",
+   "type": "facebook",
+   "url": "mairiedecremieu"
+  },
+  {
+   "id": "fb-villemoirieu",
+   "name": "Ville de Villemoirieu (Facebook)",
+   "type": "facebook",
+   "url": "MairieVillemoirieu"
+  },
+  {
+   "id": "fb-cremjeu",
+   "name": "Association CremJeu (Facebook)",
+   "type": "facebook",
+   "url": "cremjeu"
+  },
+  {
+   "id": "fb-TuerNestPasJOuer",
+   "name": "Association Tuer N'est Pas Jouer (Facebook)",
+   "type": "facebook",
+   "url": "profile.php?id=61590560463507"
+  },
+  {
    "id": "fb-cafecrem",
    "name": "Café-Crém (Facebook)",
    "type": "facebook",
    "url": "cafe.crem"
+  },
+  {
+   "id": "fb-bobines",
+   "name": "Association Les Bobines (Facebook)",
+   "type": "facebook",
+   "url": "profile.php?id=100011115338866"
   },
   {
    "id": "ig-capi",
@@ -170,6 +195,6 @@
    "url": "https://www.chamrousse.com/agenda.html"
   }
  ],
- "generated_at": "2026-07-23T06:29:23",
- "event_count": 67
+ "generated_at": "2026-07-23T08:07:36",
+ "event_count": 50
 }
