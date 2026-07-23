@@ -253,35 +253,12 @@
   "id": "cinema-hors-pistes-0328dedd"
  },
  {
-  "title": "Conférence - Visite commentée de l'atelier céramique",
-  "start": "2026-07-15T00:00:00",
-  "source_id": "html-vercors",
-  "sector": "isere",
-  "end": "2026-08-18",
-  "description": "Conférence et visite commentée d'un atelier céramique à Villard-de-Lans. Découverte des techniques.",
-  "tldr": null,
-  "category": "conference",
-  "tags": [],
-  "audience": [
-   "tous"
-  ],
-  "commune": "Villard-de-Lans",
-  "address": null,
-  "lat": 45.071,
-  "lon": 5.554,
-  "free": null,
-  "price_text": null,
-  "url": "https://www.villarddelans-correnconenvercors.com/offres/conference-visite-commentee-de-latelier-ceramique-villard-de-lans-fr-3662973/?roadbook=true",
-  "image": null,
-  "id": "conference-visite-commentee-de-l-atelier-ceramique-ba454246"
- },
- {
   "title": "Tournage de l'argile - cours particulier",
   "start": "2026-07-15T00:00:00",
   "source_id": "html-vercors",
   "sector": "isere",
   "end": "2026-08-16",
-  "description": "Cours particulier de tournage de l'argile à Villard-de-Lans. Initiation à la poterie.",
+  "description": "Cours particulier de tournage d'argile.",
   "tldr": null,
   "category": "atelier",
   "tags": [],
@@ -304,7 +281,7 @@
   "source_id": "html-vercors",
   "sector": "isere",
   "end": "2026-07-25",
-  "description": "Festival de jazz à Villard-de-Lans. Concerts et animations.",
+  "description": "Festival Ça va Jazzer du 20 au 25 juillet.",
   "tldr": null,
   "category": "festival",
   "tags": [],
@@ -320,6 +297,29 @@
   "url": "https://www.villarddelans-correnconenvercors.com/offres/ca-va-jazzer-villard-de-lans-fr-5644635/?roadbook=true",
   "image": null,
   "id": "ca-va-jazzer-8549a4e0"
+ },
+ {
+  "title": "Exposition Art Mada Jean-Paul Riche, Francis Bernard et Martine Vernet",
+  "start": "2026-07-20T00:00:00",
+  "source_id": "html-vercors",
+  "sector": "isere",
+  "end": "2026-08-02",
+  "description": "Exposition des œuvres de trois artistes.",
+  "tldr": null,
+  "category": "expo",
+  "tags": [],
+  "audience": [
+   "tous"
+  ],
+  "commune": "Villard-de-Lans",
+  "address": null,
+  "lat": 45.071,
+  "lon": 5.554,
+  "free": null,
+  "price_text": null,
+  "url": "https://www.villarddelans-correnconenvercors.com/offres/exposition-art-mada-jean-paul-riche-francis-bernard-et-martine-vernet-villard-de-lans-fr-6680613/?roadbook=true",
+  "image": null,
+  "id": "exposition-art-mada-jean-paul-riche-francis-bernard-et-martine-vernet-f3bd8038"
  },
  {
   "title": "Exposition de photographies",
@@ -373,7 +373,7 @@
   "source_id": "html-vercors",
   "sector": "isere",
   "end": "2026-07-23",
-  "description": "Stage de collage artistique à Villard-de-Lans. Atelier créatif pour tous.",
+  "description": "Stage de collage artistique du 21 au 23 juillet.",
   "tldr": null,
   "category": "atelier",
   "tags": [],
@@ -483,6 +483,75 @@
   "url": "https://www.bourgoinjallieu.fr/agenda/1957-micro-folie-a-la-decouverte-du-paysage",
   "image": null,
   "id": "micro-folie-a-la-decouverte-du-paysage-edccd386"
+ },
+ {
+  "title": "Ça va jazzer - Hot jazz",
+  "start": "2026-07-23T00:00:00",
+  "source_id": "html-vercors",
+  "sector": "isere",
+  "end": null,
+  "description": "Concert de hot jazz.",
+  "tldr": null,
+  "category": "concert",
+  "tags": [],
+  "audience": [
+   "tous"
+  ],
+  "commune": "Villard-de-Lans",
+  "address": null,
+  "lat": 45.071,
+  "lon": 5.554,
+  "free": null,
+  "price_text": null,
+  "url": "https://www.villarddelans-correnconenvercors.com/offres/ca-va-jazzer-hot-jazz-villard-de-lans-fr-6600068/?roadbook=true",
+  "image": null,
+  "id": "ca-va-jazzer-hot-jazz-46555246"
+ },
+ {
+  "title": "Des oiseaux à l'aquarelle",
+  "start": "2026-07-23T00:00:00",
+  "source_id": "html-vercors",
+  "sector": "isere",
+  "end": null,
+  "description": "Atelier de peinture d'oiseaux à l'aquarelle.",
+  "tldr": null,
+  "category": "atelier",
+  "tags": [],
+  "audience": [
+   "tous"
+  ],
+  "commune": "Villard-de-Lans",
+  "address": null,
+  "lat": 45.071,
+  "lon": 5.554,
+  "free": null,
+  "price_text": null,
+  "url": "https://www.villarddelans-correnconenvercors.com/offres/des-oiseaux-a-laquarelle-villard-de-lans-fr-6617943/?roadbook=true",
+  "image": null,
+  "id": "des-oiseaux-a-l-aquarelle-7a489439"
+ },
+ {
+  "title": "Les 80 ans de la librairie Au temps retrouvé",
+  "start": "2026-07-23T07:00:00",
+  "source_id": "html-vercors",
+  "sector": "isere",
+  "end": null,
+  "description": "Célébration des 80 ans de la librairie Au temps retrouvé.",
+  "tldr": null,
+  "category": "fete",
+  "tags": [],
+  "audience": [
+   "tous"
+  ],
+  "commune": "Villard-de-Lans",
+  "address": null,
+  "lat": 45.071,
+  "lon": 5.554,
+  "free": null,
+  "price_text": null,
+  "url": "https://www.villarddelans-correnconenvercors.com/offres/les-80-ans-de-la-librairie-au-temps-retrouve-villard-de-lans-fr-6596793/?roadbook=true",
+  "image": null,
+  "id": "les-80-ans-de-la-librairie-au-temps-retrouve-c2328c92"
  },
  {
   "title": "L'Arche de Julie : visites et ateliers du mois de juillet",
@@ -741,6 +810,29 @@
   "id": "jeu-de-piste-les-enfants-de-la-resistance-a-la-bibliotheque-de-frontonas-616a98e5"
  },
  {
+  "title": "Atelier percussion",
+  "start": "2026-07-23T10:00:00",
+  "source_id": "html-vercors",
+  "sector": "isere",
+  "end": null,
+  "description": "Atelier de percussion.",
+  "tldr": null,
+  "category": "atelier",
+  "tags": [],
+  "audience": [
+   "tous"
+  ],
+  "commune": "Corrençon-en-Vercors",
+  "address": null,
+  "lat": null,
+  "lon": null,
+  "free": null,
+  "price_text": null,
+  "url": "https://www.villarddelans-correnconenvercors.com/offres/atelier-percussion-correncon-en-vercors-fr-6389056/?roadbook=true",
+  "image": null,
+  "id": "atelier-percussion-9da7ed54"
+ },
+ {
   "title": "L'enquête d'Archibalme : le détective c'est toi !",
   "start": "2026-07-23T10:30:00",
   "source_id": "html-balcons-dauphine",
@@ -834,6 +926,52 @@
   "id": "exposition-a-la-maison-ravier-melanie-dunand-en-residence-d-artiste-a73e2cba"
  },
  {
+  "title": "Spectacle - Perculive",
+  "start": "2026-07-23T17:30:00",
+  "source_id": "html-vercors",
+  "sector": "isere",
+  "end": null,
+  "description": "Spectacle Perculive.",
+  "tldr": null,
+  "category": "spectacle",
+  "tags": [],
+  "audience": [
+   "tous"
+  ],
+  "commune": "Corrençon-en-Vercors",
+  "address": null,
+  "lat": null,
+  "lon": null,
+  "free": null,
+  "price_text": null,
+  "url": "https://www.villarddelans-correnconenvercors.com/offres/spectacle-perculive-correncon-en-vercors-fr-6389062/?roadbook=true",
+  "image": null,
+  "id": "spectacle-perculive-ea18b97f"
+ },
+ {
+  "title": "Ça va jazzer - Kaluwo",
+  "start": "2026-07-23T19:00:00",
+  "source_id": "html-vercors",
+  "sector": "isere",
+  "end": null,
+  "description": "Concert de Kaluwo.",
+  "tldr": null,
+  "category": "concert",
+  "tags": [],
+  "audience": [
+   "tous"
+  ],
+  "commune": "Villard-de-Lans",
+  "address": null,
+  "lat": 45.071,
+  "lon": 5.554,
+  "free": null,
+  "price_text": null,
+  "url": "https://www.villarddelans-correnconenvercors.com/offres/ca-va-jazzer-kaluwo-villard-de-lans-fr-6609192/?roadbook=true",
+  "image": null,
+  "id": "ca-va-jazzer-kaluwo-f68eb965"
+ },
+ {
   "title": "KALUWO",
   "start": "2026-07-23T19:00:00+02:00",
   "source_id": "oa-hiboubox-villard",
@@ -853,6 +991,52 @@
   "url": "https://openagenda.com/agendas/1698621/events/kaluwo-6214",
   "image": "https://cdn.openagenda.com/main/9b93fd79e4674e2c9a57df6bd67e82f7.base.image.jpg",
   "id": "kaluwo-2cca9b13"
+ },
+ {
+  "title": "Ça va jazzer - Initiation et démonstration de danse swing",
+  "start": "2026-07-23T20:00:00",
+  "source_id": "html-vercors",
+  "sector": "isere",
+  "end": null,
+  "description": "Initiation et démonstration de danse swing.",
+  "tldr": null,
+  "category": "atelier",
+  "tags": [],
+  "audience": [
+   "tous"
+  ],
+  "commune": "Villard-de-Lans",
+  "address": null,
+  "lat": 45.071,
+  "lon": 5.554,
+  "free": null,
+  "price_text": null,
+  "url": "https://www.villarddelans-correnconenvercors.com/offres/ca-va-jazzer-initiation-et-demonstration-de-danse-swing-villard-de-lans-fr-5797973/?roadbook=true",
+  "image": null,
+  "id": "ca-va-jazzer-initiation-et-demonstration-de-danse-swing-dcaf3cb8"
+ },
+ {
+  "title": "Ça va jazzer - Becky & the pop up orchestra",
+  "start": "2026-07-23T21:00:00",
+  "source_id": "html-vercors",
+  "sector": "isere",
+  "end": null,
+  "description": "Concert de jazz par Becky & the pop up orchestra.",
+  "tldr": null,
+  "category": "concert",
+  "tags": [],
+  "audience": [
+   "tous"
+  ],
+  "commune": "Villard-de-Lans",
+  "address": null,
+  "lat": 45.071,
+  "lon": 5.554,
+  "free": null,
+  "price_text": null,
+  "url": "https://www.villarddelans-correnconenvercors.com/offres/ca-va-jazzer-becky-the-pop-up-orchestra-villard-de-lans-fr-5797999/?roadbook=true",
+  "image": null,
+  "id": "ca-va-jazzer-becky-the-pop-up-orchestra-19740bdc"
  },
  {
   "title": "Bib de rue",
@@ -1063,29 +1247,6 @@
   "id": "cine-ete-la-grive-michael-14abf507"
  },
  {
-  "title": "Atelier créatif - collages de Rob d'Ac à la publicité",
-  "start": "2026-07-29T00:00:00",
-  "source_id": "html-vercors",
-  "sector": "isere",
-  "end": null,
-  "description": "Atelier créatif de collages à Villard-de-Lans. Réalisation de collages originaux.",
-  "tldr": null,
-  "category": "atelier",
-  "tags": [],
-  "audience": [
-   "tous"
-  ],
-  "commune": "Villard-de-Lans",
-  "address": null,
-  "lat": 45.071,
-  "lon": 5.554,
-  "free": null,
-  "price_text": null,
-  "url": "https://www.villarddelans-correnconenvercors.com/offres/atelier-creatif-collages-de-rob-dac-a-la-publicite-villard-de-lans-fr-6583799/?roadbook=true",
-  "image": null,
-  "id": "atelier-creatif-collages-de-rob-d-ac-a-la-publicite-aa2b6112"
- },
- {
   "title": "Bib de rue",
   "start": "2026-07-30T00:00:00",
   "source_id": "html-capi",
@@ -1180,29 +1341,6 @@
   "url": "https://www.bourgoinjallieu.fr/agenda/2552-visite-commentee-exposition-au-fil-de-leau",
   "image": null,
   "id": "visite-commentee-exposition-au-fil-de-leau-56b0817e"
- },
- {
-  "title": "Stage running biathlon",
-  "start": "2026-08-03T00:00:00",
-  "source_id": "html-vercors",
-  "sector": "isere",
-  "end": "2026-08-12",
-  "description": "Stage de running biathlon à Villard-de-Lans. Course et tir à la carabine.",
-  "tldr": null,
-  "category": "sport",
-  "tags": [],
-  "audience": [
-   "tous"
-  ],
-  "commune": "Villard-de-Lans",
-  "address": null,
-  "lat": 45.071,
-  "lon": 5.554,
-  "free": null,
-  "price_text": null,
-  "url": "https://www.villarddelans-correnconenvercors.com/offres/stage-running-biathlon-villard-de-lans-fr-6614151/?roadbook=true",
-  "image": null,
-  "id": "stage-running-biathlon-8cbb59ca"
  },
  {
   "title": "Ciné-été à Champfleuri : \" Super Mario Galaxy \"",
@@ -1343,6 +1481,29 @@
   "url": "https://www.bourgoinjallieu.fr/agenda/2844-venez-observer-leclipse-en-bonne-compagnie",
   "image": null,
   "id": "venez-observer-leclipse-en-bonne-compagnie-5a415acb"
+ },
+ {
+  "title": "Des oiseaux à l'aquarelle",
+  "start": "2026-08-13T00:00:00",
+  "source_id": "html-vercors",
+  "sector": "isere",
+  "end": null,
+  "description": "Atelier de peinture d'oiseaux à l'aquarelle.",
+  "tldr": null,
+  "category": "atelier",
+  "tags": [],
+  "audience": [
+   "tous"
+  ],
+  "commune": "Villard-de-Lans",
+  "address": null,
+  "lat": 45.071,
+  "lon": 5.554,
+  "free": null,
+  "price_text": null,
+  "url": "https://www.villarddelans-correnconenvercors.com/offres/des-oiseaux-a-laquarelle-villard-de-lans-fr-6617943/?roadbook=true",
+  "image": null,
+  "id": "des-oiseaux-a-l-aquarelle-42f56a88"
  },
  {
   "title": "Exposition : Hommage à Jacqueline Anselme",
