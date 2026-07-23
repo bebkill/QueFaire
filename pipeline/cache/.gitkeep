@@ -1,0 +1,2 @@
+# Ce dossier reçoit le cache d'extraction/clarify (content.json), généré et
+# committé par la CI. Ne pas committer un cache produit par un run local.

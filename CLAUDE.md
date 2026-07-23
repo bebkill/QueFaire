@@ -28,12 +28,18 @@ npm run build
 
 ## AVERTISSEMENT : données générées
 
-`site/src/data/events.json` et `site/src/data/sector.json` sont **générés par
-le workflow CI** (`refresh.yml`, crawl réel 2×/jour) et committés par le bot.
-Un crawl local (surtout `--demo`) les écrase avec des données factices : **ne
-jamais committer ces fichiers après un run local**. Si ça arrive, les
-restaurer depuis le dernier commit avant de committer autre chose
-(`git checkout <ref> -- site/src/data/`).
+`site/src/data/events.json`, `site/src/data/sector.json` **et
+`pipeline/cache/content.json`** sont **générés par le workflow CI**
+(`refresh.yml`, crawl réel 2×/jour) et committés par le bot. Un crawl local
+(surtout `--demo`) les écrase/altère : **ne jamais committer ces fichiers après
+un run local**. Si ça arrive, les restaurer depuis le dernier commit avant de
+committer autre chose (`git checkout <ref> -- site/src/data/ pipeline/cache/`).
+
+Le cache (`pipeline/cache/content.json`) mémorise le résultat des appels LLM
+par **hash du contenu d'entrée** : une page/un post inchangé n'est pas
+ré-extrait (répétabilité entre deux crawls, économie de quota, résilience si le
+quota meurt en cours de run). À chaque crawl on ne conserve que les clés vues
+(élagage automatique). Voir `pipeline/quefaire/cache.py`.
 
 ## Architecture en bref
 
@@ -47,9 +53,14 @@ pipeline/quefaire/
   normalize.py catégorie / public / gratuité par règles lisibles
   geocode.py   commune → coordonnées, zéro appel réseau
   dedupe.py    même événement via N sources → 1 fiche (on garde la plus riche)
-  clarify.py   phrase LLM « en clair » pour les titres ambigus
+  clarify.py   phrase LLM « en clair » pour les titres AMBIGUS uniquement
+               (filtre anti-paraphrase : écarte ce qui recopie titre/description)
+  cache.py     cache adressé par contenu des appels LLM (extraction + clarify)
   discovery.py agent LLM qui propose de nouvelles sources (YAML à relire)
   export.py    → site/src/data/{events,sector}.json
+
+pipeline/cache/content.json       cache LLM (hash du texte → résultat), committé
+                                  par la CI comme site/src/data — voir ci-dessous
 
 site/src/
   pages/index.astro    page principale : recherche, filtres, carte, grille —
