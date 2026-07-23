@@ -5,8 +5,8 @@
   "source_id": "html-bourgoin",
   "sector": "isere",
   "end": "2026-08-31",
-  "description": "Une exposition inscrite dans la saison culturelle du Département de l'Isère.",
-  "tldr": "Une exposition sur le thème de l’eau au musée.",
+  "description": "Une exposition inscrite dans la saison culturelle du Département de l’Isère.",
+  "tldr": "Exposition sur le thème de l’eau dans le cadre de la saison culturelle du Département de l’Isère.",
   "category": "expo",
   "tags": [],
   "audience": [
@@ -23,13 +23,13 @@
   "id": "musee-au-fil-de-leau-e36e6d50"
  },
  {
-  "title": "Exposition au musée archéologique : Corps parés, âmes révélées…",
+  "title": "Exposition au musée archéologique : Corps parés, âmes révélées...",
   "start": "2026-04-01T14:00:00",
   "source_id": "html-balcons-dauphine",
   "sector": "isere",
-  "end": "2026-09-30T14:00:00",
-  "description": "Exposition au musée archéologique de Hières-sur-Amby sur les parures et l'au-delà.",
-  "tldr": "Exposition sur les parures et l'au-delà au musée archéologique de Hières-sur-Amby.",
+  "end": "2026-09-30",
+  "description": "Exposition au musée archéologique de Hières-sur-Amby sur les parures et âmes.",
+  "tldr": "Exposition sur les parures et leur signification dans les sociétés anciennes à Hières-sur-Amby.",
   "category": "expo",
   "tags": [],
   "audience": [
@@ -41,9 +41,9 @@
   "lon": null,
   "free": false,
   "price_text": "À partir de 2 €",
-  "url": "https://www.balconsdudauphine-tourisme.com/manifestation/exposition-au-musee-archeologique-corps-pares-ames-revelees/",
+  "url": "https://www.balconsdauphine-tourisme.com/manifestation/exposition-au-musee-archeologique-corps-pares-ames-revelees/",
   "image": null,
-  "id": "exposition-au-musee-archeologique-corps-pares-ames-revelees-2d61413f"
+  "id": "exposition-au-musee-archeologique-corps-pares-ames-revelees-2a445bbf"
  },
  {
   "title": "Faune berjalienne au parc des mûriers",
@@ -51,8 +51,8 @@
   "source_id": "html-bourgoin",
   "sector": "isere",
   "end": "2026-09-30",
-  "description": "À l'occasion du bicentenaire de la photographie, le musée de Bourgoin-Jallieu (M ...)",
-  "tldr": "Une exposition sur la faune locale au parc des mûriers pour le bicentenaire de la photographie.",
+  "description": "À l’occasion du bicentenaire de la photographie, le musée de Bourgoin-Jallieu",
+  "tldr": "Exposition photographique sur la faune locale au parc des mûriers, pour le bicentenaire de la photographie.",
   "category": "expo",
   "tags": [],
   "audience": [
@@ -74,9 +74,9 @@
   "source_id": "html-weekend-capi",
   "sector": "isere",
   "end": "2026-11-01",
-  "description": "Kayak en l’Isle propose des sorties sur les eaux, lacs et rivières de la région, dont la Bourbre. Osez découvrir ces paysages aquatiques.",
-  "tldr": "Location et sorties en kayak sur la Bourbre et d'autres plans d'eau par Kayak en l'Isle.",
-  "category": "nature",
+  "description": "Kayak en l’Isle propose des sorties sur les eaux, lacs et rivières de la région, y compris la Bourbre. Osez découvrir de nouveaux horizons.",
+  "tldr": "Location et balades en kayak proposées par Kayak en l’Isle sur la Bourbre et d'autres plans d'eau.",
+  "category": "sport",
   "tags": [],
   "audience": [
    "tous"
@@ -92,13 +92,13 @@
   "id": "balades-en-kayak-sur-la-bourbre-et-ailleurs-et-location-de-kayak-1bf82f73"
  },
  {
-  "title": "Exposition : Que deviendra l'arbre coupé ? Mathéo Foretay",
+  "title": "Exposition : Que deviendra l’arbre coupé ? Mathéo Foretay",
   "start": "2026-04-24T00:00:00",
   "source_id": "html-bourgoin",
   "sector": "isere",
   "end": "2026-07-23",
-  "description": "Une exposition à voir à la médiathèque CAPI de Bourgoin-Jallieu.",
-  "tldr": "Une exposition de Mathéo Foretay sur le devenir des arbres coupés à la médiathèque CAPI de Bourgoin-Jallieu.",
+  "description": "Une exposition à voir à la méditahèque CAPI de Bourgoin-Jallieu",
+  "tldr": "Exposition de Mathéo Foretay sur le devenir des arbres coupés à la médiathèque CAPI de Bourgoin-Jallieu.",
   "category": "expo",
   "tags": [],
   "audience": [
@@ -112,7 +112,7 @@
   "price_text": null,
   "url": "https://www.bourgoinjallieu.fr/agenda/2877-exposition-que-deviendra-larbre-coupe-matheo-foretay",
   "image": null,
-  "id": "exposition-que-deviendra-l-arbre-coupe-matheo-foretay-37550970"
+  "id": "exposition-que-deviendra-larbre-coupe-matheo-foretay-98e4b372"
  },
  {
   "title": "Cet été, faites-vous une terrasse !",
@@ -120,8 +120,8 @@
   "source_id": "html-bourgoin",
   "sector": "isere",
   "end": "2026-09-26",
-  "description": "Du 1er mai au 26 septembre 2026.",
-  "tldr": "Une opération du 1er mai au 26 septembre 2026 pour aménager des terrasses.",
+  "description": "Du 1er mai au 26 septembre 2026",
+  "tldr": "Période du 1er mai au 26 septembre 2026 pour aménager une terrasse.",
   "category": "autre",
   "tags": [],
   "audience": [
@@ -143,8 +143,8 @@
   "source_id": "html-bourgoin",
   "sector": "isere",
   "end": "2026-09-13",
-  "description": "Du 16 juin au 13 septembre 2026, la Ville de Bourgoin-Jallieu vous propose plus ...",
-  "tldr": "Un festival du 16 juin au 13 septembre 2026 à Bourgoin-Jallieu.",
+  "description": "Du 16 juin au 13 septembre 2026, la Ville de Bourgoin-Jallieu vous propose plus",
+  "tldr": "Événements culturels du 16 juin au 13 septembre 2026 à Bourgoin-Jallieu.",
   "category": "festival",
   "tags": [],
   "audience": [
@@ -166,8 +166,8 @@
   "source_id": "html-bourgoin",
   "sector": "isere",
   "end": "2026-08-27",
-  "description": "Du 25 juin au 27 août 2026, venez danser les jeudis soirs au cœur du centre-ville.",
-  "tldr": "Des bals en plein air les jeudis soirs du 25 juin au 27 août 2026 au centre-ville.",
+  "description": "Du 25 juin au 27 août 2026, venez danser les jeudis soirs au coeur du centre-ville",
+  "tldr": "Bals en plein air les jeudis soirs du 25 juin au 27 août 2026 au centre-ville.",
   "category": "festival",
   "tags": [],
   "audience": [
@@ -188,8 +188,8 @@
   "start": "2026-07-01T09:30:00",
   "source_id": "html-balcons-dauphine",
   "sector": "isere",
-  "end": "2026-08-28T09:30:00",
-  "description": "Visite libre des jardins et de la chapelle du château. Découverte du patrimoine local.",
+  "end": "2026-08-28",
+  "description": "Visite libre des jardins et de la chapelle du château Teyssier de Savy à Saint-Chef.",
   "tldr": "Visite libre des jardins et de la chapelle du château Teyssier de Savy à Saint-Chef.",
   "category": "patrimoine",
   "tags": [],
@@ -202,7 +202,7 @@
   "lon": 5.36,
   "free": false,
   "price_text": "À partir de 5 €",
-  "url": "https://www.balconsdudauphine-tourisme.com/manifestation/visite-libre-des-jardins-et-de-la-chapelle-du-chateau-teyssier-de-savy-a-saint-chef/",
+  "url": "https://www.balconsdauphine-tourisme.com/manifestation/visite-libre-des-jardins-et-de-la-chapelle-du-chateau-teyssier-de-savy-a-saint-chef/",
   "image": null,
   "id": "visite-libre-des-jardins-et-de-la-chapelle-du-chateau-teyssier-de-savy-a-saint-c-f8e62515"
  },
@@ -211,8 +211,8 @@
   "start": "2026-07-01T10:00:00",
   "source_id": "html-balcons-dauphine",
   "sector": "isere",
-  "end": "2026-07-30T10:00:00",
-  "description": "Exposition de portraits croisés à la bibliothèque de Bouvesse-Quirieu. Entrée libre et gratuite.",
+  "end": "2026-07-30",
+  "description": "Exposition de portraits croisés à la bibliothèque de Bouvesse-Quirieu.",
   "tldr": "Exposition de portraits croisés à la bibliothèque de Bouvesse-Quirieu.",
   "category": "expo",
   "tags": [],
@@ -224,8 +224,8 @@
   "lat": null,
   "lon": null,
   "free": true,
-  "price_text": null,
-  "url": "https://www.balconsdudauphine-tourisme.com/manifestation/exposition-portraits-croises-a-bouvesse-quirieu/",
+  "price_text": "Gratuit",
+  "url": "https://www.balconsdauphine-tourisme.com/manifestation/exposition-portraits-croises-a-bouvesse-quirieu/",
   "image": null,
   "id": "exposition-portraits-croises-a-bouvesse-quirieu-6f923085"
  },
@@ -234,9 +234,9 @@
   "start": "2026-07-03T09:30:00",
   "source_id": "html-balcons-dauphine",
   "sector": "isere",
-  "end": "2026-10-25T09:30:00",
-  "description": "Exposition sur la vigne et le vin au musée de Saint-Chef. Entrée gratuite.",
-  "tldr": "Exposition sur la culture de la vigne et la production de vin au musée de Saint-Chef.",
+  "end": "2026-10-25",
+  "description": "Exposition temporaire sur la vigne et le vin au musée de Saint-Chef.",
+  "tldr": "Exposition temporaire sur la culture de la vigne et la production de vin au musée de Saint-Chef.",
   "category": "expo",
   "tags": [],
   "audience": [
@@ -247,8 +247,8 @@
   "lat": 45.637,
   "lon": 5.36,
   "free": true,
-  "price_text": null,
-  "url": "https://www.balconsdudauphine-tourisme.com/manifestation/exposition-temporaire-vitis-vinifera-de-la-vigne-au-vin-au-musee-de-saint-chef/",
+  "price_text": "Gratuit",
+  "url": "https://www.balconsdauphine-tourisme.com/manifestation/exposition-temporaire-vitis-vinifera-de-la-vigne-au-vin-au-musee-de-saint-chef/",
   "image": null,
   "id": "exposition-temporaire-vitis-vinifera-de-la-vigne-au-vin-au-musee-de-saint-chef-a0af4f00"
  },
@@ -257,14 +257,13 @@
   "start": "2026-07-04T10:30:00",
   "source_id": "html-balcons-dauphine",
   "sector": "isere",
-  "end": "2026-08-31T10:30:00",
-  "description": "Jeu de piste aux Grottes de la Balme. Devenez détective et résolvez l'enquête.",
-  "tldr": "Jeu de piste aux Grottes de la Balme pour résoudre une enquête.",
-  "category": "autre",
+  "end": "2026-08-31",
+  "description": "Jeu de piste aux Grottes de la Balme, à La Balme-les-Grottes.",
+  "tldr": "Jeu de piste immersif aux Grottes de la Balme pour résoudre une enquête.",
+  "category": "jeunesse",
   "tags": [],
   "audience": [
-   "enfants",
-   "famille"
+   "tous"
   ],
   "commune": "La Balme-les-Grottes",
   "address": null,
@@ -272,7 +271,7 @@
   "lon": 5.332,
   "free": false,
   "price_text": "À partir de 1 €",
-  "url": "https://www.balconsdudauphine-tourisme.com/manifestation/lenquete-darchibalme-le-detective-cest-toi/",
+  "url": "https://www.balconsdauphine-tourisme.com/manifestation/lenquete-darchibalme-le-detective-cest-toi/",
   "image": null,
   "id": "l-enquete-d-archibalme-le-detective-c-est-toi-4dd8fa76"
  },
@@ -282,13 +281,12 @@
   "source_id": "html-bourgoin",
   "sector": "isere",
   "end": "2026-09-13",
-  "description": "Proposés par l'association 'Vibrations Mystiques' et la ville de Bourgoin-Jallieu.",
-  "tldr": "Des pique-niques organisés les dimanches par l’association 'Vibrations Mystiques' et la ville.",
+  "description": "Proposés par l'association \"Vibrations Mystiques\" et la ville de Bourgoin-Jallieu",
+  "tldr": "Pique-niques organisés par l'association 'Vibrations Mystiques' et la ville de Bourgoin-Jallieu.",
   "category": "festival",
   "tags": [],
   "audience": [
-   "famille",
-   "tous"
+   "famille"
   ],
   "commune": "Bourgoin-Jallieu",
   "address": null,
@@ -306,12 +304,11 @@
   "source_id": "html-weekend-capi",
   "sector": "isere",
   "end": "2026-09-13",
-  "description": "Dans le cadre des Festiv'été, la ville organise des événements 100% gratuits pour profiter de l'été, dont de grands pique-niques.",
-  "tldr": "Pique-niques gratuits organisés par la ville dans le cadre des Festiv'été.",
+  "description": "Dans le cadre des 'Festiv'été', la ville organise de nombreux événements 100% gratuits pour profiter de l'été à Bourgoin-Jallieu. Ces grands pique-niques sont ouverts à tous.",
+  "tldr": "Pique-niques gratuits organisés par la ville dans le cadre des Festiv'été à Bourgoin-Jallieu.",
   "category": "fete",
   "tags": [],
   "audience": [
-   "famille",
    "tous"
   ],
   "commune": "Bourgoin-Jallieu",
@@ -330,8 +327,8 @@
   "source_id": "ig-capi",
   "sector": "isere",
   "end": "2026-07-31",
-  "description": "Des livres, des jeux et de la culture en plein air. Du 6 au 31 juillet 2026 dans les squares, places, cours, stades et parcs.",
-  "tldr": "Événement de livres, jeux et culture en plein air dans les squares et parcs.",
+  "description": "Des livres, des jeux et de la culture en plein air. Profitez de moments de jeux, de lecture et de partage gratuitement en famille ou entre copains.",
+  "tldr": "Événement gratuit en plein air proposant livres, jeux et activités culturelles en famille ou entre amis.",
   "category": "jeunesse",
   "tags": [],
   "audience": [
@@ -343,7 +340,7 @@
   "lon": 5.23,
   "free": true,
   "price_text": null,
-  "url": "https://portail-mediatheque.capi-agglo.fr/",
+  "url": "https://www.instagram.com/capiagglo",
   "image": null,
   "id": "bib-de-rue-86ae9146"
  },
@@ -353,12 +350,11 @@
   "source_id": "html-bourgoin",
   "sector": "isere",
   "end": "2026-08-25",
-  "description": "7 séances au programme dans les parcs et jardins municipaux de la ville du ...",
-  "tldr": "Un cycle de 7 séances de cinéma en plein air dans les parcs et jardins de la ville.",
-  "category": "festival",
+  "description": "7 séances au programme dans les parcs et jardins municipaux de la ville",
+  "tldr": "Séances de cinéma en plein air dans les parcs et jardins de la ville (7 séances au programme).",
+  "category": "cinema",
   "tags": [],
   "audience": [
-   "famille",
    "tous"
   ],
   "commune": "Bourgoin-Jallieu",
@@ -378,7 +374,7 @@
   "sector": "isere",
   "end": "2026-07-28",
   "description": "",
-  "tldr": "Un festival de cinéma expérimental.",
+  "tldr": "Projection de films dans le cadre du festival Cinéma Hors Pistes.",
   "category": "cinema",
   "tags": [],
   "audience": [
@@ -400,8 +396,8 @@
   "source_id": "html-vercors",
   "sector": "isere",
   "end": "2026-08-18",
-  "description": "Conférence et visite commentée de l'atelier céramique à Villard-de-Lans. Du 15 juillet au 18 août 2026.",
-  "tldr": "Conférence et visite commentée de l'atelier céramique à Villard-de-Lans.",
+  "description": "Conférence et visite commentée d'un atelier céramique à Villard-de-Lans.",
+  "tldr": "Conférence et visite guidée d'un atelier de céramique à Villard-de-Lans.",
   "category": "conference",
   "tags": [],
   "audience": [
@@ -423,8 +419,8 @@
   "source_id": "html-vercors",
   "sector": "isere",
   "end": "2026-08-16",
-  "description": "Cours particulier de tournage de l'argile à Villard-de-Lans. Du 15 juillet au 16 août 2026.",
-  "tldr": "Cours particulier de tournage de l'argile à Villard-de-Lans.",
+  "description": "Cours particulier de tournage de l'argile à Villard-de-Lans.",
+  "tldr": "Cours individuel de poterie (tournage de l'argile) à Villard-de-Lans.",
   "category": "atelier",
   "tags": [],
   "audience": [
@@ -445,9 +441,9 @@
   "start": "2026-07-15T14:00:00",
   "source_id": "html-balcons-dauphine",
   "sector": "isere",
-  "end": "2026-10-31T14:00:00",
-  "description": "Exposition de costumes d'opéra à la Maison Ravier de Morestel. Plongée dans l'univers lyrique.",
-  "tldr": "Exposition de costumes d'opéra à la Maison Ravier de Morestel.",
+  "end": "2026-10-31",
+  "description": "Exposition de costumes d'opéra à la Maison Ravier à Morestel.",
+  "tldr": "Exposition de costumes de scène représentant des héroïnes d'opéra à la Maison Ravier.",
   "category": "expo",
   "tags": [],
   "audience": [
@@ -459,7 +455,7 @@
   "lon": 5.465,
   "free": false,
   "price_text": "À partir de 6 €",
-  "url": "https://www.balconsdudauphine-tourisme.com/manifestation/exposition-a-la-maison-ravier-heroines-dopera-costumes-de-scenes/",
+  "url": "https://www.balconsdauphine-tourisme.com/manifestation/exposition-a-la-maison-ravier-heroines-dopera-costumes-de-scenes/",
   "image": null,
   "id": "exposition-a-la-maison-ravier-heroines-d-opera-costumes-de-scenes-16c273f7"
  },
@@ -468,9 +464,9 @@
   "start": "2026-07-15T14:00:00",
   "source_id": "html-balcons-dauphine",
   "sector": "isere",
-  "end": "2026-10-31T14:00:00",
-  "description": "Exposition de l'artiste en résidence Mélanie Dunand à la Maison Ravier. Œuvres contemporaines.",
-  "tldr": "Exposition des œuvres contemporaines de l'artiste en résidence Mélanie Dunand à la Maison Ravier.",
+  "end": "2026-10-31",
+  "description": "Exposition de l'artiste Mélanie Dunand en résidence à la Maison Ravier.",
+  "tldr": "Exposition des œuvres de l'artiste Mélanie Dunand en résidence à la Maison Ravier.",
   "category": "expo",
   "tags": [],
   "audience": [
@@ -482,7 +478,7 @@
   "lon": 5.465,
   "free": false,
   "price_text": "À partir de 6 €",
-  "url": "https://www.balconsdudauphine-tourisme.com/manifestation/exposition-a-la-maison-ravier-melanie-dunand-en-residence-dartiste/",
+  "url": "https://www.balconsdauphine-tourisme.com/manifestation/exposition-a-la-maison-ravier-melanie-dunand-en-residence-dartiste/",
   "image": null,
   "id": "exposition-a-la-maison-ravier-melanie-dunand-en-residence-d-artiste-a6831778"
  },
@@ -492,8 +488,8 @@
   "source_id": "html-vercors",
   "sector": "isere",
   "end": "2026-07-25",
-  "description": "Festival Ça va Jazzer à Villard-de-Lans. Du 20 au 25 juillet 2026.",
-  "tldr": "Festival de jazz à Villard-de-Lans du 20 au 25 juillet 2026.",
+  "description": "Festival de jazz à Villard-de-Lans.",
+  "tldr": "Festival annuel de jazz à Villard-de-Lans.",
   "category": "festival",
   "tags": [],
   "audience": [
@@ -514,13 +510,12 @@
   "start": "2026-07-20T09:00:00",
   "source_id": "html-balcons-dauphine",
   "sector": "isere",
-  "end": "2026-07-26T09:00:00",
-  "description": "Visites et ateliers du mois de juillet à l'Arche de Julie. Activité pour toute la famille.",
-  "tldr": "Visites et ateliers familiaux proposés par L'Arche de Julie en juillet.",
+  "end": "2026-07-26",
+  "description": "Visites et ateliers à l'Arche de Julie à Vézeronce-Curtin pendant le mois de juillet.",
+  "tldr": "Visites et ateliers pour enfants à l'Arche de Julie à Vézeronce-Curtin pendant juillet.",
   "category": "patrimoine",
   "tags": [],
   "audience": [
-   "famille",
    "tous"
   ],
   "commune": "Vézeronce-Curtin",
@@ -529,7 +524,7 @@
   "lon": 5.423,
   "free": null,
   "price_text": null,
-  "url": "https://www.balconsdudauphine-tourisme.com/manifestation/larche-de-julie-visites-et-ateliers-du-mois-de-juillet/",
+  "url": "https://www.balconsdauphine-tourisme.com/manifestation/larche-de-julie-visites-et-ateliers-du-mois-de-juillet/",
   "image": null,
   "id": "l-arche-de-julie-visites-et-ateliers-du-mois-de-juillet-34cd0dfc"
  },
@@ -539,22 +534,22 @@
   "source_id": "html-capi",
   "sector": "isere",
   "end": "2026-08-01",
-  "description": "L’espace Carnot accueille une exposition de photographies de Jean-Michel Pouzet. Elle est ouverte durant les horaires de l’Office de Tourisme.",
-  "tldr": "Une exposition de photographies de Jean-Michel Pouzet à l’espace Carnot.",
+  "description": "L’espace Carnot accueillera une exposition de photographies de Jean-Michel Pouzet. Plus d’infos sur monweekendalacapi.fr.",
+  "tldr": "Présentation des photographies de Jean-Michel Pouzet à l’espace Carnot.",
   "category": "expo",
   "tags": [],
   "audience": [
    "tous"
   ],
-  "commune": "L'Isle-d'Abeau",
-  "address": null,
-  "lat": 45.62,
-  "lon": 5.23,
+  "commune": "Villefontaine",
+  "address": "Office de Tourisme CAPI - Espace Carnot",
+  "lat": 45.613,
+  "lon": 5.15,
   "free": null,
   "price_text": null,
   "url": "https://capi-agglo.fr/agenda/exposition-de-photographies-6/",
   "image": null,
-  "id": "exposition-de-photographies-73374ed2"
+  "id": "exposition-de-photographies-2ec44e0c"
  },
  {
   "title": "Exposition photos",
@@ -562,8 +557,8 @@
   "source_id": "html-bourgoin",
   "sector": "isere",
   "end": "2026-08-01",
-  "description": "L'espace Carnot accueille le photographe Jean-Michel Pouzet.",
-  "tldr": "Une exposition de photographies de Jean-Michel Pouzet à l’espace Carnot.",
+  "description": "L'espace Carnot accueille le photographe Jean-Michel Pouzet",
+  "tldr": "Présentation des œuvres du photographe Jean-Michel Pouzet à l’espace Carnot.",
   "category": "expo",
   "tags": [],
   "audience": [
@@ -585,8 +580,8 @@
   "source_id": "html-vercors",
   "sector": "isere",
   "end": "2026-07-23",
-  "description": "Stage de collage artistique à Villard-de-Lans. Du 21 au 23 juillet 2026.",
-  "tldr": "Stage de collage artistique à Villard-de-Lans.",
+  "description": "Stage de collage artistique à Villard-de-Lans.",
+  "tldr": "Stage d'initiation au collage artistique à Villard-de-Lans.",
   "category": "atelier",
   "tags": [],
   "audience": [
@@ -607,14 +602,13 @@
   "start": "2026-07-21T09:30:00",
   "source_id": "html-balcons-dauphine",
   "sector": "isere",
-  "end": "2026-07-23T09:30:00",
-  "description": "Stage d'équitation pour débutants au poney club de Vénérieu. Apprentissage du poney de bronze.",
-  "tldr": "Stage d'initiation à l'équitation pour débutants au poney club de Vénérieu.",
-  "category": "sport",
+  "end": "2026-07-23",
+  "description": "Stage d'équitation pour cavaliers débutants au poney club de Vénérieu.",
+  "tldr": "Stage d'équitation pour débutants au poney club de Vénérieu.",
+  "category": "atelier",
   "tags": [],
   "audience": [
-   "enfants",
-   "ados"
+   "tous"
   ],
   "commune": "Vénérieu",
   "address": null,
@@ -622,7 +616,7 @@
   "lon": null,
   "free": false,
   "price_text": "À partir de 55 €",
-  "url": "https://www.balconsdudauphine-tourisme.com/activite/stage-pour-cavaliers-debutants-poney-de-bronze/",
+  "url": "https://www.balconsdauphine-tourisme.com/activite/stage-pour-cavaliers-debutants-poney-de-bronze/",
   "image": null,
   "id": "stage-pour-cavaliers-debutants-poney-de-bronze-0f3c5093"
  },
@@ -632,9 +626,9 @@
   "source_id": "html-capi",
   "sector": "isere",
   "end": null,
-  "description": "Bib de rue fait son grand retour sur la CAPI. Le réseau des médiathèques vous donne rendez-vous sur certaines communes du territoire.",
-  "tldr": "Le réseau des médiathèques propose des bibliothèques de rue sur certaines communes de la CAPI.",
-  "category": "atelier",
+  "description": "Bib de rue revient ! Le réseau des médiathèques vous donne rendez-vous dans la commune pour des animations autour du livre.",
+  "tldr": "Animations autour du livre organisées par le réseau des médiathèques dans la commune.",
+  "category": "jeunesse",
   "tags": [],
   "audience": [
    "famille",
@@ -656,9 +650,9 @@
   "source_id": "html-capi",
   "sector": "isere",
   "end": null,
-  "description": "Bib de rue fait son grand retour sur la CAPI. Le réseau des médiathèques vous donne rendez-vous sur certaines communes du territoire.",
-  "tldr": "Le réseau des médiathèques propose des bibliothèques de rue sur certaines communes de la CAPI.",
-  "category": "atelier",
+  "description": "Bib de rue revient ! Le réseau des médiathèques vous donne rendez-vous dans la commune pour des animations autour du livre.",
+  "tldr": "Animations autour du livre organisées par le réseau des médiathèques dans la commune.",
+  "category": "jeunesse",
   "tags": [],
   "audience": [
    "famille",
@@ -680,13 +674,11 @@
   "source_id": "html-bourgoin",
   "sector": "isere",
   "end": null,
-  "description": "Dans le cadre de Festiv'Été.",
-  "tldr": "Une animation sur le paysage dans le cadre de Festiv'Été.",
+  "description": "Dans le cadre de Festiv’Été",
+  "tldr": "Atelier ou exposition sur le paysage dans le cadre de Festiv’Été.",
   "category": "autre",
   "tags": [],
   "audience": [
-   "famille",
-   "enfants",
    "tous"
   ],
   "commune": "Bourgoin-Jallieu",
@@ -705,7 +697,7 @@
   "source_id": "html-balcons-dauphine",
   "sector": "isere",
   "end": null,
-  "description": "Atelier de sculpture sur pierre pour enfants au musée archéologique. Activité ludique et éducative.",
+  "description": "Atelier pour enfant de sculpture sur pierre au musée archéologique de Hières-sur-Amby.",
   "tldr": "Atelier de sculpture sur pierre pour enfants au musée archéologique de Hières-sur-Amby.",
   "category": "atelier",
   "tags": [],
@@ -718,7 +710,7 @@
   "lon": null,
   "free": null,
   "price_text": null,
-  "url": "https://www.balconsdudauphine-tourisme.com/activite/les-jeudis-on-decouvre-en-samusant-atelier-pour-enfant-au-musee-archeologique-de-hieres-sur-amby-sculpture-sur-pierre/",
+  "url": "https://www.balconsdauphine-tourisme.com/activite/les-jeudis-on-decouvre-en-samusant-atelier-pour-enfant-au-musee-archeologique-de-hieres-sur-amby-sculpture-sur-pierre/",
   "image": null,
   "id": "les-jeudis-on-decouvre-en-s-amusant-atelier-pour-enfant-au-musee-archeologique-d-20eb690f"
  },
@@ -728,21 +720,20 @@
   "source_id": "html-balcons-dauphine",
   "sector": "isere",
   "end": null,
-  "description": "Spectacle de contes sous les arbres à Crémieu. Gratuit et ouvert à tous.",
+  "description": "Spectacle de contes sous les arbres à Crémieu.",
   "tldr": "Spectacle de contes en plein air à Crémieu.",
   "category": "spectacle",
   "tags": [],
   "audience": [
-   "enfants",
-   "famille"
+   "tous"
   ],
   "commune": "Crémieu",
   "address": null,
   "lat": 45.725,
   "lon": 5.249,
   "free": true,
-  "price_text": null,
-  "url": "https://www.balconsdudauphine-tourisme.com/manifestation/des-histoires-sous-les-arbres-a-cremieu/",
+  "price_text": "Gratuit",
+  "url": "https://www.balconsdauphine-tourisme.com/manifestation/des-histoires-sous-les-arbres-a-cremieu/",
   "image": null,
   "id": "des-histoires-sous-les-arbres-a-cremieu-80af726e"
  },
@@ -752,12 +743,11 @@
   "source_id": "html-balcons-dauphine",
   "sector": "isere",
   "end": null,
-  "description": "Visite gratuite de la ferme Duclos Gonet à Crémieu. Découverte du métier d'agriculteur.",
+  "description": "Visite guidée de la ferme Duclos Gonet à Crémieu.",
   "tldr": null,
-  "category": "nature",
+  "category": "patrimoine",
   "tags": [],
   "audience": [
-   "famille",
    "tous"
   ],
   "commune": "Crémieu",
@@ -765,8 +755,8 @@
   "lat": 45.725,
   "lon": 5.249,
   "free": true,
-  "price_text": null,
-  "url": "https://www.balconsdudauphine-tourisme.com/manifestation/visite-de-la-ferme-duclos-gonet/",
+  "price_text": "Gratuit",
+  "url": "https://www.balconsdauphine-tourisme.com/manifestation/visite-de-la-ferme-duclos-gonet/",
   "image": null,
   "id": "visite-de-la-ferme-duclos-gonet-4e51ca2b"
  },
@@ -776,12 +766,11 @@
   "source_id": "html-balcons-dauphine",
   "sector": "isere",
   "end": null,
-  "description": "Spectacle sur l'opéra à la Maison Ravier de Morestel. Une expérience artistique colorée.",
-  "tldr": "Spectacle artistique sur l'opéra avec une expérience colorée à la Maison Ravier de Morestel.",
+  "description": "Atelier autour de l'opéra à la Maison Ravier à Morestel.",
+  "tldr": "Atelier créatif sur l'opéra avec focus sur les émotions et les couleurs à la Maison Ravier.",
   "category": "spectacle",
   "tags": [],
   "audience": [
-   "adultes",
    "tous"
   ],
   "commune": "Morestel",
@@ -790,7 +779,7 @@
   "lon": 5.465,
   "free": false,
   "price_text": "À partir de 6 €",
-  "url": "https://www.balconsdudauphine-tourisme.com/manifestation/les-jeudis-de-lete-a-la-maison-ravier-quand-lopera-prend-forme-emotions-en-couleurs/",
+  "url": "https://www.balconsdauphine-tourisme.com/manifestation/les-jeudis-de-lete-a-la-maison-ravier-quand-lopera-prend-forme-emotions-en-couleurs/",
   "image": null,
   "id": "les-jeudis-de-l-ete-a-la-maison-ravier-quand-l-opera-prend-forme-emotions-en-cou-e06177e8"
  },
@@ -800,8 +789,8 @@
   "source_id": "html-balcons-dauphine",
   "sector": "isere",
   "end": null,
-  "description": "Ateliers de construction Lego® pour enfants à Saint-Chef. Créativité et amusement garantis.",
-  "tldr": "Ateliers de construction Lego® pour enfants à Saint-Chef.",
+  "description": "Ateliers de construction Lego® à Saint-Chef.",
+  "tldr": "Ateliers de construction avec des briques Lego® pour enfants à Saint-Chef.",
   "category": "atelier",
   "tags": [],
   "audience": [
@@ -813,7 +802,7 @@
   "lon": 5.36,
   "free": null,
   "price_text": null,
-  "url": "https://www.balconsdudauphine-tourisme.com/activite/reve-de-briques-ateliers-lego-du-mois-de-juillet/",
+  "url": "https://www.balconsdauphine-tourisme.com/activite/reve-de-briques-ateliers-lego-du-mois-de-juillet/",
   "image": null,
   "id": "reve-de-briques-ateliers-lego-du-mois-de-juillet-6927e2a5"
  },
@@ -823,20 +812,20 @@
   "source_id": "html-balcons-dauphine",
   "sector": "isere",
   "end": null,
-  "description": "Atelier gratuit de création d'herbier au musée de Saint-Chef. Pour les enfants curieux de nature.",
-  "tldr": "Atelier gratuit de création d'herbier pour enfants au musée de Saint-Chef.",
+  "description": "Atelier de création d'herbier au musée de Saint-Chef.",
+  "tldr": "Atelier de fabrication d'herbier au musée de Saint-Chef.",
   "category": "atelier",
   "tags": [],
   "audience": [
-   "enfants"
+   "tous"
   ],
   "commune": "Saint-Chef",
   "address": null,
   "lat": 45.637,
   "lon": 5.36,
   "free": true,
-  "price_text": null,
-  "url": "https://www.balconsdudauphine-tourisme.com/activite/atelier-mon-herbier-organise-par-le-musee-de-saint-chef/",
+  "price_text": "Gratuit",
+  "url": "https://www.balconsdauphine-tourisme.com/activite/atelier-mon-herbier-organise-par-le-musee-de-saint-chef/",
   "image": null,
   "id": "atelier-mon-herbier-organise-par-le-musee-de-saint-chef-57b0bb88"
  },
@@ -846,20 +835,21 @@
   "source_id": "html-balcons-dauphine",
   "sector": "isere",
   "end": null,
-  "description": "Jeu de piste gratuit sur le thème de la Résistance. Pour enfants à la bibliothèque de Frontonas.",
-  "tldr": "Jeu de piste gratuit sur le thème de la Résistance à la bibliothèque de Frontonas.",
+  "description": "Jeu de piste sur le thème de la Résistance à la bibliothèque de Frontonas.",
+  "tldr": "Jeu de piste historique sur la Résistance à la bibliothèque de Frontonas.",
   "category": "jeunesse",
   "tags": [],
   "audience": [
-   "enfants"
+   "enfants",
+   "famille"
   ],
   "commune": "Frontonas",
   "address": null,
   "lat": null,
   "lon": null,
   "free": true,
-  "price_text": null,
-  "url": "https://www.balconsdudauphine-tourisme.com/manifestation/jeu-de-piste-les-enfants-de-la-resistance-a-la-bibliotheque-de-frontonas/",
+  "price_text": "Gratuit",
+  "url": "https://www.balconsdauphine-tourisme.com/manifestation/jeu-de-piste-les-enfants-de-la-resistance-a-la-bibliotheque-de-frontonas/",
   "image": null,
   "id": "jeu-de-piste-les-enfants-de-la-resistance-a-la-bibliotheque-de-frontonas-616a98e5"
  },
@@ -890,9 +880,9 @@
   "source_id": "html-capi",
   "sector": "isere",
   "end": null,
-  "description": "Bib de rue fait son grand retour sur la CAPI. Le réseau des médiathèques vous donne rendez-vous sur certaines communes du territoire.",
-  "tldr": "Le réseau des médiathèques propose des bibliothèques de rue sur certaines communes de la CAPI.",
-  "category": "atelier",
+  "description": "Bib de rue revient ! Le réseau des médiathèques vous donne rendez-vous dans la commune pour des animations autour du livre.",
+  "tldr": "Animations autour du livre organisées par le réseau des médiathèques dans la commune.",
+  "category": "jeunesse",
   "tags": [],
   "audience": [
    "famille",
@@ -914,9 +904,9 @@
   "source_id": "html-capi",
   "sector": "isere",
   "end": null,
-  "description": "Bib de rue fait son grand retour sur la CAPI. Le réseau des médiathèques vous donne rendez-vous sur certaines communes du territoire.",
-  "tldr": "Le réseau des médiathèques propose des bibliothèques de rue sur certaines communes de la CAPI.",
-  "category": "atelier",
+  "description": "Bib de rue revient ! Le réseau des médiathèques vous donne rendez-vous dans la commune pour des animations autour du livre.",
+  "tldr": "Animations autour du livre organisées par le réseau des médiathèques dans la commune.",
+  "category": "jeunesse",
   "tags": [],
   "audience": [
    "famille",
@@ -939,14 +929,14 @@
   "sector": "isere",
   "end": "2026-07-26",
   "description": "La traditionnelle Force Paysanne revient pour sa 35ème édition au Stade du Gapillon à Succieu ! Soyez au Rendez-vous !",
-  "tldr": "35ème édition de la Force Paysanne, manifestation agricole traditionnelle au Stade du Gapillon à Succieu.",
+  "tldr": "Événement traditionnel annuel (35ème édition) avec animations et compétitions au Stade du Gapillon à Succieu.",
   "category": "fete",
   "tags": [],
   "audience": [
    "tous"
   ],
   "commune": "Succieu",
-  "address": "Stade du Gapillon, 38300 Succieu, France",
+  "address": "38300 Succieu, France",
   "lat": null,
   "lon": null,
   "free": null,
@@ -954,29 +944,6 @@
   "url": "https://www.monweekendalacapi.fr/agenda/evenements/force-paysanne-2026",
   "image": null,
   "id": "force-paysanne-2026-0a4ff6b0"
- },
- {
-  "title": "Balade contée et musicale, l'écho des machines au coeur des marais à Creys-Mépieu",
-  "start": "2026-07-24T20:00:00",
-  "source_id": "html-balcons-dauphine",
-  "sector": "isere",
-  "end": null,
-  "description": "Balade contée et musicale dans les marais de Creys-Mépieu. Inscription obligatoire.",
-  "tldr": "Balade contée et musicale dans les marais de Creys-Mépieu.",
-  "category": "nature",
-  "tags": [],
-  "audience": [
-   "tous"
-  ],
-  "commune": "Creys-Mépieu",
-  "address": null,
-  "lat": null,
-  "lon": null,
-  "free": null,
-  "price_text": null,
-  "url": "https://www.balconsdudauphine-tourisme.com/manifestation/balade-contee-et-musicale-lecho-des-machines-au-coeur-des-marais-nouveau-parcours/",
-  "image": null,
-  "id": "balade-contee-et-musicale-l-echo-des-machines-au-coeur-des-marais-a-creys-mepieu-043d7034"
  },
  {
   "title": "SWING'UM TRIO",
@@ -1005,13 +972,12 @@
   "source_id": "html-bourgoin",
   "sector": "isere",
   "end": null,
-  "description": "Dans le cadre des Festiv'été 2026 et de Sportez-vous bien.",
-  "tldr": "Une initiation à la pêche pour les familles dans le cadre des Festiv'été 2026.",
+  "description": "Dans le cadre des Festiv'été 2026 et de Sportez-vous bien",
+  "tldr": "Atelier de découverte de la pêche pour les familles dans le cadre des Festiv'été 2026.",
   "category": "nature",
   "tags": [],
   "audience": [
-   "famille",
-   "enfants"
+   "famille"
   ],
   "commune": "Bourgoin-Jallieu",
   "address": null,
@@ -1052,13 +1018,12 @@
   "source_id": "html-bourgoin",
   "sector": "isere",
   "end": "2026-07-28",
-  "description": "Avec la participation de votre association pour le don de sang bénévole.",
-  "tldr": "Une collecte de don de sang organisée par une association bénévole.",
+  "description": "Avec la participation de votre association pour le don de sang bénévole",
+  "tldr": "Collecte de don de sang bénévole avec une association partenaire.",
   "category": "autre",
   "tags": [],
   "audience": [
-   "adultes",
-   "seniors"
+   "adultes"
   ],
   "commune": "Bourgoin-Jallieu",
   "address": null,
@@ -1076,12 +1041,11 @@
   "source_id": "html-bourgoin",
   "sector": "isere",
   "end": null,
-  "description": "A l'occasion des Festiv'été, les Cinés-été reviennent en plein air, dans les parcs.",
-  "tldr": "Une séance de cinéma en plein air dans le cadre des Festiv'été.",
+  "description": "A l'occasion des Festivi'été, les Cinés-été reviennent en plein air, dans les parcs",
+  "tldr": "Projection en plein air du film 'Michael' dans le cadre des Cinés-été.",
   "category": "cinema",
   "tags": [],
   "audience": [
-   "famille",
    "tous"
   ],
   "commune": "Bourgoin-Jallieu",
@@ -1095,37 +1059,14 @@
   "id": "cine-ete-la-grive-michael-14abf507"
  },
  {
-  "title": "Atelier créatif - collages de Rob d'Ac à la publicité",
-  "start": "2026-07-29T00:00:00",
-  "source_id": "html-vercors",
-  "sector": "isere",
-  "end": null,
-  "description": "Atelier créatif de collages à Villard-de-Lans. Le mercredi 29 juillet 2026.",
-  "tldr": "Atelier créatif de collages à Villard-de-Lans.",
-  "category": "atelier",
-  "tags": [],
-  "audience": [
-   "tous"
-  ],
-  "commune": "Villard-de-Lans",
-  "address": null,
-  "lat": 45.071,
-  "lon": 5.554,
-  "free": null,
-  "price_text": null,
-  "url": "https://www.villarddelans-correnconenvercors.com/offres/atelier-creatif-collages-de-rob-dac-a-la-publicite-villard-de-lans-fr-6583799/?roadbook=true",
-  "image": null,
-  "id": "atelier-creatif-collages-de-rob-d-ac-a-la-publicite-aa2b6112"
- },
- {
   "title": "Bib de rue",
   "start": "2026-07-30T00:00:00",
   "source_id": "html-capi",
   "sector": "isere",
   "end": null,
-  "description": "Bib de rue fait son grand retour sur la CAPI. Le réseau des médiathèques vous donne rendez-vous sur certaines communes du territoire.",
-  "tldr": "Le réseau des médiathèques propose des bibliothèques de rue sur certaines communes de la CAPI.",
-  "category": "atelier",
+  "description": "Bib de rue revient ! Le réseau des médiathèques vous donne rendez-vous dans la commune pour des animations autour du livre.",
+  "tldr": "Animations autour du livre organisées par le réseau des médiathèques dans la commune.",
+  "category": "jeunesse",
   "tags": [],
   "audience": [
    "famille",
@@ -1170,13 +1111,12 @@
   "source_id": "html-bourgoin",
   "sector": "isere",
   "end": null,
-  "description": "Visite sensorielle.",
-  "tldr": "Une visite sensorielle du musée adaptée aux familles.",
+  "description": "Visite sensorielle",
+  "tldr": "Visite adaptée aux familles au musée, axée sur les sens.",
   "category": "patrimoine",
   "tags": [],
   "audience": [
-   "famille",
-   "enfants"
+   "famille"
   ],
   "commune": "Bourgoin-Jallieu",
   "address": null,
@@ -1189,19 +1129,17 @@
   "id": "visite-en-famille-au-musee-8092feb0"
  },
  {
-  "title": "Visite commentée : Exposition \"Au fil de l’eau\"",
+  "title": "Visite commentée : Exposition \"Au fil de l’eau \"",
   "start": "2026-08-02T00:00:00",
   "source_id": "html-bourgoin",
   "sector": "isere",
   "end": null,
-  "description": "Tout public dès 8 ans.",
+  "description": "Tout public dès 8 ans",
   "tldr": null,
-  "category": "patrimoine",
+  "category": "expo",
   "tags": [],
   "audience": [
-   "enfants",
-   "ados",
-   "adultes"
+   "tous"
   ],
   "commune": "Bourgoin-Jallieu",
   "address": null,
@@ -1211,43 +1149,19 @@
   "price_text": null,
   "url": "https://www.bourgoinjallieu.fr/agenda/2552-visite-commentee-exposition-au-fil-de-leau",
   "image": null,
-  "id": "visite-commentee-exposition-au-fil-de-leau-3f488cf3"
+  "id": "visite-commentee-exposition-au-fil-de-leau-56b0817e"
  },
  {
-  "title": "Stage running biathlon",
-  "start": "2026-08-03T00:00:00",
-  "source_id": "html-vercors",
-  "sector": "isere",
-  "end": "2026-08-12",
-  "description": "Stage running biathlon à Villard-de-Lans. Du 3 au 12 août 2026.",
-  "tldr": "Stage running biathlon à Villard-de-Lans.",
-  "category": "sport",
-  "tags": [],
-  "audience": [
-   "tous"
-  ],
-  "commune": "Villard-de-Lans",
-  "address": null,
-  "lat": 45.071,
-  "lon": 5.554,
-  "free": null,
-  "price_text": null,
-  "url": "https://www.villarddelans-correnconenvercors.com/offres/stage-running-biathlon-villard-de-lans-fr-6614151/?roadbook=true",
-  "image": null,
-  "id": "stage-running-biathlon-8cbb59ca"
- },
- {
-  "title": "Ciné-été à Champfleuri : \"Super Mario Galaxy\"",
+  "title": "Ciné-été à Champfleuri : \" Super Mario Galaxy \"",
   "start": "2026-08-04T00:00:00",
   "source_id": "html-bourgoin",
   "sector": "isere",
   "end": null,
-  "description": "A l'occasion des Festiv'été, les Cinés-été reviennent en plein air.",
+  "description": "A l'occasion des Festivi'été, les Cinés-été reviennent en plein air",
   "tldr": null,
   "category": "cinema",
   "tags": [],
   "audience": [
-   "famille",
    "enfants"
   ],
   "commune": "Bourgoin-Jallieu",
@@ -1258,15 +1172,15 @@
   "price_text": null,
   "url": "https://www.bourgoinjallieu.fr/agenda/1746-cine-ete-a-champfleuri-mario",
   "image": null,
-  "id": "cine-ete-a-champfleuri-super-mario-galaxy-0f900009"
+  "id": "cine-ete-a-champfleuri-super-mario-galaxy-93309231"
  },
  {
-  "title": "Exposition : Archives \"Quand la ville arrive à la campagne\"",
+  "title": "Exposition : Archives \" Quand la ville arrive à la campagne \"",
   "start": "2026-08-04T00:00:00",
   "source_id": "html-bourgoin",
   "sector": "isere",
   "end": "2026-08-14",
-  "description": "Le pôle Archives de la CAPI et son service mutualisé des archives, vous proposent ...",
+  "description": "Le pôle Archives de la CAPI et son service mutualisé des archives, vous proposent",
   "tldr": "Présentation d'archives sur l'urbanisation des zones rurales par le pôle Archives de la CAPI.",
   "category": "expo",
   "tags": [],
@@ -1281,7 +1195,7 @@
   "price_text": null,
   "url": "https://www.bourgoinjallieu.fr/agenda/1818-exposition-archives-quand-la-ville-arrive-a-la-campagne",
   "image": null,
-  "id": "exposition-archives-quand-la-ville-arrive-a-la-campagne-174bbceb"
+  "id": "exposition-archives-quand-la-ville-arrive-a-la-campagne-f008ea6a"
  },
  {
   "title": "CSBJ Rugby vs Bourg-en-Bresse",
@@ -1289,8 +1203,8 @@
   "source_id": "html-bourgoin",
   "sector": "isere",
   "end": null,
-  "description": "Match amical.",
-  "tldr": null,
+  "description": "Match amical",
+  "tldr": "Match amical de rugby entre le CSBJ et Bourg-en-Bresse.",
   "category": "sport",
   "tags": [],
   "audience": [
@@ -1312,8 +1226,8 @@
   "source_id": "html-bourgoin",
   "sector": "isere",
   "end": "2026-09-22",
-  "description": "L'exposition photographique est présentée au sein du musée Clauorum de Bourgoin- ...",
-  "tldr": "Exposition de photographies de Christian Chevallier au musée Clauorum de Bourgoin-Jallieu.",
+  "description": "L'exposition photographique est présentée au sein du musée Clauorum de Bourgoin",
+  "tldr": "Exposition photographique de Christian Chevallier au musée Clauorum de Bourgoin.",
   "category": "expo",
   "tags": [],
   "audience": [
@@ -1335,12 +1249,11 @@
   "source_id": "html-bourgoin",
   "sector": "isere",
   "end": null,
-  "description": "A l'occasion des Festiv'été, les Cinés-été reviennent en plein air, dans les parcs.",
+  "description": "A l'occasion des Festivi'été, les Cinés-été reviennent en plein air, dans les parcs",
   "tldr": null,
   "category": "cinema",
   "tags": [],
   "audience": [
-   "famille",
    "enfants"
   ],
   "commune": "Bourgoin-Jallieu",
@@ -1354,17 +1267,16 @@
   "id": "cine-ete-a-montbernier-marsupilami-08a5b011"
  },
  {
-  "title": "Venez observer l'éclipse en bonne compagnie !",
+  "title": "Venez observer l’éclipse en bonne compagnie !",
   "start": "2026-08-12T00:00:00",
   "source_id": "html-bourgoin",
   "sector": "isere",
   "end": null,
-  "description": "Un rendez-vous d'observation de l'éclipse organisé par la Société des Sciences N ...",
-  "tldr": "Observation collective d'une éclipse organisée par la Société des Sciences Naturelles.",
+  "description": "Un rendez-vous d'observation de l'éclipse organisé par la Société des Sciences N",
+  "tldr": "Rendez-vous d'observation publique de l'éclipse organisé par la Société des Sciences N.",
   "category": "nature",
   "tags": [],
   "audience": [
-   "famille",
    "tous"
   ],
   "commune": "Bourgoin-Jallieu",
@@ -1375,7 +1287,7 @@
   "price_text": null,
   "url": "https://www.bourgoinjallieu.fr/agenda/2844-venez-observer-leclipse-en-bonne-compagnie",
   "image": null,
-  "id": "venez-observer-l-eclipse-en-bonne-compagnie-7d614c45"
+  "id": "venez-observer-leclipse-en-bonne-compagnie-5a415acb"
  },
  {
   "title": "Exposition : Hommage à Jacqueline Anselme",
@@ -1383,8 +1295,8 @@
   "source_id": "html-bourgoin",
   "sector": "isere",
   "end": "2026-08-29",
-  "description": "L'espace Carnot accueillera une exposition hommage à l'artiste.",
-  "tldr": "Exposition rendant hommage à l'artiste Jacqueline Anselme à l'espace Carnot.",
+  "description": "L'espace Carnot accueillera une exposition hommage à l'artiste",
+  "tldr": "Exposition hommage à l'artiste Jacqueline Anselme à l'espace Carnot.",
   "category": "expo",
   "tags": [],
   "audience": [
@@ -1406,12 +1318,11 @@
   "source_id": "html-bourgoin",
   "sector": "isere",
   "end": null,
-  "description": "A l'occasion des Festiv'été, les Cinés-été reviennent en plein air, dans les parcs.",
+  "description": "A l'occasion des Festivi'été, les Cinés-été reviennent en plein air, dans les parcs",
   "tldr": null,
   "category": "cinema",
   "tags": [],
   "audience": [
-   "famille",
    "enfants"
   ],
   "commune": "Bourgoin-Jallieu",
@@ -1430,8 +1341,8 @@
   "source_id": "html-bourgoin",
   "sector": "isere",
   "end": null,
-  "description": "Nationale - Championnat 2026/27 : 1ère journée.",
-  "tldr": null,
+  "description": "Nationale - Championnat 2026/27 : 1ère journée",
+  "tldr": "Match de rugby en Nationale (championnat 2026/27, 1ère journée) entre le CSBJ et l'OL Marcquois.",
   "category": "sport",
   "tags": [],
   "audience": [
@@ -1453,13 +1364,12 @@
   "source_id": "html-bourgoin",
   "sector": "isere",
   "end": null,
-  "description": "Participez à la traditionnelle Fête du Pays Berjallien, organisée par la Ville de ...",
+  "description": "Participez à la traditionnelle Fête du Pays Berjallien, organisée par la Ville",
   "tldr": null,
   "category": "fete",
   "tags": [],
   "audience": [
-   "famille",
-   "tous"
+   "famille"
   ],
   "commune": "Bourgoin-Jallieu",
   "address": null,
@@ -1477,13 +1387,12 @@
   "source_id": "html-bourgoin",
   "sector": "isere",
   "end": null,
-  "description": "Offrez-vous un dernier moment de détente avant la rentrée scolaire : la Ville ...",
+  "description": "Offrez-vous un dernier moment de détente avant la rentrée scolaire : la Ville",
   "tldr": null,
   "category": "fete",
   "tags": [],
   "audience": [
-   "famille",
-   "enfants"
+   "famille"
   ],
   "commune": "Bourgoin-Jallieu",
   "address": null,
@@ -1501,7 +1410,7 @@
   "source_id": "html-bourgoin",
   "sector": "isere",
   "end": "2026-09-05",
-  "description": "6 concerts dans un lieu enchanteur : le parc des Lilattes. Une programmation ...",
+  "description": "6 concerts dans un lieu enchanteur : le parc des Lilattes.",
   "tldr": null,
   "category": "festival",
   "tags": [],
@@ -1524,7 +1433,7 @@
   "source_id": "html-bourgoin",
   "sector": "isere",
   "end": null,
-  "description": "Une adaptation de la comédie musicale 'Notre Dame de Paris'.",
+  "description": "Une adaptation de la comédie musicale \" Notre Dame de Paris \"",
   "tldr": null,
   "category": "spectacle",
   "tags": [],
@@ -1542,18 +1451,17 @@
   "id": "esmeralda-le-nouveau-spectacle-de-la-compagnie-vocale-ca0eb853"
  },
  {
-  "title": "TJV 26-27 : Lever de rideau avec \"Secret(s) médical\" | Michel Cymes",
+  "title": "TJV 26-27 : Lever de rideau avec \" Secret(s) médical \" | Michel Cymes",
   "start": "2026-10-10T00:00:00",
   "source_id": "html-bourgoin",
   "sector": "isere",
   "end": null,
-  "description": "Théâtre.",
+  "description": "Théâtre",
   "tldr": null,
   "category": "spectacle",
   "tags": [],
   "audience": [
-   "adultes",
-   "seniors"
+   "adultes"
   ],
   "commune": "Bourgoin-Jallieu",
   "address": null,
@@ -1563,6 +1471,6 @@
   "price_text": null,
   "url": "https://www.bourgoinjallieu.fr/agenda/662-tjv-26-27-lever-de-rideau-avec-secret-s-medical-michel-cymes",
   "image": null,
-  "id": "tjv-26-27-lever-de-rideau-avec-secret-s-medical-michel-cymes-8ed6c004"
+  "id": "tjv-26-27-lever-de-rideau-avec-secret-s-medical-michel-cymes-cae55556"
  }
 ]
