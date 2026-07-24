@@ -18,13 +18,47 @@ USER_AGENT = (
 )
 TIMEOUT = 20
 RETRIES = 2  # tentatives supplémentaires sur aléa réseau transitoire
+MAX_REDIRECTS = 5
+
+# Mode garde-fou : activé UNIQUEMENT quand on récupère une URL soumise par un
+# tiers (module « proposer une source »). Valide l'URL et chaque redirection
+# contre les IP internes (anti-SSRF). Désactivé pendant le crawl normal (les
+# sources du registre sont relues par un humain).
+_ssrf_guard = False
+
+
+def set_ssrf_guard(enabled: bool) -> None:
+    global _ssrf_guard
+    _ssrf_guard = enabled
+
+
+def _get(url: str, headers: dict, allow_redirects: bool, **kwargs) -> requests.Response:
+    """requests.get, avec suivi manuel + revalidation des redirections quand le
+    garde-fou SSRF est actif (une redirection peut viser une IP interne)."""
+    if not _ssrf_guard:
+        return requests.get(
+            url, headers=headers, timeout=TIMEOUT, allow_redirects=allow_redirects, **kwargs
+        )
+    from ..security import validate_public_url
+
+    for _ in range(MAX_REDIRECTS + 1):
+        validate_public_url(url)
+        resp = requests.get(
+            url, headers=headers, timeout=TIMEOUT, allow_redirects=False, **kwargs
+        )
+        if allow_redirects and resp.is_redirect and resp.headers.get("Location"):
+            url = requests.compat.urljoin(url, resp.headers["Location"])
+            continue
+        return resp
+    raise requests.TooManyRedirects(f"plus de {MAX_REDIRECTS} redirections")
 
 
 def http_get(url: str, **kwargs) -> requests.Response:
     headers = {"User-Agent": USER_AGENT, **kwargs.pop("headers", {})}
+    allow_redirects = kwargs.pop("allow_redirects", True)
     for attempt in range(RETRIES + 1):
         try:
-            resp = requests.get(url, headers=headers, timeout=TIMEOUT, **kwargs)
+            resp = _get(url, headers, allow_redirects, **kwargs)
         except (requests.RequestException, IncompleteRead) as exc:
             # Aléa réseau (connexion coupée, lecture incomplète, timeout) : on
             # rejoue quelques fois avant d'abandonner la source — sinon un

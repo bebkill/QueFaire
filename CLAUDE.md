@@ -19,6 +19,8 @@ python -m pytest tests -q                        # les tests (sans réseau ni LL
 python -m quefaire crawl --sector isere --demo   # jeu de démo — voir AVERTISSEMENT
 python -m quefaire discover-oa --sector isere    # découverte d'agendas OpenAgenda
 python -m quefaire discover --sector isere       # découverte de sources par agent LLM
+python -m quefaire evaluate-source <url> [--json]  # événements UNIQUES d'une URL
+                                                   # candidate (garde-fous SSRF)
 
 # Site (Node ≥ 20)
 cd site && npm install
@@ -57,6 +59,9 @@ pipeline/quefaire/
                (filtre anti-paraphrase : écarte ce qui recopie titre/description)
   cache.py     cache adressé par contenu des appels LLM (extraction + clarify)
   discovery.py agent LLM qui propose de nouvelles sources (YAML à relire)
+  evaluate.py  évalue une URL candidate → événements UNIQUES (dédupliqués contre
+               le dataset publié) ; brique commune découverte auto / soumission
+  security.py  validation anti-SSRF des URLs tierces (base.set_ssrf_guard)
   export.py    → site/src/data/{events,sector}.json
 
 pipeline/cache/content.json       cache LLM (hash du texte → résultat), committé

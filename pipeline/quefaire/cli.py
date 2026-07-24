@@ -164,6 +164,16 @@ def main(argv: list[str] | None = None) -> int:
     p_oa.add_argument("--strict", action="store_true",
                       help="Ne garder que les agendas dont le titre mentionne la commune")
 
+    p_eval = sub.add_parser(
+        "evaluate-source",
+        help="Évaluer une URL candidate : événements uniques apportés (garde-fous SSRF)",
+    )
+    p_eval.add_argument("url")
+    p_eval.add_argument("--sector", default="isere")
+    p_eval.add_argument("--type", dest="source_type", default=None, choices=["html", "rss", "ical"])
+    p_eval.add_argument("--commune", default=None, help="Commune par défaut si la source est communale")
+    p_eval.add_argument("--json", action="store_true", help="Sortie JSON (pour un workflow)")
+
     sub.add_parser("sectors", help="Lister les secteurs disponibles")
 
     args = parser.parse_args(argv)
@@ -182,6 +192,29 @@ def main(argv: list[str] | None = None) -> int:
     if args.cmd == "discover-oa":
         communes = [c.strip() for c in args.communes.split(",")] if args.communes else None
         print(discover_openagenda(args.sector, communes, args.strict))
+        return 0
+    if args.cmd == "evaluate-source":
+        import json
+
+        from .evaluate import evaluate_url
+        from .security import UnsafeUrlError
+
+        try:
+            report = evaluate_url(
+                args.url, args.sector, source_type=args.source_type, commune=args.commune
+            )
+        except UnsafeUrlError as exc:
+            log.error("URL refusée par les contrôles de sécurité : %s", exc)
+            return 1
+        if args.json:
+            print(json.dumps(report, ensure_ascii=False, indent=2))
+        else:
+            print(
+                f"{report['unique']} événement(s) unique(s) sur {report['fetched']} extrait(s) "
+                f"— {report['duplicates']} doublon(s) avec l'existant\n{report['url']}"
+            )
+            for e in report["events"][:20]:
+                print(f"  • {e['start'][:10]}  {e['title']}  [{e['commune'] or '?'}]")
         return 0
     return 2
 

@@ -609,6 +609,83 @@ def test_cache_save_prunes_unused_keys(tmp_path, monkeypatch):
     assert set(saved) == {"extract:keep", "extract:new"}  # 'stale' élaguée
 
 
+def test_validate_public_url_accepts_public_rejects_unsafe():
+    from quefaire.security import UnsafeUrlError, validate_public_url
+
+    validate_public_url("https://93.184.216.34/agenda")  # IP publique littérale : OK
+
+    unsafe = [
+        "http://127.0.0.1/",                       # loopback
+        "http://169.254.169.254/latest/meta-data/",  # métadonnées cloud
+        "http://10.1.2.3/agenda",                  # réseau privé
+        "http://[::1]/",                           # loopback IPv6
+        "ftp://exemple.fr/",                        # schéma interdit
+        "file:///etc/passwd",                      # schéma interdit
+        "http://user:pass@93.184.216.34/",         # identifiants dans l'URL
+        "https://93.184.216.34:8080/",             # port détourné
+    ]
+    for url in unsafe:
+        with pytest.raises(UnsafeUrlError):
+            validate_public_url(url)
+
+
+def test_evaluate_url_counts_unique_events(monkeypatch):
+    from quefaire import evaluate
+
+    ev_new = make(title="Concert inédit au kiosque")
+    ev_dup = make(title="Marché hebdomadaire", commune="Grenoble")
+    monkeypatch.setattr(evaluate, "fetch_source", lambda source, sector: [ev_new, ev_dup])
+
+    known = {ev_dup.dedupe_key()}
+    report = evaluate.evaluate_url(
+        "https://93.184.216.34/agenda", "isere", source_type="html", keys=known
+    )
+    assert report["fetched"] == 2
+    assert report["unique"] == 1
+    assert report["duplicates"] == 1
+    assert report["events"][0]["title"] == "Concert inédit au kiosque"
+
+
+def test_evaluate_url_rejects_internal_target(monkeypatch):
+    from quefaire import evaluate
+    from quefaire.security import UnsafeUrlError
+
+    def must_not_fetch(*a, **k):
+        raise AssertionError("le fetch ne doit pas avoir lieu pour une URL refusée")
+
+    monkeypatch.setattr(evaluate, "fetch_source", must_not_fetch)
+    with pytest.raises(UnsafeUrlError):
+        evaluate.evaluate_url("http://169.254.169.254/", "isere", source_type="html")
+
+
+def test_http_get_guard_blocks_redirect_to_internal(monkeypatch):
+    """Sous garde-fou, une redirection vers une IP interne est bloquée avant
+    d'être suivie (anti-SSRF par rebond)."""
+    from quefaire.fetchers import base
+    from quefaire.security import UnsafeUrlError
+
+    calls = []
+
+    class FakeResp:
+        def __init__(self, code, location=None):
+            self.status_code = code
+            self.headers = {"Location": location} if location else {}
+            self.is_redirect = code in (301, 302, 303, 307, 308)
+
+    def fake_get(url, **kwargs):
+        calls.append(url)
+        return FakeResp(302, "http://127.0.0.1/")  # redirige vers du loopback
+
+    monkeypatch.setattr(base.requests, "get", fake_get)
+    base.set_ssrf_guard(True)
+    try:
+        with pytest.raises(UnsafeUrlError):
+            base.http_get("https://93.184.216.34/")
+    finally:
+        base.set_ssrf_guard(False)
+    assert calls == ["https://93.184.216.34/"]  # l'URL interne n'a jamais été requêtée
+
+
 def test_http_get_retries_on_transient_network_error(monkeypatch):
     """Un aléa réseau ponctuel (IncompleteRead) est rejoué au lieu de faire
     perdre la source ; un statut HTTP explicite (404) n'est pas rejoué."""
