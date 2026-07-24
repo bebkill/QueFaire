@@ -159,10 +159,16 @@ def discover_openagenda(sector_id: str, communes: list[str] | None, strict: bool
     return yaml.safe_dump(candidates, allow_unicode=True, sort_keys=False)
 
 
-def suggest(sector_id: str) -> list[dict]:
-    """Candidates de sources NOUVELLES (URL non déjà référencée) via les outils
-    de découverte (OpenAgenda + agent LLM si dispo). Pour le workflow qui ouvre
-    une issue de suggestion par source — un humain confirme avant activation."""
+def suggest(sector_id: str, use_llm: bool = False) -> list[dict]:
+    """Candidates de sources NOUVELLES (URL non déjà référencée). Pour le
+    workflow qui ouvre une issue de suggestion par source — un humain confirme
+    avant activation.
+
+    Par défaut, seule la découverte OpenAgenda (déterministe, rapide) est
+    utilisée : adaptée à un job planifié. L'agent LLM `discover` (lent, coûteux,
+    parcourt les pages commune par commune) n'est lancé que si `use_llm` — à
+    réserver au déclenchement manuel.
+    """
     import yaml
 
     from .registry import _existing_urls
@@ -174,15 +180,16 @@ def suggest(sector_id: str) -> list[dict]:
     except Exception as exc:  # découverte best-effort : un échec ne bloque pas
         log.warning("[suggest] discover-oa indisponible : %s", exc)
 
-    from .llm import llm_available
+    if use_llm:
+        from .llm import llm_available
 
-    if llm_available():
-        try:
-            from .discovery import discover as _discover
+        if llm_available():
+            try:
+                from .discovery import discover as _discover
 
-            candidates += yaml.safe_load(_discover(load_sector(sector_id))) or []
-        except Exception as exc:
-            log.warning("[suggest] discover (LLM) indisponible : %s", exc)
+                candidates += yaml.safe_load(_discover(load_sector(sector_id))) or []
+            except Exception as exc:
+                log.warning("[suggest] discover (LLM) indisponible : %s", exc)
 
     seen: set[str] = set()
     new: list[dict] = []
@@ -278,6 +285,10 @@ def main(argv: list[str] | None = None) -> int:
         "suggest", help="Lister en JSON les sources candidates nouvelles (pour ouvrir des issues)"
     )
     p_sug.add_argument("--sector", default="isere")
+    p_sug.add_argument(
+        "--with-llm", action="store_true", dest="with_llm",
+        help="Inclure l'agent LLM (lent) en plus d'OpenAgenda — pour un run manuel",
+    )
 
     p_add = sub.add_parser(
         "add-source",
@@ -308,7 +319,7 @@ def main(argv: list[str] | None = None) -> int:
     if args.cmd == "suggest":
         import json
 
-        print(json.dumps(suggest(args.sector), ensure_ascii=False))
+        print(json.dumps(suggest(args.sector, use_llm=args.with_llm), ensure_ascii=False))
         return 0
     if args.cmd == "add-source":
         return add_source(args.sector, args.file)

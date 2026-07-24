@@ -12,6 +12,10 @@ on:
     - cron: "0 5 * * 1" # lundi 07h (Paris, été)
   workflow_dispatch:
     inputs:
+      with_llm:
+        description: "Inclure l'agent LLM (lent) en plus d'OpenAgenda"
+        type: boolean
+        default: false
       communes:
         description: "Communes ciblées, séparées par des virgules (vide = tout le secteur)"
         required: false
@@ -55,12 +59,18 @@ jobs:
           GH_TOKEN: ${{ github.token }}
           REPO: ${{ github.repository }}
         run: |
-          if [ -n "$QUEFAIRE_LLM" ] || [ -n "$QUEFAIRE_LLM2" ]; then pip install autoagent-core; fi
+          # Planifié : OpenAgenda seul (rapide, déterministe). L'agent LLM (lent)
+          # n'est ajouté qu'à la demande via l'input with_llm.
+          WITH_LLM=""
+          if [ "${{ inputs.with_llm }}" = "true" ]; then
+            WITH_LLM="--with-llm"
+            if [ -n "$QUEFAIRE_LLM" ] || [ -n "$QUEFAIRE_LLM2" ]; then pip install autoagent-core; fi
+          fi
           # Les labels doivent exister pour `gh issue create --label`.
           gh label create source-suggestion --color 0e8a16 --description "Source proposée, à valider" 2>/dev/null || true
           gh label create approved --color 5319e7 --description "Suggestion validée par un éditeur" 2>/dev/null || true
 
-          python -m quefaire suggest --sector isere > candidates.json
+          python -m quefaire suggest --sector isere $WITH_LLM > candidates.json
           cat candidates.json
 
           python - "$REPO" <<'PY'
