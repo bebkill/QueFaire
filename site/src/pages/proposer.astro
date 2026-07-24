@@ -1,0 +1,103 @@
+---
+import Base from '../layouts/Base.astro';
+import sector from '../data/sector.json';
+
+// Dépôt cible pour la file de suggestions (issues GitHub).
+const REPO = 'bebkill/QueFaire';
+---
+
+<Base title={`Proposer une source — Que faire en ${sector.name} ?`}>
+  <main class="wrap prose">
+    <h1>Proposer une source</h1>
+    <p>
+      Un agenda, un flux d'événements, une page de sorties qui manque&nbsp;? Proposez-la.
+      Votre suggestion arrive dans une file de modération&nbsp;: un éditeur la valide
+      avant qu'elle soit ajoutée au collecteur. Rien n'est publié automatiquement.
+    </p>
+
+    <form id="suggest-form" class="suggest-form">
+      <label>
+        Type de source
+        <select id="s-type" required>
+          <option value="html">Page agenda (site web)</option>
+          <option value="rss">Flux RSS / Atom</option>
+          <option value="ical">Fichier iCal (.ics)</option>
+          <option value="openagenda">Agenda OpenAgenda (identifiant)</option>
+        </select>
+      </label>
+      <label>
+        Lien (ou identifiant OpenAgenda)
+        <input id="s-url" type="text" required placeholder="https://exemple.fr/agenda" />
+      </label>
+      <label>
+        Nom de la source
+        <input id="s-name" type="text" required placeholder="Office de tourisme de …" />
+      </label>
+      <label>
+        Commune (facultatif)
+        <input id="s-commune" type="text" placeholder="Grenoble" />
+      </label>
+      <p id="s-error" class="s-error" role="alert"></p>
+      <button type="submit">Vérifier et proposer sur GitHub →</button>
+      <p class="s-note">
+        L'envoi ouvre une <strong>issue GitHub pré-remplie</strong> (compte GitHub requis).
+        Les liens sont contrôlés automatiquement côté serveur&nbsp;: http/https uniquement,
+        pas d'adresses internes, et le contenu n'est jamais exécuté.
+      </p>
+    </form>
+  </main>
+</Base>
+
+<script define:vars={{ REPO }}>
+  const form = document.getElementById('suggest-form');
+  const errEl = document.getElementById('s-error');
+
+  const slugify = (s) =>
+    s.normalize('NFKD').replace(/[̀-ͯ]/g, '')
+      .toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '').slice(0, 40) || 'source';
+
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    errEl.textContent = '';
+    const type = document.getElementById('s-type').value;
+    const url = document.getElementById('s-url').value.trim();
+    const name = document.getElementById('s-name').value.trim();
+    const commune = document.getElementById('s-commune').value.trim();
+
+    // Contrôle client (confort) : le vrai contrôle de sécurité est côté CI.
+    if (type !== 'openagenda' && !/^https?:\/\/.+/i.test(url)) {
+      errEl.textContent = 'Le lien doit commencer par http:// ou https://';
+      return;
+    }
+    if (!name) {
+      errEl.textContent = 'Merci d’indiquer un nom.';
+      return;
+    }
+
+    const id = `${type === 'openagenda' ? 'oa' : type}-${slugify(name)}`;
+    const yaml = [
+      '```yaml',
+      `- id: ${id}`,
+      `  name: ${name}`,
+      `  type: ${type}`,
+      `  url: ${url}`,
+      ...(commune ? [`  commune: ${commune}`] : []),
+      '```',
+    ].join('\n');
+
+    const body = [
+      'Proposition de source via le formulaire du site.',
+      '',
+      'Un éditeur valide (label `approved`) avant activation.',
+      '',
+      yaml,
+    ].join('\n');
+
+    const issueUrl =
+      `https://github.com/${REPO}/issues/new` +
+      `?labels=source-suggestion` +
+      `&title=${encodeURIComponent('Source : ' + name)}` +
+      `&body=${encodeURIComponent(body)}`;
+    window.open(issueUrl, '_blank', 'noopener');
+  });
+</script>

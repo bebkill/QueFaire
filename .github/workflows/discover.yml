@@ -1,10 +1,15 @@
-# Découverte de sources à la demande, sans installation locale.
-# Actions → « Discover sources » → Run workflow.
-# Le YAML des candidats sort dans le résumé du job (et en artefact) :
-# relire, coller dans pipeline/sources/<secteur>.yaml, passer enabled: true.
+# Découverte de sources (Option A).
+# - Planifié (1×/semaine) : propose de nouvelles sources candidates sous forme
+#   d'ISSUES de suggestion (file de modération). Rien n'est activé
+#   automatiquement — un éditeur confirme via le label `approved`, ce qui
+#   déclenche apply-source.yml. Pas d'aperçu automatique (coûteux).
+# - À la demande (workflow_dispatch) : dépose aussi le YAML des candidats dans
+#   le résumé du job pour relecture directe.
 name: Discover sources
 
 on:
+  schedule:
+    - cron: "0 5 * * 1" # lundi 07h (Paris, été)
   workflow_dispatch:
     inputs:
       communes:
@@ -15,6 +20,14 @@ on:
         description: "Ne garder que les agendas citant la commune dans leur titre"
         type: boolean
         default: true
+
+permissions:
+  contents: read
+  issues: write
+
+concurrency:
+  group: discover
+  cancel-in-progress: false
 
 jobs:
   discover:
@@ -29,7 +42,64 @@ jobs:
       - name: Install pipeline
         run: pip install -r pipeline/requirements.txt
 
-      - name: Discover OpenAgenda agendas
+      - name: Découverte → issues de suggestion
+        working-directory: pipeline
+        env:
+          OPENAGENDA_KEY: ${{ secrets.OPENAGENDA_KEY }}
+          QUEFAIRE_LLM: ${{ vars.QUEFAIRE_LLM || secrets.QUEFAIRE_LLM }}
+          QUEFAIRE_LLM2: ${{ vars.QUEFAIRE_LLM2 || secrets.QUEFAIRE_LLM2 }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          DEEPSEEK_API_KEY: ${{ secrets.DEEPSEEK_API_KEY }}
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+          MISTRAL_API_KEY: ${{ secrets.MISTRAL_API_KEY }}
+          GH_TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}
+        run: |
+          if [ -n "$QUEFAIRE_LLM" ] || [ -n "$QUEFAIRE_LLM2" ]; then pip install autoagent-core; fi
+          # Les labels doivent exister pour `gh issue create --label`.
+          gh label create source-suggestion --color 0e8a16 --description "Source proposée, à valider" 2>/dev/null || true
+          gh label create approved --color 5319e7 --description "Suggestion validée par un éditeur" 2>/dev/null || true
+
+          python -m quefaire suggest --sector isere > candidates.json
+          cat candidates.json
+
+          python - "$REPO" <<'PY'
+          import json, subprocess, sys
+
+          repo = sys.argv[1]
+          candidates = json.load(open("candidates.json"))
+
+          def has_open_issue(url: str) -> bool:
+              q = f'repo:{repo} is:issue is:open label:source-suggestion in:body "{url}"'
+              out = subprocess.run(
+                  ["gh", "issue", "list", "--search", q, "--json", "number"],
+                  capture_output=True, text=True,
+              ).stdout.strip()
+              return bool(out and out != "[]")
+
+          created = 0
+          for c in candidates:
+              url = str(c.get("url", "")).strip()
+              if not url or has_open_issue(url):
+                  continue
+              lines = [f"- id: {c.get('id','')}", f"  name: {c.get('name','')}",
+                       f"  type: {c.get('type','')}", f"  url: {url}"]
+              if c.get("commune"):
+                  lines.append(f"  commune: {c['commune']}")
+              body = ("Source candidate détectée automatiquement. Un éditeur valide "
+                      "avant activation en ajoutant le label `approved`.\n\n"
+                      "```yaml\n" + "\n".join(lines) + "\n```\n")
+              subprocess.run(
+                  ["gh", "issue", "create", "--title", f"Source : {c.get('name') or url}",
+                   "--body", body, "--label", "source-suggestion"],
+                  check=False,
+              )
+              created += 1
+          print(f"{created} issue(s) de suggestion créée(s).")
+          PY
+
+      - name: Résumé (relecture manuelle)
+        if: github.event_name == 'workflow_dispatch'
         working-directory: pipeline
         env:
           OPENAGENDA_KEY: ${{ secrets.OPENAGENDA_KEY }}
@@ -41,14 +111,7 @@ jobs:
           {
             echo "## Agendas OpenAgenda candidats"
             echo ""
-            echo "À relire puis coller dans \`pipeline/sources/isere.yaml\` (passer \`enabled: true\`) :"
-            echo ""
             echo '```yaml'
             cat /tmp/candidates.yaml
             echo '```'
           } >> "$GITHUB_STEP_SUMMARY"
-
-      - uses: actions/upload-artifact@v4
-        with:
-          name: openagenda-candidates
-          path: /tmp/candidates.yaml
