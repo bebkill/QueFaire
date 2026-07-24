@@ -34,7 +34,6 @@
   "Claix",
   "Corbelin",
   "Corenc",
-  "Corrençon-en-Vercors",
   "Creys-Mépieu",
   "Crolles",
   "Crémieu",
@@ -42,7 +41,6 @@
   "Domène",
   "Eybens",
   "Fontaine",
-  "Frontonas",
   "Gières",
   "Grenoble",
   "Heyrieux",
@@ -105,7 +103,6 @@
   "Vizille",
   "Voiron",
   "Voreppe",
-  "Vénérieu",
   "Vézeronce-Curtin",
   "Échirolles"
  ],
@@ -201,6 +198,6 @@
    "url": "https://www.chamrousse.com/agenda.html"
   }
  ],
- "generated_at": "2026-07-23T16:19:24",
- "event_count": 73
+ "generated_at": "2026-07-24T06:34:14",
+ "event_count": 69
 }
