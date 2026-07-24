@@ -18,7 +18,7 @@ from .fetchers import fetch_source
 from .geocode import geocode
 from .models import Event
 from .normalize import enrich
-from .registry import available_sectors, load_sector
+from .registry import available_sectors, load_sector, set_enabled
 
 log = logging.getLogger("quefaire")
 
@@ -41,16 +41,34 @@ def crawl(sector_id: str, demo: bool, out: Path | None) -> int:
         events = demo_events(sector_id)
         log.info("[demo] %d événements de démonstration", len(events))
     else:
+        from datetime import date
+
+        from .health import STALE_DAYS, health
+
+        today = date.today().isoformat()
         failures = 0
         for source in sector.sources:
+            evts: list[Event] = []
             try:
-                events.extend(fetch_source(source, sector_id))
+                evts = fetch_source(source, sector_id)
             except Exception as exc:
                 failures += 1
                 log.error("[%s] échec : %s", source.id, exc)
+            events.extend(evts)
+            # « Produit » = au moins un événement À VENIR (le passé ne compte pas).
+            health.record(source.id, any(e.start[:10] >= today for e in evts), today)
         if failures and not events:
             log.error("Toutes les sources ont échoué — export annulé pour ne pas vider le site.")
             return 1
+
+        # Retrait auto des sources abandonnées (plus rien depuis > 1 mois).
+        for sid in health.stale_ids([s.id for s in sector.sources], today):
+            if set_enabled(sector_id, sid, False):
+                log.warning(
+                    "[health] source « %s » désactivée : aucun événement depuis > %d jours",
+                    sid, STALE_DAYS,
+                )
+        health.save(keep_ids={s.id for s in sector.sources})
 
     events = [enrich(geocode(e, sector_id)) for e in events]
     events = dedupe(events)
@@ -141,6 +159,88 @@ def discover_openagenda(sector_id: str, communes: list[str] | None, strict: bool
     return yaml.safe_dump(candidates, allow_unicode=True, sort_keys=False)
 
 
+def suggest(sector_id: str) -> list[dict]:
+    """Candidates de sources NOUVELLES (URL non déjà référencée) via les outils
+    de découverte (OpenAgenda + agent LLM si dispo). Pour le workflow qui ouvre
+    une issue de suggestion par source — un humain confirme avant activation."""
+    import yaml
+
+    from .registry import _existing_urls
+
+    existing = _existing_urls(sector_id)
+    candidates: list[dict] = []
+    try:
+        candidates += yaml.safe_load(discover_openagenda(sector_id, None, False)) or []
+    except Exception as exc:  # découverte best-effort : un échec ne bloque pas
+        log.warning("[suggest] discover-oa indisponible : %s", exc)
+
+    from .llm import llm_available
+
+    if llm_available():
+        try:
+            from .discovery import discover as _discover
+
+            candidates += yaml.safe_load(_discover(load_sector(sector_id))) or []
+        except Exception as exc:
+            log.warning("[suggest] discover (LLM) indisponible : %s", exc)
+
+    seen: set[str] = set()
+    new: list[dict] = []
+    for c in candidates:
+        if not isinstance(c, dict):
+            continue
+        url = str(c.get("url", "")).strip()
+        if not url or url in existing or url in seen:
+            continue
+        seen.add(url)
+        new.append({k: c[k] for k in ("id", "name", "type", "url", "commune") if c.get(k)})
+    log.info("[suggest] %d source(s) candidate(s) nouvelle(s) pour %s", len(new), sector_id)
+    return new
+
+
+def add_source(sector_id: str, path: Path | None) -> int:
+    """Ajoute au registre les sources décrites dans un bloc YAML (typiquement le
+    corps d'une issue de suggestion approuvée). Valide chaque entrée (type connu,
+    URL http/https sûre pour les sources web) avant ajout ; les entrées ajoutées
+    sont `enabled: true`. Doublons d'URL ignorés."""
+    import re
+
+    import yaml
+
+    from .registry import append_source
+    from .security import UnsafeUrlError, validate_public_url
+
+    text = path.read_text(encoding="utf-8") if path else sys.stdin.read()
+    m = re.search(r"```(?:ya?ml)?\s*(.*?)```", text, re.S)  # bloc ```yaml``` si présent
+    payload = m.group(1) if m else text
+    try:
+        data = yaml.safe_load(payload)
+    except yaml.YAMLError as exc:
+        log.error("YAML illisible : %s", exc)
+        return 1
+    entries = data if isinstance(data, list) else [data] if isinstance(data, dict) else []
+    added = 0
+    for entry in entries:
+        if not isinstance(entry, dict):
+            continue
+        if entry.get("type") in ("html", "rss", "ical"):
+            try:
+                validate_public_url(str(entry.get("url", "")))
+            except UnsafeUrlError as exc:
+                log.error("URL refusée (%s) : %s", exc, entry.get("url"))
+                continue
+        try:
+            if append_source(sector_id, entry):
+                added += 1
+                log.info("[add-source] ajoutée : %s (%s)", entry.get("id"), entry.get("url"))
+            else:
+                log.info("[add-source] ignorée (déjà présente) : %s", entry.get("url"))
+        except ValueError as exc:
+            log.error("[add-source] entrée invalide ignorée : %s", exc)
+    log.info("[add-source] %d source(s) ajoutée(s) au secteur %s", added, sector_id)
+    return 0
+
+
 def main(argv: list[str] | None = None) -> int:
     logging.basicConfig(level=logging.INFO, format="%(levelname)s %(message)s")
     parser = argparse.ArgumentParser(prog="quefaire")
@@ -174,6 +274,18 @@ def main(argv: list[str] | None = None) -> int:
     p_eval.add_argument("--commune", default=None, help="Commune par défaut si la source est communale")
     p_eval.add_argument("--json", action="store_true", help="Sortie JSON (pour un workflow)")
 
+    p_sug = sub.add_parser(
+        "suggest", help="Lister en JSON les sources candidates nouvelles (pour ouvrir des issues)"
+    )
+    p_sug.add_argument("--sector", default="isere")
+
+    p_add = sub.add_parser(
+        "add-source",
+        help="Ajouter au registre les sources d'un bloc YAML (corps d'issue approuvée)",
+    )
+    p_add.add_argument("--sector", default="isere")
+    p_add.add_argument("--file", type=Path, default=None, help="Fichier (sinon stdin)")
+
     sub.add_parser("sectors", help="Lister les secteurs disponibles")
 
     args = parser.parse_args(argv)
@@ -193,6 +305,13 @@ def main(argv: list[str] | None = None) -> int:
         communes = [c.strip() for c in args.communes.split(",")] if args.communes else None
         print(discover_openagenda(args.sector, communes, args.strict))
         return 0
+    if args.cmd == "suggest":
+        import json
+
+        print(json.dumps(suggest(args.sector), ensure_ascii=False))
+        return 0
+    if args.cmd == "add-source":
+        return add_source(args.sector, args.file)
     if args.cmd == "evaluate-source":
         import json
 

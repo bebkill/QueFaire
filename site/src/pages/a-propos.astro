@@ -1,6 +1,7 @@
 ---
 import Base from '../layouts/Base.astro';
 import sector from '../data/sector.json';
+const base = import.meta.env.BASE_URL;
 ---
 
 <Base title={`À propos — Que faire en ${sector.name} ?`}>
@@ -38,8 +39,10 @@ import sector from '../data/sector.json';
       </ul>
     )}
     <p>
-      Une source manque ? Proposez-la : le registre est un simple fichier
-      <code>sources/{sector.id}.yaml</code> dans le dépôt du projet.
+      Une source manque ? <a href={`${base}proposer/`}>Proposez-la en un clic</a> :
+      votre suggestion passe par une file de modération avant d'être ajoutée au
+      collecteur. (Le registre reste un simple fichier
+      <code>sources/{sector.id}.yaml</code> dans le dépôt.)
     </p>
 
     <h2>Et après ?</h2>

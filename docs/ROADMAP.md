@@ -18,6 +18,12 @@
       (ex : « Faites-vous une terrasse » = dîners en terrasse, pas du bricolage)
 - [x] LLM principal + backup (`QUEFAIRE_LLM` / `QUEFAIRE_LLM2`) avec bascule
       automatique quand le quota du principal est épuisé
+- [x] Cycle de vie des sources : évaluateur d'URL (événements uniques,
+      garde-fous anti-SSRF), découverte automatique hebdo → issues de
+      suggestion (`discover.yml`), module « proposer une source » sur le site →
+      issue GitHub pré-remplie, validation éditeur (label `approved` →
+      `apply-source.yml`), et retrait auto des sources sans événement depuis
+      > 1 mois (`health.py`)
 
 ## Ensuite
 

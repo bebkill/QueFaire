@@ -686,6 +686,76 @@ def test_http_get_guard_blocks_redirect_to_internal(monkeypatch):
     assert calls == ["https://93.184.216.34/"]  # l'URL interne n'a jamais été requêtée
 
 
+_SAMPLE_SOURCES = """sector:
+  name: Test
+sources:
+  # commentaire à préserver
+  - id: html-a
+    name: A
+    type: html
+    url: https://a.fr/agenda
+    enabled: true
+  - id: rss-b
+    name: B
+    type: rss
+    url: https://b.fr/rss
+    enabled: false
+"""
+
+
+def _sources_dir(tmp_path, monkeypatch):
+    import quefaire.registry as registry
+
+    (tmp_path / "test.yaml").write_text(_SAMPLE_SOURCES, encoding="utf-8")
+    monkeypatch.setattr(registry, "SOURCES_DIR", tmp_path)
+    return registry
+
+
+def test_registry_append_source_preserves_comments_and_dedups(tmp_path, monkeypatch):
+    registry = _sources_dir(tmp_path, monkeypatch)
+
+    ok = registry.append_source(
+        "test", {"id": "html-c", "name": "C", "type": "html", "url": "https://c.fr/a", "commune": "Vienne"}
+    )
+    assert ok is True
+    text = (tmp_path / "test.yaml").read_text(encoding="utf-8")
+    assert "commentaire à préserver" in text  # commentaires intacts
+    assert "id: html-c" in text and "enabled: true" in text
+    assert "commune: Vienne" in text
+    # Rechargé, le secteur voit bien la nouvelle source active.
+    assert "html-c" in {s.id for s in registry.load_sector("test").sources}
+    # Doublon d'URL → ignoré.
+    assert registry.append_source("test", {"id": "x", "name": "x", "type": "html", "url": "https://c.fr/a"}) is False
+
+
+def test_registry_set_enabled_flips_only_target(tmp_path, monkeypatch):
+    registry = _sources_dir(tmp_path, monkeypatch)
+
+    assert registry.set_enabled("test", "html-a", False) is True
+    text = (tmp_path / "test.yaml").read_text(encoding="utf-8")
+    assert "commentaire à préserver" in text
+    lines = text.splitlines()
+    # html-a passe à false, rss-b reste false, aucun autre changement.
+    assert any("id: html-a" in lines[i] and "enabled: false" in lines[i + 4] for i in range(len(lines) - 4))
+    assert registry.set_enabled("test", "html-a", False) is False  # déjà dans l'état
+
+
+def test_health_flags_stale_sources():
+    import quefaire.health as health_mod
+
+    h = health_mod._Health()
+    h._loaded = True  # pas de lecture disque
+    h.record("actif", produced=True, today="2026-01-01")
+    h.record("mort", produced=False, today="2026-01-01")
+    h.record("recent", produced=False, today="2026-02-14")
+
+    ids = ["actif", "mort", "recent"]
+    assert h.stale_ids(ids, today="2026-01-20") == []  # dans la fenêtre de grâce
+    stale = h.stale_ids(ids, today="2026-02-15")
+    assert set(stale) == {"actif", "mort"}  # > 30 j sans production
+    assert "recent" not in stale  # source fraîche épargnée
+
+
 def test_http_get_retries_on_transient_network_error(monkeypatch):
     """Un aléa réseau ponctuel (IncompleteRead) est rejoué au lieu de faire
     perdre la source ; un statut HTTP explicite (404) n'est pas rejoué."""

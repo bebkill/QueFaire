@@ -1,0 +1,56 @@
+# Application d'une source approuvée (file de modération).
+# Quand un ÉDITEUR habilité ajoute le label `approved` à une issue de suggestion
+# (seuls les comptes avec accès en écriture peuvent poser un label — c'est la
+# barrière de confiance), on lit le bloc YAML de l'issue, on l'ajoute au registre
+# (enabled: true) après contrôle de sécurité des URLs, on committe et on ferme.
+name: Appliquer une source approuvée
+
+on:
+  issues:
+    types: [labeled]
+
+permissions:
+  contents: write
+  issues: write
+
+jobs:
+  apply:
+    if: github.event.label.name == 'approved'
+    runs-on: ubuntu-latest
+    steps:
+      # Deploy key : pour pousser sur `main` protégé, comme refresh.yml.
+      - uses: actions/checkout@v4
+        with:
+          ssh-key: ${{ secrets.DATA_DEPLOY_KEY }}
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install pipeline
+        run: pip install -r pipeline/requirements.txt
+
+      - name: Ajouter la source, committer, fermer l'issue
+        env:
+          GH_TOKEN: ${{ github.token }}
+          ISSUE_BODY: ${{ github.event.issue.body }}
+          ISSUE_NUMBER: ${{ github.event.issue.number }}
+        run: |
+          printf '%s' "$ISSUE_BODY" > /tmp/issue-body.md
+          # add-source : parse le bloc ```yaml```, valide (type + URL anti-SSRF),
+          # ajoute au registre en enabled: true (doublons ignorés).
+          python -m quefaire add-source --sector isere --file /tmp/issue-body.md
+
+          git config user.name "quefaire-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add pipeline/sources
+          if git diff --cached --quiet; then
+            gh issue comment "$ISSUE_NUMBER" --body \
+              "Aucune source ajoutée (déjà présente, ou entrée/URL invalide). Voir les logs du workflow."
+          else
+            git commit -m "sources: ajout via suggestion #$ISSUE_NUMBER [skip ci]"
+            git push
+            gh issue comment "$ISSUE_NUMBER" --body \
+              "✅ Source ajoutée au registre (\`enabled: true\`). Elle sera collectée au prochain rafraîchissement."
+            gh issue close "$ISSUE_NUMBER" --reason completed
+          fi
