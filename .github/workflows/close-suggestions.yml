@@ -1,0 +1,34 @@
+# Maintenance : ferme en lot les issues de suggestion ouvertes (label
+# `source-suggestion`). Utilitaire MANUEL et protégé (saisir « close-all »).
+# Sert notamment à nettoyer un afflux de suggestions dû à une découverte trop
+# large. Ne touche jamais les issues déjà `approved` (en cours de traitement).
+name: Nettoyer les suggestions
+
+on:
+  workflow_dispatch:
+    inputs:
+      confirm:
+        description: 'Taper "close-all" pour confirmer la fermeture en lot'
+        required: true
+        default: ""
+
+permissions:
+  issues: write
+
+jobs:
+  close:
+    if: ${{ inputs.confirm == 'close-all' }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Fermer les issues source-suggestion ouvertes
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}
+        run: |
+          gh issue list --repo "$REPO" --label source-suggestion --state open \
+            --limit 1000 --search "-label:approved" --json number \
+            --jq '.[].number' > numbers.txt
+          echo "$(wc -l < numbers.txt) issue(s) à fermer."
+          while read -r n; do
+            [ -n "$n" ] && gh issue close "$n" --repo "$REPO" --reason "not planned"
+          done < numbers.txt

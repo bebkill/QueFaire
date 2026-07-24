@@ -22,6 +22,9 @@ from .registry import available_sectors, load_sector, set_enabled
 
 log = logging.getLogger("quefaire")
 
+# Plafond de suggestions ouvertes en un run (garde-fou anti-spam d'issues).
+MAX_SUGGESTIONS = 25
+
 
 def crawl(sector_id: str, demo: bool, out: Path | None) -> int:
     sector = load_sector(sector_id)
@@ -159,10 +162,22 @@ def discover_openagenda(sector_id: str, communes: list[str] | None, strict: bool
     return yaml.safe_dump(candidates, allow_unicode=True, sort_keys=False)
 
 
-def suggest(sector_id: str) -> list[dict]:
-    """Candidates de sources NOUVELLES (URL non déjà référencée) via les outils
-    de découverte (OpenAgenda + agent LLM si dispo). Pour le workflow qui ouvre
-    une issue de suggestion par source — un humain confirme avant activation."""
+def suggest(sector_id: str, use_llm: bool = False) -> list[dict]:
+    """Candidates de sources NOUVELLES (URL non déjà référencée). Pour le
+    workflow qui ouvre une issue de suggestion par source — un humain confirme
+    avant activation.
+
+    Par défaut, seule la découverte OpenAgenda (déterministe, rapide) est
+    utilisée : adaptée à un job planifié. L'agent LLM `discover` (lent, coûteux,
+    parcourt les pages commune par commune) n'est lancé que si `use_llm` — à
+    réserver au déclenchement manuel.
+
+    Garde-fous anti-spam (une issue par candidate) : OpenAgenda est interrogé en
+    mode STRICT (le titre de l'agenda doit citer la commune — sinon la recherche
+    floue ramène des agendas de toute la France), on ne garde que les agendas
+    AVEC des événements à venir (pas de dormants), et on plafonne le nombre.
+    """
+    import re
     import yaml
 
     from .registry import _existing_urls
@@ -170,19 +185,26 @@ def suggest(sector_id: str) -> list[dict]:
     existing = _existing_urls(sector_id)
     candidates: list[dict] = []
     try:
-        candidates += yaml.safe_load(discover_openagenda(sector_id, None, False)) or []
+        oa = yaml.safe_load(discover_openagenda(sector_id, None, strict=True)) or []
     except Exception as exc:  # découverte best-effort : un échec ne bloque pas
+        oa = []
         log.warning("[suggest] discover-oa indisponible : %s", exc)
+    # On n'ouvre une issue que pour un agenda VIVANT (≥ 1 événement à venir).
+    for c in oa:
+        m = isinstance(c, dict) and re.search(r"(\d+)\s+événements? à venir", c.get("comment", ""))
+        if m and int(m.group(1)) > 0:
+            candidates.append(c)
 
-    from .llm import llm_available
+    if use_llm:
+        from .llm import llm_available
 
-    if llm_available():
-        try:
-            from .discovery import discover as _discover
+        if llm_available():
+            try:
+                from .discovery import discover as _discover
 
-            candidates += yaml.safe_load(_discover(load_sector(sector_id))) or []
-        except Exception as exc:
-            log.warning("[suggest] discover (LLM) indisponible : %s", exc)
+                candidates += yaml.safe_load(_discover(load_sector(sector_id))) or []
+            except Exception as exc:
+                log.warning("[suggest] discover (LLM) indisponible : %s", exc)
 
     seen: set[str] = set()
     new: list[dict] = []
@@ -194,6 +216,9 @@ def suggest(sector_id: str) -> list[dict]:
             continue
         seen.add(url)
         new.append({k: c[k] for k in ("id", "name", "type", "url", "commune") if c.get(k)})
+        if len(new) >= MAX_SUGGESTIONS:  # plafond de sécurité : jamais de flot d'issues
+            log.warning("[suggest] plafond de %d candidates atteint — reste ignoré", MAX_SUGGESTIONS)
+            break
     log.info("[suggest] %d source(s) candidate(s) nouvelle(s) pour %s", len(new), sector_id)
     return new
 
@@ -278,6 +303,10 @@ def main(argv: list[str] | None = None) -> int:
         "suggest", help="Lister en JSON les sources candidates nouvelles (pour ouvrir des issues)"
     )
     p_sug.add_argument("--sector", default="isere")
+    p_sug.add_argument(
+        "--with-llm", action="store_true", dest="with_llm",
+        help="Inclure l'agent LLM (lent) en plus d'OpenAgenda — pour un run manuel",
+    )
 
     p_add = sub.add_parser(
         "add-source",
@@ -308,7 +337,7 @@ def main(argv: list[str] | None = None) -> int:
     if args.cmd == "suggest":
         import json
 
-        print(json.dumps(suggest(args.sector), ensure_ascii=False))
+        print(json.dumps(suggest(args.sector, use_llm=args.with_llm), ensure_ascii=False))
         return 0
     if args.cmd == "add-source":
         return add_source(args.sector, args.file)
