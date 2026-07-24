@@ -740,6 +740,31 @@ def test_registry_set_enabled_flips_only_target(tmp_path, monkeypatch):
     assert registry.set_enabled("test", "html-a", False) is False  # déjà dans l'état
 
 
+def test_suggest_keeps_only_live_agendas_and_caps(monkeypatch):
+    """Anti-spam : suggest n'ouvre d'issue que pour les agendas avec événements
+    à venir, et plafonne le nombre (leçon : un run avait créé 540 issues)."""
+    import yaml
+
+    import quefaire.cli as cli
+    import quefaire.registry as registry
+
+    cands = []
+    for i in range(40):  # i%3 == 0 → dormant (0 événement), sinon vivant
+        cands.append({
+            "id": f"oa-{i}", "name": f"Agenda {i}", "type": "openagenda", "url": str(i),
+            "commune": "Grenoble", "comment": f"{i % 3} événements à venir, trouvé via : Grenoble",
+        })
+    cands.append({  # compte inconnu (pas de « à venir ») → écarté
+        "id": "oa-x", "name": "X", "type": "openagenda", "url": "999", "comment": "trouvé via : Grenoble",
+    })
+    monkeypatch.setattr(cli, "discover_openagenda", lambda s, c, strict: yaml.safe_dump(cands, allow_unicode=True))
+    monkeypatch.setattr(registry, "_existing_urls", lambda s: set())
+
+    out = cli.suggest("isere", use_llm=False)
+    assert len(out) == cli.MAX_SUGGESTIONS  # plafonné
+    assert "999" not in {c["url"] for c in out}  # dormant/inconnu écarté
+
+
 def test_health_flags_stale_sources():
     import quefaire.health as health_mod
 
