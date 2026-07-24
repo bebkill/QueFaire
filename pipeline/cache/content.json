@@ -206,7 +206,7 @@
 "url": "https://capi-agglo.fr/agenda/exposition-archives-quand-la-ville-arrive-a-la-campagne/"
 }
 ],
-"extract:361d4e757f386cf6ac17aa15452949f0e385744d494bc4b866ce1a9335ae0f61": [],
+"extract:36866f803b408c71ce8bb76af431930ecb47c635d362aadf9bc3a0ef21ddad25": [],
 "extract:3e1c4a86b9c47db8d96916a241dbc2c49d7ae07b0f9adbe1ceb86f0447c74651": [
 {
 "address": "38300 Bourgoin-Jallieu, France",
@@ -278,9 +278,11 @@
 "url": "https://www.monweekendalacapi.fr/agenda/evenements/force-paysanne-2026"
 }
 ],
-"extract:3f4d10e8acbb85031705f022626fb5e4b55cf7082867372207016db559c6ad07": [],
 "extract:41dacb3de49d2618da33638d149d42117ab63201a9b5929de1f0158987bedc3f": [],
-"extract:4a164b653b7cf1c2af86826b71b6bb1bbc17593d602d7feed3a049a76902a0ca": [],
+"extract:4d2eff63cb39fdf49b5d3c2237b6318d7d5c743e8c9ed719fed1271b36e82710": [],
+"extract:4dfa00dd661f8d0c86e5a82addfb07452e380909d5d6a10c14a75ac912d72fe1": [],
+"extract:66b7e9c37048b456c84d82ed82000b7ad5504f07f3aadae38753a9acba7e3775": [],
+"extract:6878f973b3187185db71a1f20953b5d61def2f92f3c1ddb4a4da80e9e89f7dc2": [],
 "extract:9d21a00483e1c282b6d2d97a929fdf9c435f0239c7f2ae96e2eb09cf6778f7dc": [
 {
 "address": null,
@@ -912,9 +914,7 @@
 "url": "https://www.bourgoinjallieu.fr/agenda/662-tjv-26-27-lever-de-rideau-avec-secret-s-medical-michel-cymes"
 }
 ],
-"extract:c789c7aca60d83f91da7ba6c73330dbf7ea3a9e097cb910f7435e38b497f1315": [],
-"extract:d289120928aabe6018709a21fbb153f8b8f95d85ce848e3b04ba7755ce783540": [],
-"extract:d5a8a27148962af2d08953a43fe1b8d6dc42ec21ad44c5f9173aee34147e4bf3": [],
+"extract:ce695e2b4aebc11e4ee8f02287edf6df9f5f9d1135aa72f4e3c2061433a23616": [],
 "extract:dbc8e552dc185532d13c78793d6026142254469397c2870f4f2638f78a908721": [
 {
 "address": null,
