@@ -534,7 +534,7 @@
   "source_id": "html-capi",
   "sector": "isere",
   "end": "2026-08-01",
-  "description": "L’espace Carnot accueillera une exposition de photographies de Jean-Michel Pouzet. Plus d’infos sur monweekendalacapi.fr",
+  "description": "L'espace Carnot accueillera une exposition de photographies de Jean-Michel Pouzet. L'exposition sera ouverte durant les horaires de l'Office de Tourisme.",
   "tldr": null,
   "category": "expo",
   "tags": [],
@@ -1040,13 +1040,12 @@
   "source_id": "html-capi",
   "sector": "isere",
   "end": null,
-  "description": "Bib de rue revient ! Les vacances d’été arrivent …et « Bib de Rue » fait son grand retour sur la CAPI et donc sur certaines communes du territoire !",
+  "description": "Bib de rue revient pour l'été sur la CAPI. Le réseau des médiathèques vous donne rendez-vous dans certaines communes.",
   "tldr": null,
-  "category": "jeunesse",
+  "category": "atelier",
   "tags": [],
   "audience": [
-   "famille",
-   "enfants"
+   "tous"
   ],
   "commune": "L'Isle-d'Abeau",
   "address": null,
@@ -1064,13 +1063,12 @@
   "source_id": "html-capi",
   "sector": "isere",
   "end": null,
-  "description": "Bib de rue revient ! Les vacances d’été arrivent …et « Bib de Rue » fait son grand retour sur la CAPI et donc sur certaines communes du territoire !",
+  "description": "Bib de rue revient pour l'été sur la CAPI. Le réseau des médiathèques vous donne rendez-vous dans certaines communes.",
   "tldr": null,
-  "category": "jeunesse",
+  "category": "atelier",
   "tags": [],
   "audience": [
-   "famille",
-   "enfants"
+   "tous"
   ],
   "commune": "L'Isle-d'Abeau",
   "address": null,
@@ -1157,7 +1155,7 @@
   "source_id": "html-capi",
   "sector": "isere",
   "end": "2026-08-14",
-  "description": "Le pôle Archives de la CAPI et son service mutualisé des archives, vous proposent de remonter le temps et de redécouvrir « la ville nouvelle ». Plus d’infos sur monweekendalacapi.fr",
+  "description": "Le pôle Archives de la CAPI propose de remonter le temps et de redécouvrir « la ville nouvelle ». Plus d'infos sur monweekendalacapi.fr.",
   "tldr": null,
   "category": "expo",
   "tags": [],
@@ -1341,7 +1339,7 @@
   "source_id": "html-capi",
   "sector": "isere",
   "end": "2026-08-29",
-  "description": "L’espace Carnot accueillera une exposition hommage à l’artiste-peintre berjalienne, Jacqueline ANSELME qui exposa pendant plus de 50 ans dans le Nord-Isère. Plus d’infos sur monweekendalacapi.fr",
+  "description": "L'espace Carnot accueille une exposition hommage à l'artiste-peintre Jacqueline ANSELME qui exposa pendant plus de 50 ans dans le Nord-Isère. Plus d'infos sur monweekendalacapi.fr.",
   "tldr": null,
   "category": "expo",
   "tags": [],
@@ -1520,27 +1518,27 @@
   "id": "dimanche-30-aout-c-est-la-fete-des-familles-9beedb41"
  },
  {
-  "title": "Exposition",
+  "title": "Exposition photos",
   "start": "2026-09-01T00:00:00",
   "source_id": "html-capi",
   "sector": "isere",
-  "end": "2026-11-30",
-  "description": "Rêver Alice : les illustrations d’Alice au pays des merveilles Et si vous tombiez, vous aussi, dans le terrier du lapin ?",
-  "tldr": "Une exposition d'illustrations inspirées du conte 'Alice au pays des merveilles', avec des œuvres artistiques à découvrir.",
+  "end": "2027-01-31",
+  "description": "« Photographies autour des rêves » par le Club photo Les Donjons de Demptézieu. Une source d'inspiration toujours renouvelée.",
+  "tldr": null,
   "category": "expo",
   "tags": [],
   "audience": [
    "tous"
   ],
-  "commune": "L'Isle-d'Abeau",
+  "commune": "Saint-Savin",
   "address": null,
-  "lat": 45.62,
-  "lon": 5.23,
+  "lat": 45.626,
+  "lon": 5.305,
   "free": null,
   "price_text": null,
-  "url": "https://capi-agglo.fr/agenda/exposition/",
+  "url": "https://capi-agglo.fr/agenda/exposition-photos/",
   "image": null,
-  "id": "exposition-a0d05a45"
+  "id": "exposition-photos-87a2dbc3"
  },
  {
   "title": "Les Belles Journées # 12",
