@@ -28,13 +28,14 @@
   "Beaurepaire",
   "Bourgoin-Jallieu",
   "Bouvesse-Quirieu",
+  "Brangues",
   "Chamrousse",
   "Charvieu-Chavagneux",
   "Chavanoz",
   "Claix",
   "Corbelin",
   "Corenc",
-  "Creys-Mépieu",
+  "Corrençon-en-Vercors",
   "Crolles",
   "Crémieu",
   "Dolomieu",
@@ -67,6 +68,7 @@
   "Moirans",
   "Monestier-de-Clermont",
   "Montalieu-Vercieu",
+  "Moras",
   "Morestel",
   "Nivolas-Vermelle",
   "Pont-de-Chéruy",
@@ -198,6 +200,6 @@
    "url": "https://www.chamrousse.com/agenda.html"
   }
  ],
- "generated_at": "2026-07-24T12:07:35",
- "event_count": 69
+ "generated_at": "2026-07-25T06:14:40",
+ "event_count": 70
 }
