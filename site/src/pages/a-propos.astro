@@ -2,6 +2,19 @@
 import Base from '../layouts/Base.astro';
 import sector from '../data/sector.json';
 const base = import.meta.env.BASE_URL;
+
+// Lien externe correct selon le type de source : l'`url` du registre est une
+// URL (rss/ical/html) ou un identifiant (openagenda = UID, facebook/instagram
+// = nom de page). Sans ce routage, un handle Facebook était ouvert comme un
+// agenda OpenAgenda (lien cassé).
+const sourceLink = (s) => {
+  const u = s.url || '';
+  if (u.startsWith('http')) return u;
+  if (s.type === 'facebook') return `https://www.facebook.com/${u}`;
+  if (s.type === 'instagram') return `https://www.instagram.com/${u}`;
+  if (s.type === 'openagenda') return `https://openagenda.com/agendas/${u}`;
+  return null;
+};
 ---
 
 <Base title={`À propos — Que faire en ${sector.name} ?`}>
@@ -32,7 +45,9 @@ const base = import.meta.env.BASE_URL;
       <ul>
         {sector.sources.map((s) => (
           <li>
-            <a href={s.url.startsWith('http') ? s.url : `https://openagenda.com/agendas/${s.url}`} rel="noopener">{s.name}</a>{' '}
+            {sourceLink(s)
+              ? <a href={sourceLink(s)} target="_blank" rel="noopener">{s.name}</a>
+              : <span>{s.name}</span>}{' '}
             <code>{s.type}</code>
           </li>
         ))}
