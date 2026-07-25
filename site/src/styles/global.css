@@ -215,7 +215,7 @@ a { color: inherit; }
   background: var(--accent); color: var(--accent-ink);
 }
 .suggest-form .s-error { color: #c92a2a; font-weight: 600; min-height: 1.1em; margin: 0; }
-.suggest-form .s-note { font-size: 0.8rem; color: var(--ink-soft); margin: 0; }
+.suggest-form .opt { font-weight: 400; color: var(--ink-soft); font-size: 0.82rem; }
 
 /* ---------------- Grille & cartes ---------------- */
 
