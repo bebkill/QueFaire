@@ -27,7 +27,6 @@
   "Autrans-Méaudre-en-Vercors",
   "Beaurepaire",
   "Bourgoin-Jallieu",
-  "Bouvesse-Quirieu",
   "Brangues",
   "Chamrousse",
   "Charvieu-Chavagneux",
@@ -35,7 +34,6 @@
   "Claix",
   "Corbelin",
   "Corenc",
-  "Corrençon-en-Vercors",
   "Crolles",
   "Crémieu",
   "Dolomieu",
@@ -45,7 +43,6 @@
   "Gières",
   "Grenoble",
   "Heyrieux",
-  "Hières-sur-Amby",
   "Huez",
   "L'Isle-d'Abeau",
   "La Balme-les-Grottes",
@@ -68,9 +65,9 @@
   "Moirans",
   "Monestier-de-Clermont",
   "Montalieu-Vercieu",
-  "Moras",
   "Morestel",
   "Nivolas-Vermelle",
+  "Panossas",
   "Pont-de-Chéruy",
   "Pontcharra",
   "Rives",
@@ -98,6 +95,7 @@
   "Varces-Allières-et-Risset",
   "Vienne",
   "Vif",
+  "Vignieu",
   "Villard-Bonnot",
   "Villard-de-Lans",
   "Villefontaine",
@@ -200,6 +198,6 @@
    "url": "https://www.chamrousse.com/agenda.html"
   }
  ],
- "generated_at": "2026-07-25T15:55:09",
- "event_count": 88
+ "generated_at": "2026-07-26T06:34:33",
+ "event_count": 57
 }
