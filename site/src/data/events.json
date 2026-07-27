@@ -254,30 +254,6 @@
   "id": "exposition-papivores-soif-de-s-exprimer-a-la-maison-d-izieu-deaf1c1a"
  },
  {
-  "title": "Ludiponey au Haras du Vercors",
-  "start": "2026-07-04T00:00:00",
-  "source_id": "html-vercors",
-  "sector": "isere",
-  "end": "2026-08-28",
-  "description": "Activité ludique avec des poneys au Haras du Vercors. Pour les enfants.",
-  "tldr": null,
-  "category": "jeunesse",
-  "tags": [],
-  "audience": [
-   "enfants",
-   "famille"
-  ],
-  "commune": "Villard-de-Lans",
-  "address": null,
-  "lat": 45.071,
-  "lon": 5.554,
-  "free": null,
-  "price_text": null,
-  "url": "https://www.villarddelans-correnconenvercors.com/offres/ludiponey-au-haras-du-vercors-villard-de-lans-fr-5283213/?roadbook=true",
-  "image": null,
-  "id": "ludiponey-au-haras-du-vercors-44fc1789"
- },
- {
   "title": "L'enquête d'Archibalme : le détective c'est toi !",
   "start": "2026-07-04T10:30:00",
   "source_id": "html-balcons-dauphine",
@@ -395,6 +371,98 @@
   "id": "bib-de-rue-86ae9146"
  },
  {
+  "title": "Atelier d'expression artistique tout âge",
+  "start": "2026-07-06T00:00:00",
+  "source_id": "html-vercors",
+  "sector": "isere",
+  "end": "2026-08-18",
+  "description": "Atelier d'expression artistique ouvert à tous les âges.",
+  "tldr": null,
+  "category": "atelier",
+  "tags": [],
+  "audience": [
+   "tous"
+  ],
+  "commune": "Villard-de-Lans",
+  "address": null,
+  "lat": 45.071,
+  "lon": 5.554,
+  "free": null,
+  "price_text": null,
+  "url": "https://www.villarddelans-correnconenvercors.com/offres/atelier-dexpression-artistique-tout-age-villard-de-lans-fr-5909625/?roadbook=true",
+  "image": null,
+  "id": "atelier-d-expression-artistique-tout-age-52e30034"
+ },
+ {
+  "title": "Défi givré initiation hockey sur glace",
+  "start": "2026-07-06T00:00:00",
+  "source_id": "html-vercors",
+  "sector": "isere",
+  "end": "2026-08-24",
+  "description": "Initiation au hockey sur glace avec le Défi givré.",
+  "tldr": "Séance d'initiation au hockey sur glace pour les débutants, encadrée par l'association Défi givré.",
+  "category": "sport",
+  "tags": [],
+  "audience": [
+   "tous"
+  ],
+  "commune": "Villard-de-Lans",
+  "address": null,
+  "lat": 45.071,
+  "lon": 5.554,
+  "free": null,
+  "price_text": null,
+  "url": "https://www.villarddelans-correnconenvercors.com/offres/defi-givre-initiation-hockey-sur-glace-villard-de-lans-fr-3393556/?roadbook=true",
+  "image": null,
+  "id": "defi-givre-initiation-hockey-sur-glace-f5b9c693"
+ },
+ {
+  "title": "Beach Party",
+  "start": "2026-07-06T00:00:00",
+  "source_id": "html-vercors",
+  "sector": "isere",
+  "end": "2026-08-24",
+  "description": "Beach Party à Villard-de-Lans.",
+  "tldr": "Soirée festive en extérieur avec musique, danse et ambiance plage, à Villard-de-Lans.",
+  "category": "fete",
+  "tags": [],
+  "audience": [
+   "tous"
+  ],
+  "commune": "Villard-de-Lans",
+  "address": null,
+  "lat": 45.071,
+  "lon": 5.554,
+  "free": null,
+  "price_text": null,
+  "url": "https://www.villarddelans-correnconenvercors.com/offres/beach-party-villard-de-lans-fr-4248618/?roadbook=true",
+  "image": null,
+  "id": "beach-party-1e963c6f"
+ },
+ {
+  "title": "Accueil vacanciers",
+  "start": "2026-07-06T00:00:00",
+  "source_id": "html-vercors",
+  "sector": "isere",
+  "end": "2026-08-24",
+  "description": "Accueil des vacanciers à Villard-de-Lans.",
+  "tldr": null,
+  "category": "fete",
+  "tags": [],
+  "audience": [
+   "tous"
+  ],
+  "commune": "Villard-de-Lans",
+  "address": null,
+  "lat": 45.071,
+  "lon": 5.554,
+  "free": null,
+  "price_text": null,
+  "url": "https://www.villarddelans-correnconenvercors.com/offres/accueil-vacanciers-villard-de-lans-fr-4231172/?roadbook=true",
+  "image": null,
+  "id": "accueil-vacanciers-4327b460"
+ },
+ {
   "title": "Festiv'été 2026 : ciné-été en plein-air !",
   "start": "2026-07-07T00:00:00",
   "source_id": "html-bourgoin",
@@ -423,8 +491,8 @@
   "source_id": "html-vercors",
   "sector": "isere",
   "end": "2026-08-23",
-  "description": "Exposition à Villard-de-Lans. Découverte de l'univers de Silva.",
-  "tldr": null,
+  "description": "Exposition Silva.",
+  "tldr": "Exposition de peintures ou sculptures d'un artiste nommé Silva.",
   "category": "expo",
   "tags": [],
   "audience": [
@@ -436,7 +504,7 @@
   "lon": 5.554,
   "free": null,
   "price_text": null,
-  "url": "https://www.villarddelans-correnconenvercors.com/offres/exposition-silva-villard-de-lans-fr-5909623/?roadbook=true",
+  "url": "https://www.villarddelans-correnconenvercors.com/offres/exposition-silva-villard-de-lans-fr-6143078/?roadbook=true",
   "image": null,
   "id": "exposition-silva-eb72ac37"
  },
@@ -446,7 +514,7 @@
   "source_id": "html-vercors",
   "sector": "isere",
   "end": "2026-08-18",
-  "description": "Stage de modelage à Villard-de-Lans. Apprentissage des techniques.",
+  "description": "Stage de modelage de l'argile.",
   "tldr": null,
   "category": "atelier",
   "tags": [],
@@ -492,7 +560,7 @@
   "source_id": "html-vercors",
   "sector": "isere",
   "end": "2026-08-16",
-  "description": "Cours de tournage de l'argile à Villard-de-Lans. Initiation aux techniques.",
+  "description": "Cours particulier de tournage d'argile.",
   "tldr": null,
   "category": "atelier",
   "tags": [],
@@ -508,29 +576,6 @@
   "url": "https://www.villarddelans-correnconenvercors.com/offres/tournage-de-largile-cours-particulier-villard-de-lans-fr-5824704/?roadbook=true",
   "image": null,
   "id": "tournage-de-l-argile-cours-particulier-a31754b6"
- },
- {
-  "title": "Exposition Art Mada Jean-Paul Riche, Francis Bernard et Martine Vernet",
-  "start": "2026-07-20T00:00:00",
-  "source_id": "html-vercors",
-  "sector": "isere",
-  "end": "2026-08-02",
-  "description": "Exposition à Villard-de-Lans. Œuvres de plusieurs artistes.",
-  "tldr": null,
-  "category": "expo",
-  "tags": [],
-  "audience": [
-   "tous"
-  ],
-  "commune": "Villard-de-Lans",
-  "address": null,
-  "lat": 45.071,
-  "lon": 5.554,
-  "free": null,
-  "price_text": null,
-  "url": "https://www.villarddelans-correnconenvercors.com/offres/exposition-art-mada-jean-paul-riche-francis-bernard-et-martine-vernet-villard-de-lans-fr-6680613/?roadbook=true",
-  "image": null,
-  "id": "exposition-art-mada-jean-paul-riche-francis-bernard-et-martine-vernet-f3bd8038"
  },
  {
   "title": "Exposition de photographies",
@@ -692,6 +737,52 @@
   "url": "https://www.balconsdudauphine-tourisme.com/activite/atelier-poterie-a-la-demande-avec-creation-terre-a-la-balme-les-grottes/",
   "image": null,
   "id": "atelier-poterie-a-la-demande-avec-creation-terre-a-la-balme-les-grottes-72d269b0"
+ },
+ {
+  "title": "Concert - Flûtes virtuoses de Guy Angelloz",
+  "start": "2026-07-27T17:00:00",
+  "source_id": "html-vercors",
+  "sector": "isere",
+  "end": null,
+  "description": "Concert de flûtes virtuoses par Guy Angelloz.",
+  "tldr": null,
+  "category": "concert",
+  "tags": [],
+  "audience": [
+   "tous"
+  ],
+  "commune": "Corrençon-en-Vercors",
+  "address": null,
+  "lat": null,
+  "lon": null,
+  "free": null,
+  "price_text": null,
+  "url": "https://www.villarddelans-correnconenvercors.com/offres/concert-flutes-virtuoses-de-guy-angelloz-correncon-en-vercors-fr-3621750/?roadbook=true",
+  "image": null,
+  "id": "concert-flutes-virtuoses-de-guy-angelloz-533a5446"
+ },
+ {
+  "title": "Concert - flûtes virtuoses - Guy Angelloz",
+  "start": "2026-07-27T21:00:00",
+  "source_id": "html-vercors",
+  "sector": "isere",
+  "end": null,
+  "description": "Concert de flûtes virtuoses par Guy Angelloz.",
+  "tldr": null,
+  "category": "concert",
+  "tags": [],
+  "audience": [
+   "tous"
+  ],
+  "commune": "Villard-de-Lans",
+  "address": null,
+  "lat": 45.071,
+  "lon": 5.554,
+  "free": null,
+  "price_text": null,
+  "url": "https://www.villarddelans-correnconenvercors.com/offres/concert-flutes-virtuoses-guy-angelloz-villard-de-lans-fr-4046160/?roadbook=true",
+  "image": null,
+  "id": "concert-flutes-virtuoses-guy-angelloz-333c21d7"
  },
  {
   "title": "Ciné-été La Grive : Michael",
@@ -1271,52 +1362,6 @@
   "id": "stock-5580d01a"
  },
  {
-  "title": "Pot d'accueil",
-  "start": "2026-08-09T00:00:00",
-  "source_id": "html-vercors",
-  "sector": "isere",
-  "end": null,
-  "description": "Pot d'accueil à Corrençon-en-Vercors. Rencontre conviviale.",
-  "tldr": null,
-  "category": "fete",
-  "tags": [],
-  "audience": [
-   "tous"
-  ],
-  "commune": "Corrençon-en-Vercors",
-  "address": null,
-  "lat": null,
-  "lon": null,
-  "free": null,
-  "price_text": null,
-  "url": "https://www.villarddelans-correnconenvercors.com/offres/pot-daccueil-correncon-en-vercors-fr-6108997/?roadbook=true",
-  "image": null,
-  "id": "pot-d-accueil-2993d5e1"
- },
- {
-  "title": "Le p'tit marché artisanat & création",
-  "start": "2026-08-09T00:00:00",
-  "source_id": "html-vercors",
-  "sector": "isere",
-  "end": null,
-  "description": "Marché artisanal à Corrençon-en-Vercors. Créations locales.",
-  "tldr": null,
-  "category": "marche",
-  "tags": [],
-  "audience": [
-   "tous"
-  ],
-  "commune": "Corrençon-en-Vercors",
-  "address": null,
-  "lat": null,
-  "lon": null,
-  "free": null,
-  "price_text": null,
-  "url": "https://www.villarddelans-correnconenvercors.com/offres/le-ptit-marche-artisanat-creation-correncon-en-vercors-fr-4604003/?roadbook=true",
-  "image": null,
-  "id": "le-p-tit-marche-artisanat-creation-dc8aee59"
- },
- {
   "title": "EL PABUELITO",
   "start": "2026-08-09T20:30:00+02:00",
   "source_id": "oa-hiboubox-villard",
@@ -1338,6 +1383,29 @@
   "url": "https://openagenda.com/agendas/1698621/events/el-pabuelito-8025292",
   "image": "https://img.openagenda.com/main/4077c3b8c7ff4a6cbb8e781c7ba713a2.base.image.jpg",
   "id": "el-pabuelito-7106dd05"
+ },
+ {
+  "title": "Initiation spectacle - Les jongleries d'Aristide",
+  "start": "2026-08-10T00:00:00",
+  "source_id": "html-vercors",
+  "sector": "isere",
+  "end": "2026-08-17",
+  "description": "Initiation spectacle avec les jongleries d'Aristide.",
+  "tldr": "Atelier d'initiation aux arts du cirque (jonglerie) pour débutants.",
+  "category": "spectacle",
+  "tags": [],
+  "audience": [
+   "tous"
+  ],
+  "commune": "Villard-de-Lans",
+  "address": null,
+  "lat": 45.071,
+  "lon": 5.554,
+  "free": null,
+  "price_text": null,
+  "url": "https://www.villarddelans-correnconenvercors.com/offres/initiation-spectacle-les-jongleries-daristide-villard-de-lans-fr-5800322/?roadbook=true",
+  "image": null,
+  "id": "initiation-spectacle-les-jongleries-d-aristide-fccc11cc"
  },
  {
   "title": "FRANCK MCHALON",
@@ -1430,29 +1498,6 @@
   "id": "venez-observer-leclipse-en-bonne-compagnie-5a415acb"
  },
  {
-  "title": "Concert - 2 Singes en hiver",
-  "start": "2026-08-12T00:00:00",
-  "source_id": "html-vercors",
-  "sector": "isere",
-  "end": null,
-  "description": "Concert à Villard-de-Lans. Musique en direct.",
-  "tldr": null,
-  "category": "concert",
-  "tags": [],
-  "audience": [
-   "tous"
-  ],
-  "commune": "Villard-de-Lans",
-  "address": null,
-  "lat": 45.071,
-  "lon": 5.554,
-  "free": null,
-  "price_text": null,
-  "url": "https://www.villarddelans-correnconenvercors.com/offres/concert-2-singes-en-hiver-villard-de-lans-fr-5339655/?roadbook=true",
-  "image": null,
-  "id": "concert-2-singes-en-hiver-e39f4957"
- },
- {
   "title": "2 SINGES EN HIVER",
   "start": "2026-08-12T20:30:00+02:00",
   "source_id": "oa-hiboubox-villard",
@@ -1514,75 +1559,6 @@
   "url": "https://openagenda.com/agendas/1698621/events/dulwen-irish-duo",
   "image": "https://img.openagenda.com/main/d93da992ff9848bfad638d3a47a66574.base.image.jpg",
   "id": "dulwen-irish-duo-79571181"
- },
- {
-  "title": "Concert - 2 Singes en hiver",
-  "start": "2026-08-16T00:00:00",
-  "source_id": "html-vercors",
-  "sector": "isere",
-  "end": null,
-  "description": "Concert à Villard-de-Lans. Musique en direct.",
-  "tldr": null,
-  "category": "concert",
-  "tags": [],
-  "audience": [
-   "tous"
-  ],
-  "commune": "Villard-de-Lans",
-  "address": null,
-  "lat": 45.071,
-  "lon": 5.554,
-  "free": null,
-  "price_text": null,
-  "url": "https://www.villarddelans-correnconenvercors.com/offres/concert-2-singes-en-hiver-villard-de-lans-fr-5339655/?roadbook=true",
-  "image": null,
-  "id": "concert-2-singes-en-hiver-39ee57e3"
- },
- {
-  "title": "Pot d'accueil",
-  "start": "2026-08-16T00:00:00",
-  "source_id": "html-vercors",
-  "sector": "isere",
-  "end": null,
-  "description": "Pot d'accueil à Corrençon-en-Vercors. Rencontre conviviale.",
-  "tldr": null,
-  "category": "fete",
-  "tags": [],
-  "audience": [
-   "tous"
-  ],
-  "commune": "Corrençon-en-Vercors",
-  "address": null,
-  "lat": null,
-  "lon": null,
-  "free": null,
-  "price_text": null,
-  "url": "https://www.villarddelans-correnconenvercors.com/offres/pot-daccueil-correncon-en-vercors-fr-6108997/?roadbook=true",
-  "image": null,
-  "id": "pot-d-accueil-ab31cde6"
- },
- {
-  "title": "Le p'tit marché artisanat & création",
-  "start": "2026-08-16T00:00:00",
-  "source_id": "html-vercors",
-  "sector": "isere",
-  "end": null,
-  "description": "Marché artisanal à Corrençon-en-Vercors. Créations locales.",
-  "tldr": null,
-  "category": "marche",
-  "tags": [],
-  "audience": [
-   "tous"
-  ],
-  "commune": "Corrençon-en-Vercors",
-  "address": null,
-  "lat": null,
-  "lon": null,
-  "free": null,
-  "price_text": null,
-  "url": "https://www.villarddelans-correnconenvercors.com/offres/le-ptit-marche-artisanat-creation-correncon-en-vercors-fr-4604003/?roadbook=true",
-  "image": null,
-  "id": "le-p-tit-marche-artisanat-creation-adcf268f"
  },
  {
   "title": "Exposition de peintures",
