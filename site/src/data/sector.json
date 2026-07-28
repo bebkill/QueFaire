@@ -35,6 +35,7 @@
   "Corbelin",
   "Corenc",
   "Corrençon-en-Vercors",
+  "Creys-Mépieu",
   "Crolles",
   "Crémieu",
   "Dolomieu",
@@ -55,7 +56,6 @@
   "La Tronche",
   "La Verpillière",
   "Lans-en-Vercors",
-  "Le Bouchage",
   "Le Bourg-d'Oisans",
   "Le Grand-Lemps",
   "Le Pont-de-Beauvoisin",
@@ -73,6 +73,7 @@
   "Nivolas-Vermelle",
   "Pont-de-Chéruy",
   "Pontcharra",
+  "Porcieu-Amblagnieu",
   "Rives",
   "Roussillon",
   "Ruy-Montceau",
@@ -86,6 +87,7 @@
   "Saint-Quentin-Fallavier",
   "Saint-Savin",
   "Saint-Victor-de-Cessieu",
+  "Saint-Victor-de-Morestel",
   "Saint-Égrève",
   "Salaise-sur-Sanne",
   "Sassenage",
@@ -200,6 +202,6 @@
    "url": "https://www.chamrousse.com/agenda.html"
   }
  ],
- "generated_at": "2026-07-27T16:53:46",
- "event_count": 81
+ "generated_at": "2026-07-28T06:22:57",
+ "event_count": 87
 }
