@@ -69,6 +69,7 @@ def build_table(
 
 
 def write_csv(rows: list[tuple[str, float, float]], path) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
     with path.open("w", encoding="utf-8", newline="") as fh:
         writer = csv.writer(fh)
         writer.writerow(["commune", "lat", "lon"])

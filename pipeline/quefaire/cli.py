@@ -292,7 +292,9 @@ def build_geo(sector_id: str, departments: list[str]) -> int:
     if not rows:
         log.error("[build-geo] aucune commune récupérée — CSV non écrit.")
         return 1
-    path = Path(__file__).resolve().parent / "data" / f"communes_{sector_id}.csv"
+    from .geocode import DATA_DIR
+
+    path = DATA_DIR / f"communes_{sector_id}.csv"
     write_csv(rows, path)
     log.info(
         "[build-geo] %d communes dans le rayon (%d min autour de %s) → %s",
@@ -387,7 +389,9 @@ def main(argv: list[str] | None = None) -> int:
     if args.cmd == "add-source":
         return add_source(args.sector, args.file)
     if args.cmd == "build-geo":
-        departments = [d.strip() for d in args.departments.split(",") if d.strip()]
+        # zfill(2) rattrape les codes tronqués par le shell (PowerShell lit
+        # « 01 » comme le nombre 1) : « 1 » → « 01 » (Ain), « 38 » inchangé.
+        departments = [d.strip().zfill(2) for d in args.departments.split(",") if d.strip()]
         return build_geo(args.sector, departments)
     if args.cmd == "evaluate-source":
         import json
