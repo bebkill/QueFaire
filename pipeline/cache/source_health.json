@@ -25,11 +25,11 @@
 },
 "html-balcons-dauphine": {
 "first_seen_day": "2026-07-24",
-"last_event_day": "2026-07-28"
+"last_event_day": "2026-07-29"
 },
 "html-bourgoin": {
 "first_seen_day": "2026-07-24",
-"last_event_day": "2026-07-28"
+"last_event_day": "2026-07-29"
 },
 "html-cafe-crem": {
 "first_seen_day": "2026-07-24",
@@ -37,7 +37,7 @@
 },
 "html-capi": {
 "first_seen_day": "2026-07-24",
-"last_event_day": "2026-07-28"
+"last_event_day": "2026-07-29"
 },
 "html-chamrousse": {
 "first_seen_day": "2026-07-24",
@@ -45,11 +45,11 @@
 },
 "html-vercors": {
 "first_seen_day": "2026-07-24",
-"last_event_day": "2026-07-28"
+"last_event_day": "2026-07-29"
 },
 "html-weekend-capi": {
 "first_seen_day": "2026-07-24",
-"last_event_day": "2026-07-28"
+"last_event_day": "2026-07-29"
 },
 "ig-capi": {
 "first_seen_day": "2026-07-24",
@@ -57,6 +57,6 @@
 },
 "oa-hiboubox-villard": {
 "first_seen_day": "2026-07-24",
-"last_event_day": "2026-07-28"
+"last_event_day": "2026-07-29"
 }
 }
