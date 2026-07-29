@@ -39,7 +39,7 @@ jobs:
           printf '%s' "$ISSUE_BODY" > /tmp/issue-body.md
           # add-source : parse le bloc ```yaml```, valide (type + URL anti-SSRF),
           # ajoute au registre en enabled: true (doublons ignorés).
-          python -m quefaire add-source --sector isere --file /tmp/issue-body.md
+          python -m quefaire add-source --sector villemoirieu --file /tmp/issue-body.md
 
           git config user.name "quefaire-bot"
           git config user.email "actions@users.noreply.github.com"

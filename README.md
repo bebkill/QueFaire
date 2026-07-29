@@ -6,19 +6,26 @@ et les présente sur un site statique léger, avec une recherche en langage
 naturel : _« une sortie en famille ce week-end »_, _« un concert gratuit près
 de moi »_.
 
-Le MVP couvre le secteur **Isère (38)**. L'architecture est multi-secteurs dès
-le départ : ajouter une région = ajouter un fichier de sources.
+On ne raisonne pas par département mais par **épicentre** : une commune de
+référence + un rayon en **temps de trajet** (~1 h de voiture). Un événement est
+retenu s'il tombe dans ce rayon, quel que soit son département — le nord-Isère
+est plus proche de Lyon et de l'Ain que du sud-Isère. Un secteur = un fichier
+`sources/<commune>.yaml`, ce qui permet un site par ville (« QueFaire —
+Villemoirieu », « QueFaire — Grenoble »…). Le MVP est centré sur
+**Villemoirieu** (nord-Isère).
 
 ## Architecture
 
 ```
 pipeline/                 Python — collecte, normalisation, export
-├── sources/isere.yaml    ← LE registre : les sources du secteur
-├── data/communes_isere.csv  géocodage hors-ligne (commune → lat/lon)
+├── sources/villemoirieu.yaml  ← LE registre de l'épicentre (centre + rayon)
+├── data/communes_villemoirieu.csv  géocodage hors-ligne (commune → lat/lon)
 └── quefaire/
     ├── fetchers/         rss, ical, openagenda, html (extraction LLM)
     ├── normalize.py      catégorie / public / gratuité (règles lisibles)
     ├── geocode.py        commune → coordonnées, sans appel réseau
+    ├── geo.py            distance / temps de trajet + filtre de rayon (miroir du front)
+    ├── geodata.py        build-geo : génère la table de communes du rayon (réseau)
     ├── dedupe.py         même événement relayé par N sources → 1 fiche
     ├── discovery.py      agent LLM qui propose de nouvelles sources
     └── export.py         → site/src/data/{events,sector}.json
@@ -43,9 +50,12 @@ site/                     Astro — site statique
 2. **Normalisation** — catégorie, public et gratuité sont déduits par des
    règles lisibles (`normalize.py`) ; les communes sont géocodées via un CSV
    local, sans appel réseau.
-3. **Déduplication** — un événement relayé par la mairie ET l'office de
+3. **Filtre de rayon** — on écarte les événements à plus de `radius_minutes` de
+   l'épicentre (`geo.py`), quel que soit leur département. Même calcul de temps
+   de trajet que le front, pour que collecte et affichage s'accordent.
+4. **Déduplication** — un événement relayé par la mairie ET l'office de
    tourisme ne sort qu'une fois (on garde la fiche la plus riche).
-4. **Export** — JSON consommés par Astro au build. Le site est **entièrement
+5. **Export** — JSON consommés par Astro au build. Le site est **entièrement
    statique** : rapide, sans base de données, hébergeable gratuitement.
 
 ### Recherche en langage naturel
@@ -62,7 +72,7 @@ public (« en famille »), gratuité, communes du secteur, « près de moi »
 # Pipeline (Python ≥ 3.11)
 pip install -r pipeline/requirements.txt
 cd pipeline
-python -m quefaire crawl --sector isere --demo   # jeu de données de démo
+python -m quefaire crawl --sector villemoirieu --demo   # jeu de données de démo
 python -m pytest tests -q
 
 # Site (Node ≥ 20)
@@ -103,17 +113,17 @@ suffisant pour ce volume. Voir `pipeline/quefaire/llm.py`.
 
 ## Référencer des sources
 
-Le registre est un simple YAML (`pipeline/sources/isere.yaml`). Deux outils
+Le registre est un simple YAML (`pipeline/sources/villemoirieu.yaml`). Deux outils
 de découverte automatique produisent des entrées prêtes à coller :
 
 ```bash
 # Agendas OpenAgenda de toutes les communes du secteur (dédupliqués par UID,
 # officiels en premier). --strict ne garde que les agendas citant la commune.
-OPENAGENDA_KEY=... python -m quefaire discover-oa --sector isere
+OPENAGENDA_KEY=... python -m quefaire discover-oa --sector villemoirieu
 OPENAGENDA_KEY=... python -m quefaire discover-oa --communes "Bourgoin-Jallieu,Crémieu" --strict
 
 # Agent LLM : visite les sites communaux, détecte flux RSS/iCal et pages agenda
-QUEFAIRE_LLM=gemini:gemini-3.5-flash python -m quefaire discover --sector isere
+QUEFAIRE_LLM=gemini:gemini-3.5-flash python -m quefaire discover --sector villemoirieu
 ```
 
 Dans les deux cas, **un humain relit puis passe `enabled: true`** — la
@@ -130,7 +140,7 @@ qui transforme une page publique en flux RSS :
 1. une instance RSS-Bridge est disponible via `RSSBRIDGE_URL` ; le workflow CI
    en lance une **éphémère** (service container) et pointe dessus par défaut ;
 2. déclarer des sources `type: facebook` / `type: instagram` avec l'identifiant
-   de la page en `url` (des exemples sont dans `isere.yaml`) ;
+   de la page en `url` (des exemples sont dans `villemoirieu.yaml`) ;
 3. l'agent LLM (`QUEFAIRE_LLM`) transforme les posts récents en événements
    datés — un post n'étant pas un événement structuré, cette voie exige le LLM.
 

@@ -24,15 +24,21 @@
       issue GitHub pré-remplie, validation éditeur (label `approved` →
       `apply-source.yml`), et retrait auto des sources sans événement depuis
       > 1 mois (`health.py`)
+- [x] Bascule du modèle « département » au modèle **épicentre** : un secteur =
+      une commune de référence + un rayon en temps de trajet (`radius_minutes`),
+      filtrage à la collecte quel que soit le département (`geo.py`, même calcul
+      que le front). Épicentre MVP : **Villemoirieu** (nord-Isère → Lyon + Ain).
+      Table de communes du rayon régénérable par `build-geo` (`geodata.py`)
 
 ## Ensuite
 
 ### Court terme
 
 - [ ] Vrai moteur isochrone (OpenRouteService ou Valhalla) à la place de
-      l'approximation à vol d'oiseau
-- [ ] Élargir la couverture Isère : offices de tourisme Vercors / Oisans /
-      Chartreuse
+      l'approximation à vol d'oiseau — pour le filtre front ET le filtre de
+      rayon à la collecte (aujourd'hui même approximation partagée)
+- [ ] Enrichir l'épicentre Villemoirieu : agendas OpenAgenda de l'est lyonnais
+      (69) et de l'ouest de l'Ain (01) via `discover-oa --strict`, à valider
 - [ ] Réseaux sociaux : pilote hashtag Instagram (`#quefaire38`) via la
       Hashtag Search API — compte pro QueFaire + App Review « Instagram
       Public Content Access », modération humaine des événements collectés ;
@@ -47,7 +53,8 @@
 - [ ] Sources activités outdoor : **Décathlon Outdoor, Visorando, Wikiloc**
       (balades et itinéraires — pas des événements datés : premier cas d'usage
       du schéma `Place`, avec notes et avis existants pour « bien noté »)
-- [ ] Nouveaux secteurs : `sources/<secteur>.yaml` + `data/communes_<secteur>.csv`
+- [ ] Nouveaux épicentres (une ville = un site) : `sources/<commune>.yaml` +
+      `build-geo` pour la table de communes du rayon (ex. « QueFaire — Grenoble »)
 
 ### Long terme
 

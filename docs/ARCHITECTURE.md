@@ -14,14 +14,21 @@ Pages. Aucun serveur, aucune base de données.
 
 ### Registre de sources
 
-`sources/isere.yaml` est LE point d'entrée d'un secteur : une liste de sources
-typées (`rss`, `ical`, `openagenda`, `html`, `facebook`, `instagram`), chacune
-avec `enabled: true|false`. Les sources désactivées sont ignorées ; les outils
-de découverte génèrent toujours `enabled: false` pour forcer une relecture
-humaine. Ajouter une région = ajouter `sources/<secteur>.yaml` +
-`data/communes_<secteur>.csv`.
+Un secteur est un **épicentre** : une commune de référence (`center_lat`/
+`center_lon`) + un rayon en temps de trajet (`radius_minutes`, ~1 h ≈ 48 km),
+déclarés dans le bloc `sector:`. On ne raisonne donc pas par département : un
+événement est retenu s'il tombe dans le rayon, quel que soit le sien (le
+nord-Isère est plus proche de Lyon et de l'Ain que du sud-Isère).
 
-### Étapes du crawl (`python -m quefaire crawl --sector isere`)
+`sources/villemoirieu.yaml` est LE point d'entrée d'un secteur : une liste de
+sources typées (`rss`, `ical`, `openagenda`, `html`, `facebook`, `instagram`),
+chacune avec `enabled: true|false`. Les sources désactivées sont ignorées ; les
+outils de découverte génèrent toujours `enabled: false` pour forcer une
+relecture humaine. Ajouter une ville = ajouter `sources/<commune>.yaml` +
+`data/communes_<commune>.csv` (ce dernier régénérable par `build-geo`). Chaque
+épicentre donne un site propre (« QueFaire — Villemoirieu »…).
+
+### Étapes du crawl (`python -m quefaire crawl --sector villemoirieu`)
 
 1. **Collecte** (`fetchers/`) — un fetcher par type de source :
    - `rss.py` / `ical.py` : flux structurés, parseurs internes ;
@@ -36,14 +43,22 @@ humaine. Ajouter une région = ajouter `sources/<secteur>.yaml` +
    déduits par des règles lisibles (regex/mots-clés), pas de LLM.
 3. **Géocodage** (`geocode.py`) — commune → lat/lon via
    `data/communes_<secteur>.csv`, entièrement hors-ligne. Une commune absente
-   du CSV donne un événement sans coordonnées (le front le gère).
-4. **Déduplication** (`dedupe.py`) — un événement relayé par N sources ne sort
+   du CSV donne un événement sans coordonnées (le front le gère). Les événements
+   OpenAgenda portent déjà leurs coordonnées (source) : le CSV n'est qu'un
+   secours pour les sources qui ne donnent qu'un nom de commune.
+4. **Filtre de rayon** (`geo.py`) — on écarte les événements à plus de
+   `radius_minutes` de l'épicentre. Le calcul (haversine + `travel_minutes`)
+   reproduit **à l'identique** celui du front (`nlsearch.js`) ; un événement
+   sans coordonnées est conservé (on ne peut pas le situer). La table de
+   communes du rayon se (re)génère avec `build-geo` (`geodata.py`, réseau
+   requis, hors du crawl — `geo.api.gouv.fr`).
+5. **Déduplication** (`dedupe.py`) — un événement relayé par N sources ne sort
    qu'une fois ; on garde la fiche la plus riche.
-5. **Clarification** (`clarify.py`, optionnelle) — une phrase LLM « en clair »
+6. **Clarification** (`clarify.py`, optionnelle) — une phrase LLM « en clair »
    (`tldr`) lève l'ambiguïté des titres obscurs, par lots pour limiter les
    appels.
-6. **Export** (`export.py`) — `events.json` (les fiches) et `sector.json`
-   (métadonnées : communes, catégories, centre, compteurs).
+7. **Export** (`export.py`) — `events.json` (les fiches) et `sector.json`
+   (métadonnées : communes, catégories, centre, `radius_minutes`, compteurs).
 
 ### LLM principal + backup (`llm.py`)
 

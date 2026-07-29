@@ -21,7 +21,7 @@ from quefaire.registry import load_sector
 
 def make(title="Rendez-vous du samedi", start=None, commune="Grenoble", **kw):
     start = start or (date.today() + timedelta(days=3)).isoformat()
-    return Event(title=title, start=start, source_id="t", sector="isere", commune=commune, **kw)
+    return Event(title=title, start=start, source_id="t", sector="villemoirieu", commune=commune, **kw)
 
 
 def test_event_id_stable():
@@ -44,9 +44,9 @@ def test_enrich_price_detected():
 
 
 def test_geocode_from_commune_table():
-    ev = geocode(make(commune="grenoble"), "isere")
-    assert ev.commune == "Grenoble"
-    assert abs(ev.lat - 45.1885) < 0.01
+    ev = geocode(make(commune="villemoirieu"), "villemoirieu")
+    assert ev.commune == "Villemoirieu"
+    assert abs(ev.lat - 45.7192) < 0.01
 
 
 def test_dedupe_keeps_richest():
@@ -82,7 +82,7 @@ def test_discover_oa_dedupes_and_ranks(monkeypatch):
     )
     import yaml
 
-    out = yaml.safe_load(cli.discover_openagenda("isere", ["Grenoble", "Vienne"], strict=False))
+    out = yaml.safe_load(cli.discover_openagenda("villemoirieu", ["Grenoble", "Vienne"], strict=False))
     uids = [e["url"] for e in out]
     assert sorted(uids) == [1, 2, 3]          # dédupliqué par UID
     assert out[0]["url"] == 1                  # l'agenda officiel sort en premier
@@ -91,7 +91,7 @@ def test_discover_oa_dedupes_and_ranks(monkeypatch):
     assert "12 événements à venir" in out[0]["comment"]
     assert all(e["enabled"] is False for e in out)  # validation humaine requise
 
-    strict = yaml.safe_load(cli.discover_openagenda("isere", ["Grenoble", "Vienne"], strict=True))
+    strict = yaml.safe_load(cli.discover_openagenda("villemoirieu", ["Grenoble", "Vienne"], strict=True))
     assert [e["url"] for e in strict] == [1, 3]  # strict : titre doit citer la commune
 
 
@@ -101,12 +101,12 @@ def test_social_fetcher_skips_without_config(monkeypatch, caplog):
 
     monkeypatch.delenv("RSSBRIDGE_URL", raising=False)
     src = Source(id="fb-test", name="t", type="facebook", url="mairie")
-    assert SocialFetcher("facebook").fetch(src, "isere") == []
+    assert SocialFetcher("facebook").fetch(src, "villemoirieu") == []
 
 
 def test_nord_isere_communes_geocoded():
     for commune in ("Crémieu", "Morestel", "Saint-Chef", "La Verpillière", "Tignieu-Jameyzieu"):
-        ev = geocode(make(commune=commune), "isere")
+        ev = geocode(make(commune=commune), "villemoirieu")
         assert ev.lat is not None, commune
 
 
@@ -557,7 +557,7 @@ def test_extract_events_llm_absolutizes_event_url(monkeypatch):
     )
     src = Source(id="html-x", name="X", type="html", url="https://ot-ville.fr/agenda/",
                  commune="Grenoble")
-    events = html_llm.extract_events_llm("texte", src, "isere", "https://ot-ville.fr/agenda/")
+    events = html_llm.extract_events_llm("texte", src, "villemoirieu", "https://ot-ville.fr/agenda/")
     assert events[0].url == "https://ot-ville.fr/agenda/jazz-42"  # relatif → absolu
     assert events[1].url == "https://ot-ville.fr/agenda/"  # pas de lien → page source
 
@@ -583,12 +583,12 @@ def test_extraction_cache_hit_skips_llm(monkeypatch):
     monkeypatch.setattr(html_llm, "run_llm", fake_run)
     src = Source(id="html-x", name="X", type="html", url="https://ex.fr/a/", commune="Grenoble")
 
-    e1 = html_llm.extract_events_llm("même texte", src, "isere", "https://ex.fr/a/")
-    e2 = html_llm.extract_events_llm("même texte", src, "isere", "https://ex.fr/a/")
+    e1 = html_llm.extract_events_llm("même texte", src, "villemoirieu", "https://ex.fr/a/")
+    e2 = html_llm.extract_events_llm("même texte", src, "villemoirieu", "https://ex.fr/a/")
     assert calls["n"] == 1  # 2ᵉ extraction servie par le cache
     assert [e.id for e in e1] == [e.id for e in e2]
 
-    html_llm.extract_events_llm("texte modifié", src, "isere", "https://ex.fr/a/")
+    html_llm.extract_events_llm("texte modifié", src, "villemoirieu", "https://ex.fr/a/")
     assert calls["n"] == 2  # contenu changé → nouvel appel LLM
 
 
@@ -638,7 +638,7 @@ def test_evaluate_url_counts_unique_events(monkeypatch):
 
     known = {ev_dup.dedupe_key()}
     report = evaluate.evaluate_url(
-        "https://93.184.216.34/agenda", "isere", source_type="html", keys=known
+        "https://93.184.216.34/agenda", "villemoirieu", source_type="html", keys=known
     )
     assert report["fetched"] == 2
     assert report["unique"] == 1
@@ -655,7 +655,7 @@ def test_evaluate_url_rejects_internal_target(monkeypatch):
 
     monkeypatch.setattr(evaluate, "fetch_source", must_not_fetch)
     with pytest.raises(UnsafeUrlError):
-        evaluate.evaluate_url("http://169.254.169.254/", "isere", source_type="html")
+        evaluate.evaluate_url("http://169.254.169.254/", "villemoirieu", source_type="html")
 
 
 def test_http_get_guard_blocks_redirect_to_internal(monkeypatch):
@@ -760,7 +760,7 @@ def test_suggest_keeps_only_live_agendas_and_caps(monkeypatch):
     monkeypatch.setattr(cli, "discover_openagenda", lambda s, c, strict: yaml.safe_dump(cands, allow_unicode=True))
     monkeypatch.setattr(registry, "_existing_urls", lambda s: set())
 
-    out = cli.suggest("isere", use_llm=False)
+    out = cli.suggest("villemoirieu", use_llm=False)
     assert len(out) == cli.MAX_SUGGESTIONS  # plafonné
     assert "999" not in {c["url"] for c in out}  # dormant/inconnu écarté
 
@@ -814,11 +814,61 @@ def test_http_get_retries_on_transient_network_error(monkeypatch):
 
 
 def test_demo_and_export_roundtrip(tmp_path):
-    sector = load_sector("isere")
-    events = [enrich(geocode(e, "isere")) for e in demo_events()]
+    sector = load_sector("villemoirieu")
+    events = [enrich(geocode(e, "villemoirieu")) for e in demo_events()]
     meta = export(sector, dedupe(events), tmp_path)
     data = json.loads((tmp_path / "events.json").read_text(encoding="utf-8"))
     assert meta["event_count"] == len(data) > 20
     assert all(e["start"] >= date.today().isoformat()[:4] for e in data)
     # Tous les événements démo doivent être géocodés (communes connues du CSV).
     assert all(e["lat"] is not None for e in data)
+
+
+# --- Épicentre + rayon (geo.py) ------------------------------------------------
+
+def test_travel_minutes_matches_front_calibration():
+    from quefaire.geo import haversine_km, travel_minutes
+
+    # 1 h de voiture ≈ 48 km à vol d'oiseau (même formule que nlsearch.js).
+    assert travel_minutes(48) == pytest.approx(60, abs=1)
+    # Distance nulle → 0 min ; monotone croissante.
+    assert travel_minutes(0) == 0
+    assert travel_minutes(10) < travel_minutes(30) < travel_minutes(60)
+    # Haversine symétrique et cohérente (Villemoirieu → Lyon ≈ 31 km).
+    d = haversine_km(45.7192, 5.2431, 45.7578, 4.8320)
+    assert 28 < d < 34
+    assert haversine_km(45.7192, 5.2431, 45.7578, 4.8320) == pytest.approx(
+        haversine_km(45.7578, 4.8320, 45.7192, 5.2431)
+    )
+
+
+def test_within_radius_epicentre_villemoirieu():
+    from quefaire.geo import within_radius
+
+    center = (45.7192, 5.2431)  # Villemoirieu
+
+    lyon = make(commune="Lyon")
+    lyon.lat, lyon.lon = 45.7578, 4.8320           # ~42 min → dans le rayon
+    assert within_radius(lyon, *center, 60)
+
+    amberieu = make(commune="Ambérieu-en-Bugey")
+    amberieu.lat, amberieu.lon = 45.9583, 5.3547   # Ain, ~36 min → dans le rayon
+    assert within_radius(amberieu, *center, 60)
+
+    grenoble = make(commune="Grenoble")
+    grenoble.lat, grenoble.lon = 45.1885, 5.7245   # sud-Isère, > 1 h → écarté
+    assert not within_radius(grenoble, *center, 60)
+
+
+def test_within_radius_keeps_events_without_coordinates():
+    from quefaire.geo import within_radius
+
+    ev = make(commune="Inconnue")  # pas de lat/lon → conservé par défaut
+    assert ev.lat is None
+    assert within_radius(ev, 45.7192, 5.2431, 60)
+
+
+def test_sector_carries_radius_minutes():
+    sector = load_sector("villemoirieu")
+    assert sector.radius_minutes == 60
+    assert abs(sector.center_lat - 45.7192) < 0.01
