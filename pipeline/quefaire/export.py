@@ -53,6 +53,7 @@ def export(sector: Sector, events: list[Event], out_dir: Path | None = None) -> 
         "name": sector.name,
         "country": sector.country,
         "center": {"lat": sector.center_lat, "lon": sector.center_lon},
+        "radius_minutes": sector.radius_minutes,
         "categories": CATEGORIES,
         "communes": sorted(
             {e.commune for e in upcoming if e.commune}

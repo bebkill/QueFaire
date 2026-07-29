@@ -84,7 +84,7 @@ jobs:
           RSSBRIDGE_URL: ${{ vars.RSSBRIDGE_URL || 'http://localhost:3000' }}
         run: |
           if [ -n "$QUEFAIRE_LLM" ] || [ -n "$QUEFAIRE_LLM2" ]; then pip install autoagent-core; fi
-          python -m quefaire crawl --sector isere
+          python -m quefaire crawl --sector villemoirieu
 
       # [skip ci] : contrairement au GITHUB_TOKEN, un push par deploy key
       # redéclenche les workflows — sans ce marqueur, chaque commit de données

@@ -1,7 +1,8 @@
 """Point d'entrée du pipeline.
 
-  python -m quefaire crawl    --sector isere [--demo] [--out DIR]
-  python -m quefaire discover --sector isere [--communes A,B,C]
+  python -m quefaire crawl    --sector villemoirieu [--demo] [--out DIR]
+  python -m quefaire discover --sector villemoirieu [--communes A,B,C]
+  python -m quefaire build-geo --sector villemoirieu --departments 38,69,01,73
   python -m quefaire sectors
 """
 
@@ -74,6 +75,22 @@ def crawl(sector_id: str, demo: bool, out: Path | None) -> int:
         health.save(keep_ids={s.id for s in sector.sources})
 
     events = [enrich(geocode(e, sector_id)) for e in events]
+    if not demo:
+        # Pertinence par temps de trajet depuis l'épicentre, pas par département :
+        # on garde ce qui est à moins de `radius_minutes`, on écarte le reste
+        # (les événements sans coordonnées sont conservés — voir within_radius).
+        from .geo import within_radius
+
+        before = len(events)
+        events = [
+            e for e in events
+            if within_radius(e, sector.center_lat, sector.center_lon, sector.radius_minutes)
+        ]
+        if before != len(events):
+            log.info(
+                "[rayon] %d/%d événements hors du rayon (%d min autour de %s) écartés",
+                before - len(events), before, int(sector.radius_minutes), sector.name,
+            )
     events = dedupe(events)
     if not demo:
         from .clarify import clarify
@@ -266,25 +283,43 @@ def add_source(sector_id: str, path: Path | None) -> int:
     return 0
 
 
+def build_geo(sector_id: str, departments: list[str]) -> int:
+    """Génère data/communes_<secteur>.csv pour l'épicentre du secteur (réseau)."""
+    from .geodata import build_table, write_csv
+
+    sector = load_sector(sector_id)
+    rows = build_table(sector.center_lat, sector.center_lon, sector.radius_minutes, departments)
+    if not rows:
+        log.error("[build-geo] aucune commune récupérée — CSV non écrit.")
+        return 1
+    path = Path(__file__).resolve().parent / "data" / f"communes_{sector_id}.csv"
+    write_csv(rows, path)
+    log.info(
+        "[build-geo] %d communes dans le rayon (%d min autour de %s) → %s",
+        len(rows), int(sector.radius_minutes), sector.name, path,
+    )
+    return 0
+
+
 def main(argv: list[str] | None = None) -> int:
     logging.basicConfig(level=logging.INFO, format="%(levelname)s %(message)s")
     parser = argparse.ArgumentParser(prog="quefaire")
     sub = parser.add_subparsers(dest="cmd", required=True)
 
     p_crawl = sub.add_parser("crawl", help="Crawler les sources et exporter vers le site")
-    p_crawl.add_argument("--sector", default="isere")
+    p_crawl.add_argument("--sector", default="villemoirieu")
     p_crawl.add_argument("--demo", action="store_true", help="Jeu de données de démonstration")
     p_crawl.add_argument("--out", type=Path, default=None)
 
     p_disc = sub.add_parser("discover", help="Proposer de nouvelles sources (agent LLM)")
-    p_disc.add_argument("--sector", default="isere")
+    p_disc.add_argument("--sector", default="villemoirieu")
     p_disc.add_argument("--communes", default=None, help="Liste de communes, séparées par des virgules")
 
     p_oa = sub.add_parser(
         "discover-oa",
         help="Trouver les agendas OpenAgenda des communes du secteur (OPENAGENDA_KEY requise)",
     )
-    p_oa.add_argument("--sector", default="isere")
+    p_oa.add_argument("--sector", default="villemoirieu")
     p_oa.add_argument("--communes", default=None, help="Restreindre à ces communes (séparées par des virgules)")
     p_oa.add_argument("--strict", action="store_true",
                       help="Ne garder que les agendas dont le titre mentionne la commune")
@@ -294,7 +329,7 @@ def main(argv: list[str] | None = None) -> int:
         help="Évaluer une URL candidate : événements uniques apportés (garde-fous SSRF)",
     )
     p_eval.add_argument("url")
-    p_eval.add_argument("--sector", default="isere")
+    p_eval.add_argument("--sector", default="villemoirieu")
     p_eval.add_argument("--type", dest="source_type", default=None, choices=["html", "rss", "ical"])
     p_eval.add_argument("--commune", default=None, help="Commune par défaut si la source est communale")
     p_eval.add_argument("--json", action="store_true", help="Sortie JSON (pour un workflow)")
@@ -302,7 +337,7 @@ def main(argv: list[str] | None = None) -> int:
     p_sug = sub.add_parser(
         "suggest", help="Lister en JSON les sources candidates nouvelles (pour ouvrir des issues)"
     )
-    p_sug.add_argument("--sector", default="isere")
+    p_sug.add_argument("--sector", default="villemoirieu")
     p_sug.add_argument(
         "--with-llm", action="store_true", dest="with_llm",
         help="Inclure l'agent LLM (lent) en plus d'OpenAgenda — pour un run manuel",
@@ -312,8 +347,18 @@ def main(argv: list[str] | None = None) -> int:
         "add-source",
         help="Ajouter au registre les sources d'un bloc YAML (corps d'issue approuvée)",
     )
-    p_add.add_argument("--sector", default="isere")
+    p_add.add_argument("--sector", default="villemoirieu")
     p_add.add_argument("--file", type=Path, default=None, help="Fichier (sinon stdin)")
+
+    p_geo = sub.add_parser(
+        "build-geo",
+        help="Générer data/communes_<secteur>.csv dans le rayon de l'épicentre (réseau requis)",
+    )
+    p_geo.add_argument("--sector", default="villemoirieu")
+    p_geo.add_argument(
+        "--departments", required=True,
+        help="Départements à balayer, séparés par des virgules (ex. 38,69,01,73)",
+    )
 
     sub.add_parser("sectors", help="Lister les secteurs disponibles")
 
@@ -341,6 +386,9 @@ def main(argv: list[str] | None = None) -> int:
         return 0
     if args.cmd == "add-source":
         return add_source(args.sector, args.file)
+    if args.cmd == "build-geo":
+        departments = [d.strip() for d in args.departments.split(",") if d.strip()]
+        return build_geo(args.sector, departments)
     if args.cmd == "evaluate-source":
         import json
 

@@ -26,6 +26,10 @@ class Sector:
     country: str
     center_lat: float
     center_lon: float
+    # Rayon de pertinence en temps de trajet (minutes de voiture) autour de
+    # l'épicentre. Un événement au-delà est écarté à la collecte, quel que soit
+    # son département. Voir geo.within_radius.
+    radius_minutes: float = 60.0
     sources: list[Source] = field(default_factory=list)
 
 
@@ -130,5 +134,6 @@ def load_sector(sector_id: str) -> Sector:
         country=meta.get("country", "FR"),
         center_lat=float(meta.get("center_lat", 45.2)),
         center_lon=float(meta.get("center_lon", 5.7)),
+        radius_minutes=float(meta.get("radius_minutes", 60.0)),
         sources=[s for s in sources if s.enabled],
     )

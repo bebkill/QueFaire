@@ -70,7 +70,7 @@ jobs:
           gh label create source-suggestion --color 0e8a16 --description "Source proposée, à valider" 2>/dev/null || true
           gh label create approved --color 5319e7 --description "Suggestion validée par un éditeur" 2>/dev/null || true
 
-          python -m quefaire suggest --sector isere $WITH_LLM > candidates.json
+          python -m quefaire suggest --sector villemoirieu $WITH_LLM > candidates.json
           cat candidates.json
 
           python - "$REPO" <<'PY'
@@ -114,7 +114,7 @@ jobs:
         env:
           OPENAGENDA_KEY: ${{ secrets.OPENAGENDA_KEY }}
         run: |
-          ARGS="--sector isere"
+          ARGS="--sector villemoirieu"
           if [ -n "${{ inputs.communes }}" ]; then ARGS="$ARGS --communes '${{ inputs.communes }}'"; fi
           if [ "${{ inputs.strict }}" = "true" ]; then ARGS="$ARGS --strict"; fi
           eval python -m quefaire discover-oa $ARGS | tee /tmp/candidates.yaml

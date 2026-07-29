@@ -3,8 +3,15 @@
 Agrégateur d'activités et d'événements locaux. Un pipeline Python collecte,
 normalise et exporte les événements ; un site Astro statique les présente avec
 recherche en langage naturel, carte Leaflet et filtre temps de trajet.
-Secteur MVP : **Isère (38)**. Tout est en **français** : code commenté, logs,
-messages de commit, UI.
+
+**Modèle « épicentre »** : on ne raisonne PAS par département mais par commune
+de référence + un rayon en **temps de trajet** (`radius_minutes`, ~1 h de
+voiture ≈ 48 km). Un événement est pertinent s'il tombe dans le rayon, quel que
+soit son département — le nord-Isère est plus proche de Lyon (69) et de l'Ain
+(01) que du sud-Isère. Un secteur = un fichier `sources/<commune>.yaml`, ce qui
+scale à toute ville (« QueFaire — Villemoirieu », « QueFaire — Grenoble »…).
+Épicentre MVP : **Villemoirieu** (nord-Isère), rayon 60 min. Tout est en
+**français** : code commenté, logs, messages de commit, UI.
 
 Docs détaillées : `docs/ARCHITECTURE.md` (fonctionnement) et `docs/ROADMAP.md`
 (fait / à faire). Vue d'ensemble : `README.md`.
@@ -16,15 +23,18 @@ Docs détaillées : `docs/ARCHITECTURE.md` (fonctionnement) et `docs/ROADMAP.md`
 pip install -r pipeline/requirements.txt
 cd pipeline
 python -m pytest tests -q                        # les tests (sans réseau ni LLM)
-python -m quefaire crawl --sector isere --demo   # jeu de démo — voir AVERTISSEMENT
-python -m quefaire discover-oa --sector isere    # découverte d'agendas OpenAgenda
-python -m quefaire discover --sector isere       # découverte de sources par agent LLM
+python -m quefaire crawl --sector villemoirieu --demo   # jeu de démo — voir AVERTISSEMENT
+python -m quefaire discover-oa --sector villemoirieu    # découverte d'agendas OpenAgenda
+python -m quefaire discover --sector villemoirieu       # découverte de sources par agent LLM
 python -m quefaire evaluate-source <url> [--json]  # événements UNIQUES d'une URL
                                                    # candidate (garde-fous SSRF)
-python -m quefaire suggest --sector isere          # candidates nouvelles (JSON) →
+python -m quefaire suggest --sector villemoirieu   # candidates nouvelles (JSON) →
                                                    # workflow discover.yml → issues
 python -m quefaire add-source --file issue.md      # applique un bloc YAML approuvé
                                                    # au registre (workflow apply-source)
+python -m quefaire build-geo --sector villemoirieu --departments 38,69,01,73
+                                                   # (RÉSEAU) régénère la table de
+                                                   # communes du rayon via geo.api.gouv.fr
 
 # Site (Node ≥ 20)
 cd site && npm install
@@ -50,14 +60,18 @@ quota meurt en cours de run). À chaque crawl on ne conserve que les clés vues
 ## Architecture en bref
 
 ```
-pipeline/sources/isere.yaml       registre des sources (enabled: false par défaut,
-                                  un humain valide avant activation)
-pipeline/data/communes_isere.csv  géocodage hors-ligne commune → lat/lon
+pipeline/sources/villemoirieu.yaml  registre des sources de l'épicentre (meta :
+                                  center_lat/lon + radius_minutes ; sources
+                                  enabled: false par défaut, un humain valide)
+pipeline/data/communes_villemoirieu.csv  géocodage hors-ligne commune → lat/lon
+                                  (nord-Isère + Rhône + Ain dans le rayon)
 pipeline/quefaire/
   fetchers/    rss, ical, openagenda, html_llm (extraction LLM), social (RSS-Bridge+LLM)
   llm.py       résolution LLM principal/backup — voir ci-dessous
   normalize.py catégorie / public / gratuité par règles lisibles
   geocode.py   commune → coordonnées, zéro appel réseau
+  geo.py       distance/temps de trajet + filtre de rayon (miroir du front)
+  geodata.py   build-geo : génère la table de communes du rayon (réseau, hors crawl)
   dedupe.py    même événement via N sources → 1 fiche (on garde la plus riche)
   clarify.py   phrase LLM « en clair » pour les titres AMBIGUS uniquement
                (filtre anti-paraphrase : écarte ce qui recopie titre/description)
@@ -133,6 +147,14 @@ site/src/pages/proposer.astro   formulaire « proposer une source » → issue p
   jamais publier un site vide.
 - **Validation humaine** : les outils de découverte produisent des entrées
   `enabled: false` ; un humain relit avant activation.
+- **Pertinence par temps de trajet, pas par département** : à la collecte, le
+  crawl écarte les événements à plus de `radius_minutes` de l'épicentre
+  (`geo.within_radius`), quel que soit le département. Le calcul (`geo.py`)
+  reproduit **à l'identique** celui du front (`travelMinutes`/`distanceKm` dans
+  `nlsearch.js`), pour que collecte et affichage s'accordent. Les événements
+  OpenAgenda portent déjà leurs coordonnées (source) ; le CSV ne géocode que les
+  sources qui ne donnent qu'un nom de commune. La table de communes du rayon se
+  (re)génère avec `build-geo` (réseau, hors crawl).
 - **Site 100 % statique** : pas de serveur, pas de base. La recherche NL, la
   carte et les filtres tournent dans le navigateur. Le temps de trajet est une
   approximation à vol d'oiseau corrigé (`travelMinutes` dans `nlsearch.js`),
