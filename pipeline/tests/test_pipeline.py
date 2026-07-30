@@ -820,7 +820,9 @@ def test_demo_and_export_roundtrip(tmp_path):
     data = json.loads((tmp_path / "events.json").read_text(encoding="utf-8"))
     assert meta["event_count"] == len(data) > 20
     assert all(e["start"] >= date.today().isoformat()[:4] for e in data)
-    # Tous les événements démo doivent être géocodés (communes connues du CSV).
+    # La démo est autoportante : chaque événement porte ses coordonnées
+    # (demo._COORDS), indépendamment du CSV du secteur. Garde-fou : si une
+    # commune de la démo n'a pas de coordonnées, ce test échoue.
     assert all(e["lat"] is not None for e in data)
 
 

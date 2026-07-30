@@ -12,6 +12,36 @@ from datetime import date, datetime, time, timedelta
 from .models import Event
 
 
+# Coordonnées propres à la démo : elle est AUTOPORTANTE et ne dépend pas du CSV
+# du secteur (data/communes_<secteur>.csv). Ce CSV est un artefact généré par
+# build-geo (noms officiels, communes fusionnées comme « Les Avenières Veyrins-
+# Thuellin »…) : y coupler les noms de la démo la casse à chaque régénération.
+# Avec des coordonnées explicites, la démo s'affiche toujours (carte + filtre).
+_COORDS = {
+    "Villemoirieu": (45.7192, 5.2431),
+    "Crémieu": (45.7231, 5.2508),
+    "L'Isle-d'Abeau": (45.6206, 5.2264),
+    "Bourgoin-Jallieu": (45.5858, 5.2739),
+    "Montalieu-Vercieu": (45.7897, 5.4008),
+    "Pérouges": (45.9061, 5.1783),
+    "Meyzieu": (45.7667, 5.0033),
+    "Vienne": (45.5253, 4.8744),
+    "Loyettes": (45.7772, 5.2439),
+    "Morestel": (45.6786, 5.4658),
+    "Lagnieu": (45.9058, 5.3489),
+    "La Tour-du-Pin": (45.5661, 5.4447),
+    "Saint-Chef": (45.6669, 5.3706),
+    "Lyon": (45.7578, 4.8320),
+    "Villefontaine": (45.6136, 5.1503),
+    "Saint-Vulbas": (45.8083, 5.2672),
+    "Meximieux": (45.9083, 5.1928),
+    "Jonage": (45.7942, 5.0450),
+    "Les Avenières": (45.6197, 5.5556),
+    "Ambérieu-en-Bugey": (45.9583, 5.3547),
+    "Chavanoz": (45.7639, 5.1631),
+}
+
+
 def _next_saturday(today: date) -> date:
     return today + timedelta(days=(5 - today.weekday()) % 7)
 
@@ -26,12 +56,15 @@ def demo_events(sector_id: str = "villemoirieu") -> list[Event]:
     sun = sat + timedelta(days=1)
 
     def ev(title, day, hour, commune, category, desc, **kw):
+        lat, lon = _COORDS.get(commune, (None, None))
         return Event(
             title=title,
             start=_at(day, hour),
             commune=commune,
             category=category,
             description=desc,
+            lat=kw.pop("lat", lat),
+            lon=kw.pop("lon", lon),
             source_id=kw.pop("source_id", "demo"),
             sector=sector_id,
             **kw,
