@@ -1,0 +1,26 @@
+# Registre des sources — épicentre PONT-DE-SALARS (Aveyron, 12290)
+#
+# Même modèle que Villemoirieu : une commune de référence + un rayon en TEMPS DE
+# TRAJET. Depuis Pont-de-Salars, ~1 h de voiture couvre le cœur de l'Aveyron
+# (Rodez, Millau, le Lévézou, une partie des Causses) et déborde légèrement sur
+# le Tarn / la Lozère.
+#
+# Sources : AUCUNE validée pour l'instant. La couverture se construit ainsi —
+#   1. (réseau) OPENAGENDA_KEY=... python -m quefaire discover-oa \
+#        --sector pont-de-salars --strict     → agendas OpenAgenda des communes
+#        du rayon (la table data/communes_pont-de-salars.csv sert de cible).
+#   2. relire les candidates, passer enabled: true une à une.
+#   3. compléter la table de communes du rayon avec build-geo (réseau) :
+#        python -m quefaire build-geo --sector pont-de-salars --departments 12,81,48,15,46
+#
+# Tant qu'aucune source n'est activée, la ville est RÉFÉRENCÉE dans l'annuaire
+# (portail « choisir sa ville ») mais son agenda reste « en préparation ».
+
+sector:
+  name: Pont-de-Salars
+  country: FR
+  center_lat: 44.2789
+  center_lon: 2.7300
+  radius_minutes: 60
+
+sources: []
