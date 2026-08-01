@@ -910,3 +910,39 @@ def test_sector_carries_radius_minutes():
     sector = load_sector("villemoirieu")
     assert sector.radius_minutes == 60
     assert abs(sector.center_lat - 45.7192) < 0.01
+
+
+# --- Cloisonnement des caches par ville (crawl multi-villes) --------------------
+
+def test_cache_partitioned_per_city(tmp_path, monkeypatch):
+    import quefaire.cache as c
+
+    monkeypatch.setattr(c, "CACHE_DIR", tmp_path)
+    cache = c._ContentCache()
+    cache.bind("ville-a")
+    cache.put("extract:a", ["A"])
+    cache.save()
+    cache.bind("ville-b")   # simule le crawl de la ville suivante
+    cache.put("extract:b", ["B"])
+    cache.save()
+
+    a = json.loads((tmp_path / "ville-a" / "content.json").read_text(encoding="utf-8"))
+    b = json.loads((tmp_path / "ville-b" / "content.json").read_text(encoding="utf-8"))
+    assert a == {"extract:a": ["A"]}   # non évincé par le crawl de ville-b
+    assert b == {"extract:b": ["B"]}
+
+
+def test_health_partitioned_per_city(tmp_path, monkeypatch):
+    import quefaire.health as h
+
+    monkeypatch.setattr(h, "HEALTH_DIR", tmp_path)
+    health = h._Health()
+    health.bind("ville-a")
+    health.record("src-a", produced=True, today="2026-01-01")
+    health.save(keep_ids={"src-a"})
+    health.bind("ville-b")
+    health.record("src-b", produced=True, today="2026-01-01")
+    health.save(keep_ids={"src-b"})
+
+    a = json.loads((tmp_path / "ville-a" / "source_health.json").read_text(encoding="utf-8"))
+    assert "src-a" in a  # l'état de ville-a survit au crawl de ville-b

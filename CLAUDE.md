@@ -45,17 +45,20 @@ npm run build
 ## AVERTISSEMENT : données générées
 
 `site/src/data/cities/<ville>/{events,sector}.json`, `site/src/data/cities.json`
-**et `pipeline/cache/content.json`** sont **générés par le workflow CI**
+**et `pipeline/cache/<ville>/content.json`** sont **générés par le workflow CI**
 (`refresh.yml`, crawl réel 2×/jour) et committés par le bot. Un crawl local
 (surtout `--demo`) les écrase/altère : **ne jamais committer ces fichiers après
 un run local**. Si ça arrive, les restaurer depuis le dernier commit avant de
 committer autre chose (`git checkout <ref> -- site/src/data/ pipeline/cache/`).
 
-Le cache (`pipeline/cache/content.json`) mémorise le résultat des appels LLM
-par **hash du contenu d'entrée** : une page/un post inchangé n'est pas
-ré-extrait (répétabilité entre deux crawls, économie de quota, résilience si le
-quota meurt en cours de run). À chaque crawl on ne conserve que les clés vues
-(élagage automatique). Voir `pipeline/quefaire/cache.py`.
+Le cache (`pipeline/cache/<ville>/content.json`, **cloisonné par ville** via
+`cache.bind`) mémorise le résultat des appels LLM par **hash du contenu
+d'entrée** : une page/un post inchangé n'est pas ré-extrait (répétabilité entre
+deux crawls, économie de quota, résilience si le quota meurt en cours de run).
+À chaque crawl on ne conserve que les clés vues (élagage automatique) — d'où le
+cloisonnement, sinon le crawl d'une ville évincerait le cache des autres. L'état
+de fraîcheur des sources (`source_health.json`) est cloisonné de même. Voir
+`pipeline/quefaire/cache.py` et `health.py`.
 
 ## Architecture en bref
 
@@ -87,7 +90,7 @@ pipeline/quefaire/
   export.py    → site/src/data/{events,sector,cities}.json (cities = annuaire des
                villes actives, fusionné entre crawls, pour le portail)
 
-pipeline/cache/content.json       cache LLM (hash du texte → résultat), committé
+pipeline/cache/<ville>/content.json  cache LLM (hash du texte → résultat), committé
                                   par la CI comme site/src/data — voir ci-dessous
 
 site/src/

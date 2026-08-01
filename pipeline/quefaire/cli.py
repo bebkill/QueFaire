@@ -29,6 +29,14 @@ MAX_SUGGESTIONS = 25
 
 def crawl(sector_id: str, demo: bool, out: Path | None) -> int:
     sector = load_sector(sector_id)
+    # Cache LLM et état de fraîcheur cloisonnés par ville : un crawl multi-villes
+    # séquentiel ne doit pas évincer le cache/health des autres épicentres.
+    from .cache import cache
+    from .health import health
+
+    cache.bind(sector_id)
+    health.bind(sector_id)
+
     events: list[Event] = []
 
     if not demo and not sector.sources:

@@ -21,7 +21,8 @@ from pathlib import Path
 
 log = logging.getLogger("quefaire")
 
-HEALTH_PATH = Path(__file__).resolve().parent.parent / "cache" / "source_health.json"
+HEALTH_DIR = Path(__file__).resolve().parent.parent / "cache"
+HEALTH_PATH = HEALTH_DIR / "source_health.json"  # défaut
 STALE_DAYS = 30
 
 
@@ -34,13 +35,25 @@ class _Health:
         self._data: dict = {}
         self._loaded = False
         self._touched = False
+        self._path: Path | None = None  # None → HEALTH_PATH (défaut)
+
+    def bind(self, sector_id: str) -> None:
+        """Cloisonne l'état de fraîcheur sur cache/<sector_id>/source_health.json
+        (sinon l'élagage d'un crawl évincerait les sources des autres villes)."""
+        self._path = HEALTH_DIR / sector_id / "source_health.json"
+        self._data = {}
+        self._loaded = False
+        self._touched = False
+
+    def _file(self) -> Path:
+        return self._path or HEALTH_PATH
 
     def _load(self) -> None:
         if self._loaded:
             return
         self._loaded = True
         try:
-            self._data = json.loads(HEALTH_PATH.read_text(encoding="utf-8"))
+            self._data = json.loads(self._file().read_text(encoding="utf-8"))
         except (FileNotFoundError, OSError, json.JSONDecodeError):
             self._data = {}
 
@@ -75,13 +88,14 @@ class _Health:
             return
         if keep_ids is not None:
             self._data = {k: v for k, v in self._data.items() if k in keep_ids}
-        HEALTH_PATH.parent.mkdir(parents=True, exist_ok=True)
-        tmp = HEALTH_PATH.with_name(HEALTH_PATH.name + ".tmp")
+        path = self._file()
+        path.parent.mkdir(parents=True, exist_ok=True)
+        tmp = path.with_name(path.name + ".tmp")
         tmp.write_text(
             json.dumps(self._data, ensure_ascii=False, sort_keys=True, indent=0),
             encoding="utf-8",
         )
-        tmp.replace(HEALTH_PATH)
+        tmp.replace(path)
 
 
 health = _Health()
