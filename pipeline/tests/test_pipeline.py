@@ -826,6 +826,36 @@ def test_demo_and_export_roundtrip(tmp_path):
     assert all(e["lat"] is not None for e in data)
 
 
+def test_export_writes_cities_manifest(tmp_path):
+    sector = load_sector("villemoirieu")
+    events = [enrich(geocode(e, "villemoirieu")) for e in demo_events()]
+    meta = export(sector, dedupe(events), tmp_path)
+
+    data = json.loads((tmp_path / "cities.json").read_text(encoding="utf-8"))
+    assert data["generated_at"]
+    vm = next(c for c in data["cities"] if c["id"] == "villemoirieu")
+    assert vm["name"] == "Villemoirieu"
+    assert vm["radius_minutes"] == 60
+    assert abs(vm["center"]["lat"] - 45.7192) < 0.01
+    assert vm["event_count"] == meta["event_count"]
+    assert vm["generated_at"] == meta["generated_at"]
+
+
+def test_cities_manifest_merge_preserves_url(tmp_path):
+    # Un `url` renseigné à la main (déploiement dédié) survit à un ré-export
+    # (chaque crawl ne connaît que son secteur, on fusionne l'existant).
+    (tmp_path / "cities.json").write_text(
+        json.dumps({"generated_at": "x", "cities": [
+            {"id": "villemoirieu", "url": "https://villemoirieu.quefaire.fr"}
+        ]}), encoding="utf-8",
+    )
+    sector = load_sector("villemoirieu")
+    export(sector, dedupe([enrich(geocode(e, "villemoirieu")) for e in demo_events()]), tmp_path)
+    data = json.loads((tmp_path / "cities.json").read_text(encoding="utf-8"))
+    vm = next(c for c in data["cities"] if c["id"] == "villemoirieu")
+    assert vm["url"] == "https://villemoirieu.quefaire.fr"
+
+
 # --- Épicentre + rayon (geo.py) ------------------------------------------------
 
 def test_travel_minutes_matches_front_calibration():

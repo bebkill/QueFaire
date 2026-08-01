@@ -338,3 +338,45 @@ a { color: inherit; }
 .prose h2 { margin-top: 2em; }
 .prose li { margin: 4px 0; }
 .prose code { background: var(--bg-soft); padding: 1px 6px; border-radius: 6px; font-size: 0.9em; }
+
+/* --- Portail « choisir sa ville » (villes.astro) ------------------------- */
+.cities-meta { font-size: 1rem; color: var(--ink-soft); margin: -4px 0 14px; }
+.cities-controls {
+  display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin: 16px 0 8px;
+}
+.btn-locate {
+  background: var(--accent); color: var(--accent-ink); border: none;
+  border-radius: 999px; padding: 10px 20px; font-size: 0.95rem; font-weight: 600;
+  cursor: pointer; box-shadow: var(--shadow);
+}
+.btn-locate:hover { filter: brightness(1.08); }
+#city-search {
+  flex: 1 1 200px; min-width: 160px; background: var(--card); color: var(--ink);
+  border: 1.5px solid var(--line); border-radius: 999px; padding: 10px 18px; font-size: 0.95rem;
+}
+#city-search:focus { outline: none; border-color: var(--accent); box-shadow: var(--shadow-lift); }
+.locate-result { min-height: 1.2em; margin: 6px 2px 14px; color: var(--ink); }
+.cities-map {
+  height: 420px; border-radius: var(--radius); border: 1px solid var(--line);
+  box-shadow: var(--shadow); z-index: 1; margin-bottom: 22px;
+}
+@media (prefers-color-scheme: dark) {
+  .cities-map .leaflet-tile { filter: brightness(0.75) contrast(1.05); }
+}
+.cities-list { list-style: none; padding: 0; margin: 0; display: grid; gap: 14px;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); }
+.city-card {
+  background: var(--card); border: 1px solid var(--line); border-radius: var(--radius);
+  padding: 16px 18px; box-shadow: var(--shadow); transition: border-color .15s, box-shadow .15s;
+}
+.city-card.is-active { border-color: var(--accent); box-shadow: var(--shadow-lift); }
+.city-card-head { display: flex; align-items: baseline; justify-content: space-between; gap: 8px; }
+.city-card h2 { margin: 0; font-size: 1.15rem; }
+.city-count { font-size: 0.8rem; font-weight: 600; color: var(--ink-soft); white-space: nowrap; }
+.city-radius { font-size: 0.85rem; color: var(--ink-soft); margin: 4px 0 12px; }
+.btn-open {
+  display: inline-block; background: var(--accent); color: var(--accent-ink);
+  text-decoration: none; border-radius: 999px; padding: 8px 16px; font-size: 0.9rem; font-weight: 600;
+}
+.btn-open:hover { filter: brightness(1.08); }
+.no-city { color: var(--ink-soft); }
