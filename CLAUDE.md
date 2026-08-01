@@ -84,7 +84,8 @@ pipeline/quefaire/
                (retrait auto des sources abandonnées, réversible)
   registry.py  chargement + édition du registre (append_source / set_enabled,
                préserve les commentaires)
-  export.py    → site/src/data/{events,sector}.json
+  export.py    → site/src/data/{events,sector,cities}.json (cities = annuaire des
+               villes actives, fusionné entre crawls, pour le portail)
 
 pipeline/cache/content.json       cache LLM (hash du texte → résultat), committé
                                   par la CI comme site/src/data — voir ci-dessous
@@ -95,6 +96,9 @@ site/src/
   lib/nlsearch.js      parseur FR de requêtes libres + distance/temps de trajet
   components/EventCard.astro  carte événement (attributs data-* pour le filtrage)
   pages/evenement/[id].astro  pages détail générées au build
+  pages/villes.astro   portail « choisir sa ville » : carte des épicentres actifs,
+                       « me localiser » (ville la plus proche), recherche ; affiche
+                       le nombre de villes actives + date de dernière mise à jour
 
 .github/workflows/refresh.yml   cron 2×/jour : crawl → commit data → build → Pages
 .github/workflows/discover.yml  cron hebdo : suggest → ouvre une issue par source
