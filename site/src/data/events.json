@@ -231,6 +231,29 @@
   "id": "les-dimanches-c-est-pique-nique-b4e2435b"
  },
  {
+  "title": "Dimanches Pique-Nique à Bourgoin-Jallieu",
+  "start": "2026-07-05T00:00:00",
+  "source_id": "html-weekend-capi",
+  "sector": "villemoirieu",
+  "end": "2026-09-13",
+  "description": "Dimanches pique-nique organisés dans le cadre des Festiv'été à Bourgoin-Jallieu. La ville propose de nombreux événements gratuits pour profiter de l'été.",
+  "tldr": null,
+  "category": "fete",
+  "tags": [],
+  "audience": [
+   "tous"
+  ],
+  "commune": "Bourgoin-Jallieu",
+  "address": "38300 Bourgoin-Jallieu, France",
+  "lat": 45.6025,
+  "lon": 5.2747,
+  "free": true,
+  "price_text": "100% gratuits",
+  "url": "https://www.monweekendalacapi.fr/agenda/evenements/dimanches-pique-nique-a-bourgoin-jallieu",
+  "image": null,
+  "id": "dimanches-pique-nique-a-bourgoin-jallieu-f1ace422"
+ },
+ {
   "title": "Festiv'été 2026 : ciné-été en plein-air !",
   "start": "2026-07-07T00:00:00",
   "source_id": "html-bourgoin",
@@ -628,6 +651,30 @@
   "url": "https://www.bourgoinjallieu.fr/agenda/2552-visite-commentee-exposition-au-fil-de-leau",
   "image": null,
   "id": "visite-commentee-exposition-au-fil-de-leau-3f488cf3"
+ },
+ {
+  "title": "Avant-première La Pat'Patrouille Mission Dino",
+  "start": "2026-08-02T00:00:00",
+  "source_id": "html-weekend-capi",
+  "sector": "villemoirieu",
+  "end": null,
+  "description": "Avant-première du film La Pat'Patrouille : Mission Dino au cinéma. Soyez parmi les premiers à découvrir cette nouvelle aventure.",
+  "tldr": null,
+  "category": "cinema",
+  "tags": [],
+  "audience": [
+   "enfants",
+   "famille"
+  ],
+  "commune": "Villefontaine",
+  "address": "57 esplanade Auguste et Louis Lumière 38090 Villefontaine, France",
+  "lat": 45.6161,
+  "lon": 5.1549,
+  "free": null,
+  "price_text": null,
+  "url": "https://www.monweekendalacapi.fr/agenda/evenements/avant-premiere-la-pat-patrouille-mission-dino",
+  "image": null,
+  "id": "avant-premiere-la-pat-patrouille-mission-dino-f82e97b3"
  },
  {
   "title": "Exposition Archives “Quand la ville arrive à la campagne”",

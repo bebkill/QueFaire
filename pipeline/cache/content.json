@@ -12,6 +12,7 @@
 "clarify:369dbdcfa0d944677bee7ba2134703e6650279e782423bc918b82e2ed0e18f34": "",
 "clarify:38f6900c4f79eabd4344fc8a965d8e849c2b0df99a3210b0019839398ad34c4d": "",
 "clarify:42d312659eea1c372439c6aaa04c4ce9aca96631fd0ab986f6157f6f37a5c992": "",
+"clarify:4f6bd523ad034ce3e029418959a858458541edb5f86335e63f56f2702d9eb735": "",
 "clarify:55fe318ca14581dec0212e59a1e7164fd7fb1f24e0f646376d4a4780fe194e3e": "",
 "clarify:61b468dfceb0dcf0617d4245d4c59f39e9ea32f4415849d658662464280d51d1": "",
 "clarify:630f0c9825003bbdfc576512f0622cd668dcec700942cb822095b14d29f64aff": "",
@@ -23,6 +24,7 @@
 "clarify:7de07446a20fec4a4e43a377ccc5b23549985dc8d3bc9c3557d8be226eb94e4c": "",
 "clarify:7de7a7fad1148c4b4af21354e0c133ef6bee27778e4d45316cec68c55ee94c72": "",
 "clarify:7f0c50822c45c038b6779adbd24e756a38f635bfae292d8fdbe599a50eb6a811": "",
+"clarify:82c7c191b8cfeb428b1ee15bdb1ba6503321bf871078939f7ff9df1ed2c40073": "",
 "clarify:85361f37aedb0e37693ec6ff3830aab638ca040d4a166b0212503c6beecee52b": "",
 "clarify:884ad324293046445a8ad3d01b85b11c225c01ace07989d0b658d63284f77886": "",
 "clarify:8929bdf4f70a312b8f1a33b5e521bb0e7160e21c1ecca674f0eb0ea23f894be0": "",
@@ -49,6 +51,55 @@
 "clarify:ee6ed934f0dd01665bc421a644f27e873aaa8f8084022491fa4e037e8265c797": "",
 "clarify:f97a92d3ea4ee58bf0ecb2740a9d64adac69d7db5c04955097969646d0b8af49": "",
 "clarify:ffbeb28cc856323cb340eca721cc205c3761842f5a466ce5fceb0fdff6026538": "",
+"extract:1a8635857064fe99bc5ed17e42aa61731d6a863bd334422eef4ee22993cdb38d": [
+{
+"address": "57 esplanade Auguste et Louis Lumière 38090 Villefontaine, France",
+"audience": [
+"enfants",
+"famille"
+],
+"category": "cinema",
+"commune": "Villefontaine",
+"description": "Avant-première du film La Pat'Patrouille : Mission Dino au cinéma. Soyez parmi les premiers à découvrir cette nouvelle aventure.",
+"end": null,
+"free": null,
+"id": "avant-premiere-la-pat-patrouille-mission-dino-f82e97b3",
+"image": null,
+"lat": null,
+"lon": null,
+"price_text": null,
+"sector": "villemoirieu",
+"source_id": "html-weekend-capi",
+"start": "2026-08-02T00:00:00",
+"tags": [],
+"title": "Avant-première La Pat'Patrouille Mission Dino",
+"tldr": null,
+"url": "https://www.monweekendalacapi.fr/agenda/evenements/avant-premiere-la-pat-patrouille-mission-dino"
+},
+{
+"address": "38300 Bourgoin-Jallieu, France",
+"audience": [
+"tous"
+],
+"category": "fete",
+"commune": "Bourgoin-Jallieu",
+"description": "Dimanches pique-nique organisés dans le cadre des Festiv'été à Bourgoin-Jallieu. La ville propose de nombreux événements gratuits pour profiter de l'été.",
+"end": "2026-09-13",
+"free": true,
+"id": "dimanches-pique-nique-a-bourgoin-jallieu-f1ace422",
+"image": null,
+"lat": null,
+"lon": null,
+"price_text": "100% gratuits",
+"sector": "villemoirieu",
+"source_id": "html-weekend-capi",
+"start": "2026-07-05T00:00:00",
+"tags": [],
+"title": "Dimanches Pique-Nique à Bourgoin-Jallieu",
+"tldr": null,
+"url": "https://www.monweekendalacapi.fr/agenda/evenements/dimanches-pique-nique-a-bourgoin-jallieu"
+}
+],
 "extract:401f246bb3a44373913071d1a4267b5f45e4f015861e8893a79656c93c726d78": [
 {
 "address": null,
@@ -567,7 +618,6 @@
 "url": "https://capi-agglo.fr/agenda/soiree-conte-au-jardin/"
 }
 ],
-"extract:b7844ddca7fd26a50527279b7dbba60432c4c2f3c91a2a89385d3263bfd2144a": [],
 "extract:f46a60dad2e617ffb890fdfca82f93e6f6b9d641a75a9d7388a89929f3496c8c": [
 {
 "address": null,
