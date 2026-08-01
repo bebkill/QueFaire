@@ -1,0 +1,82 @@
+{
+ "id": "pont-de-salars",
+ "name": "Pont-de-Salars",
+ "country": "FR",
+ "center": {
+  "lat": 44.2789,
+  "lon": 2.73
+ },
+ "radius_minutes": 60.0,
+ "categories": {
+  "concert": "Concert & musique",
+  "spectacle": "Spectacle & théâtre",
+  "festival": "Festival",
+  "expo": "Exposition & culture",
+  "sport": "Sport",
+  "nature": "Nature & randonnée",
+  "atelier": "Atelier & stage",
+  "marche": "Marché & terroir",
+  "patrimoine": "Patrimoine & visites",
+  "jeunesse": "Jeunesse & famille",
+  "cinema": "Cinéma",
+  "conference": "Conférence & rencontre",
+  "fete": "Fête locale",
+  "autre": "Autre"
+ },
+ "communes": [
+  "Arvieu",
+  "Baraqueville",
+  "Bozouls",
+  "Canet-de-Salars",
+  "Cassagnes-Bégonhès",
+  "Espalion",
+  "Flavin",
+  "Laissac-Sévérac l'Église",
+  "Le Monastère",
+  "Le Vibal",
+  "Luc-la-Primaube",
+  "Marcillac-Vallon",
+  "Millau",
+  "Naucelle",
+  "Onet-le-Château",
+  "Pont-de-Salars",
+  "Prades-Salars",
+  "Rignac",
+  "Rodez",
+  "Réquista",
+  "Saint-Affrique",
+  "Salles-Curan",
+  "Ségur",
+  "Sévérac d'Aveyron",
+  "Trémouilles",
+  "Villefranche-de-Panat"
+ ],
+ "sources": [
+  {
+   "id": "html-levezou-pontsalars",
+   "name": "Tourisme Aveyron — sortir à Pont-de-Salars / Lévézou",
+   "type": "html",
+   "url": "https://www.tourisme-aveyron.com/fr/decouvrir/villes-et-villages/pont-salars/sortir"
+  },
+  {
+   "id": "html-rodezagglo",
+   "name": "Rodez Agglomération — agenda des manifestations",
+   "type": "html",
+   "url": "https://www.rodezagglo.fr/informations-pratiques/agenda-des-manifestations/"
+  },
+  {
+   "id": "html-rodez-tourisme",
+   "name": "Office de tourisme de Rodez — agenda",
+   "type": "html",
+   "url": "https://www.rodez-tourisme.fr/agenda/"
+  },
+  {
+   "id": "html-aveyron-dept",
+   "name": "Département de l'Aveyron — agenda",
+   "type": "html",
+   "url": "https://aveyron.fr/agenda"
+  }
+ ],
+ "generated_at": "2026-08-01T19:57:39",
+ "event_count": 36
+}
