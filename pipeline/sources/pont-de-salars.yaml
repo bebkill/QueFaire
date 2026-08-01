@@ -1,0 +1,62 @@
+# Registre des sources — épicentre PONT-DE-SALARS (Aveyron, 12290)
+#
+# Même modèle que Villemoirieu : une commune de référence + un rayon en TEMPS DE
+# TRAJET. Depuis Pont-de-Salars, ~1 h de voiture couvre le cœur de l'Aveyron
+# (Rodez, Millau, le Lévézou, une partie des Causses) et déborde légèrement sur
+# le Tarn / la Lozère.
+#
+# Sources ci-dessous : repérées par recherche web (08/2026). L'Aveyron passe
+# surtout par des PAGES AGENDA HTML (extraction LLM), peu par OpenAgenda. Elles
+# sont activées mais NON encore vérifiées par un crawl réel : le premier crawl
+# CI les teste, et `health` désactive automatiquement celles sans événement à
+# venir depuis > 30 jours (retrait auto). À compléter :
+#   - OPENAGENDA_KEY=... python -m quefaire discover-oa --sector pont-de-salars --strict
+#   - python -m quefaire build-geo --sector pont-de-salars --departments 12,81,48,15,46
+#     (réseau ; complète data/communes_pont-de-salars.csv, saisie à la main ici)
+
+sector:
+  name: Pont-de-Salars
+  country: FR
+  center_lat: 44.2789
+  center_lon: 2.7300
+  radius_minutes: 60
+
+sources:
+  # --- Cœur de l'épicentre (Lévézou / Pont-de-Salars) ------------------------
+  - id: html-levezou-pontsalars
+    name: Tourisme Aveyron — sortir à Pont-de-Salars / Lévézou
+    type: html
+    url: https://www.tourisme-aveyron.com/fr/decouvrir/villes-et-villages/pont-salars/sortir
+    commune: Pont-de-Salars
+    enabled: true
+
+  # --- Rodez & agglomération (~15 min) --------------------------------------
+  - id: html-rodezagglo
+    name: Rodez Agglomération — agenda des manifestations
+    type: html
+    url: https://www.rodezagglo.fr/informations-pratiques/agenda-des-manifestations/
+    commune: Rodez
+    enabled: true
+
+  - id: html-rodez-tourisme
+    name: Office de tourisme de Rodez — agenda
+    type: html
+    url: https://www.rodez-tourisme.fr/agenda/
+    commune: Rodez
+    enabled: true
+
+  # --- Département (le filtre de rayon écarte ce qui est à plus d'1 h) -------
+  - id: html-aveyron-dept
+    name: Département de l'Aveyron — agenda
+    type: html
+    url: https://aveyron.fr/agenda
+    commune: Rodez
+    enabled: true
+
+  # --- Millau / Grands Causses : en limite de rayon (~50 min), à tester -----
+  - id: html-millau
+    name: OT Millau Grands Causses — tout l'agenda
+    type: html
+    url: https://www.millau-viaduc-tourisme.fr/agenda/tout-l-agenda
+    commune: Millau
+    enabled: false

@@ -14,6 +14,11 @@ réutilise le résultat sans rappeler le LLM :
 Le cache est un simple JSON committé par la CI (comme site/src/data). À chaque
 run on ne conserve que les clés effectivement vues, ce qui élague
 automatiquement les sources retirées ou les anciennes versions de page.
+
+**Cloisonnement par ville** : chaque secteur a son propre fichier
+`cache/<ville>/content.json` (`bind`). Sans ça, l'élagage d'un crawl (« garder
+les clés vues ») évincerait le cache des autres villes lors d'un run
+multi-villes séquentiel. `bind` est appelé au début de chaque crawl.
 """
 
 from __future__ import annotations
@@ -25,7 +30,8 @@ from pathlib import Path
 
 log = logging.getLogger("quefaire")
 
-CACHE_PATH = Path(__file__).resolve().parent.parent / "cache" / "content.json"
+CACHE_DIR = Path(__file__).resolve().parent.parent / "cache"
+CACHE_PATH = CACHE_DIR / "content.json"  # défaut (monkeypatchable dans les tests)
 
 
 class _ContentCache:
@@ -33,13 +39,25 @@ class _ContentCache:
         self._store: dict = {}
         self._used: set[str] = set()
         self._loaded = False
+        self._path: Path | None = None  # None → CACHE_PATH (défaut)
+
+    def bind(self, sector_id: str) -> None:
+        """Cloisonne le cache sur cache/<sector_id>/content.json et repart à zéro
+        (relecture du fichier de cette ville au prochain accès)."""
+        self._path = CACHE_DIR / sector_id / "content.json"
+        self._store = {}
+        self._used = set()
+        self._loaded = False
+
+    def _file(self) -> Path:
+        return self._path or CACHE_PATH
 
     def _load(self) -> None:
         if self._loaded:
             return
         self._loaded = True
         try:
-            self._store = json.loads(CACHE_PATH.read_text(encoding="utf-8"))
+            self._store = json.loads(self._file().read_text(encoding="utf-8"))
         except (FileNotFoundError, OSError, json.JSONDecodeError):
             self._store = {}
 
@@ -68,13 +86,14 @@ class _ContentCache:
         if not self._used:
             return
         pruned = {k: v for k, v in self._store.items() if k in self._used}
-        CACHE_PATH.parent.mkdir(parents=True, exist_ok=True)
-        tmp = CACHE_PATH.with_name(CACHE_PATH.name + ".tmp")
+        path = self._file()
+        path.parent.mkdir(parents=True, exist_ok=True)
+        tmp = path.with_name(path.name + ".tmp")
         tmp.write_text(
             json.dumps(pruned, ensure_ascii=False, sort_keys=True, indent=0),
             encoding="utf-8",
         )
-        tmp.replace(CACHE_PATH)
+        tmp.replace(path)
         log.info(
             "[cache] %d entrées conservées (%d clés vues ce run)", len(pruned), len(self._used)
         )

@@ -84,7 +84,15 @@ jobs:
           RSSBRIDGE_URL: ${{ vars.RSSBRIDGE_URL || 'http://localhost:3000' }}
         run: |
           if [ -n "$QUEFAIRE_LLM" ] || [ -n "$QUEFAIRE_LLM2" ]; then pip install autoagent-core; fi
-          python -m quefaire crawl --sector villemoirieu
+          # Multi-villes : on crawle chaque épicentre AYANT des sources activées
+          # (les villes seulement référencées restent « en préparation »). Chaque
+          # crawl écrit ses données sous site/src/data/cities/<ville>/ ; un seul
+          # build (plus bas) les rassemble.
+          for city in $(python -m quefaire sectors --active); do
+            echo "::group::crawl $city"
+            python -m quefaire crawl --sector "$city"
+            echo "::endgroup::"
+          done
 
       # [skip ci] : contrairement au GITHUB_TOKEN, un push par deploy key
       # redéclenche les workflows — sans ce marqueur, chaque commit de données

@@ -7,7 +7,12 @@ const base = import.meta.env.BASE_URL;
 // Villes (épicentres) actives, triées par nom. `url` pointe vers un déploiement
 // dédié si renseigné, sinon la ville ouvre le site courant (base).
 const cities = [...citiesData.cities].sort((a, b) => a.name.localeCompare(b.name, 'fr'));
-const cityUrl = (c) => c.url || base;
+// c.url est un sous-chemin relatif à la base (« villemoirieu/ ») ou une URL
+// absolue (déploiement dédié). Vide = ville « en préparation ».
+const cityUrl = (c) => (!c.url ? base : c.url.startsWith('http') ? c.url : base + c.url);
+// « Prête » = son agenda est ouvrable : déploiement dédié (url) ou déjà crawlée
+// (event_count numérique). Sinon la ville est référencée mais « en préparation ».
+const isReady = (c) => Boolean(c.url) || typeof c.event_count === 'number';
 
 const count = cities.length;
 const latest = citiesData.generated_at;
@@ -46,7 +51,9 @@ const latestLabel = latest
             )}
           </div>
           <p class="city-radius">Rayon ~{Math.round(c.radius_minutes)} min de trajet</p>
-          <a class="btn-open" href={cityUrl(c)}>Ouvrir QueFaire — {c.name}</a>
+          {isReady(c)
+            ? <a class="btn-open" href={cityUrl(c)}>Ouvrir QueFaire — {c.name}</a>
+            : <span class="city-soon">En préparation</span>}
         </li>
       ))}
     </ul>
@@ -55,7 +62,8 @@ const latestLabel = latest
 </Base>
 
 <script define:vars={{ cities, base }}>
-  const cityUrl = (c) => c.url || base;
+  const cityUrl = (c) => (!c.url ? base : c.url.startsWith('http') ? c.url : base + c.url);
+  const isReady = (c) => Boolean(c.url) || typeof c.event_count === 'number';
 
   // Distance à vol d'oiseau (haversine) + temps de trajet « corrigé » — même
   // formule que le front (nlsearch.js) pour rester cohérent avec le rayon.
@@ -106,12 +114,16 @@ const latestLabel = latest
         const km = Math.round(hit.km);
         locateResult.innerHTML = inside
           ? `Vous êtes dans la zone de <strong>${hit.c.name}</strong>. `
-          : `Ville active la plus proche : <strong>${hit.c.name}</strong> (à ~${km} km). `;
-        const a = document.createElement('a');
-        a.href = cityUrl(hit.c);
-        a.className = 'btn-open';
-        a.textContent = `Ouvrir QueFaire — ${hit.c.name}`;
-        locateResult.appendChild(a);
+          : `Ville la plus proche : <strong>${hit.c.name}</strong> (à ~${km} km). `;
+        if (isReady(hit.c)) {
+          const a = document.createElement('a');
+          a.href = cityUrl(hit.c);
+          a.className = 'btn-open';
+          a.textContent = `Ouvrir QueFaire — ${hit.c.name}`;
+          locateResult.appendChild(a);
+        } else {
+          locateResult.insertAdjacentText('beforeend', 'Agenda en préparation.');
+        }
         highlight(hit.c.id);
       },
       () => { locateResult.textContent = 'Localisation refusée. Utilisez la recherche ou la carte.'; },
@@ -144,11 +156,10 @@ const latestLabel = latest
       const km = c.radius_minutes >= 60 ? 48 : (c.radius_minutes / 60) * 48;
       L.circle(ll, { radius: km * 1000, color: '#2563eb', weight: 1, fillOpacity: 0.06 }).addTo(map);
       const count = typeof c.event_count === 'number' ? `<br>${c.event_count} événements` : '';
-      L.marker(ll)
-        .addTo(map)
-        .bindPopup(
-          `<strong>${c.name}</strong>${count}<br><a href="${cityUrl(c)}">Ouvrir l'agenda</a>`,
-        );
+      const action = isReady(c)
+        ? `<br><a href="${cityUrl(c)}">Ouvrir l'agenda</a>`
+        : '<br><em>Agenda en préparation</em>';
+      L.marker(ll).addTo(map).bindPopup(`<strong>${c.name}</strong>${count}${action}`);
     }
     if (cities.length === 1) map.setView([cities[0].center.lat, cities[0].center.lon], 10);
     else map.fitBounds(bounds.pad(0.3));

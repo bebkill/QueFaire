@@ -1,17 +1,23 @@
 ---
-import Base from '../layouts/Base.astro';
-import sector from '../data/sector.json';
+import Base from '../../layouts/Base.astro';
+import { cityIds, getSector } from '../../lib/sectors.js';
 
+export function getStaticPaths() {
+  return cityIds.map((city) => ({ params: { city }, props: { sector: getSector(city) } }));
+}
+
+const { sector } = Astro.props;
 // Dépôt cible pour la file de modération (côté coulisses).
 const REPO = 'bebkill/QueFaire';
 ---
 
-<Base title={`Proposer une source — Que faire en ${sector.name} ?`}>
+<Base title={`Proposer une source — Que faire en ${sector.name} ?`} sector={sector}>
   <main class="wrap prose">
     <h1>Proposer une source</h1>
     <p>
-      Un agenda, un flux d'événements, une page de sorties qui manque&nbsp;? Collez son lien.
-      Votre proposition est relue avant d'être ajoutée&nbsp;: rien n'est publié automatiquement.
+      Un agenda, un flux d'événements, une page de sorties qui manque autour de
+      <strong>{sector.name}</strong>&nbsp;? Collez son lien. Votre proposition est
+      relue avant d'être ajoutée&nbsp;: rien n'est publié automatiquement.
     </p>
 
     <form id="suggest-form" class="suggest-form">
@@ -33,7 +39,7 @@ const REPO = 'bebkill/QueFaire';
   </main>
 </Base>
 
-<script define:vars={{ REPO }}>
+<script define:vars={{ REPO, sectorId: sector.id, sectorName: sector.name }}>
   const form = document.getElementById('suggest-form');
   const errEl = document.getElementById('s-error');
 
@@ -78,12 +84,15 @@ const REPO = 'bebkill/QueFaire';
       '```',
     ].join('\n');
 
-    const body = ['Proposition de source via le formulaire du site.', '', yaml].join('\n');
+    const body = [
+      `Proposition de source pour l'épicentre **${sectorName}** (\`${sectorId}\`), via le formulaire du site.`,
+      '', yaml,
+    ].join('\n');
 
     const issueUrl =
       `https://github.com/${REPO}/issues/new` +
       `?labels=source-suggestion` +
-      `&title=${encodeURIComponent('Source : ' + label)}` +
+      `&title=${encodeURIComponent(`Source (${sectorId}) : ${label}`)}` +
       `&body=${encodeURIComponent(body)}`;
     window.open(issueUrl, '_blank', 'noopener');
   });

@@ -1,9 +1,10 @@
 """Export vers le site Astro : JSON consommés au build.
 
-- events.json  : événements à venir, triés par date
-- sector.json  : métadonnées du secteur (nom, centre carte, communes, sources)
-- cities.json  : annuaire des villes (épicentres) actives — pour le portail
-                 « choisir sa ville » (localisation / recherche / carte)
+- cities/<id>/events.json : événements à venir de la ville, triés par date
+- cities/<id>/sector.json : métadonnées de la ville (nom, centre, communes, sources)
+- cities.json  : annuaire des villes (épicentres) — pour le portail « choisir sa
+                 ville » (localisation / recherche / carte). `url` = sous-chemin
+                 d'une ville crawlée ; vide = référencée mais « en préparation ».
 """
 
 from __future__ import annotations
@@ -45,7 +46,12 @@ def export(sector: Sector, events: list[Event], out_dir: Path | None = None) -> 
     out.mkdir(parents=True, exist_ok=True)
 
     upcoming = _upcoming(events)
-    (out / "events.json").write_text(
+    # Données PAR VILLE : site/src/data/cities/<id>/{events,sector}.json.
+    # Le site (routes [city]) sert chaque épicentre à son propre sous-chemin ;
+    # un seul build les rassemble tous (voir site/src/lib/sectors.js).
+    city_dir = out / "cities" / sector.id
+    city_dir.mkdir(parents=True, exist_ok=True)
+    (city_dir / "events.json").write_text(
         json.dumps([e.to_dict() for e in upcoming], ensure_ascii=False, indent=1),
         encoding="utf-8",
     )
@@ -68,7 +74,7 @@ def export(sector: Sector, events: list[Event], out_dir: Path | None = None) -> 
         "generated_at": datetime.now().isoformat(timespec="seconds"),
         "event_count": len(upcoming),
     }
-    (out / "sector.json").write_text(
+    (city_dir / "sector.json").write_text(
         json.dumps(meta, ensure_ascii=False, indent=1), encoding="utf-8"
     )
     _write_cities(sector, len(upcoming), meta["generated_at"], out)
@@ -106,7 +112,11 @@ def _write_cities(sector: Sector, event_count: int, generated_at: str, out: Path
             "radius_minutes": s.radius_minutes,
             "event_count": event_count if current else p.get("event_count"),
             "generated_at": generated_at if current else p.get("generated_at"),
-            "url": p.get("url"),
+            # Une URL déjà posée est préservée (déploiement dédié renseigné à la
+            # main) ; sinon la ville crawlée prend son sous-chemin. Une ville
+            # seulement référencée (jamais crawlée) reste sans url → « en
+            # préparation » dans le portail.
+            "url": p.get("url") or (f"{sid}/" if current else None),
         })
 
     latest = max((c["generated_at"] for c in cities if c["generated_at"]), default=generated_at)
