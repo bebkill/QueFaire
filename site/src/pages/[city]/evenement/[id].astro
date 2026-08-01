@@ -24,7 +24,7 @@ const audienceLabels = {
 };
 ---
 
-<Base title={`${event.title} — Que faire en ${sector.name} ?`} description={event.description.slice(0, 150)} sector={sector}>
+<Base title={`${event.title} · QueFaire — ${sector.name}`} description={event.description.slice(0, 150)} sector={sector}>
   <section class="detail-hero" style={`--cat: var(--c-${event.category})`}>
     <div class="wrap">
       <span class="cat-label">{CATEGORY_EMOJI[event.category]} {sector.categories[event.category]}</span>

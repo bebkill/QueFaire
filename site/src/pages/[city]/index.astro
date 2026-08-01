@@ -13,13 +13,13 @@ export function getStaticPaths() {
 const { sector, events } = Astro.props;
 const base = import.meta.env.BASE_URL;
 const cityBase = `${base}${sector.id}/`;
-const title = `Que faire en ${sector.name} ? Sorties, événements et activités`;
+const title = `QueFaire — ${sector.name} · sorties, événements et activités`;
 ---
 
 <Base title={title} sector={sector}>
   <section class="hero">
     <div class="wrap">
-      <h1>Que faire <em>en {sector.name}</em>&nbsp;?</h1>
+      <h1>QueFaire —&nbsp;<em>{sector.name}</em></h1>
       <p class="sub">
         Concerts, randos, marchés, spectacles… {sector.event_count} idées de sorties
         collectées automatiquement auprès des communes et offices de tourisme.
