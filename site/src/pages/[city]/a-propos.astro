@@ -1,7 +1,14 @@
 ---
-import Base from '../layouts/Base.astro';
-import sector from '../data/sector.json';
+import Base from '../../layouts/Base.astro';
+import { cityIds, getSector } from '../../lib/sectors.js';
+
+export function getStaticPaths() {
+  return cityIds.map((city) => ({ params: { city }, props: { sector: getSector(city) } }));
+}
+
+const { sector } = Astro.props;
 const base = import.meta.env.BASE_URL;
+const cityBase = `${base}${sector.id}/`;
 
 // Lien externe correct selon le type de source : l'`url` du registre est une
 // URL (rss/ical/html) ou un identifiant (openagenda = UID, facebook/instagram
@@ -17,7 +24,7 @@ const sourceLink = (s) => {
 };
 ---
 
-<Base title={`À propos — Que faire en ${sector.name} ?`}>
+<Base title={`À propos — Que faire en ${sector.name} ?`} sector={sector}>
   <main class="wrap prose">
     <h1>À propos</h1>
     <p>
@@ -30,6 +37,7 @@ const sourceLink = (s) => {
 
     <h2>Comment ça marche</h2>
     <ul>
+      <li>On part d'un <strong>épicentre</strong> ({sector.name}) et on garde les événements à moins d'~1&nbsp;h de trajet, quel que soit leur département.</li>
       <li>Un pipeline crawle régulièrement les sources référencées (flux RSS, agendas iCal, OpenAgenda, pages agenda).</li>
       <li>Les événements sont normalisés (catégorie, public, gratuité), géolocalisés par commune et dédupliqués.</li>
       <li>Le site est régénéré automatiquement à chaque collecte : les données restent fraîches sans intervention.</li>
@@ -54,7 +62,7 @@ const sourceLink = (s) => {
       </ul>
     )}
     <p>
-      Une source manque ? <a href={`${base}proposer/`}>Proposez-la en un clic</a> :
+      Une source manque ? <a href={`${cityBase}proposer/`}>Proposez-la en un clic</a> :
       votre suggestion passe par une file de modération avant d'être ajoutée au
       collecteur. (Le registre reste un simple fichier
       <code>sources/{sector.id}.yaml</code> dans le dépôt.)
@@ -62,7 +70,7 @@ const sourceLink = (s) => {
 
     <h2>Et après ?</h2>
     <ul>
-      <li><strong>D'autres territoires</strong> : l'architecture est multi-secteurs — ajouter une région, c'est ajouter un fichier de sources.</li>
+      <li><strong>D'autres villes</strong> : l'architecture est multi-épicentres — ajouter une ville, c'est ajouter un fichier de sources. <a href={`${base}villes/`}>Voir les villes couvertes</a>.</li>
       <li><strong>Les professionnels</strong> : le même moteur pourra référencer artisans et commerçants (« je cherche un électricien », « un tailleur de pierre »).</li>
     </ul>
   </main>

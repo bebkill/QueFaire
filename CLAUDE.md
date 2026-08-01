@@ -44,8 +44,8 @@ npm run build
 
 ## AVERTISSEMENT : données générées
 
-`site/src/data/events.json`, `site/src/data/sector.json` **et
-`pipeline/cache/content.json`** sont **générés par le workflow CI**
+`site/src/data/cities/<ville>/{events,sector}.json`, `site/src/data/cities.json`
+**et `pipeline/cache/content.json`** sont **générés par le workflow CI**
 (`refresh.yml`, crawl réel 2×/jour) et committés par le bot. Un crawl local
 (surtout `--demo`) les écrase/altère : **ne jamais committer ces fichiers après
 un run local**. Si ça arrive, les restaurer depuis le dernier commit avant de
@@ -91,16 +91,24 @@ pipeline/cache/content.json       cache LLM (hash du texte → résultat), commi
                                   par la CI comme site/src/data — voir ci-dessous
 
 site/src/
-  pages/index.astro    page principale : recherche, filtres, carte, grille —
-                       toute la logique client est dans son <script> (vanilla JS)
+  lib/sectors.js       énumère les villes crawlées (import.meta.glob sur
+                       data/cities/*/) → routes [city] via getStaticPaths
+  pages/index.astro    racine : redirige vers le portail /villes/
+  pages/[city]/index.astro   agenda d'une ville : recherche, filtres, carte,
+                       grille — logique client dans son <script> (sector injecté
+                       via un blob JSON dans le DOM, pas d'import statique)
+  pages/[city]/evenement/[id].astro  fiches détail (par ville)
+  pages/[city]/{a-propos,proposer}.astro  à-propos / proposer une source (par ville)
   lib/nlsearch.js      parseur FR de requêtes libres + distance/temps de trajet
-  components/EventCard.astro  carte événement (attributs data-* pour le filtrage)
-  pages/evenement/[id].astro  pages détail générées au build
+  components/EventCard.astro  carte événement (props cityBase + categories ;
+                       attributs data-* pour le filtrage)
   pages/villes.astro   portail « choisir sa ville » : carte des épicentres actifs,
                        « me localiser » (ville la plus proche), recherche ; affiche
                        le nombre de villes actives + date de dernière mise à jour
 
-.github/workflows/refresh.yml   cron 2×/jour : crawl → commit data → build → Pages
+.github/workflows/refresh.yml   cron 2×/jour : crawl de CHAQUE ville active
+                                (`sectors --active`) → commit data → build unique
+                                (toutes les villes) → Pages
 .github/workflows/discover.yml  cron hebdo : suggest → ouvre une issue par source
 .github/workflows/apply-source.yml  issue labellisée `approved` → add-source → commit
 site/src/pages/proposer.astro   formulaire « proposer une source » → issue pré-remplie

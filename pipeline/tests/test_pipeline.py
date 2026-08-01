@@ -817,7 +817,9 @@ def test_demo_and_export_roundtrip(tmp_path):
     sector = load_sector("villemoirieu")
     events = [enrich(geocode(e, "villemoirieu")) for e in demo_events()]
     meta = export(sector, dedupe(events), tmp_path)
-    data = json.loads((tmp_path / "events.json").read_text(encoding="utf-8"))
+    data = json.loads(
+        (tmp_path / "cities" / "villemoirieu" / "events.json").read_text(encoding="utf-8")
+    )
     assert meta["event_count"] == len(data) > 20
     assert all(e["start"] >= date.today().isoformat()[:4] for e in data)
     # La démo est autoportante : chaque événement porte ses coordonnées
@@ -839,6 +841,10 @@ def test_export_writes_cities_manifest(tmp_path):
     assert abs(vm["center"]["lat"] - 45.7192) < 0.01
     assert vm["event_count"] == meta["event_count"]
     assert vm["generated_at"] == meta["generated_at"]
+    assert vm["url"] == "villemoirieu/"  # ville crawlée → sous-chemin
+    # Pont-de-Salars est référencée (registre) mais pas crawlée → « en préparation ».
+    pds = next(c for c in data["cities"] if c["id"] == "pont-de-salars")
+    assert pds["url"] is None and pds["event_count"] is None
 
 
 def test_cities_manifest_merge_preserves_url(tmp_path):

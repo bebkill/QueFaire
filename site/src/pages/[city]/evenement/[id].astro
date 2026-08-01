@@ -1,15 +1,21 @@
 ---
-import Base from '../../layouts/Base.astro';
-import events from '../../data/events.json';
-import sector from '../../data/sector.json';
-import { CATEGORY_EMOJI, formatWhen, priceLabel } from '../../lib/format.js';
+import Base from '../../../layouts/Base.astro';
+import { cityIds, getSector, getEvents } from '../../../lib/sectors.js';
+import { CATEGORY_EMOJI, formatWhen, priceLabel } from '../../../lib/format.js';
 
 export function getStaticPaths() {
-  return events.map((event) => ({ params: { id: event.id }, props: { event } }));
+  return cityIds.flatMap((city) => {
+    const sector = getSector(city);
+    return getEvents(city).map((event) => ({
+      params: { city, id: event.id },
+      props: { event, sector },
+    }));
+  });
 }
 
-const { event } = Astro.props;
+const { event, sector } = Astro.props;
 const base = import.meta.env.BASE_URL;
+const cityBase = `${base}${sector.id}/`;
 const price = priceLabel(event);
 const source = sector.sources.find((s) => s.id === event.source_id);
 const audienceLabels = {
@@ -18,7 +24,7 @@ const audienceLabels = {
 };
 ---
 
-<Base title={`${event.title} — Que faire en ${sector.name} ?`} description={event.description.slice(0, 150)}>
+<Base title={`${event.title} — Que faire en ${sector.name} ?`} description={event.description.slice(0, 150)} sector={sector}>
   <section class="detail-hero" style={`--cat: var(--c-${event.category})`}>
     <div class="wrap">
       <span class="cat-label">{CATEGORY_EMOJI[event.category]} {sector.categories[event.category]}</span>
@@ -32,7 +38,7 @@ const audienceLabels = {
       <div>
         {event.tldr && <p class="detail-tldr">💡 En clair : {event.tldr}</p>}
         <p class="detail-desc">{event.description || 'Pas de description pour cet événement — consultez la source pour en savoir plus.'}</p>
-        <a class="backlink" href={base}>← Retour à l'agenda</a>
+        <a class="backlink" href={cityBase}>← Retour à l'agenda</a>
       </div>
 
       <aside class="infobox">

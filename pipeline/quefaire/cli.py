@@ -362,12 +362,19 @@ def main(argv: list[str] | None = None) -> int:
         help="Départements à balayer, séparés par des virgules (ex. 38,69,01,73)",
     )
 
-    sub.add_parser("sectors", help="Lister les secteurs disponibles")
+    p_sectors = sub.add_parser("sectors", help="Lister les secteurs disponibles")
+    p_sectors.add_argument(
+        "--active", action="store_true",
+        help="Seulement les secteurs avec ≥1 source activée (crawl multi-villes)",
+    )
 
     args = parser.parse_args(argv)
 
     if args.cmd == "sectors":
-        print("\n".join(available_sectors()))
+        ids = available_sectors()
+        if args.active:
+            ids = [s for s in ids if load_sector(s).sources]
+        print("\n".join(ids))
         return 0
     if args.cmd == "crawl":
         return crawl(args.sector, args.demo, args.out)
