@@ -1,0 +1,99 @@
+---
+import Base from '../../layouts/Base.astro';
+import { cityIds, getSector } from '../../lib/sectors.js';
+
+export function getStaticPaths() {
+  return cityIds.map((city) => ({ params: { city }, props: { sector: getSector(city) } }));
+}
+
+const { sector } = Astro.props;
+// Dépôt cible pour la file de modération (côté coulisses).
+const REPO = 'bebkill/QueFaire';
+---
+
+<Base title={`Proposer une source · QueFaire — ${sector.name}`} sector={sector}>
+  <main class="wrap prose">
+    <h1>Proposer une source</h1>
+    <p>
+      Un agenda, un flux d'événements, une page de sorties qui manque autour de
+      <strong>{sector.name}</strong>&nbsp;? Collez son lien. Votre proposition est
+      relue avant d'être ajoutée&nbsp;: rien n'est publié automatiquement.
+    </p>
+
+    <form id="suggest-form" class="suggest-form">
+      <label>
+        Lien de la source
+        <input id="s-url" type="url" required placeholder="https://exemple.fr/agenda" />
+      </label>
+      <label>
+        Nom de la source <span class="opt">(facultatif)</span>
+        <input id="s-name" type="text" placeholder="Office de tourisme de …" />
+      </label>
+      <label>
+        Commune <span class="opt">(facultatif)</span>
+        <input id="s-commune" type="text" placeholder="Grenoble" />
+      </label>
+      <p id="s-error" class="s-error" role="alert"></p>
+      <button type="submit">Proposer cette source</button>
+    </form>
+  </main>
+</Base>
+
+<script define:vars={{ REPO, sectorId: sector.id, sectorName: sector.name }}>
+  const form = document.getElementById('suggest-form');
+  const errEl = document.getElementById('s-error');
+
+  const slugify = (s) =>
+    s.normalize('NFKD').replace(/[̀-ͯ]/g, '')
+      .toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '').slice(0, 40) || 'source';
+
+  // Détection du type à partir de l'URL (miroir de quefaire.evaluate._detect_type).
+  const detectType = (url) => {
+    const u = url.toLowerCase().split('?')[0].split('#')[0];
+    if (u.endsWith('.ics') || u.includes('webcal') || u.includes('ical')) return 'ical';
+    if (['/rss', 'rss.xml', 'atom', '/feed'].some((h) => u.includes(h))) return 'rss';
+    return 'html';
+  };
+
+  const hostLabel = (url) => {
+    try { return new URL(url).hostname.replace(/^www\./, ''); } catch { return 'source'; }
+  };
+
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    errEl.textContent = '';
+    const url = document.getElementById('s-url').value.trim();
+    const name = document.getElementById('s-name').value.trim();
+    const commune = document.getElementById('s-commune').value.trim();
+
+    if (!/^https?:\/\/.+/i.test(url)) {
+      errEl.textContent = 'Le lien doit commencer par http:// ou https://';
+      return;
+    }
+
+    const type = detectType(url);
+    const label = name || hostLabel(url);
+    const id = `${type}-${slugify(label)}`;
+    const yaml = [
+      '```yaml',
+      `- id: ${id}`,
+      `  name: ${name || hostLabel(url)}`,
+      `  type: ${type}`,
+      `  url: ${url}`,
+      ...(commune ? [`  commune: ${commune}`] : []),
+      '```',
+    ].join('\n');
+
+    const body = [
+      `Proposition de source pour l'épicentre **${sectorName}** (\`${sectorId}\`), via le formulaire du site.`,
+      '', yaml,
+    ].join('\n');
+
+    const issueUrl =
+      `https://github.com/${REPO}/issues/new` +
+      `?labels=source-suggestion` +
+      `&title=${encodeURIComponent(`Source (${sectorId}) : ${label}`)}` +
+      `&body=${encodeURIComponent(body)}`;
+    window.open(issueUrl, '_blank', 'noopener');
+  });
+</script>

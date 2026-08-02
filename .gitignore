@@ -1,0 +1,17 @@
+# Node
+node_modules/
+site/dist/
+site/.astro/
+
+# Python
+__pycache__/
+*.pyc
+.pytest_cache/
+.venv/
+
+# Divers
+.DS_Store
+*.log
+
+# Contexte local des sessions de dev assistées (non versionné)
+CLAUDE.md

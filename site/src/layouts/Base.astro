@@ -1,0 +1,62 @@
+---
+import '../styles/global.css';
+import cities from '../data/cities.json';
+
+// `sector` optionnel : présent = page d'une ville (agenda, détail, à propos,
+// proposer) ; absent = portail « choisir sa ville » (racine).
+const { title = 'Que faire ?', description, sector } = Astro.props;
+const base = import.meta.env.BASE_URL;
+const cityBase = sector ? `${base}${sector.id}/` : base;
+const cityCount = cities.cities.length;
+const desc = description
+  || (sector
+    ? `Toutes les sorties et activités en ${sector.name}, au même endroit.`
+    : `Que faire près de chez vous ? ${cityCount} ${cityCount > 1 ? 'villes' : 'ville'} couvertes.`);
+---
+
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={desc} />
+    <link rel="icon" href={`${base}favicon.svg`} type="image/svg+xml" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="wrap">
+        <a class="logo" href={base}>Que <em>faire</em> ?</a>
+        {sector && <span class="sector-badge">{sector.name}</span>}
+        <nav class="header-nav">
+          {sector && <a href={cityBase}>Agenda</a>}
+          <a href={`${base}villes/`}>Villes</a>
+          {sector && <a href={`${cityBase}proposer/`}>Proposer une source</a>}
+          {sector && <a href={`${cityBase}a-propos/`}>À propos</a>}
+        </nav>
+      </div>
+    </header>
+
+    <slot />
+
+    <footer class="site-footer">
+      <div class="wrap">
+        {sector ? (
+          <span>
+            Que faire ? — {sector.event_count} événements agrégés depuis {sector.sources.length || 'nos'} sources locales.
+            · <a href={`${base}villes/`}>{cityCount} {cityCount > 1 ? 'villes couvertes' : 'ville couverte'}</a>
+          </span>
+        ) : (
+          <span>
+            Que faire ? — un agenda local par ville, collecté automatiquement.
+            · <a href={`${base}villes/`}>{cityCount} {cityCount > 1 ? 'villes couvertes' : 'ville couverte'}</a>
+          </span>
+        )}
+        <span>
+          {sector && (<>Données rafraîchies le {new Date(sector.generated_at).toLocaleDateString('fr-FR', { day: 'numeric', month: 'long' })} · </>)}
+          <a href={`${base}villes/`}>Choisir sa ville</a>
+        </span>
+      </div>
+    </footer>
+  </body>
+</html>

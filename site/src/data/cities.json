@@ -1,0 +1,29 @@
+{
+ "generated_at": "2026-08-02T07:47:19",
+ "cities": [
+  {
+   "id": "pont-de-salars",
+   "name": "Pont-de-Salars",
+   "center": {
+    "lat": 44.2789,
+    "lon": 2.73
+   },
+   "radius_minutes": 60.0,
+   "event_count": 36,
+   "generated_at": "2026-08-02T07:47:10",
+   "url": "pont-de-salars/"
+  },
+  {
+   "id": "villemoirieu",
+   "name": "Villemoirieu",
+   "center": {
+    "lat": 45.7192,
+    "lon": 5.2431
+   },
+   "radius_minutes": 60.0,
+   "event_count": 51,
+   "generated_at": "2026-08-02T07:47:19",
+   "url": "villemoirieu/"
+  }
+ ]
+}

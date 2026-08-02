@@ -1,0 +1,6 @@
+requests>=2.31
+PyYAML>=6.0
+icalendar>=5.0
+
+# Optionnel — extraction LLM et découverte de sources (voir README)
+# autoagent-core>=0.14

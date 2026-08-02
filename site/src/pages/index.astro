@@ -1,0 +1,19 @@
+---
+// La racine redirige vers le portail « choisir sa ville » (villes.astro).
+// Site statique : redirection par meta-refresh + lien de repli.
+const base = import.meta.env.BASE_URL;
+const portal = `${base}villes/`;
+---
+
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="refresh" content={`0; url=${portal}`} />
+    <link rel="canonical" href={portal} />
+    <title>Que faire ? — choisir sa ville</title>
+  </head>
+  <body>
+    <p>Redirection vers <a href={portal}>le choix de la ville</a>…</p>
+  </body>
+</html>

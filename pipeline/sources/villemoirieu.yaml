@@ -1,0 +1,103 @@
+# Registre des sources — épicentre VILLEMOIRIEU (nord-Isère)
+#
+# QueFaire ne raisonne plus par département mais par ÉPICENTRE : une commune de
+# référence + un rayon en TEMPS DE TRAJET. Un événement est gardé s'il tombe à
+# moins de `radius_minutes` du centre (voir geo.within_radius), quel que soit son
+# département. Depuis Villemoirieu, ~1 h de voiture couvre le nord-Isère, l'est
+# lyonnais (Rhône) et l'ouest de l'Ain — bien plus pertinent que le sud-Isère.
+#
+# Types supportés :
+#   rss        : flux RSS/Atom (le plus courant sur les sites communaux)
+#   ical       : agenda iCal/.ics publié (mairies, associations)
+#   openagenda : slug ou UID d'un agenda openagenda.com (OPENAGENDA_KEY requise)
+#                → les événements portent déjà leurs coordonnées (pas besoin du CSV)
+#   html       : page agenda sans flux — extraction par agent LLM (QUEFAIRE_LLM requis)
+#
+# `python -m quefaire discover-oa --sector villemoirieu --strict` trouve les
+# agendas OpenAgenda des communes du rayon (nord-Isère + Rhône + Ain grâce à la
+# table data/communes_villemoirieu.csv) ; on les vérifie puis on passe enabled: true.
+
+sector:
+  name: Villemoirieu
+  country: FR
+  center_lat: 45.7192
+  center_lon: 5.2431
+  radius_minutes: 60
+
+sources:
+  # --- Pages agenda locales (extraction LLM, type html) ----------------------
+  - id: html-capi
+    name: CAPI (Porte de l'Isère) — tout l'agenda
+    type: html
+    url: https://capi-agglo.fr/tout-lagenda/
+    commune: L'Isle-d'Abeau
+    enabled: true
+
+  - id: html-bourgoin
+    name: Ville de Bourgoin-Jallieu — agenda
+    type: html
+    url: https://www.bourgoinjallieu.fr/agenda
+    commune: Bourgoin-Jallieu
+    enabled: true
+
+  - id: html-weekend-capi
+    name: Mon week-end à la CAPI
+    type: html
+    url: https://www.monweekendalacapi.fr/
+    commune: Villefontaine
+    enabled: true
+
+  - id: html-balcons-dauphine
+    name: OT Balcons du Dauphiné — tout l'agenda (Crémieu, Morestel, Saint-Chef…)
+    type: html
+    url: https://www.balconsdudauphine-tourisme.com/agenda/tout-lagenda/
+    commune: Crémieu
+    enabled: true
+
+  - id: html-cafe-crem
+    name: OT Café-Crém'
+    type: html
+    url: https://cafe-crem.fr/
+    commune: Villemoirieu
+    enabled: true
+
+  - id: html-vals-dauphine
+    name: OT Les Vals du Dauphiné — agenda (La Tour-du-Pin, Pont-de-Beauvoisin…)
+    type: html
+    url: https://www.tourisme-valsdudauphine.fr/agenda/
+    commune: La Tour-du-Pin
+    enabled: false
+
+  # --- Flux RSS communaux ----------------------------------------------------
+  - id: rss-bourgoin
+    name: Bourgoin-Jallieu — actualités et agenda
+    type: rss
+    url: https://www.bourgoinjallieu.fr/rss
+    commune: Bourgoin-Jallieu
+    enabled: false
+
+  - id: rss-vienne
+    name: Ville de Vienne — agenda
+    type: rss
+    url: https://www.vienne.fr/rss
+    commune: Vienne
+    enabled: false
+
+  # --- OpenAgenda ------------------------------------------------------------
+  # À enrichir via `discover-oa --strict` : la table de communes couvre le Rhône
+  # et l'Ain, donc la découverte ramènera les agendas de l'est lyonnais et de
+  # l'ouest de l'Ain. Les entrées ci-dessous étaient dormantes (0 événement à
+  # venir au dernier discover-oa) — laissées désactivées.
+  - id: oa-bourgoin-jallieu
+    name: Ville de Bourgoin-Jallieu (OpenAgenda)
+    type: openagenda
+    url: "6694450"
+    commune: Bourgoin-Jallieu
+    enabled: false  # dormant : 0 événement à venir (discover-oa 18/07/2026)
+
+  - id: oa-le-grand-lemps
+    name: Le Grand-Lemps (OpenAgenda)
+    type: openagenda
+    url: "88342736"
+    commune: Le Grand-Lemps
+    enabled: false  # dormant : 0 événement à venir (discover-oa 18/07/2026)

@@ -1,0 +1,167 @@
+"""Fetcher HTML assisté par LLM, basé sur autoagent-core.
+
+Pour les sites communaux sans flux structuré (ni RSS, ni iCal, ni OpenAgenda) :
+on récupère la page agenda, on la nettoie, et un agent LLM en extrait les
+événements au format JSON du schéma commun.
+
+Optionnel : ne s'active que si autoagent-core est installé ET qu'un modèle est
+configuré (QUEFAIRE_LLM, ex: "gemini:gemini-3.5-flash" ou "anthropic:claude-haiku-4-5",
+avec la clé API du provider dans l'environnement ; QUEFAIRE_LLM2 sert de backup
+si le principal ne répond pas — voir quefaire.llm). Sinon la source est
+ignorée proprement — le pipeline reste 100 % fonctionnel sans LLM.
+"""
+
+from __future__ import annotations
+
+import json
+import logging
+import re
+from datetime import date
+from urllib.parse import urljoin
+
+from ..cache import cache
+from ..llm import llm_available, run_llm
+from ..models import CATEGORIES, Event, Source, parse_when
+from .base import http_get
+
+log = logging.getLogger("quefaire")
+
+EXTRACTION_PROMPT = """Tu extrais des événements locaux (agenda) du texte d'une page web communale.
+
+Réponds UNIQUEMENT avec un tableau JSON (éventuellement vide), sans texte autour.
+Chaque élément : {{
+  "title": str, "description": str (2 phrases max),
+  "start": str ISO 8601 (date ou datetime, année incluse — nous sommes le {today}),
+  "end": str ISO 8601 ou null,
+  "commune": str ou null, "address": str ou null,
+  "category": une valeur parmi {categories},
+  "audience": liste parmi ["famille","enfants","ados","adultes","seniors","tous"],
+  "free": bool ou null, "price_text": str ou null,
+  "url": str ou null (le lien direct vers la fiche de CET événement — souvent
+         donné entre parenthèses juste après le titre ou un « détails / en
+         savoir plus » ; recopie-le tel quel, sinon null)
+}}
+Ignore tout ce qui n'est pas un événement daté à venir.
+
+TEXTE DE LA PAGE ({url}) :
+{text}
+"""
+
+
+def _page_text(html: str, scope_selector: str | None) -> str:
+    """Markdown grossier de la page, borné pour tenir dans un prompt."""
+    if scope_selector:
+        # Restriction naïve à la zone demandée si le sélecteur est un id.
+        m = re.search(
+            r'<[^>]+id="' + re.escape(scope_selector.lstrip("#")) + r'".*',
+            html,
+            re.S,
+        )
+        if m:
+            html = m.group(0)
+    html = re.sub(r"<(script|style|nav|footer|header)[^>]*>.*?</\1>", " ", html, flags=re.S | re.I)
+    # Conserver les liens : <a href="URL">TEXTE</a> -> "TEXTE (URL)". Sans ça,
+    # les href disparaissent au strip des balises et chaque événement retombe
+    # sur l'URL de la page agenda au lieu de sa fiche propre.
+    html = re.sub(
+        r'<a\b[^>]*?href=(["\'])(.*?)\1[^>]*>(.*?)</a>',
+        lambda m: f"{m.group(3)} ({m.group(2)})",
+        html,
+        flags=re.S | re.I,
+    )
+    html = re.sub(r"<br\s*/?>|</p>|</li>|</h[1-6]>|</div>", "\n", html, flags=re.I)
+    text = re.sub(r"<[^>]+>", " ", html)
+    text = re.sub(r"[ \t]+", " ", text)
+    text = re.sub(r"\n\s*\n+", "\n", text)
+    return text.strip()[:24000]
+
+
+def extract_events_llm(text: str, source: Source, sector_id: str, context_url: str) -> list[Event]:
+    """Cœur réutilisable : texte brut d'une page agenda → Events.
+
+    Cache adressé par contenu : si le texte de la page est inchangé depuis le
+    dernier crawl, on réutilise les événements extraits sans rappeler le LLM
+    (répétabilité, quota, résilience — voir quefaire.cache).
+    """
+    text = text[:24000]
+    ckey = cache.key("extract", source.id, text)
+    cached = cache.get(ckey)
+    if cached is not None:
+        log.info("[cache] %s : %d événements (contenu inchangé)", source.id, len(cached))
+        return [Event(**d) for d in cached]
+
+    prompt = EXTRACTION_PROMPT.format(
+        today=date.today().isoformat(),
+        categories=list(CATEGORIES),
+        url=context_url,
+        text=text,
+    )
+    # run_llm : bascule automatiquement sur le backup si le quota meurt ici.
+    result = run_llm(prompt)
+    raw = result.output.strip()
+    raw = re.sub(r"^```(json)?|```$", "", raw, flags=re.M).strip()
+    try:
+        items = json.loads(raw)
+    except json.JSONDecodeError:
+        # Dernier recours : premier tableau JSON trouvé dans la réponse
+        # (les modèles ajoutent parfois du texte autour malgré la consigne).
+        m = re.search(r"\[.*\]", raw, re.S)
+        try:
+            items = json.loads(m.group(0)) if m else None
+        except json.JSONDecodeError:
+            items = None
+        if items is None:
+            log.error("[llm] %s : réponse LLM non parsable (début : %.120s)", source.id, raw)
+            return []
+
+    events: list[Event] = []
+    for item in items if isinstance(items, list) else []:
+        when = parse_when(str(item.get("start", "")))
+        if not when or not item.get("title"):
+            continue
+        # Lien profond vers la fiche de l'événement : on résout le relatif en
+        # absolu à partir de la page source, et on retombe sur celle-ci si le
+        # LLM n'a pas trouvé de lien propre (ou en a rendu un invalide).
+        raw_url = (item.get("url") or "").strip()
+        url = urljoin(context_url, raw_url) if raw_url else context_url
+        if not url.startswith(("http://", "https://")):
+            url = context_url
+        events.append(
+            Event(
+                title=item["title"],
+                description=(item.get("description") or "")[:1200],
+                start=when.isoformat(),
+                end=item.get("end"),
+                commune=item.get("commune") or source.commune,
+                address=item.get("address"),
+                category=item.get("category") or source.category_hint or "autre",
+                audience=item.get("audience") or [],
+                free=item.get("free"),
+                price_text=item.get("price_text"),
+                url=url,
+                source_id=source.id,
+                sector=sector_id,
+            )
+        )
+    cache.put(ckey, [e.to_dict() for e in events])
+    return events
+
+
+class HtmlLlmFetcher:
+    def fetch(self, source: Source, sector_id: str) -> list[Event]:
+        if not llm_available():
+            log.warning(
+                "[html] %s ignoré : QUEFAIRE_LLM non configuré ou autoagent-core absent",
+                source.id,
+            )
+            return []
+        html = http_get(source.url).text
+        try:
+            events = extract_events_llm(
+                _page_text(html, source.scope_selector), source, sector_id, source.url
+            )
+        except RuntimeError as exc:
+            log.warning("[html] %s ignoré : %s", source.id, exc)
+            return []
+        log.info("[html+llm] %s : %d événements extraits", source.id, len(events))
+        return events

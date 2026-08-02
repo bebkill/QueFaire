@@ -1,0 +1,73 @@
+---
+import Base from '../../layouts/Base.astro';
+import { cityIds, getSector } from '../../lib/sectors.js';
+
+export function getStaticPaths() {
+  return cityIds.map((city) => ({ params: { city }, props: { sector: getSector(city) } }));
+}
+
+const { sector } = Astro.props;
+const base = import.meta.env.BASE_URL;
+const cityBase = `${base}${sector.id}/`;
+
+// Lien externe correct selon le type de source : l'`url` du registre est une
+// URL (rss/ical/html) ou un identifiant (openagenda = UID de l'agenda).
+const sourceLink = (s) => {
+  const u = s.url || '';
+  if (u.startsWith('http')) return u;
+  if (s.type === 'openagenda') return `https://openagenda.com/agendas/${u}`;
+  return null;
+};
+---
+
+<Base title={`À propos · QueFaire — ${sector.name}`} sector={sector}>
+  <main class="wrap prose">
+    <h1>À propos</h1>
+    <p>
+      Les sorties locales sont éparpillées : sites de mairies, offices de tourisme,
+      agendas associatifs… <strong>Que faire ?</strong> les collecte automatiquement,
+      les déduplique et les présente au même endroit, avec une recherche en
+      langage naturel : <em>« une sortie en famille ce week-end »</em>,
+      <em>« un concert gratuit près de moi »</em>.
+    </p>
+
+    <h2>Comment ça marche</h2>
+    <ul>
+      <li>On part d'un <strong>épicentre</strong> ({sector.name}) et on garde les événements à moins d'~1&nbsp;h de trajet, quel que soit leur département.</li>
+      <li>Un pipeline crawle régulièrement les sources référencées (flux RSS, agendas iCal, OpenAgenda, pages agenda).</li>
+      <li>Les événements sont normalisés (catégorie, public, gratuité), géolocalisés par commune et dédupliqués.</li>
+      <li>Le site est régénéré automatiquement à chaque collecte : les données restent fraîches sans intervention.</li>
+    </ul>
+
+    <h2>Sources actuellement référencées</h2>
+    {sector.sources.length === 0 ? (
+      <p>
+        🚧 Le site tourne pour l'instant avec un <strong>jeu de données de démonstration</strong>.
+        Les premières sources réelles ({sector.name}) sont en cours de vérification.
+      </p>
+    ) : (
+      <ul>
+        {sector.sources.map((s) => (
+          <li>
+            {sourceLink(s)
+              ? <a href={sourceLink(s)} target="_blank" rel="noopener">{s.name}</a>
+              : <span>{s.name}</span>}{' '}
+            <code>{s.type}</code>
+          </li>
+        ))}
+      </ul>
+    )}
+    <p>
+      Une source manque ? <a href={`${cityBase}proposer/`}>Proposez-la en un clic</a> :
+      votre suggestion passe par une file de modération avant d'être ajoutée au
+      collecteur. (Le registre reste un simple fichier
+      <code>sources/{sector.id}.yaml</code> dans le dépôt.)
+    </p>
+
+    <h2>Et après ?</h2>
+    <ul>
+      <li><strong>D'autres villes</strong> : l'architecture est multi-épicentres — ajouter une ville, c'est ajouter un fichier de sources. <a href={`${base}villes/`}>Voir les villes couvertes</a>.</li>
+      <li><strong>Les professionnels</strong> : le même moteur pourra référencer artisans et commerçants (« je cherche un électricien », « un tailleur de pierre »).</li>
+    </ul>
+  </main>
+</Base>
