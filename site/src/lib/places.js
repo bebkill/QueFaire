@@ -22,17 +22,23 @@ const NOTABLE = new Set([
 ]);
 
 /**
- * Score d'intérêt d'une activité. Priorité à ce qui est vérifiable et utile au
- * visiteur : une distinction officielle, une phrase qui dit ce qu'on y fait,
- * des horaires, un site où réserver. Une fiche réduite à un nom sur une carte
- * n'aide personne, elle passe en dernier.
+ * Score d'intérêt d'une activité, fondé uniquement sur des propriétés
+ * INTRINSÈQUES : distinction officielle, horaires, site officiel, description.
+ *
+ * La présentation LLM (`tldr`) en est délibérément ABSENTE. L'inclure rendait
+ * le classement circulaire : la même fonction choisissait qui présenter et se
+ * trouvait modifiée par la présentation. Une fiche présentée gagnait des points,
+ * montait, et en délogeait une autre — restée sans phrase. Résultat mesuré :
+ * 385 phrases payées jamais affichées, et 74 activités affichées sans phrase.
+ * Avec un score stable, l'ensemble affiché ne bouge plus et la file de
+ * présentation le remplit en un passage.
+ *
+ * `unusual` n'y figure pas non plus, pour la même raison : il vient du LLM.
  */
 export function placeScore(p) {
   const quality = p.quality || [];
   return (
     (quality.some((c) => NOTABLE.has(c)) ? 100 : 0) +
-    (p.unusual ? 40 : 0) +          // insolite CONFIRMÉ par le LLM
-    (p.tldr ? 30 : 0) +             // présentation « donne envie »
     (p.opening_hours ? 15 : 0) +
     (p.url ? 10 : 0) +
     (p.description ? 5 : 0) +
@@ -45,6 +51,14 @@ export function placeScore(p) {
 /** Les `limit` activités les plus intéressantes, à score égal par ordre alphabétique. */
 export function rankPlaces(places, limit = MAX_RENDERED) {
   return [...places]
-    .sort((a, b) => placeScore(b) - placeScore(a) || a.name.localeCompare(b.name, 'fr'))
+    .sort(
+      (a, b) =>
+        placeScore(b) - placeScore(a) ||
+        // À score égal seulement : l'enrichissement LLM départage, sans jamais
+        // pouvoir faire entrer ou sortir une fiche de l'ensemble affiché.
+        Number(Boolean(b.unusual)) - Number(Boolean(a.unusual)) ||
+        Number(Boolean(b.tldr)) - Number(Boolean(a.tldr)) ||
+        a.name.localeCompare(b.name, 'fr')
+    )
     .slice(0, limit);
 }

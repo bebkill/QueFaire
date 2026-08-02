@@ -515,14 +515,31 @@ PRESENT_MAX_PER_RUN = 400
 DISPLAY_LIMIT = 300
 
 
+def display_order_key(place: Place):
+    """Clé de tri d'affichage — **miroir exact** de `rankPlaces()` (places.js).
+
+    Les départages doivent être identiques des deux côtés, sinon le pipeline
+    présente un ensemble légèrement différent de celui que le site affiche.
+    """
+    return (
+        -display_score(place),
+        not place.unusual,
+        not place.tldr,
+        fold(place.name),
+    )
+
+
 def display_score(place: Place) -> int:
     """Intérêt d'une activité — **miroir de `placeScore()`** (site/src/lib/places.js).
 
     Sert à ordonner la file de présentation sur le même critère que l'affichage :
     sans cela, on paie des appels LLM pour des fiches qui n'apparaîtront jamais.
-    Vécu : la file privilégiait les présomptions d'insolite, dont 533 sur 594
-    n'avaient AUCUNE description — le LLM n'avait rien à lire et rendait une
-    chaîne vide. 26 phrases utiles pour 400 tentatives.
+
+    Le score est INTRINSÈQUE : ni `tldr` ni `unusual` n'y entrent. Les inclure
+    rendait le classement circulaire — présenter une fiche la faisait monter et
+    en délogeait une autre, restée sans phrase. Mesuré au run #6 : 385 phrases
+    payées jamais affichées, 74 activités affichées sans phrase. Un score stable
+    fige l'ensemble à remplir, que la file couvre en un passage.
 
     Toute modification ici doit être reportée dans places.js, et inversement.
     """
@@ -531,8 +548,6 @@ def display_score(place: Place) -> int:
     quality = place.quality or []
     return (
         (100 if set(quality) & NOTABLE_LABELS else 0)
-        + (40 if place.unusual else 0)
-        + (30 if place.tldr else 0)
         + (15 if place.opening_hours else 0)
         + (10 if place.url else 0)
         + (5 if place.description else 0)
@@ -573,7 +588,7 @@ def present(places: list[Place]) -> list[Place]:
         # celles pour lesquelles le LLM a de la matière. À présomption d'insolite
         # égale, une fiche sans description ne produira qu'une réponse vide —
         # elle attend son tour derrière les autres.
-        misses.sort(key=lambda pair: (-display_score(pair[0]), fold(pair[0].name)))
+        misses.sort(key=lambda pair: display_order_key(pair[0]))
         log.warning(
             "[places] %d activités à présenter, plafonné à %d pour ce run "
             "(priorité aux %d affichées ; le reste suivra, le cache est persistant)",

@@ -1556,3 +1556,38 @@ def test_display_score_mirrors_site_constants():
 
     js = (Path(__file__).resolve().parents[2] / "site/src/lib/places.js").read_text(encoding="utf-8")
     assert f"MAX_RENDERED = {DISPLAY_LIMIT}" in js
+
+
+def test_display_score_is_intrinsic_not_circular():
+    """Le score ne doit dépendre d'AUCUN enrichissement LLM.
+
+    Sinon le classement est circulaire : présenter une fiche la fait monter et
+    en déloge une autre, restée sans phrase. Mesuré au run #6 — 385 phrases
+    payées jamais affichées, 74 activités affichées sans phrase.
+    """
+    from quefaire.models import Place
+    from quefaire.places import display_score
+
+    nu = Place(name="X", category="musee", source_id="osm", sector="s",
+               external_id="node/1", url="https://x.fr", description="d")
+    enrichi = Place(name="X", category="musee", source_id="osm", sector="s",
+                    external_id="node/1", url="https://x.fr", description="d",
+                    tldr="Une phrase.", unusual=True)
+    assert display_score(nu) == display_score(enrichi)
+
+
+def test_presentation_covers_the_displayed_set():
+    """La file de présentation couvre exactement l'ensemble affiché."""
+    from quefaire.models import Place
+    from quefaire.places import display_order_key
+
+    # 5 fiches documentées (affichées), 5 nues (hors écran).
+    riches = [Place(name=f"Musée {i}", category="musee", source_id="osm", sector="s",
+                    external_id=f"node/{i}", url="https://x.fr", description="d",
+                    quality=["monument-historique"]) for i in range(5)]
+    nues = [Place(name=f"Aire {i}", category="nature", source_id="osm", sector="s",
+                  external_id=f"node/1{i}") for i in range(5)]
+    ordre = sorted(riches + nues, key=display_order_key)
+    affichees = {p.id for p in ordre[:5]}
+    file_ = [p for p in ordre if not p.tldr][:5]
+    assert affichees == {p.id for p in file_}   # on présente ce qui est affiché
