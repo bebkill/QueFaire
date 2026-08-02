@@ -631,12 +631,12 @@
   "id": "animation-a-la-maison-ravier-instant-the-d6c6e389"
  },
  {
-  "title": "Exposition Archives \"Quand la ville arrive à la campagne\"",
+  "title": "Exposition Archives “Quand la ville arrive à la campagne”",
   "start": "2026-08-04T00:00:00",
   "source_id": "html-capi",
   "sector": "villemoirieu",
   "end": "2026-08-14",
-  "description": "Le pôle Archives de la CAPI et son service mutualisé des archives proposent de remonter le temps et de redécouvrir « la ville nouvelle ». Plus d'infos sur monweekendalacapi.fr.",
+  "description": "Le pôle Archives de la CAPI et son service mutualisé des archives proposent de remonter le temps et de redécouvrir « la ville nouvelle ». Plus d’infos sur monweekendalacapi.fr.",
   "tldr": null,
   "category": "expo",
   "tags": [],
@@ -644,14 +644,14 @@
    "tous"
   ],
   "commune": "L'Isle-d'Abeau",
-  "address": "Office de Tourisme CAPI - Espace Carnot",
+  "address": null,
   "lat": 45.6153,
   "lon": 5.2234,
   "free": null,
   "price_text": null,
   "url": "https://capi-agglo.fr/agenda/exposition-archives-quand-la-ville-arrive-a-la-campagne/",
   "image": null,
-  "id": "exposition-archives-quand-la-ville-arrive-a-la-campagne-91020608"
+  "id": "exposition-archives-quand-la-ville-arrive-a-la-campagne-321c4d11"
  },
  {
   "title": "Ciné-été à Champfleuri : \" Super Mario Galaxy \"",
@@ -822,7 +822,7 @@
   "source_id": "html-capi",
   "sector": "villemoirieu",
   "end": "2026-08-29",
-  "description": "L'espace Carnot accueillera une exposition hommage à l'artiste-peintre berjalienne Jacqueline ANSELME, qui exposa pendant plus de 50 ans dans le Nord-Isère. Plus d'infos sur monweekendalacapi.fr.",
+  "description": "L’espace Carnot accueillera une exposition hommage à l’artiste-peintre berjalienne Jacqueline ANSELME, qui exposa pendant plus de 50 ans dans le Nord-Isère.",
   "tldr": null,
   "category": "expo",
   "tags": [],
@@ -830,7 +830,7 @@
    "tous"
   ],
   "commune": "L'Isle-d'Abeau",
-  "address": "Office de Tourisme CAPI - Espace Carnot",
+  "address": null,
   "lat": 45.6153,
   "lon": 5.2234,
   "free": null,
@@ -1026,35 +1026,12 @@
   "id": "dimanche-30-aout-c-est-la-fete-des-familles-9beedb41"
  },
  {
-  "title": "Exposition Rêver Alice",
-  "start": "2026-09-01T00:00:00",
-  "source_id": "html-capi",
-  "sector": "villemoirieu",
-  "end": "2026-11-30",
-  "description": "Rêver Alice : les illustrations d'Alice au pays des merveilles. Et si vous tombiez, vous aussi, dans le terrier du lapin ?",
-  "tldr": null,
-  "category": "expo",
-  "tags": [],
-  "audience": [
-   "tous"
-  ],
-  "commune": "L'Isle-d'Abeau",
-  "address": "Médiathèques",
-  "lat": 45.6153,
-  "lon": 5.2234,
-  "free": null,
-  "price_text": null,
-  "url": "https://capi-agglo.fr/agenda/exposition/",
-  "image": null,
-  "id": "exposition-rever-alice-75443959"
- },
- {
   "title": "Exposition photos",
   "start": "2026-09-01T00:00:00",
   "source_id": "html-capi",
   "sector": "villemoirieu",
   "end": "2027-01-31",
-  "description": "« Photographies autour des rêves » : chaque année, le Club photo Les Donjons de Demptézieu expose ses créations autour des thèmes proposés par les médiathèques. Une source d'inspiration toujours renouvelée.",
+  "description": "« Photographies autour des rêves ». Le Club photo Les Donjons de Demptézieu expose ses créations autour des thèmes proposés par les médiathèques.",
   "tldr": null,
   "category": "expo",
   "tags": [],
@@ -1070,6 +1047,52 @@
   "url": "https://capi-agglo.fr/agenda/exposition-photos/",
   "image": null,
   "id": "exposition-photos-87a2dbc3"
+ },
+ {
+  "title": "Exposition",
+  "start": "2026-09-01T00:00:00",
+  "source_id": "html-capi",
+  "sector": "villemoirieu",
+  "end": "2026-11-30",
+  "description": "Rêver Alice : les illustrations d’Alice au pays des merveilles. Et si vous tombiez, vous aussi, dans le terrier du lapin ?",
+  "tldr": null,
+  "category": "expo",
+  "tags": [],
+  "audience": [
+   "tous"
+  ],
+  "commune": "L'Isle-d'Abeau",
+  "address": null,
+  "lat": 45.6153,
+  "lon": 5.2234,
+  "free": null,
+  "price_text": null,
+  "url": "https://capi-agglo.fr/agenda/exposition/",
+  "image": null,
+  "id": "exposition-a0d05a45"
+ },
+ {
+  "title": "Soirée conte au jardin",
+  "start": "2026-09-04T00:00:00",
+  "source_id": "html-capi",
+  "sector": "villemoirieu",
+  "end": null,
+  "description": "Venez écouter François Ménager le vendredi 4 septembre à partir de 19h lors de la soirée conte au jardin de l’étang de Vaugelas à Villefontaine.",
+  "tldr": null,
+  "category": "spectacle",
+  "tags": [],
+  "audience": [
+   "tous"
+  ],
+  "commune": "Villefontaine",
+  "address": null,
+  "lat": 45.6161,
+  "lon": 5.1549,
+  "free": null,
+  "price_text": null,
+  "url": "https://capi-agglo.fr/agenda/soiree-conte-au-jardin/",
+  "image": null,
+  "id": "soiree-conte-au-jardin-c8e97f03"
  },
  {
   "title": "Les Belles Journées # 12",
@@ -1095,36 +1118,12 @@
   "id": "les-belles-journees-12-365c3101"
  },
  {
-  "title": "Soirée conte au jardin",
-  "start": "2026-09-04T19:00:00",
-  "source_id": "html-capi",
-  "sector": "villemoirieu",
-  "end": null,
-  "description": "Venez écouter François Ménager le vendredi 4 septembre à partir de 19h lors de la soirée conte au jardin de l'étang de Vaugelas à Villefontaine. Report au Centre Simone Signoret si besoin.",
-  "tldr": null,
-  "category": "spectacle",
-  "tags": [],
-  "audience": [
-   "famille",
-   "tous"
-  ],
-  "commune": "Villefontaine",
-  "address": "Jardin de l'étang de Vaugelas",
-  "lat": 45.6161,
-  "lon": 5.1549,
-  "free": null,
-  "price_text": null,
-  "url": "https://capi-agglo.fr/agenda/soiree-conte-au-jardin/",
-  "image": null,
-  "id": "soiree-conte-au-jardin-c8e97f03"
- },
- {
   "title": "Sortie nature au Vallon du Layet",
   "start": "2026-09-16T00:00:00",
   "source_id": "html-capi",
   "sector": "villemoirieu",
   "end": null,
-  "description": "Les feuilles tombent, les animaux se préparent à l'hiver et les températures baissent : l'automne est bien installé sur le territoire de la CAPI. Avec lui reviennent les sorties nature.",
+  "description": "Les feuilles tombent, les animaux se préparent à l’hiver et les températures baissent… L’automne est bien installé sur le territoire de la CAPI, avec le retour des sorties nature.",
   "tldr": null,
   "category": "nature",
   "tags": [],
