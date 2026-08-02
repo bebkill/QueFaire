@@ -70,8 +70,18 @@ rafraîchis 2×/jour par la CI, sans intervention.
 - [ ] Soumission directe d'événements : formulaire et/ou adresse mail
       (affiche → extraction LLM), avec file de modération
 - [ ] Activités permanentes — suites : parser `opening_hours` pour un filtre
-      « ouvert maintenant », enrichir les activités sans site officiel, et
-      croiser OSM avec les bases Datatourisme pour la couverture
+      « ouvert maintenant » et enrichir les activités sans site officiel
+- [ ] **Notes d'avis sur les tuiles** (pas sur la carte). Deux voies, toutes deux
+      contraintes — voir « Notes d'avis » dans `ARCHITECTURE.md` :
+      - *TripAdvisor Content API* : gratuite mais réservée aux partenaires
+        approuvés, et impose ses propres bulles + logo + lien retour. Demande une
+        candidature puis une refonte de l'affichage de la note ;
+      - *fiche embarquée en iframe* (Google Maps Embed API, gratuite et
+        illimitée) : la note reste affichée **dans** un composant du fournisseur,
+        ce qui règle la question des conditions d'affichage et entretient le
+        trafic vers lui. À charger en **façade** — un bouton « Voir la fiche »
+        qui n'injecte l'iframe qu'au clic — sinon les cookies tiers imposent une
+        bannière de consentement sur tout le site.
 - [ ] Fiabiliser la géolocalisation du portail (aujourd'hui l'IP situe les
       postes fixes au nœud régional du fournisseur)
 
@@ -87,7 +97,24 @@ rafraîchis 2×/jour par la CI, sans intervention.
 
 ### Long terme
 
-- [ ] Compte utilisateur : préférences, contributions, activités réalisées
+- [ ] **Préférences utilisateur sans compte** — plutôt qu'un compte (inscription,
+      mots de passe, base de données, obligations RGPD, suppression sur demande),
+      l'utilisateur reste propriétaire de ses préférences :
+      - persistance locale par défaut (`localStorage`) : catégories favorites,
+        commune de départ, rayon habituel, activités déjà faites. Première
+        partie, purement fonctionnelle, aucune donnée ne quitte le navigateur ;
+      - bouton **« Exporter mes préférences »** → un fichier JSON que
+        l'utilisateur garde, et **« Importer »** pour le recharger sur un autre
+        appareil ou après vidage du navigateur.
+
+      L'intérêt dépasse la simplicité juridique : sans serveur ni base, ça reste
+      cohérent avec un site 100 % statique, et il n'y a **aucune donnée
+      personnelle à protéger puisqu'on n'en détient aucune**. Le fichier devient
+      aussi un format d'échange (partager un profil « sorties en famille »).
+      Points à traiter : versionner le schéma du fichier pour rester
+      rétrocompatible, valider à l'import (ne jamais faire confiance au contenu),
+      et rester utilisable sans préférences du tout.
+- [ ] Contributions et activités réalisées, adossées au même fichier
 - [ ] Extension aux professionnels et commerçants (« je cherche un électricien »,
       « un tailleur de pierre ») : même pipeline, schéma `Place`, même recherche
 

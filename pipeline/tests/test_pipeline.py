@@ -1067,3 +1067,142 @@ def test_radius_km_matches_front_approximation():
     km = radius_km(60)
     assert 47 < km < 49  # 1 h de voiture ≈ 48 km, comme annoncé dans la doc
     assert travel_minutes(km) == pytest.approx(60, abs=0.1)
+
+
+# --- DATAtourisme et signaux de qualité --------------------------------------
+
+# Flux JSON-LD réaliste : formes de valeurs volontairement hétérogènes (chaîne
+# nue, {"@value"}, dictionnaire de langues), car les producteurs DATAtourisme
+# remplissent l'ontologie inégalement.
+DT_SAMPLE = {
+    "@graph": [
+        {
+            "@id": "https://data.datatourisme.fr/1",
+            "@type": ["PointOfInterest", "CulturalSite", "Museum"],
+            "rdfs:label": {"fr": ["Musée du Rouergue"]},
+            "hasDescription": {"shortDescription": {"fr": ["Outils et costumes du Rouergue."]}},
+            "hasLabel": [{"rdfs:label": {"fr": ["Musée de France"]}}, "Qualité Tourisme"],
+            "isLocatedAt": {
+                "schema:geo": {"schema:latitude": "44.28", "schema:longitude": "2.73"},
+                "schema:address": {"schema:addressLocality": "Pont-de-Salars",
+                                   "schema:streetAddress": "3 rue du Moulin"},
+            },
+            "hasContact": {"foaf:homepage": ["https://musee-rouergue.fr"],
+                           "schema:telephone": "0565000000"},
+        },
+        {
+            "@id": "https://data.datatourisme.fr/2",
+            "@type": ["PointOfInterest", "SportsAndLeisurePlace"],
+            "rdfs:label": "Accrobranche du Lévézou",
+            "isLocatedAt": {"schema:geo": {"schema:latitude": 44.30, "schema:longitude": 2.75}},
+        },
+        {  # hors rayon : doit être écarté
+            "@id": "https://data.datatourisme.fr/3",
+            "@type": ["Museum"],
+            "rdfs:label": "Louvre",
+            "isLocatedAt": {"schema:geo": {"schema:latitude": 48.86, "schema:longitude": 2.34}},
+        },
+        {  # sans coordonnées : inexploitable
+            "@id": "https://data.datatourisme.fr/4",
+            "@type": ["Museum"],
+            "rdfs:label": "Musée fantôme",
+        },
+    ]
+}
+
+
+def test_datatourisme_parses_heterogeneous_jsonld(monkeypatch):
+    from quefaire import datatourisme
+
+    monkeypatch.setenv(datatourisme.FLUX_ENV, "https://flux.test/x")
+    monkeypatch.setattr(
+        "quefaire.fetchers.base.http_get", lambda *a, **k: _FakeResp(DT_SAMPLE)
+    )
+    found = datatourisme.fetch(load_sector("pont-de-salars"))
+    by_name = {p.name: p for p in found}
+
+    assert set(by_name) == {"Musée du Rouergue", "Accrobranche du Lévézou"}
+    musee = by_name["Musée du Rouergue"]
+    assert musee.category == "musee"           # Museum gagne sur PointOfInterest
+    assert musee.commune == "Pont-de-Salars"
+    assert musee.url == "https://musee-rouergue.fr"
+    assert "Outils et costumes" in musee.description
+    # Labels reconnus quelle que soit leur forme (objet imbriqué ou chaîne nue).
+    assert set(musee.quality) == {"musee-de-france", "qualite-tourisme"}
+    assert musee.providers == ["datatourisme"]
+    assert by_name["Accrobranche du Lévézou"].category == "sport-loisir"
+
+
+def test_datatourisme_skipped_without_flux(monkeypatch):
+    from quefaire import datatourisme
+
+    monkeypatch.delenv(datatourisme.FLUX_ENV, raising=False)
+    assert datatourisme.available() is False
+    assert datatourisme.fetch(load_sector("pont-de-salars")) == []  # complément absent ≠ échec
+
+
+def test_osm_quality_signals():
+    from quefaire.places import _quality_of
+
+    assert "monument-historique" in _quality_of({"heritage:operator": "mhs", "ref:mhs": "PA00"})
+    assert "notoriete" in _quality_of({"wikidata": "Q42"})
+    assert _quality_of({}) == []
+
+
+def test_dedupe_providers_merges_same_place():
+    from quefaire.models import Place
+    from quefaire.places import dedupe_providers
+
+    osm = Place(name="Musée du Rouergue", category="musee", source_id="osm", sector="s",
+                external_id="node/1", lat=44.2800, lon=2.7300,
+                opening_hours="Tu-Su 10:00-18:00", quality=["notoriete"], providers=["osm"])
+    dt = Place(name="Le Musée du Rouergue", category="musee", source_id="datatourisme",
+               sector="s", external_id="https://data.datatourisme.fr/1",
+               lat=44.2802, lon=2.7305, description="Outils et costumes.",
+               url="https://musee-rouergue.fr", quality=["musee-de-france"],
+               providers=["datatourisme"])
+
+    [merged] = dedupe_providers([osm, dt])
+    # « Le » ignoré, 20 m d'écart, même catégorie → un seul lieu.
+    assert merged.description == "Outils et costumes."   # apporté par DATAtourisme
+    assert merged.url == "https://musee-rouergue.fr"
+    assert merged.opening_hours == "Tu-Su 10:00-18:00"   # apporté par OSM
+    assert set(merged.quality) == {"notoriete", "musee-de-france"}
+    assert set(merged.providers) == {"osm", "datatourisme"}
+    assert merged.external_id == "node/1"                # l'id OSM prime (stable)
+    assert merged.source_id == "osm"
+
+
+def test_dedupe_providers_keeps_distinct_places():
+    from quefaire.models import Place
+    from quefaire.places import dedupe_providers
+
+    a = Place(name="Cinéma Le Royal", category="cinema", source_id="osm", sector="s",
+              external_id="node/1", lat=44.28, lon=2.73)
+    b = Place(name="Cinéma Le Rex", category="cinema", source_id="osm", sector="s",
+              external_id="node/2", lat=44.28, lon=2.73)          # même point, autre nom
+    c = Place(name="Cinéma Le Royal", category="cinema", source_id="osm", sector="s",
+              external_id="node/3", lat=44.40, lon=2.90)          # même nom, 15 km
+    assert len(dedupe_providers([a, b, c])) == 3
+
+
+def test_merge_keeps_labels_when_flux_unavailable():
+    from quefaire.models import Place
+    from quefaire.places import merge
+
+    old = Place(name="Musée", category="musee", source_id="osm", sector="s",
+                external_id="node/1", quality=["musee-de-france"],
+                providers=["osm", "datatourisme"], last_seen="2026-07-30")
+    # Sweep OSM seule : le label DATAtourisme ne doit pas être perdu.
+    fresh = Place(name="Musée", category="musee", source_id="osm", sector="s",
+                  external_id="node/1", quality=["notoriete"], providers=["osm"])
+    [out] = merge([old], [fresh], today="2026-08-02")
+    assert set(out.quality) == {"notoriete", "musee-de-france"}
+    assert set(out.providers) == {"osm", "datatourisme"}
+
+
+def test_notable_excludes_wikipedia_only():
+    from quefaire.models import NOTABLE_LABELS
+
+    assert "notoriete" not in NOTABLE_LABELS       # notoriété ≠ distinction
+    assert "monument-historique" in NOTABLE_LABELS

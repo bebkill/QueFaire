@@ -16,7 +16,7 @@ from datetime import datetime, timedelta
 from pathlib import Path
 
 from .geocode import commune_table
-from .models import CATEGORIES, PLACE_CATEGORIES, Event
+from .models import CATEGORIES, PLACE_CATEGORIES, QUALITY_LABELS, Event
 from .registry import Sector, available_sectors, load_sector
 
 SITE_DATA_DIR = Path(__file__).resolve().parent.parent.parent / "site" / "src" / "data"
@@ -66,6 +66,7 @@ def export(sector: Sector, events: list[Event], out_dir: Path | None = None) -> 
         "radius_minutes": sector.radius_minutes,
         "categories": CATEGORIES,
         "place_categories": PLACE_CATEGORIES,
+        "quality_labels": QUALITY_LABELS,
         # Le crawl n'écrit PAS places.json (cadence différente) : il se contente
         # d'en relire le compteur pour que sector.json reste cohérent.
         "place_count": _count_places(sector.id, out),
@@ -117,6 +118,7 @@ def refresh_place_count(sector_id: str, count: int, out: Path) -> None:
         return
     meta["place_count"] = count
     meta.setdefault("place_categories", PLACE_CATEGORIES)
+    meta.setdefault("quality_labels", QUALITY_LABELS)
     path.write_text(json.dumps(meta, ensure_ascii=False, indent=1), encoding="utf-8")
 
 

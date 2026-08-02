@@ -30,15 +30,28 @@ chaque ville a son agenda complet sous `/<ville>/`.
 |---|---|---|
 | Exemple | concert du 12 avril, brocante | musée, château, parc d'attraction, cinéma, ludothèque |
 | Ce qui le définit | une **date** | des **horaires** |
-| Source | RSS, iCal, OpenAgenda, pages agenda | OpenStreetMap (`discover-places`) |
+| Source | RSS, iCal, OpenAgenda, pages agenda | OpenStreetMap **+ DATAtourisme** |
 | Rafraîchissement | 2×/jour | **hebdomadaire** — un musée ne « passe » pas |
 | Repérage sur le site | pastille de date | badge « Permanent », icône dédiée, liseré coloré |
 
-Les activités permanentes portent en plus, quand l'information existe, une
-**note d'avis** (Google ou TripAdvisor), leurs **horaires d'ouverture**, un tag
-**✨ Insolite** pour les curiosités hors des sentiers battus, et un lien direct
-vers le **site de l'activité**. Elles se filtrent depuis la barre de recherche
-(« musée », « insolite », « bien noté ») ou les chips dédiés.
+Les activités permanentes portent en plus leurs **horaires d'ouverture**, les
+**distinctions officielles** qu'elles détiennent (Monument Historique, Musée de
+France, Qualité Tourisme, Tourisme & Handicap…), un tag **✨ Insolite** pour les
+curiosités hors des sentiers battus, et un lien direct vers le **site de
+l'activité**. Elles se filtrent depuis la barre de recherche (« musée »,
+« insolite », « valeurs sûres ») ou les chips dédiés.
+
+Deux fournisseurs complémentaires : **OpenStreetMap** couvre le non-touristique
+(cinéma de quartier, ludothèque, piscine) mais dépend de contributeurs bénévoles,
+donc inégal en zone rurale ; **[DATAtourisme](https://www.datatourisme.fr/)** —
+base nationale sous Licence Ouverte, alimentée par les offices de tourisme
+eux-mêmes — apporte descriptions, horaires et labels. Les fiches d'un même lieu
+sont fusionnées automatiquement.
+
+> Les **notes d'avis** Google/TripAdvisor ne sont pas affichées : leurs
+> conditions d'utilisation l'interdisent dans notre configuration (carte
+> Leaflet). Détail et alternatives dans
+> [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md).
 
 ## Démarrer
 
@@ -128,14 +141,24 @@ qui ouvre une issue pré-remplie, traitée par le même circuit de validation.
 3. **Variables** : `QUEFAIRE_LLM` au format `provider:modèle`
    (ex. `deepseek:deepseek-v4-flash`), `QUEFAIRE_LLM2` pour les backups.
 
-### Notes d'avis (optionnel)
+### DATAtourisme (recommandé, gratuit)
 
-Renseigner **une** des deux clés active les notes sur les activités permanentes :
-`GOOGLE_PLACES_KEY` (Places API New — meilleure couverture des petits lieux
-ruraux) ou `TRIPADVISOR_API_KEY` (Content API). Sans clé, les activités sont
-publiées **sans note** et le site n'affiche simplement pas d'étoiles : c'est un
-fonctionnement normal, pas une panne. Les notes sont mises en cache 90 jours,
-donc la facture d'API reste négligeable.
+Créer un flux dans le diffuseur [DATAtourisme](https://www.datatourisme.fr/utiliser-les-donnees/)
+(inscription gratuite), puis renseigner le secret `DATATOURISME_FLUX_URL` avec
+l'URL complète du webservice. Sans cette variable, la découverte fonctionne avec
+OpenStreetMap seul.
+
+Licence Ouverte Etalab : réutilisation libre, y compris commerciale, **à
+condition de citer la source et la date de mise à jour** — l'attribution est
+affichée sur la page « à propos » de chaque ville.
+
+### Notes d'avis (désactivées)
+
+`ratings.py` sait interroger Google Places (`GOOGLE_PLACES_KEY`) et TripAdvisor
+(`TRIPADVISOR_API_KEY`), mais **l'affichage est volontairement désactivé** :
+Google interdit d'afficher du contenu Places à proximité d'une carte non-Google,
+et TripAdvisor impose ses propres graphiques et un statut de partenaire. Les
+distinctions officielles jouent ce rôle sans aucune contrainte.
 
 ### LLM : principal + backups
 

@@ -157,6 +157,7 @@ export function parseQuery(query, communes = [], now = new Date()) {
     // null = événements ET activités ; 'event' / 'place' = un seul type.
     kind: null,
     unusual: false,
+    notable: false,
     minRating: null,
     text: '',
   };
@@ -191,11 +192,15 @@ export function parseQuery(query, communes = [], now = new Date()) {
     filter.kind = 'place';
     consume(unusualRe);
   }
-  const ratedRe = /bien notes?|bien notees?|mieux notes?|meilleures?\b|tres bien notes?|top\b/;
-  if (ratedRe.test(q)) {
-    filter.minRating = 4;
+  // « Valeur sûre » s'appuie sur les distinctions officielles (Monument
+  // Historique, Musée de France, Qualité Tourisme…), pas sur une note d'avis :
+  // ces signaux sont en données ouvertes, sans contrainte d'affichage.
+  const notableRe =
+    /valeurs? sures?|labellises?|labellisees?|classes?\b|incontournables?|reconnus?\b|bien notes?|bien notees?|meilleures?\b/;
+  if (notableRe.test(q)) {
+    filter.notable = true;
     filter.kind = 'place';
-    consume(ratedRe);
+    consume(notableRe);
   }
   const permanentRe = /activites? permanentes?|toute l annee|permanents?\b|a visiter/;
   if (permanentRe.test(q)) {
@@ -281,6 +286,7 @@ export function matches(ev, filter) {
   }
 
   if (filter.unusual && ev.unusual !== 'true') return false;
+  if (filter.notable && ev.notable !== 'true') return false;
   if (filter.minRating != null && !(parseFloat(ev.rating) >= filter.minRating)) return false;
 
   // Chaque type est jugé sur SON jeu de catégories. Dès qu'une contrainte de

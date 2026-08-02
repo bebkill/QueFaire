@@ -329,6 +329,14 @@ a { color: inherit; }
   margin: 0; font-size: 0.8rem; color: var(--ink-soft);
   display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
 }
+/* Signaux de qualité libres : distinctions officielles, en remplacement de la
+   note d'avis (dont l'affichage est contraint par les CGU des fournisseurs). */
+.card-body p.quality-badges { margin: 0; display: flex; flex-wrap: wrap; gap: 5px; }
+.q-badge {
+  font-size: 0.7rem; font-weight: 700; white-space: nowrap;
+  background: var(--bg-soft); border: 1px solid var(--line);
+  border-radius: 999px; padding: 3px 9px; color: var(--ink);
+}
 .card-meta .rating { font-weight: 700; color: var(--ink); display: inline-flex; gap: 4px; align-items: baseline; }
 .card-meta .rating .stars { color: #e8a30c; letter-spacing: -1px; }
 .card-meta .rating .rating-count { font-weight: 500; color: var(--ink-soft); font-size: 0.9em; }

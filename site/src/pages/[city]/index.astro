@@ -3,6 +3,7 @@ import Base from '../../layouts/Base.astro';
 import EventCard from '../../components/EventCard.astro';
 import PlaceCard from '../../components/PlaceCard.astro';
 import { cityIds, getSector, getEvents, getPlaces } from '../../lib/sectors.js';
+import { isNotable } from '../../lib/format.js';
 
 export function getStaticPaths() {
   return cityIds.map((city) => ({
@@ -16,14 +17,20 @@ const base = import.meta.env.BASE_URL;
 const cityBase = `${base}${sector.id}/`;
 const title = `QueFaire — ${sector.name} · sorties, événements et activités`;
 
-// Activités permanentes : triées par note décroissante (les mieux notées
-// d'abord), les non notées ensuite par ordre alphabétique. C'est l'ordre du DOM
-// de départ ; le tri dynamique (proximité/date) le rejoue côté client.
+// Activités permanentes : les distinctions officielles d'abord (Monument
+// Historique, Musée de France…), puis l'ordre alphabétique. C'est l'ordre du
+// DOM de départ ; le tri dynamique (proximité/date) le rejoue côté client.
 const sortedPlaces = [...places].sort(
-  (a, b) => (b.rating ?? -1) - (a.rating ?? -1) || a.name.localeCompare(b.name, 'fr')
+  (a, b) =>
+    Number(isNotable(b.quality)) - Number(isNotable(a.quality)) ||
+    a.name.localeCompare(b.name, 'fr')
 );
 const placeCategories = sector.place_categories || {};
+const qualityLabels = sector.quality_labels || {};
 const unusualCount = places.filter((p) => p.unusual).length;
+// « Valeur sûre » = porte au moins une distinction officielle (la simple notice
+// Wikipédia ne compte pas). Le chip n'apparaît que s'il a de quoi filtrer.
+const notableCount = places.filter((p) => isNotable(p.quality)).length;
 ---
 
 <Base title={title} sector={sector}>
@@ -69,7 +76,9 @@ const unusualCount = places.filter((p) => p.unusual).length;
             {unusualCount > 0 && (
               <button class="chip" data-chip="insolite" aria-pressed="false">✨ Insolite</button>
             )}
-            <button class="chip" data-chip="bien-note" aria-pressed="false">⭐ Bien noté</button>
+            {notableCount > 0 && (
+              <button class="chip" data-chip="valeur-sure" aria-pressed="false">🏅 Valeurs sûres</button>
+            )}
           </>
         )}
         <button class="chip" id="mapchip" aria-pressed="false">🗺️ Carte</button>
@@ -107,7 +116,9 @@ const unusualCount = places.filter((p) => p.unusual).length;
 
     <div class="grid" id="grid">
       {events.map((event) => <EventCard event={event} cityBase={cityBase} categories={sector.categories} />)}
-      {sortedPlaces.map((place) => <PlaceCard place={place} categories={placeCategories} />)}
+      {sortedPlaces.map((place) => (
+        <PlaceCard place={place} categories={placeCategories} sectorQuality={qualityLabels} />
+      ))}
     </div>
 
     <div class="empty" id="empty">
@@ -124,7 +135,7 @@ const unusualCount = places.filter((p) => p.unusual).length;
 
 <script>
   import { parseQuery, matches, distanceKm, travelMinutes, roundMinutes, fold } from '../../lib/nlsearch.js';
-  import { CATEGORY_EMOJI, PLACE_EMOJI, formatWhen, openingLabel, ratingStars } from '../../lib/format.js';
+  import { CATEGORY_EMOJI, PLACE_EMOJI, formatWhen, openingLabel } from '../../lib/format.js';
 
   // Le secteur de la page (multi-villes) est injecté en JSON dans le DOM plutôt
   // qu'importé statiquement — le script est partagé par toutes les routes [city].
@@ -160,6 +171,7 @@ const unusualCount = places.filter((p) => p.unusual).length;
     free: card.dataset.free,
     rating: card.dataset.rating,
     unusual: card.dataset.unusual,
+    notable: card.dataset.notable,
     text: card.dataset.text,
     lat: parseFloat(card.dataset.lat),
     lon: parseFloat(card.dataset.lon),
@@ -192,9 +204,9 @@ const unusualCount = places.filter((p) => p.unusual).length;
       filter.kind = 'place';
       filter.unusual = true;
     }
-    if (state.chips.has('bien-note')) {
+    if (state.chips.has('valeur-sure')) {
       filter.kind = 'place';
-      filter.minRating = 4;
+      filter.notable = true;
     }
     return filter;
   }
@@ -279,7 +291,7 @@ const unusualCount = places.filter((p) => p.unusual).length;
         visible.push({
           card, dist, date: data.date, data,
           isPlace: data.kind === 'place',
-          rating: parseFloat(data.rating),
+          notable: data.notable === 'true',
         });
       } else {
         distEl.textContent = '';
@@ -292,11 +304,7 @@ const unusualCount = places.filter((p) => p.unusual).length;
     visible.sort((a, b) => {
       if (needsGeo && a.dist != null && b.dist != null) return a.dist - b.dist;
       if (a.isPlace !== b.isPlace) return a.isPlace ? 1 : -1;
-      if (a.isPlace) {
-        const ra = Number.isNaN(a.rating) ? -1 : a.rating;
-        const rb = Number.isNaN(b.rating) ? -1 : b.rating;
-        return rb - ra;
-      }
+      if (a.isPlace) return Number(b.notable) - Number(a.notable);
       return a.date.localeCompare(b.date);
     });
     for (const { card } of visible) grid.appendChild(card);
@@ -436,9 +444,9 @@ const unusualCount = places.filter((p) => p.unusual).length;
         `<span class="tt-line">${it.emoji} ${cat} · <strong>toute l’année</strong></span>`,
       ];
       if (it.unusual) lines.push('<span class="tt-line">✨ Insolite</span>');
-      if (!Number.isNaN(it.rating)) {
-        lines.push(`<span class="tt-line">${ratingStars(it.rating)} ${it.rating.toFixed(1)}</span>`);
-      }
+      // Pas de note d'avis sur la carte : choix produit, et cela évite au
+      // passage la contrainte « pas de contenu Places sur une carte non-Google ».
+      if (it.notable) lines.push('<span class="tt-line">🏅 Distinction officielle</span>');
       const opening = openingLabel(it.opening);
       if (opening) lines.push(`<span class="tt-line">🕒 ${opening}</span>`);
       if (it.commune) lines.push(`<span class="tt-line">📍 ${it.commune}</span>`);
@@ -463,13 +471,13 @@ const unusualCount = places.filter((p) => p.unusual).length;
     layer.clearLayers();
 
     const items = [];
-    for (const { card, data, isPlace, rating } of visible) {
+    for (const { card, data, isPlace, notable } of visible) {
       if (Number.isNaN(data.lat)) continue;
       items.push({
         card,
         lat: data.lat, lon: data.lon, cat: data.cat, commune: data.commune,
         date: data.date, end: data.end,
-        isPlace, rating,
+        isPlace, notable,
         unusual: data.unusual === 'true',
         emoji: isPlace ? PLACE_EMOJI[data.cat] || '📍' : CATEGORY_EMOJI[data.cat] || '📌',
         opening: card.dataset.opening || '',
@@ -566,7 +574,7 @@ const unusualCount = places.filter((p) => p.unusual).length;
         (key === 'nearme' && parsed.nearMe) ||
         (key === 'permanent' && parsed.kind === 'place') ||
         (key === 'insolite' && parsed.unusual) ||
-        (key === 'bien-note' && parsed.minRating != null);
+        (key === 'valeur-sure' && parsed.notable);
       chip.setAttribute('aria-pressed', String(active));
     }
   }

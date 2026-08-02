@@ -64,8 +64,11 @@ jobs:
           DEEPSEEK_API_KEY: ${{ secrets.DEEPSEEK_API_KEY }}
           GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
           MISTRAL_API_KEY: ${{ secrets.MISTRAL_API_KEY }}
-          # Notes d'avis — OPTIONNELLES. Sans clé, les fiches sortent sans note
-          # et le site n'affiche simplement pas d'étoiles (voir ratings.py).
+          # DATAtourisme : complète OpenStreetMap (descriptions, horaires,
+          # labels). Sans ce flux, la découverte tourne avec OSM seul.
+          DATATOURISME_FLUX_URL: ${{ secrets.DATATOURISME_FLUX_URL }}
+          # Notes d'avis — collectées seulement si une clé existe, mais NON
+          # affichées : conditions d'utilisation des fournisseurs (voir ratings.py).
           GOOGLE_PLACES_KEY: ${{ secrets.GOOGLE_PLACES_KEY }}
           TRIPADVISOR_API_KEY: ${{ secrets.TRIPADVISOR_API_KEY }}
           CITY: ${{ inputs.city }}

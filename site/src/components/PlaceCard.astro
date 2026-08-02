@@ -1,17 +1,22 @@
 ---
-import { PLACE_EMOJI, openingLabel, ratingStars } from '../lib/format.js';
+import { PLACE_EMOJI, isNotable, openingLabel, qualityBadges, ratingStars } from '../lib/format.js';
 import { fold } from '../lib/nlsearch.js';
 
 // Tuile d'activité PERMANENTE. Même gabarit que EventCard pour que la grille
 // reste homogène, mais signalée sans ambiguïté : badge « Permanent » à la place
 // de la pastille de date, jeu d'icônes propre, et lien SORTANT vers le site de
 // l'activité (on envoie le visiteur chez l'exploitant, pas sur une fiche interne).
-const { place, categories } = Astro.props;
+// `sectorQuality` = libellés complets des labels (sector.json), utilisés en
+// infobulle : la tuile affiche une forme courte pour rester lisible.
+const { place, categories, sectorQuality } = Astro.props;
 
 const emoji = PLACE_EMOJI[place.category] || '📍';
 const label = categories?.[place.category] || 'Activité';
 const opening = openingLabel(place.opening_hours);
 const stars = ratingStars(place.rating);
+const badges = qualityBadges(place.quality);
+const notable = isNotable(place.quality);
+const labels = sectorQuality ?? {};
 
 // Sans site officiel, on renvoie vers la carte OpenStreetMap de l'objet : mieux
 // qu'un lien mort, et ça reste actionnable (itinéraire, photos, horaires).
@@ -23,7 +28,12 @@ const href =
 const external = true;
 
 const foldedText = fold(
-  [place.name, place.tldr, place.description, place.commune, label, place.unusual ? 'insolite' : '', place.tags?.join(' ')].join(' ')
+  [
+    place.name, place.tldr, place.description, place.commune, label,
+    place.unusual ? 'insolite' : '',
+    badges.map((b) => b.short).join(' '),
+    place.tags?.join(' '),
+  ].join(' ')
 );
 ---
 
@@ -40,6 +50,7 @@ const foldedText = fold(
   data-free={String(place.fee === false)}
   data-rating={place.rating ?? ''}
   data-unusual={String(place.unusual === true)}
+  data-notable={String(notable)}
   data-opening={place.opening_hours || ''}
   data-lat={place.lat ?? ''}
   data-lon={place.lon ?? ''}
@@ -54,6 +65,15 @@ const foldedText = fold(
   </div>
   <div class="card-body">
     <h3>{place.name}{external && <span class="ext" aria-label="ouvre le site de l'activité">↗</span>}</h3>
+    {badges.length > 0 && (
+      <p class="quality-badges">
+        {badges.map((b) => (
+          <span class="q-badge" title={labels[b.code] || b.short}>
+            <span aria-hidden="true">{b.emoji}</span> {b.short}
+          </span>
+        ))}
+      </p>
+    )}
     {place.unusual && <p class="unusual-tag">✨ Insolite — hors des sentiers battus</p>}
     {place.tldr && <p class="tldr">💡 {place.tldr}</p>}
     {!place.tldr && place.description && <p class="desc">{place.description}</p>}

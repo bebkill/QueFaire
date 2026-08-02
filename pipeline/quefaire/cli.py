@@ -141,6 +141,17 @@ def discover_places(
     except Exception as exc:
         log.error("[places] Overpass indisponible (%s) — places.json inchangé", exc)
         return 1
+
+    # DATAtourisme complète OSM là où les contributeurs bénévoles manquent
+    # (description, horaires, labels). Complément : son absence n'est pas un
+    # échec, on continue avec OSM seul.
+    from . import datatourisme
+
+    dt = datatourisme.fetch(sector, limit=limit)
+    if dt:
+        log.info("[places] DATAtourisme : %s", datatourisme.report(dt))
+        found = places_mod.dedupe_providers(found + dt)
+
     if not found:
         log.error("[places] aucune activité trouvée — places.json inchangé (anomalie probable)")
         return 1
@@ -159,11 +170,15 @@ def discover_places(
     cache.save()
     refresh_place_count(sector_id, len(merged), out_dir)
 
+    from .models import NOTABLE_LABELS
+
     unusual = sum(1 for p in merged if p.unusual)
-    rated = sum(1 for p in merged if p.rating is not None)
+    labelled = sum(1 for p in merged if set(p.quality) & NOTABLE_LABELS)
+    both = sum(1 for p in merged if len(p.providers) > 1)
     log.info(
-        "%d activités permanentes pour « %s » (%d insolites, %d notées) → %s",
-        len(merged), sector.name, unusual, rated, path,
+        "%d activités permanentes pour « %s » (%d insolites, %d labellisées, "
+        "%d connues des deux fournisseurs) → %s",
+        len(merged), sector.name, unusual, labelled, both, path,
     )
     return 0
 

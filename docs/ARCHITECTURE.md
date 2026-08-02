@@ -146,14 +146,50 @@ cycle de vie entièrement distinct de celui du crawl :
    phrase qui donne envie et tranche le caractère **insolite** (une heuristique
    pré-filtre : ni marque, ni page wikipédia). Mise en cache par contenu : une
    activité déjà présentée n'est jamais repayée.
-5. **Notes** — `ratings.py` attache une note Google Places ou TripAdvisor selon
-   la clé présente. **Aucune clé = aucune note**, et c'est un cas normal : le
-   pipeline ne doit jamais dépendre d'un service payant pour produire un
-   résultat exploitable. Cache de 90 jours, les avis bougent lentement.
+5. **Signaux de qualité** — plutôt qu'une note d'avis, chaque activité porte les
+   **distinctions officielles** lisibles en données ouvertes (`QUALITY_LABELS`) :
+   Monument Historique et notoriété Wikipédia depuis les tags OSM, Musée de
+   France / Qualité Tourisme / Tourisme & Handicap depuis les labels
+   DATAtourisme. Le filtre « valeurs sûres » s'appuie sur `NOTABLE_LABELS`, qui
+   **exclut la simple notice Wikipédia** : elle atteste d'une notoriété, pas
+   d'une qualité d'accueil.
 
 Sortie : `site/src/data/cities/<ville>/places.json`, écrit par `places.yml`
 (hebdomadaire) et **jamais par le crawl** — qui se contente d'en relire le
 compteur pour tenir `sector.json` à jour (`export.refresh_place_count`).
+
+### Deux fournisseurs complémentaires
+
+| | OpenStreetMap | DATAtourisme |
+|---|---|---|
+| Alimenté par | contributeurs bénévoles | offices de tourisme, ADT, CRT |
+| Fort sur | cinémas, piscines, ludothèques, équipements | musées, monuments, sites touristiques |
+| Faible sur | horaires et sites web souvent absents, couverture rurale inégale | tout le non-touristique |
+| Apporte | position fiable, identifiant stable | description, horaires, tarifs, **labels** |
+
+`dedupe_providers()` réunit les fiches d'un même lieu : concordance de nom (mots
+vides retirés) **et** proximité de moins de 400 m — assez large pour absorber
+l'écart entre le point OSM (entrée du bâtiment) et le point DATAtourisme
+(parfois la mairie qui a saisi la fiche), assez serré pour ne pas confondre deux
+commerces d'un bourg. La fiche la plus complète sert de base, les champs
+manquants sont pris chez l'autre, et l'`external_id` **OSM prime** : c'est le
+plus stable dans le temps, donc la meilleure clé de réconciliation entre sweeps.
+
+### Notes d'avis : pourquoi elles ne sont pas affichées
+
+`ratings.py` sait interroger Google Places et TripAdvisor, et ne s'active que si
+une clé est présente. Le code reste en place, mais **l'affichage est désactivé**,
+pour une raison contractuelle et non technique :
+
+- **Google** interdit d'afficher du contenu Places « sur ou à proximité d'une
+  carte non-Google ». Le site affiche une carte Leaflet/OSM : afficher une note
+  Google sur la même page violerait les conditions ;
+- **TripAdvisor** réserve sa Content API aux partenaires approuvés et impose ses
+  propres graphiques de bulles, son logo et un lien retour — des étoiles maison
+  ne sont pas conformes.
+
+Les distinctions officielles n'ont aucune de ces contraintes, d'où le choix
+retenu. Les pistes pour de vraies notes figurent en roadmap.
 
 ### Cycle de vie des sources
 

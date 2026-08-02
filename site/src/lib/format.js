@@ -36,7 +36,41 @@ export const PLACE_EMOJI = {
   autre: '📍',
 };
 
-/** Note sur 5 → étoiles pleines/demi/vides, lisible sans CSS particulier. */
+/** Signaux de qualité libres (distinctions officielles, notoriété). Ils tiennent
+ *  la place de la note d'avis, dont l'affichage est contraint par les CGU des
+ *  fournisseurs. Ordre = ordre d'affichage, le plus distinctif d'abord. */
+export const QUALITY_BADGES = {
+  unesco: { emoji: '🌍', short: 'UNESCO' },
+  'monument-historique': { emoji: '🏛️', short: 'Monument Historique' },
+  'musee-de-france': { emoji: '🎨', short: 'Musée de France' },
+  'jardin-remarquable': { emoji: '🌸', short: 'Jardin remarquable' },
+  'maisons-des-illustres': { emoji: '✒️', short: 'Maison des Illustres' },
+  'art-et-histoire': { emoji: '🗺️', short: "Pays d'art et d'histoire" },
+  'qualite-tourisme': { emoji: '🏅', short: 'Qualité Tourisme' },
+  'tourisme-handicap': { emoji: '♿', short: 'Tourisme & Handicap' },
+  notoriete: { emoji: '📖', short: 'Wikipédia' },
+};
+
+/** Codes qui valent « valeur sûre » : une distinction décernée par un tiers.
+ *  La notice Wikipédia atteste d'une notoriété, pas d'une qualité d'accueil —
+ *  elle n'en fait pas partie (miroir de NOTABLE_LABELS côté pipeline). */
+const NOTABLE = new Set(Object.keys(QUALITY_BADGES).filter((k) => k !== 'notoriete'));
+
+export const isNotable = (quality) => (quality || []).some((c) => NOTABLE.has(c));
+
+/** Badges d'une activité, dans l'ordre d'affichage, limités pour ne pas noyer
+ *  la tuile. */
+export function qualityBadges(quality, max = 3) {
+  return (quality || [])
+    .filter((c) => QUALITY_BADGES[c])
+    .sort((a, b) => Object.keys(QUALITY_BADGES).indexOf(a) - Object.keys(QUALITY_BADGES).indexOf(b))
+    .slice(0, max)
+    .map((c) => ({ code: c, ...QUALITY_BADGES[c] }));
+}
+
+/** Note sur 5 → étoiles pleines/demi/vides, lisible sans CSS particulier.
+ *  Conservé pour un affichage éventuel sur les tuiles ; voir ratings.py pour
+ *  les conditions d'affichage imposées par Google et TripAdvisor. */
 export function ratingStars(rating) {
   if (rating == null) return '';
   const full = Math.floor(rating);

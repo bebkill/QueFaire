@@ -128,6 +128,31 @@ def _looks_unusual(tags: dict, category: str) -> bool:
     return category in {"visite", "musee", "ferme", "patrimoine", "ludotheque"}
 
 
+def _quality_of(tags: dict) -> list[str]:
+    """Signaux de qualité LIBRES lisibles dans les tags OSM.
+
+    Remplace la note d'avis : `heritage:operator=mhs` signale un Monument
+    Historique, `heritage` un bien protégé (UNESCO au niveau 1), et une notice
+    wikipédia/wikidata atteste d'une notoriété. Aucune de ces informations n'est
+    soumise à des conditions d'affichage, contrairement aux notes Google.
+    """
+    found: list[str] = []
+    operator = (tags.get("heritage:operator") or "").lower()
+    if "mhs" in operator or tags.get("ref:mhs"):
+        found.append("monument-historique")
+    if tags.get("heritage") == "1" or "whc" in operator:
+        found.append("unesco")
+    if tags.get("museum") == "france" or (tags.get("operator:type") or "") == "museum_of_france":
+        found.append("musee-de-france")
+    if tags.get("garden:type") == "remarkable" or tags.get("jardin_remarquable") == "yes":
+        found.append("jardin-remarquable")
+    if tags.get("wheelchair") == "yes" and tags.get("tourism"):
+        found.append("tourisme-handicap")
+    if tags.get("wikipedia") or tags.get("wikidata"):
+        found.append("notoriete")
+    return found
+
+
 def _fee_of(tags: dict) -> bool | None:
     fee = (tags.get("fee") or "").lower()
     if fee in {"yes", "true"}:
@@ -176,6 +201,8 @@ def _element_to_place(el: dict, sector_id: str, today: str) -> Place | None:
         opening_hours=tags.get("opening_hours"),
         fee=_fee_of(tags),
         unusual=_looks_unusual(tags, category),
+        quality=_quality_of(tags),
+        providers=["osm"],
         first_seen=today,
         last_seen=today,
     )
@@ -219,6 +246,98 @@ def fetch_osm(sector, limit: int | None = None) -> list[Place]:
         places = places[:limit]
     log.info("[places] %d activités retenues dans le rayon", len(places))
     return places
+
+
+# --- Fusion inter-fournisseurs -----------------------------------------------
+
+# Deux fiches désignent le même lieu si leurs noms concordent et qu'elles sont
+# à moins de ce seuil. 400 m : assez large pour absorber l'écart entre le point
+# OSM (entrée du bâtiment) et le point DATAtourisme (parfois la mairie qui a
+# saisi la fiche), assez serré pour ne pas confondre deux commerces d'un bourg.
+SAME_PLACE_KM = 0.4
+
+
+def _name_key(name: str) -> str:
+    """Nom replié et débarrassé des mots vides qui varient d'une base à l'autre
+    (« Musée du Rouergue » / « Le musée du Rouergue »)."""
+    words = [w for w in fold(name).split() if w not in {"le", "la", "les", "l", "du", "de", "des", "d"}]
+    return " ".join(words)
+
+
+def _richness(place: Place) -> int:
+    """Score de complétude, pour choisir quelle fiche sert de base à la fusion."""
+    return (
+        bool(place.description) * 3
+        + bool(place.url) * 3
+        + bool(place.opening_hours) * 2
+        + bool(place.quality) * 2
+        + bool(place.tldr) * 2
+        + bool(place.commune)
+        + bool(place.phone)
+    )
+
+
+def dedupe_providers(places: list[Place]) -> list[Place]:
+    """Réunit les fiches d'un même lieu venues de fournisseurs différents.
+
+    La plus complète sert de base ; les champs qui lui manquent sont pris chez
+    l'autre. On préfère garder l'`external_id` OpenStreetMap quand il existe :
+    c'est l'identifiant le plus stable dans le temps, et il fait la clé de
+    réconciliation entre deux sweeps (voir `merge`).
+    """
+    groups: list[list[Place]] = []
+    index: dict[str, list[list[Place]]] = {}
+
+    for place in places:
+        key = _name_key(place.name)
+        target = None
+        for group in index.get(key, []):
+            head = group[0]
+            if head.category != place.category:
+                continue
+            if head.lat is None or place.lat is None:
+                continue
+            if haversine_km(head.lat, head.lon, place.lat, place.lon) <= SAME_PLACE_KM:
+                target = group
+                break
+        if target is None:
+            group = [place]
+            groups.append(group)
+            index.setdefault(key, []).append(group)
+        else:
+            target.append(place)
+
+    merged: list[Place] = []
+    for group in groups:
+        if len(group) == 1:
+            merged.append(group[0])
+            continue
+        group.sort(key=_richness, reverse=True)
+        base, *rest = group
+        for other in rest:
+            for attr in ("description", "url", "opening_hours", "phone", "address",
+                         "commune", "tldr", "fee"):
+                if getattr(base, attr) in (None, "") and getattr(other, attr) not in (None, ""):
+                    setattr(base, attr, getattr(other, attr))
+            for code in other.quality:
+                if code not in base.quality:
+                    base.quality.append(code)
+            for prov in other.providers:
+                if prov not in base.providers:
+                    base.providers.append(prov)
+            # L'identifiant OSM est le plus stable : il prime pour la
+            # réconciliation d'une sweep à l'autre.
+            if other.source_id == "osm" and base.source_id != "osm":
+                base.external_id = other.external_id
+                base.source_id = "osm"
+            base.unusual = base.unusual or other.unusual
+        base.id = base.compute_id()  # l'external_id a pu changer
+        merged.append(base)
+
+    dropped = len(places) - len(merged)
+    if dropped:
+        log.info("[places] %d fiches fusionnées entre fournisseurs", dropped)
+    return merged
 
 
 # --- Persistance et fusion ---------------------------------------------------
@@ -265,6 +384,15 @@ def merge(previous: list[Place], found: list[Place], today: str | None = None) -
             place.rating_source = old.rating_source
             place.rating_url = old.rating_url
             place.tags = old.tags
+            # Union des labels et des fournisseurs : si le flux DATAtourisme est
+            # indisponible ce jour-là, ses labels ne doivent pas disparaître de
+            # la fiche pour autant.
+            for code in old.quality:
+                if code not in place.quality:
+                    place.quality.append(code)
+            for prov in old.providers:
+                if prov not in place.providers:
+                    place.providers.append(prov)
             # L'insolite tranché par le LLM prime sur l'heuristique, mais une
             # activité jamais présentée garde le verdict heuristique du jour.
             if old.tldr:

@@ -64,6 +64,28 @@ const sourceLink = (s) => {
       <code>sources/{sector.id}.yaml</code> dans le dépôt.)
     </p>
 
+    <h2>Activités permanentes</h2>
+    <p>
+      À côté des événements datés, QueFaire référence les activités ouvertes
+      toute l'année&nbsp;: musées, monuments, parcs, cinémas, ludothèques,
+      marchés… Elles sont signalées par un badge <strong>Permanent</strong> et
+      renvoient directement vers le site de l'activité.
+    </p>
+    <p>
+      Ces données proviennent d'<a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a>
+      (licence ODbL) et de <a href="https://www.datatourisme.fr/" target="_blank" rel="noopener">DATAtourisme</a>,
+      la base nationale alimentée par les offices de tourisme et les comités
+      départementaux et régionaux du tourisme (Licence Ouverte Etalab 2.0).
+      {sector.place_count ? <> Dernière mise à jour&nbsp;: {new Date(sector.generated_at).toLocaleDateString('fr-FR')}.</> : null}
+    </p>
+    <p>
+      Plutôt qu'une note d'avis, chaque activité affiche les
+      <strong>distinctions officielles</strong> qu'elle détient (Monument
+      Historique, Musée de France, Qualité Tourisme, Tourisme&nbsp;&amp;&nbsp;Handicap…).
+      Ce sont des données ouvertes, vérifiables et sans condition de
+      réutilisation — contrairement aux notes des plateformes d'avis.
+    </p>
+
     <h2>Et après ?</h2>
     <ul>
       <li><strong>D'autres villes</strong> : l'architecture est multi-épicentres — ajouter une ville, c'est ajouter un fichier de sources. <a href={`${base}villes/`}>Voir les villes couvertes</a>.</li>

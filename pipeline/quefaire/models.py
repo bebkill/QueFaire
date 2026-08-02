@@ -61,6 +61,27 @@ PLACE_CATEGORIES = {
     "autre": "Autre activité",
 }
 
+# Signaux de qualité LIBRES, en remplacement de la note d'avis : distinctions
+# officielles et marques de notoriété, toutes issues de données ouvertes (tags
+# OpenStreetMap, labels DATAtourisme). Contrairement aux notes Google/
+# TripAdvisor, leur affichage n'est soumis à aucune condition contractuelle.
+QUALITY_LABELS = {
+    "monument-historique": "Monument Historique",
+    "musee-de-france": "Musée de France",
+    "unesco": "Patrimoine mondial UNESCO",
+    "jardin-remarquable": "Jardin remarquable",
+    "maisons-des-illustres": "Maison des Illustres",
+    "art-et-histoire": "Ville et Pays d'art et d'histoire",
+    "qualite-tourisme": "Qualité Tourisme",
+    "tourisme-handicap": "Tourisme & Handicap",
+    "notoriete": "Notice Wikipédia",
+}
+
+# Sous-ensemble qui vaut « valeur sûre » : une distinction officielle, décernée
+# par un tiers. La simple notice Wikipédia n'en fait PAS partie — elle atteste
+# d'une notoriété, pas d'une qualité d'accueil.
+NOTABLE_LABELS = frozenset(QUALITY_LABELS) - {"notoriete"}
+
 
 def slugify(text: str) -> str:
     text = unicodedata.normalize("NFKD", text).encode("ascii", "ignore").decode("ascii")
@@ -165,6 +186,13 @@ class Place:
     # « Insolite » : activité méconnue ou hors des sentiers battus. Décidée par
     # heuristique puis confirmée par le LLM (voir places.present).
     unusual: bool = False
+    # Signaux de qualité LIBRES (codes de QUALITY_LABELS) : Monument Historique,
+    # Musée de France, Qualité Tourisme… Ils remplacent la note d'avis, dont
+    # l'affichage est contraint par les CGU des fournisseurs — voir ratings.py.
+    quality: list[str] = field(default_factory=list)
+    # Fournisseurs ayant contribué à cette fiche (« osm », « datatourisme ») :
+    # une même activité est souvent connue des deux, on garde la trace.
+    providers: list[str] = field(default_factory=list)
     tags: list[str] = field(default_factory=list)
     first_seen: Optional[str] = None  # date ISO de la première découverte
     last_seen: Optional[str] = None  # date ISO du dernier passage qui l'a revue
