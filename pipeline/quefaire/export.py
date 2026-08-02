@@ -1,6 +1,8 @@
 """Export vers le site Astro : JSON consommés au build.
 
 - cities/<id>/events.json : événements à venir de la ville, triés par date
+- cities/<id>/places.json : activités PERMANENTES (écrit par discover-places,
+                 pas par le crawl : cadence hebdomadaire — voir places.py)
 - cities/<id>/sector.json : métadonnées de la ville (nom, centre, communes, sources)
 - cities.json  : annuaire des villes (épicentres) — pour le portail « choisir sa
                  ville » (localisation / recherche / carte). `url` = sous-chemin
@@ -14,7 +16,7 @@ from datetime import datetime, timedelta
 from pathlib import Path
 
 from .geocode import commune_table
-from .models import CATEGORIES, Event
+from .models import CATEGORIES, PLACE_CATEGORIES, Event
 from .registry import Sector, available_sectors, load_sector
 
 SITE_DATA_DIR = Path(__file__).resolve().parent.parent.parent / "site" / "src" / "data"
@@ -63,6 +65,10 @@ def export(sector: Sector, events: list[Event], out_dir: Path | None = None) -> 
         "center": {"lat": sector.center_lat, "lon": sector.center_lon},
         "radius_minutes": sector.radius_minutes,
         "categories": CATEGORIES,
+        "place_categories": PLACE_CATEGORIES,
+        # Le crawl n'écrit PAS places.json (cadence différente) : il se contente
+        # d'en relire le compteur pour que sector.json reste cohérent.
+        "place_count": _count_places(sector.id, out),
         "communes": sorted(
             {e.commune for e in upcoming if e.commune}
             | {name for name, _, _ in commune_table(sector.id).values()}
@@ -79,6 +85,39 @@ def export(sector: Sector, events: list[Event], out_dir: Path | None = None) -> 
     )
     _write_cities(sector, len(upcoming), meta["generated_at"], out)
     return meta
+
+
+def _count_places(sector_id: str, out: Path) -> int:
+    """Nombre d'activités permanentes déjà publiées pour cette ville (0 si aucune).
+
+    Lecture seule et tolérante : le crawl ne doit jamais échouer parce que la
+    découverte d'activités n'a pas encore tourné.
+    """
+    path = out / "cities" / sector_id / "places.json"
+    if not path.exists():
+        return 0
+    try:
+        return len(json.loads(path.read_text(encoding="utf-8")))
+    except (ValueError, OSError):
+        return 0
+
+
+def refresh_place_count(sector_id: str, count: int, out: Path) -> None:
+    """Met à jour `place_count` dans sector.json après une découverte d'activités.
+
+    `discover-places` tourne hors du crawl : sans ce rafraîchissement, le
+    compteur affiché par le site resterait celui du dernier crawl.
+    """
+    path = out / "cities" / sector_id / "sector.json"
+    if not path.exists():
+        return
+    try:
+        meta = json.loads(path.read_text(encoding="utf-8"))
+    except (ValueError, OSError):
+        return
+    meta["place_count"] = count
+    meta.setdefault("place_categories", PLACE_CATEGORIES)
+    path.write_text(json.dumps(meta, ensure_ascii=False, indent=1), encoding="utf-8")
 
 
 def _write_cities(sector: Sector, event_count: int, generated_at: str, out: Path) -> None:

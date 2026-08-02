@@ -43,6 +43,20 @@ rafraîchis 2×/jour par la CI, sans intervention.
 
 **Épicentres actifs** : Villemoirieu (nord-Isère) et Pont-de-Salars (Aveyron).
 
+## En cours (branche `dev`)
+
+- [x] **Activités permanentes** : découverte OpenStreetMap (musées, monuments,
+      parcs d'attraction et aquatiques, cinémas, ludothèques, marchés, fermes,
+      curiosités), cadence hebdomadaire découplée du crawl
+- [x] Repérage dédié sur les tuiles (badge « Permanent », icône, liseré), sur la
+      carte (pastille à icône) et dans la recherche (chips + langage naturel)
+- [x] Note d'avis Google ou TripAdvisor, affichée et filtrable (« bien noté »),
+      optionnelle — sans clé d'API, les activités sortent sans note
+- [x] Tag **✨ Insolite** pour les activités méconnues : heuristique (ni marque,
+      ni page wikipédia) confirmée par le LLM, filtrable
+- [x] Présentation « donne envie » générée une seule fois à la découverte, et
+      lien direct vers le site de l'activité
+
 ## Ensuite
 
 ### Court terme
@@ -55,6 +69,9 @@ rafraîchis 2×/jour par la CI, sans intervention.
       Aveyron-Tourisme pour Pont-de-Salars — à valider une par une
 - [ ] Soumission directe d'événements : formulaire et/ou adresse mail
       (affiche → extraction LLM), avec file de modération
+- [ ] Activités permanentes — suites : parser `opening_hours` pour un filtre
+      « ouvert maintenant », enrichir les activités sans site officiel, et
+      croiser OSM avec les bases Datatourisme pour la couverture
 - [ ] Fiabiliser la géolocalisation du portail (aujourd'hui l'IP situe les
       postes fixes au nœud régional du fournisseur)
 

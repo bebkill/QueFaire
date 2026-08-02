@@ -16,6 +16,7 @@ const foldedText = fold(
   class="card"
   href={`${cityBase}evenement/${event.id}/`}
   style={`--cat: var(--c-${event.category})`}
+  data-kind="event"
   data-date={event.start.slice(0, 10)}
   data-end={(event.end || event.start).slice(0, 10)}
   data-cat={event.category}

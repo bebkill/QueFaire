@@ -115,6 +115,59 @@ def crawl(sector_id: str, demo: bool, out: Path | None) -> int:
     return 0
 
 
+def discover_places(
+    sector_id: str,
+    out: Path | None,
+    limit: int | None = None,
+    use_llm: bool = True,
+    use_ratings: bool = True,
+) -> int:
+    """Découvre les activités PERMANENTES du rayon et met à jour places.json.
+
+    Cycle volontairement séparé du crawl : hebdomadaire au lieu de 2×/jour. La
+    fusion préserve l'enrichissement déjà payé (présentation LLM, note), donc
+    rejouer la commande coûte une requête Overpass et rien d'autre.
+    """
+    from . import places as places_mod
+    from .cache import cache
+    from .export import SITE_DATA_DIR, refresh_place_count
+
+    sector = load_sector(sector_id)
+    cache.bind(sector_id)  # cache LLM/notes cloisonné par ville, comme le crawl
+    out_dir = out or SITE_DATA_DIR
+
+    try:
+        found = places_mod.fetch_osm(sector, limit=limit)
+    except Exception as exc:
+        log.error("[places] Overpass indisponible (%s) — places.json inchangé", exc)
+        return 1
+    if not found:
+        log.error("[places] aucune activité trouvée — places.json inchangé (anomalie probable)")
+        return 1
+
+    previous = places_mod.load(sector_id, out_dir)
+    merged = places_mod.merge(previous, found)
+
+    if use_llm:
+        merged = places_mod.present(merged)  # no-op sans LLM
+    if use_ratings:
+        from . import ratings
+
+        merged = ratings.enrich(merged)
+
+    path = places_mod.save(merged, sector_id, out_dir)
+    cache.save()
+    refresh_place_count(sector_id, len(merged), out_dir)
+
+    unusual = sum(1 for p in merged if p.unusual)
+    rated = sum(1 for p in merged if p.rating is not None)
+    log.info(
+        "%d activités permanentes pour « %s » (%d insolites, %d notées) → %s",
+        len(merged), sector.name, unusual, rated, path,
+    )
+    return 0
+
+
 def discover_openagenda(sector_id: str, communes: list[str] | None, strict: bool) -> str:
     """Cherche les agendas OpenAgenda des communes du secteur et émet le YAML
     des sources candidates, prêt à coller dans sources/<secteur>.yaml.
@@ -370,6 +423,23 @@ def main(argv: list[str] | None = None) -> int:
         help="Départements à balayer, séparés par des virgules (ex. 38,69,01,73)",
     )
 
+    p_places = sub.add_parser(
+        "discover-places",
+        help="Découvrir les activités PERMANENTES du rayon (OpenStreetMap) — réseau requis",
+    )
+    p_places.add_argument("--sector", default="villemoirieu")
+    p_places.add_argument("--out", type=Path, default=None)
+    p_places.add_argument(
+        "--limit", type=int, default=None, help="Plafonner le nombre d'activités (essais)"
+    )
+    p_places.add_argument(
+        "--no-llm", action="store_true",
+        help="Ne pas générer les phrases de présentation (pas d'appel LLM)",
+    )
+    p_places.add_argument(
+        "--no-ratings", action="store_true", help="Ne pas interroger l'API de notes"
+    )
+
     p_sectors = sub.add_parser("sectors", help="Lister les secteurs disponibles")
     p_sectors.add_argument(
         "--active", action="store_true",
@@ -386,6 +456,11 @@ def main(argv: list[str] | None = None) -> int:
         return 0
     if args.cmd == "crawl":
         return crawl(args.sector, args.demo, args.out)
+    if args.cmd == "discover-places":
+        return discover_places(
+            args.sector, args.out, limit=args.limit,
+            use_llm=not args.no_llm, use_ratings=not args.no_ratings,
+        )
     if args.cmd == "discover":
         from .discovery import discover
 

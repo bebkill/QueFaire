@@ -24,6 +24,22 @@ chaque ville a son agenda complet sous `/<ville>/`.
 | **Villemoirieu** | nord-Isère → Lyon (69) + Ain (01) | 60 min |
 | **Pont-de-Salars** | Aveyron (Lévézou, Rodez) | 60 min |
 
+## Deux types de contenus
+
+| | Événement | Activité permanente |
+|---|---|---|
+| Exemple | concert du 12 avril, brocante | musée, château, parc d'attraction, cinéma, ludothèque |
+| Ce qui le définit | une **date** | des **horaires** |
+| Source | RSS, iCal, OpenAgenda, pages agenda | OpenStreetMap (`discover-places`) |
+| Rafraîchissement | 2×/jour | **hebdomadaire** — un musée ne « passe » pas |
+| Repérage sur le site | pastille de date | badge « Permanent », icône dédiée, liseré coloré |
+
+Les activités permanentes portent en plus, quand l'information existe, une
+**note d'avis** (Google ou TripAdvisor), leurs **horaires d'ouverture**, un tag
+**✨ Insolite** pour les curiosités hors des sentiers battus, et un lien direct
+vers le **site de l'activité**. Elles se filtrent depuis la barre de recherche
+(« musée », « insolite », « bien noté ») ou les chips dédiés.
+
 ## Démarrer
 
 ```bash
@@ -51,6 +67,9 @@ jamais publier un site vide.
 ```bash
 python -m quefaire sectors --active            # villes ayant des sources activées
 python -m quefaire crawl --sector <ville>      # collecte → export JSON
+python -m quefaire discover-places --sector <ville>  # (RÉSEAU) activités PERMANENTES
+                                               # via OpenStreetMap ; --limit N pour
+                                               # un essai, --no-llm / --no-ratings
 python -m quefaire discover-oa --sector <ville>   # agendas OpenAgenda du secteur
 python -m quefaire discover --sector <ville>      # découverte par agent LLM
 python -m quefaire evaluate-source <url>          # événements uniques d'une URL candidate
@@ -95,6 +114,7 @@ qui ouvre une issue pré-remplie, traitée par le même circuit de validation.
 | Workflow | Déclencheur | Rôle |
 |---|---|---|
 | `refresh.yml` | cron 2×/jour | crawl de chaque ville active → commit des JSON → build → GitHub Pages |
+| `places.yml` | cron hebdo (+ manuel) | découverte des activités permanentes → commit → déclenche le redéploiement |
 | `discover.yml` | cron hebdo | propose de nouvelles sources sous forme d'issues |
 | `apply-source.yml` | issue labellisée `approved` | ajoute la source au registre |
 | `close-suggestions.yml` | manuel | ferme en lot les suggestions en attente |
@@ -107,6 +127,15 @@ qui ouvre une issue pré-remplie, traitée par le même circuit de validation.
    `ANTHROPIC_API_KEY`, `GROQ_API_KEY`, `MISTRAL_API_KEY`…) ;
 3. **Variables** : `QUEFAIRE_LLM` au format `provider:modèle`
    (ex. `deepseek:deepseek-v4-flash`), `QUEFAIRE_LLM2` pour les backups.
+
+### Notes d'avis (optionnel)
+
+Renseigner **une** des deux clés active les notes sur les activités permanentes :
+`GOOGLE_PLACES_KEY` (Places API New — meilleure couverture des petits lieux
+ruraux) ou `TRIPADVISOR_API_KEY` (Content API). Sans clé, les activités sont
+publiées **sans note** et le site n'affiche simplement pas d'étoiles : c'est un
+fonctionnement normal, pas une panne. Les notes sont mises en cache 90 jours,
+donc la facture d'API reste négligeable.
 
 ### LLM : principal + backups
 

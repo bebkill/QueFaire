@@ -32,19 +32,25 @@ def set_ssrf_guard(enabled: bool) -> None:
     _ssrf_guard = enabled
 
 
-def _get(url: str, headers: dict, allow_redirects: bool, **kwargs) -> requests.Response:
+def _get(
+    url: str, headers: dict, allow_redirects: bool, timeout: int = TIMEOUT, **kwargs
+) -> requests.Response:
     """requests.get, avec suivi manuel + revalidation des redirections quand le
-    garde-fou SSRF est actif (une redirection peut viser une IP interne)."""
+    garde-fou SSRF est actif (une redirection peut viser une IP interne).
+
+    `timeout` est surchargeable : Overpass (activités permanentes) travaille en
+    minutes là où une page agenda répond en secondes.
+    """
     if not _ssrf_guard:
         return requests.get(
-            url, headers=headers, timeout=TIMEOUT, allow_redirects=allow_redirects, **kwargs
+            url, headers=headers, timeout=timeout, allow_redirects=allow_redirects, **kwargs
         )
     from ..security import validate_public_url
 
     for _ in range(MAX_REDIRECTS + 1):
         validate_public_url(url)
         resp = requests.get(
-            url, headers=headers, timeout=TIMEOUT, allow_redirects=False, **kwargs
+            url, headers=headers, timeout=timeout, allow_redirects=False, **kwargs
         )
         if allow_redirects and resp.is_redirect and resp.headers.get("Location"):
             url = requests.compat.urljoin(url, resp.headers["Location"])
@@ -56,9 +62,10 @@ def _get(url: str, headers: dict, allow_redirects: bool, **kwargs) -> requests.R
 def http_get(url: str, **kwargs) -> requests.Response:
     headers = {"User-Agent": USER_AGENT, **kwargs.pop("headers", {})}
     allow_redirects = kwargs.pop("allow_redirects", True)
+    timeout = kwargs.pop("timeout", TIMEOUT)
     for attempt in range(RETRIES + 1):
         try:
-            resp = _get(url, headers, allow_redirects, **kwargs)
+            resp = _get(url, headers, allow_redirects, timeout, **kwargs)
         except (requests.RequestException, IncompleteRead) as exc:
             # Aléa réseau (connexion coupée, lecture incomplète, timeout) : on
             # rejoue quelques fois avant d'abandonner la source — sinon un

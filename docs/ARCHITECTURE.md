@@ -119,6 +119,42 @@ quota épuisé, réseau) produit un warning et un skip, jamais un crash. Sans
 aucune source activée, le pipeline exporte le jeu de démo (`demo.py`) pour ne
 jamais publier un site vide.
 
+### Activités permanentes (`places.py`, `ratings.py`)
+
+Un événement a une date, une activité permanente a des **horaires**. D'où un
+cycle de vie entièrement distinct de celui du crawl :
+
+1. **Découverte** — `discover-places` interroge **Overpass** (OpenStreetMap)
+   dans un cercle autour de l'épicentre, puis re-filtre chaque résultat au temps
+   de trajet exact : un cercle en km n'est qu'une approximation du disque
+   isochrone. Le rayon en km vient de `geo.radius_km`, réciproque de
+   `travel_minutes` obtenue par dichotomie — inverser la formule à la main
+   casserait dès que le modèle de vitesse changerait.
+2. **Classement** — les tags OSM sont mappés vers `PLACE_CATEGORIES` par une
+   liste de règles ordonnée (`_TAG_RULES`) : la première qui matche gagne, donc
+   `historic=castle` passe avant `tourism=attraction` et un château ne finit pas
+   en « visite ». Le bruit est écarté : objets privés, sans nom, et parcs de
+   quartier anonymes (un espace vert ne devient une activité que s'il porte un
+   signal de notoriété — wikipédia, site dédié, statut protégé).
+3. **Fusion** — `merge()` réconcilie par `external_id` (« node/1234 »). Règle :
+   **OSM fait autorité sur les faits** (nom, horaires, position, site),
+   **l'existant fait autorité sur l'enrichissement** (phrase LLM, note,
+   `first_seen`). Une activité absente d'une sweep n'est pas supprimée
+   immédiatement — elle survit deux sweeps, le temps de distinguer une fermeture
+   d'un hoquet d'Overpass.
+4. **Présentation** — à la première découverte seulement, un LLM écrit une
+   phrase qui donne envie et tranche le caractère **insolite** (une heuristique
+   pré-filtre : ni marque, ni page wikipédia). Mise en cache par contenu : une
+   activité déjà présentée n'est jamais repayée.
+5. **Notes** — `ratings.py` attache une note Google Places ou TripAdvisor selon
+   la clé présente. **Aucune clé = aucune note**, et c'est un cas normal : le
+   pipeline ne doit jamais dépendre d'un service payant pour produire un
+   résultat exploitable. Cache de 90 jours, les avis bougent lentement.
+
+Sortie : `site/src/data/cities/<ville>/places.json`, écrit par `places.yml`
+(hebdomadaire) et **jamais par le crawl** — qui se contente d'en relire le
+compteur pour tenir `sector.json` à jour (`export.refresh_place_count`).
+
 ### Cycle de vie des sources
 
 - `discover-oa` — interroge l'API OpenAgenda pour toutes les communes du
@@ -157,7 +193,27 @@ client, zéro dépendance : dates relatives (« ce week-end », « demain »…)
 catégories et synonymes, public, gratuité, communes du secteur, « près de
 moi », « à moins de X min à pied/vélo/voiture » ; le reste devient du plein
 texte. `matches()` teste chaque carte (attributs `data-*` posés par
-`EventCard.astro`) contre le filtre.
+`EventCard.astro` et `PlaceCard.astro`) contre le filtre.
+
+**Les deux types cohabitent** dans la même grille, et la recherche les traite
+selon leur nature :
+
+- deux jeux de synonymes séparés (`CATEGORY_SYNONYMS` pour les événements,
+  `PLACE_CATEGORY_SYNONYMS` pour les activités). « Musée » doit ramener le musée
+  **et** les expositions temporaires, pas choisir entre les deux ; chaque fiche
+  est jugée sur le jeu correspondant à son type. Dès qu'une contrainte de
+  catégorie existe, une fiche dont le type n'est visé par aucune est écartée —
+  « concert » ne ramène pas les musées ;
+- **un filtre de dates ne disqualifie pas une activité permanente** : elle est
+  ouverte toute l'année, donc « que faire ce week-end » inclut légitimement le
+  musée ;
+- « insolite », « bien noté » et « permanent » impliquent le type activité — un
+  événement n'a pas de note d'avis.
+
+Tri par défaut : événements datés d'abord (par date), activités ensuite (par
+note décroissante). Une activité ouverte toute l'année n'a pas sa place dans une
+chronologie. Dès qu'une position est connue, le tri bascule sur la proximité
+pour les deux types.
 
 ### Temps de trajet
 
@@ -182,7 +238,11 @@ Chargées à la demande par import dynamique. Deux contraintes apprises :
 
 Sur l'agenda, un clustering maison par proximité écran (~70 px) regroupe les
 bulles ; un clic met la fiche correspondante en évidence dans la grille. Liste
-et carte affichent toujours exactement le même ensemble d'événements.
+et carte affichent toujours exactement le même ensemble de fiches.
+
+Les deux types se distinguent au premier coup d'œil : un événement est un point
+coloré à sa catégorie, une **activité permanente une pastille portant son icône**
+(liseré violet si elle est insolite).
 
 ### Portail (`villes.astro`)
 
@@ -200,6 +260,13 @@ tests → **boucle sur `sectors --active`** (un crawl par ville) → commit des 
 si changés → build Astro unique (toutes les villes) → déploiement Pages. Le
 commit des données passe par une deploy key en écriture (`DATA_DEPLOY_KEY`),
 seule façon de franchir le ruleset de protection de `main` sur un compte perso.
+
+`places.yml` — cron hebdomadaire + déclenchement manuel (avec choix de la ville
+et plafond d'essai) : découverte des activités permanentes, puis commit
+**sans** `[skip ci]`, ce qui déclenche `refresh.yml` et donc le redéploiement.
+Pas de boucle : le commit de `refresh.yml` porte lui son `[skip ci]`. Une ville
+dont la découverte échoue n'interrompt pas les autres (Overpass est une API
+publique, elle sature).
 
 `discover.yml` (hebdo) ouvre une issue par source candidate ;
 `apply-source.yml` applique celles labellisées `approved` ;

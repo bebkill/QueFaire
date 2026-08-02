@@ -937,3 +937,133 @@ def test_health_partitioned_per_city(tmp_path, monkeypatch):
 
     a = json.loads((tmp_path / "ville-a" / "source_health.json").read_text(encoding="utf-8"))
     assert "src-a" in a  # l'état de ville-a survit au crawl de ville-b
+
+
+# --- Activités permanentes ---------------------------------------------------
+
+# Réponse Overpass réaliste : un musée (node), un château (way avec `center`),
+# un parc anonyme (à écarter), une piscine privée (à écarter), une œuvre d'art
+# insolite, et un objet hors rayon.
+OVERPASS_SAMPLE = {
+    "elements": [
+        {"type": "node", "id": 1, "lat": 44.28, "lon": 2.73,
+         "tags": {"tourism": "museum", "name": "Musée du Rouergue",
+                  "website": "musee-rouergue.fr", "opening_hours": "Tu-Su 10:00-18:00",
+                  "addr:city": "Pont-de-Salars", "wikidata": "Q1"}},
+        {"type": "way", "id": 2, "center": {"lat": 44.30, "lon": 2.75},
+         "tags": {"historic": "castle", "name": "Château de Bouloc", "fee": "yes"}},
+        {"type": "node", "id": 3, "lat": 44.28, "lon": 2.74,
+         "tags": {"leisure": "park"}},  # sans nom → écarté
+        {"type": "node", "id": 4, "lat": 44.28, "lon": 2.74,
+         "tags": {"leisure": "park", "name": "Square des Tilleuls"}},  # anonyme → écarté
+        {"type": "node", "id": 5, "lat": 44.29, "lon": 2.72,
+         "tags": {"leisure": "swimming_pool", "name": "Piscine privée", "access": "private"}},
+        {"type": "node", "id": 6, "lat": 44.27, "lon": 2.71,
+         "tags": {"tourism": "artwork", "name": "La Girafe de ferraille"}},
+        {"type": "node", "id": 7, "lat": 48.85, "lon": 2.35,
+         "tags": {"tourism": "museum", "name": "Louvre"}},  # Paris → hors rayon
+    ]
+}
+
+
+class _FakeResp:
+    def __init__(self, payload):
+        self._payload = payload
+
+    def json(self):
+        return self._payload
+
+
+def test_places_osm_mapping_and_radius(monkeypatch):
+    from quefaire import places
+
+    monkeypatch.setattr(
+        "quefaire.fetchers.base.http_get", lambda *a, **k: _FakeResp(OVERPASS_SAMPLE)
+    )
+    found = places.fetch_osm(load_sector("pont-de-salars"))
+    by_name = {p.name: p for p in found}
+
+    assert set(by_name) == {"Musée du Rouergue", "Château de Bouloc", "La Girafe de ferraille"}
+    assert by_name["Musée du Rouergue"].category == "musee"
+    assert by_name["Château de Bouloc"].category == "patrimoine"  # historic prime sur tourism
+    assert by_name["Château de Bouloc"].lat == 44.30  # `center` des ways exploité
+    assert by_name["Château de Bouloc"].fee is True
+    # Le site sans schéma est complété, pas recopié tel quel.
+    assert by_name["Musée du Rouergue"].url == "https://musee-rouergue.fr"
+    # Insolite : l'œuvre de bord de route oui, le musée référencé sur wikidata non.
+    assert by_name["La Girafe de ferraille"].unusual is True
+    assert by_name["Musée du Rouergue"].unusual is False
+
+
+def test_places_merge_preserves_enrichment():
+    from quefaire.models import Place
+    from quefaire.places import merge
+
+    old = Place(name="Musée", category="musee", source_id="osm", sector="s",
+                external_id="node/1", tldr="Une phrase déjà payée", rating=4.5,
+                rating_count=120, rating_source="google", unusual=True,
+                first_seen="2026-01-01", last_seen="2026-06-01")
+    fresh = Place(name="Musée du Rouergue", category="musee", source_id="osm", sector="s",
+                  external_id="node/1", opening_hours="Mo-Fr 09:00-17:00")
+
+    [merged] = merge([old], [fresh], today="2026-08-02")
+    assert merged.name == "Musée du Rouergue"          # OSM fait autorité sur les faits
+    assert merged.opening_hours == "Mo-Fr 09:00-17:00"
+    assert merged.tldr == "Une phrase déjà payée"      # enrichissement conservé
+    assert merged.rating == 4.5
+    assert merged.unusual is True
+    assert merged.first_seen == "2026-01-01"           # découverte d'origine gardée
+    assert merged.last_seen == "2026-08-02"
+
+
+def test_places_merge_keeps_then_drops_missing():
+    from quefaire.models import Place
+    from quefaire.places import merge
+
+    gone = Place(name="Cinéma fermé", category="cinema", source_id="osm", sector="s",
+                 external_id="node/9", last_seen="2026-07-28")
+    # Absente depuis peu : conservée (Overpass peut avoir hoqueté).
+    assert [p.name for p in merge([gone], [], today="2026-08-02")] == ["Cinéma fermé"]
+    # Absente depuis plus de deux sweeps : retirée.
+    assert merge([gone], [], today="2026-09-15") == []
+
+
+def test_places_roundtrip_and_place_count(tmp_path):
+    from quefaire.export import _count_places
+    from quefaire.models import Place
+    from quefaire.places import load, save
+
+    items = [Place(name="Ludothèque", category="ludotheque", source_id="osm",
+                   sector="pont-de-salars", external_id="node/3", lat=44.2, lon=2.7)]
+    save(items, "pont-de-salars", tmp_path)
+    [back] = load("pont-de-salars", tmp_path)
+    assert back.name == "Ludothèque" and back.category == "ludotheque"
+    assert back.id == items[0].id  # identifiant stable entre deux passages
+    assert _count_places("pont-de-salars", tmp_path) == 1
+    assert _count_places("ville-sans-activites", tmp_path) == 0
+
+
+def test_place_category_falls_back():
+    from quefaire.models import Place
+
+    p = Place(name="X", category="n-importe-quoi", source_id="osm", sector="s")
+    assert p.category == "autre"
+
+
+def test_ratings_skipped_without_key(monkeypatch, caplog):
+    from quefaire import ratings
+    from quefaire.models import Place
+
+    monkeypatch.delenv("GOOGLE_PLACES_KEY", raising=False)
+    monkeypatch.delenv("TRIPADVISOR_API_KEY", raising=False)
+    assert ratings.provider() is None
+    p = Place(name="X", category="musee", source_id="osm", sector="s", lat=44.0, lon=2.0)
+    assert ratings.enrich([p])[0].rating is None  # dégradation gracieuse
+
+
+def test_radius_km_matches_front_approximation():
+    from quefaire.geo import radius_km, travel_minutes
+
+    km = radius_km(60)
+    assert 47 < km < 49  # 1 h de voiture ≈ 48 km, comme annoncé dans la doc
+    assert travel_minutes(km) == pytest.approx(60, abs=0.1)

@@ -1,7 +1,15 @@
 """Schéma commun des données QueFaire.
 
-Tout fetcher, quel que soit le type de source (RSS, iCal, OpenAgenda, HTML+LLM),
-produit des `Event`. C'est le contrat entre le pipeline et le site.
+Deux objets, deux temporalités :
+
+- `Event` — un événement **daté** (concert, marché, expo temporaire). Produit par
+  les fetchers du crawl (RSS, iCal, OpenAgenda, HTML+LLM), rafraîchi 2×/jour.
+- `Place` — une activité **permanente** (musée, monument, parc d'attraction,
+  cinéma, ludothèque…). Produite par la découverte OpenStreetMap, rafraîchie
+  bien plus rarement : ce qui bouge, ce n'est pas l'existence du musée mais ses
+  horaires. Voir `places.py`.
+
+C'est le contrat entre le pipeline et le site.
 """
 
 from __future__ import annotations
@@ -31,6 +39,27 @@ CATEGORIES = {
 }
 
 AUDIENCES = ("famille", "enfants", "ados", "adultes", "seniors", "tous")
+
+# Catégories des activités PERMANENTES. Volontairement distinctes de CATEGORIES
+# (événements) : « marché » désigne ici le marché hebdomadaire qui a lieu tous
+# les mardis, pas la brocante du 12 avril. Les deux jeux se recoupent (cinéma,
+# patrimoine) mais ne se confondent pas.
+PLACE_CATEGORIES = {
+    "musee": "Musée",
+    "patrimoine": "Monument & patrimoine",
+    "parc-attraction": "Parc d'attraction & zoo",
+    "parc-aquatique": "Parc aquatique & baignade",
+    "nature": "Nature & plein air",
+    "cinema": "Cinéma",
+    "spectacle": "Théâtre & salle de spectacle",
+    "ludotheque": "Ludothèque & jeux",
+    "marche": "Marché",
+    "visite": "Visite & curiosité",
+    "sport-loisir": "Sport & loisirs",
+    "ferme": "Ferme & artisanat",
+    "bien-etre": "Thermes & bien-être",
+    "autre": "Autre activité",
+}
 
 
 def slugify(text: str) -> str:
@@ -96,6 +125,66 @@ class Event:
         """Clé de déduplication inter-sources (même événement relayé 2 fois)."""
         title = slugify(self.title)
         return f"{title}|{self.start[:10]}|{slugify(self.commune or '')}"
+
+    def to_dict(self) -> dict:
+        return asdict(self)
+
+
+@dataclass
+class Place:
+    """Une activité permanente : elle n'a pas de date, elle a des horaires.
+
+    `external_id` (« node/1234 » côté OpenStreetMap) est la clé de réconciliation
+    entre deux découvertes : c'est lui qui permet de retrouver une activité déjà
+    connue pour lui conserver sa présentation LLM, sa note et son `first_seen`
+    sans repayer d'appel.
+    """
+
+    name: str
+    category: str
+    source_id: str  # « osm » aujourd'hui ; d'autres fournisseurs plus tard
+    sector: str
+    external_id: str = ""
+    description: str = ""
+    # Phrase « donne envie » générée une seule fois à la découverte (places.py).
+    tldr: Optional[str] = None
+    commune: Optional[str] = None
+    address: Optional[str] = None
+    lat: Optional[float] = None
+    lon: Optional[float] = None
+    url: Optional[str] = None  # site officiel — c'est là qu'on envoie le visiteur
+    phone: Optional[str] = None
+    opening_hours: Optional[str] = None  # syntaxe OSM brute, affichée telle quelle
+    fee: Optional[bool] = None  # True = payant, False = gratuit, None = inconnu
+    # Note d'avis (Google ou TripAdvisor) — absente si aucune clé d'API n'est
+    # configurée : le champ reste None et le site n'affiche simplement rien.
+    rating: Optional[float] = None
+    rating_count: Optional[int] = None
+    rating_source: Optional[str] = None
+    rating_url: Optional[str] = None
+    # « Insolite » : activité méconnue ou hors des sentiers battus. Décidée par
+    # heuristique puis confirmée par le LLM (voir places.present).
+    unusual: bool = False
+    tags: list[str] = field(default_factory=list)
+    first_seen: Optional[str] = None  # date ISO de la première découverte
+    last_seen: Optional[str] = None  # date ISO du dernier passage qui l'a revue
+    id: str = ""
+
+    def __post_init__(self) -> None:
+        if self.category not in PLACE_CATEGORIES:
+            self.category = "autre"
+        if not self.id:
+            self.id = self.compute_id()
+
+    def compute_id(self) -> str:
+        """Identifiant stable : slug + hash court de l'identifiant d'origine.
+
+        Basé sur `external_id` (et non sur le nom + la commune) pour qu'un musée
+        renommé garde son URL et son historique.
+        """
+        raw = f"{self.external_id or self.name}|{self.sector}".lower()
+        digest = hashlib.sha1(raw.encode("utf-8")).hexdigest()[:8]
+        return f"{slugify(self.name)}-{digest}"
 
     def to_dict(self) -> dict:
         return asdict(self)
