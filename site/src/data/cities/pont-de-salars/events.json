@@ -28,7 +28,7 @@
   "source_id": "html-levezou-pontsalars",
   "sector": "pont-de-salars",
   "end": "2026-08-02",
-  "description": "Concours de chiens de berger au lieu dit le Moulin Savy à Ségur. Nombreuses animations : démonstration tonte de brebis, exposition matériel agricole, balade à poney, marché des artisans, château gonflable et repas.",
+  "description": "Concours de chiens de berger au lieu-dit Le Moulin Savy à Ségur les 1er et 2 août. Animations : démonstration de tonte de brebis, exposition de matériel agricole, balade à poney, marché des artisans, château gonflable et repas.",
   "tldr": null,
   "category": "sport",
   "tags": [],
@@ -36,7 +36,7 @@
    "tous"
   ],
   "commune": "Ségur",
-  "address": "lieu dit le Moulin Savy, Ségur",
+  "address": "Le Moulin Savy, Ségur",
   "lat": 44.2879,
   "lon": 2.834,
   "free": null,
@@ -212,15 +212,15 @@
   "source_id": "html-levezou-pontsalars",
   "sector": "pont-de-salars",
   "end": null,
-  "description": "Quine organisé par le Club des ainés du VIBAL à 14h à la salle des fêtes.",
-  "tldr": "Jeu de lettres et de mots où les participants doivent reconstituer une phrase à partir de citations d'auteurs.",
-  "category": "autre",
+  "description": "Quine organisé par le Club des ainés du VIBAL, le 2 août à 14h à la salle des fêtes.",
+  "tldr": "Jeu de société où les participants doivent écrire un programme informatique qui affiche son propre code source sans le copier depuis un autre fichier.",
+  "category": "fete",
   "tags": [],
   "audience": [
-   "tous"
+   "seniors"
   ],
   "commune": "Le Vibal",
-  "address": "Salle des fêtes",
+  "address": "Salle des fêtes, Le Vibal",
   "lat": 44.3166,
   "lon": 2.7286,
   "free": null,
@@ -276,12 +276,12 @@
   "id": "visite-guidee-du-centre-historique-et-de-la-cathedrale-hors-clocher-juillet-a-se-66b9ee3e"
  },
  {
-  "title": "BEACH LEVEZOU TOUR Les Vernhes 2 Tchoukball",
+  "title": "\"BEACH LEVEZOU TOUR\" Les Vernhes 2 \"Tchoukball\"",
   "start": "2026-08-03T14:00:00",
   "source_id": "html-levezou-pontsalars",
   "sector": "pont-de-salars",
   "end": null,
-  "description": "Tournoi sportif de Tchoukball dès 14h avec Fred dans le cadre du Beach Lévézou Tour. Inscription sur place.",
+  "description": "Tournoi de tchoukball sur la plage des Vernhes 2 dans le cadre du Beach Lévézou Tour, dès 14h. Inscription sur place, informations au 06 30 26 62 64.",
   "tldr": null,
   "category": "sport",
   "tags": [],
@@ -289,14 +289,14 @@
    "tous"
   ],
   "commune": "Salles-Curan",
-  "address": "Les Vernhes 2, Salles-Curan",
+  "address": "Plage des Vernhes 2, Salles-Curan",
   "lat": 44.1594,
   "lon": 2.7797,
   "free": null,
   "price_text": null,
   "url": "https://www.tourisme-aveyron.com/fr/diffusio/agenda/beach-levezou-tour-les-vernhes-2-tchoukball-salles-curan_TFO12253-FMA-20250611144951124",
   "image": null,
-  "id": "beach-levezou-tour-les-vernhes-2-tchoukball-ef592364"
+  "id": "beach-levezou-tour-les-vernhes-2-tchoukball-a234e578"
  },
  {
   "title": "Concours de pétanque",
@@ -304,7 +304,7 @@
   "source_id": "html-levezou-pontsalars",
   "sector": "pont-de-salars",
   "end": null,
-  "description": "Concours de pétanque en doublette en 3 parties, ouvert à tous, organisé par la Boule Joyeuse. Inscriptions sur place les lundis à partir de 20h30.",
+  "description": "Concours de pétanque en doublette en 3 parties, ouvert à tous, les lundis à partir de 20h30. Inscriptions sur place, organisé par la Boule Joyeuse.",
   "tldr": null,
   "category": "sport",
   "tags": [],
@@ -327,7 +327,7 @@
   "source_id": "html-levezou-pontsalars",
   "sector": "pont-de-salars",
   "end": null,
-  "description": "Visite du barrage de Bage et de son usine de pompage, trait d'union entre les lacs de Pareloup et de Pont-de-Salars. Cette installation fait partie du complexe hydroélectrique du Pouget.",
+  "description": "Visite de l'usine de pompage du lac de Bage. Cette installation fait partie du complexe hydroélectrique du Pouget.",
   "tldr": null,
   "category": "patrimoine",
   "tags": [],
@@ -335,7 +335,7 @@
    "tous"
   ],
   "commune": "Pont-de-Salars",
-  "address": null,
+  "address": "Usine de pompage du lac de Bage, Pont-de-Salars",
   "lat": 44.2771,
   "lon": 2.7171,
   "free": null,
@@ -488,9 +488,9 @@
   "source_id": "html-levezou-pontsalars",
   "sector": "pont-de-salars",
   "end": "2026-08-04T12:00:00",
-  "description": "Visite et dégustation gratuite à la distillerie Potions d'Oc, tous les mardis de juillet et août de 10h à 12h.",
+  "description": "Visite de la distillerie Potions d'Oc de 10h à 12h, tous les mardis de juillet et août. Visite et dégustation gratuites.",
   "tldr": null,
-  "category": "patrimoine",
+  "category": "marche",
   "tags": [],
   "audience": [
    "adultes"
@@ -506,12 +506,12 @@
   "id": "visite-de-la-distillerie-potions-d-oc-01b8e0df"
  },
  {
-  "title": "BEACH LEVEZOU TOUR Notre Dame d'Aures Sandball",
+  "title": "\"BEACH LEVEZOU TOUR\" Notre Dame d'Aures \"Sandball\"",
   "start": "2026-08-04T14:00:00",
   "source_id": "html-levezou-pontsalars",
   "sector": "pont-de-salars",
   "end": null,
-  "description": "Tournoi de Sandball dès 14h sur la plage de Notre Dame d'Aures dans le cadre du Beach Lévézou Tour. Participation gratuite, inscription sur place.",
+  "description": "Tournoi de sandball sur la plage de Notre Dame d'Aures dès 14h dans le cadre du Beach Lévézou Tour. Participation gratuite, inscription sur place.",
   "tldr": null,
   "category": "sport",
   "tags": [],
@@ -526,7 +526,7 @@
   "price_text": null,
   "url": "https://www.tourisme-aveyron.com/fr/diffusio/agenda/beach-levezou-tour-notre-dame-d-aures-sandball-arvieu_TFO12011-FMA-20250611153838449",
   "image": null,
-  "id": "beach-levezou-tour-notre-dame-d-aures-sandball-93f11072"
+  "id": "beach-levezou-tour-notre-dame-d-aures-sandball-ecc0dcd6"
  },
  {
   "title": "Visite de la ferme du Gazenas (tout public)",
@@ -534,7 +534,7 @@
   "source_id": "html-levezou-pontsalars",
   "sector": "pont-de-salars",
   "end": null,
-  "description": "Visite de la ferme tout public tous les mardis à 15h. Réservation auprès de Lévézou Attractivité & Tourisme.",
+  "description": "Visite de la ferme tout public, tous les mardis à 15h. Réservation auprès de Lévézou Attractivité & Tourisme.",
   "tldr": null,
   "category": "nature",
   "tags": [],
@@ -557,9 +557,9 @@
   "source_id": "html-levezou-pontsalars",
   "sector": "pont-de-salars",
   "end": null,
-  "description": "Marché d'été de Pont-de-Salars tous les mercredis d'été, place du 29 Juin 1944 devant la Salle des Fêtes.",
+  "description": "Marché d'été de Pont-de-Salars, tous les mercredis d'été à partir du 8 juillet, place du 29 Juin 1944 devant la Salle des Fêtes.",
   "tldr": null,
-  "category": "fete",
+  "category": "autre",
   "tags": [],
   "audience": [
    "tous"
@@ -580,7 +580,7 @@
   "source_id": "html-levezou-pontsalars",
   "sector": "pont-de-salars",
   "end": null,
-  "description": "Démonstration et présentation pour découvrir l'univers de l'impression 3D.",
+  "description": "Démonstration et présentation afin de faire découvrir l'univers de l'impression 3D.",
   "tldr": null,
   "category": "atelier",
   "tags": [],
@@ -598,12 +598,12 @@
   "id": "decouverte-de-l-impression-3d-d91567fb"
  },
  {
-  "title": "BEACH LEVEZOU TOUR Les Moulinoches Quilles Maillet",
+  "title": "\"BEACH LEVEZOU TOUR\" Les Moulinoches \"Quilles Maillet\"",
   "start": "2026-08-05T14:00:00",
   "source_id": "html-levezou-pontsalars",
   "sector": "pont-de-salars",
   "end": null,
-  "description": "Tournoi sportif de Quilles Maillet dès 14h avec Fred dans le cadre du Beach Lévézou Tour. Inscription sur place.",
+  "description": "Tournoi de quilles maillet sur la plage des Moulinoches dès 14h dans le cadre du Beach Lévézou Tour. Inscription sur place, informations au 06 30 26 62 64.",
   "tldr": null,
   "category": "sport",
   "tags": [],
@@ -611,14 +611,14 @@
    "tous"
   ],
   "commune": "Le Vibal",
-  "address": "Les Moulinoches, Le Vibal",
+  "address": "Plage des Moulinoches, Le Vibal",
   "lat": 44.3166,
   "lon": 2.7286,
   "free": null,
   "price_text": null,
   "url": "https://www.tourisme-aveyron.com/fr/diffusio/agenda/beach-levezou-tour-les-moulinoches-quilles-maillet-le-vibal_TFO295368182298",
   "image": null,
-  "id": "beach-levezou-tour-les-moulinoches-quilles-maillet-52e33930"
+  "id": "beach-levezou-tour-les-moulinoches-quilles-maillet-9aecb8f4"
  },
  {
   "title": "Concert Jeunes Talents",
@@ -634,7 +634,7 @@
    "tous"
   ],
   "commune": "Pont-de-Salars",
-  "address": "Marché d'été, place du 29 Juin 1944, Pont-de-Salars",
+  "address": "Place du 29 Juin 1944 (marché d'été), Pont-de-Salars",
   "lat": 44.2771,
   "lon": 2.7171,
   "free": null,
@@ -649,19 +649,19 @@
   "source_id": "html-levezou-pontsalars",
   "sector": "pont-de-salars",
   "end": null,
-  "description": "Concours de pétanque en doublette, 3 parties, organisé par la Pétanque Canetole tous les mercredis à partir de 20h30. Buvette toute la soirée.",
+  "description": "Concours de pétanque en doublette tous les mercredis à partir de 20h30, organisé par la Pétanque Canetole. 3 parties, 6€ l'équipe, buvette toute la soirée.",
   "tldr": null,
   "category": "sport",
   "tags": [],
   "audience": [
-   "tous"
+   "adultes"
   ],
   "commune": "Canet-de-Salars",
-  "address": "Terrain de pétanque à la sortie du village direction Salles Curan, Canet-de-Salars",
+  "address": "Terrain de pétanque, sortie du village direction Salles-Curan, Canet-de-Salars",
   "lat": 44.2392,
   "lon": 2.7379,
   "free": false,
-  "price_text": "6€ l'équipe",
+  "price_text": "6€ l'équipe (pas de CB)",
   "url": "https://www.tourisme-aveyron.com/fr/diffusio/agenda/concours-de-petanque-en-ete-canet-de-salars_TFO513694608854",
   "image": null,
   "id": "concours-de-petanque-en-ete-c4bc058d"
@@ -695,16 +695,16 @@
   "source_id": "html-levezou-pontsalars",
   "sector": "pont-de-salars",
   "end": null,
-  "description": "Labyrinthe envahi par des créatures, déconseillé aux moins de 16 ans. Réservation obligatoire sur www.popcornlabyrinthe.fr/labyrinthe/prades/.",
-  "tldr": "Parcours effrayant avec des acteurs déguisés en créatures pour une expérience immersive d'horreur.",
-  "category": "autre",
+  "description": "La nuit tombe, le labyrinthe se referme et des créatures ont envahi les allées. Déconseillé aux moins de 16 ans, réservation obligatoire.",
+  "tldr": "Parcours dans le noir avec des acteurs déguisés en créatures effrayantes, à traverser en autonomie.",
+  "category": "spectacle",
   "tags": [],
   "audience": [
    "ados",
    "adultes"
   ],
   "commune": "Prades-Salars",
-  "address": null,
+  "address": "Popcorn Labyrinthe, Prades-Salars",
   "lat": 44.2461,
   "lon": 2.7901,
   "free": null,
@@ -719,12 +719,12 @@
   "source_id": "html-levezou-pontsalars",
   "sector": "pont-de-salars",
   "end": null,
-  "description": "Randonnée nocturne de 12 km, durée 3h, difficulté facile, dénivelé 200m. Organisée par l'association Découverte en Pays de Salars.",
+  "description": "Randonnée nocturne de 12 km, durée 3h, difficulté facile, organisée par l'association 'Découverte en Pays de Salars'.",
   "tldr": null,
   "category": "marche",
   "tags": [],
   "audience": [
-   "tous"
+   "adultes"
   ],
   "commune": "Prades-Salars",
   "address": null,
@@ -742,7 +742,7 @@
   "source_id": "html-levezou-pontsalars",
   "sector": "pont-de-salars",
   "end": "2026-08-06T12:00:00",
-  "description": "Découverte des milieux aquatiques par une activité pêche pour les 5/18 ans, de 9h30 à 12h. Sur inscription.",
+  "description": "Découverte des milieux aquatiques par une activité pêche de 9h30 à 12h pour les 5/18 ans au lac de la Gourde. 12€ par enfant de plus de 8 ans, sur inscription.",
   "tldr": null,
   "category": "nature",
   "tags": [],
@@ -751,11 +751,11 @@
    "ados"
   ],
   "commune": "Canet-de-Salars",
-  "address": "Lac de la Gourde, au bout du Chemin de Conquettes à Pareloup",
+  "address": "Lac de la Gourde, Chemin de Conquettes, Pareloup, Canet-de-Salars",
   "lat": 44.2392,
   "lon": 2.7379,
   "free": false,
-  "price_text": "12€ par enfant de plus de 8 ans (de 5 à 8 ans accompagnés d'un adulte)",
+  "price_text": "12€ par enfant de plus de 8 ans",
   "url": "https://www.tourisme-aveyron.com/fr/diffusio/agenda/animation-peche-et-nature-au-lac-de-la-gourde-pour-les-enfants-canet-de-salars_TFO12050-FMA-20250620095654807",
   "image": null,
   "id": "animation-peche-et-nature-au-lac-de-la-gourde-pour-les-enfants-5addd5c4"
@@ -766,7 +766,7 @@
   "source_id": "html-levezou-pontsalars",
   "sector": "pont-de-salars",
   "end": "2026-08-06T16:30:00",
-  "description": "Découverte des milieux aquatiques par une activité pêche pour les 5/18 ans, de 14h à 16h30. Sur inscription.",
+  "description": "Découverte des milieux aquatiques par une activité pêche de 14h à 16h30 pour les 5/18 ans. Sur inscription, 12€ par enfant de plus de 8 ans.",
   "tldr": null,
   "category": "nature",
   "tags": [],
@@ -774,15 +774,15 @@
    "enfants",
    "ados"
   ],
-  "commune": "Pont-de-Salars",
+  "commune": "Le Vibal",
   "address": "Lac de Pont-de-Salars, commune du Vibal",
-  "lat": 44.2771,
-  "lon": 2.7171,
+  "lat": 44.3166,
+  "lon": 2.7286,
   "free": false,
-  "price_text": "12€ par enfant de plus de 8 ans (de 5 à 8 ans: accompagnés d'un adulte)",
+  "price_text": "12€ par enfant de plus de 8 ans",
   "url": "https://www.tourisme-aveyron.com/fr/diffusio/agenda/animation-peche-et-nature-au-lac-de-pont-de-salars-commune-du-vibal-pour-les-enfants-pont-de-salars_TFO425810739307",
   "image": null,
-  "id": "animation-peche-et-nature-au-lac-de-pont-de-salars-commune-du-vibal-pour-les-enf-7293fbb3"
+  "id": "animation-peche-et-nature-au-lac-de-pont-de-salars-commune-du-vibal-pour-les-enf-3017f6a2"
  },
  {
   "title": "Visite de la ferme - Fromagerie du Griffoul",
@@ -790,9 +790,9 @@
   "source_id": "html-levezou-pontsalars",
   "sector": "pont-de-salars",
   "end": null,
-  "description": "Visite de la ferme et de la fromagerie les jeudis et vendredis à 16h30 en juillet et août. Sur réservation.",
+  "description": "Visite de la ferme-fromagerie du Griffoul les jeudis et vendredis à 16h30 en juillet et août. Sur réservation.",
   "tldr": null,
-  "category": "patrimoine",
+  "category": "nature",
   "tags": [],
   "audience": [
    "tous"
@@ -813,7 +813,7 @@
   "source_id": "html-levezou-pontsalars",
   "sector": "pont-de-salars",
   "end": null,
-  "description": "Tour de magie et acrobaties avec la compagnie Tête d'Ampoule à partir de 19h, suivi d'un repas local. À la Ferme de l'Aulto.",
+  "description": "À partir de 19h à la Ferme de l'Aulto : tour de magie et acrobaties avec la compagnie Tête d'Ampoule. Suivi d'un repas local.",
   "tldr": null,
   "category": "spectacle",
   "tags": [],
@@ -821,7 +821,7 @@
    "tous"
   ],
   "commune": "Canet-de-Salars",
-  "address": "Ferme de l'Aulto, au Puech Arnal, Canet-de-Salars",
+  "address": "Ferme de l'Aulto, Puech Arnal, Canet-de-Salars",
   "lat": 44.2392,
   "lon": 2.7379,
   "free": null,
