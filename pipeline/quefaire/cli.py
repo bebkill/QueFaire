@@ -133,7 +133,9 @@ def discover_places(
     from .export import SITE_DATA_DIR, refresh_place_count
 
     sector = load_sector(sector_id)
-    cache.bind(sector_id)  # cache LLM/notes cloisonné par ville, comme le crawl
+    # Cache cloisonné par ville ET par cycle : « places » a son propre fichier,
+    # sinon son élagage effacerait le cache d'extraction du crawl (et l'inverse).
+    cache.bind(sector_id, "places")
     out_dir = out or SITE_DATA_DIR
 
     try:

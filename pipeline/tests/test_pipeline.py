@@ -1121,6 +1121,8 @@ def test_datatourisme_parses_heterogeneous_jsonld(monkeypatch):
     found = datatourisme.fetch(load_sector("pont-de-salars"))
     by_name = {p.name: p for p in found}
 
+    # « Accrobranche du Lévézou » ne porte que SportsAndLeisurePlace + le type
+    # racine : elle reste reconnue. Une fiche sans type précis serait écartée.
     assert set(by_name) == {"Musée du Rouergue", "Accrobranche du Lévézou"}
     musee = by_name["Musée du Rouergue"]
     assert musee.category == "musee"           # Museum gagne sur PointOfInterest
@@ -1296,6 +1298,9 @@ def test_datatourisme_api_extra_filters(monkeypatch):
     sector = load_sector("pont-de-salars")
     dt.fetch(sector)
     assert "geo_distance=44.2789%2C2.73%2C48km" in seen[0]
+    # Filtre de type côté serveur : on ne rapatrie pas ce qu'on jetterait.
+    assert "filters=type%5Bin%5D=" in seen[0] or "filters=type%5Bin%5D%3D" in seen[0]
+    assert "Museum" in seen[0]
     assert f"page_size={dt.MAX_PAGE_SIZE}" in seen[0]       # 250 = maximum autorisé
     assert "fields=" in seen[0]                             # réponse allégée
     assert dt.MAX_PAGE_SIZE == 250                          # plafond imposé par l'API
@@ -1317,9 +1322,14 @@ def test_datatourisme_type_mapping_uses_real_ontology_names():
     assert _category_of(["PointOfInterest", "IceSkatingRink"]) == "sport-loisir"
     assert _category_of(["PointOfInterest", "MegalithDolmenMenhir"]) == "patrimoine"
     assert _category_of(["PointOfInterest", "Producer"]) == "ferme"
-    # Le repli générique ne doit jamais court-circuiter un type précis.
-    assert _category_of(["PlaceOfInterest"]) == "visite"
-    assert _category_of(["Hotel"]) is None                  # hébergement : hors périmètre
+    # PAS de repli générique : PlaceOfInterest/PointOfInterest sont les types
+    # RACINE que porte CHAQUE fiche, hôtels et restaurants compris. Un repli sur
+    # eux classait tout le territoire en « visite » (6431/6431 au premier run).
+    assert _category_of(["PlaceOfInterest"]) is None
+    assert _category_of(["PointOfInterest", "Hotel"]) is None
+    assert _category_of(["PointOfInterest", "Restaurant"]) is None
+    # …mais un type précis reste reconnu même accompagné du type racine.
+    assert _category_of(["PointOfInterest", "PlaceOfInterest", "Museum"]) == "musee"
 
 
 def test_datatourisme_api_caps_pagination(monkeypatch, caplog):
@@ -1360,3 +1370,28 @@ def test_datatourisme_flux_preferred_over_api(monkeypatch):
     )
     dt.fetch(load_sector("pont-de-salars"))
     assert seen == ["https://flux.test/x"]   # l'API n'est pas sollicitée
+
+
+def test_cache_partitioned_per_cycle(tmp_path, monkeypatch):
+    """Crawl et découverte d'activités ne doivent pas s'évincer mutuellement.
+
+    L'élagage ne garde que les clés vues pendant le run : deux cycles partageant
+    le même fichier s'effaceraient l'un l'autre à chaque passage (vécu au
+    premier run réel — 40 entrées de crawl remplacées par 7157 d'activités).
+    """
+    import quefaire.cache as c
+
+    monkeypatch.setattr(c, "CACHE_DIR", tmp_path)
+    cache = c._ContentCache()
+
+    cache.bind("ville", "content")          # cycle crawl
+    cache.put("extract:page", ["A"])
+    cache.save()
+    cache.bind("ville", "places")           # cycle découverte d'activités
+    cache.put("place:musee", "phrase")
+    cache.save()
+
+    crawl = json.loads((tmp_path / "ville" / "content.json").read_text(encoding="utf-8"))
+    places = json.loads((tmp_path / "ville" / "places.json").read_text(encoding="utf-8"))
+    assert crawl == {"extract:page": ["A"]}   # survit au cycle activités
+    assert places == {"place:musee": "phrase"}

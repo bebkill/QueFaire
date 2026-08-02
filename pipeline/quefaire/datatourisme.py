@@ -158,10 +158,12 @@ _TYPE_RULES: list[tuple[tuple[str, ...], str]] = [
       "Musee", "ArtGallery"), "musee"),
     (("ThemePark", "AmusementPark", "Zoo", "Aquarium"), "parc-attraction"),
     (("WaterPark", "SwimmingPool", "Beach", "BathingSpot"), "parc-aquatique"),
-    (("IndustrialSite", "MegalithDolmenMenhir", "Mill", "Mine", "Monastery",  # ✓
-      "Mosque", "Palace", "Lighthouse", "MilitaryCemetery",  # ✓
+    (("Producer", "ProducersGroup", "Harvest",  # ✓
+      "Farm", "FarmHouse", "Craftsman", "WineCellar"), "ferme"),
+    (("MegalithDolmenMenhir", "Mill", "Mine", "Monastery",  # ✓
+      "Mosque", "Palace", "Lighthouse", "MilitaryCemetery", "IndustrialSite",  # ✓
       "Castle", "Church", "ReligiousSite", "RemarkableBuilding",
-      "ArcheologicalSite", "DefenceSite", "Memorial", "CulturalSite"), "patrimoine"),
+      "ArcheologicalSite", "DefenceSite", "Memorial"), "patrimoine"),
     (("Cinema",), "cinema"),
     (("Opera", "OperaHouse", "Recital",  # ✓
       "Theater", "Theatre", "ConcertHall", "PerformingArtsCentre"), "spectacle"),
@@ -169,8 +171,6 @@ _TYPE_RULES: list[tuple[tuple[str, ...], str]] = [
       "GameRoom", "Casino"), "ludotheque"),
     (("Market", "LocalProductsShop",  # ✓
       ), "marche"),
-    (("Producer", "ProducersGroup", "Harvest",  # ✓
-      "Farm", "FarmHouse", "Craftsman", "WineCellar"), "ferme"),
     (("Hammam",  # ✓
       "SpaResort", "Spa", "ThermalBath", "Wellness"), "bien-etre"),
     (("Glacier", "Gorge", "Grassland", "HalophilicArea", "Hillsides", "Icefall",  # ✓
@@ -181,16 +181,24 @@ _TYPE_RULES: list[tuple[tuple[str, ...], str]] = [
       "Garden", "Park", "NaturalSite", "Viewpoint", "Cave", "Forest"), "nature"),
     (("GolfCourse", "Gymnasium", "IceSkatingRink", "LeisureComplex",  # ✓
       "LeisureSportActivityProvider", "Marina", "MiniGolf", "MultiActivity",  # ✓
-      "NauticalCentre", "Practice", "Racetrack", "RacingCircuit", "RailBike",  # ✓
+      "NauticalCentre", "Racetrack", "RacingCircuit", "RailBike",  # ✓
       "PlayArea", "KidsClub", "HorseTour", "Rambling",  # ✓
       "SportsAndLeisurePlace", "ClimbingSpot", "EquestrianCentre",
       "BowlingAlley", "IceRink"), "sport-loisir"),
     (("Tour", "Visit", "CulturalRoute", "Itinerary"), "visite"),
-    # Repli générique — TOUJOURS en dernier : chaque fiche porte l'un de ces
-    # types en plus de son type précis, une règle placée plus haut les capterait
-    # toutes et rendrait les précédentes inatteignables.
-    (("PlaceOfInterest", "PointOfInterest"), "visite"),  # ✓
 ]
+
+# PAS de repli générique. `PlaceOfInterest` / `PointOfInterest` sont les types
+# RACINE de l'ontologie : chaque fiche les porte, hôtels, restaurants et
+# commerces compris. Une règle de repli sur ces types-là classait donc tout le
+# territoire en « visite » — 6431 fiches retenues sur 6431, dont l'essentiel
+# n'était pas une activité (vécu au premier run réel). Un type non listé
+# ci-dessus est désormais IGNORÉ, ce qui est le comportement voulu : on
+# référence des activités, pas un annuaire.
+
+# Types que l'on sait exploiter — envoyés à l'API en filtre serveur pour ne pas
+# rapatrier (ni faire présenter par le LLM) ce qu'on jetterait ensuite.
+WANTED_TYPES = sorted({name for names, _ in _TYPE_RULES for name in names})
 
 # Libellés de labels DATAtourisme → codes QUALITY_LABELS. Comparaison sur le
 # texte replié (sans accents, minuscules) : les producteurs écrivent
@@ -365,7 +373,11 @@ def _to_place(node: dict, sector_id: str, today: str) -> Place | None:
         lon=lon,
         url=url,
         phone=phone,
-        opening_hours=_first(_get(node, "hasBookingContact", "openingHoursSpecification")),
+        # Horaires : le champ correspondant de l'ontologie n'est pas encore
+        # identifié (`hasBookingContact` visait à côté — c'est un contact, pas
+        # un horaire, et le premier run réel a rendu 0 horaire sur 6431 fiches).
+        # On laisse vide plutôt que d'afficher faux ; OSM en fournit déjà.
+        opening_hours=None,
         quality=_quality_of(node),
         providers=["datatourisme"],
         first_seen=today,
@@ -410,9 +422,12 @@ def _nodes_from_api(key: str, sector, filters: str = "") -> list[dict]:
         "page_size": DEFAULT_PAGE_SIZE,
         "fields": DEFAULT_FIELDS,
     }
+    # Filtre de type côté SERVEUR : on ne rapatrie que ce qu'on sait classer.
+    # Sans lui, /placeOfInterest rend aussi hôtels, restaurants et commerces —
+    # 6431 fiches là où quelques centaines sont des activités.
     expr = (filters or os.environ.get(API_FILTERS_ENV) or "").strip()
-    if expr:
-        params["filters"] = expr
+    type_clause = f"type[in]={','.join(WANTED_TYPES)}"
+    params["filters"] = f"{type_clause} AND ({expr})" if expr else type_clause
     url = f"{base}?{urlencode(params)}"
     # Échappatoire brute pour tout paramètre non modélisé ici (sort, lang…).
     extra = (os.environ.get(API_PARAMS_ENV) or "").strip().lstrip("?&")
@@ -520,9 +535,15 @@ def report(places: list[Place]) -> dict:
     L'ontologie est riche mais inégalement remplie : ce compte-rendu dit si le
     mapping des champs tient face aux données réelles, plutôt que de le supposer.
     """
+    from collections import Counter
+
     total = len(places) or 1
     return {
         "total": len(places),
+        # Histogramme par catégorie : c'est lui qui permet de régler les règles
+        # de type sur des faits plutôt qu'au jugé. Une catégorie anormalement
+        # grosse signale un type d'ontologie trop large à retirer.
+        "par_categorie": dict(Counter(p.category for p in places).most_common()),
         "avec_description": sum(1 for p in places if p.description),
         "avec_site": sum(1 for p in places if p.url),
         "avec_horaires": sum(1 for p in places if p.opening_hours),

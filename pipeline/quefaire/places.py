@@ -467,6 +467,13 @@ ACTIVITÉS :
 
 BATCH_SIZE = 20
 
+# Plafond de présentations NOUVELLES par run. Garde-fou de coût : au premier run
+# réel, une anomalie de filtrage a envoyé 7197 activités à la présentation —
+# 21 minutes de LLM sur des données à jeter. Le cache étant persistant, ce qui
+# n'est pas présenté aujourd'hui le sera au passage suivant : on étale au lieu
+# de tout payer d'un coup.
+PRESENT_MAX_PER_RUN = 400
+
 
 def present(places: list[Place]) -> list[Place]:
     """Remplit `tldr` (et affine `unusual`) pour les activités jamais présentées.
@@ -493,6 +500,19 @@ def present(places: list[Place]) -> list[Place]:
             p.tldr = payload.get("phrase") or None
             if "insolite" in payload:
                 p.unusual = bool(payload["insolite"])
+
+    if len(misses) > PRESENT_MAX_PER_RUN:
+        # Les mieux distinguées d'abord : si on ne peut pas tout présenter
+        # aujourd'hui, autant commencer par ce que le visiteur verra en tête.
+        from .models import NOTABLE_LABELS
+
+        misses.sort(key=lambda pair: not (set(pair[0].quality) & NOTABLE_LABELS))
+        log.warning(
+            "[places] %d activités à présenter, plafonné à %d pour ce run "
+            "(le reste sera présenté aux passages suivants, le cache est persistant)",
+            len(misses), PRESENT_MAX_PER_RUN,
+        )
+        misses = misses[:PRESENT_MAX_PER_RUN]
 
     chain = clarify_chain()
     if misses and chain.available() and chain.healthy():
