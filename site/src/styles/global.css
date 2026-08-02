@@ -394,6 +394,49 @@ a { color: inherit; }
 }
 .backlink { display: inline-block; margin: 22px 0 0; color: var(--ink-soft); font-size: 0.9rem; }
 
+/* ---------------- Détail d'une activité permanente ----------------
+   Les badges de qualité et le tag « insolite » existent déjà pour les tuiles,
+   mais scopés sous .card-body : on les redécline ici plutôt que d'élargir les
+   sélecteurs de la grille, dont l'échelle typographique est différente. */
+
+.detail-hero .perm-badge {
+  display: inline-block; background: var(--cat); color: #fff; font-size: 0.72rem;
+  font-weight: 800; text-transform: uppercase; letter-spacing: 0.06em;
+  padding: 3px 9px; border-radius: 999px; vertical-align: 2px;
+}
+.detail-h2 { font-size: 1.05rem; margin: 32px 0 10px; letter-spacing: -0.01em; }
+.detail-desc.muted { color: var(--ink-soft); font-style: italic; }
+
+.place-photo { margin: 0 0 22px; }
+.place-photo img {
+  width: 100%; max-height: 380px; object-fit: cover;
+  border-radius: var(--radius); border: 1px solid var(--line); display: block;
+  background: var(--bg-soft);
+}
+.place-photo figcaption { margin-top: 6px; font-size: 0.78rem; color: var(--ink-soft); }
+
+.detail-cols .quality-badges { margin: 0 0 12px; display: flex; flex-wrap: wrap; gap: 6px; }
+.detail-cols .unusual-tag { margin: 0 0 12px; font-weight: 700; font-size: 0.92rem; }
+
+.loc-lines { line-height: 1.6; margin: 0 0 12px; }
+.loc-lines .coords {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 0.85rem;
+  color: var(--ink-soft);
+}
+.place-map {
+  height: 300px; border-radius: var(--radius); border: 1px solid var(--line);
+  overflow: hidden; background: var(--bg-soft);
+}
+.loc-source { margin: 10px 0 0; font-size: 0.82rem; color: var(--ink-soft); }
+.infobox .src-note { display: block; margin-top: 8px; font-size: 0.8rem; color: var(--ink-soft); }
+
+/* Vignette sur les tuiles sans site officiel : c'est leur seul aperçu, mais
+   elle ne doit pas déséquilibrer la grille — hauteur fixe, recadrage centré. */
+.card-photo {
+  width: 100%; height: 140px; object-fit: cover; border-radius: 8px;
+  margin: 8px 0 4px; display: block; background: var(--bg-soft);
+}
+
 /* ---------------- Footer / à propos ---------------- */
 
 .site-footer {

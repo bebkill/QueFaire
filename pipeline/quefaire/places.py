@@ -27,6 +27,7 @@ import re
 from collections import Counter
 from datetime import date, datetime, timedelta
 from pathlib import Path
+from urllib.parse import quote
 
 from .cache import cache
 from .geo import haversine_km, radius_km, travel_minutes
@@ -195,6 +196,32 @@ def _fee_of(tags: dict) -> bool | None:
     return None
 
 
+def _image_of(tags: dict) -> tuple[str | None, str | None, str | None]:
+    """Illustration d'un objet OSM → (url, crédit, page de vérification).
+
+    Deux tags possibles, et l'ordre n'est pas indifférent :
+    `wikimedia_commons` pointe une médiathèque dont TOUT le contenu est sous
+    licence libre, avec une page qui nomme l'auteur — on peut afficher la photo
+    et créditer honnêtement. `image` est une URL quelconque, sans garantie de
+    licence ni de pérennité : on ne la retient qu'à défaut, et jamais en clair
+    (https seulement, pas de contenu mixte).
+    """
+    commons = (tags.get("wikimedia_commons") or "").strip()
+    if commons.startswith("File:"):
+        # Special:FilePath redimensionne côté Wikimedia : inutile de tirer un
+        # original de 12 Mo pour une vignette.
+        fichier = quote(commons[len("File:"):].replace(" ", "_"))
+        return (
+            f"https://commons.wikimedia.org/wiki/Special:FilePath/{fichier}?width=960",
+            "Wikimedia Commons",
+            f"https://commons.wikimedia.org/wiki/{quote(commons.replace(' ', '_'))}",
+        )
+    brute = (tags.get("image") or "").strip()
+    if brute.startswith("https://"):
+        return brute, "OpenStreetMap", brute
+    return None, None, None
+
+
 def _build_query(lat: float, lon: float, km: float) -> str:
     radius_m = int(km * 1000)
     body = "\n  ".join(f"{sel}(around:{radius_m},{lat},{lon});" for sel in _OVERPASS_SELECTORS)
@@ -218,6 +245,7 @@ def _element_to_place(el: dict, sector_id: str, today: str) -> Place | None:
         url = f"https://{url}"
 
     street = " ".join(x for x in (tags.get("addr:housenumber"), tags.get("addr:street")) if x)
+    image_url, image_credit, image_page = _image_of(tags)
     return Place(
         name=tags["name"].strip(),
         category=category,
@@ -235,6 +263,9 @@ def _element_to_place(el: dict, sector_id: str, today: str) -> Place | None:
         fee=_fee_of(tags),
         unusual_hint=_looks_unusual(tags, category),
         quality=_quality_of(tags),
+        image_url=image_url,
+        image_credit=image_credit,
+        image_page=image_page,
         tags=[f"osm:{raw_tag}"] if raw_tag else [],
         providers=["osm"],
         first_seen=today,
@@ -525,6 +556,15 @@ def merge(previous: list[Place], found: list[Place], today: str | None = None) -
             for prov in old.providers:
                 if prov not in place.providers:
                     place.providers.append(prov)
+            # L'illustration suit la même règle que les labels : la fraîche
+            # prime, mais l'absence n'efface pas — un fournisseur muet ce
+            # jour-là ne doit pas dépouiller la fiche de sa photo. Les trois
+            # champs bougent ensemble : une URL sans son crédit serait une
+            # photo publiée sans son auteur.
+            if not place.image_url and old.image_url:
+                place.image_url = old.image_url
+                place.image_credit = old.image_credit
+                place.image_page = old.image_page
             # `unusual` n'existe que si le LLM l'a tranché : on le reprend tel
             # quel de l'existant, la nouvelle sweep n'en sait rien.
             place.unusual = old.unusual

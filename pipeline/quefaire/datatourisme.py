@@ -59,8 +59,13 @@ API_FILTERS_ENV = "DATATOURISME_API_FILTERS"
 # - §8.5 « Localisation ET HORAIRE [:isLocatedAt] » : les horaires sont sous
 #   isLocatedAt (schema:openingHoursSpecification), pas dans un champ racine.
 #   Demander `isLocatedAt.geo,isLocatedAt.address` les excluait explicitement.
+#
+# `hasMainRepresentation` s'y ajoute pour les illustrations (§8.9) : une fiche
+# sans site officiel n'a que sa page QueFaire pour donner envie, et une photo y
+# vaut mieux qu'un paragraphe.
 DEFAULT_FIELDS = (
-    "uuid,uri,label,type,hasDescription,hasContact,hasReview,isLocatedAt"
+    "uuid,uri,label,type,hasDescription,hasContact,hasReview,isLocatedAt,"
+    "hasMainRepresentation"
 )
 # Endpoint par défaut : `/placeOfInterest` est un raccourci vers `/catalog` avec
 # le filtre de type déjà appliqué — il ne rend que les lieux, sans les
@@ -253,7 +258,17 @@ def _texts(node) -> list[str]:
     if isinstance(node, (int, float)):
         return [str(node)]
     if isinstance(node, list):
-        for item in node:
+        # Liste de valeurs étiquetées par langue ({"@language": "en", "@value":…}) :
+        # le français d'abord. Sans ce tri, l'ordre du flux décidait de la langue
+        # affichée. Le paramètre `lang=fr` traite déjà le cas côté API, mais le
+        # mode FLUX n'en dispose pas et un producteur peut toujours étiqueter
+        # autrement : mieux vaut deux garde-fous qu'un site à moitié en anglais.
+        francais = [
+            item for item in node
+            if isinstance(item, dict)
+            and str(item.get("@language", "")).lower().startswith("fr")
+        ]
+        for item in francais or node:
             out.extend(_texts(item))
         return out
     if isinstance(node, dict):
@@ -333,6 +348,59 @@ def _quality_of(node: dict) -> list[str]:
         if needle in folded and code not in found:
             found.append(code)
     return found
+
+
+def _image_of(node: dict) -> tuple[str | None, str | None]:
+    """Illustration → (url, crédit), depuis [:hasMainRepresentation] (§8.9).
+
+    La chaîne de l'ontologie est longue et le JSON-LD la rend de plusieurs
+    façons selon les producteurs :
+
+        :hasMainRepresentation → :Image → ebucore:hasRealisation
+                               → ebucore:locator = l'URL
+
+    Plutôt que d'imiter une forme précise qu'on ne peut pas vérifier ici (l'API
+    n'est pas joignable depuis l'environnement de développement), on descend
+    l'arbre à la recherche d'un `locator`. Un parcours tolérant vaut mieux qu'un
+    chemin rigide qui rendrait 0 image pendant trois runs — c'est exactement ce
+    qui était arrivé aux labels avec `hasLabel`.
+
+    Le crédit vient de l'ebucore:Annotation, qui porte « le titre, le résumé,
+    les droits » (§8.9). Sans crédit lisible on renvoie quand même l'URL : la
+    page d'affichage sait dire « crédit non communiqué » plutôt que d'inventer
+    un auteur.
+    """
+    repr_node = _get(node, "hasMainRepresentation", "hasRepresentation")
+    if not repr_node:
+        return None, None
+
+    urls: list[str] = []
+    credits: list[str] = []
+
+    def descendre(n, profondeur=0):
+        if profondeur > 6 or (urls and credits):
+            return
+        if isinstance(n, list):
+            for item in n:
+                descendre(item, profondeur + 1)
+            return
+        if not isinstance(n, dict):
+            return
+        for cle, valeur in n.items():
+            court = cle.rsplit(":", 1)[-1]
+            if court == "locator":
+                for texte in _texts(valeur):
+                    if texte.startswith("https://") and texte not in urls:
+                        urls.append(texte)
+            elif court in ("hasCredits", "credits", "rights", "hasRights"):
+                credits.extend(t for t in _texts(valeur) if t.strip())
+            else:
+                descendre(valeur, profondeur + 1)
+
+    descendre(repr_node)
+    if not urls:
+        return None, None
+    return urls[0], (credits[0].strip()[:120] if credits else None)
 
 
 # Jours schema.org → abrégé français, pour rendre les horaires lisibles.
@@ -434,12 +502,20 @@ def _to_place(node: dict, sector_id: str, today: str) -> Place | None:
         ) else _get(_get(node, "hasDescription", "description"), "shortDescription", "dc:description")
     ) or ""
 
+    image_url, image_credit = _image_of(node)
     return Place(
         name=name.strip(),
         category=category,
         source_id="datatourisme",
         sector=sector_id,
-        external_id=str(node.get("@id") or node.get("id") or "").strip(),
+        # `@id` n'existe qu'en mode FLUX (JSON-LD complet). En mode API la fiche
+        # s'identifie par `uri` / `uuid` — ne chercher que `@id` laissait 1633
+        # fiches sur 2204 SANS identifiant de source, donc irréconciliables d'un
+        # run à l'autre par merge() (qui indexe sur external_id) et vouées à
+        # perdre leur `first_seen` à chaque passage.
+        external_id=str(
+            node.get("@id") or node.get("uri") or node.get("id") or node.get("uuid") or ""
+        ).strip(),
         description=description.strip()[:600],
         commune=commune,
         address=street,
@@ -449,6 +525,11 @@ def _to_place(node: dict, sector_id: str, today: str) -> Place | None:
         phone=phone,
         opening_hours=_opening_of(located),
         quality=_quality_of(node),
+        image_url=image_url,
+        image_credit=image_credit,
+        # La fiche DATAtourisme elle-même sert de page de vérification : c'est
+        # là que le producteur déclare la photo et ses droits.
+        image_page=str(node.get("@id") or "") or None if image_url else None,
         # Provenance du classement, conservée pour pouvoir auditer les règles
         # sur les données publiées sans relancer une découverte.
         tags=[f"dt:{raw_type}"] if raw_type else [],
@@ -494,6 +575,12 @@ def _nodes_from_api(key: str, sector, filters: str = "") -> list[dict]:
         "geo_distance": f"{sector.center_lat},{sector.center_lon},{km:.0f}km",
         "page_size": DEFAULT_PAGE_SIZE,
         "fields": DEFAULT_FIELDS,
+        # « Si le paramètre est omis, la réponse inclura le français ET l'anglais »
+        # (doc API, syntaxe du paramètre lang). Le flux rendait donc les deux et
+        # l'anglais arrivait le premier : 92 % des descriptions publiées étaient
+        # en anglais sur un site français. Le demander explicitement règle le
+        # problème à la source — et allège la réponse d'autant.
+        "lang": "fr",
     }
     # Filtre de type côté SERVEUR : on ne rapatrie que ce qu'on sait classer.
     # Sans lui, /placeOfInterest rend aussi hôtels, restaurants et commerces —

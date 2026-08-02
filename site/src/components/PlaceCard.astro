@@ -8,7 +8,7 @@ import { fold } from '../lib/nlsearch.js';
 // l'activité (on envoie le visiteur chez l'exploitant, pas sur une fiche interne).
 // `sectorQuality` = libellés complets des labels (sector.json), utilisés en
 // infobulle : la tuile affiche une forme courte pour rester lisible.
-const { place, categories, sectorQuality } = Astro.props;
+const { place, categories, sectorQuality, cityBase } = Astro.props;
 
 const emoji = PLACE_EMOJI[place.category] || '📍';
 const label = categories?.[place.category] || 'Activité';
@@ -18,14 +18,13 @@ const badges = qualityBadges(place.quality);
 const notable = isNotable(place.quality);
 const labels = sectorQuality ?? {};
 
-// Sans site officiel, on renvoie vers la carte OpenStreetMap de l'objet : mieux
-// qu'un lien mort, et ça reste actionnable (itinéraire, photos, horaires).
-const href =
-  place.url ||
-  (place.external_id
-    ? `https://www.openstreetmap.org/${place.external_id}`
-    : `https://www.openstreetmap.org/?mlat=${place.lat}&mlon=${place.lon}#map=17/${place.lat}/${place.lon}`);
-const external = true;
+// Avec un site officiel, on envoie le visiteur chez l'exploitant — c'est lui
+// qui sait ses horaires et ses tarifs. Sans site (962 fiches sur 2204), la
+// tuile menait auparavant vers OpenStreetMap, c'est-à-dire vers une carte
+// technique qui ne dit pas ce qu'on peut y faire : on ouvre désormais une page
+// de détail interne, qui rassemble ce qu'on sait vraiment de l'activité.
+const external = Boolean(place.url);
+const href = external ? place.url : `${cityBase}activite/${place.id}/`;
 
 const foldedText = fold(
   [
@@ -40,8 +39,8 @@ const foldedText = fold(
 <a
   class="card card-place"
   href={href}
-  target="_blank"
-  rel="noopener"
+  target={external ? '_blank' : null}
+  rel={external ? 'noopener' : null}
   style={`--cat: var(--p-${place.category})`}
   data-kind="place"
   data-cat={place.category}
@@ -65,6 +64,9 @@ const foldedText = fold(
   </div>
   <div class="card-body">
     <h3>{place.name}{external && <span class="ext" aria-label="ouvre le site de l'activité">↗</span>}</h3>
+    {!external && place.image_url && (
+      <img class="card-photo" src={place.image_url} alt={`Photo de ${place.name}`} loading="lazy" decoding="async" />
+    )}
     {badges.length > 0 && (
       <p class="quality-badges">
         {badges.map((b) => (

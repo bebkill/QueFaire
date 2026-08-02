@@ -1110,6 +1110,92 @@ def test_filter_relevant_targets_artwork_not_whole_category():
     assert [p.name for p in kept] == ["Arbre de Vie", "Alternative Canoe Kayak"]
 
 
+def test_place_id_distinguishes_homonyms_without_external_id():
+    """Quatre « Point lecture » dans quatre communes = quatre pages distinctes.
+
+    Sans identifiant de source, l'id retombait sur le nom seul : les homonymes
+    partageaient une page, et le visiteur y lisait les coordonnées d'une autre
+    commune — exactement ce que la page de détail promet de ne pas faire.
+    """
+    from quefaire.models import Place
+
+    def lecture(lat, lon):
+        return Place(name="Point lecture", category="ludotheque", source_id="datatourisme",
+                     sector="s", lat=lat, lon=lon)
+
+    a, b = lecture(44.4816, 2.2594), lecture(44.4114, 2.1891)
+    assert a.id != b.id
+    # Stable d'un run à l'autre : même position → même URL.
+    assert a.id == lecture(44.4816, 2.2594).id
+    # Un identifiant de source reste prioritaire : un lieu déplacé de quelques
+    # mètres ne doit pas changer d'URL.
+    avec_id = Place(name="Musée", category="musee", source_id="osm", sector="s",
+                    external_id="node/1", lat=44.0, lon=2.0)
+    bouge = Place(name="Musée", category="musee", source_id="osm", sector="s",
+                  external_id="node/1", lat=44.001, lon=2.001)
+    assert avec_id.id == bouge.id
+
+
+def test_datatourisme_prefers_french():
+    """Le flux rend fr ET en ; l'ordre ne doit pas décider de la langue affichée."""
+    from quefaire.datatourisme import _first
+
+    assert _first([
+        {"@language": "en", "@value": "The mission of the network…"},
+        {"@language": "fr", "@value": "Lisez ou empruntez des livres."},
+    ]) == "Lisez ou empruntez des livres."
+    # Dictionnaire de langues : comportement inchangé.
+    assert _first({"en": ["Museum"], "fr": ["Musée"]}) == "Musée"
+    # Aucune étiquette de langue : on prend ce qui vient, plutôt que rien.
+    assert _first([{"@value": "Sans étiquette"}]) == "Sans étiquette"
+
+
+def test_datatourisme_external_id_from_api_shape():
+    """En mode API la fiche s'identifie par `uri`/`uuid`, pas par `@id`."""
+    from quefaire.datatourisme import _to_place
+
+    node = {
+        "uri": "https://data.datatourisme.fr/42",
+        "uuid": "42",
+        "@type": ["Museum"],
+        "rdfs:label": {"fr": ["Musée"]},
+        "isLocatedAt": {"schema:geo": {"schema:latitude": "44.2", "schema:longitude": "2.7"}},
+    }
+    place = _to_place(node, "s", "2026-08-02")
+    assert place.external_id == "https://data.datatourisme.fr/42"
+
+
+def test_datatourisme_reads_image_and_credit():
+    """Chaîne image de l'ontologie §8.9 : locator = l'URL, crédits à côté."""
+    from quefaire.datatourisme import _image_of
+
+    node = {
+        "hasMainRepresentation": {
+            "ebucore:hasRelatedResource": {
+                "ebucore:locator": "https://photos.test/musee.jpg",
+            },
+            "hasCredits": {"rdfs:label": {"fr": ["Office de tourisme du Lévézou"]}},
+        }
+    }
+    assert _image_of(node) == ("https://photos.test/musee.jpg", "Office de tourisme du Lévézou")
+    # Pas de média, ou un média sans URL exploitable : aucune invention.
+    assert _image_of({}) == (None, None)
+    assert _image_of({"hasMainRepresentation": {"ebucore:locator": "http://pas-sur.test/x.jpg"}}) == (None, None)
+
+
+def test_osm_image_prefers_commons():
+    """Commons d'abord : licence libre et page qui nomme l'auteur."""
+    from quefaire.places import _image_of
+
+    url, credit, page = _image_of({"wikimedia_commons": "File:Château de Tholet.jpg"})
+    assert url.startswith("https://commons.wikimedia.org/wiki/Special:FilePath/Ch")
+    assert credit == "Wikimedia Commons" and page.endswith("Ch%C3%A2teau_de_Tholet.jpg")
+    # À défaut, une URL https quelconque ; jamais de http en clair.
+    assert _image_of({"image": "https://exemple.test/p.jpg"})[0] == "https://exemple.test/p.jpg"
+    assert _image_of({"image": "http://exemple.test/p.jpg"}) == (None, None, None)
+    assert _image_of({}) == (None, None, None)
+
+
 def test_places_roundtrip_and_place_count(tmp_path):
     from quefaire.export import _count_places
     from quefaire.models import Place
