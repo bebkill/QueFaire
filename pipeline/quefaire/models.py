@@ -56,6 +56,11 @@ PLACE_CATEGORIES = {
     "marche": "Marché",
     "visite": "Visite & curiosité",
     "sport-loisir": "Sport & loisirs",
+    # Prestation à réserver (grimpe d'arbres, balade guidée, escape game) plutôt
+    # qu'un lieu où l'on se rend librement. Distinguée parce qu'elle répond à
+    # « que faire ? » sans être une adresse à visiter — et parce qu'à 597 fiches
+    # elle noyait « sport & loisirs » (806) à elle seule.
+    "prestation": "Activité encadrée",
     "ferme": "Ferme & artisanat",
     "bien-etre": "Thermes & bien-être",
     "autre": "Autre activité",

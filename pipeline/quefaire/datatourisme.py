@@ -174,8 +174,10 @@ _TYPE_RULES: list[tuple[tuple[str, ...], str]] = [
     (("Cinema",), "cinema"),
     (("Opera", "OperaHouse", "Recital",  # ✓
       "Theater", "Theatre", "ConcertHall", "PerformingArtsCentre"), "spectacle"),
-    (("Game", "Library",  # ✓
-      "GameRoom", "Casino"), "ludotheque"),
+    # `Library` retiré : une bibliothèque de village n'est pas une ludothèque.
+    # Mesuré — 23 fiches, 0 distinction, 0 insolite, 34 % sans site : mal
+    # rangées et sans valeur de sortie.
+    (("Game", "GameRoom", "Casino"), "ludotheque"),
     (("Market", "LocalProductsShop",  # ✓
       ), "marche"),
     (("Hammam",  # ✓
@@ -186,8 +188,13 @@ _TYPE_RULES: list[tuple[tuple[str, ...], str]] = [
       "ParkAndGarden", "Peak", "PicnicArea", "Plain", "Plateau", "Pond",  # ✓
       "PointOfView",  # ✓
       "Garden", "Park", "NaturalSite", "Viewpoint", "Cave", "Forest"), "nature"),
+    # Un PRESTATAIRE d'activités n'est pas un lieu : « Grimpe d'arbres »,
+    # « Balade numérique », « séances de bien-être ». 597 fiches, soit 74 % de
+    # sport-loisir. Ce n'est pas du bruit — ça répond bien à « que faire ? » —
+    # mais ça relève d'une autre nature, d'où sa catégorie propre.
+    (("LeisureSportActivityProvider",), "prestation"),
     (("GolfCourse", "Gymnasium", "IceSkatingRink", "LeisureComplex",  # ✓
-      "LeisureSportActivityProvider", "Marina", "MiniGolf", "MultiActivity",  # ✓
+      "Marina", "MiniGolf", "MultiActivity",  # ✓
       "NauticalCentre", "Racetrack", "RacingCircuit", "RailBike",  # ✓
       "PlayArea", "KidsClub", "HorseTour", "Rambling",  # ✓
       "SportsAndLeisurePlace", "ClimbingSpot", "EquestrianCentre",

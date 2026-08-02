@@ -1628,3 +1628,30 @@ def test_report_breaks_down_categories_by_raw_type():
     # La catégorie la plus grosse d'abord, et le type qui la gonfle identifié.
     assert list(r["types_bruts"]) == ["sport-loisir", "musee"]
     assert r["types_bruts"]["sport-loisir"]["LeisureSportActivityProvider"] == 2
+
+
+def test_provider_is_not_a_place():
+    """Un PRESTATAIRE d'activités relève de sa propre catégorie, pas d'un lieu.
+
+    Mesuré : `LeisureSportActivityProvider` pesait 597 fiches, soit 74 % de
+    « sport & loisirs » — « Grimpe d'arbres », « Balade numérique », « séances
+    de bien-être ». Du vrai contenu, mais d'une autre nature qu'une adresse.
+    """
+    from quefaire.datatourisme import _category_of
+    from quefaire.models import PLACE_CATEGORIES
+
+    assert "prestation" in PLACE_CATEGORIES
+    assert _category_of(["PointOfInterest", "LeisureSportActivityProvider"]) == "prestation"
+    # Un vrai lieu de sport reste un lieu.
+    assert _category_of(["PointOfInterest", "SportsAndLeisurePlace"]) == "sport-loisir"
+    assert _category_of(["PointOfInterest", "GolfCourse"]) == "sport-loisir"
+
+
+def test_noise_types_are_dropped():
+    """Bibliothèques de village et monuments aux morts : mesurés sans valeur."""
+    from quefaire.datatourisme import _category_of
+    from quefaire.places import _category_of as osm_category
+
+    assert _category_of(["PointOfInterest", "Library"]) is None
+    assert osm_category({"historic": "memorial", "name": "10 août 1944"}) is None
+    assert osm_category({"historic": "castle", "name": "Château"}) == "patrimoine"

@@ -56,8 +56,11 @@ MISSING_SWEEPS_BEFORE_DROP = 2
 # « visite » au lieu de « patrimoine ».
 _TAG_RULES: list[tuple[str, str, str]] = [
     # (clé OSM, valeurs séparées par |, catégorie QueFaire)
+    # `memorial` retiré : ce sont les monuments aux morts de chaque village —
+    # mesuré, 56 fiches dont 3 % avec site et 1 distinction. Respectables, mais
+    # ce ne sont pas des sorties.
     ("tourism", "museum|gallery", "musee"),
-    ("historic", "castle|fort|monument|memorial|ruins|archaeological_site|city_gate|tower", "patrimoine"),
+    ("historic", "castle|fort|monument|ruins|archaeological_site|city_gate|tower", "patrimoine"),
     ("tourism", "theme_park|zoo|aquarium", "parc-attraction"),
     ("leisure", "water_park", "parc-aquatique"),
     ("leisure", "swimming_pool|beach_resort", "parc-aquatique"),
@@ -82,7 +85,7 @@ _TAG_RULES: list[tuple[str, str, str]] = [
 # cinéma un node) ; `center` donne un point unique pour les surfaces.
 _OVERPASS_SELECTORS = [
     'nwr["tourism"~"^(museum|gallery|theme_park|zoo|aquarium|attraction|artwork|viewpoint|picnic_site|farm)$"]',
-    'nwr["historic"~"^(castle|fort|monument|memorial|ruins|archaeological_site|city_gate|tower)$"]',
+    'nwr["historic"~"^(castle|fort|monument|ruins|archaeological_site|city_gate|tower)$"]',
     'nwr["leisure"~"^(water_park|swimming_pool|beach_resort|amusement_arcade|escape_game|adventure_park|sports_centre|climbing|horse_riding|golf_course|bowling_alley|ice_rink|park|garden|nature_reserve|spa)$"]',
     'nwr["amenity"~"^(cinema|theatre|arts_centre|toy_library|marketplace|public_bath)$"]',
     'nwr["natural"="beach"]',

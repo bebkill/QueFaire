@@ -31,6 +31,7 @@ export const PLACE_EMOJI = {
   marche: '🧺',
   visite: '🔭',
   'sport-loisir': '⛳',
+  prestation: '🎟️',
   ferme: '🚜',
   'bien-etre': '♨️',
   autre: '📍',
