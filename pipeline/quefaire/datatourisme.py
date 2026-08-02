@@ -51,9 +51,16 @@ API_PARAMS_ENV = "DATATOURISME_API_PARAMS"  # échappatoire brute (sort, lang…
 # déjà le filtre de type, et le périmètre passe par geo_distance.
 API_FILTERS_ENV = "DATATOURISME_API_FILTERS"
 # Champs demandés : inutile de rapatrier toute l'ontologie pour chaque fiche.
+#
+# Deux corrections issues de la documentation de l'ontologie v3.1.0 :
+# - §8.2 « Classement et labels » : les labels passent par [:hasReview], PAS par
+#   un `hasLabel` — qui n'existe pas. D'où 0 label sur 1726 fiches, trois runs
+#   durant, alors que c'était la promesse principale de DATAtourisme.
+# - §8.5 « Localisation ET HORAIRE [:isLocatedAt] » : les horaires sont sous
+#   isLocatedAt (schema:openingHoursSpecification), pas dans un champ racine.
+#   Demander `isLocatedAt.geo,isLocatedAt.address` les excluait explicitement.
 DEFAULT_FIELDS = (
-    "uuid,uri,label,type,hasDescription,hasContact,hasLabel,"
-    "isLocatedAt.geo,isLocatedAt.address"
+    "uuid,uri,label,type,hasDescription,hasContact,hasReview,isLocatedAt"
 )
 # Endpoint par défaut : `/placeOfInterest` est un raccourci vers `/catalog` avec
 # le filtre de type déjà appliqué — il ne rend que les lieux, sans les
@@ -289,17 +296,65 @@ def _category_of(types: list[str]) -> str | None:
 
 
 def _quality_of(node: dict) -> list[str]:
+    """Labels de qualité, lus dans [:hasReview] (ontologie §8.2).
+
+    Une :Review est un classement OU un label, adossé à un :ReviewSystem
+    (« Gîtes de France », « Musée de France »…) et portant une valeur :Rating
+    qui est soit un libellé, soit un nombre. On ne retient ici que le versant
+    LABEL : le versant numérique est une classification (étoiles d'hôtel, épis),
+    pas une note d'avis d'utilisateurs — l'afficher comme telle induirait en
+    erreur.
+    """
     from .normalize import fold
 
-    blob = " ".join(
-        _texts(_get(node, "hasLabel", "label")) + _texts(_get(node, "hasQualityLabel"))
-    )
+    blob = " ".join(_texts(_get(node, "hasReview", "review")))
     folded = fold(blob)
     found = []
     for needle, code in _LABEL_RULES:
         if needle in folded and code not in found:
             found.append(code)
     return found
+
+
+# Jours schema.org → abrégé français, pour rendre les horaires lisibles.
+_DAYS = {
+    "Monday": "lun", "Tuesday": "mar", "Wednesday": "mer", "Thursday": "jeu",
+    "Friday": "ven", "Saturday": "sam", "Sunday": "dim",
+}
+
+
+def _opening_of(located) -> str | None:
+    """Horaires depuis isLocatedAt → schema:openingHoursSpecification (§8.5).
+
+    On rend une chaîne déjà lisible en français plutôt que d'imiter la syntaxe
+    OSM : la source est structurée, autant s'en servir directement.
+    """
+    if not isinstance(located, dict):
+        return None
+    spec = _get(located, "schema:openingHoursSpecification", "openingHoursSpecification")
+    if not spec:
+        return None
+    if isinstance(spec, dict):
+        spec = [spec]
+    if not isinstance(spec, list):
+        return None
+
+    slots: list[str] = []
+    for item in spec:
+        if not isinstance(item, dict):
+            continue
+        days = [
+            _DAYS.get(str(d).rsplit("/", 1)[-1].rsplit("#", 1)[-1], "")
+            for d in _texts(_get(item, "schema:dayOfWeek", "dayOfWeek"))
+        ]
+        days = [d for d in days if d]
+        opens = _first(_get(item, "schema:opens", "opens")) or ""
+        closes = _first(_get(item, "schema:closes", "closes")) or ""
+        hours = f"{opens[:5]}-{closes[:5]}" if opens and closes else ""
+        label = " ".join(x for x in (", ".join(days), hours) if x)
+        if label and label not in slots:
+            slots.append(label)
+    return " · ".join(slots[:4]) or None
 
 
 def _coords(located) -> tuple[float | None, float | None]:
@@ -373,11 +428,7 @@ def _to_place(node: dict, sector_id: str, today: str) -> Place | None:
         lon=lon,
         url=url,
         phone=phone,
-        # Horaires : le champ correspondant de l'ontologie n'est pas encore
-        # identifié (`hasBookingContact` visait à côté — c'est un contact, pas
-        # un horaire, et le premier run réel a rendu 0 horaire sur 6431 fiches).
-        # On laisse vide plutôt que d'afficher faux ; OSM en fournit déjà.
-        opening_hours=None,
+        opening_hours=_opening_of(located),
         quality=_quality_of(node),
         providers=["datatourisme"],
         first_seen=today,

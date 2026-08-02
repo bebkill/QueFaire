@@ -1083,11 +1083,17 @@ DT_SAMPLE = {
             "@type": ["PointOfInterest", "CulturalSite", "Museum"],
             "rdfs:label": {"fr": ["Musée du Rouergue"]},
             "hasDescription": {"shortDescription": {"fr": ["Outils et costumes du Rouergue."]}},
-            "hasLabel": [{"rdfs:label": {"fr": ["Musée de France"]}}, "Qualité Tourisme"],
+            # §8.2 : labels et classements passent par hasReview, pas hasLabel.
+            "hasReview": [{"rdfs:label": {"fr": ["Musée de France"]}}, "Qualité Tourisme"],
             "isLocatedAt": {
                 "schema:geo": {"schema:latitude": "44.28", "schema:longitude": "2.73"},
                 "schema:address": {"schema:addressLocality": "Pont-de-Salars",
                                    "schema:streetAddress": "3 rue du Moulin"},
+                # §8.5 : les horaires vivent SOUS isLocatedAt.
+                "schema:openingHoursSpecification": [{
+                    "schema:dayOfWeek": ["Tuesday", "Wednesday"],
+                    "schema:opens": "10:00:00", "schema:closes": "18:00:00",
+                }],
             },
             "hasContact": {"foaf:homepage": ["https://musee-rouergue.fr"],
                            "schema:telephone": "0565000000"},
@@ -1133,6 +1139,8 @@ def test_datatourisme_parses_heterogeneous_jsonld(monkeypatch):
     assert "Outils et costumes" in musee.description
     # Labels reconnus quelle que soit leur forme (objet imbriqué ou chaîne nue).
     assert set(musee.quality) == {"musee-de-france", "qualite-tourisme"}
+    # Horaires lus sous isLocatedAt et rendus lisibles en français.
+    assert musee.opening_hours == "mar, mer 10:00-18:00"
     assert musee.providers == ["datatourisme"]
     assert by_name["Accrobranche du Lévézou"].category == "sport-loisir"
 
