@@ -23,13 +23,10 @@ sector:
   center_lat: 45.7192
   center_lon: 5.2431
   radius_minutes: 60
-  # Expression `filters` DATAtourisme (mode API). « type=PlaceOfInterest »
-  # écarte déjà événements, produits et itinéraires — le crawl collecte les
-  # événements par ailleurs. Périmètre visé : Isère (38), Rhône (69), Ain (01).
-  # ⚠ RESTE À FAIRE : ajouter la clause territoriale. La doc ne montre qu'un
-  # filtre par commune (isLocatedAt.address.hasAddressCity.insee=<code>) ;
-  # sans clause régionale, préférer un FLUX, déjà filtré à sa création.
-  datatourisme_filters: "type=PlaceOfInterest"
+  # Filtre DATAtourisme additionnel (mode API), facultatif : le périmètre est
+  # déjà dérivé de center_lat/lon + radius_minutes (paramètre geo_distance) et
+  # l'endpoint /placeOfInterest applique déjà le filtre de type.
+  datatourisme_filters: ""
 
 sources:
   # --- Pages agenda locales (extraction LLM, type html) ----------------------

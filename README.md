@@ -155,37 +155,29 @@ En mode API, le catalogue est parcouru en suivant `meta.next` (méthode
 recommandée par DATAtourisme, la seule qui garantisse de ne rater aucun
 résultat), avec `page_size=500` pour limiter le nombre de pages.
 
-Le filtrage se fait par une **expression `filters`** (et non par des paramètres
-dédiés), déclarée **dans le registre du secteur** — le bon périmètre dépend du
-territoire, il n'a rien à faire dans une variable globale :
+**Le mode API ne demande aucune configuration** : la clé suffit. Le pipeline
+appelle `/v1/placeOfInterest` (raccourci vers `/catalog` avec le filtre de type
+déjà appliqué) et dérive le périmètre de l'épicentre —
+`geo_distance=<lat>,<lon>,<rayon>km`, le rayon suivant `radius_minutes`. Ni
+liste de communes, ni code départemental à maintenir : le filtre géographique
+de l'API épouse exactement le modèle du projet.
 
-```yaml
-sector:
-  name: Pont-de-Salars
-  radius_minutes: 60
-  datatourisme_filters: "type=PlaceOfInterest"
-```
+La clé part en en-tête `X-API-Key` (méthode recommandée) plutôt qu'en paramètre
+d'URL, ce qui lui évite d'apparaître dans les journaux de requêtes. Les pages
+sont demandées à `page_size=250` (le maximum) et parcourues en suivant
+`meta.next`.
 
-Syntaxe, d'après la documentation de l'API :
-`type=PlaceOfInterest and isLocatedAt.address.hasAddressCity.insee=35238`.
-`type=PlaceOfInterest` écarte déjà événements, produits et itinéraires.
+Réglages facultatifs :
 
-Réglages complémentaires, par variable d'environnement :
-
-| Variable | Rôle |
+| Réglage | Rôle |
 |---|---|
-| `DATATOURISME_API_URL` | endpoint — `…/v1/placeOfInterest` ne rend que les lieux |
+| `datatourisme_filters` (registre du secteur) | expression `filters` pour affiner, ex. `hasReview.hasReviewValue[gte]=3` |
+| `DATATOURISME_API_URL` | changer d'endpoint (`…/v1/catalog` pour tout inclure) |
 | `DATATOURISME_API_FILTERS` | expression de repli si le secteur n'en déclare pas |
-| `DATATOURISME_API_PARAMS` | échappatoire brute pour tout autre paramètre (`sort`, `lang`…) |
+| `DATATOURISME_API_PARAMS` | échappatoire brute (`sort`, `lang`…) |
 
-Sans restriction territoriale, le catalogue national compte plus de 530 000
-fiches ; la pagination est plafonnée à 60 pages et **toute troncature est
-signalée par un warning explicite** dans les logs, jamais silencieuse.
-
-> ⚠️ La clause territoriale reste à écrire : la documentation ne montre qu'un
-> filtre **par commune** (`…hasAddressCity.insee=<code>`). Pour un rayon de
-> 240 à 590 communes, c'est impraticable — **préférez un flux**, dont le
-> périmètre se règle une fois pour toutes à sa création.
+La pagination est plafonnée à 60 pages (15 000 activités) et **toute troncature
+est signalée par un warning explicite** dans les logs, jamais silencieuse.
 
 Licence Ouverte Etalab : réutilisation libre, y compris commerciale, **à
 condition de citer la source et la date de mise à jour** — l'attribution est

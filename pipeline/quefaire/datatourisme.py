@@ -17,10 +17,10 @@ Deux accès possibles, et le choix pèse sur le quota (1000 requêtes/heure) :
 
 - **flux** (`DATATOURISME_FLUX_URL`) — une seule requête ramène tout le jeu
   d'une ville. À privilégier ;
-- **API temps réel** (`DATATOURISME_API_KEY`) — `GET /v1/catalog`, paginé. Le
-  périmètre se déclare par une expression `filters` dans le registre du secteur
-  (`datatourisme_filters`) : c'est une propriété du territoire, pas une variable
-  globale partagée par toutes les villes.
+- **API temps réel** (`DATATOURISME_API_KEY`) — `GET /v1/placeOfInterest`,
+  paginé. Le périmètre est dérivé automatiquement de l'épicentre via le
+  paramètre `geo_distance` : aucune liste de communes ni code départemental à
+  maintenir, le rayon suit `radius_minutes` du secteur.
 
 Sans l'un ni l'autre, le fournisseur est sauté et OSM reste seul.
 
@@ -44,35 +44,33 @@ log = logging.getLogger("quefaire")
 FLUX_ENV = "DATATOURISME_FLUX_URL"
 API_KEY_ENV = "DATATOURISME_API_KEY"
 API_PARAMS_ENV = "DATATOURISME_API_PARAMS"  # échappatoire brute (sort, lang…)
-# Le filtrage se fait par une EXPRESSION `filters`, pas par des paramètres
-# dédiés. Syntaxe donnée par la doc de l'API :
-#     type=PlaceOfInterest and isLocatedAt.address.hasAddressCity.insee=35238
+# Expression `filters` optionnelle, syntaxe de l'API :
+#     type=PlaceOfInterest AND isLocatedAt.address.hasAddressCity.insee=35238
+# Opérateurs entre crochets ([in], [ne], [gte]…), combinables par AND/OR et
+# parenthèses. Inutile ici par défaut : l'endpoint /placeOfInterest applique
+# déjà le filtre de type, et le périmètre passe par geo_distance.
 API_FILTERS_ENV = "DATATOURISME_API_FILTERS"
-# Par défaut on écarte au moins les événements, produits et itinéraires : le
-# crawl collecte déjà les événements par ailleurs, ici on ne veut que des lieux.
-DEFAULT_FILTERS = "type=PlaceOfInterest"
 # Champs demandés : inutile de rapatrier toute l'ontologie pour chaque fiche.
 DEFAULT_FIELDS = (
     "uuid,uri,label,type,hasDescription,hasContact,hasLabel,"
     "isLocatedAt.geo,isLocatedAt.address"
 )
-# Endpoint surchargeable : `/catalog` couvre tout (POI, événements, produits,
-# itinéraires), `/placeOfInterest` ne rend que les lieux — exactement ce qu'on
-# cherche, et donc bien moins de pages à parcourir. Les endpoints spécialisés
-# acceptent les mêmes paramètres que /catalog.
+# Endpoint par défaut : `/placeOfInterest` est un raccourci vers `/catalog` avec
+# le filtre de type déjà appliqué — il ne rend que les lieux, sans les
+# événements (que le crawl collecte par ailleurs), produits ni itinéraires. Il
+# accepte exactement les mêmes paramètres.
 API_URL_ENV = "DATATOURISME_API_URL"
-API_URL = "https://api.datatourisme.fr/v1/catalog"
-# La pagination par défaut de l'API est de 20 fiches ; demander de plus grandes
-# pages est le levier le plus efficace sur le quota (500 fiches = 1 requête au
-# lieu de 25). Surchargeable si la plateforme refuse cette taille.
-DEFAULT_PAGE_SIZE = 500
+API_URL = "https://api.datatourisme.fr/v1/placeOfInterest"
+# Pagination : défaut 20, **maximum 250** côté API. On demande le maximum, c'est
+# le levier le plus direct sur le quota (250 fiches par requête au lieu de 20).
+MAX_PAGE_SIZE = 250
+DEFAULT_PAGE_SIZE = MAX_PAGE_SIZE
 TIMEOUT = 120
 
-# Garde-fou de pagination. Le catalogue national compte >530 000 fiches : les
-# parcourir entièrement coûterait des milliers de requêtes et pulvériserait le
-# quota horaire. On plafonne, et on le DIT dans les logs plutôt que de tronquer
-# en silence — c'est le signal qu'il faut restreindre le catalogue côté serveur
-# (filtres API_PARAMS, ou périmètre de l'application DATAtourisme).
+# Garde-fou de pagination. Avec geo_distance le volume est déjà borné au rayon
+# de l'épicentre, mais un territoire très dense pourrait surprendre : on plafonne
+# et on le DIT dans les logs plutôt que de tronquer en silence.
+# 60 pages × 250 fiches = 15 000 activités, largement au-delà du réaliste.
 MAX_PAGES = 60
 
 # --- Quotas DATAtourisme -----------------------------------------------------
@@ -110,7 +108,7 @@ def _throttle() -> None:
     _last_request_at = time.monotonic()
 
 
-def _request(url: str):
+def _request(url: str, headers: dict | None = None):
     """GET avec throttle, plafond de sécurité et respect du 429.
 
     Un 429 (« trop de requêtes ») est rejoué en respectant l'en-tête
@@ -134,7 +132,7 @@ def _request(url: str):
         _throttle()
         _requests_made += 1
         try:
-            return http_get(url, timeout=TIMEOUT)
+            return http_get(url, timeout=TIMEOUT, headers=headers or {})
         except requests.HTTPError as exc:
             status = getattr(exc.response, "status_code", None)
             if status not in (429, 503) or attempt == MAX_RETRIES:
@@ -385,38 +383,50 @@ def _nodes_from_flux(flux: str) -> list[dict]:
     return [n for n in nodes if isinstance(n, dict)]
 
 
-def _nodes_from_api(key: str, filters: str = "") -> list[dict]:
+def _nodes_from_api(key: str, sector, filters: str = "") -> list[dict]:
     """Mode API temps réel : GET /v1/catalog (ou endpoint surchargé), paginé.
 
     On suit `meta.next` plutôt que d'incrémenter un numéro de page : c'est la
     méthode recommandée par DATAtourisme, la seule qui garantisse de ne rater
     aucun résultat en parcourant tout le catalogue.
 
-    `filters` est une EXPRESSION au format DATAtourisme, pas une query string :
-        type=PlaceOfInterest and isLocatedAt.address.hasAddressCity.insee=35238
-    Elle vient du registre du secteur — le bon périmètre dépend du territoire,
-    il n'a rien à faire dans une variable globale partagée par toutes les villes.
+    Le périmètre est dérivé de l'épicentre : `geo_distance=lat,lon,<rayon>km`.
+    C'est exactement le modèle du projet — pas de liste de communes à maintenir,
+    pas de code départemental à saisir, et le rayon suit `radius_minutes` du
+    secteur. Aucune configuration manuelle n'est donc nécessaire.
+
+    `filters` reste disponible pour affiner (syntaxe d'expression de l'API), mais
+    n'est pas requis : l'endpoint /placeOfInterest applique déjà le type.
     """
     from urllib.parse import urlencode
 
-    base = os.environ.get(API_URL_ENV) or API_URL
-    expr = (filters or os.environ.get(API_FILTERS_ENV) or DEFAULT_FILTERS).strip()
+    from .geo import radius_km
 
-    params = {"api_key": key, "page_size": DEFAULT_PAGE_SIZE}
+    base = os.environ.get(API_URL_ENV) or API_URL
+    km = radius_km(sector.radius_minutes)
+
+    params = {
+        "geo_distance": f"{sector.center_lat},{sector.center_lon},{km:.0f}km",
+        "page_size": DEFAULT_PAGE_SIZE,
+        "fields": DEFAULT_FIELDS,
+    }
+    expr = (filters or os.environ.get(API_FILTERS_ENV) or "").strip()
     if expr:
         params["filters"] = expr
-    # `fields` allège la réponse : on ne demande que ce que _to_place exploite.
-    if DEFAULT_FIELDS:
-        params["fields"] = DEFAULT_FIELDS
     url = f"{base}?{urlencode(params)}"
     # Échappatoire brute pour tout paramètre non modélisé ici (sort, lang…).
     extra = (os.environ.get(API_PARAMS_ENV) or "").strip().lstrip("?&")
     if extra:
         url += f"&{extra}"
 
+    # Clé en en-tête plutôt qu'en paramètre d'URL : méthode recommandée par la
+    # doc, et elle évite que la clé se retrouve dans les logs de requêtes.
+    headers = {"X-API-Key": key}
+
+    log.info("[datatourisme] rayon %.0f km autour de %s", km, sector.name)
     nodes: list[dict] = []
     for page in range(MAX_PAGES):
-        payload = _request(url).json()
+        payload = _request(url, headers).json()
         if not isinstance(payload, dict):
             log.warning("[datatourisme] réponse inattendue de l'API (pas un objet)")
             break
@@ -424,18 +434,23 @@ def _nodes_from_api(key: str, filters: str = "") -> list[dict]:
         nodes.extend(n for n in batch if isinstance(n, dict))
 
         meta = payload.get("meta") or {}
-        nxt = meta.get("next") or meta.get("next_url")
+        if page == 0:
+            log.info(
+                "[datatourisme] %s fiche(s) dans le rayon, %s page(s) à parcourir",
+                meta.get("total", "?"), meta.get("total_pages", "?"),
+            )
+        nxt = meta.get("next")
         if not nxt:
-            log.info("[datatourisme] catalogue parcouru : %d fiches, %d page(s)", len(nodes), page + 1)
+            log.info("[datatourisme] parcours terminé : %d fiches, %d page(s)", len(nodes), page + 1)
             return nodes
-        # L'URL `next` porte déjà la clé et les filtres ; on la suit telle quelle.
+        # On suit l'URL `next` telle quelle : au-delà de 10 000 résultats, l'accès
+        # direct par numéro de page n'est plus possible côté API.
         url = nxt if str(nxt).startswith("http") else f"{base}{nxt}"
     else:
         log.warning(
-            "[datatourisme] plafond de %d pages atteint (%d fiches) — catalogue TRONQUÉ. "
-            "Restreignez-le côté serveur via %s (ex. un filtre départemental) "
-            "ou utilisez un flux (%s).",
-            MAX_PAGES, len(nodes), API_PARAMS_ENV, FLUX_ENV,
+            "[datatourisme] plafond de %d pages atteint (%d fiches) — résultat TRONQUÉ. "
+            "Affinez via %s, ou utilisez un flux (%s).",
+            MAX_PAGES, len(nodes), API_FILTERS_ENV, FLUX_ENV,
         )
     return nodes
 
@@ -461,7 +476,7 @@ def fetch(sector, limit: int | None = None) -> list[Place]:
 
     try:
         nodes = _nodes_from_flux(flux) if flux else _nodes_from_api(
-            key, getattr(sector, "datatourisme_filters", "")
+            key, sector, getattr(sector, "datatourisme_filters", "")
         )
     except Exception as exc:
         log.warning("[datatourisme] source injoignable (%s) — OSM seul", exc)

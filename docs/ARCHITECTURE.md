@@ -183,12 +183,16 @@ ce budget :
 
 - **flux** (`DATATOURISME_FLUX_URL`, « API locale ») — une requête ramène tout
   le jeu d'une ville. Mode préféré : ~1000 villes rafraîchissables en une heure ;
-- **API temps réel** (`DATATOURISME_API_KEY`) — `GET /v1/catalog`, parcouru en
-  suivant `meta.next` plutôt qu'en incrémentant un numéro de page (méthode
-  recommandée, la seule qui garantisse de ne rater aucun résultat). Le catalogue
-  doit être restreint côté serveur via `DATATOURISME_API_PARAMS`, sinon on
-  paginerait sur 530 000 fiches. La pagination est plafonnée (`MAX_PAGES`) et
-  toute troncature **journalisée en warning** — jamais silencieuse.
+- **API temps réel** (`DATATOURISME_API_KEY`) — `GET /v1/placeOfInterest`,
+  parcouru en suivant `meta.next` plutôt qu'en incrémentant un numéro de page
+  (méthode recommandée, et au-delà de 10 000 résultats l'accès par numéro n'est
+  plus possible). Le périmètre vient du paramètre **`geo_distance`**, dérivé de
+  l'épicentre : `lat,lon,<radius_km>km`. Le filtre géographique de l'API épouse
+  exactement le modèle du projet, donc **aucune configuration manuelle** — ni
+  liste de communes, ni code départemental. Pages de 250 fiches (le maximum),
+  clé en en-tête `X-API-Key` pour qu'elle n'apparaisse pas dans les journaux.
+  La pagination est plafonnée (`MAX_PAGES`) et toute troncature **journalisée en
+  warning** — jamais silencieuse.
 
 Garde-fous communs : intervalle minimal entre requêtes (≤ 5 req/s, moitié du
 régime toléré), rejeu sur 429/503 en respectant `Retry-After`, et coupe-circuit

@@ -1255,20 +1255,24 @@ def test_datatourisme_api_follows_next_url(monkeypatch):
     monkeypatch.setattr(dt, "_requests_made", 0)
 
     page1 = {"objects": DT_SAMPLE["@graph"][:2],
-             "meta": {"next": "https://api.datatourisme.fr/v1/catalog?api_key=K&page=2"}}
+             "meta": {"total": 4, "total_pages": 2,
+                      "next": "https://api.datatourisme.fr/v1/placeOfInterest?page=2"}}
     page2 = {"objects": DT_SAMPLE["@graph"][2:], "meta": {"next": None}}
-    seen: list[str] = []
+    seen: list[tuple[str, dict]] = []
 
     def fake(url, **k):
-        seen.append(url)
+        seen.append((url, k.get("headers") or {}))
         return _FakeResp(page1 if len(seen) == 1 else page2)
 
     monkeypatch.setattr("quefaire.fetchers.base.http_get", fake)
     found = dt.fetch(load_sector("pont-de-salars"))
 
-    assert len(seen) == 2                      # deux pages, puis arrêt sur next=None
-    assert "api_key=K" in seen[0]
-    assert seen[1].endswith("page=2")          # l'URL next est suivie telle quelle
+    assert len(seen) == 2                          # deux pages, puis arrêt sur next=None
+    # Clé en en-tête (méthode recommandée) et non dans l'URL : elle ne fuite pas
+    # dans les journaux de requêtes.
+    assert seen[0][1].get("X-API-Key") == "K"
+    assert "api_key" not in seen[0][0]
+    assert seen[1][0].endswith("page=2")           # l'URL next est suivie telle quelle
     assert {p.name for p in found} == {"Musée du Rouergue", "Accrobranche du Lévézou"}
 
 
@@ -1287,12 +1291,20 @@ def test_datatourisme_api_extra_filters(monkeypatch):
         "quefaire.fetchers.base.http_get",
         lambda url, **k: (seen.append(url), _FakeResp({"objects": [], "meta": {}}))[1],
     )
-    # Le périmètre vient du REGISTRE du secteur, via une expression `filters`
-    # (syntaxe de l'API), correctement encodée dans l'URL.
-    dt.fetch(load_sector("pont-de-salars"))
-    assert "filters=type%3DPlaceOfInterest" in seen[0]      # expression url-encodée
-    assert f"page_size={dt.DEFAULT_PAGE_SIZE}" in seen[0]   # pagination large = moins de requêtes
+    # Le périmètre est DÉRIVÉ de l'épicentre : ni liste de communes, ni code
+    # départemental à maintenir. 60 min de voiture ≈ 48 km.
+    sector = load_sector("pont-de-salars")
+    dt.fetch(sector)
+    assert "geo_distance=44.2789%2C2.73%2C48km" in seen[0]
+    assert f"page_size={dt.MAX_PAGE_SIZE}" in seen[0]       # 250 = maximum autorisé
     assert "fields=" in seen[0]                             # réponse allégée
+    assert dt.MAX_PAGE_SIZE == 250                          # plafond imposé par l'API
+
+    # Rayon plus court → cercle plus petit, sans rien changer d'autre.
+    seen.clear()
+    sector.radius_minutes = 30
+    dt.fetch(sector)
+    assert "%2C18km" in seen[0]
 
 
 def test_datatourisme_type_mapping_uses_real_ontology_names():
