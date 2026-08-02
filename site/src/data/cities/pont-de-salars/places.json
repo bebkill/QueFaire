@@ -2377,39 +2377,6 @@
   "id": "alavostra-artisan-de-l-apero-95da6eae"
  },
  {
-  "name": "Alexis Monteil",
-  "category": "visite",
-  "source_id": "osm",
-  "sector": "pont-de-salars",
-  "external_id": "node/2455388432",
-  "description": "",
-  "tldr": null,
-  "commune": null,
-  "address": null,
-  "lat": 44.3538274,
-  "lon": 2.5750141,
-  "url": null,
-  "phone": null,
-  "opening_hours": null,
-  "fee": null,
-  "rating": null,
-  "rating_count": null,
-  "rating_source": null,
-  "rating_url": null,
-  "unusual": false,
-  "unusual_hint": true,
-  "quality": [],
-  "providers": [
-   "osm"
-  ],
-  "tags": [
-   "osm:tourism=artwork"
-  ],
-  "first_seen": "2026-08-02",
-  "last_seen": "2026-08-02",
-  "id": "alexis-monteil-bc932a86"
- },
- {
   "name": "Alice Ricard's dairy farm",
   "category": "ferme",
   "source_id": "datatourisme",
@@ -2847,39 +2814,6 @@
   "id": "ancien-prieure-du-sauvage-cc7324d9"
  },
  {
-  "name": "ancienne meule du moulin de Pareloup",
-  "category": "visite",
-  "source_id": "osm",
-  "sector": "pont-de-salars",
-  "external_id": "node/5503942613",
-  "description": "",
-  "tldr": null,
-  "commune": null,
-  "address": null,
-  "lat": 44.2352122,
-  "lon": 2.7526598,
-  "url": null,
-  "phone": null,
-  "opening_hours": null,
-  "fee": null,
-  "rating": null,
-  "rating_count": null,
-  "rating_source": null,
-  "rating_url": null,
-  "unusual": false,
-  "unusual_hint": true,
-  "quality": [],
-  "providers": [
-   "osm"
-  ],
-  "tags": [
-   "osm:tourism=artwork"
-  ],
-  "first_seen": "2026-08-02",
-  "last_seen": "2026-08-02",
-  "id": "ancienne-meule-du-moulin-de-pareloup-43eec2a0"
- },
- {
   "name": "Ânes nains",
   "category": "visite",
   "source_id": "osm",
@@ -2911,39 +2845,6 @@
   "first_seen": "2026-08-02",
   "last_seen": "2026-08-02",
   "id": "anes-nains-03ff0882"
- },
- {
-  "name": "Ange de la résurrection",
-  "category": "visite",
-  "source_id": "osm",
-  "sector": "pont-de-salars",
-  "external_id": "node/11304193950",
-  "description": "",
-  "tldr": null,
-  "commune": null,
-  "address": null,
-  "lat": 44.3583015,
-  "lon": 2.5875486,
-  "url": null,
-  "phone": null,
-  "opening_hours": null,
-  "fee": null,
-  "rating": null,
-  "rating_count": null,
-  "rating_source": null,
-  "rating_url": null,
-  "unusual": false,
-  "unusual_hint": true,
-  "quality": [],
-  "providers": [
-   "osm"
-  ],
-  "tags": [
-   "osm:tourism=artwork"
-  ],
-  "first_seen": "2026-08-02",
-  "last_seen": "2026-08-02",
-  "id": "ange-de-la-resurrection-af1520d3"
  },
  {
   "name": "Animation de la Tour Hospitalière et du Tombeau du Commandeur",
@@ -4740,39 +4641,6 @@
   "first_seen": "2026-08-02",
   "last_seen": "2026-08-02",
   "id": "au-marche-provencal-1e2d4311"
- },
- {
-  "name": "au-dessus du vent",
-  "category": "visite",
-  "source_id": "osm",
-  "sector": "pont-de-salars",
-  "external_id": "node/13108800569",
-  "description": "",
-  "tldr": null,
-  "commune": null,
-  "address": null,
-  "lat": 44.3525893,
-  "lon": 2.5670313,
-  "url": null,
-  "phone": null,
-  "opening_hours": null,
-  "fee": null,
-  "rating": null,
-  "rating_count": null,
-  "rating_source": null,
-  "rating_url": null,
-  "unusual": false,
-  "unusual_hint": true,
-  "quality": [],
-  "providers": [
-   "osm"
-  ],
-  "tags": [
-   "osm:tourism=artwork"
-  ],
-  "first_seen": "2026-08-02",
-  "last_seen": "2026-08-02",
-  "id": "au-dessus-du-vent-89dc0f54"
  },
  {
   "name": "Aubr'Action -  Accrobranche",
@@ -7118,39 +6986,6 @@
   "id": "besoin-de-nature-cuisine-et-nature-5a5fe2db"
  },
  {
-  "name": "Bestiaire",
-  "category": "visite",
-  "source_id": "osm",
-  "sector": "pont-de-salars",
-  "external_id": "node/12980225842",
-  "description": "",
-  "tldr": null,
-  "commune": null,
-  "address": null,
-  "lat": 44.527875,
-  "lon": 2.2661345,
-  "url": null,
-  "phone": null,
-  "opening_hours": null,
-  "fee": null,
-  "rating": null,
-  "rating_count": null,
-  "rating_source": null,
-  "rating_url": null,
-  "unusual": false,
-  "unusual_hint": true,
-  "quality": [],
-  "providers": [
-   "osm"
-  ],
-  "tags": [
-   "osm:tourism=artwork"
-  ],
-  "first_seen": "2026-08-02",
-  "last_seen": "2026-08-02",
-  "id": "bestiaire-f2790c85"
- },
- {
   "name": "Bibliothèque",
   "category": "prestation",
   "source_id": "datatourisme",
@@ -7545,39 +7380,6 @@
   "first_seen": "2026-08-02",
   "last_seen": "2026-08-02",
   "id": "bien-etre-corps-sante-93997b47"
- },
- {
-  "name": "Blasy Bou dit Lebon",
-  "category": "visite",
-  "source_id": "osm",
-  "sector": "pont-de-salars",
-  "external_id": "node/2249909536",
-  "description": "",
-  "tldr": null,
-  "commune": null,
-  "address": null,
-  "lat": 44.3486375,
-  "lon": 2.5760514,
-  "url": null,
-  "phone": null,
-  "opening_hours": null,
-  "fee": null,
-  "rating": null,
-  "rating_count": null,
-  "rating_source": null,
-  "rating_url": null,
-  "unusual": false,
-  "unusual_hint": true,
-  "quality": [],
-  "providers": [
-   "osm"
-  ],
-  "tags": [
-   "osm:tourism=artwork"
-  ],
-  "first_seen": "2026-08-02",
-  "last_seen": "2026-08-02",
-  "id": "blasy-bou-dit-lebon-65df0471"
  },
  {
   "name": "Bluegreen Golf de Rodez Agglomération",
@@ -8209,39 +8011,6 @@
   "first_seen": "2026-08-02",
   "last_seen": "2026-08-02",
   "id": "brasserie-la-calmettoise-biere-paysanne-groupes-7dbbd197"
- },
- {
-  "name": "Brebis et Agneaux",
-  "category": "visite",
-  "source_id": "osm",
-  "sector": "pont-de-salars",
-  "external_id": "node/9072029695",
-  "description": "",
-  "tldr": null,
-  "commune": null,
-  "address": null,
-  "lat": 43.9745805,
-  "lon": 2.7208136,
-  "url": null,
-  "phone": null,
-  "opening_hours": null,
-  "fee": null,
-  "rating": null,
-  "rating_count": null,
-  "rating_source": null,
-  "rating_url": null,
-  "unusual": false,
-  "unusual_hint": true,
-  "quality": [],
-  "providers": [
-   "osm"
-  ],
-  "tags": [
-   "osm:tourism=artwork"
-  ],
-  "first_seen": "2026-08-02",
-  "last_seen": "2026-08-02",
-  "id": "brebis-et-agneaux-fb2b3583"
  },
  {
   "name": "Broche et gourmandises",
@@ -9135,39 +8904,6 @@
   "id": "buste-de-la-vierge-a-l-enfant-55b9ea53"
  },
  {
-  "name": "Buste de Paul Bodin",
-  "category": "visite",
-  "source_id": "osm",
-  "sector": "pont-de-salars",
-  "external_id": "node/5454372411",
-  "description": "",
-  "tldr": null,
-  "commune": null,
-  "address": null,
-  "lat": 44.1258455,
-  "lon": 2.3316777,
-  "url": null,
-  "phone": null,
-  "opening_hours": null,
-  "fee": null,
-  "rating": null,
-  "rating_count": null,
-  "rating_source": null,
-  "rating_url": null,
-  "unusual": false,
-  "unusual_hint": true,
-  "quality": [],
-  "providers": [
-   "osm"
-  ],
-  "tags": [
-   "osm:tourism=artwork"
-  ],
-  "first_seen": "2026-08-02",
-  "last_seen": "2026-08-02",
-  "id": "buste-de-paul-bodin-f9c546ef"
- },
- {
   "name": "C'est l'été ! Youpi, y a piscine !",
   "category": "prestation",
   "source_id": "datatourisme",
@@ -9232,39 +8968,6 @@
   "first_seen": "2026-08-02",
   "last_seen": "2026-08-02",
   "id": "cabri-oles-et-compagnie-2cb3c0f9"
- },
- {
-  "name": "Cadran Solaire",
-  "category": "visite",
-  "source_id": "osm",
-  "sector": "pont-de-salars",
-  "external_id": "node/2582720246",
-  "description": "",
-  "tldr": null,
-  "commune": null,
-  "address": null,
-  "lat": 44.3528724,
-  "lon": 2.578162,
-  "url": null,
-  "phone": null,
-  "opening_hours": null,
-  "fee": null,
-  "rating": null,
-  "rating_count": null,
-  "rating_source": null,
-  "rating_url": null,
-  "unusual": false,
-  "unusual_hint": true,
-  "quality": [],
-  "providers": [
-   "osm"
-  ],
-  "tags": [
-   "osm:tourism=artwork"
-  ],
-  "first_seen": "2026-08-02",
-  "last_seen": "2026-08-02",
-  "id": "cadran-solaire-f6d134e8"
  },
  {
   "name": "Café des parents : : Médiation animale",
@@ -17812,39 +17515,6 @@
   "id": "colline-de-saint-martin-a13a453c"
  },
  {
-  "name": "Colonne de la liberté",
-  "category": "visite",
-  "source_id": "osm",
-  "sector": "pont-de-salars",
-  "external_id": "node/2912471824",
-  "description": "",
-  "tldr": null,
-  "commune": null,
-  "address": null,
-  "lat": 44.3516402,
-  "lon": 2.5669124,
-  "url": null,
-  "phone": null,
-  "opening_hours": null,
-  "fee": null,
-  "rating": null,
-  "rating_count": null,
-  "rating_source": null,
-  "rating_url": null,
-  "unusual": false,
-  "unusual_hint": true,
-  "quality": [],
-  "providers": [
-   "osm"
-  ],
-  "tags": [
-   "osm:tourism=artwork"
-  ],
-  "first_seen": "2026-08-02",
-  "last_seen": "2026-08-02",
-  "id": "colonne-de-la-liberte-ad6f08d5"
- },
- {
   "name": "Combelles centre équestre Rodez Agglomération",
   "category": "prestation",
   "source_id": "datatourisme",
@@ -19465,39 +19135,6 @@
   "id": "cueilleur-de-sommets-groupes-e90b03a6"
  },
  {
-  "name": "Curé Monteil",
-  "category": "visite",
-  "source_id": "osm",
-  "sector": "pont-de-salars",
-  "external_id": "node/11286580816",
-  "description": "",
-  "tldr": null,
-  "commune": null,
-  "address": null,
-  "lat": 44.4168911,
-  "lon": 2.3670774,
-  "url": null,
-  "phone": null,
-  "opening_hours": null,
-  "fee": null,
-  "rating": null,
-  "rating_count": null,
-  "rating_source": null,
-  "rating_url": null,
-  "unusual": false,
-  "unusual_hint": true,
-  "quality": [],
-  "providers": [
-   "osm"
-  ],
-  "tags": [
-   "osm:tourism=artwork"
-  ],
-  "first_seen": "2026-08-02",
-  "last_seen": "2026-08-02",
-  "id": "cure-monteil-93d6c079"
- },
- {
   "name": "Cycle Azam shop",
   "category": "prestation",
   "source_id": "datatourisme",
@@ -19529,39 +19166,6 @@
   "first_seen": "2026-08-02",
   "last_seen": "2026-08-02",
   "id": "cycle-azam-shop-f2805b6b"
- },
- {
-  "name": "Cycle de vie",
-  "category": "visite",
-  "source_id": "osm",
-  "sector": "pont-de-salars",
-  "external_id": "node/13053119927",
-  "description": "",
-  "tldr": null,
-  "commune": null,
-  "address": null,
-  "lat": 44.5267293,
-  "lon": 2.245872,
-  "url": null,
-  "phone": null,
-  "opening_hours": null,
-  "fee": null,
-  "rating": null,
-  "rating_count": null,
-  "rating_source": null,
-  "rating_url": null,
-  "unusual": false,
-  "unusual_hint": true,
-  "quality": [],
-  "providers": [
-   "osm"
-  ],
-  "tags": [
-   "osm:tourism=artwork"
-  ],
-  "first_seen": "2026-08-02",
-  "last_seen": "2026-08-02",
-  "id": "cycle-de-vie-85c1d58f"
  },
  {
   "name": "Cycles Dumas Natural",
@@ -19694,39 +19298,6 @@
   "first_seen": "2026-08-02",
   "last_seen": "2026-08-02",
   "id": "daims-europeens-f28bec61"
- },
- {
-  "name": "Dame de Saint-Sernin",
-  "category": "visite",
-  "source_id": "osm",
-  "sector": "pont-de-salars",
-  "external_id": "node/9882713792",
-  "description": "",
-  "tldr": null,
-  "commune": null,
-  "address": null,
-  "lat": 43.8850602,
-  "lon": 2.6036385,
-  "url": null,
-  "phone": null,
-  "opening_hours": null,
-  "fee": null,
-  "rating": null,
-  "rating_count": null,
-  "rating_source": null,
-  "rating_url": null,
-  "unusual": false,
-  "unusual_hint": true,
-  "quality": [],
-  "providers": [
-   "osm"
-  ],
-  "tags": [
-   "osm:tourism=artwork"
-  ],
-  "first_seen": "2026-08-02",
-  "last_seen": "2026-08-02",
-  "id": "dame-de-saint-sernin-3a614fd3"
  },
  {
   "name": "De l'arb ô corps : Bain de forêt",
@@ -20123,39 +19694,6 @@
   "first_seen": "2026-08-02",
   "last_seen": "2026-08-02",
   "id": "deltalib-0d7b1d2d"
- },
- {
-  "name": "Denys Auguste Affre",
-  "category": "visite",
-  "source_id": "osm",
-  "sector": "pont-de-salars",
-  "external_id": "node/2405274150",
-  "description": "",
-  "tldr": null,
-  "commune": null,
-  "address": null,
-  "lat": 44.3508547,
-  "lon": 2.5760199,
-  "url": null,
-  "phone": null,
-  "opening_hours": null,
-  "fee": null,
-  "rating": null,
-  "rating_count": null,
-  "rating_source": null,
-  "rating_url": null,
-  "unusual": false,
-  "unusual_hint": true,
-  "quality": [],
-  "providers": [
-   "osm"
-  ],
-  "tags": [
-   "osm:tourism=artwork"
-  ],
-  "first_seen": "2026-08-02",
-  "last_seen": "2026-08-02",
-  "id": "denys-auguste-affre-2180dae7"
  },
  {
   "name": "Des glaces de la ferme au lait de brebis - Valérie BRU - GAEC DU MAUBERT",
@@ -23189,39 +22727,6 @@
   "id": "domaine-rols-b25b39ca"
  },
  {
-  "name": "Don Quichotte du Larzac",
-  "category": "visite",
-  "source_id": "osm",
-  "sector": "pont-de-salars",
-  "external_id": "node/9026085713",
-  "description": "",
-  "tldr": null,
-  "commune": null,
-  "address": null,
-  "lat": 43.9750034,
-  "lon": 2.7192968,
-  "url": null,
-  "phone": null,
-  "opening_hours": null,
-  "fee": null,
-  "rating": null,
-  "rating_count": null,
-  "rating_source": null,
-  "rating_url": null,
-  "unusual": false,
-  "unusual_hint": true,
-  "quality": [],
-  "providers": [
-   "osm"
-  ],
-  "tags": [
-   "osm:tourism=artwork"
-  ],
-  "first_seen": "2026-08-02",
-  "last_seen": "2026-08-02",
-  "id": "don-quichotte-du-larzac-2e38f1bb"
- },
- {
   "name": "Double Don du Rosaire",
   "category": "visite",
   "source_id": "osm",
@@ -23253,39 +22758,6 @@
   "first_seen": "2026-08-02",
   "last_seen": "2026-08-02",
   "id": "double-don-du-rosaire-9ab7add2"
- },
- {
-  "name": "Dr Paul Bonnefé",
-  "category": "visite",
-  "source_id": "osm",
-  "sector": "pont-de-salars",
-  "external_id": "node/2104659924",
-  "description": "",
-  "tldr": null,
-  "commune": null,
-  "address": null,
-  "lat": 44.3526487,
-  "lon": 2.5780894,
-  "url": null,
-  "phone": null,
-  "opening_hours": null,
-  "fee": null,
-  "rating": null,
-  "rating_count": null,
-  "rating_source": null,
-  "rating_url": null,
-  "unusual": false,
-  "unusual_hint": true,
-  "quality": [],
-  "providers": [
-   "osm"
-  ],
-  "tags": [
-   "osm:tourism=artwork"
-  ],
-  "first_seen": "2026-08-02",
-  "last_seen": "2026-08-02",
-  "id": "dr-paul-bonnefe-18e577f0"
  },
  {
   "name": "Du Barrage à l'Usine - Espace EDF Truyère",
@@ -27618,39 +27090,6 @@
   "id": "epicerie-del-pais-6dd462a2"
  },
  {
-  "name": "Épis de Seigle",
-  "category": "visite",
-  "source_id": "osm",
-  "sector": "pont-de-salars",
-  "external_id": "node/7847666861",
-  "description": "",
-  "tldr": null,
-  "commune": null,
-  "address": null,
-  "lat": 44.2771688,
-  "lon": 2.4306683,
-  "url": null,
-  "phone": null,
-  "opening_hours": null,
-  "fee": null,
-  "rating": null,
-  "rating_count": null,
-  "rating_source": null,
-  "rating_url": null,
-  "unusual": false,
-  "unusual_hint": true,
-  "quality": [],
-  "providers": [
-   "osm"
-  ],
-  "tags": [
-   "osm:tourism=artwork"
-  ],
-  "first_seen": "2026-08-02",
-  "last_seen": "2026-08-02",
-  "id": "epis-de-seigle-abe4e51f"
- },
- {
   "name": "Ermitage Saint-Pierre",
   "category": "patrimoine",
   "source_id": "osm",
@@ -29271,39 +28710,6 @@
   "first_seen": "2026-08-02",
   "last_seen": "2026-08-02",
   "id": "eugene-viala-9f3c6a57"
- },
- {
-  "name": "Eugène Viala - Peintre Poëte",
-  "category": "visite",
-  "source_id": "osm",
-  "sector": "pont-de-salars",
-  "external_id": "node/1351918168",
-  "description": "",
-  "tldr": null,
-  "commune": null,
-  "address": null,
-  "lat": 44.1823776,
-  "lon": 2.7892438,
-  "url": null,
-  "phone": null,
-  "opening_hours": null,
-  "fee": null,
-  "rating": null,
-  "rating_count": null,
-  "rating_source": null,
-  "rating_url": null,
-  "unusual": false,
-  "unusual_hint": true,
-  "quality": [],
-  "providers": [
-   "osm"
-  ],
-  "tags": [
-   "osm:tourism=artwork"
-  ],
-  "first_seen": "2026-08-02",
-  "last_seen": "2026-08-02",
-  "id": "eugene-viala-peintre-poete-47870ad1"
  },
  {
   "name": "Eulalie d'Art",
@@ -31653,39 +31059,6 @@
   "id": "fond-du-cirque-35ee9e50"
  },
  {
-  "name": "Fontaine aux Béliers",
-  "category": "visite",
-  "source_id": "osm",
-  "sector": "pont-de-salars",
-  "external_id": "node/9067368053",
-  "description": "",
-  "tldr": null,
-  "commune": null,
-  "address": null,
-  "lat": 43.9579878,
-  "lon": 2.8867682,
-  "url": null,
-  "phone": null,
-  "opening_hours": null,
-  "fee": null,
-  "rating": null,
-  "rating_count": null,
-  "rating_source": null,
-  "rating_url": null,
-  "unusual": false,
-  "unusual_hint": true,
-  "quality": [],
-  "providers": [
-   "osm"
-  ],
-  "tags": [
-   "osm:tourism=artwork"
-  ],
-  "first_seen": "2026-08-02",
-  "last_seen": "2026-08-02",
-  "id": "fontaine-aux-beliers-71efacae"
- },
- {
   "name": "Forêt jardin du Landassou",
   "category": "nature",
   "source_id": "datatourisme",
@@ -31851,39 +31224,6 @@
   "id": "fountain-of-the-mother-of-god-74518251"
  },
  {
-  "name": "François Fabié",
-  "category": "visite",
-  "source_id": "osm",
-  "sector": "pont-de-salars",
-  "external_id": "node/2504274845",
-  "description": "",
-  "tldr": null,
-  "commune": null,
-  "address": null,
-  "lat": 44.3489357,
-  "lon": 2.5715498,
-  "url": null,
-  "phone": null,
-  "opening_hours": null,
-  "fee": null,
-  "rating": null,
-  "rating_count": null,
-  "rating_source": null,
-  "rating_url": null,
-  "unusual": false,
-  "unusual_hint": true,
-  "quality": [],
-  "providers": [
-   "osm"
-  ],
-  "tags": [
-   "osm:tourism=artwork"
-  ],
-  "first_seen": "2026-08-02",
-  "last_seen": "2026-08-02",
-  "id": "francois-fabie-989ec55f"
- },
- {
   "name": "Freemick Aventure - Jeux d'évasion et d'aventure mobiles",
   "category": "prestation",
   "source_id": "datatourisme",
@@ -31948,39 +31288,6 @@
   "first_seen": "2026-08-02",
   "last_seen": "2026-08-02",
   "id": "freemick-aventure-jeux-d-evasion-et-d-aventure-mobiles-groupes-8819b364"
- },
- {
-  "name": "Fresque de Réquista",
-  "category": "visite",
-  "source_id": "osm",
-  "sector": "pont-de-salars",
-  "external_id": "way/967786908",
-  "description": "",
-  "tldr": null,
-  "commune": null,
-  "address": null,
-  "lat": 44.0315045,
-  "lon": 2.5370288,
-  "url": null,
-  "phone": null,
-  "opening_hours": null,
-  "fee": null,
-  "rating": null,
-  "rating_count": null,
-  "rating_source": null,
-  "rating_url": null,
-  "unusual": false,
-  "unusual_hint": true,
-  "quality": [],
-  "providers": [
-   "osm"
-  ],
-  "tags": [
-   "osm:tourism=artwork"
-  ],
-  "first_seen": "2026-08-02",
-  "last_seen": "2026-08-02",
-  "id": "fresque-de-requista-29ad6d5c"
  },
  {
   "name": "Fromagerie coopérative des Bergers du Larzac",
@@ -33272,39 +32579,6 @@
   "id": "game-off-road-trott-cross-9607fa4c"
  },
  {
-  "name": "Gavroche",
-  "category": "visite",
-  "source_id": "osm",
-  "sector": "pont-de-salars",
-  "external_id": "node/9067368032",
-  "description": "",
-  "tldr": null,
-  "commune": null,
-  "address": null,
-  "lat": 43.9577851,
-  "lon": 2.8875528,
-  "url": null,
-  "phone": null,
-  "opening_hours": null,
-  "fee": null,
-  "rating": null,
-  "rating_count": null,
-  "rating_source": null,
-  "rating_url": null,
-  "unusual": false,
-  "unusual_hint": true,
-  "quality": [],
-  "providers": [
-   "osm"
-  ],
-  "tags": [
-   "osm:tourism=artwork"
-  ],
-  "first_seen": "2026-08-02",
-  "last_seen": "2026-08-02",
-  "id": "gavroche-a7423721"
- },
- {
   "name": "Général Jean-Joseph Tarayre",
   "category": "visite",
   "source_id": "osm",
@@ -33666,39 +32940,6 @@
   "first_seen": "2026-08-02",
   "last_seen": "2026-08-02",
   "id": "giant-store-rodez-f4614f2e"
- },
- {
-  "name": "GiantLostDog",
-  "category": "visite",
-  "source_id": "osm",
-  "sector": "pont-de-salars",
-  "external_id": "node/5754131063",
-  "description": "",
-  "tldr": null,
-  "commune": null,
-  "address": null,
-  "lat": 44.3656738,
-  "lon": 2.5662967,
-  "url": null,
-  "phone": null,
-  "opening_hours": null,
-  "fee": null,
-  "rating": null,
-  "rating_count": null,
-  "rating_source": null,
-  "rating_url": null,
-  "unusual": false,
-  "unusual_hint": true,
-  "quality": [],
-  "providers": [
-   "osm"
-  ],
-  "tags": [
-   "osm:tourism=artwork"
-  ],
-  "first_seen": "2026-08-02",
-  "last_seen": "2026-08-02",
-  "id": "giantlostdog-8937b09a"
  },
  {
   "name": "Gisement préhistorique du Rescoundudou",
@@ -35170,39 +34411,6 @@
   "id": "handitourisme-mise-a-disposition-d-une-becasine-ac372d60"
  },
  {
-  "name": "Heart Love",
-  "category": "visite",
-  "source_id": "osm",
-  "sector": "pont-de-salars",
-  "external_id": "node/13053119987",
-  "description": "",
-  "tldr": null,
-  "commune": null,
-  "address": null,
-  "lat": 44.5247188,
-  "lon": 2.2817609,
-  "url": null,
-  "phone": null,
-  "opening_hours": null,
-  "fee": null,
-  "rating": null,
-  "rating_count": null,
-  "rating_source": null,
-  "rating_url": null,
-  "unusual": false,
-  "unusual_hint": true,
-  "quality": [],
-  "providers": [
-   "osm"
-  ],
-  "tags": [
-   "osm:tourism=artwork"
-  ],
-  "first_seen": "2026-08-02",
-  "last_seen": "2026-08-02",
-  "id": "heart-love-339d9696"
- },
- {
   "name": "Herbezou - Herboristerie et épicerie du Lévézou",
   "category": "ferme",
   "source_id": "datatourisme",
@@ -35267,72 +34475,6 @@
   "first_seen": "2026-08-02",
   "last_seen": "2026-08-02",
   "id": "historic-town-centre-eec48db4"
- },
- {
-  "name": "Hommage aux Bâtisseurs",
-  "category": "visite",
-  "source_id": "osm",
-  "sector": "pont-de-salars",
-  "external_id": "node/4534581723",
-  "description": "",
-  "tldr": null,
-  "commune": null,
-  "address": null,
-  "lat": 44.5212656,
-  "lon": 2.7653506,
-  "url": null,
-  "phone": null,
-  "opening_hours": null,
-  "fee": null,
-  "rating": null,
-  "rating_count": null,
-  "rating_source": null,
-  "rating_url": null,
-  "unusual": false,
-  "unusual_hint": true,
-  "quality": [],
-  "providers": [
-   "osm"
-  ],
-  "tags": [
-   "osm:tourism=artwork"
-  ],
-  "first_seen": "2026-08-02",
-  "last_seen": "2026-08-02",
-  "id": "hommage-aux-batisseurs-57490853"
- },
- {
-  "name": "Homo Faber",
-  "category": "visite",
-  "source_id": "osm",
-  "sector": "pont-de-salars",
-  "external_id": "node/3281932961",
-  "description": "",
-  "tldr": null,
-  "commune": null,
-  "address": null,
-  "lat": 44.3385638,
-  "lon": 2.7570061,
-  "url": null,
-  "phone": null,
-  "opening_hours": null,
-  "fee": null,
-  "rating": null,
-  "rating_count": null,
-  "rating_source": null,
-  "rating_url": null,
-  "unusual": false,
-  "unusual_hint": true,
-  "quality": [],
-  "providers": [
-   "osm"
-  ],
-  "tags": [
-   "osm:tourism=artwork"
-  ],
-  "first_seen": "2026-08-02",
-  "last_seen": "2026-08-02",
-  "id": "homo-faber-090ca078"
  },
  {
   "name": "Horizon - Millau (groupes)",
@@ -36069,39 +35211,6 @@
   "id": "hygienavie-centre-de-remise-de-forme-86d18885"
  },
  {
-  "name": "Idéogrammes",
-  "category": "visite",
-  "source_id": "osm",
-  "sector": "pont-de-salars",
-  "external_id": "node/846865298",
-  "description": "",
-  "tldr": null,
-  "commune": null,
-  "address": null,
-  "lat": 44.5560446,
-  "lon": 2.2646007,
-  "url": null,
-  "phone": null,
-  "opening_hours": null,
-  "fee": null,
-  "rating": null,
-  "rating_count": null,
-  "rating_source": null,
-  "rating_url": null,
-  "unusual": false,
-  "unusual_hint": true,
-  "quality": [],
-  "providers": [
-   "osm"
-  ],
-  "tags": [
-   "osm:tourism=artwork"
-  ],
-  "first_seen": "2026-08-02",
-  "last_seen": "2026-08-02",
-  "id": "ideogrammes-1c68e317"
- },
- {
   "name": "Immersion gourmande dans le vignoble de Marcillac",
   "category": "prestation",
   "source_id": "datatourisme",
@@ -36798,39 +35907,6 @@
   "first_seen": "2026-08-02",
   "last_seen": "2026-08-02",
   "id": "jd-air-ed222ac1"
- },
- {
-  "name": "Jean-Henri Fabre",
-  "category": "visite",
-  "source_id": "osm",
-  "sector": "pont-de-salars",
-  "external_id": "node/13282050050",
-  "description": "",
-  "tldr": null,
-  "commune": null,
-  "address": null,
-  "lat": 44.2151123,
-  "lon": 2.9889193,
-  "url": null,
-  "phone": null,
-  "opening_hours": null,
-  "fee": null,
-  "rating": null,
-  "rating_count": null,
-  "rating_source": null,
-  "rating_url": null,
-  "unusual": false,
-  "unusual_hint": true,
-  "quality": [],
-  "providers": [
-   "osm"
-  ],
-  "tags": [
-   "osm:tourism=artwork"
-  ],
-  "first_seen": "2026-08-02",
-  "last_seen": "2026-08-02",
-  "id": "jean-henri-fabre-108081d1"
  },
  {
   "name": "Jeu de piste \"Eliette à Saint-Clair de Verdun\"",
@@ -40635,39 +39711,6 @@
   "id": "la-gazonne-leisure-area-swimming-pool-8caf9f4b"
  },
  {
-  "name": "La Gentiane Pneumonanthe",
-  "category": "visite",
-  "source_id": "osm",
-  "sector": "pont-de-salars",
-  "external_id": "node/5347564770",
-  "description": "",
-  "tldr": null,
-  "commune": null,
-  "address": null,
-  "lat": 44.6831197,
-  "lon": 2.8510996,
-  "url": null,
-  "phone": null,
-  "opening_hours": null,
-  "fee": null,
-  "rating": null,
-  "rating_count": null,
-  "rating_source": null,
-  "rating_url": null,
-  "unusual": false,
-  "unusual_hint": true,
-  "quality": [],
-  "providers": [
-   "osm"
-  ],
-  "tags": [
-   "osm:tourism=artwork"
-  ],
-  "first_seen": "2026-08-02",
-  "last_seen": "2026-08-02",
-  "id": "la-gentiane-pneumonanthe-926378f1"
- },
- {
   "name": "La Grange",
   "category": "sport-loisir",
   "source_id": "osm",
@@ -40766,39 +39809,6 @@
   "first_seen": "2026-08-02",
   "last_seen": "2026-08-02",
   "id": "la-jasse-maison-du-larzac-4ad46f3d"
- },
- {
-  "name": "La Jeunesse",
-  "category": "visite",
-  "source_id": "osm",
-  "sector": "pont-de-salars",
-  "external_id": "node/2455399566",
-  "description": "",
-  "tldr": null,
-  "commune": null,
-  "address": null,
-  "lat": 44.3488761,
-  "lon": 2.5786903,
-  "url": null,
-  "phone": null,
-  "opening_hours": null,
-  "fee": null,
-  "rating": null,
-  "rating_count": null,
-  "rating_source": null,
-  "rating_url": null,
-  "unusual": false,
-  "unusual_hint": true,
-  "quality": [],
-  "providers": [
-   "osm"
-  ],
-  "tags": [
-   "osm:tourism=artwork"
-  ],
-  "first_seen": "2026-08-02",
-  "last_seen": "2026-08-02",
-  "id": "la-jeunesse-12fe0c76"
  },
  {
   "name": "La Liane de Rose",
@@ -41263,39 +40273,6 @@
   "first_seen": "2026-08-02",
   "last_seen": "2026-08-02",
   "id": "la-maison-rurale-de-1914-693836af"
- },
- {
-  "name": "La Marche Du Temps",
-  "category": "visite",
-  "source_id": "osm",
-  "sector": "pont-de-salars",
-  "external_id": "node/11494872189",
-  "description": "",
-  "tldr": null,
-  "commune": null,
-  "address": null,
-  "lat": 44.197532,
-  "lon": 2.3414987,
-  "url": null,
-  "phone": null,
-  "opening_hours": null,
-  "fee": null,
-  "rating": null,
-  "rating_count": null,
-  "rating_source": null,
-  "rating_url": null,
-  "unusual": false,
-  "unusual_hint": true,
-  "quality": [],
-  "providers": [
-   "osm"
-  ],
-  "tags": [
-   "osm:tourism=artwork"
-  ],
-  "first_seen": "2026-08-02",
-  "last_seen": "2026-08-02",
-  "id": "la-marche-du-temps-d23a4ba3"
  },
  {
   "name": "La Menuiserie",
@@ -42950,39 +41927,6 @@
   "first_seen": "2026-08-02",
   "last_seen": "2026-08-02",
   "id": "le-chaudron-aux-bonnes-herbes-00ffc975"
- },
- {
-  "name": "Le cheval de La Calquière",
-  "category": "visite",
-  "source_id": "osm",
-  "sector": "pont-de-salars",
-  "external_id": "node/6798740673",
-  "description": "",
-  "tldr": null,
-  "commune": null,
-  "address": null,
-  "lat": 44.1593782,
-  "lon": 2.2823246,
-  "url": null,
-  "phone": null,
-  "opening_hours": null,
-  "fee": null,
-  "rating": null,
-  "rating_count": null,
-  "rating_source": null,
-  "rating_url": null,
-  "unusual": false,
-  "unusual_hint": true,
-  "quality": [],
-  "providers": [
-   "osm"
-  ],
-  "tags": [
-   "osm:tourism=artwork"
-  ],
-  "first_seen": "2026-08-02",
-  "last_seen": "2026-08-02",
-  "id": "le-cheval-de-la-calquiere-d0fafc1c"
  },
  {
   "name": "Le Cinq",
@@ -44742,39 +43686,6 @@
   "id": "le-rocher-de-capluc-7bd844cd"
  },
  {
-  "name": "Le Rocher troué",
-  "category": "visite",
-  "source_id": "osm",
-  "sector": "pont-de-salars",
-  "external_id": "node/2691230642",
-  "description": "",
-  "tldr": null,
-  "commune": null,
-  "address": null,
-  "lat": 44.5344748,
-  "lon": 2.2771026,
-  "url": null,
-  "phone": null,
-  "opening_hours": null,
-  "fee": null,
-  "rating": null,
-  "rating_count": null,
-  "rating_source": null,
-  "rating_url": null,
-  "unusual": false,
-  "unusual_hint": true,
-  "quality": [],
-  "providers": [
-   "osm"
-  ],
-  "tags": [
-   "osm:tourism=artwork"
-  ],
-  "first_seen": "2026-08-02",
-  "last_seen": "2026-08-02",
-  "id": "le-rocher-troue-6d986c1f"
- },
- {
   "name": "Le Safran du Domaine de Montarsès",
   "category": "ferme",
   "source_id": "datatourisme",
@@ -45136,39 +44047,6 @@
   "first_seen": "2026-08-02",
   "last_seen": "2026-08-02",
   "id": "le-viaur-a-l-aire-naturelle-de-la-roque-0d2dff31"
- },
- {
-  "name": "Le Violoniste",
-  "category": "visite",
-  "source_id": "osm",
-  "sector": "pont-de-salars",
-  "external_id": "node/7566427868",
-  "description": "",
-  "tldr": null,
-  "commune": null,
-  "address": null,
-  "lat": 44.3874398,
-  "lon": 2.334716,
-  "url": null,
-  "phone": null,
-  "opening_hours": null,
-  "fee": null,
-  "rating": null,
-  "rating_count": null,
-  "rating_source": null,
-  "rating_url": null,
-  "unusual": false,
-  "unusual_hint": true,
-  "quality": [],
-  "providers": [
-   "osm"
-  ],
-  "tags": [
-   "osm:tourism=artwork"
-  ],
-  "first_seen": "2026-08-02",
-  "last_seen": "2026-08-02",
-  "id": "le-violoniste-478aab42"
  },
  {
   "name": "Les Ailes du Viaduc",
@@ -46922,39 +45800,6 @@
   "id": "les-loco-motives-paniers-de-produits-locaux-12cf6700"
  },
  {
-  "name": "Les Machoires",
-  "category": "visite",
-  "source_id": "osm",
-  "sector": "pont-de-salars",
-  "external_id": "node/13248653706",
-  "description": "",
-  "tldr": null,
-  "commune": null,
-  "address": null,
-  "lat": 44.2673983,
-  "lon": 3.2887795,
-  "url": null,
-  "phone": null,
-  "opening_hours": null,
-  "fee": null,
-  "rating": null,
-  "rating_count": null,
-  "rating_source": null,
-  "rating_url": null,
-  "unusual": false,
-  "unusual_hint": true,
-  "quality": [],
-  "providers": [
-   "osm"
-  ],
-  "tags": [
-   "osm:tourism=artwork"
-  ],
-  "first_seen": "2026-08-02",
-  "last_seen": "2026-08-02",
-  "id": "les-machoires-fd628e7c"
- },
- {
   "name": "Les mémoires de Cransac",
   "category": "musee",
   "source_id": "osm",
@@ -47745,39 +46590,6 @@
   "first_seen": "2026-08-02",
   "last_seen": "2026-08-02",
   "id": "ligue-pour-la-protection-des-oiseaux-9d12bc8e"
- },
- {
-  "name": "Little Abstract and Bird",
-  "category": "visite",
-  "source_id": "osm",
-  "sector": "pont-de-salars",
-  "external_id": "node/13053119985",
-  "description": "",
-  "tldr": null,
-  "commune": null,
-  "address": null,
-  "lat": 44.5257261,
-  "lon": 2.2819818,
-  "url": null,
-  "phone": null,
-  "opening_hours": null,
-  "fee": null,
-  "rating": null,
-  "rating_count": null,
-  "rating_source": null,
-  "rating_url": null,
-  "unusual": false,
-  "unusual_hint": true,
-  "quality": [],
-  "providers": [
-   "osm"
-  ],
-  "tags": [
-   "osm:tourism=artwork"
-  ],
-  "first_seen": "2026-08-02",
-  "last_seen": "2026-08-02",
-  "id": "little-abstract-and-bird-27888b35"
  },
  {
   "name": "livret jeu \"Sur les pas de Gargantua à Rieupeyroux\"",
@@ -50429,39 +49241,6 @@
   "id": "marche-nocturne-de-la-canourgue-d47b4c72"
  },
  {
-  "name": "Marie",
-  "category": "visite",
-  "source_id": "osm",
-  "sector": "pont-de-salars",
-  "external_id": "node/2492716200",
-  "description": "",
-  "tldr": null,
-  "commune": null,
-  "address": null,
-  "lat": 44.2897398,
-  "lon": 2.6053481,
-  "url": null,
-  "phone": null,
-  "opening_hours": null,
-  "fee": null,
-  "rating": null,
-  "rating_count": null,
-  "rating_source": null,
-  "rating_url": null,
-  "unusual": false,
-  "unusual_hint": true,
-  "quality": [],
-  "providers": [
-   "osm"
-  ],
-  "tags": [
-   "osm:tourism=artwork"
-  ],
-  "first_seen": "2026-08-02",
-  "last_seen": "2026-08-02",
-  "id": "marie-14978bb5"
- },
- {
   "name": "Mas d'Herens",
   "category": "ferme",
   "source_id": "datatourisme",
@@ -52083,39 +50862,6 @@
   "first_seen": "2026-08-02",
   "last_seen": "2026-08-02",
   "id": "monastere-et-cloitre-des-augustins-b0378783"
- },
- {
-  "name": "Monstre de Saint-Cyprien",
-  "category": "visite",
-  "source_id": "osm",
-  "sector": "pont-de-salars",
-  "external_id": "node/2822220090",
-  "description": "",
-  "tldr": null,
-  "commune": null,
-  "address": null,
-  "lat": 44.5618828,
-  "lon": 2.3952895,
-  "url": null,
-  "phone": null,
-  "opening_hours": null,
-  "fee": null,
-  "rating": null,
-  "rating_count": null,
-  "rating_source": null,
-  "rating_url": null,
-  "unusual": false,
-  "unusual_hint": true,
-  "quality": [],
-  "providers": [
-   "osm"
-  ],
-  "tags": [
-   "osm:tourism=artwork"
-  ],
-  "first_seen": "2026-08-02",
-  "last_seen": "2026-08-02",
-  "id": "monstre-de-saint-cyprien-addee048"
  },
  {
   "name": "Monument Talabot",
@@ -55399,39 +54145,6 @@
   "id": "orgues-basaltiques-c064d578"
  },
  {
-  "name": "Oryctus Nasicornis Futuris",
-  "category": "visite",
-  "source_id": "osm",
-  "sector": "pont-de-salars",
-  "external_id": "node/10295142761",
-  "description": "",
-  "tldr": null,
-  "commune": null,
-  "address": null,
-  "lat": 44.389007,
-  "lon": 2.3365243,
-  "url": null,
-  "phone": null,
-  "opening_hours": null,
-  "fee": null,
-  "rating": null,
-  "rating_count": null,
-  "rating_source": null,
-  "rating_url": null,
-  "unusual": false,
-  "unusual_hint": true,
-  "quality": [],
-  "providers": [
-   "osm"
-  ],
-  "tags": [
-   "osm:tourism=artwork"
-  ],
-  "first_seen": "2026-08-02",
-  "last_seen": "2026-08-02",
-  "id": "oryctus-nasicornis-futuris-cbb9ebd6"
- },
- {
   "name": "OSP un oeil sur le passé. Découverte de technologies anciennes",
   "category": "musee",
   "source_id": "datatourisme",
@@ -55694,39 +54407,6 @@
   "first_seen": "2026-08-02",
   "last_seen": "2026-08-02",
   "id": "pains-et-farines-de-la-roquecanude-1e6e787d"
- },
- {
-  "name": "Paix",
-  "category": "visite",
-  "source_id": "osm",
-  "sector": "pont-de-salars",
-  "external_id": "node/5062447255",
-  "description": "",
-  "tldr": null,
-  "commune": null,
-  "address": null,
-  "lat": 44.2776662,
-  "lon": 2.4321311,
-  "url": null,
-  "phone": null,
-  "opening_hours": null,
-  "fee": null,
-  "rating": null,
-  "rating_count": null,
-  "rating_source": null,
-  "rating_url": null,
-  "unusual": false,
-  "unusual_hint": true,
-  "quality": [],
-  "providers": [
-   "osm"
-  ],
-  "tags": [
-   "osm:tourism=artwork"
-  ],
-  "first_seen": "2026-08-02",
-  "last_seen": "2026-08-02",
-  "id": "paix-568ca538"
  },
  {
   "name": "Pampa ride / Draisiennes électriques",
@@ -58012,39 +56692,6 @@
   "id": "phacelia-cie-ferme-et-ecole-paysanne-ca764053"
  },
  {
-  "name": "Pierre Sculptée",
-  "category": "visite",
-  "source_id": "osm",
-  "sector": "pont-de-salars",
-  "external_id": "node/6003353630",
-  "description": "",
-  "tldr": null,
-  "commune": null,
-  "address": null,
-  "lat": 44.6018389,
-  "lon": 2.4025078,
-  "url": null,
-  "phone": null,
-  "opening_hours": null,
-  "fee": null,
-  "rating": null,
-  "rating_count": null,
-  "rating_source": null,
-  "rating_url": null,
-  "unusual": false,
-  "unusual_hint": true,
-  "quality": [],
-  "providers": [
-   "osm"
-  ],
-  "tags": [
-   "osm:tourism=artwork"
-  ],
-  "first_seen": "2026-08-02",
-  "last_seen": "2026-08-02",
-  "id": "pierre-sculptee-5a987183"
- },
- {
   "name": "pigeonnier",
   "category": "visite",
   "source_id": "osm",
@@ -60026,39 +58673,6 @@
   "id": "pleine-nature-organisation-location-de-vtt-a-assistance-electrique-a-saint-germa-a024def6"
  },
  {
-  "name": "Plus on partage, plus on possède",
-  "category": "visite",
-  "source_id": "osm",
-  "sector": "pont-de-salars",
-  "external_id": "node/13053119922",
-  "description": "",
-  "tldr": null,
-  "commune": null,
-  "address": null,
-  "lat": 44.5273114,
-  "lon": 2.2395273,
-  "url": null,
-  "phone": null,
-  "opening_hours": null,
-  "fee": null,
-  "rating": null,
-  "rating_count": null,
-  "rating_source": null,
-  "rating_url": null,
-  "unusual": false,
-  "unusual_hint": true,
-  "quality": [],
-  "providers": [
-   "osm"
-  ],
-  "tags": [
-   "osm:tourism=artwork"
-  ],
-  "first_seen": "2026-08-02",
-  "last_seen": "2026-08-02",
-  "id": "plus-on-partage-plus-on-possede-1412a224"
- },
- {
   "name": "Point de vue de la tour ornithologique",
   "category": "nature",
   "source_id": "datatourisme",
@@ -61088,39 +59702,6 @@
   "first_seen": "2026-08-02",
   "last_seen": "2026-08-02",
   "id": "potensac-660989ee"
- },
- {
-  "name": "Pressoir à vis",
-  "category": "visite",
-  "source_id": "osm",
-  "sector": "pont-de-salars",
-  "external_id": "node/9934139597",
-  "description": "",
-  "tldr": null,
-  "commune": null,
-  "address": null,
-  "lat": 43.9265028,
-  "lon": 2.5454703,
-  "url": null,
-  "phone": null,
-  "opening_hours": null,
-  "fee": null,
-  "rating": null,
-  "rating_count": null,
-  "rating_source": null,
-  "rating_url": null,
-  "unusual": false,
-  "unusual_hint": true,
-  "quality": [],
-  "providers": [
-   "osm"
-  ],
-  "tags": [
-   "osm:tourism=artwork"
-  ],
-  "first_seen": "2026-08-02",
-  "last_seen": "2026-08-02",
-  "id": "pressoir-a-vis-634342c5"
  },
  {
   "name": "Prieuré de Comberoumal",
@@ -62644,39 +61225,6 @@
   "id": "randonnees-pedestres-au-depart-de-verlac-aeb2b9ed"
  },
  {
-  "name": "Raton laser",
-  "category": "visite",
-  "source_id": "osm",
-  "sector": "pont-de-salars",
-  "external_id": "node/13053119923",
-  "description": "",
-  "tldr": null,
-  "commune": null,
-  "address": null,
-  "lat": 44.5283427,
-  "lon": 2.2472756,
-  "url": null,
-  "phone": null,
-  "opening_hours": null,
-  "fee": null,
-  "rating": null,
-  "rating_count": null,
-  "rating_source": null,
-  "rating_url": null,
-  "unusual": false,
-  "unusual_hint": true,
-  "quality": [],
-  "providers": [
-   "osm"
-  ],
-  "tags": [
-   "osm:tourism=artwork"
-  ],
-  "first_seen": "2026-08-02",
-  "last_seen": "2026-08-02",
-  "id": "raton-laser-1af01665"
- },
- {
   "name": "Reconstitution d'une épicerie d'antan",
   "category": "musee",
   "source_id": "datatourisme",
@@ -62708,39 +61256,6 @@
   "first_seen": "2026-08-02",
   "last_seen": "2026-08-02",
   "id": "reconstitution-d-une-epicerie-d-antan-7e08cee3"
- },
- {
-  "name": "Renaissance",
-  "category": "visite",
-  "source_id": "osm",
-  "sector": "pont-de-salars",
-  "external_id": "node/13053119980",
-  "description": "",
-  "tldr": null,
-  "commune": null,
-  "address": null,
-  "lat": 44.5293802,
-  "lon": 2.2756687,
-  "url": null,
-  "phone": null,
-  "opening_hours": null,
-  "fee": null,
-  "rating": null,
-  "rating_count": null,
-  "rating_source": null,
-  "rating_url": null,
-  "unusual": false,
-  "unusual_hint": true,
-  "quality": [],
-  "providers": [
-   "osm"
-  ],
-  "tags": [
-   "osm:tourism=artwork"
-  ],
-  "first_seen": "2026-08-02",
-  "last_seen": "2026-08-02",
-  "id": "renaissance-83a62542"
  },
  {
   "name": "Renards corsac",
@@ -63108,39 +61623,6 @@
   "first_seen": "2026-08-02",
   "last_seen": "2026-08-02",
   "id": "reve-et-rando-randonnee-pedestre-f8122719"
- },
- {
-  "name": "Révélation",
-  "category": "visite",
-  "source_id": "osm",
-  "sector": "pont-de-salars",
-  "external_id": "node/13053119981",
-  "description": "",
-  "tldr": null,
-  "commune": null,
-  "address": null,
-  "lat": 44.5256776,
-  "lon": 2.277044,
-  "url": null,
-  "phone": null,
-  "opening_hours": null,
-  "fee": null,
-  "rating": null,
-  "rating_count": null,
-  "rating_source": null,
-  "rating_url": null,
-  "unusual": false,
-  "unusual_hint": true,
-  "quality": [],
-  "providers": [
-   "osm"
-  ],
-  "tags": [
-   "osm:tourism=artwork"
-  ],
-  "first_seen": "2026-08-02",
-  "last_seen": "2026-08-02",
-  "id": "revelation-0ef8276d"
  },
  {
   "name": "Rex",
@@ -64475,72 +62957,6 @@
   "id": "saint-izaire-castle-and-archery-museum-7234692b"
  },
  {
-  "name": "Saint-Joseph",
-  "category": "visite",
-  "source_id": "osm",
-  "sector": "pont-de-salars",
-  "external_id": "node/8788587002",
-  "description": "",
-  "tldr": null,
-  "commune": null,
-  "address": null,
-  "lat": 44.3430103,
-  "lon": 2.5769469,
-  "url": null,
-  "phone": null,
-  "opening_hours": null,
-  "fee": null,
-  "rating": null,
-  "rating_count": null,
-  "rating_source": null,
-  "rating_url": null,
-  "unusual": false,
-  "unusual_hint": true,
-  "quality": [],
-  "providers": [
-   "osm"
-  ],
-  "tags": [
-   "osm:tourism=artwork"
-  ],
-  "first_seen": "2026-08-02",
-  "last_seen": "2026-08-02",
-  "id": "saint-joseph-c38c538e"
- },
- {
-  "name": "Saint-Pierre",
-  "category": "visite",
-  "source_id": "osm",
-  "sector": "pont-de-salars",
-  "external_id": "node/2492716340",
-  "description": "",
-  "tldr": null,
-  "commune": null,
-  "address": null,
-  "lat": 44.2897065,
-  "lon": 2.6055271,
-  "url": null,
-  "phone": null,
-  "opening_hours": null,
-  "fee": null,
-  "rating": null,
-  "rating_count": null,
-  "rating_source": null,
-  "rating_url": null,
-  "unusual": false,
-  "unusual_hint": true,
-  "quality": [],
-  "providers": [
-   "osm"
-  ],
-  "tags": [
-   "osm:tourism=artwork"
-  ],
-  "first_seen": "2026-08-02",
-  "last_seen": "2026-08-02",
-  "id": "saint-pierre-50df0ef8"
- },
- {
   "name": "Saint-Rome Plage",
   "category": "bien-etre",
   "source_id": "osm",
@@ -65305,39 +63721,6 @@
   "first_seen": "2026-08-02",
   "last_seen": "2026-08-02",
   "id": "saut-a-l-elastique-rodez-88c698f4"
- },
- {
-  "name": "Scaphandrier",
-  "category": "visite",
-  "source_id": "osm",
-  "sector": "pont-de-salars",
-  "external_id": "node/3520885493",
-  "description": "",
-  "tldr": null,
-  "commune": null,
-  "address": null,
-  "lat": 44.5217349,
-  "lon": 2.7647603,
-  "url": null,
-  "phone": null,
-  "opening_hours": null,
-  "fee": null,
-  "rating": null,
-  "rating_count": null,
-  "rating_source": null,
-  "rating_url": null,
-  "unusual": false,
-  "unusual_hint": true,
-  "quality": [],
-  "providers": [
-   "osm"
-  ],
-  "tags": [
-   "osm:tourism=artwork"
-  ],
-  "first_seen": "2026-08-02",
-  "last_seen": "2026-08-02",
-  "id": "scaphandrier-3951d21d"
  },
  {
   "name": "Sciences Nath' en Aubrac (groupes)",
@@ -67116,7 +65499,7 @@
   "sector": "pont-de-salars",
   "external_id": "",
   "description": "Who's it for? For people with a heavy mental workload, long indoor working hours, mental saturation, nervous and emotional fatigue.",
-  "tldr": null,
+  "tldr": "Détendez votre esprit avec des soins crâniens adaptés aux surcharges mentales, une pause rare en milieu rural.",
   "commune": "Saint Geniez d'Olt et d'Aubrac",
   "address": null,
   "lat": 44.46655987,
@@ -67129,7 +65512,7 @@
   "rating_count": null,
   "rating_source": null,
   "rating_url": null,
-  "unusual": false,
+  "unusual": true,
   "unusual_hint": false,
   "quality": [],
   "providers": [
@@ -67413,7 +65796,7 @@
   "sector": "pont-de-salars",
   "external_id": "",
   "description": "It is an ideal space for a picnic, with tables, shaded lawns and an information board.\n\nHow to get there?\nBy car : From Sévérac, take the direction of Massegros by the D 995 for 2 km, then turn right towards Sources de l'Aveyron.\nOn foot or by mountain bike: A yellow marked trail starting from Sévérac-le-Château is available. On the 2km to go, you will pass by the Notre-Dame de Lorette chapel before arriving at the springs. If you wish to explore further, this path continues and invites you to a nice walk! Find the circuit \"Les Sources de l'Aveyron\" in our booklet of hikes and mountain bike ri",
-  "tldr": null,
+  "tldr": "Pique-niquez au bord de l'Aveyron, entre sources et verdure, avec tables et panneaux explicatifs pour une pause nature.",
   "commune": "Sévérac d'Aveyron",
   "address": "Cayrac",
   "lat": 44.31284859,
@@ -67438,39 +65821,6 @@
   "first_seen": "2026-08-02",
   "last_seen": "2026-08-02",
   "id": "sources-de-l-aveyron-d96218bc"
- },
- {
-  "name": "sous-marin",
-  "category": "visite",
-  "source_id": "osm",
-  "sector": "pont-de-salars",
-  "external_id": "node/9867963416",
-  "description": "",
-  "tldr": null,
-  "commune": null,
-  "address": null,
-  "lat": 44.5320805,
-  "lon": 2.7385304,
-  "url": null,
-  "phone": null,
-  "opening_hours": null,
-  "fee": null,
-  "rating": null,
-  "rating_count": null,
-  "rating_source": null,
-  "rating_url": null,
-  "unusual": false,
-  "unusual_hint": true,
-  "quality": [],
-  "providers": [
-   "osm"
-  ],
-  "tags": [
-   "osm:tourism=artwork"
-  ],
-  "first_seen": "2026-08-02",
-  "last_seen": "2026-08-02",
-  "id": "sous-marin-5724ab2b"
  },
  {
   "name": "Spa \"LE 1837\"",
@@ -67545,7 +65895,7 @@
   "sector": "pont-de-salars",
   "external_id": "",
   "description": "The Spa (200 m²) is harmoniously divided between individual treatment rooms, a multi-sensory relaxation room dedicated to massages and body treatments by Sothys, and hydromassage devices. An ideal place for those wishing to discover another facet of well-being.\n\n\nIndividual treatments or spa packages: Découverte, Sérénité, Délices?",
-  "tldr": null,
+  "tldr": "Relaxez-vous dans un spa thermal de 200 m² : massages, hydromassage et ambiance sensorielle pour une parenthèse bien-être.",
   "commune": "Cransac-les-Thermes",
   "address": "859 avenue des Thermes",
   "lat": 44.5248,
@@ -68042,7 +66392,7 @@
   "sector": "pont-de-salars",
   "external_id": "",
   "description": "9:30am to 12pm and 3pm to 6pm - A course offered by le peuple des plantes to define your needs and choose \"your companion plants\" according to their virtues and your affinities. Prepare the project, taking into account garden constraints (plant characteristics, time and surface available, climate and soil, budget, etc.).\n\nAll levels, progressive course, with the possibility of more in-depth training at a later date.\n\n\nRegistration required by SMS: 06 64 53 28 47 - contact@talijanska.fr. Further information at the same number. Places are limited and a minimum number of participants is required ",
-  "tldr": null,
+  "tldr": "Apprenez à créer un jardin de plantes médicinales, guidé par des experts pour cultiver selon vos besoins et affinités.",
   "commune": "Connac",
   "address": null,
   "lat": 43.9985,
@@ -68075,7 +66425,7 @@
   "sector": "pont-de-salars",
   "external_id": "",
   "description": "",
-  "tldr": null,
+  "tldr": "Découvrez la moto électrique sur circuit, une activité sportive et écologique pour tous niveaux.",
   "commune": "Salles-la-Source",
   "address": null,
   "lat": 44.4379,
@@ -68088,7 +66438,7 @@
   "rating_count": null,
   "rating_source": null,
   "rating_url": null,
-  "unusual": false,
+  "unusual": true,
   "unusual_hint": false,
   "quality": [],
   "providers": [
@@ -68271,46 +66621,13 @@
   "id": "station-romaine-ad-silanum-8f538d20"
  },
  {
-  "name": "Statue de François d'Estaing",
-  "category": "visite",
-  "source_id": "osm",
-  "sector": "pont-de-salars",
-  "external_id": "node/2214357835",
-  "description": "",
-  "tldr": null,
-  "commune": null,
-  "address": null,
-  "lat": 44.55292,
-  "lon": 2.6719244,
-  "url": null,
-  "phone": null,
-  "opening_hours": null,
-  "fee": null,
-  "rating": null,
-  "rating_count": null,
-  "rating_source": null,
-  "rating_url": null,
-  "unusual": false,
-  "unusual_hint": true,
-  "quality": [],
-  "providers": [
-   "osm"
-  ],
-  "tags": [
-   "osm:tourism=artwork"
-  ],
-  "first_seen": "2026-08-02",
-  "last_seen": "2026-08-02",
-  "id": "statue-de-francois-d-estaing-2c6dce24"
- },
- {
   "name": "Statue de la Liberté",
   "category": "visite",
   "source_id": "osm",
   "sector": "pont-de-salars",
   "external_id": "node/4436468373",
   "description": "mini statue de la liberte en fer sur un gros socle en pierre",
-  "tldr": null,
+  "tldr": "Admirez une réplique miniature de la Statue de la Liberté, insolite et méconnue en pleine campagne.",
   "commune": null,
   "address": null,
   "lat": 43.9586787,
@@ -68323,7 +66640,7 @@
   "rating_count": null,
   "rating_source": null,
   "rating_url": null,
-  "unusual": false,
+  "unusual": true,
   "unusual_hint": true,
   "quality": [],
   "providers": [
@@ -68335,72 +66652,6 @@
   "first_seen": "2026-08-02",
   "last_seen": "2026-08-02",
   "id": "statue-de-la-liberte-cd12f761"
- },
- {
-  "name": "Statue de la Vierge Marie",
-  "category": "visite",
-  "source_id": "osm",
-  "sector": "pont-de-salars",
-  "external_id": "node/12946691731",
-  "description": "",
-  "tldr": null,
-  "commune": null,
-  "address": null,
-  "lat": 44.2793499,
-  "lon": 2.7276013,
-  "url": null,
-  "phone": null,
-  "opening_hours": null,
-  "fee": null,
-  "rating": null,
-  "rating_count": null,
-  "rating_source": null,
-  "rating_url": null,
-  "unusual": false,
-  "unusual_hint": true,
-  "quality": [],
-  "providers": [
-   "osm"
-  ],
-  "tags": [
-   "osm:tourism=artwork"
-  ],
-  "first_seen": "2026-08-02",
-  "last_seen": "2026-08-02",
-  "id": "statue-de-la-vierge-marie-f699df44"
- },
- {
-  "name": "Statue de Marie",
-  "category": "visite",
-  "source_id": "osm",
-  "sector": "pont-de-salars",
-  "external_id": "node/4345488258",
-  "description": "",
-  "tldr": null,
-  "commune": null,
-  "address": null,
-  "lat": 44.2998088,
-  "lon": 3.3220928,
-  "url": null,
-  "phone": null,
-  "opening_hours": null,
-  "fee": null,
-  "rating": null,
-  "rating_count": null,
-  "rating_source": null,
-  "rating_url": null,
-  "unusual": false,
-  "unusual_hint": true,
-  "quality": [],
-  "providers": [
-   "osm"
-  ],
-  "tags": [
-   "osm:tourism=artwork"
-  ],
-  "first_seen": "2026-08-02",
-  "last_seen": "2026-08-02",
-  "id": "statue-de-marie-b79ec37c"
  },
  {
   "name": "Statue des marmots",
@@ -68438,72 +66689,6 @@
   "id": "statue-des-marmots-562dcb06"
  },
  {
-  "name": "Statue des Moussous",
-  "category": "visite",
-  "source_id": "osm",
-  "sector": "pont-de-salars",
-  "external_id": "node/2700413247",
-  "description": "",
-  "tldr": null,
-  "commune": null,
-  "address": null,
-  "lat": 44.6282107,
-  "lon": 3.0002796,
-  "url": null,
-  "phone": null,
-  "opening_hours": null,
-  "fee": null,
-  "rating": null,
-  "rating_count": null,
-  "rating_source": null,
-  "rating_url": null,
-  "unusual": false,
-  "unusual_hint": true,
-  "quality": [],
-  "providers": [
-   "osm"
-  ],
-  "tags": [
-   "osm:tourism=artwork"
-  ],
-  "first_seen": "2026-08-02",
-  "last_seen": "2026-08-02",
-  "id": "statue-des-moussous-c2f02e3a"
- },
- {
-  "name": "Statue du Mineur",
-  "category": "visite",
-  "source_id": "osm",
-  "sector": "pont-de-salars",
-  "external_id": "node/852755272",
-  "description": "",
-  "tldr": null,
-  "commune": null,
-  "address": null,
-  "lat": 44.5271011,
-  "lon": 2.2461362,
-  "url": null,
-  "phone": null,
-  "opening_hours": null,
-  "fee": null,
-  "rating": null,
-  "rating_count": null,
-  "rating_source": null,
-  "rating_url": null,
-  "unusual": false,
-  "unusual_hint": true,
-  "quality": [],
-  "providers": [
-   "osm"
-  ],
-  "tags": [
-   "osm:tourism=artwork"
-  ],
-  "first_seen": "2026-08-02",
-  "last_seen": "2026-08-02",
-  "id": "statue-du-mineur-560ab91c"
- },
- {
   "name": "Statue menhir du Rech",
   "category": "patrimoine",
   "source_id": "datatourisme",
@@ -68535,39 +66720,6 @@
   "first_seen": "2026-08-02",
   "last_seen": "2026-08-02",
   "id": "statue-menhir-du-rech-f86bbe78"
- },
- {
-  "name": "Sub-Rhino",
-  "category": "visite",
-  "source_id": "osm",
-  "sector": "pont-de-salars",
-  "external_id": "node/10295239915",
-  "description": "",
-  "tldr": null,
-  "commune": null,
-  "address": null,
-  "lat": 44.388785,
-  "lon": 2.3359105,
-  "url": null,
-  "phone": null,
-  "opening_hours": null,
-  "fee": null,
-  "rating": null,
-  "rating_count": null,
-  "rating_source": null,
-  "rating_url": null,
-  "unusual": false,
-  "unusual_hint": true,
-  "quality": [],
-  "providers": [
-   "osm"
-  ],
-  "tags": [
-   "osm:tourism=artwork"
-  ],
-  "first_seen": "2026-08-02",
-  "last_seen": "2026-08-02",
-  "id": "sub-rhino-22b57b47"
  },
  {
   "name": "SUD RANDOS  Découvrez le Cirque de Tournemire",
@@ -68807,7 +66959,7 @@
   "sector": "pont-de-salars",
   "external_id": "",
   "description": "Day 1\nArrival and check-in at L'Hôtel des Bains. In the heart of the verdant Vallon de Marcillac, L'Hôtel des Bains is set in two hectares of shady, flower-filled parkland. The charm of old stones combined with the modern comfort of a 3-star hotel with 32 air-conditioned rooms.\n\nDay 2 - RODEZ\nDeparture from the hotel by mountain bike AE towards Rodez\nVisit to Soulages Museum\nLunch in restaurant\nVisit to the Fenaille Museum\nVisit to the town of Rodez\nReturn to L'Hôtel des Bains\n\nDay 3 - MARCILLAC\nDeparture from the hotel by mountain bike AE towards Marcillac\nVisit to the Liadou boutique\nLunch a",
-  "tldr": null,
+  "tldr": "Explorez les paysages du Vallon de Marcillac à VTT électrique, entre nature et patrimoine local.",
   "commune": "Salles-la-Source",
   "address": "2890 route de Conques",
   "lat": 44.44716214,
@@ -68840,7 +66992,7 @@
   "sector": "pont-de-salars",
   "external_id": "",
   "description": "Stressed, tired, mentally searching... How about taking 2h30 to slow down, breathe and reconnect with yourself?\nI suggest a guided forest bath in Aveyron: a gentle, sensory and accessible immersion far from the daily pace.\nNo strenuous hiking here. Just an opportunity to relax, listen, feel and rediscover inner calm.",
-  "tldr": null,
+  "tldr": "Détendez-vous en forêt avec un bain de forêt guidé, pour une reconnexion sensorielle et apaisante.",
   "commune": "Olemps",
   "address": "Le Bois de Linars",
   "lat": 44.334195,
@@ -68867,46 +67019,13 @@
   "id": "sylvotherapie-bain-de-foret-9ce6fd38"
  },
  {
-  "name": "Symbiose",
-  "category": "visite",
-  "source_id": "osm",
-  "sector": "pont-de-salars",
-  "external_id": "node/13053119988",
-  "description": "",
-  "tldr": null,
-  "commune": null,
-  "address": null,
-  "lat": 44.5254153,
-  "lon": 2.286458,
-  "url": null,
-  "phone": null,
-  "opening_hours": null,
-  "fee": null,
-  "rating": null,
-  "rating_count": null,
-  "rating_source": null,
-  "rating_url": null,
-  "unusual": false,
-  "unusual_hint": true,
-  "quality": [],
-  "providers": [
-   "osm"
-  ],
-  "tags": [
-   "osm:tourism=artwork"
-  ],
-  "first_seen": "2026-08-02",
-  "last_seen": "2026-08-02",
-  "id": "symbiose-f380e832"
- },
- {
   "name": "Table d'interprétation de Novis",
   "category": "nature",
   "source_id": "datatourisme",
   "sector": "pont-de-salars",
   "external_id": "",
   "description": "The interpretation tables, very educational, will allow you to situate yourself at first and then to apprehend the different types of surrounding landscapes. It is also an opportunity to discover the village of Novis!",
-  "tldr": null,
+  "tldr": "Décryptez les paysages de Sévérac d'Aveyron grâce à des tables pédagogiques et immersives.",
   "commune": "Sévérac d'Aveyron",
   "address": "Novis, Sévérac-le-Château",
   "lat": 44.27007592,
@@ -68939,7 +67058,7 @@
   "sector": "pont-de-salars",
   "external_id": "",
   "description": "Two interpretation tables will give you explanations on the Dourdou Valley, the geology of the site and the village of Vabres L'Abbaye.",
-  "tldr": null,
+  "tldr": "Comprenez la géologie et l'histoire de la vallée du Dourdou via des tables d'interprétation claires.",
   "commune": "Vabres-l'Abbaye",
   "address": null,
   "lat": 43.9498,
@@ -69038,7 +67157,7 @@
   "sector": "pont-de-salars",
   "external_id": "",
   "description": "Nestled in Lugan (commune of Quins), near an old cowshed that has been lovingly renovated, the orientation table offers visitors a contemplative break in the heart of nature.\nThe orientation table offers a magnificent view of several picturesque villages, including Quins, Sauveterre de Rouergue, Gramond and Naucelle... Hikers can admire the beauty of the surrounding countryside and discover the richness of the local heritage.\nThe ideal spot to take a breath of fresh air, scan the QR Codes or listen to the \"Oreilles en Balade\" audio capsules to find out more about the history and landscapes of ",
-  "tldr": null,
+  "tldr": "Contemplez la nature depuis une table d'orientation rénovée près d'un ancien hangar à vaches.",
   "commune": "Quins",
   "address": "371 route de Lugan",
   "lat": 44.2433,
@@ -69137,7 +67256,7 @@
   "sector": "pont-de-salars",
   "external_id": "",
   "description": "Francine will make you discover the village, its hidden treasures and its famous cheese!\n\nFree mobile app « Balades des Grands Causses » available on IOS or Android\n\nDuration of the tour: between 2 and 3 hours",
-  "tldr": null,
+  "tldr": "Découvrez Roquefort-sur-Soulzon et ses secrets via une visite numérique guidée par Francine.",
   "commune": "Roquefort-sur-Soulzon",
   "address": "Le Bourg",
   "lat": 43.9767,
@@ -69263,39 +67382,6 @@
   "id": "tartinette-des-aveyronnais-souyris-014e7df5"
  },
  {
-  "name": "Taureau de Laguiole",
-  "category": "visite",
-  "source_id": "osm",
-  "sector": "pont-de-salars",
-  "external_id": "node/4345901690",
-  "description": "",
-  "tldr": null,
-  "commune": null,
-  "address": null,
-  "lat": 44.6835148,
-  "lon": 2.848632,
-  "url": null,
-  "phone": null,
-  "opening_hours": null,
-  "fee": null,
-  "rating": null,
-  "rating_count": null,
-  "rating_source": null,
-  "rating_url": null,
-  "unusual": false,
-  "unusual_hint": true,
-  "quality": [],
-  "providers": [
-   "osm"
-  ],
-  "tags": [
-   "osm:tourism=artwork"
-  ],
-  "first_seen": "2026-08-02",
-  "last_seen": "2026-08-02",
-  "id": "taureau-de-laguiole-04912704"
- },
- {
   "name": "Tennis Club Canourguais",
   "category": "sport-loisir",
   "source_id": "osm",
@@ -69401,7 +67487,7 @@
   "sector": "pont-de-salars",
   "external_id": "",
   "description": "This discovery area on the edge of the Bozouls canyon tells the story of Aveyron?s landscapes and terroirs in an unusual way. A 65-metre-long frieze traces the history of life and the Earth, and traces the origins of Aveyron?s landscapes. Visitors travel from the formation of our planet to the Bozouls canyon and its horseshoe-shaped meander, the famous \"Trou de Bozouls\". Giant models also explain the origins of our landscapes. The showcases contain samples of mainly local origin, illustrating the geological diversity of Aveyron while also placing them in chronological perspective. Terra Memori",
-  "tldr": null,
+  "tldr": "Plongez dans l'histoire géologique de l'Aveyron via une frise de 65 mètres au bord du canyon de Bozouls.",
   "commune": "Bozouls",
   "address": "Allée Paul Causse",
   "lat": 44.47,
@@ -69599,7 +67685,7 @@
   "sector": "pont-de-salars",
   "external_id": "",
   "description": "As part of the village festival, the Massegros theater troupe \"Cansons %E9 repapiadas\" invites you to the La Tieule community hall at 3:00 p.m. for a re-of their play “Bertrand Pète les Plombs,” a comedy adapted from a work by Charles Istace.\nAdmission is free.\nOrganized in partnership with the La Tieule Festival Committee.",
-  "tldr": null,
+  "tldr": "Rigolez avec la pièce comique locale « Bertrand Pète les Plombs » dans un village isolé.",
   "commune": "La Tieule",
   "address": "Salle des fêtes",
   "lat": 44.3839223,
@@ -69612,7 +67698,7 @@
   "rating_count": null,
   "rating_source": null,
   "rating_url": null,
-  "unusual": false,
+  "unusual": true,
   "unusual_hint": false,
   "quality": [],
   "providers": [
@@ -69665,7 +67751,7 @@
   "sector": "pont-de-salars",
   "external_id": "",
   "description": "As a farmer, I grow and propagate medicinal\nand aromatic plants in the Larzac region.\n\nAs a forager, I harvest wild plants that grow\nnaturally in the region.\n\nAs an herbalist, I’m constantly exploring the world of plants\nand their properties.\n\nAs an artist and creative person, I always seek beauty in my actions,\nin the natural world around me, and in the creation of\nmy business.\n\nMy overall goal is to create a space for biodiversity\ninspired by permaculture and forest garden methods.\nAt my home, different ecosystems coexist thanks to the many\nponds, trees, shrubs, vines, edible\nand medicinal p",
-  "tldr": null,
+  "tldr": "Découvrez plantes médicinales et aromatiques du Larzac, cultivées et récoltées par un herboriste passionné.",
   "commune": "Comprégnac",
   "address": "Comprégnac",
   "lat": 44.082763,
@@ -69797,7 +67883,7 @@
   "sector": "pont-de-salars",
   "external_id": "",
   "description": "FORTIFIED PORTE village rampart\nIn May 1356, at the start of the Hundred Years' War, an English troop occupied the Clairvaux Sauveté for a few days. Four months later, in September, King Jean le Bon of France was defeated at Poitiers. It was around this time, probably later, that the inhabitants decided to surround themselves with ramparts. In addition to a postern to the north, the town would have two gates, one to the east, naturally protected by the river, and the other to the west. This gate, surmounted by a high tower, is both defensive and prestigious (the coat of arms that adorned it ca",
-  "tldr": null,
+  "tldr": "Visitez une porte fortifiée du XIVe siècle, témoin des tensions de la Guerre de Cent Ans en Aveyron.",
   "commune": "Clairvaux-d'Aveyron",
   "address": null,
   "lat": 44.42721397,
@@ -69863,7 +67949,7 @@
   "sector": "pont-de-salars",
   "external_id": "",
   "description": "When you arrive in La Canourgue, don't miss the Clock Tower, which stands at the entrance of the village when you arrive from Banassac. At the same time, you will see the coat of arms of La Canourgue: a golden lily and a half on an azure background, associated with the greyhound dog which recalls the arms of the Canilhac family\nThis tower, which was originally the communal belfry used to watch the horizon, was probably built on the remains of the Saint-Etienne castle. In the 18th century, it was used (and is still used today) as the communal clock.\n\nIf you take the stairs on your left, opposit",
-  "tldr": null,
+  "tldr": "Admirez la tour emblématique de La Canourgue et son blason historique à l'entrée du village.",
   "commune": "La Canourgue",
   "address": null,
   "lat": 44.4328807,
@@ -70037,7 +68123,7 @@
   "sector": "pont-de-salars",
   "external_id": "",
   "description": "The square tower dates from the late 14th century. It was the first of the castle's buildings to be erected. Standing 24 metres high, it offers a magnificent panoramic view of the village and the Pilgrim's Way to Santiago de Compostela below. Inside, 3 levels follow one another, all empty of any furniture, but still displaying the finest architectural traces of the period. A lovely stopover just a stone's throw from the magnificent village of Conques.",
-  "tldr": null,
+  "tldr": "Montez à 24 mètres dans une tour médiévale pour un panorama exceptionnel sur Sénergues et les alentours.",
   "commune": "Sénergues",
   "address": null,
   "lat": 44.6058,
@@ -70139,7 +68225,7 @@
   "sector": "pont-de-salars",
   "external_id": "",
   "description": "The commandery of the temple, joined to that of Sainte Eulalie du Larzac, was founded in 1234. There was already a fortified bastide with refuge lodges as in Vezins, and a castle which was completed in 1381 by a tower. The commandery was united with that of the Canabières (Order of Saint John of Jerusalem) after the suppression of the Order of the Temple (1302). The place depended on the parish of Saint Amans d'Escoudournac.\nTo see also on the commune: the castle of Vezins, the viewpoints of the Pic du Pal and Beauregard, the church of St-Amans-du-Ram, the gardens of Mercié (sale of medicinal ",
-  "tldr": null,
+  "tldr": "Explorez une commanderie templière du XIIIe siècle, joyau méconnu du Larzac.",
   "commune": "Vézins-de-Lévézou",
   "address": null,
   "lat": 44.26219875,
@@ -70152,7 +68238,7 @@
   "rating_count": null,
   "rating_source": null,
   "rating_url": null,
-  "unusual": false,
+  "unusual": true,
   "unusual_hint": false,
   "quality": [],
   "providers": [
@@ -70205,7 +68291,7 @@
   "sector": "pont-de-salars",
   "external_id": "",
   "description": "It is a very singular protected ecosystem of great fragility with a particular fauna and flora\nApproximate walking time: 1 hour minimum (1.7 km loop). Several information panels along the circuit\nFree booklet available at the Tourist Office of Pareloup-Lévézou in Pont-de-salars\nDogs must be kept on a leash. Boots or hiking shoes may be necessary depending on the weather and the season",
-  "tldr": null,
+  "tldr": "Marchez sur une tourbière protégée, écosystème rare, et observez sa faune et flore uniques.",
   "commune": "Saint-Laurent-de-Lévézou",
   "address": null,
   "lat": 44.24422889,
@@ -70218,7 +68304,7 @@
   "rating_count": null,
   "rating_source": null,
   "rating_url": null,
-  "unusual": false,
+  "unusual": true,
   "unusual_hint": false,
   "quality": [],
   "providers": [
@@ -70271,7 +68357,7 @@
   "sector": "pont-de-salars",
   "external_id": "",
   "description": "Introductory session for all: A 1h30 session is ideal for an introduction.\nThe activity is available for groups of 6 or more, and up to 8 people per session. ?\nHalf-day formula: Allows you to take your time and discover the climbing technique, while spending time perched in the treetops. a total of 3 hours with a snack or aperitif break. Minimum 6 participants.\nThe bivouac: RVD in the late afternoon to get to grips with the technique and familiarize yourself with the structures in which you will be sleeping, dinner, evening meal, evening walk before slipping into our perched nests for the nigh",
-  "tldr": null,
+  "tldr": "Grimpez aux arbres avec un guide pour une activité ludique et dépaysante en pleine nature.",
   "commune": "Saint-Affrique",
   "address": "1860 route de Couat",
   "lat": 43.933491,
@@ -70601,7 +68687,7 @@
   "sector": "pont-de-salars",
   "external_id": "",
   "description": "In a hamlet on the slopes of Puy de Wolf, discover the activities of Hélène, farmer-herbalist and creator of Une Sorcière sur le toit.  \nShe'll show you around her organic, agro-forestry plot and the picking areas on the farm. Whether wild or cultivated, her \"simples\" will reveal some of their secrets, and you'll discover their properties and uses, as well as the main ways of extracting their active ingredients.\n\nOn-site, you'll also be able to buy products made by a Witch on the Roof from the plants you've discovered: jellies, hydrolats, mother tinctures, oils, salts, jams, etc.",
-  "tldr": null,
+  "tldr": "Découvrez les plantes médicinales et l’agroforesterie bio d’une herboriste paysanne dans un hameau perché.",
   "commune": "Firmi",
   "address": "Mascles",
   "lat": 44.5401,
@@ -70614,7 +68700,7 @@
   "rating_count": null,
   "rating_source": null,
   "rating_url": null,
-  "unusual": false,
+  "unusual": true,
   "unusual_hint": false,
   "quality": [],
   "providers": [
@@ -70766,7 +68852,7 @@
   "sector": "pont-de-salars",
   "external_id": "",
   "description": "Commissioned in the late 60s, the Moulin de Galat drinking water production plant is a visionary industrial site for its time. Designed to capture raw water from the nearby Lévézou lakes and transform it into drinking water, it has been an essential resource for thousands of residents for decades. It also ensures the safety of 15 neighboring communities through several interconnections, including the towns of Rodez and Villefranche-de-Rouergue and the SMAEP of Montbazens-Rignac. Its treatment capacity, now up to 600 liters per second (compared with 200 liters when the plant was first built), e",
-  "tldr": null,
+  "tldr": "Visitez une usine d’eau potable des années 60, architecture industrielle visionnaire et site technique méconnu.",
   "commune": "Trémouilles",
   "address": null,
   "lat": 44.22916828,
@@ -70779,7 +68865,7 @@
   "rating_count": null,
   "rating_source": null,
   "rating_url": null,
-  "unusual": false,
+  "unusual": true,
   "unusual_hint": false,
   "quality": [],
   "providers": [
@@ -70832,7 +68918,7 @@
   "sector": "pont-de-salars",
   "external_id": "",
   "description": "Through these two routes, visitors will circulate through the municipality to discover its history. No less than ten stages make up the walk in the centre of the village: gardens at Pont Neuf passing through the Cathedral and many other places and monuments to discover. They will also discover the hamlets thanks to the work of the students of the École Jean de La Fontaine. These digital routes, enriched with photos, video or audio, are a playful and participatory way to discover our beloved village.\nDownload the Guidido application from the App Store or from Google Play, open the application a",
-  "tldr": null,
+  "tldr": "Promenez-vous dans Vabres-l’Abbaye et explorez son histoire à travers dix étapes, des jardins aux vestiges médiévaux.",
   "commune": "Vabres-l'Abbaye",
   "address": null,
   "lat": 43.9452,
@@ -71230,7 +69316,7 @@
   "sector": "pont-de-salars",
   "external_id": "",
   "description": "For purchases on the farm, call 06 73 76 41 88\nPossibility of delivery on Pont de Salars, Flavin, Salles Curan : please call 06 73 76 41 88",
-  "tldr": null,
+  "tldr": "Achetez des œufs bio directement à la ferme ou en livraison dans les villages voisins.",
   "commune": "Le Vibal",
   "address": "Le Bourg",
   "lat": 44.3151,
@@ -71263,7 +69349,7 @@
   "sector": "pont-de-salars",
   "external_id": "",
   "description": "The suckling production is made up of a herd of Limousin cows. The choice of this breed was made for various reasons:\nThe Limousine adapts well to the foothills of Levezou, it is quite hardy and makes good use of the pastures and it is an animal with a great beef quality.\nThierry and Francine raise their cows all year round at an altitude of 700 meters in the Parc Natural Régional des Grands Causses and their meat has the BIO label.\nTo have this pink veal delivered to you, contact Francine or Thierry:\nBy phone : 05 65 62 01 02 or 06 17 36 14 85\nOr by mail : thierry.ferrand12@orange.fr\nHome del",
-  "tldr": null,
+  "tldr": "Goûtez la viande Limousine élevée localement, vendue en circuit court par un éleveur passionné.",
   "commune": "Castelnau-Pégayrols",
   "address": null,
   "lat": 44.1297,
@@ -71362,7 +69448,7 @@
   "sector": "pont-de-salars",
   "external_id": "",
   "description": "At the heart of the castrum (fortified square) of Versols, progressively reinforced from the 11th to the 14th century and of which interesting elements still exist (vestiges of the surrounding wall, towers, fortified square, the castellum (castle) present impressive remains, notably its interior courtyard, its vaulted rooms, the ancient \"aula\" (lords' room) modified during the Renaissance... The guided and commentated visit of this place inhabited by the original family enable the workings of the \"castrum-castellum partnership\" (essential security role) and its historical and architectural evo",
-  "tldr": null,
+  "tldr": "Explorez les vestiges d’un château médiéval renforcé du XIe au XIVe siècle, encore bien conservés.",
   "commune": "Versols-et-Lapeyre",
   "address": "Rue du Château",
   "lat": 43.8941,
@@ -71824,7 +69910,7 @@
   "sector": "pont-de-salars",
   "external_id": "",
   "description": "Its round towers, its loopholes and in some places its covered way with stairs and crenellated parapet.\nIt was the master masons of Saint Beauzély who built the fortifications of Castelnau. They will protect many other villages against the truckers who plunge the country in a very great insecurity at the end of the Hundred Years War.\nThese vestiges are part of the circuit dedicated to Romanesque art: \"Romanesque heritage along the valleys of the Muse, Raspes du Tarn and surrounding areas\".",
-  "tldr": null,
+  "tldr": "Admirez les remparts de Castelnau-Pégayrols, tours rondes et chemin de ronde typiques du Moyen Âge.",
   "commune": "Castelnau-Pégayrols",
   "address": null,
   "lat": 44.1297,
@@ -71857,7 +69943,7 @@
   "sector": "pont-de-salars",
   "external_id": "",
   "description": "Enjoy the setting of the hamlet of Auriac and discover the remains of the ramparts and the two towers of the castle\nThe hamlet overlooks the Tarn River from a hundred meters, offering views of the meander of the Tarn around the town of St Rome de Tarn. From there, you can still see the dry stone terraces where vines and almond trees were grown.\nA rare fact, the old village had two castles indicating the presence of two lords. These vestiges are part of a discovery circuit dedicated to Romanesque art: \"Romanesque heritage along the valleys of the muse, raspes du tarn and surroundings\".\nA hiking",
-  "tldr": null,
+  "tldr": "Contemplez les ruines du château d’Auriac et profitez d’une vue imprenable sur les gorges du Tarn.",
   "commune": "Saint-Rome-de-Tarn",
   "address": null,
   "lat": 44.0487,
@@ -71890,7 +69976,7 @@
   "sector": "pont-de-salars",
   "external_id": "",
   "description": "The site of Beaucaire (Belcayre in Occitan which means beautiful rock, beautiful fortress) offers a strategic position to watch over the communication routes in the valleys of Dourdou and Créneau. The castle appears in texts in the 12th century and successively belonged to various powerful families of Rouergue before being progressively abandoned from the 18th century.\nBeaucaire is a remarkable example of the military architecture of the Middle Ages in Rouergue of which there are only few traces left. One can still admire part of the 14th century enclosure and the base of the keep tower.\n\nhowe",
-  "tldr": null,
+  "tldr": "Découvrez les vestiges de la forteresse de Beaucaire, perchée sur un éperon rocheux stratégique.",
   "commune": "Nauviale",
   "address": null,
   "lat": 44.5177,
@@ -72121,7 +70207,7 @@
   "sector": "pont-de-salars",
   "external_id": "",
   "description": "Leaving from the Millau Viaduct rest area, you will walk on the Explorers’ Path to the viewing platform. In the shade of the deck, you will hear the vehicles passing just above your head. In front of you, the Millau Viaduct and its seven piers in a row: you will even discover one of the specialties of the giant… that can’t be seen from the other viewpoints!\nAfter a short break at the Viaduc Expo, where some of you will enjoy the immersive show while the others will be wandering at the shop, you will all go back to your vehicles. You are going to take a track made especially for the works of th",
-  "tldr": null,
+  "tldr": "Marchez sous le Viaduc de Millau et écoutez les véhicules passer au-dessus de vous sur la passerelle des Explorateurs.",
   "commune": "Millau",
   "address": "Aire du viaduc de Millau",
   "lat": 44.0974,
@@ -72134,7 +70220,7 @@
   "rating_count": null,
   "rating_source": null,
   "rating_url": null,
-  "unusual": false,
+  "unusual": true,
   "unusual_hint": false,
   "quality": [],
   "providers": [
@@ -72154,7 +70240,7 @@
   "sector": "pont-de-salars",
   "external_id": "",
   "description": "Leaving from the Millau Viaduct rest area, you will walk on the Explorers’ Path to the viewing platform. In the shade of the deck, you will hear the vehicles passing just above your head. In front of you, the Millau Viaduct and its seven piers in a row: you will even discover one of the specialties of the giant… that can’t be seen from the other viewpoints!\nAfter a short break at the Viaduc Expo, where some of you will enjoy the immersive show while the others will be wandering at the shop, you will all go back to your vehicles. You are going to take a track made especially for the works of th",
-  "tldr": null,
+  "tldr": "Parcours guidé sous le Viaduc de Millau, avec accès aux pistes de chantier historiques et vue unique.",
   "commune": "Millau",
   "address": "Aire du viaduc de Millau",
   "lat": 44.0974,
@@ -72167,7 +70253,7 @@
   "rating_count": null,
   "rating_source": null,
   "rating_url": null,
-  "unusual": false,
+  "unusual": true,
   "unusual_hint": false,
   "quality": [],
   "providers": [
@@ -72280,39 +70366,6 @@
   "id": "viaduc-ferroviaire-du-viaur-408ead0c"
  },
  {
-  "name": "Victor l'Enfant Sauvage",
-  "category": "visite",
-  "source_id": "osm",
-  "sector": "pont-de-salars",
-  "external_id": "node/9882713791",
-  "description": "",
-  "tldr": null,
-  "commune": null,
-  "address": null,
-  "lat": 43.8850093,
-  "lon": 2.6037595,
-  "url": null,
-  "phone": null,
-  "opening_hours": null,
-  "fee": null,
-  "rating": null,
-  "rating_count": null,
-  "rating_source": null,
-  "rating_url": null,
-  "unusual": false,
-  "unusual_hint": true,
-  "quality": [],
-  "providers": [
-   "osm"
-  ],
-  "tags": [
-   "osm:tourism=artwork"
-  ],
-  "first_seen": "2026-08-02",
-  "last_seen": "2026-08-02",
-  "id": "victor-l-enfant-sauvage-fb5d899b"
- },
- {
   "name": "Vieillevie Castle",
   "category": "patrimoine",
   "source_id": "datatourisme",
@@ -72344,72 +70397,6 @@
   "first_seen": "2026-08-02",
   "last_seen": "2026-08-02",
   "id": "vieillevie-castle-c8b1e40e"
- },
- {
-  "name": "Vierge",
-  "category": "visite",
-  "source_id": "osm",
-  "sector": "pont-de-salars",
-  "external_id": "node/12141863248",
-  "description": "",
-  "tldr": null,
-  "commune": null,
-  "address": null,
-  "lat": 44.7025434,
-  "lon": 2.8328529,
-  "url": null,
-  "phone": null,
-  "opening_hours": null,
-  "fee": null,
-  "rating": null,
-  "rating_count": null,
-  "rating_source": null,
-  "rating_url": null,
-  "unusual": false,
-  "unusual_hint": true,
-  "quality": [],
-  "providers": [
-   "osm"
-  ],
-  "tags": [
-   "osm:tourism=artwork"
-  ],
-  "first_seen": "2026-08-02",
-  "last_seen": "2026-08-02",
-  "id": "vierge-a6c2a7fc"
- },
- {
-  "name": "Vierge à l'enfant",
-  "category": "visite",
-  "source_id": "osm",
-  "sector": "pont-de-salars",
-  "external_id": "node/2299762378",
-  "description": "",
-  "tldr": null,
-  "commune": null,
-  "address": null,
-  "lat": 43.995885,
-  "lon": 2.9915843,
-  "url": null,
-  "phone": null,
-  "opening_hours": null,
-  "fee": null,
-  "rating": null,
-  "rating_count": null,
-  "rating_source": null,
-  "rating_url": null,
-  "unusual": false,
-  "unusual_hint": true,
-  "quality": [],
-  "providers": [
-   "osm"
-  ],
-  "tags": [
-   "osm:tourism=artwork"
-  ],
-  "first_seen": "2026-08-02",
-  "last_seen": "2026-08-02",
-  "id": "vierge-a-l-enfant-ae708ff0"
  },
  {
   "name": "Vierge à l'enfant",
@@ -72480,79 +70467,13 @@
   "id": "vierge-a-lenfant-660e78fe"
  },
  {
-  "name": "Vierge de Vernus",
-  "category": "visite",
-  "source_id": "osm",
-  "sector": "pont-de-salars",
-  "external_id": "node/1351284223",
-  "description": "",
-  "tldr": null,
-  "commune": null,
-  "address": null,
-  "lat": 44.5164921,
-  "lon": 2.7808803,
-  "url": null,
-  "phone": null,
-  "opening_hours": null,
-  "fee": null,
-  "rating": null,
-  "rating_count": null,
-  "rating_source": null,
-  "rating_url": null,
-  "unusual": false,
-  "unusual_hint": true,
-  "quality": [],
-  "providers": [
-   "osm"
-  ],
-  "tags": [
-   "osm:tourism=artwork"
-  ],
-  "first_seen": "2026-08-02",
-  "last_seen": "2026-08-02",
-  "id": "vierge-de-vernus-2c3b793e"
- },
- {
-  "name": "Vierge du Fort",
-  "category": "visite",
-  "source_id": "osm",
-  "sector": "pont-de-salars",
-  "external_id": "node/1953092275",
-  "description": "",
-  "tldr": null,
-  "commune": null,
-  "address": null,
-  "lat": 44.6855482,
-  "lon": 2.8449068,
-  "url": null,
-  "phone": null,
-  "opening_hours": null,
-  "fee": null,
-  "rating": null,
-  "rating_count": null,
-  "rating_source": null,
-  "rating_url": null,
-  "unusual": false,
-  "unusual_hint": true,
-  "quality": [],
-  "providers": [
-   "osm"
-  ],
-  "tags": [
-   "osm:tourism=artwork"
-  ],
-  "first_seen": "2026-08-02",
-  "last_seen": "2026-08-02",
-  "id": "vierge-du-fort-e6704196"
- },
- {
   "name": "Vierge en bronze",
   "category": "visite",
   "source_id": "osm",
   "sector": "pont-de-salars",
   "external_id": "node/8921554317",
   "description": "L'ETOILE DU MATIN Vierge en bronze du sculpteur Marc Navecth Aeris Sculpteur Fondeur Designer",
-  "tldr": null,
+  "tldr": "Admirez la Vierge en bronze de Marc Navecth, sculpture contemporaine fondue à la cire perdue.",
   "commune": null,
   "address": null,
   "lat": 44.2445076,
@@ -72565,7 +70486,7 @@
   "rating_count": null,
   "rating_source": null,
   "rating_url": null,
-  "unusual": false,
+  "unusual": true,
   "unusual_hint": true,
   "quality": [],
   "providers": [
@@ -72723,7 +70644,7 @@
   "sector": "pont-de-salars",
   "external_id": "",
   "description": "In the heart of the Aveyron, in the Spa resort of Cransac les Thermes, the Riding School is situated in the 175 acre Vaysse forest planted with oak, acacia and chestnut trees and offering miles of footpaths.",
-  "tldr": null,
+  "tldr": "Montez à cheval dans la forêt de Vaysse, 70 hectares de sentiers ombragés près de Cransac-les-Thermes.",
   "commune": "Cransac-les-Thermes",
   "address": null,
   "lat": 44.528271,
@@ -72789,7 +70710,7 @@
   "sector": "pont-de-salars",
   "external_id": "",
   "description": "Discovery tour to be done on your own, to be picked up at the Tourist Office of Marcillac or to be downloaded here.",
-  "tldr": null,
+  "tldr": "Découvrez l'histoire de Clairvaux-d'Aveyron à travers un parcours autonome ou guidé, à pied dans ce village médiéval.",
   "commune": "Clairvaux-d'Aveyron",
   "address": null,
   "lat": 44.4276,
@@ -72822,7 +70743,7 @@
   "sector": "pont-de-salars",
   "external_id": "",
   "description": "To be noticed in the village :- the castle, one of the oldest in Aveyron (private property)\n\n- the castral chapel whose choir gates were forged with the iron of the chains of the released prisoners\n\n- the banks of the Lot",
-  "tldr": null,
+  "tldr": "Admirez le château de Montarnal, l'un des plus anciens d'Aveyron, et ses portes forgées avec les chaînes des prisonniers libérés.",
   "commune": "Sénergues",
   "address": null,
   "lat": 44.6463,
@@ -72855,7 +70776,7 @@
   "sector": "pont-de-salars",
   "external_id": "",
   "description": "In ancient times the village was called Nobiliacum. It took the name of St-Léons in memory of Leontius, bishop of Bordeaux, who came here in the 6th century to flee the Visigoths\n\nIn addition to its grain market, the village has a rich architectural heritage: old monastery, fort-bas, sarcophagi, 15th century private castle (not open to visitors), 18th century fountain-washer... On the nature side, the botanical trail will take you through the woods (1 to 2 hours depending on the route). As for the insect garden known as the \"earwig\" it will allow you to discover these small animals present aro",
-  "tldr": null,
+  "tldr": "Plongez dans l'histoire de Saint-Léons, ancien Nobiliacum, où saint Leontius trouva refuge au VIe siècle.",
   "commune": "Saint-Léons",
   "address": null,
   "lat": 44.2152,
@@ -72921,7 +70842,7 @@
   "sector": "pont-de-salars",
   "external_id": "",
   "description": "Classified as the Most Beautiful Village in France, it is in the heart of nature that the medieval village of Brousse-le-Château has taken up residence. Escape among the narrow and paved streets of this medieval jewel.\nDo not leave the village without discovering its castle. Built on its rocky spur, at the confluence of the Tarn and the Alrance, the imposing fortress dominates today the village of character...\nLa confidencia* : make a gourmet stop at the village restaurant, the Relays du Chasteau where Philippe will treat your taste buds in an exceptional setting !\n*the good plan",
-  "tldr": null,
+  "tldr": "Flânez dans les ruelles pavées de Brousse-le-Château, classé parmi les Plus Beaux Villages de France.",
   "commune": "Brousse-le-Château",
   "address": null,
   "lat": 43.9974,
@@ -73020,7 +70941,7 @@
   "sector": "pont-de-salars",
   "external_id": "",
   "description": "Resumption of tours on reservation from mid-January 2024.\n\nAQUI BA PLA!\nEnjoy the unusual \"Aqui Ba Pla!\" experience, including 3 highlights:\n1- A farm visit: enter into the daily life of the farmer and his animals\n\n2- A tasting or a meal: enjoy the best of the farm on your plate\n\n3- An Aveyron activity: discover the many facets of Aveyron in an entertaining way\n\n\nReservation required\n\nFind out more about the other tours in the \"Aqui Ba Pla!",
-  "tldr": null,
+  "tldr": "Vivez une immersion insolite à la ferme de Audrey et Thierry : animaux, savoir-faire et dégustation au programme.",
   "commune": "Rebourguil",
   "address": null,
   "lat": 43.8671,
@@ -73033,7 +70954,7 @@
   "rating_count": null,
   "rating_source": null,
   "rating_url": null,
-  "unusual": false,
+  "unusual": true,
   "unusual_hint": false,
   "quality": [],
   "providers": [
@@ -73053,7 +70974,7 @@
   "sector": "pont-de-salars",
   "external_id": "",
   "description": "AQUI BA PLA!\nLive the unusual \"Aqui Ba Pla!\" experience, including 3 highlights:\n1- A farm visit: enter into the daily life of the farmer and his animals\n\n2- A tasting or a meal: enjoy the best of the farm on your plate\n\n3- An Aveyron activity: discover the many facets of Aveyron in an entertaining way\n\n\nReservation required\n\nFind out more about the other tours in the \"Aqui Ba Pla!",
-  "tldr": null,
+  "tldr": "Découvrez la vie d'une ferme avec Séverine et Daniel, entre animaux, dégustations et produits locaux.",
   "commune": "Rebourguil",
   "address": "Serre Grand",
   "lat": 43.8905,
@@ -73066,7 +70987,7 @@
   "rating_count": null,
   "rating_source": null,
   "rating_url": null,
-  "unusual": false,
+  "unusual": true,
   "unusual_hint": false,
   "quality": [],
   "providers": [
@@ -73086,7 +71007,7 @@
   "sector": "pont-de-salars",
   "external_id": "",
   "description": "Duration: 10%E0 30 minutes. By reservation only.",
-  "tldr": null,
+  "tldr": "Explorez l'église de Perse et ses secrets, lors d'une visite commentée de 10 à 30 minutes.",
   "commune": "Espalion",
   "address": "Chemin de Vermus",
   "lat": 44.517279,
@@ -73152,7 +71073,7 @@
   "sector": "pont-de-salars",
   "external_id": "",
   "description": "In the heart of the Viaur valley, in a small village by the water, the spinning mill is still there, ready to operate as it was in the past. It has been in the family since 1849 and has stood the test of time. In this place, they still make woollen mattresses and duvets.",
-  "tldr": null,
+  "tldr": "Visitez une ancienne filature de 1900 encore opérationnelle, témoin de l'histoire industrielle de la région.",
   "commune": "Crespin",
   "address": "Pont de Cirou",
   "lat": 44.14163231,
@@ -73165,7 +71086,7 @@
   "rating_count": null,
   "rating_source": null,
   "rating_url": null,
-  "unusual": false,
+  "unusual": true,
   "unusual_hint": false,
   "quality": [],
   "providers": [
@@ -73185,7 +71106,7 @@
   "sector": "pont-de-salars",
   "external_id": "",
   "description": "Free guided tour on reservation. Explanations on the functioning and the course of their activity.",
-  "tldr": null,
+  "tldr": "Rencontrez les éleveurs du GAEC à Serieux et comprenez leur activité lors d'une visite libre.",
   "commune": "Réquista",
   "address": null,
   "lat": 44.06889245,
@@ -73218,7 +71139,7 @@
   "sector": "pont-de-salars",
   "external_id": "",
   "description": "Our farm produces ewe's milk for Aveyron Brebis BIO, a small cooperative committed to demanding, fair-trade organic farming that respects the human and animal environment. We invite you to come and immerse yourself in a unique experience and discover our little-known yet essential activity.\nFarm visit: 1h, on reservation.\nDiscovery course: one day from 7 a.m. to 5 p.m., on reservation. Breakfast and lunch included.\nSponsor a ewe and support an environmentally-friendly farming approach. In return, you'll always be welcome at the farm and receive a Christmas parcel worth 24?\n135 ? for 1 ewe // 2",
-  "tldr": null,
+  "tldr": "Découvrez une ferme bio de brebis laitières et leur engagement pour une agriculture équitable et respectueuse.",
   "commune": "Sévérac d'Aveyron",
   "address": "Rue de la Carayrade",
   "lat": 44.3723,
@@ -73251,7 +71172,7 @@
   "sector": "pont-de-salars",
   "external_id": "",
   "description": "Visit of an organic dairy sheep farm, only on reservation, in the Roquefort area. Exhibition of old equipment. Tasting at the end of the visit. Point of sale on site : La Cantounade",
-  "tldr": null,
+  "tldr": "Visitez une ferme ovine bio en Roquefort, avec exposition d'outils anciens et dégustation de produits locaux.",
   "commune": "Réquista",
   "address": "Sérieux",
   "lat": 44.0611,
@@ -73383,7 +71304,7 @@
   "sector": "pont-de-salars",
   "external_id": "",
   "description": "Visit Lagarde church and discover the Neo-Byzantine frescos by Nicolaï Greschny.",
-  "tldr": null,
+  "tldr": "Admirez les fresques néo-byzantines de Nicolaï Greschny dans l'église Saint-Martial de Lagarde.",
   "commune": "La Selve",
   "address": "Lagarde",
   "lat": 44.07415416,
@@ -73416,7 +71337,7 @@
   "sector": "pont-de-salars",
   "external_id": "",
   "description": "The church dates back to the 15th century, when it was an annex of Durenque until 1304. You can see some beautiful carved heads.\nFor self-guided tours, contact Mme Portes 05 65 46 54 82. For guided tours, contact Mme Dumoulin 06 45 66 64 38. Tours on reservation",
-  "tldr": null,
+  "tldr": "Découvrez les fresques et sculptures de Nicolaï Greschny dans l'église Saint-Pierre de Cannac.",
   "commune": "Durenque",
   "address": null,
   "lat": 44.0921,
@@ -73482,7 +71403,7 @@
   "sector": "pont-de-salars",
   "external_id": "",
   "description": "Organized by the Musique et Orgue en Aubrac association.",
-  "tldr": null,
+  "tldr": "Écoutez l'orgue de l'église du Fort à Laguiole, animé par l'association Musique et Orgue en Aubrac.",
   "commune": "Laguiole",
   "address": null,
   "lat": 44.68473506,
@@ -73680,7 +71601,7 @@
   "sector": "pont-de-salars",
   "external_id": "",
   "description": "Régine, passionate about her village, will accompany you throughout the visit. On each floor, she will tell you the history of this religious building and the heritage of the Sauveterrat that it houses.\nYou will go up to the bells which still give rhythm to the life of the bastide.\nBy appointment only - maximum 5 people",
-  "tldr": null,
+  "tldr": "Montez dans le clocher de Sauveterre-de-Rouergue avec Régine, pour une visite riche en histoire locale.",
   "commune": "Sauveterre-de-Rouergue",
   "address": "Boulevard de l'Oratoire",
   "lat": 44.22,
@@ -73812,7 +71733,7 @@
   "sector": "pont-de-salars",
   "external_id": "",
   "description": "Come and discover the village of Bournazel, a place stamped by history in a lush green setting. visit of the village suggests you follow a route through the back-streets enabling you to discover the architectural aspect of the village but also to travel through its history traces of which are visible from the middle ages right through to today. Visitors will see the revolt of the commoners in 1790 that led to the destruction of the château, but also the episode relative to the epidemic that decimated the village in 1772.",
-  "tldr": null,
+  "tldr": "Parcourez les ruelles de Bournazel, village chargé d'histoire, et découvrez son patrimoine caché.",
   "commune": "Bournazel",
   "address": "Le Bourg",
   "lat": 44.4609,
@@ -74043,7 +71964,7 @@
   "sector": "pont-de-salars",
   "external_id": "",
   "description": "By reservation only. Maximum of 20 people. Duration: 1 hour and 30 minutes. Meet in front of the tourist office.",
-  "tldr": null,
+  "tldr": "Explorez le village d'Estaing et son château lors d'une visite guidée d'1h30, sur réservation.",
   "commune": "Estaing",
   "address": "24, rue François d'Estaing",
   "lat": 44.5548,
@@ -74076,7 +71997,7 @@
   "sector": "pont-de-salars",
   "external_id": "",
   "description": "For adults and children %E0 aged 12 and older, accompanied by an adult. Duration: 1 hour 30 minutes.\nBy reservation only through the tourist office: 05 65 44 10 63.\nPresented by the Friends of Joseph Vaylet, in partnership with the Comtal, Lot, and Truyère Community of Communes.\nThe library is located on the first floor; there is no elevator, so it is not accessible to people with limited mobility.",
-  "tldr": null,
+  "tldr": "Plongez dans l'histoire de la bibliothèque Joseph Vaylet, avec une visite guidée pour adultes et enfants.",
   "commune": "Espalion",
   "address": "Anciennes prisons, place Pierre Frontin",
   "lat": 44.52099682,
@@ -74109,7 +72030,7 @@
   "sector": "pont-de-salars",
   "external_id": "",
   "description": "DESCRIPTION\n\nBuilt on a mound over 800 m high, the castle has watched over its medieval town for almost ten centuries. To get there and appreciate the site, follow your guide through the town's beautiful winding streets.\nYou'll then climb up to the castle, enjoying the remarkable view over the Aveyron valley. Once you've reached the château, your guide will take you on a tour of its history and architecture. During this tour, the chapel and kitchen, usually closed to the public, will be accessible to you.\nSévérac-le-Château has been a place of life since Neolithic times, and has a rich history",
-  "tldr": null,
+  "tldr": "Visitez le château de Sévérac, perché à 800 m, et son bourg médiéval lors d'une visite guidée.",
   "commune": "Sévérac d'Aveyron",
   "address": null,
   "lat": 44.32308635,
@@ -74208,7 +72129,7 @@
   "sector": "pont-de-salars",
   "external_id": "",
   "description": "Duration: 1 hour 30 minutes. Meet in front of the Tourist Information Center. No reservation required.",
-  "tldr": null,
+  "tldr": "Découvrez l’histoire médiévale de Villecomtal lors d’une visite guidée d’1h30, sans réservation.",
   "commune": "Villecomtal",
   "address": "1 Pl. Jean XXIII",
   "lat": 44.53951736,
@@ -74472,7 +72393,7 @@
   "sector": "pont-de-salars",
   "external_id": "",
   "description": "Cruéjouls is distinguished by its atypical feudal castle made up of four imposing round towers which frame a very small main building. The church, classified as a Historic Monument, has some Romanesque parts.\nHeritage to discover :\n-Castle of Cayla\n-Fountain of Briounas\n-Barn buttresses at the Grantarelle\nWhile walking through the streets of the village and thanks to enamelled lava plates, you will discover a lintel with a blacksmith's sign, gargoyles, a wash-house...",
-  "tldr": null,
+  "tldr": "Admirez le rare château féodal de Cruéjouls aux quatre tours rondes et son église classée.",
   "commune": "Palmas d'Aveyron",
   "address": null,
   "lat": 44.444,
@@ -74505,7 +72426,7 @@
   "sector": "pont-de-salars",
   "external_id": "",
   "description": "Between the Lévézou and the Causse de Sévérac, discover the pretty village of Gaillac d'Aveyron as well as Gagnac which is attached to the commune since 1830.\nTo see :\n-Bridge-mill\n-Turret\n-Church\n-Fortified houses\n-Watering place and fountain\n-Mullioned windows on barn\nAs you walk through the streets of the village, enamelled lava plaques will enlighten you on the history of these villages.",
-  "tldr": null,
+  "tldr": "Flânez dans Gaillac-d’Aveyron et Gagnac, entre pont-moulin, tourelles et églises au charme discret.",
   "commune": "Gaillac-d'Aveyron",
   "address": null,
   "lat": 44.3553,
@@ -74571,7 +72492,7 @@
   "sector": "pont-de-salars",
   "external_id": "",
   "description": "Palmas was, from the Middle Ages to the Revolution, a seigniory of the Bishops of Rodez who owned a powerful castle and established a bridge there. The village saw many disputes between the bishop and his neighbors, the Lords of Sévérac, often protestants.\nAs you walk through the streets of the village, you can admire :\n-Presbytery - 4-sided tower\n-Vestiges of the castle enclosure\n-Solignac house - Remains of the castle\n-Porch from 1815\n-Well of the village",
-  "tldr": null,
+  "tldr": "Explorez les vestiges du château épiscopal de Palmas, témoin des luttes médiévales locales.",
   "commune": "Palmas d'Aveyron",
   "address": null,
   "lat": 44.3943,
@@ -74637,7 +72558,7 @@
   "sector": "pont-de-salars",
   "external_id": "",
   "description": "to see: Church (inside + outside) - Village (half-timbered houses or not with pebbles of the Lot and roofs in lauzes) - Castle XVème (outside) - Private mansion of Renaissance period (1564) - Communal School become Small School of Art (Artisans) and the Museum Marcel Boudou - \"la Grange des Arts\" Artistic Pole created in 2002. A very flowery village, classified \"Plus Beau Village de France\", guided tours are offered by the Tourist Office all year round, by reservation, for groups and from June to September for individuals",
-  "tldr": null,
+  "tldr": "Parcourez Sainte-Eulalie-d’Olt et ses maisons à colombages, son château Renaissance et son église classée.",
   "commune": "Sainte-Eulalie-d'Olt",
   "address": null,
   "lat": 44.46400976,
@@ -74670,7 +72591,7 @@
   "sector": "pont-de-salars",
   "external_id": "",
   "description": "Sévérac l'Église is of very ancient origin, its name comes from \"Severi Ager\" field or land of Severus, Roman general.\nA fortified castle was located on the site of the church demolished in 1900, it was surrounded by a ditch of which traces still remain.\nTo see :\n-Alley under the porch\n-Church\n-The griffoul\n-Quadrangular tower, vestige of the fort\n-Washhouse\n-Farm with character house and dovecote\n-Master's house",
-  "tldr": null,
+  "tldr": "Visitez Sévérac l’Église, ancienne place forte romaine, où l’église remplace un château fort disparu.",
   "commune": "Laissac-Sévérac l'Église",
   "address": null,
   "lat": 44.3655,
@@ -74934,7 +72855,7 @@
   "sector": "pont-de-salars",
   "external_id": "",
   "description": "The fort of Vabre Tizac is a closed square that connects to the Church's square by a vaulted door dating back to XII-XIVth century. \n\nThe history of Vabre Tizac takes us back to Middle Age. Vabre once was a seigneurial fiefdom that also served as a refuge for villagers. Houses were built as a rampart around an oval-shaped square. All openings led to this square. At the foot of theses ramparts were built gaps that are still visible nowadays. \n\nNearby, you'll see the Bleyssol cross, erected at the end of the XVth century and on which we can find the Virgin and Child as well as a “Pietà”. \n\nA lit",
-  "tldr": null,
+  "tldr": "Traversez la porte voûtée du XIIe-XIVe siècle menant à l’église fortifiée de Vabre-Tizac.",
   "commune": "Le Bas Ségala",
   "address": "Départ de la visite du fort de Vabre dans le bourg",
   "lat": 44.2704,
@@ -74967,7 +72888,7 @@
   "sector": "pont-de-salars",
   "external_id": "",
   "description": "Supervision in caving, canyoning and cliff courses (via ferrata). Combination of activities à la carte, underground and or aerial bivouac, camps and stays, underground escape game.",
-  "tldr": null,
+  "tldr": "Pratiquez spéléologie, via ferrata ou bivouac souterrain avec encadrement professionnel à La Canourgue.",
   "commune": "La Canourgue",
   "address": null,
   "lat": 44.4318342,
@@ -75000,7 +72921,7 @@
   "sector": "pont-de-salars",
   "external_id": "",
   "description": "Fabien Brizion produces free-range eggs and chickens. Present at Saturday markets in Salles Curan and at fairs.",
-  "tldr": null,
+  "tldr": "Achetez des œufs et poulets fermiers élevés en plein air au marché de Salles-Curan ou en foire.",
   "commune": "Saint-Laurent-de-Lévézou",
   "address": "La calcidouze",
   "lat": 44.208,
@@ -75124,39 +73045,6 @@
   "first_seen": "2026-08-02",
   "last_seen": "2026-08-02",
   "id": "vtt-balades-et-randonnees-f004b2f0"
- },
- {
-  "name": "Vue d'en haut",
-  "category": "visite",
-  "source_id": "osm",
-  "sector": "pont-de-salars",
-  "external_id": "node/12451407086",
-  "description": "",
-  "tldr": null,
-  "commune": null,
-  "address": null,
-  "lat": 44.3448204,
-  "lon": 2.5809986,
-  "url": null,
-  "phone": null,
-  "opening_hours": null,
-  "fee": null,
-  "rating": null,
-  "rating_count": null,
-  "rating_source": null,
-  "rating_url": null,
-  "unusual": false,
-  "unusual_hint": true,
-  "quality": [],
-  "providers": [
-   "osm"
-  ],
-  "tags": [
-   "osm:tourism=artwork"
-  ],
-  "first_seen": "2026-08-02",
-  "last_seen": "2026-08-02",
-  "id": "vue-d-en-haut-af474f07"
  },
  {
   "name": "Wallaby de Bennett",
