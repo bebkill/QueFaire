@@ -152,6 +152,19 @@ Licence Ouverte Etalab : réutilisation libre, y compris commerciale, **à
 condition de citer la source et la date de mise à jour** — l'attribution est
 affichée sur la page « à propos » de chaque ville.
 
+**Budget de requêtes.** DATAtourisme annonce 20–30 requêtes concurrentes,
+~10 req/s en régime prolongé et 1000 req/heure. Le pipeline lit un **flux**
+(« API locale ») : *une* requête ramène tout le jeu d'une ville, contre une
+requête par fiche en usage temps réel. Le coût réel est donc d'une requête par
+ville et par passage hebdomadaire — on pourrait rafraîchir ~1000 villes en une
+heure avant d'approcher le plafond. Les villes sont traitées en séquence, avec
+un intervalle minimal entre requêtes et un rejeu respectant `Retry-After` en cas
+de 429.
+
+> **Règle de conception** : rester en mode « lot ». Un enrichissement fiche par
+> fiche consommerait ~500 requêtes pour une seule ville, soit la moitié du quota
+> horaire. C'est le seul scénario qui ferait mal.
+
 ### Notes d'avis (désactivées)
 
 `ratings.py` sait interroger Google Places (`GOOGLE_PLACES_KEY`) et TripAdvisor

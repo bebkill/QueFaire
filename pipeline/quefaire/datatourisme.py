@@ -38,6 +38,78 @@ log = logging.getLogger("quefaire")
 FLUX_ENV = "DATATOURISME_FLUX_URL"
 TIMEOUT = 120
 
+# --- Quotas DATAtourisme -----------------------------------------------------
+# La plateforme annonce : 20 à 30 requêtes concurrentes, ~10 req/s en régime
+# prolongé, 1000 requêtes/heure.
+#
+# Notre mode d'accès est le FLUX (« API locale ») : une seule requête ramène
+# tout le jeu d'une ville, contre une requête par fiche dans un usage temps
+# réel. Le budget réel est donc d'UNE requête par ville et par passage
+# hebdomadaire — trois ordres de grandeur sous le plafond horaire, même en
+# multipliant les épicentres.
+#
+# RÈGLE DE CONCEPTION : rester en mode « lot ». Un enrichissement fiche par
+# fiche (un appel par activité) consommerait ~500 requêtes pour une seule
+# ville, soit la moitié du quota horaire — c'est ce qu'il ne faut jamais faire.
+#
+# Les garde-fous ci-dessous sont malgré tout appliqués : on partage l'API avec
+# d'autres réutilisateurs, et un bug de boucle ne doit pas nous faire bannir.
+MAX_REQUESTS_PER_HOUR = 1000
+MIN_INTERVAL_S = 0.2  # ≤ 5 req/s, la moitié du régime prolongé toléré
+MAX_RETRIES = 3
+
+_last_request_at = 0.0
+_requests_made = 0
+
+
+def _throttle() -> None:
+    """Espace les requêtes pour ne jamais approcher le régime toléré."""
+    import time
+
+    global _last_request_at
+    wait = MIN_INTERVAL_S - (time.monotonic() - _last_request_at)
+    if wait > 0:
+        time.sleep(wait)
+    _last_request_at = time.monotonic()
+
+
+def _request(url: str):
+    """GET avec throttle, plafond de sécurité et respect du 429.
+
+    Un 429 (« trop de requêtes ») est rejoué en respectant l'en-tête
+    `Retry-After` quand il est fourni : c'est la seule façon polie de réagir à
+    un quota atteint, et ça évite l'escalade vers un blocage.
+    """
+    import time
+
+    import requests
+
+    from .fetchers.base import http_get
+
+    global _requests_made
+    if _requests_made >= MAX_REQUESTS_PER_HOUR:
+        raise RuntimeError(
+            f"plafond de sécurité atteint ({MAX_REQUESTS_PER_HOUR} requêtes) — "
+            "signe d'une boucle anormale, on s'arrête avant le quota réel"
+        )
+
+    for attempt in range(MAX_RETRIES + 1):
+        _throttle()
+        _requests_made += 1
+        try:
+            return http_get(url, timeout=TIMEOUT)
+        except requests.HTTPError as exc:
+            status = getattr(exc.response, "status_code", None)
+            if status not in (429, 503) or attempt == MAX_RETRIES:
+                raise
+            retry_after = (exc.response.headers or {}).get("Retry-After")
+            delay = float(retry_after) if (retry_after or "").isdigit() else 2 ** (attempt + 1)
+            log.warning(
+                "[datatourisme] %s — quota/surcharge, nouvelle tentative dans %.0f s (%d/%d)",
+                status, delay, attempt + 1, MAX_RETRIES,
+            )
+            time.sleep(delay)
+
 # Types de l'ontologie DATAtourisme → catégories QueFaire. On teste par
 # inclusion dans la liste @type (une fiche en porte plusieurs, du général au
 # précis) ; l'ordre décide, le plus spécifique d'abord.
@@ -254,10 +326,8 @@ def fetch(sector, limit: int | None = None) -> list[Place]:
         log.info("[datatourisme] %s non configurée — fournisseur sauté", FLUX_ENV)
         return []
 
-    from .fetchers.base import http_get
-
     try:
-        payload = http_get(flux, timeout=TIMEOUT).json()
+        payload = _request(flux).json()
     except Exception as exc:
         log.warning("[datatourisme] flux injoignable (%s) — OSM seul", exc)
         return []

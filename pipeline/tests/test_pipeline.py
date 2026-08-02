@@ -1206,3 +1206,40 @@ def test_notable_excludes_wikipedia_only():
 
     assert "notoriete" not in NOTABLE_LABELS       # notoriété ≠ distinction
     assert "monument-historique" in NOTABLE_LABELS
+
+
+def test_datatourisme_respects_quota_guard(monkeypatch):
+    """Un 429 est rejoué en respectant Retry-After, pas abandonné ni martelé."""
+    import requests
+
+    from quefaire import datatourisme as dt
+
+    monkeypatch.setattr(dt, "MIN_INTERVAL_S", 0)  # pas d'attente réelle en test
+    monkeypatch.setattr(dt, "_requests_made", 0)
+    slept: list[float] = []
+    monkeypatch.setattr("time.sleep", lambda s: slept.append(s))
+
+    calls = {"n": 0}
+
+    def flaky(*a, **k):
+        calls["n"] += 1
+        if calls["n"] == 1:
+            resp = requests.Response()
+            resp.status_code = 429
+            resp.headers["Retry-After"] = "7"
+            raise requests.HTTPError("429", response=resp)
+        return _FakeResp(DT_SAMPLE)
+
+    monkeypatch.setattr("quefaire.fetchers.base.http_get", flaky)
+    assert dt._request("https://flux.test/x").json() == DT_SAMPLE
+    assert calls["n"] == 2       # rejoué une fois
+    assert 7 in slept            # Retry-After honoré plutôt qu'un délai arbitraire
+
+
+def test_datatourisme_stops_before_quota(monkeypatch):
+    """Le plafond de sécurité coupe une boucle anormale avant le quota réel."""
+    from quefaire import datatourisme as dt
+
+    monkeypatch.setattr(dt, "_requests_made", dt.MAX_REQUESTS_PER_HOUR)
+    with pytest.raises(RuntimeError, match="plafond de sécurité"):
+        dt._request("https://flux.test/x")
