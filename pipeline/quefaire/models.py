@@ -183,9 +183,15 @@ class Place:
     rating_count: Optional[int] = None
     rating_source: Optional[str] = None
     rating_url: Optional[str] = None
-    # « Insolite » : activité méconnue ou hors des sentiers battus. Décidée par
-    # heuristique puis confirmée par le LLM (voir places.present).
+    # « Insolite » : activité méconnue ou hors des sentiers battus. N'est vrai
+    # QUE si le LLM l'a confirmé — c'est une affirmation affichée au visiteur,
+    # elle doit reposer sur un examen de la fiche. L'heuristique seule taguait
+    # 23 % du corpus, dont 95 % que le LLM n'avait jamais regardés.
     unusual: bool = False
+    # Présomption d'insolite (ni marque, ni notice wikipédia) : sert UNIQUEMENT
+    # à faire passer ces fiches en tête de la file de présentation LLM, jamais
+    # à afficher quoi que ce soit.
+    unusual_hint: bool = False
     # Signaux de qualité LIBRES (codes de QUALITY_LABELS) : Monument Historique,
     # Musée de France, Qualité Tourisme… Ils remplacent la note d'avis, dont
     # l'affichage est contraint par les CGU des fournisseurs — voir ratings.py.

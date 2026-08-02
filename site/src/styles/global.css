@@ -454,3 +454,11 @@ a { color: inherit; }
   background: var(--bg-soft); border: 1px solid var(--line); border-radius: 999px; padding: 7px 14px;
 }
 .loc-warn { color: var(--ink-soft); display: inline-block; margin-top: 4px; }
+
+/* Note de troncature sous la grille : un plafond doit se voir, sinon une liste
+   partielle passe pour exhaustive. */
+.truncated-note {
+  margin: 18px 2px 0; font-size: 0.85rem; color: var(--ink-soft);
+  background: var(--bg-soft); border: 1px solid var(--line);
+  border-radius: 10px; padding: 10px 14px;
+}

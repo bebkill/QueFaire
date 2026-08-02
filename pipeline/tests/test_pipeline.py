@@ -990,9 +990,11 @@ def test_places_osm_mapping_and_radius(monkeypatch):
     assert by_name["Château de Bouloc"].fee is True
     # Le site sans schéma est complété, pas recopié tel quel.
     assert by_name["Musée du Rouergue"].url == "https://musee-rouergue.fr"
-    # Insolite : l'œuvre de bord de route oui, le musée référencé sur wikidata non.
-    assert by_name["La Girafe de ferraille"].unusual is True
-    assert by_name["Musée du Rouergue"].unusual is False
+    # Présomption d'insolite : l'œuvre de bord de route oui, le musée référencé
+    # sur wikidata non. `unusual` reste faux tant que le LLM n'a pas tranché.
+    assert by_name["La Girafe de ferraille"].unusual_hint is True
+    assert by_name["Musée du Rouergue"].unusual_hint is False
+    assert all(p.unusual is False for p in found)
 
 
 def test_places_merge_preserves_enrichment():
@@ -1470,3 +1472,34 @@ def test_discover_places_keeps_file_when_all_providers_down(monkeypatch, tmp_pat
 
     assert cli.discover_places("pont-de-salars", tmp_path, use_llm=False, use_ratings=False) == 1
     assert [p.name for p in places.load("pont-de-salars", tmp_path)] == ["Musée"]
+
+
+def test_unusual_requires_llm_confirmation():
+    """L'heuristique PROPOSE, seul le LLM DISPOSE.
+
+    Au run réel, l'heuristique taguait 615 activités « insolites » (23 % du
+    corpus) dont 585 que le LLM n'avait jamais examinées — une affirmation
+    affichée au visiteur sans examen.
+    """
+    from quefaire import places
+
+    tags = {"name": "La Girafe de ferraille", "tourism": "artwork"}
+    assert places._looks_unusual(tags, "visite") is True   # présomption
+    place = places._element_to_place(
+        {"type": "node", "id": 1, "lat": 44.28, "lon": 2.73, "tags": tags}, "s", "2026-08-02"
+    )
+    assert place.unusual_hint is True     # candidate à l'examen
+    assert place.unusual is False         # …mais rien n'est affirmé avant le LLM
+
+
+def test_merge_keeps_llm_verdict_not_heuristic():
+    from quefaire.models import Place
+    from quefaire.places import merge
+
+    old = Place(name="X", category="visite", source_id="osm", sector="s",
+                external_id="node/1", tldr="phrase", unusual=True, unusual_hint=True)
+    fresh = Place(name="X", category="visite", source_id="osm", sector="s",
+                  external_id="node/1", unusual_hint=True)
+    [out] = merge([old], [fresh], today="2026-08-02")
+    assert out.unusual is True        # verdict LLM conservé
+    assert out.unusual_hint is True

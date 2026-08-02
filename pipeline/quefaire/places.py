@@ -208,7 +208,7 @@ def _element_to_place(el: dict, sector_id: str, today: str) -> Place | None:
         phone=tags.get("phone") or tags.get("contact:phone"),
         opening_hours=tags.get("opening_hours"),
         fee=_fee_of(tags),
-        unusual=_looks_unusual(tags, category),
+        unusual_hint=_looks_unusual(tags, category),
         quality=_quality_of(tags),
         providers=["osm"],
         first_seen=today,
@@ -365,6 +365,7 @@ def dedupe_providers(places: list[Place]) -> list[Place]:
                 base.external_id = other.external_id
                 base.source_id = "osm"
             base.unusual = base.unusual or other.unusual
+            base.unusual_hint = base.unusual_hint or other.unusual_hint
         base.id = base.compute_id()  # l'external_id a pu changer
         merged.append(base)
 
@@ -427,10 +428,10 @@ def merge(previous: list[Place], found: list[Place], today: str | None = None) -
             for prov in old.providers:
                 if prov not in place.providers:
                     place.providers.append(prov)
-            # L'insolite tranché par le LLM prime sur l'heuristique, mais une
-            # activité jamais présentée garde le verdict heuristique du jour.
-            if old.tldr:
-                place.unusual = old.unusual
+            # `unusual` n'existe que si le LLM l'a tranché : on le reprend tel
+            # quel de l'existant, la nouvelle sweep n'en sait rien.
+            place.unusual = old.unusual
+            place.unusual_hint = place.unusual_hint or old.unusual_hint
         place.last_seen = today
         merged.append(place)
 
@@ -540,7 +541,13 @@ def present(places: list[Place]) -> list[Place]:
         # aujourd'hui, autant commencer par ce que le visiteur verra en tête.
         from .models import NOTABLE_LABELS
 
-        misses.sort(key=lambda pair: not (set(pair[0].quality) & NOTABLE_LABELS))
+        # D'abord les distinctions officielles (ce que le visiteur voit en
+        # tête), puis les présomptions d'insolite — seul le LLM peut les
+        # confirmer, donc elles n'ont de valeur qu'une fois examinées.
+        misses.sort(key=lambda pair: (
+            not (set(pair[0].quality) & NOTABLE_LABELS),
+            not pair[0].unusual_hint,
+        ))
         log.warning(
             "[places] %d activités à présenter, plafonné à %d pour ce run "
             "(le reste sera présenté aux passages suivants, le cache est persistant)",

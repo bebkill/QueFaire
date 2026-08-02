@@ -4,6 +4,7 @@ import EventCard from '../../components/EventCard.astro';
 import PlaceCard from '../../components/PlaceCard.astro';
 import { cityIds, getSector, getEvents, getPlaces } from '../../lib/sectors.js';
 import { isNotable } from '../../lib/format.js';
+import { MAX_RENDERED, rankPlaces } from '../../lib/places.js';
 
 export function getStaticPaths() {
   return cityIds.map((city) => ({
@@ -17,20 +18,19 @@ const base = import.meta.env.BASE_URL;
 const cityBase = `${base}${sector.id}/`;
 const title = `QueFaire — ${sector.name} · sorties, événements et activités`;
 
-// Activités permanentes : les distinctions officielles d'abord (Monument
-// Historique, Musée de France…), puis l'ordre alphabétique. C'est l'ordre du
-// DOM de départ ; le tri dynamique (proximité/date) le rejoue côté client.
-const sortedPlaces = [...places].sort(
-  (a, b) =>
-    Number(isNotable(b.quality)) - Number(isNotable(a.quality)) ||
-    a.name.localeCompare(b.name, 'fr')
-);
+// Activités permanentes : classées par intérêt (distinction officielle,
+// insolite confirmé, présentation, horaires…) et PLAFONNÉES à l'affichage.
+// Un rayon d'une heure en ramène ~2600 : toutes les rendre donnait une page de
+// 3,7 Mo. places.json reste complet, seul le rendu est borné — et le nombre
+// d'activités non affichées est annoncé, jamais tu.
+const sortedPlaces = rankPlaces(places);
+const hiddenPlaces = places.length - sortedPlaces.length;
 const placeCategories = sector.place_categories || {};
 const qualityLabels = sector.quality_labels || {};
-const unusualCount = places.filter((p) => p.unusual).length;
+const unusualCount = sortedPlaces.filter((p) => p.unusual).length;
 // « Valeur sûre » = porte au moins une distinction officielle (la simple notice
 // Wikipédia ne compte pas). Le chip n'apparaît que s'il a de quoi filtrer.
-const notableCount = places.filter((p) => isNotable(p.quality)).length;
+const notableCount = sortedPlaces.filter((p) => isNotable(p.quality)).length;
 ---
 
 <Base title={title} sector={sector}>
@@ -41,7 +41,7 @@ const notableCount = places.filter((p) => isNotable(p.quality)).length;
         Concerts, randos, marchés, spectacles… {sector.event_count} idées de sorties
         collectées automatiquement auprès des communes et offices de tourisme
         {places.length > 0 && (
-          <> — plus <strong>{places.length} activités ouvertes toute l'année</strong>
+          <> — plus <strong>{sortedPlaces.length} activités ouvertes toute l'année</strong>
           {unusualCount > 0 && <>, dont {unusualCount} insolites</>}</>
         )}.
       </p>
@@ -120,6 +120,14 @@ const notableCount = places.filter((p) => isNotable(p.quality)).length;
         <PlaceCard place={place} categories={placeCategories} sectorQuality={qualityLabels} />
       ))}
     </div>
+
+    {hiddenPlaces > 0 && (
+      <p class="truncated-note">
+        {hiddenPlaces} autres activités permanentes recensées dans le rayon ne sont pas
+        affichées ici&nbsp;: la page montre les {MAX_RENDERED} plus documentées
+        (distinction officielle, horaires, site officiel).
+      </p>
+    )}
 
     <div class="empty" id="empty">
       <div class="big">🔍</div>
