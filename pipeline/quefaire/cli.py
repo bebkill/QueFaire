@@ -204,6 +204,14 @@ def discover_places(
             ", ".join(f"{t}×{n}" for t, n in counts.most_common(6)),
         )
 
+    illustrees = sum(1 for p in merged if p.image_url)
+    sans_site = [p for p in merged if not p.url]
+    log.info(
+        "[places] %d fiches illustrées ; %d sans site officiel (page de détail), "
+        "dont %d avec photo",
+        illustrees, len(sans_site), sum(1 for p in sans_site if p.image_url),
+    )
+
     unusual = sum(1 for p in merged if p.unusual)
     labelled = sum(1 for p in merged if set(p.quality) & NOTABLE_LABELS)
     both = sum(1 for p in merged if len(p.providers) > 1)

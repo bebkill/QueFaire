@@ -199,27 +199,28 @@ def _fee_of(tags: dict) -> bool | None:
 def _image_of(tags: dict) -> tuple[str | None, str | None, str | None]:
     """Illustration d'un objet OSM → (url, crédit, page de vérification).
 
-    Deux tags possibles, et l'ordre n'est pas indifférent :
-    `wikimedia_commons` pointe une médiathèque dont TOUT le contenu est sous
-    licence libre, avec une page qui nomme l'auteur — on peut afficher la photo
-    et créditer honnêtement. `image` est une URL quelconque, sans garantie de
-    licence ni de pérennité : on ne la retient qu'à défaut, et jamais en clair
-    (https seulement, pas de contenu mixte).
+    On ne retient que `wikimedia_commons`, qui pointe une médiathèque dont TOUT
+    le contenu est sous licence libre, avec une page qui nomme l'auteur : on
+    peut afficher la photo et créditer honnêtement.
+
+    Le tag `image` d'OSM est délibérément IGNORÉ. Il contient une URL quelconque
+    dont personne n'a vérifié la licence, et le crédit qu'on pourrait en tirer
+    serait faux : OpenStreetMap héberge le lien, pas la photo — l'auteur reste
+    inconnu. Republier l'image d'un tiers sous une attribution inventée est
+    précisément ce que la page de détail s'interdit. Le tag ne rapportait que
+    2 photos sur 1608 : le rapport ne se discute pas.
     """
     commons = (tags.get("wikimedia_commons") or "").strip()
-    if commons.startswith("File:"):
-        # Special:FilePath redimensionne côté Wikimedia : inutile de tirer un
-        # original de 12 Mo pour une vignette.
-        fichier = quote(commons[len("File:"):].replace(" ", "_"))
-        return (
-            f"https://commons.wikimedia.org/wiki/Special:FilePath/{fichier}?width=960",
-            "Wikimedia Commons",
-            f"https://commons.wikimedia.org/wiki/{quote(commons.replace(' ', '_'))}",
-        )
-    brute = (tags.get("image") or "").strip()
-    if brute.startswith("https://"):
-        return brute, "OpenStreetMap", brute
-    return None, None, None
+    if not commons.startswith("File:"):
+        return None, None, None
+    # Special:FilePath redimensionne côté Wikimedia : inutile de tirer un
+    # original de 12 Mo pour une vignette.
+    fichier = quote(commons[len("File:"):].replace(" ", "_"))
+    return (
+        f"https://commons.wikimedia.org/wiki/Special:FilePath/{fichier}?width=960",
+        "Wikimedia Commons",
+        f"https://commons.wikimedia.org/wiki/{quote(commons.replace(' ', '_'))}",
+    )
 
 
 def _build_query(lat: float, lon: float, km: float) -> str:

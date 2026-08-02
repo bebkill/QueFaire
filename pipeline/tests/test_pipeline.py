@@ -1183,16 +1183,17 @@ def test_datatourisme_reads_image_and_credit():
     assert _image_of({"hasMainRepresentation": {"ebucore:locator": "http://pas-sur.test/x.jpg"}}) == (None, None)
 
 
-def test_osm_image_prefers_commons():
-    """Commons d'abord : licence libre et page qui nomme l'auteur."""
+def test_osm_image_only_from_commons():
+    """Commons seulement : licence libre et page qui nomme l'auteur."""
     from quefaire.places import _image_of
 
     url, credit, page = _image_of({"wikimedia_commons": "File:Château de Tholet.jpg"})
     assert url.startswith("https://commons.wikimedia.org/wiki/Special:FilePath/Ch")
     assert credit == "Wikimedia Commons" and page.endswith("Ch%C3%A2teau_de_Tholet.jpg")
-    # À défaut, une URL https quelconque ; jamais de http en clair.
-    assert _image_of({"image": "https://exemple.test/p.jpg"})[0] == "https://exemple.test/p.jpg"
-    assert _image_of({"image": "http://exemple.test/p.jpg"}) == (None, None, None)
+    # Le tag `image` est ignoré : URL d'un tiers, licence inconnue, et le
+    # créditer à OpenStreetMap serait une attribution inventée.
+    assert _image_of({"image": "https://exemple.test/p.jpg"}) == (None, None, None)
+    assert _image_of({"wikimedia_commons": "Category:Rodez"}) == (None, None, None)
     assert _image_of({}) == (None, None, None)
 
 
