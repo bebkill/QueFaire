@@ -404,6 +404,24 @@ def load(sector_id: str, out: Path) -> list[Place]:
     return [Place(**{k: v for k, v in item.items() if k in known}) for item in raw]
 
 
+def _tag_still_mapped(tag: str) -> bool:
+    """Ce tag de provenance donne-t-il ENCORE une catégorie avec les règles du jour ?
+
+    `osm:historic=memorial`, `dt:SportsAndLeisurePlace`… : on rejoue la règle qui
+    avait classé la fiche. Si elle ne classe plus rien, c'est qu'on a resserré
+    volontairement. Un préfixe inconnu (fournisseur ajouté plus tard) renvoie
+    True : dans le doute on garde, le sursis d'absence fera le tri.
+    """
+    if tag.startswith("osm:"):
+        key, _, value = tag[4:].partition("=")
+        return _category_of({key: value}) is not None
+    if tag.startswith("dt:"):
+        from . import datatourisme
+
+        return datatourisme._category_of([tag[3:]]) is not None
+    return True
+
+
 def merge(previous: list[Place], found: list[Place], today: str | None = None) -> list[Place]:
     """Réconcilie une nouvelle sweep avec l'existant.
 
@@ -448,12 +466,23 @@ def merge(previous: list[Place], found: list[Place], today: str | None = None) -
         merged.append(place)
 
     # Les rescapées : vues avant, absentes aujourd'hui.
+    excluded = 0
     for old in prev_by_id.values():
+        # Absente parce qu'on l'exclut DÉLIBÉRÉMENT, ou parce que le fournisseur
+        # a hoqueté ? La provenance du classement tranche. Le sursis de deux
+        # sweeps existe pour encaisser une panne, pas pour maintenir en vie ce
+        # qu'une règle vient d'écarter — sinon un resserrement mettrait quinze
+        # jours à produire son effet.
+        if old.tags and not any(_tag_still_mapped(t) for t in old.tags):
+            excluded += 1
+            continue
         missing_days = _days_since(old.last_seen, today)
         if missing_days is not None and missing_days > 7 * MISSING_SWEEPS_BEFORE_DROP:
             log.info("[places] « %s » retirée : absente depuis %d jours", old.name, missing_days)
             continue
         merged.append(old)
+    if excluded:
+        log.info("[places] %d fiches retirées : leur type n'est plus retenu", excluded)
 
     merged.sort(key=lambda p: fold(p.name))
     return merged

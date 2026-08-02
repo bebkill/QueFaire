@@ -1030,6 +1030,33 @@ def test_places_merge_keeps_then_drops_missing():
     assert merge([gone], [], today="2026-09-15") == []
 
 
+def test_places_merge_drops_deliberately_excluded_type():
+    """Un resserrement des règles doit s'appliquer TOUT DE SUITE.
+
+    Le sursis de deux sweeps encaisse une panne de fournisseur ; il ne doit pas
+    maintenir en vie ce qu'une règle vient d'écarter, sinon un resserrement met
+    quinze jours à produire son effet.
+    """
+    from quefaire.models import Place
+    from quefaire.places import merge
+
+    # `historic=memorial` n'est plus classé : la fiche part au premier passage.
+    memorial = Place(name="Monument aux morts", category="patrimoine", source_id="osm",
+                     sector="s", external_id="node/7", tags=["osm:historic=memorial"],
+                     last_seen="2026-08-01")
+    assert merge([memorial], [], today="2026-08-02") == []
+
+    # Toujours classée, juste absente de la sweep du jour : conservée.
+    cinema = Place(name="Cinéma", category="cinema", source_id="osm", sector="s",
+                   external_id="node/8", tags=["osm:amenity=cinema"], last_seen="2026-08-01")
+    assert [p.name for p in merge([cinema], [], today="2026-08-02")] == ["Cinéma"]
+
+    # Type DATAtourisme encore retenu : conservé de même.
+    dt = Place(name="Musée", category="musee", source_id="datatourisme", sector="s",
+               external_id="dt/1", tags=["dt:Museum"], last_seen="2026-08-01")
+    assert [p.name for p in merge([dt], [], today="2026-08-02")] == ["Musée"]
+
+
 def test_places_roundtrip_and_place_count(tmp_path):
     from quefaire.export import _count_places
     from quefaire.models import Place
