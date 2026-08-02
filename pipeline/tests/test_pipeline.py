@@ -1591,3 +1591,40 @@ def test_presentation_covers_the_displayed_set():
     affichees = {p.id for p in ordre[:5]}
     file_ = [p for p in ordre if not p.tldr][:5]
     assert affichees == {p.id for p in file_}   # on présente ce qui est affiché
+
+
+def test_classification_provenance_is_recorded():
+    """Chaque fiche garde le tag/type qui a déclenché son classement.
+
+    Sans cette traçabilité, une catégorie anormalement grosse ne dit pas QUEL
+    tag la gonfle — on ne peut qu'élaguer au jugé.
+    """
+    from quefaire import datatourisme, places
+
+    osm = places._element_to_place(
+        {"type": "node", "id": 1, "lat": 44.28, "lon": 2.73,
+         "tags": {"name": "Piscine", "leisure": "swimming_pool"}}, "s", "2026-08-02")
+    assert osm.tags == ["osm:leisure=swimming_pool"]
+
+    dt = datatourisme._to_place(DT_SAMPLE["@graph"][1], "s", "2026-08-02")
+    assert dt.tags == ["dt:SportsAndLeisurePlace"]
+
+
+def test_report_breaks_down_categories_by_raw_type():
+    from quefaire.datatourisme import report
+    from quefaire.models import Place
+
+    places_ = [
+        Place(name="A", category="sport-loisir", source_id="datatourisme", sector="s",
+              tags=["dt:LeisureSportActivityProvider"]),
+        Place(name="B", category="sport-loisir", source_id="datatourisme", sector="s",
+              tags=["dt:LeisureSportActivityProvider"]),
+        Place(name="C", category="sport-loisir", source_id="datatourisme", sector="s",
+              tags=["dt:GolfCourse"]),
+        Place(name="D", category="musee", source_id="datatourisme", sector="s",
+              tags=["dt:Museum"]),
+    ]
+    r = report(places_)
+    # La catégorie la plus grosse d'abord, et le type qui la gonfle identifié.
+    assert list(r["types_bruts"]) == ["sport-loisir", "musee"]
+    assert r["types_bruts"]["sport-loisir"]["LeisureSportActivityProvider"] == 2

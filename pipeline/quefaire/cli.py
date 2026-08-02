@@ -178,7 +178,23 @@ def discover_places(
     cache.save()
     refresh_place_count(sector_id, len(merged), out_dir)
 
+    # Provenance du classement sur l'ensemble FUSIONNÉ : c'est ce tableau qui
+    # dit quel tag OSM ou quel type d'ontologie gonfle une catégorie, et donc
+    # lequel resserrer. Sans lui on élague au jugé.
+    from collections import Counter
+
     from .models import NOTABLE_LABELS
+
+    par_cat: dict[str, Counter] = {}
+    for p in merged:
+        for tag in p.tags or []:
+            par_cat.setdefault(p.category, Counter())[tag] += 1
+    for cat, counts in sorted(par_cat.items(), key=lambda kv: -sum(kv[1].values())):
+        log.info(
+            "[places] %-16s %4d — %s",
+            cat, sum(counts.values()),
+            ", ".join(f"{t}×{n}" for t, n in counts.most_common(6)),
+        )
 
     unusual = sum(1 for p in merged if p.unusual)
     labelled = sum(1 for p in merged if set(p.quality) & NOTABLE_LABELS)

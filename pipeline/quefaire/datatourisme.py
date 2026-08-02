@@ -289,10 +289,22 @@ def _type_names(node: dict) -> list[str]:
 
 
 def _category_of(types: list[str]) -> str | None:
+    category, _ = _category_and_type(types)
+    return category
+
+
+def _category_and_type(types: list[str]) -> tuple[str | None, str | None]:
+    """Catégorie QueFaire ET type d'ontologie qui a déclenché la règle.
+
+    Garder le type qui a matché est ce qui permet de régler les règles sur des
+    faits : sans lui, une catégorie anormalement grosse ne dit pas QUEL type la
+    gonfle, et on ne peut qu'élaguer au jugé.
+    """
     for names, category in _TYPE_RULES:
-        if any(t in names for t in types):
-            return category
-    return None
+        for t in types:
+            if t in names:
+                return category, t
+    return None, None
 
 
 def _quality_of(node: dict) -> list[str]:
@@ -388,7 +400,7 @@ def _address(located) -> tuple[str | None, str | None]:
 
 
 def _to_place(node: dict, sector_id: str, today: str) -> Place | None:
-    category = _category_of(_type_names(node))
+    category, raw_type = _category_and_type(_type_names(node))
     if not category:
         return None
     name = _first(_get(node, "rdfs:label", "label", "name"))
@@ -430,6 +442,9 @@ def _to_place(node: dict, sector_id: str, today: str) -> Place | None:
         phone=phone,
         opening_hours=_opening_of(located),
         quality=_quality_of(node),
+        # Provenance du classement, conservée pour pouvoir auditer les règles
+        # sur les données publiées sans relancer une découverte.
+        tags=[f"dt:{raw_type}"] if raw_type else [],
         providers=["datatourisme"],
         first_seen=today,
         last_seen=today,
@@ -588,9 +603,21 @@ def report(places: list[Place]) -> dict:
     """
     from collections import Counter
 
+    # Types d'ontologie qui ont produit chaque catégorie : c'est CE tableau qui
+    # permet de dire quel type gonfle une catégorie, et donc lequel retirer.
+    par_type: dict[str, dict[str, int]] = {}
+    for p in places:
+        raw = next((t[3:] for t in (p.tags or []) if t.startswith("dt:")), "?")
+        par_type.setdefault(p.category, Counter())[raw] += 1
+    types_bruts = {
+        cat: dict(Counter(c).most_common(6))
+        for cat, c in sorted(par_type.items(), key=lambda kv: -sum(kv[1].values()))
+    }
+
     total = len(places) or 1
     return {
         "total": len(places),
+        "types_bruts": types_bruts,
         # Histogramme par catégorie : c'est lui qui permet de régler les règles
         # de type sur des faits plutôt qu'au jugé. Une catégorie anormalement
         # grosse signale un type d'ontologie trop large à retirer.

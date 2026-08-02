@@ -101,11 +101,16 @@ _NEEDS_SIGNAL = {"nature"}
 
 
 def _category_of(tags: dict) -> str | None:
+    return _category_and_tag(tags)[0]
+
+
+def _category_and_tag(tags: dict) -> tuple[str | None, str | None]:
+    """Catégorie ET tag OSM qui a déclenché la règle (traçabilité du classement)."""
     for key, values, category in _TAG_RULES:
         value = tags.get(key)
         if value and re.fullmatch(values, value):
-            return category
-    return None
+            return category, f"{key}={value}"
+    return None, None
 
 
 def _is_interesting(tags: dict, category: str) -> bool:
@@ -178,7 +183,7 @@ def _build_query(lat: float, lon: float, km: float) -> str:
 
 def _element_to_place(el: dict, sector_id: str, today: str) -> Place | None:
     tags = el.get("tags") or {}
-    category = _category_of(tags)
+    category, raw_tag = _category_and_tag(tags)
     if not category or not _is_interesting(tags, category):
         return None
 
@@ -210,6 +215,7 @@ def _element_to_place(el: dict, sector_id: str, today: str) -> Place | None:
         fee=_fee_of(tags),
         unusual_hint=_looks_unusual(tags, category),
         quality=_quality_of(tags),
+        tags=[f"osm:{raw_tag}"] if raw_tag else [],
         providers=["osm"],
         first_seen=today,
         last_seen=today,
@@ -418,7 +424,10 @@ def merge(previous: list[Place], found: list[Place], today: str | None = None) -
             place.rating_count = old.rating_count
             place.rating_source = old.rating_source
             place.rating_url = old.rating_url
-            place.tags = old.tags
+            # Union : la provenance fraîche prime, l'ancienne est conservée.
+            for tag in old.tags:
+                if tag not in place.tags:
+                    place.tags.append(tag)
             # Union des labels et des fournisseurs : si le flux DATAtourisme est
             # indisponible ce jour-là, ses labels ne doivent pas disparaître de
             # la fiche pour autant.
