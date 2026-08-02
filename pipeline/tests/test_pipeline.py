@@ -1503,3 +1503,48 @@ def test_merge_keeps_llm_verdict_not_heuristic():
     [out] = merge([old], [fresh], today="2026-08-02")
     assert out.unusual is True        # verdict LLM conservé
     assert out.unusual_hint is True
+
+
+def test_presentation_queue_follows_display_order(monkeypatch):
+    """La file LLM suit l'ordre d'AFFICHAGE, pas les présomptions d'insolite.
+
+    Vécu au run réel : la file privilégiait 594 présomptions dont 533 sans
+    description — le LLM n'avait rien à lire et rendait du vide. 26 phrases
+    utiles pour 400 tentatives.
+    """
+    from quefaire import places
+    from quefaire.models import Place
+
+    riche = Place(name="Château classé", category="patrimoine", source_id="osm",
+                  sector="s", external_id="node/1", description="Un donjon du XIIe.",
+                  url="https://x.fr", opening_hours="Tu-Su 10:00-18:00",
+                  quality=["monument-historique"])
+    pauvre = Place(name="Aire de pique-nique", category="nature", source_id="osm",
+                   sector="s", external_id="node/2", unusual_hint=True)
+    assert places.display_score(riche) > places.display_score(pauvre)
+
+    monkeypatch.setattr(places, "PRESENT_MAX_PER_RUN", 1)
+    _reset_cache()
+    soumis: list[str] = []
+
+    class _Chain:
+        def available(self): return True
+        def healthy(self): return True
+        def run(self, prompt):
+            soumis.append(prompt)
+            raise RuntimeError("stop")  # on n'observe que la sélection
+
+    monkeypatch.setattr("quefaire.llm.clarify_chain", lambda: _Chain())
+    places.present([pauvre, riche])
+    assert "Château classé" in soumis[0]        # la fiche documentée passe d'abord
+    assert "Aire de pique-nique" not in soumis[0]
+
+
+def test_display_score_mirrors_site_constants():
+    """Le plafond côté pipeline doit refléter celui du site (places.js)."""
+    from pathlib import Path
+
+    from quefaire.places import DISPLAY_LIMIT
+
+    js = (Path(__file__).resolve().parents[2] / "site/src/lib/places.js").read_text(encoding="utf-8")
+    assert f"MAX_RENDERED = {DISPLAY_LIMIT}" in js

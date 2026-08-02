@@ -509,6 +509,37 @@ BATCH_SIZE = 20
 # de tout payer d'un coup.
 PRESENT_MAX_PER_RUN = 400
 
+# Nombre d'activités réellement rendues par le site — MIROIR de MAX_RENDERED
+# dans site/src/lib/places.js. Présenter au-delà, c'est payer un appel LLM pour
+# une fiche que personne ne verra.
+DISPLAY_LIMIT = 300
+
+
+def display_score(place: Place) -> int:
+    """Intérêt d'une activité — **miroir de `placeScore()`** (site/src/lib/places.js).
+
+    Sert à ordonner la file de présentation sur le même critère que l'affichage :
+    sans cela, on paie des appels LLM pour des fiches qui n'apparaîtront jamais.
+    Vécu : la file privilégiait les présomptions d'insolite, dont 533 sur 594
+    n'avaient AUCUNE description — le LLM n'avait rien à lire et rendait une
+    chaîne vide. 26 phrases utiles pour 400 tentatives.
+
+    Toute modification ici doit être reportée dans places.js, et inversement.
+    """
+    from .models import NOTABLE_LABELS
+
+    quality = place.quality or []
+    return (
+        (100 if set(quality) & NOTABLE_LABELS else 0)
+        + (40 if place.unusual else 0)
+        + (30 if place.tldr else 0)
+        + (15 if place.opening_hours else 0)
+        + (10 if place.url else 0)
+        + (5 if place.description else 0)
+        + (5 if "notoriete" in quality else 0)
+        + (5 if len(place.providers or []) > 1 else 0)
+    )
+
 
 def present(places: list[Place]) -> list[Place]:
     """Remplit `tldr` (et affine `unusual`) pour les activités jamais présentées.
@@ -537,21 +568,16 @@ def present(places: list[Place]) -> list[Place]:
                 p.unusual = bool(payload["insolite"])
 
     if len(misses) > PRESENT_MAX_PER_RUN:
-        # Les mieux distinguées d'abord : si on ne peut pas tout présenter
-        # aujourd'hui, autant commencer par ce que le visiteur verra en tête.
-        from .models import NOTABLE_LABELS
-
-        # D'abord les distinctions officielles (ce que le visiteur voit en
-        # tête), puis les présomptions d'insolite — seul le LLM peut les
-        # confirmer, donc elles n'ont de valeur qu'une fois examinées.
-        misses.sort(key=lambda pair: (
-            not (set(pair[0].quality) & NOTABLE_LABELS),
-            not pair[0].unusual_hint,
-        ))
+        # File ordonnée sur le score d'AFFICHAGE : on présente d'abord ce que le
+        # visiteur verra, et ces fiches-là sont aussi les mieux documentées, donc
+        # celles pour lesquelles le LLM a de la matière. À présomption d'insolite
+        # égale, une fiche sans description ne produira qu'une réponse vide —
+        # elle attend son tour derrière les autres.
+        misses.sort(key=lambda pair: (-display_score(pair[0]), fold(pair[0].name)))
         log.warning(
             "[places] %d activités à présenter, plafonné à %d pour ce run "
-            "(le reste sera présenté aux passages suivants, le cache est persistant)",
-            len(misses), PRESENT_MAX_PER_RUN,
+            "(priorité aux %d affichées ; le reste suivra, le cache est persistant)",
+            len(misses), PRESENT_MAX_PER_RUN, DISPLAY_LIMIT,
         )
         misses = misses[:PRESENT_MAX_PER_RUN]
 
