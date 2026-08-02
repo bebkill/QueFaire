@@ -1395,3 +1395,78 @@ def test_cache_partitioned_per_cycle(tmp_path, monkeypatch):
     places = json.loads((tmp_path / "ville" / "places.json").read_text(encoding="utf-8"))
     assert crawl == {"extract:page": ["A"]}   # survit au cycle activités
     assert places == {"place:musee": "phrase"}
+
+
+def test_overpass_falls_back_to_mirror(monkeypatch):
+    """Un 504 de l'instance publique bascule sur un miroir, sans perdre le run."""
+    import requests
+
+    from quefaire import places
+
+    tried: list[str] = []
+
+    def flaky(url, **k):
+        tried.append(url)
+        if len(tried) == 1:
+            resp = requests.Response()
+            resp.status_code = 504
+            raise requests.HTTPError("504", response=resp)
+        return _FakeResp(OVERPASS_SAMPLE)
+
+    monkeypatch.setattr("quefaire.fetchers.base.http_get", flaky)
+    found = places.fetch_osm(load_sector("pont-de-salars"))
+    assert len(tried) == 2                       # bascule sur le miroir suivant
+    assert tried[0] != tried[1]
+    assert any(p.name == "Musée du Rouergue" for p in found)
+
+
+def test_overpass_raises_when_all_mirrors_fail(monkeypatch):
+    import requests
+
+    from quefaire import places
+
+    def dead(url, **k):
+        resp = requests.Response()
+        resp.status_code = 504
+        raise requests.HTTPError("504", response=resp)
+
+    monkeypatch.setattr("quefaire.fetchers.base.http_get", dead)
+    with pytest.raises(RuntimeError, match="Overpass"):
+        places.fetch_osm(load_sector("pont-de-salars"))
+
+
+def test_discover_places_survives_osm_outage(monkeypatch, tmp_path):
+    """Overpass en panne ne doit pas priver le secteur de DATAtourisme."""
+    from quefaire import cli, datatourisme, places
+
+    monkeypatch.setenv(datatourisme.API_KEY_ENV, "K")
+    monkeypatch.delenv(datatourisme.FLUX_ENV, raising=False)
+    monkeypatch.setattr(datatourisme, "MIN_INTERVAL_S", 0)
+    monkeypatch.setattr(datatourisme, "_requests_made", 0)
+    monkeypatch.setattr(places, "fetch_osm", lambda *a, **k: (_ for _ in ()).throw(RuntimeError("504")))
+    monkeypatch.setattr(
+        "quefaire.fetchers.base.http_get",
+        lambda url, **k: _FakeResp({"objects": DT_SAMPLE["@graph"], "meta": {"next": None}}),
+    )
+    _reset_cache()
+
+    assert cli.discover_places("pont-de-salars", tmp_path, use_llm=False, use_ratings=False) == 0
+    saved = places.load("pont-de-salars", tmp_path)
+    assert {p.name for p in saved} == {"Musée du Rouergue", "Accrobranche du Lévézou"}
+
+
+def test_discover_places_keeps_file_when_all_providers_down(monkeypatch, tmp_path):
+    """Deux fournisseurs muets = on ne touche à rien, jamais de secteur vidé."""
+    from quefaire import cli, datatourisme, places
+    from quefaire.models import Place
+
+    existing = [Place(name="Musée", category="musee", source_id="osm",
+                      sector="pont-de-salars", external_id="node/1", lat=44.2, lon=2.7)]
+    places.save(existing, "pont-de-salars", tmp_path)
+
+    monkeypatch.delenv(datatourisme.API_KEY_ENV, raising=False)
+    monkeypatch.delenv(datatourisme.FLUX_ENV, raising=False)
+    monkeypatch.setattr(places, "fetch_osm", lambda *a, **k: (_ for _ in ()).throw(RuntimeError("504")))
+
+    assert cli.discover_places("pont-de-salars", tmp_path, use_llm=False, use_ratings=False) == 1
+    assert [p.name for p in places.load("pont-de-salars", tmp_path)] == ["Musée"]

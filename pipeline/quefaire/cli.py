@@ -138,25 +138,31 @@ def discover_places(
     cache.bind(sector_id, "places")
     out_dir = out or SITE_DATA_DIR
 
+    # Les deux fournisseurs sont INDÉPENDANTS : Overpass est une API publique qui
+    # sature (504 vécu), DATAtourisme peut avoir son propre incident. La panne de
+    # l'un ne doit pas emporter l'autre — on n'abandonne que si les deux sont
+    # muets, auquel cas places.json reste tel quel plutôt que d'être vidé.
+    from . import datatourisme
+
+    found: list = []
     try:
         found = places_mod.fetch_osm(sector, limit=limit)
     except Exception as exc:
-        log.error("[places] Overpass indisponible (%s) — places.json inchangé", exc)
-        return 1
-
-    # DATAtourisme complète OSM là où les contributeurs bénévoles manquent
-    # (description, horaires, labels). Complément : son absence n'est pas un
-    # échec, on continue avec OSM seul.
-    from . import datatourisme
+        log.error("[places] OpenStreetMap indisponible (%s) — on continue sans lui", exc)
 
     dt = datatourisme.fetch(sector, limit=limit)
     if dt:
         log.info("[places] DATAtourisme : %s", datatourisme.report(dt))
-        found = places_mod.dedupe_providers(found + dt)
+        found = places_mod.dedupe_providers(found + dt) if found else dt
 
     if not found:
-        log.error("[places] aucune activité trouvée — places.json inchangé (anomalie probable)")
+        log.error(
+            "[places] aucun fournisseur n'a répondu — places.json inchangé "
+            "(ne jamais publier un secteur vide sur une panne réseau)"
+        )
         return 1
+    if not dt and datatourisme.available():
+        log.warning("[places] DATAtourisme configuré mais muet — résultat OSM seul, incomplet")
 
     previous = places_mod.load(sector_id, out_dir)
     merged = places_mod.merge(previous, found)

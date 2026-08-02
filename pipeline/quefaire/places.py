@@ -34,7 +34,15 @@ from .normalize import fold
 
 log = logging.getLogger("quefaire")
 
-OVERPASS_URL = "https://overpass-api.de/api/interpreter"
+# Instances Overpass, essayées dans l'ordre. L'instance principale est publique
+# et gratuite : elle sature régulièrement et répond alors 504 en quelques
+# secondes (vécu). Un miroir prend le relais plutôt que de perdre le run — la
+# requête est identique, ce sont les mêmes données OSM.
+OVERPASS_URLS = (
+    "https://overpass-api.de/api/interpreter",
+    "https://overpass.kumi.systems/api/interpreter",
+    "https://overpass.private.coffee/api/interpreter",
+)
 OVERPASS_TIMEOUT = 180
 
 # Nombre de sweeps consécutifs sans revoir une activité avant de la retirer.
@@ -208,6 +216,35 @@ def _element_to_place(el: dict, sector_id: str, today: str) -> Place | None:
     )
 
 
+def _overpass(query: str) -> list[dict]:
+    """Interroge Overpass en basculant de miroir en miroir si besoin.
+
+    Les instances publiques saturent : un 504 en quelques secondes est un
+    engorgement passager, pas une erreur de requête. On réessaie ailleurs avant
+    d'abandonner, plutôt que de perdre la découverte de la semaine.
+    """
+    import requests
+
+    from .fetchers.base import http_get
+
+    last: Exception | None = None
+    for url in OVERPASS_URLS:
+        try:
+            resp = http_get(url, params={"data": query}, timeout=OVERPASS_TIMEOUT + 30)
+            return resp.json().get("elements", [])
+        except requests.HTTPError as exc:
+            status = getattr(exc.response, "status_code", None)
+            last = exc
+            if status in (429, 502, 503, 504):
+                log.warning("[places] %s saturé (%s) — miroir suivant", url, status)
+                continue
+            raise
+        except Exception as exc:  # réseau, JSON illisible…
+            last = exc
+            log.warning("[places] %s injoignable (%s) — miroir suivant", url, exc)
+    raise RuntimeError(f"toutes les instances Overpass ont échoué — dernière : {last}")
+
+
 def fetch_osm(sector, limit: int | None = None) -> list[Place]:
     """Interroge Overpass autour de l'épicentre et rend les activités du rayon.
 
@@ -215,16 +252,13 @@ def fetch_osm(sector, limit: int | None = None) -> list[Place]:
     chaque résultat est re-filtré au temps de trajet exact : un cercle en km est
     une approximation du disque isochrone, pas l'inverse.
     """
-    from .fetchers.base import http_get
-
     km = radius_km(sector.radius_minutes)
     query = _build_query(sector.center_lat, sector.center_lon, km)
     log.info(
         "[places] Overpass : rayon %.0f km (%d min) autour de %s",
         km, int(sector.radius_minutes), sector.name,
     )
-    resp = http_get(OVERPASS_URL, params={"data": query}, timeout=OVERPASS_TIMEOUT + 30)
-    elements = resp.json().get("elements", [])
+    elements = _overpass(query)
     log.info("[places] %d objets OSM bruts", len(elements))
 
     today = date.today().isoformat()
