@@ -65,8 +65,13 @@ jobs:
           GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
           MISTRAL_API_KEY: ${{ secrets.MISTRAL_API_KEY }}
           # DATAtourisme : complète OpenStreetMap (descriptions, horaires,
-          # labels). Sans ce flux, la découverte tourne avec OSM seul.
+          # labels). Deux modes, le FLUX est préféré (1 requête au lieu d'une par
+          # page). Sans l'un ni l'autre, la découverte tourne avec OSM seul.
           DATATOURISME_FLUX_URL: ${{ secrets.DATATOURISME_FLUX_URL }}
+          DATATOURISME_API_KEY: ${{ secrets.DATATOURISME_API_KEY }}
+          # Filtres serveur du catalogue (ex. « department=12 ») : indispensables
+          # en mode API pour ne pas parcourir les 530 000 fiches nationales.
+          DATATOURISME_API_PARAMS: ${{ vars.DATATOURISME_API_PARAMS }}
           # Notes d'avis — collectées seulement si une clé existe, mais NON
           # affichées : conditions d'utilisation des fournisseurs (voir ratings.py).
           GOOGLE_PLACES_KEY: ${{ secrets.GOOGLE_PLACES_KEY }}

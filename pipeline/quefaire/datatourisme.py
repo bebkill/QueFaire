@@ -36,7 +36,21 @@ from .models import Place
 log = logging.getLogger("quefaire")
 
 FLUX_ENV = "DATATOURISME_FLUX_URL"
+API_KEY_ENV = "DATATOURISME_API_KEY"
+# Filtres serveur additionnels, en query string (ex. « department=12&…»). Les
+# noms exacts dépendent de la doc DATAtourisme : les exposer en variable évite
+# de figer dans le code des paramètres qui pourraient changer, et permet de
+# restreindre le catalogue SANS toucher au pipeline.
+API_PARAMS_ENV = "DATATOURISME_API_PARAMS"
+API_URL = "https://api.datatourisme.fr/v1/catalog"
 TIMEOUT = 120
+
+# Garde-fou de pagination. Le catalogue national compte >530 000 fiches : les
+# parcourir entièrement coûterait des milliers de requêtes et pulvériserait le
+# quota horaire. On plafonne, et on le DIT dans les logs plutôt que de tronquer
+# en silence — c'est le signal qu'il faut restreindre le catalogue côté serveur
+# (filtres API_PARAMS, ou périmètre de l'application DATAtourisme).
+MAX_PAGES = 60
 
 # --- Quotas DATAtourisme -----------------------------------------------------
 # La plateforme annonce : 20 à 30 requêtes concurrentes, ~10 req/s en régime
@@ -152,7 +166,7 @@ _LABEL_RULES: list[tuple[str, str]] = [
 
 
 def available() -> bool:
-    return bool(os.environ.get(FLUX_ENV))
+    return bool(os.environ.get(FLUX_ENV) or os.environ.get(API_KEY_ENV))
 
 
 # --- Extraction JSON-LD défensive --------------------------------------------
@@ -314,27 +328,77 @@ def _to_place(node: dict, sector_id: str, today: str) -> Place | None:
     )
 
 
-def fetch(sector, limit: int | None = None) -> list[Place]:
-    """Lit le flux DATAtourisme et rend les activités du rayon.
+def _nodes_from_flux(flux: str) -> list[dict]:
+    """Mode FLUX (« API locale ») : une seule requête ramène tout le jeu."""
+    payload = _request(flux).json()
+    nodes = payload.get("@graph") if isinstance(payload, dict) else payload
+    if not isinstance(nodes, list):
+        log.warning("[datatourisme] format de flux inattendu — ni @graph ni liste")
+        return []
+    return [n for n in nodes if isinstance(n, dict)]
 
-    Retourne [] (sans lever) si le flux n'est pas configuré ou injoignable :
-    c'est un complément d'OSM, son absence ne doit pas faire échouer la
-    découverte.
+
+def _nodes_from_api(key: str) -> list[dict]:
+    """Mode API temps réel : GET /v1/catalog, paginé.
+
+    On suit `meta.next` plutôt que d'incrémenter un numéro de page : c'est la
+    méthode recommandée par DATAtourisme, la seule qui garantisse de ne rater
+    aucun résultat en parcourant tout le catalogue.
+    """
+    extra = (os.environ.get(API_PARAMS_ENV) or "").lstrip("?&")
+    url = f"{API_URL}?api_key={key}" + (f"&{extra}" if extra else "")
+
+    nodes: list[dict] = []
+    for page in range(MAX_PAGES):
+        payload = _request(url).json()
+        if not isinstance(payload, dict):
+            log.warning("[datatourisme] réponse inattendue de l'API (pas un objet)")
+            break
+        batch = payload.get("objects") or payload.get("@graph") or []
+        nodes.extend(n for n in batch if isinstance(n, dict))
+
+        meta = payload.get("meta") or {}
+        nxt = meta.get("next") or meta.get("next_url")
+        if not nxt:
+            log.info("[datatourisme] catalogue parcouru : %d fiches, %d page(s)", len(nodes), page + 1)
+            return nodes
+        # L'URL `next` porte déjà la clé et les filtres ; on la suit telle quelle.
+        url = nxt if str(nxt).startswith("http") else f"{API_URL}{nxt}"
+    else:
+        log.warning(
+            "[datatourisme] plafond de %d pages atteint (%d fiches) — catalogue TRONQUÉ. "
+            "Restreignez-le côté serveur via %s (ex. un filtre départemental) "
+            "ou utilisez un flux (%s).",
+            MAX_PAGES, len(nodes), API_PARAMS_ENV, FLUX_ENV,
+        )
+    return nodes
+
+
+def fetch(sector, limit: int | None = None) -> list[Place]:
+    """Rend les activités DATAtourisme du rayon, par flux ou par API.
+
+    Le **flux** est préféré quand il est configuré : une requête au lieu d'une
+    par page, donc un coût dérisoire face au quota horaire. L'API sert de repli
+    quand on ne dispose que d'une clé.
+
+    Retourne [] (sans lever) si rien n'est configuré ou si la source est
+    injoignable : c'est un complément d'OSM, son absence ne doit pas faire
+    échouer la découverte.
     """
     flux = os.environ.get(FLUX_ENV)
-    if not flux:
-        log.info("[datatourisme] %s non configurée — fournisseur sauté", FLUX_ENV)
+    key = os.environ.get(API_KEY_ENV)
+    if not flux and not key:
+        log.info(
+            "[datatourisme] ni %s ni %s — fournisseur sauté (OSM seul)", FLUX_ENV, API_KEY_ENV
+        )
         return []
 
     try:
-        payload = _request(flux).json()
+        nodes = _nodes_from_flux(flux) if flux else _nodes_from_api(key)
     except Exception as exc:
-        log.warning("[datatourisme] flux injoignable (%s) — OSM seul", exc)
+        log.warning("[datatourisme] source injoignable (%s) — OSM seul", exc)
         return []
-
-    nodes = payload.get("@graph") if isinstance(payload, dict) else payload
-    if not isinstance(nodes, list):
-        log.warning("[datatourisme] format inattendu — ni @graph ni liste")
+    if not nodes:
         return []
 
     today = date.today().isoformat()
@@ -353,9 +417,17 @@ def fetch(sector, limit: int | None = None) -> list[Place]:
             seen.add(place.external_id)
         places.append(place)
 
-    log.info(
-        "[datatourisme] %d activités retenues sur %d fiches du flux", len(places), len(nodes)
-    )
+    log.info("[datatourisme] %d activités retenues sur %d fiches", len(places), len(nodes))
+    if nodes and not places:
+        # Des fiches reçues mais aucune reconnue : c'est le symptôme d'un
+        # mapping de champs à corriger (l'ontologie est riche et les
+        # producteurs la remplissent inégalement), pas d'un territoire vide.
+        log.warning(
+            "[datatourisme] %d fiches reçues, AUCUNE exploitable — vérifier le mapping "
+            "des types (@type) et des coordonnées (isLocatedAt/schema:geo) contre un "
+            "échantillon réel du flux",
+            len(nodes),
+        )
     return places[:limit] if limit else places
 
 

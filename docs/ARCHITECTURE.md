@@ -175,6 +175,29 @@ commerces d'un bourg. La fiche la plus complète sert de base, les champs
 manquants sont pris chez l'autre, et l'`external_id` **OSM prime** : c'est le
 plus stable dans le temps, donc la meilleure clé de réconciliation entre sweeps.
 
+#### Accès DATAtourisme et quotas
+
+La plateforme annonce 20–30 requêtes concurrentes, ~10 req/s en régime prolongé
+et **1000 requêtes/heure**. Deux modes d'accès, et le choix pèse directement sur
+ce budget :
+
+- **flux** (`DATATOURISME_FLUX_URL`, « API locale ») — une requête ramène tout
+  le jeu d'une ville. Mode préféré : ~1000 villes rafraîchissables en une heure ;
+- **API temps réel** (`DATATOURISME_API_KEY`) — `GET /v1/catalog`, parcouru en
+  suivant `meta.next` plutôt qu'en incrémentant un numéro de page (méthode
+  recommandée, la seule qui garantisse de ne rater aucun résultat). Le catalogue
+  doit être restreint côté serveur via `DATATOURISME_API_PARAMS`, sinon on
+  paginerait sur 530 000 fiches. La pagination est plafonnée (`MAX_PAGES`) et
+  toute troncature **journalisée en warning** — jamais silencieuse.
+
+Garde-fous communs : intervalle minimal entre requêtes (≤ 5 req/s, moitié du
+régime toléré), rejeu sur 429/503 en respectant `Retry-After`, et coupe-circuit
+à 1000 requêtes par run pour qu'une boucle anormale n'atteigne pas le quota réel.
+
+> **Règle de conception** : rester en mode lot. Un enrichissement fiche par
+> fiche coûterait ~500 requêtes pour une seule ville, soit la moitié du quota
+> horaire. C'est le seul scénario qui poserait un problème d'échelle.
+
 ### Notes d'avis : pourquoi elles ne sont pas affichées
 
 `ratings.py` sait interroger Google Places et TripAdvisor, et ne s'active que si

@@ -143,23 +143,34 @@ qui ouvre une issue pré-remplie, traitée par le même circuit de validation.
 
 ### DATAtourisme (recommandé, gratuit)
 
-Créer un flux dans le diffuseur [DATAtourisme](https://www.datatourisme.fr/utiliser-les-donnees/)
-(inscription gratuite), puis renseigner le secret `DATATOURISME_FLUX_URL` avec
-l'URL complète du webservice. Sans cette variable, la découverte fonctionne avec
-OpenStreetMap seul.
+Deux modes d'accès, au choix — sans l'un ni l'autre, la découverte fonctionne
+avec OpenStreetMap seul :
+
+| Mode | Secret | Coût en requêtes | Quand l'utiliser |
+|---|---|---|---|
+| **Flux** (« API locale ») | `DATATOURISME_FLUX_URL` | **1 par ville** | À privilégier : un flux créé dans le diffuseur est déjà filtré sur votre territoire |
+| **API temps réel** | `DATATOURISME_API_KEY` | 1 par page de catalogue | Quand on ne dispose que d'une clé |
+
+En mode API, le catalogue est parcouru en suivant `meta.next` (méthode
+recommandée par DATAtourisme, la seule qui garantisse de ne rater aucun
+résultat). **Renseignez alors la variable `DATATOURISME_API_PARAMS`** avec des
+filtres serveur (ex. `department=12`) : sans restriction, le catalogue national
+compte plus de 530 000 fiches, et la pagination est plafonnée à 60 pages — la
+troncature est signalée par un warning explicite dans les logs, jamais
+silencieuse.
 
 Licence Ouverte Etalab : réutilisation libre, y compris commerciale, **à
 condition de citer la source et la date de mise à jour** — l'attribution est
 affichée sur la page « à propos » de chaque ville.
 
 **Budget de requêtes.** DATAtourisme annonce 20–30 requêtes concurrentes,
-~10 req/s en régime prolongé et 1000 req/heure. Le pipeline lit un **flux**
-(« API locale ») : *une* requête ramène tout le jeu d'une ville, contre une
-requête par fiche en usage temps réel. Le coût réel est donc d'une requête par
-ville et par passage hebdomadaire — on pourrait rafraîchir ~1000 villes en une
-heure avant d'approcher le plafond. Les villes sont traitées en séquence, avec
-un intervalle minimal entre requêtes et un rejeu respectant `Retry-After` en cas
-de 429.
+~10 req/s en régime prolongé et 1000 req/heure. En mode flux, le coût est d'une
+requête par ville et par passage hebdomadaire : on pourrait rafraîchir ~1000
+villes en une heure avant d'approcher le plafond. En mode API avec un catalogue
+correctement filtré, quelques pages par ville — soit encore une centaine de
+villes par heure. Les villes sont traitées en séquence, avec un intervalle
+minimal entre requêtes, un rejeu respectant `Retry-After` en cas de 429, et un
+coupe-circuit à 1000 requêtes par run.
 
 > **Règle de conception** : rester en mode « lot ». Un enrichissement fiche par
 > fiche consommerait ~500 requêtes pour une seule ville, soit la moitié du quota

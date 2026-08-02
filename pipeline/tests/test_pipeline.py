@@ -1243,3 +1243,88 @@ def test_datatourisme_stops_before_quota(monkeypatch):
     monkeypatch.setattr(dt, "_requests_made", dt.MAX_REQUESTS_PER_HOUR)
     with pytest.raises(RuntimeError, match="plafond de sécurité"):
         dt._request("https://flux.test/x")
+
+
+def test_datatourisme_api_follows_next_url(monkeypatch):
+    """Mode API : on suit meta.next (méthode recommandée), pas un compteur de pages."""
+    from quefaire import datatourisme as dt
+
+    monkeypatch.delenv(dt.FLUX_ENV, raising=False)
+    monkeypatch.setenv(dt.API_KEY_ENV, "K")
+    monkeypatch.setattr(dt, "MIN_INTERVAL_S", 0)
+    monkeypatch.setattr(dt, "_requests_made", 0)
+
+    page1 = {"objects": DT_SAMPLE["@graph"][:2],
+             "meta": {"next": "https://api.datatourisme.fr/v1/catalog?api_key=K&page=2"}}
+    page2 = {"objects": DT_SAMPLE["@graph"][2:], "meta": {"next": None}}
+    seen: list[str] = []
+
+    def fake(url, **k):
+        seen.append(url)
+        return _FakeResp(page1 if len(seen) == 1 else page2)
+
+    monkeypatch.setattr("quefaire.fetchers.base.http_get", fake)
+    found = dt.fetch(load_sector("pont-de-salars"))
+
+    assert len(seen) == 2                      # deux pages, puis arrêt sur next=None
+    assert "api_key=K" in seen[0]
+    assert seen[1].endswith("page=2")          # l'URL next est suivie telle quelle
+    assert {p.name for p in found} == {"Musée du Rouergue", "Accrobranche du Lévézou"}
+
+
+def test_datatourisme_api_extra_filters(monkeypatch):
+    """Les filtres serveur sont configurables sans toucher au code."""
+    from quefaire import datatourisme as dt
+
+    monkeypatch.delenv(dt.FLUX_ENV, raising=False)
+    monkeypatch.setenv(dt.API_KEY_ENV, "K")
+    monkeypatch.setenv(dt.API_PARAMS_ENV, "?department=12")
+    monkeypatch.setattr(dt, "MIN_INTERVAL_S", 0)
+    monkeypatch.setattr(dt, "_requests_made", 0)
+    seen: list[str] = []
+    monkeypatch.setattr(
+        "quefaire.fetchers.base.http_get",
+        lambda url, **k: (seen.append(url), _FakeResp({"objects": [], "meta": {}}))[1],
+    )
+    dt.fetch(load_sector("pont-de-salars"))
+    assert seen[0] == "https://api.datatourisme.fr/v1/catalog?api_key=K&department=12"
+
+
+def test_datatourisme_api_caps_pagination(monkeypatch, caplog):
+    """Un catalogue non filtré est tronqué — mais bruyamment, jamais en silence."""
+    from quefaire import datatourisme as dt
+
+    monkeypatch.delenv(dt.FLUX_ENV, raising=False)
+    monkeypatch.setenv(dt.API_KEY_ENV, "K")
+    monkeypatch.delenv(dt.API_PARAMS_ENV, raising=False)
+    monkeypatch.setattr(dt, "MIN_INTERVAL_S", 0)
+    monkeypatch.setattr(dt, "MAX_PAGES", 3)
+    monkeypatch.setattr(dt, "_requests_made", 0)
+    calls = {"n": 0}
+
+    def endless(url, **k):
+        calls["n"] += 1
+        return _FakeResp({"objects": [], "meta": {"next": "https://api.datatourisme.fr/v1/catalog?p=x"}})
+
+    monkeypatch.setattr("quefaire.fetchers.base.http_get", endless)
+    with caplog.at_level("WARNING"):
+        dt.fetch(load_sector("pont-de-salars"))
+    assert calls["n"] == 3                                  # plafonné
+    assert "TRONQUÉ" in caplog.text                          # et signalé
+
+
+def test_datatourisme_flux_preferred_over_api(monkeypatch):
+    """Le flux coûte une requête là où l'API en coûte une par page : il prime."""
+    from quefaire import datatourisme as dt
+
+    monkeypatch.setenv(dt.FLUX_ENV, "https://flux.test/x")
+    monkeypatch.setenv(dt.API_KEY_ENV, "K")
+    monkeypatch.setattr(dt, "MIN_INTERVAL_S", 0)
+    monkeypatch.setattr(dt, "_requests_made", 0)
+    seen: list[str] = []
+    monkeypatch.setattr(
+        "quefaire.fetchers.base.http_get",
+        lambda url, **k: (seen.append(url), _FakeResp(DT_SAMPLE))[1],
+    )
+    dt.fetch(load_sector("pont-de-salars"))
+    assert seen == ["https://flux.test/x"]   # l'API n'est pas sollicitée
