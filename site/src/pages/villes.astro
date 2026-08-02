@@ -105,6 +105,23 @@ const latestLabel = latest
   });
 
   // --- Localisation --------------------------------------------------------
+  let mapCtx = null; // { L, map, userMarker } — partagé avec « Me localiser »
+
+  // Affiche le point de l'utilisateur sur la carte et cadre la vue sur lui +
+  // la ville la plus proche. circleMarker (SVG) : pas d'icône PNG.
+  const showUserOnMap = (lat, lon, city) => {
+    if (!mapCtx) return;
+    const { L, map } = mapCtx;
+    if (mapCtx.userMarker) mapCtx.userMarker.remove();
+    mapCtx.userMarker = L.circleMarker([lat, lon], {
+      radius: 7, color: '#fff', weight: 2, fillColor: '#1c7ed6', fillOpacity: 1,
+    }).addTo(map).bindPopup('Vous êtes ici').openPopup();
+    map.fitBounds(
+      L.latLngBounds([[lat, lon], [city.center.lat, city.center.lon]]).pad(0.4),
+      { maxZoom: 11 },
+    );
+  };
+
   const locateBtn = document.getElementById('locate');
   const locateResult = document.getElementById('locate-result');
   locateBtn.addEventListener('click', () => {
@@ -133,6 +150,7 @@ const latestLabel = latest
           locateResult.insertAdjacentText('beforeend', 'Agenda en préparation.');
         }
         highlight(hit.c.id);
+        showUserOnMap(latitude, longitude, hit.c);
       },
       () => { locateResult.textContent = 'Localisation refusée. Utilisez la recherche ou la carte.'; },
     );
@@ -155,6 +173,7 @@ const latestLabel = latest
       attribution: '© OpenStreetMap',
       maxZoom: 18,
     }).addTo(map);
+    mapCtx = { L, map, userMarker: null }; // partagé avec « Me localiser »
 
     const bounds = L.latLngBounds([]);
     for (const c of cities) {
