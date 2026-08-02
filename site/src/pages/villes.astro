@@ -167,7 +167,12 @@ const latestLabel = latest
       const action = isReady(c)
         ? `<br><a href="${cityUrl(c)}">Ouvrir l'agenda</a>`
         : '<br><em>Agenda en préparation</em>';
-      L.marker(ll).addTo(map).bindPopup(`<strong>${c.name}</strong>${count}${action}`);
+      // circleMarker (SVG) plutôt que L.marker : pas d'icône PNG à charger
+      // (dont le chemin, une fois bundlé, casse en file:/// → erreur de sécurité).
+      L.circleMarker(ll, {
+        radius: 9, color: '#fff', weight: 2,
+        fillColor: isReady(c) ? '#e05e33' : '#9aa0a6', fillOpacity: 1,
+      }).addTo(map).bindPopup(`<strong>${c.name}</strong>${count}${action}`);
     }
     if (cities.length === 1) map.setView([cities[0].center.lat, cities[0].center.lon], 10);
     else map.fitBounds(bounds.pad(0.3));
