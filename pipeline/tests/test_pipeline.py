@@ -1057,6 +1057,37 @@ def test_places_merge_drops_deliberately_excluded_type():
     assert [p.name for p in merge([dt], [], today="2026-08-02")] == ["Musée"]
 
 
+def test_filter_relevant_drops_mute_heritage():
+    """Le patrimoine muet est du bruit ; le patrimoine documenté reste.
+
+    Un signal = quelqu'un a jugé le lieu digne d'un mot. Aucun signal, c'est
+    cinq sources qui disent non en même temps (DATAtourisme, un site officiel,
+    Wikipédia, un classement, des horaires).
+    """
+    from quefaire.models import Place
+    from quefaire.places import filter_relevant
+
+    def pat(name, **kw):
+        return Place(name=name, category="patrimoine", source_id="osm", sector="s", **kw)
+
+    muet = pat("Ancien four à chaux")
+    # Le tldr est DÉRIVÉ : il ne doit pas suffire à sauver une fiche muette,
+    # sinon le filtre se mord la queue.
+    présenté = pat("Ancien moulin", tldr="Une jolie phrase déjà payée")
+    gardés = [
+        pat("Abbatiale de Conques", description="Chef-d'œuvre roman."),
+        pat("Château de Calmont", url="https://example.org"),
+        pat("Beffroi de Millau", opening_hours="Mo-Su 10:00-18:00"),
+        pat("Ancien prieuré", quality=["monument-historique"]),
+        pat("Abbaye de Bonneval", providers=["osm", "datatourisme"]),
+    ]
+    # Une catégorie hors _NEEDS_SIGNAL_PLACE n'est pas concernée, même muette.
+    cinema = Place(name="Ciné", category="cinema", source_id="osm", sector="s")
+
+    kept = filter_relevant([muet, présenté, *gardés, cinema])
+    assert [p.name for p in kept] == [*(p.name for p in gardés), "Ciné"]
+
+
 def test_places_roundtrip_and_place_count(tmp_path):
     from quefaire.export import _count_places
     from quefaire.models import Place

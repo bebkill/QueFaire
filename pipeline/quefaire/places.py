@@ -102,6 +102,14 @@ _SKIP_IF = (
 # les catégories très denses (parcs, aires de pique-nique) un signal de qualité.
 _NEEDS_SIGNAL = {"nature"}
 
+# Même principe, mais appliqué à la fiche FUSIONNÉE plutôt qu'aux tags d'un
+# fournisseur : `patrimoine` est assez dense pour qu'une fiche dont personne n'a
+# jamais écrit une ligne y soit du bruit (fours à chaux anonymes, tas de pierres
+# cartographiés pour la carte, pas pour la visite). Le test tardif est délibéré :
+# un château qu'OSM ne connaît que comme un point survit si DATAtourisme le
+# décrit — c'est la fusion qui doit trancher, pas un fournisseur isolé.
+_NEEDS_SIGNAL_PLACE = {"patrimoine"}
+
 
 def _category_of(tags: dict) -> str | None:
     return _category_and_tag(tags)[0]
@@ -402,6 +410,43 @@ def load(sector_id: str, out: Path) -> list[Place]:
         return []
     known = {f.name for f in Place.__dataclass_fields__.values()}
     return [Place(**{k: v for k, v in item.items() if k in known}) for item in raw]
+
+
+def has_signal(place: Place) -> bool:
+    """Au moins une source a-t-elle jugé ce lieu digne d'être décrit ?
+
+    Description, site officiel, horaires, distinction, ou présence chez deux
+    fournisseurs : chacun atteste que quelqu'un s'est donné la peine. Le `tldr`
+    n'en fait PAS partie — il est dérivé de ce qu'on a déjà, il ne prouve rien
+    de plus, et l'inclure rendrait le filtre circulaire.
+    """
+    return bool(
+        (place.description or "").strip()
+        or place.url
+        or place.opening_hours
+        or place.quality
+        or len(place.providers or []) > 1
+    )
+
+
+def filter_relevant(places: list[Place]) -> list[Place]:
+    """Écarte les fiches muettes des catégories denses (_NEEDS_SIGNAL_PLACE).
+
+    Appelé AVANT `present()` : inutile de payer une présentation LLM pour une
+    fiche qu'on ne publiera pas.
+    """
+    kept, dropped = [], 0
+    for place in places:
+        if place.category in _NEEDS_SIGNAL_PLACE and not has_signal(place):
+            dropped += 1
+            continue
+        kept.append(place)
+    if dropped:
+        log.info(
+            "[places] %d fiches écartées : aucun signe d'intérêt (catégories %s)",
+            dropped, ", ".join(sorted(_NEEDS_SIGNAL_PLACE)),
+        )
+    return kept
 
 
 def _tag_still_mapped(tag: str) -> bool:

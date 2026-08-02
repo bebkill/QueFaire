@@ -166,6 +166,7 @@ def discover_places(
 
     previous = places_mod.load(sector_id, out_dir)
     merged = places_mod.merge(previous, found)
+    merged = places_mod.filter_relevant(merged)
 
     if use_llm:
         merged = places_mod.present(merged)  # no-op sans LLM
