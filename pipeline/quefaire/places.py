@@ -24,6 +24,7 @@ from __future__ import annotations
 import json
 import logging
 import re
+from collections import Counter
 from datetime import date, datetime, timedelta
 from pathlib import Path
 
@@ -109,6 +110,14 @@ _NEEDS_SIGNAL = {"nature"}
 # un château qu'OSM ne connaît que comme un point survit si DATAtourisme le
 # décrit — c'est la fusion qui doit trancher, pas un fournisseur isolé.
 _NEEDS_SIGNAL_PLACE = {"patrimoine"}
+
+# Parfois la catégorie est trop grossière pour porter la décision : dans
+# `visite`, les 88 `tourism=artwork` sont des sculptures de rond-point et une
+# meule posée sur un talus, quand les 70 `tourism=attraction` comptent un loueur
+# de canoë et une cave de dégustation — de vraies sorties, simplement pas
+# décrites dans OSM. Filtrer la catégorie entière tuerait les secondes. On exige
+# donc le signal au niveau du TAG de provenance pour ces cas-là.
+_NEEDS_SIGNAL_TAG = {"osm:tourism=artwork"}
 
 
 def _category_of(tags: dict) -> str | None:
@@ -429,22 +438,35 @@ def has_signal(place: Place) -> bool:
     )
 
 
+def _needs_signal(place: Place) -> bool:
+    """Cette fiche doit-elle prouver son intérêt pour être publiée ?
+
+    Soit par sa catégorie (dense de bout en bout), soit par son tag de
+    provenance quand la catégorie mélange le bon et le décoratif.
+    """
+    return place.category in _NEEDS_SIGNAL_PLACE or any(
+        t in _NEEDS_SIGNAL_TAG for t in (place.tags or [])
+    )
+
+
 def filter_relevant(places: list[Place]) -> list[Place]:
-    """Écarte les fiches muettes des catégories denses (_NEEDS_SIGNAL_PLACE).
+    """Écarte les fiches muettes des catégories et types denses.
 
     Appelé AVANT `present()` : inutile de payer une présentation LLM pour une
     fiche qu'on ne publiera pas.
     """
-    kept, dropped = [], 0
+    kept: list[Place] = []
+    dropped: Counter = Counter()
     for place in places:
-        if place.category in _NEEDS_SIGNAL_PLACE and not has_signal(place):
-            dropped += 1
+        if _needs_signal(place) and not has_signal(place):
+            dropped[place.category] += 1
             continue
         kept.append(place)
     if dropped:
         log.info(
-            "[places] %d fiches écartées : aucun signe d'intérêt (catégories %s)",
-            dropped, ", ".join(sorted(_NEEDS_SIGNAL_PLACE)),
+            "[places] %d fiches écartées : aucun signe d'intérêt (%s)",
+            sum(dropped.values()),
+            ", ".join(f"{cat} ×{n}" for cat, n in dropped.most_common()),
         )
     return kept
 

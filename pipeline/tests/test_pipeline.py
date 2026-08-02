@@ -1088,6 +1088,28 @@ def test_filter_relevant_drops_mute_heritage():
     assert [p.name for p in kept] == [*(p.name for p in gardés), "Ciné"]
 
 
+def test_filter_relevant_targets_artwork_not_whole_category():
+    """Dans `visite`, la catégorie est trop grossière pour porter la décision.
+
+    Les sculptures de rond-point (`tourism=artwork`) doivent prouver leur
+    intérêt ; le loueur de canoë (`tourism=attraction`), non — c'est une vraie
+    sortie, simplement pas décrite dans OSM.
+    """
+    from quefaire.models import Place
+    from quefaire.places import filter_relevant
+
+    def visite(name, tag, **kw):
+        return Place(name=name, category="visite", source_id="osm", sector="s",
+                     tags=[f"osm:tourism={tag}"], **kw)
+
+    sculpture = visite("Ange de la résurrection", "artwork")
+    sculpture_connue = visite("Arbre de Vie", "artwork", description="Œuvre de…")
+    canoe = visite("Alternative Canoe Kayak", "attraction")
+
+    kept = filter_relevant([sculpture, sculpture_connue, canoe])
+    assert [p.name for p in kept] == ["Arbre de Vie", "Alternative Canoe Kayak"]
+
+
 def test_places_roundtrip_and_place_count(tmp_path):
     from quefaire.export import _count_places
     from quefaire.models import Place
