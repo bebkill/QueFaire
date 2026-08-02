@@ -186,14 +186,21 @@ def discover_places(
 
     from .models import NOTABLE_LABELS
 
+    # Le total affiché compte les FICHES, pas les tags : une fiche connue des
+    # deux fournisseurs en porte deux, et sommer les tags gonflait la catégorie
+    # (sport-loisir annoncé à 169 pour 159 fiches). Un instrument de diagnostic
+    # qui ment sur dix unités fait chercher un problème qui n'existe pas.
     par_cat: dict[str, Counter] = {}
+    fiches: Counter = Counter()
     for p in merged:
+        fiches[p.category] += 1
         for tag in p.tags or []:
             par_cat.setdefault(p.category, Counter())[tag] += 1
-    for cat, counts in sorted(par_cat.items(), key=lambda kv: -sum(kv[1].values())):
+    for cat, total in fiches.most_common():
+        counts = par_cat.get(cat, Counter())
         log.info(
             "[places] %-16s %4d — %s",
-            cat, sum(counts.values()),
+            cat, total,
             ", ".join(f"{t}×{n}" for t, n in counts.most_common(6)),
         )
 
