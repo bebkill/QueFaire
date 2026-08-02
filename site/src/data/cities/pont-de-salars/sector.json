@@ -48,7 +48,6 @@
   "Salles-Curan",
   "Ségur",
   "Sévérac d'Aveyron",
-  "Trémouilles",
   "Villefranche-de-Panat"
  ],
  "sources": [
@@ -77,6 +76,6 @@
    "url": "https://aveyron.fr/agenda"
   }
  ],
- "generated_at": "2026-08-01T20:23:09",
+ "generated_at": "2026-08-02T06:31:09",
  "event_count": 36
 }
