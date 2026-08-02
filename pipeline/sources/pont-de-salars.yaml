@@ -20,11 +20,13 @@ sector:
   center_lat: 44.2789
   center_lon: 2.7300
   radius_minutes: 60
-  # Filtre serveur DATAtourisme (mode API) : restreint le catalogue au
-  # territoire du secteur — 12 (Aveyron) — le rayon déborde sur 81/48/15/46.
-  # Sans filtre, on paginerait sur les 530 000 fiches nationales.
-  # ⚠ Nom des paramètres à confirmer sur api.datatourisme.fr/v1/docs.
-  datatourisme_params: "department=12"
+  # Expression `filters` DATAtourisme (mode API). « type=PlaceOfInterest »
+  # écarte déjà événements, produits et itinéraires — le crawl collecte les
+  # événements par ailleurs. Périmètre visé : Aveyron (12).
+  # ⚠ RESTE À FAIRE : ajouter la clause territoriale. La doc ne montre qu'un
+  # filtre par commune (isLocatedAt.address.hasAddressCity.insee=<code>) ;
+  # sans clause régionale, préférer un FLUX, déjà filtré à sa création.
+  datatourisme_filters: "type=PlaceOfInterest"
 
 sources:
   # --- Cœur de l'épicentre (Lévézou / Pont-de-Salars) ------------------------

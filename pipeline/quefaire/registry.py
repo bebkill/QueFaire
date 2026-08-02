@@ -30,11 +30,12 @@ class Sector:
     # l'épicentre. Un événement au-delà est écarté à la collecte, quel que soit
     # son département. Voir geo.within_radius.
     radius_minutes: float = 60.0
-    # Filtres serveur DATAtourisme propres à ce secteur, en query string
-    # (ex. « department=12 »). Le bon filtre dépend du territoire — l'Aveyron
-    # pour Pont-de-Salars, l'Isère/Rhône/Ain pour Villemoirieu — il appartient
-    # donc au registre du secteur, pas à une variable d'environnement globale.
-    datatourisme_params: str = ""
+    # Expression `filters` DATAtourisme propre à ce secteur, p. ex.
+    # « type=PlaceOfInterest and isLocatedAt.address.hasAddressCity.insee=12178 ».
+    # Le bon périmètre dépend du territoire — l'Aveyron pour Pont-de-Salars,
+    # l'Isère/Rhône/Ain pour Villemoirieu — il appartient donc au registre du
+    # secteur, pas à une variable d'environnement globale.
+    datatourisme_filters: str = ""
     sources: list[Source] = field(default_factory=list)
 
 
@@ -140,6 +141,6 @@ def load_sector(sector_id: str) -> Sector:
         center_lat=float(meta.get("center_lat", 45.2)),
         center_lon=float(meta.get("center_lon", 5.7)),
         radius_minutes=float(meta.get("radius_minutes", 60.0)),
-        datatourisme_params=str(meta.get("datatourisme_params", "") or ""),
+        datatourisme_filters=str(meta.get("datatourisme_filters", "") or ""),
         sources=[s for s in sources if s.enabled],
     )

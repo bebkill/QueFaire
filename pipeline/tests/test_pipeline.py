@@ -1279,6 +1279,7 @@ def test_datatourisme_api_extra_filters(monkeypatch):
     monkeypatch.delenv(dt.FLUX_ENV, raising=False)
     monkeypatch.setenv(dt.API_KEY_ENV, "K")
     monkeypatch.delenv(dt.API_PARAMS_ENV, raising=False)
+    monkeypatch.delenv(dt.API_FILTERS_ENV, raising=False)
     monkeypatch.setattr(dt, "MIN_INTERVAL_S", 0)
     monkeypatch.setattr(dt, "_requests_made", 0)
     seen: list[str] = []
@@ -1286,15 +1287,27 @@ def test_datatourisme_api_extra_filters(monkeypatch):
         "quefaire.fetchers.base.http_get",
         lambda url, **k: (seen.append(url), _FakeResp({"objects": [], "meta": {}}))[1],
     )
-    # Le filtre territorial vient du REGISTRE du secteur, pas d'une variable
-    # globale : l'Aveyron pour Pont-de-Salars, l'Isère/Rhône/Ain pour Villemoirieu.
+    # Le périmètre vient du REGISTRE du secteur, via une expression `filters`
+    # (syntaxe de l'API), correctement encodée dans l'URL.
     dt.fetch(load_sector("pont-de-salars"))
-    assert "department=12" in seen[0]
+    assert "filters=type%3DPlaceOfInterest" in seen[0]      # expression url-encodée
     assert f"page_size={dt.DEFAULT_PAGE_SIZE}" in seen[0]   # pagination large = moins de requêtes
+    assert "fields=" in seen[0]                             # réponse allégée
 
-    seen.clear()
-    dt.fetch(load_sector("villemoirieu"))
-    assert "department=38,69,01" in seen[0]                 # filtre propre à l'autre ville
+
+def test_datatourisme_type_mapping_uses_real_ontology_names():
+    """Noms de types relevés dans l'énumération `type` de la doc de l'API."""
+    from quefaire.datatourisme import _category_of
+
+    assert _category_of(["PointOfInterest", "Museum"]) == "musee"
+    assert _category_of(["PointOfInterest", "ParkAndGarden"]) == "nature"
+    assert _category_of(["PointOfInterest", "PointOfView"]) == "nature"
+    assert _category_of(["PointOfInterest", "IceSkatingRink"]) == "sport-loisir"
+    assert _category_of(["PointOfInterest", "MegalithDolmenMenhir"]) == "patrimoine"
+    assert _category_of(["PointOfInterest", "Producer"]) == "ferme"
+    # Le repli générique ne doit jamais court-circuiter un type précis.
+    assert _category_of(["PlaceOfInterest"]) == "visite"
+    assert _category_of(["Hotel"]) is None                  # hébergement : hors périmètre
 
 
 def test_datatourisme_api_caps_pagination(monkeypatch, caplog):

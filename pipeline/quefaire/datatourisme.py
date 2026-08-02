@@ -18,9 +18,9 @@ Deux accès possibles, et le choix pèse sur le quota (1000 requêtes/heure) :
 - **flux** (`DATATOURISME_FLUX_URL`) — une seule requête ramène tout le jeu
   d'une ville. À privilégier ;
 - **API temps réel** (`DATATOURISME_API_KEY`) — `GET /v1/catalog`, paginé. Le
-  filtre territorial vient du registre du secteur (`datatourisme_params`) :
-  l'Aveyron pour Pont-de-Salars, l'Isère/Rhône/Ain pour Villemoirieu — c'est une
-  propriété du territoire, pas une variable globale.
+  périmètre se déclare par une expression `filters` dans le registre du secteur
+  (`datatourisme_filters`) : c'est une propriété du territoire, pas une variable
+  globale partagée par toutes les villes.
 
 Sans l'un ni l'autre, le fournisseur est sauté et OSM reste seul.
 
@@ -43,11 +43,19 @@ log = logging.getLogger("quefaire")
 
 FLUX_ENV = "DATATOURISME_FLUX_URL"
 API_KEY_ENV = "DATATOURISME_API_KEY"
-# Filtres serveur additionnels, en query string (ex. « department=12&…»). Les
-# noms exacts dépendent de la doc DATAtourisme : les exposer en variable évite
-# de figer dans le code des paramètres qui pourraient changer, et permet de
-# restreindre le catalogue SANS toucher au pipeline.
-API_PARAMS_ENV = "DATATOURISME_API_PARAMS"
+API_PARAMS_ENV = "DATATOURISME_API_PARAMS"  # échappatoire brute (sort, lang…)
+# Le filtrage se fait par une EXPRESSION `filters`, pas par des paramètres
+# dédiés. Syntaxe donnée par la doc de l'API :
+#     type=PlaceOfInterest and isLocatedAt.address.hasAddressCity.insee=35238
+API_FILTERS_ENV = "DATATOURISME_API_FILTERS"
+# Par défaut on écarte au moins les événements, produits et itinéraires : le
+# crawl collecte déjà les événements par ailleurs, ici on ne veut que des lieux.
+DEFAULT_FILTERS = "type=PlaceOfInterest"
+# Champs demandés : inutile de rapatrier toute l'ontologie pour chaque fiche.
+DEFAULT_FIELDS = (
+    "uuid,uri,label,type,hasDescription,hasContact,hasLabel,"
+    "isLocatedAt.geo,isLocatedAt.address"
+)
 # Endpoint surchargeable : `/catalog` couvre tout (POI, événements, produits,
 # itinéraires), `/placeOfInterest` ne rend que les lieux — exactement ce qu'on
 # cherche, et donc bien moins de pages à parcourir. Les endpoints spécialisés
@@ -142,24 +150,48 @@ def _request(url: str):
 # Types de l'ontologie DATAtourisme → catégories QueFaire. On teste par
 # inclusion dans la liste @type (une fiche en porte plusieurs, du général au
 # précis) ; l'ordre décide, le plus spécifique d'abord.
+#
+# Les noms marqués ✓ sont CONFIRMÉS par l'énumération `type` de la doc de l'API ;
+# les autres restent des hypothèses conservées en filet (un nom inconnu ne
+# matche simplement jamais, le coût d'une hypothèse erronée est donc nul).
 _TYPE_RULES: list[tuple[tuple[str, ...], str]] = [
-    (("Museum", "Musee", "ArtGallery", "InterpretationCentre"), "musee"),
+    (("Museum",  # ✓
+      "InterpretationCentre",  # ✓
+      "Musee", "ArtGallery"), "musee"),
     (("ThemePark", "AmusementPark", "Zoo", "Aquarium"), "parc-attraction"),
     (("WaterPark", "SwimmingPool", "Beach", "BathingSpot"), "parc-aquatique"),
-    (("Castle", "Church", "ReligiousSite", "RemarkableBuilding", "ArcheologicalSite",
-      "DefenceSite", "Memorial", "CulturalSite", "IndustrialSite"), "patrimoine"),
+    (("IndustrialSite", "MegalithDolmenMenhir", "Mill", "Mine", "Monastery",  # ✓
+      "Mosque", "Palace", "Lighthouse", "MilitaryCemetery",  # ✓
+      "Castle", "Church", "ReligiousSite", "RemarkableBuilding",
+      "ArcheologicalSite", "DefenceSite", "Memorial", "CulturalSite"), "patrimoine"),
     (("Cinema",), "cinema"),
-    (("Theater", "Theatre", "ConcertHall", "PerformingArtsCentre"), "spectacle"),
-    (("GameRoom", "Casino"), "ludotheque"),
-    (("Market", "LocalProductsShop"), "marche"),
-    (("Farm", "FarmHouse", "Craftsman", "WineCellar"), "ferme"),
-    (("SpaResort", "Spa", "ThermalBath", "Wellness"), "bien-etre"),
-    (("Garden", "Park", "NaturalHeritage", "NaturalSite", "Viewpoint", "Lake",
-      "Cave", "Forest"), "nature"),
-    (("SportsAndLeisurePlace", "ClimbingSpot", "EquestrianCentre", "GolfCourse",
-      "BowlingAlley", "IceRink", "Practice"), "sport-loisir"),
+    (("Opera", "OperaHouse", "Recital",  # ✓
+      "Theater", "Theatre", "ConcertHall", "PerformingArtsCentre"), "spectacle"),
+    (("Game", "Library",  # ✓
+      "GameRoom", "Casino"), "ludotheque"),
+    (("Market", "LocalProductsShop",  # ✓
+      ), "marche"),
+    (("Producer", "ProducersGroup", "Harvest",  # ✓
+      "Farm", "FarmHouse", "Craftsman", "WineCellar"), "ferme"),
+    (("Hammam",  # ✓
+      "SpaResort", "Spa", "ThermalBath", "Wellness"), "bien-etre"),
+    (("Glacier", "Gorge", "Grassland", "HalophilicArea", "Hillsides", "Icefall",  # ✓
+      "IslandPeninsula", "Lake", "Landes", "Mountain", "NaturalCuriosity",  # ✓
+      "NaturalHeritage", "NaturalPark", "Orchard", "OutstandingTree",  # ✓
+      "ParkAndGarden", "Peak", "PicnicArea", "Plain", "Plateau", "Pond",  # ✓
+      "PointOfView",  # ✓
+      "Garden", "Park", "NaturalSite", "Viewpoint", "Cave", "Forest"), "nature"),
+    (("GolfCourse", "Gymnasium", "IceSkatingRink", "LeisureComplex",  # ✓
+      "LeisureSportActivityProvider", "Marina", "MiniGolf", "MultiActivity",  # ✓
+      "NauticalCentre", "Practice", "Racetrack", "RacingCircuit", "RailBike",  # ✓
+      "PlayArea", "KidsClub", "HorseTour", "Rambling",  # ✓
+      "SportsAndLeisurePlace", "ClimbingSpot", "EquestrianCentre",
+      "BowlingAlley", "IceRink"), "sport-loisir"),
     (("Tour", "Visit", "CulturalRoute", "Itinerary"), "visite"),
-    (("PointOfInterest", "PlaceOfInterest"), "visite"),  # repli générique
+    # Repli générique — TOUJOURS en dernier : chaque fiche porte l'un de ces
+    # types en plus de son type précis, une règle placée plus haut les capterait
+    # toutes et rendrait les précédentes inatteignables.
+    (("PlaceOfInterest", "PointOfInterest"), "visite"),  # ✓
 ]
 
 # Libellés de labels DATAtourisme → codes QUALITY_LABELS. Comparaison sur le
@@ -353,26 +385,34 @@ def _nodes_from_flux(flux: str) -> list[dict]:
     return [n for n in nodes if isinstance(n, dict)]
 
 
-def _nodes_from_api(key: str, params: str = "") -> list[dict]:
+def _nodes_from_api(key: str, filters: str = "") -> list[dict]:
     """Mode API temps réel : GET /v1/catalog (ou endpoint surchargé), paginé.
 
     On suit `meta.next` plutôt que d'incrémenter un numéro de page : c'est la
     méthode recommandée par DATAtourisme, la seule qui garantisse de ne rater
     aucun résultat en parcourant tout le catalogue.
 
-    `params` vient du registre du secteur (filtre territorial), avec repli sur
-    la variable d'environnement : le bon filtre dépend du territoire, il n'a
-    donc rien à faire dans une variable globale partagée par toutes les villes.
+    `filters` est une EXPRESSION au format DATAtourisme, pas une query string :
+        type=PlaceOfInterest and isLocatedAt.address.hasAddressCity.insee=35238
+    Elle vient du registre du secteur — le bon périmètre dépend du territoire,
+    il n'a rien à faire dans une variable globale partagée par toutes les villes.
     """
+    from urllib.parse import urlencode
+
     base = os.environ.get(API_URL_ENV) or API_URL
-    extra = (params or os.environ.get(API_PARAMS_ENV) or "").strip().lstrip("?&")
-    query = [f"api_key={key}"]
+    expr = (filters or os.environ.get(API_FILTERS_ENV) or DEFAULT_FILTERS).strip()
+
+    params = {"api_key": key, "page_size": DEFAULT_PAGE_SIZE}
+    if expr:
+        params["filters"] = expr
+    # `fields` allège la réponse : on ne demande que ce que _to_place exploite.
+    if DEFAULT_FIELDS:
+        params["fields"] = DEFAULT_FIELDS
+    url = f"{base}?{urlencode(params)}"
+    # Échappatoire brute pour tout paramètre non modélisé ici (sort, lang…).
+    extra = (os.environ.get(API_PARAMS_ENV) or "").strip().lstrip("?&")
     if extra:
-        query.append(extra)
-    # On n'impose une taille de page que si l'appelant n'en a pas fixé une.
-    if "page_size" not in extra:
-        query.append(f"page_size={DEFAULT_PAGE_SIZE}")
-    url = f"{base}?" + "&".join(query)
+        url += f"&{extra}"
 
     nodes: list[dict] = []
     for page in range(MAX_PAGES):
@@ -421,7 +461,7 @@ def fetch(sector, limit: int | None = None) -> list[Place]:
 
     try:
         nodes = _nodes_from_flux(flux) if flux else _nodes_from_api(
-            key, getattr(sector, "datatourisme_params", "")
+            key, getattr(sector, "datatourisme_filters", "")
         )
     except Exception as exc:
         log.warning("[datatourisme] source injoignable (%s) — OSM seul", exc)

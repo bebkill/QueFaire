@@ -155,32 +155,37 @@ En mode API, le catalogue est parcouru en suivant `meta.next` (méthode
 recommandée par DATAtourisme, la seule qui garantisse de ne rater aucun
 résultat), avec `page_size=500` pour limiter le nombre de pages.
 
-**Le filtre territorial se déclare dans le registre du secteur**, pas dans une
-variable globale : le bon filtre dépend du territoire (l'Aveyron pour
-Pont-de-Salars, l'Isère/Rhône/Ain pour Villemoirieu).
+Le filtrage se fait par une **expression `filters`** (et non par des paramètres
+dédiés), déclarée **dans le registre du secteur** — le bon périmètre dépend du
+territoire, il n'a rien à faire dans une variable globale :
 
 ```yaml
 sector:
   name: Pont-de-Salars
   radius_minutes: 60
-  datatourisme_params: "department=12"   # filtre serveur du catalogue
+  datatourisme_filters: "type=PlaceOfInterest"
 ```
+
+Syntaxe, d'après la documentation de l'API :
+`type=PlaceOfInterest and isLocatedAt.address.hasAddressCity.insee=35238`.
+`type=PlaceOfInterest` écarte déjà événements, produits et itinéraires.
 
 Réglages complémentaires, par variable d'environnement :
 
 | Variable | Rôle |
 |---|---|
-| `DATATOURISME_API_URL` | endpoint — `…/v1/placeOfInterest` ne rend que les lieux, moins de pages que `/catalog` qui inclut événements et produits |
-| `DATATOURISME_API_PARAMS` | filtre de repli si le secteur n'en déclare pas |
+| `DATATOURISME_API_URL` | endpoint — `…/v1/placeOfInterest` ne rend que les lieux |
+| `DATATOURISME_API_FILTERS` | expression de repli si le secteur n'en déclare pas |
+| `DATATOURISME_API_PARAMS` | échappatoire brute pour tout autre paramètre (`sort`, `lang`…) |
 
-Sans restriction, le catalogue national compte plus de 530 000 fiches ; la
-pagination est plafonnée à 60 pages et **toute troncature est signalée par un
-warning explicite** dans les logs, jamais silencieuse.
+Sans restriction territoriale, le catalogue national compte plus de 530 000
+fiches ; la pagination est plafonnée à 60 pages et **toute troncature est
+signalée par un warning explicite** dans les logs, jamais silencieuse.
 
-> ⚠️ Les noms exacts des paramètres de filtrage sont à confirmer sur
-> [la documentation de l'API](https://api.datatourisme.fr/v1/docs) — ils n'ont
-> pas pu être vérifiés lors de l'implémentation. C'est précisément pour cela
-> qu'ils sont configurables sans modification de code.
+> ⚠️ La clause territoriale reste à écrire : la documentation ne montre qu'un
+> filtre **par commune** (`…hasAddressCity.insee=<code>`). Pour un rayon de
+> 240 à 590 communes, c'est impraticable — **préférez un flux**, dont le
+> périmètre se règle une fois pour toutes à sa création.
 
 Licence Ouverte Etalab : réutilisation libre, y compris commerciale, **à
 condition de citer la source et la date de mise à jour** — l'attribution est
