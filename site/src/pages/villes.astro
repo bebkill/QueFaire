@@ -59,9 +59,17 @@ const latestLabel = latest
     </ul>
     <p id="no-city" class="no-city" hidden>Aucune ville ne correspond à cette recherche.</p>
   </main>
+
+  <script id="cities-data" type="application/json" is:inline set:html={JSON.stringify(cities)}></script>
 </Base>
 
-<script define:vars={{ cities, base }}>
+<script>
+  // Script BUNDLÉ (pas de define:vars, qui forcerait l'inline et empêcherait le
+  // bundler de résoudre `import('leaflet')`). Les données passent par un blob
+  // JSON dans le DOM ; la base vient de import.meta.env (remplacée au build).
+  const cities = JSON.parse(document.getElementById('cities-data').textContent);
+  const base = import.meta.env.BASE_URL;
+
   const cityUrl = (c) => (!c.url ? base : c.url.startsWith('http') ? c.url : base + c.url);
   const isReady = (c) => Boolean(c.url) || typeof c.event_count === 'number';
 
