@@ -179,7 +179,9 @@ const title = `QueFaire — ${sector.name} · sorties, événements et activité
         userPos = { lat: sector.center.lat, lon: sector.center.lon };
         cb();
       },
-      { timeout: 8000 }
+      // Haute précision : privilégie le wifi/GPS à la géoloc par IP (peu fiable
+      // sur ordinateur — souvent le nœud régional du fournisseur d'accès).
+      { enableHighAccuracy: true, timeout: 10000, maximumAge: 60000 }
     );
   }
 

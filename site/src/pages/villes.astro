@@ -132,7 +132,7 @@ const latestLabel = latest
     locateResult.textContent = 'Localisation en cours…';
     navigator.geolocation.getCurrentPosition(
       (pos) => {
-        const { latitude, longitude } = pos.coords;
+        const { latitude, longitude, accuracy } = pos.coords;
         const hit = nearest(latitude, longitude);
         if (!hit) return;
         const inside = travelMinutes(hit.km) <= hit.c.radius_minutes;
@@ -149,10 +149,20 @@ const latestLabel = latest
         } else {
           locateResult.insertAdjacentText('beforeend', 'Agenda en préparation.');
         }
+        // Sur ordinateur sans GPS, le navigateur localise par IP → souvent le
+        // nœud régional du fournisseur d'accès (ex. Paris). On prévient quand la
+        // précision est grossière pour ne pas induire en erreur.
+        if (accuracy > 20000) {
+          locateResult.insertAdjacentHTML(
+            'beforeend',
+            `<br><small class="loc-warn">⚠️ Position approximative (~${Math.round(accuracy / 1000)} km de marge, souvent l'adresse IP du fournisseur). Si c'est faux, utilisez la recherche.</small>`,
+          );
+        }
         highlight(hit.c.id);
         showUserOnMap(latitude, longitude, hit.c);
       },
       () => { locateResult.textContent = 'Localisation refusée. Utilisez la recherche ou la carte.'; },
+      { enableHighAccuracy: true, timeout: 10000, maximumAge: 60000 },
     );
   });
 
