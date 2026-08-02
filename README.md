@@ -153,11 +153,34 @@ avec OpenStreetMap seul :
 
 En mode API, le catalogue est parcouru en suivant `meta.next` (méthode
 recommandée par DATAtourisme, la seule qui garantisse de ne rater aucun
-résultat). **Renseignez alors la variable `DATATOURISME_API_PARAMS`** avec des
-filtres serveur (ex. `department=12`) : sans restriction, le catalogue national
-compte plus de 530 000 fiches, et la pagination est plafonnée à 60 pages — la
-troncature est signalée par un warning explicite dans les logs, jamais
-silencieuse.
+résultat), avec `page_size=500` pour limiter le nombre de pages.
+
+**Le filtre territorial se déclare dans le registre du secteur**, pas dans une
+variable globale : le bon filtre dépend du territoire (l'Aveyron pour
+Pont-de-Salars, l'Isère/Rhône/Ain pour Villemoirieu).
+
+```yaml
+sector:
+  name: Pont-de-Salars
+  radius_minutes: 60
+  datatourisme_params: "department=12"   # filtre serveur du catalogue
+```
+
+Réglages complémentaires, par variable d'environnement :
+
+| Variable | Rôle |
+|---|---|
+| `DATATOURISME_API_URL` | endpoint — `…/v1/placeOfInterest` ne rend que les lieux, moins de pages que `/catalog` qui inclut événements et produits |
+| `DATATOURISME_API_PARAMS` | filtre de repli si le secteur n'en déclare pas |
+
+Sans restriction, le catalogue national compte plus de 530 000 fiches ; la
+pagination est plafonnée à 60 pages et **toute troncature est signalée par un
+warning explicite** dans les logs, jamais silencieuse.
+
+> ⚠️ Les noms exacts des paramètres de filtrage sont à confirmer sur
+> [la documentation de l'API](https://api.datatourisme.fr/v1/docs) — ils n'ont
+> pas pu être vérifiés lors de l'implémentation. C'est précisément pour cela
+> qu'ils sont configurables sans modification de code.
 
 Licence Ouverte Etalab : réutilisation libre, y compris commerciale, **à
 condition de citer la source et la date de mise à jour** — l'attribution est

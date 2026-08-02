@@ -23,6 +23,11 @@ sector:
   center_lat: 45.7192
   center_lon: 5.2431
   radius_minutes: 60
+  # Filtre serveur DATAtourisme (mode API) : restreint le catalogue au
+  # territoire du secteur — 38 (Isère), 69 (Rhône), 01 (Ain) — l'épicentre est en nord-Isère.
+  # Sans filtre, on paginerait sur les 530 000 fiches nationales.
+  # ⚠ Nom des paramètres à confirmer sur api.datatourisme.fr/v1/docs.
+  datatourisme_params: "department=38,69,01"
 
 sources:
   # --- Pages agenda locales (extraction LLM, type html) ----------------------

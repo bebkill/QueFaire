@@ -13,10 +13,16 @@ Licence Ouverte Etalab : réutilisation libre, y compris commerciale, à conditi
 de citer la source et la date de mise à jour — d'où l'attribution affichée sur
 la page « à propos ».
 
-Accès : on lit un **flux** créé dans le diffuseur DATAtourisme, dont l'URL
-complète (identifiant du flux + clé) est fournie par `DATATOURISME_FLUX_URL`.
-C'est le mécanisme stable et documenté de la plateforme. Sans cette variable, le
-fournisseur est simplement sauté — OSM reste la source par défaut.
+Deux accès possibles, et le choix pèse sur le quota (1000 requêtes/heure) :
+
+- **flux** (`DATATOURISME_FLUX_URL`) — une seule requête ramène tout le jeu
+  d'une ville. À privilégier ;
+- **API temps réel** (`DATATOURISME_API_KEY`) — `GET /v1/catalog`, paginé. Le
+  filtre territorial vient du registre du secteur (`datatourisme_params`) :
+  l'Aveyron pour Pont-de-Salars, l'Isère/Rhône/Ain pour Villemoirieu — c'est une
+  propriété du territoire, pas une variable globale.
+
+Sans l'un ni l'autre, le fournisseur est sauté et OSM reste seul.
 
 AVERTISSEMENT : le flux est du JSON-LD adossé à l'ontologie DATAtourisme, dont
 les producteurs remplissent inégalement les champs. L'extraction est donc
@@ -42,7 +48,16 @@ API_KEY_ENV = "DATATOURISME_API_KEY"
 # de figer dans le code des paramètres qui pourraient changer, et permet de
 # restreindre le catalogue SANS toucher au pipeline.
 API_PARAMS_ENV = "DATATOURISME_API_PARAMS"
+# Endpoint surchargeable : `/catalog` couvre tout (POI, événements, produits,
+# itinéraires), `/placeOfInterest` ne rend que les lieux — exactement ce qu'on
+# cherche, et donc bien moins de pages à parcourir. Les endpoints spécialisés
+# acceptent les mêmes paramètres que /catalog.
+API_URL_ENV = "DATATOURISME_API_URL"
 API_URL = "https://api.datatourisme.fr/v1/catalog"
+# La pagination par défaut de l'API est de 20 fiches ; demander de plus grandes
+# pages est le levier le plus efficace sur le quota (500 fiches = 1 requête au
+# lieu de 25). Surchargeable si la plateforme refuse cette taille.
+DEFAULT_PAGE_SIZE = 500
 TIMEOUT = 120
 
 # Garde-fou de pagination. Le catalogue national compte >530 000 fiches : les
@@ -338,15 +353,26 @@ def _nodes_from_flux(flux: str) -> list[dict]:
     return [n for n in nodes if isinstance(n, dict)]
 
 
-def _nodes_from_api(key: str) -> list[dict]:
-    """Mode API temps réel : GET /v1/catalog, paginé.
+def _nodes_from_api(key: str, params: str = "") -> list[dict]:
+    """Mode API temps réel : GET /v1/catalog (ou endpoint surchargé), paginé.
 
     On suit `meta.next` plutôt que d'incrémenter un numéro de page : c'est la
     méthode recommandée par DATAtourisme, la seule qui garantisse de ne rater
     aucun résultat en parcourant tout le catalogue.
+
+    `params` vient du registre du secteur (filtre territorial), avec repli sur
+    la variable d'environnement : le bon filtre dépend du territoire, il n'a
+    donc rien à faire dans une variable globale partagée par toutes les villes.
     """
-    extra = (os.environ.get(API_PARAMS_ENV) or "").lstrip("?&")
-    url = f"{API_URL}?api_key={key}" + (f"&{extra}" if extra else "")
+    base = os.environ.get(API_URL_ENV) or API_URL
+    extra = (params or os.environ.get(API_PARAMS_ENV) or "").strip().lstrip("?&")
+    query = [f"api_key={key}"]
+    if extra:
+        query.append(extra)
+    # On n'impose une taille de page que si l'appelant n'en a pas fixé une.
+    if "page_size" not in extra:
+        query.append(f"page_size={DEFAULT_PAGE_SIZE}")
+    url = f"{base}?" + "&".join(query)
 
     nodes: list[dict] = []
     for page in range(MAX_PAGES):
@@ -363,7 +389,7 @@ def _nodes_from_api(key: str) -> list[dict]:
             log.info("[datatourisme] catalogue parcouru : %d fiches, %d page(s)", len(nodes), page + 1)
             return nodes
         # L'URL `next` porte déjà la clé et les filtres ; on la suit telle quelle.
-        url = nxt if str(nxt).startswith("http") else f"{API_URL}{nxt}"
+        url = nxt if str(nxt).startswith("http") else f"{base}{nxt}"
     else:
         log.warning(
             "[datatourisme] plafond de %d pages atteint (%d fiches) — catalogue TRONQUÉ. "
@@ -394,7 +420,9 @@ def fetch(sector, limit: int | None = None) -> list[Place]:
         return []
 
     try:
-        nodes = _nodes_from_flux(flux) if flux else _nodes_from_api(key)
+        nodes = _nodes_from_flux(flux) if flux else _nodes_from_api(
+            key, getattr(sector, "datatourisme_params", "")
+        )
     except Exception as exc:
         log.warning("[datatourisme] source injoignable (%s) — OSM seul", exc)
         return []

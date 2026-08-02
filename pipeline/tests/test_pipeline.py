@@ -1278,7 +1278,7 @@ def test_datatourisme_api_extra_filters(monkeypatch):
 
     monkeypatch.delenv(dt.FLUX_ENV, raising=False)
     monkeypatch.setenv(dt.API_KEY_ENV, "K")
-    monkeypatch.setenv(dt.API_PARAMS_ENV, "?department=12")
+    monkeypatch.delenv(dt.API_PARAMS_ENV, raising=False)
     monkeypatch.setattr(dt, "MIN_INTERVAL_S", 0)
     monkeypatch.setattr(dt, "_requests_made", 0)
     seen: list[str] = []
@@ -1286,8 +1286,15 @@ def test_datatourisme_api_extra_filters(monkeypatch):
         "quefaire.fetchers.base.http_get",
         lambda url, **k: (seen.append(url), _FakeResp({"objects": [], "meta": {}}))[1],
     )
+    # Le filtre territorial vient du REGISTRE du secteur, pas d'une variable
+    # globale : l'Aveyron pour Pont-de-Salars, l'Isère/Rhône/Ain pour Villemoirieu.
     dt.fetch(load_sector("pont-de-salars"))
-    assert seen[0] == "https://api.datatourisme.fr/v1/catalog?api_key=K&department=12"
+    assert "department=12" in seen[0]
+    assert f"page_size={dt.DEFAULT_PAGE_SIZE}" in seen[0]   # pagination large = moins de requêtes
+
+    seen.clear()
+    dt.fetch(load_sector("villemoirieu"))
+    assert "department=38,69,01" in seen[0]                 # filtre propre à l'autre ville
 
 
 def test_datatourisme_api_caps_pagination(monkeypatch, caplog):
