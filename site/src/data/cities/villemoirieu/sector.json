@@ -23,6 +23,34 @@
   "fete": "Fête locale",
   "autre": "Autre"
  },
+ "place_categories": {
+  "musee": "Musée",
+  "patrimoine": "Monument & patrimoine",
+  "parc-attraction": "Parc d'attraction & zoo",
+  "parc-aquatique": "Parc aquatique & baignade",
+  "nature": "Nature & plein air",
+  "cinema": "Cinéma",
+  "spectacle": "Théâtre & salle de spectacle",
+  "ludotheque": "Ludothèque & jeux",
+  "marche": "Marché",
+  "visite": "Visite & curiosité",
+  "sport-loisir": "Sport & loisirs",
+  "ferme": "Ferme & artisanat",
+  "bien-etre": "Thermes & bien-être",
+  "autre": "Autre activité"
+ },
+ "quality_labels": {
+  "monument-historique": "Monument Historique",
+  "musee-de-france": "Musée de France",
+  "unesco": "Patrimoine mondial UNESCO",
+  "jardin-remarquable": "Jardin remarquable",
+  "maisons-des-illustres": "Maison des Illustres",
+  "art-et-histoire": "Ville et Pays d'art et d'histoire",
+  "qualite-tourisme": "Qualité Tourisme",
+  "tourisme-handicap": "Tourisme & Handicap",
+  "notoriete": "Notice Wikipédia"
+ },
+ "place_count": 0,
  "communes": [
   "Albigny-sur-Saône",
   "Ambléon",
@@ -642,6 +670,6 @@
    "url": "https://cafe-crem.fr/"
   }
  ],
- "generated_at": "2026-08-02T08:32:47",
+ "generated_at": "2026-08-02T13:42:04",
  "event_count": 51
 }
