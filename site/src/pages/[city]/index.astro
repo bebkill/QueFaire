@@ -1,19 +1,36 @@
 ---
 import Base from '../../layouts/Base.astro';
 import EventCard from '../../components/EventCard.astro';
-import { cityIds, getSector, getEvents } from '../../lib/sectors.js';
+import PlaceCard from '../../components/PlaceCard.astro';
+import { cityIds, getSector, getEvents, getPlaces } from '../../lib/sectors.js';
+import { isNotable } from '../../lib/format.js';
 
 export function getStaticPaths() {
   return cityIds.map((city) => ({
     params: { city },
-    props: { sector: getSector(city), events: getEvents(city) },
+    props: { sector: getSector(city), events: getEvents(city), places: getPlaces(city) },
   }));
 }
 
-const { sector, events } = Astro.props;
+const { sector, events, places } = Astro.props;
 const base = import.meta.env.BASE_URL;
 const cityBase = `${base}${sector.id}/`;
 const title = `QueFaire — ${sector.name} · sorties, événements et activités`;
+
+// Activités permanentes : les distinctions officielles d'abord (Monument
+// Historique, Musée de France…), puis l'ordre alphabétique. C'est l'ordre du
+// DOM de départ ; le tri dynamique (proximité/date) le rejoue côté client.
+const sortedPlaces = [...places].sort(
+  (a, b) =>
+    Number(isNotable(b.quality)) - Number(isNotable(a.quality)) ||
+    a.name.localeCompare(b.name, 'fr')
+);
+const placeCategories = sector.place_categories || {};
+const qualityLabels = sector.quality_labels || {};
+const unusualCount = places.filter((p) => p.unusual).length;
+// « Valeur sûre » = porte au moins une distinction officielle (la simple notice
+// Wikipédia ne compte pas). Le chip n'apparaît que s'il a de quoi filtrer.
+const notableCount = places.filter((p) => isNotable(p.quality)).length;
 ---
 
 <Base title={title} sector={sector}>
@@ -22,7 +39,11 @@ const title = `QueFaire — ${sector.name} · sorties, événements et activité
       <h1>QueFaire —&nbsp;<em>{sector.name}</em></h1>
       <p class="sub">
         Concerts, randos, marchés, spectacles… {sector.event_count} idées de sorties
-        collectées automatiquement auprès des communes et offices de tourisme.
+        collectées automatiquement auprès des communes et offices de tourisme
+        {places.length > 0 && (
+          <> — plus <strong>{places.length} activités ouvertes toute l'année</strong>
+          {unusualCount > 0 && <>, dont {unusualCount} insolites</>}</>
+        )}.
       </p>
 
       <form class="searchbar" id="searchform" role="search">
@@ -49,6 +70,17 @@ const title = `QueFaire — ${sector.name} · sorties, événements et activité
         <button class="chip" data-chip="famille" aria-pressed="false">👨‍👩‍👧 En famille</button>
         <button class="chip" data-chip="gratuit" aria-pressed="false">🆓 Gratuit</button>
         <button class="chip" data-chip="nearme" aria-pressed="false">📍 Près de moi</button>
+        {places.length > 0 && (
+          <>
+            <button class="chip" data-chip="permanent" aria-pressed="false">🏛️ Activités permanentes</button>
+            {unusualCount > 0 && (
+              <button class="chip" data-chip="insolite" aria-pressed="false">✨ Insolite</button>
+            )}
+            {notableCount > 0 && (
+              <button class="chip" data-chip="valeur-sure" aria-pressed="false">🏅 Valeurs sûres</button>
+            )}
+          </>
+        )}
         <button class="chip" id="mapchip" aria-pressed="false">🗺️ Carte</button>
       </div>
     </div>
@@ -84,6 +116,9 @@ const title = `QueFaire — ${sector.name} · sorties, événements et activité
 
     <div class="grid" id="grid">
       {events.map((event) => <EventCard event={event} cityBase={cityBase} categories={sector.categories} />)}
+      {sortedPlaces.map((place) => (
+        <PlaceCard place={place} categories={placeCategories} sectorQuality={qualityLabels} />
+      ))}
     </div>
 
     <div class="empty" id="empty">
@@ -100,7 +135,7 @@ const title = `QueFaire — ${sector.name} · sorties, événements et activité
 
 <script>
   import { parseQuery, matches, distanceKm, travelMinutes, roundMinutes, fold } from '../../lib/nlsearch.js';
-  import { CATEGORY_EMOJI, formatWhen } from '../../lib/format.js';
+  import { CATEGORY_EMOJI, PLACE_EMOJI, formatWhen, openingLabel } from '../../lib/format.js';
 
   // Le secteur de la page (multi-villes) est injecté en JSON dans le DOM plutôt
   // qu'importé statiquement — le script est partagé par toutes les routes [city].
@@ -127,12 +162,16 @@ const title = `QueFaire — ${sector.name} · sorties, événements et activité
     'Estimation depuis votre position jusqu’au centre de la commune (à vol d’oiseau corrigé)';
 
   const cardData = (card) => ({
+    kind: card.dataset.kind || 'event',
     date: card.dataset.date,
     end: card.dataset.end,
     cat: card.dataset.cat,
     commune: card.dataset.commune,
     audience: card.dataset.audience,
     free: card.dataset.free,
+    rating: card.dataset.rating,
+    unusual: card.dataset.unusual,
+    notable: card.dataset.notable,
     text: card.dataset.text,
     lat: parseFloat(card.dataset.lat),
     lon: parseFloat(card.dataset.lon),
@@ -158,6 +197,17 @@ const title = `QueFaire — ${sector.name} · sorties, événements et activité
     }
     if (state.chips.has('gratuit')) filter.free = true;
     if (state.chips.has('nearme')) filter.nearMe = true;
+    // Les trois chips « activités » restreignent au type permanent : demander
+    // les insolites ou les mieux notées n'a pas de sens pour un événement daté.
+    if (state.chips.has('permanent')) filter.kind = 'place';
+    if (state.chips.has('insolite')) {
+      filter.kind = 'place';
+      filter.unusual = true;
+    }
+    if (state.chips.has('valeur-sure')) {
+      filter.kind = 'place';
+      filter.notable = true;
+    }
     return filter;
   }
 
@@ -238,22 +288,34 @@ const title = `QueFaire — ${sector.name} · sorties, événements et activité
               ? `≈ ${Math.round(dist)} km`
               : '';
         distEl.title = distEl.textContent ? ESTIMATE_HINT : '';
-        visible.push({ card, dist, date: data.date, data });
+        visible.push({
+          card, dist, date: data.date, data,
+          isPlace: data.kind === 'place',
+          notable: data.notable === 'true',
+        });
       } else {
         distEl.textContent = '';
       }
     }
 
-    // Tri : proximité si géolocalisé, sinon date.
-    visible.sort((a, b) =>
-      needsGeo && a.dist != null && b.dist != null
-        ? a.dist - b.dist || a.date.localeCompare(b.date)
-        : a.date.localeCompare(b.date)
-    );
+    // Tri : proximité si géolocalisé. Sinon les événements datés d'abord (par
+    // date), puis les activités permanentes (par note) — une activité ouverte
+    // toute l'année n'a pas de place dans une chronologie.
+    visible.sort((a, b) => {
+      if (needsGeo && a.dist != null && b.dist != null) return a.dist - b.dist;
+      if (a.isPlace !== b.isPlace) return a.isPlace ? 1 : -1;
+      if (a.isPlace) return Number(b.notable) - Number(a.notable);
+      return a.date.localeCompare(b.date);
+    });
     for (const { card } of visible) grid.appendChild(card);
 
+    const nbPlaces = visible.filter((v) => v.isPlace).length;
+    const nbEvents = shown - nbPlaces;
+    const parts = [];
+    if (nbEvents || !nbPlaces) parts.push(nbEvents === 1 ? '1 événement' : `${nbEvents} événements`);
+    if (nbPlaces) parts.push(nbPlaces === 1 ? '1 activité permanente' : `${nbPlaces} activités permanentes`);
     countEl.textContent =
-      (shown === 1 ? '1 événement' : `${shown} événements`) +
+      parts.join(' · ') +
       (unlocated > 0
         ? ` (+ ${unlocated} sans lieu précis, masqué${unlocated > 1 ? 's' : ''} par le filtre temps)`
         : '');
@@ -354,14 +416,16 @@ const title = `QueFaire — ${sector.name} · sorties, événements et activité
     }
   }
 
-  /** Cluster simple : pastille avec le nombre d'événements, clic → zoom. */
+  /** Cluster simple : pastille avec le nombre de fiches, clic → zoom. */
   function addCluster(cluster) {
     const { L, layer } = leaflet;
     const total = cluster.items.length;
     const size = Math.max(38, Math.min(64, 32 + total * 1.2));
+    const onlyPlaces = cluster.items.every((i) => i.isPlace);
+    const what = onlyPlaces ? 'activités' : 'fiches';
     const icon = L.divIcon({
-      className: 'cluster-icon',
-      html: `<div class="cluster-dot" style="width:${size}px;height:${size}px" title="${total} événements — cliquer pour zoomer">${total}</div>`,
+      className: `cluster-icon${onlyPlaces ? ' cluster-places' : ''}`,
+      html: `<div class="cluster-dot" style="width:${size}px;height:${size}px" title="${total} ${what} — cliquer pour zoomer">${total}</div>`,
       iconSize: [size, size],
       iconAnchor: [size / 2, size / 2],
     });
@@ -373,6 +437,22 @@ const title = `QueFaire — ${sector.name} · sorties, événements et activité
   /** Contenu de l'infobulle affichée au survol d'un point : titre, catégorie,
    *  date et commune — comme un aperçu de la tuile. */
   function markerTooltip(it) {
+    if (it.isPlace) {
+      const cat = (sector.place_categories || {})[it.cat] || 'Activité';
+      const lines = [
+        `<span class="tt-title">${it.title}</span>`,
+        `<span class="tt-line">${it.emoji} ${cat} · <strong>toute l’année</strong></span>`,
+      ];
+      if (it.unusual) lines.push('<span class="tt-line">✨ Insolite</span>');
+      // Pas de note d'avis sur la carte : choix produit, et cela évite au
+      // passage la contrainte « pas de contenu Places sur une carte non-Google ».
+      if (it.notable) lines.push('<span class="tt-line">🏅 Distinction officielle</span>');
+      const opening = openingLabel(it.opening);
+      if (opening) lines.push(`<span class="tt-line">🕒 ${opening}</span>`);
+      if (it.commune) lines.push(`<span class="tt-line">📍 ${it.commune}</span>`);
+      lines.push('<span class="tt-hint">Cliquer pour voir la fiche dans la liste</span>');
+      return lines.join('');
+    }
     const emoji = CATEGORY_EMOJI[it.cat] || '📌';
     const cat = sector.categories[it.cat] || '';
     const when = formatWhen(it.date, it.end);
@@ -391,13 +471,17 @@ const title = `QueFaire — ${sector.name} · sorties, événements et activité
     layer.clearLayers();
 
     const items = [];
-    for (const { card, data } of visible) {
+    for (const { card, data, isPlace, notable } of visible) {
       if (Number.isNaN(data.lat)) continue;
       items.push({
         card,
         lat: data.lat, lon: data.lon, cat: data.cat, commune: data.commune,
         date: data.date, end: data.end,
-        title: card.querySelector('h3').textContent,
+        isPlace, notable,
+        unusual: data.unusual === 'true',
+        emoji: isPlace ? PLACE_EMOJI[data.cat] || '📍' : CATEGORY_EMOJI[data.cat] || '📌',
+        opening: card.dataset.opening || '',
+        title: card.querySelector('h3').textContent.replace(/\s*↗$/, ''),
         href: card.getAttribute('href'),
         color: getComputedStyle(card.querySelector('.card-top')).borderBottomColor,
       });
@@ -410,10 +494,22 @@ const title = `QueFaire — ${sector.name} · sorties, événements et activité
         points.push([cluster.lat, cluster.lon]);
       } else {
         const it = cluster.items[0];
-        L.circleMarker([it.lat, it.lon], {
-          radius: 8, color: it.color, fillColor: it.color, fillOpacity: 0.75, weight: 2,
-        })
-          // Survol : aperçu de l'événement. Clic : on remonte jusqu'à sa tuile
+        // Activité permanente : pastille à icône, nettement distincte du point
+        // coloré d'un événement — c'est le repère demandé « sur la carte ».
+        const marker = it.isPlace
+          ? L.marker([it.lat, it.lon], {
+              icon: L.divIcon({
+                className: 'place-icon',
+                html: `<div class="place-dot${it.unusual ? ' is-unusual' : ''}">${it.emoji}</div>`,
+                iconSize: [30, 30],
+                iconAnchor: [15, 15],
+              }),
+            })
+          : L.circleMarker([it.lat, it.lon], {
+              radius: 8, color: it.color, fillColor: it.color, fillOpacity: 0.75, weight: 2,
+            });
+        marker
+          // Survol : aperçu de la fiche. Clic : on remonte jusqu'à sa tuile
           // dans la liste (mise en évidence + défilement), sans popup.
           .bindTooltip(markerTooltip(it), {
             direction: 'top', offset: [0, -6], opacity: 1, className: 'event-tip',
@@ -475,7 +571,10 @@ const title = `QueFaire — ${sector.name} · sorties, événements et activité
         state.chips.has(key) ||
         (key === 'gratuit' && parsed.free === true) ||
         (key === 'famille' && parsed.audience.includes('famille')) ||
-        (key === 'nearme' && parsed.nearMe);
+        (key === 'nearme' && parsed.nearMe) ||
+        (key === 'permanent' && parsed.kind === 'place') ||
+        (key === 'insolite' && parsed.unusual) ||
+        (key === 'valeur-sure' && parsed.notable);
       chip.setAttribute('aria-pressed', String(active));
     }
   }

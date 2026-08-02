@@ -24,6 +24,35 @@ chaque ville a son agenda complet sous `/<ville>/`.
 | **Villemoirieu** | nord-Isère → Lyon (69) + Ain (01) | 60 min |
 | **Pont-de-Salars** | Aveyron (Lévézou, Rodez) | 60 min |
 
+## Deux types de contenus
+
+| | Événement | Activité permanente |
+|---|---|---|
+| Exemple | concert du 12 avril, brocante | musée, château, parc d'attraction, cinéma, ludothèque |
+| Ce qui le définit | une **date** | des **horaires** |
+| Source | RSS, iCal, OpenAgenda, pages agenda | OpenStreetMap **+ DATAtourisme** |
+| Rafraîchissement | 2×/jour | **hebdomadaire** — un musée ne « passe » pas |
+| Repérage sur le site | pastille de date | badge « Permanent », icône dédiée, liseré coloré |
+
+Les activités permanentes portent en plus leurs **horaires d'ouverture**, les
+**distinctions officielles** qu'elles détiennent (Monument Historique, Musée de
+France, Qualité Tourisme, Tourisme & Handicap…), un tag **✨ Insolite** pour les
+curiosités hors des sentiers battus, et un lien direct vers le **site de
+l'activité**. Elles se filtrent depuis la barre de recherche (« musée »,
+« insolite », « valeurs sûres ») ou les chips dédiés.
+
+Deux fournisseurs complémentaires : **OpenStreetMap** couvre le non-touristique
+(cinéma de quartier, ludothèque, piscine) mais dépend de contributeurs bénévoles,
+donc inégal en zone rurale ; **[DATAtourisme](https://www.datatourisme.fr/)** —
+base nationale sous Licence Ouverte, alimentée par les offices de tourisme
+eux-mêmes — apporte descriptions, horaires et labels. Les fiches d'un même lieu
+sont fusionnées automatiquement.
+
+> Les **notes d'avis** Google/TripAdvisor ne sont pas affichées : leurs
+> conditions d'utilisation l'interdisent dans notre configuration (carte
+> Leaflet). Détail et alternatives dans
+> [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md).
+
 ## Démarrer
 
 ```bash
@@ -51,6 +80,9 @@ jamais publier un site vide.
 ```bash
 python -m quefaire sectors --active            # villes ayant des sources activées
 python -m quefaire crawl --sector <ville>      # collecte → export JSON
+python -m quefaire discover-places --sector <ville>  # (RÉSEAU) activités PERMANENTES
+                                               # via OpenStreetMap ; --limit N pour
+                                               # un essai, --no-llm / --no-ratings
 python -m quefaire discover-oa --sector <ville>   # agendas OpenAgenda du secteur
 python -m quefaire discover --sector <ville>      # découverte par agent LLM
 python -m quefaire evaluate-source <url>          # événements uniques d'une URL candidate
@@ -95,6 +127,7 @@ qui ouvre une issue pré-remplie, traitée par le même circuit de validation.
 | Workflow | Déclencheur | Rôle |
 |---|---|---|
 | `refresh.yml` | cron 2×/jour | crawl de chaque ville active → commit des JSON → build → GitHub Pages |
+| `places.yml` | cron hebdo (+ manuel) | découverte des activités permanentes → commit → déclenche le redéploiement |
 | `discover.yml` | cron hebdo | propose de nouvelles sources sous forme d'issues |
 | `apply-source.yml` | issue labellisée `approved` | ajoute la source au registre |
 | `close-suggestions.yml` | manuel | ferme en lot les suggestions en attente |
@@ -107,6 +140,49 @@ qui ouvre une issue pré-remplie, traitée par le même circuit de validation.
    `ANTHROPIC_API_KEY`, `GROQ_API_KEY`, `MISTRAL_API_KEY`…) ;
 3. **Variables** : `QUEFAIRE_LLM` au format `provider:modèle`
    (ex. `deepseek:deepseek-v4-flash`), `QUEFAIRE_LLM2` pour les backups.
+
+### DATAtourisme (recommandé, gratuit)
+
+Deux modes d'accès, au choix — sans l'un ni l'autre, la découverte fonctionne
+avec OpenStreetMap seul :
+
+| Mode | Secret | Coût en requêtes | Quand l'utiliser |
+|---|---|---|---|
+| **Flux** (« API locale ») | `DATATOURISME_FLUX_URL` | **1 par ville** | À privilégier : un flux créé dans le diffuseur est déjà filtré sur votre territoire |
+| **API temps réel** | `DATATOURISME_API_KEY` | 1 par page de catalogue | Quand on ne dispose que d'une clé |
+
+En mode API, le catalogue est parcouru en suivant `meta.next` (méthode
+recommandée par DATAtourisme, la seule qui garantisse de ne rater aucun
+résultat). **Renseignez alors la variable `DATATOURISME_API_PARAMS`** avec des
+filtres serveur (ex. `department=12`) : sans restriction, le catalogue national
+compte plus de 530 000 fiches, et la pagination est plafonnée à 60 pages — la
+troncature est signalée par un warning explicite dans les logs, jamais
+silencieuse.
+
+Licence Ouverte Etalab : réutilisation libre, y compris commerciale, **à
+condition de citer la source et la date de mise à jour** — l'attribution est
+affichée sur la page « à propos » de chaque ville.
+
+**Budget de requêtes.** DATAtourisme annonce 20–30 requêtes concurrentes,
+~10 req/s en régime prolongé et 1000 req/heure. En mode flux, le coût est d'une
+requête par ville et par passage hebdomadaire : on pourrait rafraîchir ~1000
+villes en une heure avant d'approcher le plafond. En mode API avec un catalogue
+correctement filtré, quelques pages par ville — soit encore une centaine de
+villes par heure. Les villes sont traitées en séquence, avec un intervalle
+minimal entre requêtes, un rejeu respectant `Retry-After` en cas de 429, et un
+coupe-circuit à 1000 requêtes par run.
+
+> **Règle de conception** : rester en mode « lot ». Un enrichissement fiche par
+> fiche consommerait ~500 requêtes pour une seule ville, soit la moitié du quota
+> horaire. C'est le seul scénario qui ferait mal.
+
+### Notes d'avis (désactivées)
+
+`ratings.py` sait interroger Google Places (`GOOGLE_PLACES_KEY`) et TripAdvisor
+(`TRIPADVISOR_API_KEY`), mais **l'affichage est volontairement désactivé** :
+Google interdit d'afficher du contenu Places à proximité d'une carte non-Google,
+et TripAdvisor impose ses propres graphiques et un statut de partenaire. Les
+distinctions officielles jouent ce rôle sans aucune contrainte.
 
 ### LLM : principal + backups
 

@@ -1,0 +1,94 @@
+---
+import { PLACE_EMOJI, isNotable, openingLabel, qualityBadges, ratingStars } from '../lib/format.js';
+import { fold } from '../lib/nlsearch.js';
+
+// Tuile d'activité PERMANENTE. Même gabarit que EventCard pour que la grille
+// reste homogène, mais signalée sans ambiguïté : badge « Permanent » à la place
+// de la pastille de date, jeu d'icônes propre, et lien SORTANT vers le site de
+// l'activité (on envoie le visiteur chez l'exploitant, pas sur une fiche interne).
+// `sectorQuality` = libellés complets des labels (sector.json), utilisés en
+// infobulle : la tuile affiche une forme courte pour rester lisible.
+const { place, categories, sectorQuality } = Astro.props;
+
+const emoji = PLACE_EMOJI[place.category] || '📍';
+const label = categories?.[place.category] || 'Activité';
+const opening = openingLabel(place.opening_hours);
+const stars = ratingStars(place.rating);
+const badges = qualityBadges(place.quality);
+const notable = isNotable(place.quality);
+const labels = sectorQuality ?? {};
+
+// Sans site officiel, on renvoie vers la carte OpenStreetMap de l'objet : mieux
+// qu'un lien mort, et ça reste actionnable (itinéraire, photos, horaires).
+const href =
+  place.url ||
+  (place.external_id
+    ? `https://www.openstreetmap.org/${place.external_id}`
+    : `https://www.openstreetmap.org/?mlat=${place.lat}&mlon=${place.lon}#map=17/${place.lat}/${place.lon}`);
+const external = true;
+
+const foldedText = fold(
+  [
+    place.name, place.tldr, place.description, place.commune, label,
+    place.unusual ? 'insolite' : '',
+    badges.map((b) => b.short).join(' '),
+    place.tags?.join(' '),
+  ].join(' ')
+);
+---
+
+<a
+  class="card card-place"
+  href={href}
+  target="_blank"
+  rel="noopener"
+  style={`--cat: var(--p-${place.category})`}
+  data-kind="place"
+  data-cat={place.category}
+  data-commune={place.commune || ''}
+  data-audience="tous"
+  data-free={String(place.fee === false)}
+  data-rating={place.rating ?? ''}
+  data-unusual={String(place.unusual === true)}
+  data-notable={String(notable)}
+  data-opening={place.opening_hours || ''}
+  data-lat={place.lat ?? ''}
+  data-lon={place.lon ?? ''}
+  data-text={foldedText}
+>
+  <div class="card-top">
+    <span class="emoji" aria-hidden="true">{emoji}</span>
+    <span class="cat-label">{label}</span>
+    <span class="perm-badge" title="Activité ouverte toute l'année, pas un événement daté">
+      Permanent
+    </span>
+  </div>
+  <div class="card-body">
+    <h3>{place.name}{external && <span class="ext" aria-label="ouvre le site de l'activité">↗</span>}</h3>
+    {badges.length > 0 && (
+      <p class="quality-badges">
+        {badges.map((b) => (
+          <span class="q-badge" title={labels[b.code] || b.short}>
+            <span aria-hidden="true">{b.emoji}</span> {b.short}
+          </span>
+        ))}
+      </p>
+    )}
+    {place.unusual && <p class="unusual-tag">✨ Insolite — hors des sentiers battus</p>}
+    {place.tldr && <p class="tldr">💡 {place.tldr}</p>}
+    {!place.tldr && place.description && <p class="desc">{place.description}</p>}
+    {opening && <p class="opening">🕒 {opening}</p>}
+    <div class="card-meta">
+      {place.commune && <span>📍 {place.commune}</span>}
+      {place.rating != null && (
+        <span class="rating" title={`${place.rating}/5 sur ${place.rating_source === 'tripadvisor' ? 'TripAdvisor' : 'Google'}${place.rating_count ? ` — ${place.rating_count} avis` : ''}`}>
+          <span class="stars" aria-hidden="true">{stars}</span>
+          {place.rating.toFixed(1)}
+          {place.rating_count ? <span class="rating-count">({place.rating_count})</span> : null}
+        </span>
+      )}
+      {place.fee === false && <span class="free">Gratuit</span>}
+      <span class="dist" data-role="distance"></span>
+    </div>
+  </div>
+</a>

@@ -64,6 +64,25 @@ const CATEGORY_SYNONYMS = {
   fete: /fetes?\b|feu d.artifice|carnaval|bals?\b/,
 };
 
+/** Synonymes des activités PERMANENTES, tenus à part des catégories
+ *  d'événements : « musée » doit ramener le musée (ouvert toute l'année) ET les
+ *  expositions temporaires, pas choisir entre les deux. Voir `matches`. */
+const PLACE_CATEGORY_SYNONYMS = {
+  musee: /musees?|galeries?\b|collections?/,
+  patrimoine: /chateaux?|monuments?|patrimoine|ruines?|abbayes?|eglises?|fortifications?/,
+  'parc-attraction': /parcs? d.attractions?|attractions?\b|zoos?|aquariums?|accrobranches?/,
+  'parc-aquatique': /piscines?|parcs? aquatiques?|aquaparks?|baignades?|plages?|lacs?\b/,
+  nature: /parcs?\b|jardins?|reserves?|points? de vue|belvederes?/,
+  cinema: /cinemas?|cine\b/,
+  spectacle: /theatres?|salles? de spectacle/,
+  ludotheque: /ludotheques?|jeux de societe|salles? de jeux/,
+  marche: /marches?\b|halles?\b/,
+  visite: /visites?|curiosites?|oeuvres?\b|street art/,
+  'sport-loisir': /bowlings?|patinoires?|golfs?|escalades?|equitations?|escape games?/,
+  ferme: /fermes?\b|artisans?|producteurs?|ateliers? d.artisan/,
+  'bien-etre': /thermes?|spas?\b|bien etre/,
+};
+
 const AUDIENCE_SYNONYMS = {
   famille: /familles?|familial|avec (mes|les) enfants|sortie famille/,
   enfants: /enfants?|jeune public|petits/,
@@ -127,6 +146,7 @@ export function parseQuery(query, communes = [], now = new Date()) {
     dateFrom: null,
     dateTo: null,
     categories: [],
+    placeCategories: [],
     audience: [],
     free: null,
     communes: [],
@@ -134,6 +154,11 @@ export function parseQuery(query, communes = [], now = new Date()) {
     maxMinutes: null,
     mode: 'car',
     modeExplicit: false,
+    // null = événements ET activités ; 'event' / 'place' = un seul type.
+    kind: null,
+    unusual: false,
+    notable: false,
+    minRating: null,
     text: '',
   };
 
@@ -159,9 +184,39 @@ export function parseQuery(query, communes = [], now = new Date()) {
     }
   }
 
+  // « Insolite » et « bien noté » ne concernent que les activités permanentes
+  // (un événement n'a pas de note d'avis) : ils impliquent donc le type.
+  const unusualRe = /insolites?|atypiques?|meconnus?|originaux?|originales?|hors des sentiers|curiosites?|secrets?\b/;
+  if (unusualRe.test(q)) {
+    filter.unusual = true;
+    filter.kind = 'place';
+    consume(unusualRe);
+  }
+  // « Valeur sûre » s'appuie sur les distinctions officielles (Monument
+  // Historique, Musée de France, Qualité Tourisme…), pas sur une note d'avis :
+  // ces signaux sont en données ouvertes, sans contrainte d'affichage.
+  const notableRe =
+    /valeurs? sures?|labellises?|labellisees?|classes?\b|incontournables?|reconnus?\b|bien notes?|bien notees?|meilleures?\b/;
+  if (notableRe.test(q)) {
+    filter.notable = true;
+    filter.kind = 'place';
+    consume(notableRe);
+  }
+  const permanentRe = /activites? permanentes?|toute l annee|permanents?\b|a visiter/;
+  if (permanentRe.test(q)) {
+    filter.kind = 'place';
+    consume(permanentRe);
+  }
+
   for (const [cat, re] of Object.entries(CATEGORY_SYNONYMS)) {
     if (re.test(q)) {
       filter.categories.push(cat);
+      consume(re);
+    }
+  }
+  for (const [cat, re] of Object.entries(PLACE_CATEGORY_SYNONYMS)) {
+    if (re.test(q)) {
+      filter.placeCategories.push(cat);
       consume(re);
     }
   }
@@ -210,18 +265,38 @@ export function distanceKm(lat1, lon1, lat2, lon2) {
 }
 
 /**
- * Teste un événement (attributs data- de la carte) contre un filtre.
- * @param {{date:string, end:string, cat:string, commune:string, audience:string,
- *          free:string, text:string}} ev
+ * Teste une fiche (attributs data- de la carte) contre un filtre.
+ * Couvre les deux types : `kind === 'place'` pour une activité permanente,
+ * `'event'` (défaut) pour un événement daté.
+ * @param {{kind?:string, date:string, end:string, cat:string, commune:string,
+ *          audience:string, free:string, rating?:string, unusual?:string,
+ *          text:string}} ev
  */
 export function matches(ev, filter) {
-  if (filter.dateFrom) {
+  const isPlace = ev.kind === 'place';
+  if (filter.kind && filter.kind !== (isPlace ? 'place' : 'event')) return false;
+
+  // Une activité permanente est ouverte toute l'année : un filtre de dates ne
+  // la disqualifie pas — « que faire ce week-end » inclut légitimement le musée.
+  if (filter.dateFrom && !isPlace) {
     const start = ev.date;
     const end = ev.end || ev.date;
     // Chevauchement de périodes : l'événement doit croiser [dateFrom, dateTo].
     if (end < filter.dateFrom || start > filter.dateTo) return false;
   }
-  if (filter.categories.length && !filter.categories.includes(ev.cat)) return false;
+
+  if (filter.unusual && ev.unusual !== 'true') return false;
+  if (filter.notable && ev.notable !== 'true') return false;
+  if (filter.minRating != null && !(parseFloat(ev.rating) >= filter.minRating)) return false;
+
+  // Chaque type est jugé sur SON jeu de catégories. Dès qu'une contrainte de
+  // catégorie existe, une fiche dont le type n'est visé par aucune est écartée :
+  // « concert » ne doit pas ramener les musées.
+  const catFilter = isPlace ? filter.placeCategories : filter.categories;
+  if ((filter.categories.length || filter.placeCategories.length) && !catFilter.includes(ev.cat)) {
+    return false;
+  }
+
   if (filter.audience.length) {
     const evAud = ev.audience.split(' ');
     const ok = filter.audience.some((a) => evAud.includes(a) || evAud.includes('tous'));

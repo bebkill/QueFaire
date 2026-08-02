@@ -1,0 +1,103 @@
+# Activités PERMANENTES : découverte OpenStreetMap, présentation LLM et notes.
+#
+# Cadence hebdomadaire, volontairement découplée du crawl d'événements (2×/jour) :
+# un musée ne « passe » pas, ce qui bouge d'une semaine à l'autre ce sont ses
+# horaires — et le fait qu'il ait fermé, détecté par son absence de la sweep.
+#
+# Le commit N'A PAS de [skip ci] : il déclenche refresh.yml (push sur main), qui
+# rebuild et déploie le site avec les nouvelles activités. Pas de boucle, le
+# commit de refresh.yml porte lui son [skip ci].
+name: Discover places
+
+on:
+  schedule:
+    - cron: "0 3 * * 2" # mardi 05h (Paris, été) — hors des créneaux de refresh
+  workflow_dispatch:
+    inputs:
+      city:
+        description: "Ville à traiter (vide = toutes les villes actives)"
+        required: false
+        default: ""
+      limit:
+        description: "Plafonner le nombre d'activités par ville (essais)"
+        required: false
+        default: ""
+
+permissions:
+  contents: write
+
+concurrency:
+  group: places
+  cancel-in-progress: false
+
+jobs:
+  places:
+    runs-on: ubuntu-latest
+    steps:
+      # Même deploy key que refresh.yml : seule façon de franchir le ruleset de
+      # protection de main sur un compte perso.
+      - uses: actions/checkout@v4
+        with:
+          ssh-key: ${{ secrets.DATA_DEPLOY_KEY }}
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install pipeline
+        run: pip install -r pipeline/requirements.txt
+
+      - name: Run tests
+        run: pip install pytest && python -m pytest pipeline/tests -q
+
+      - name: Discover permanent places
+        working-directory: pipeline
+        env:
+          # Présentation « donne envie » : réutilise la chaîne clarify, qui a son
+          # propre quota. Sans clé, les activités sortent sans phrase (skip propre).
+          QUEFAIRE_LLM: ${{ vars.QUEFAIRE_LLM || secrets.QUEFAIRE_LLM }}
+          QUEFAIRE_LLM2: ${{ vars.QUEFAIRE_LLM2 || secrets.QUEFAIRE_LLM2 }}
+          QUEFAIRE_LLM_CLARIFY: ${{ vars.QUEFAIRE_LLM_CLARIFY || secrets.QUEFAIRE_LLM_CLARIFY }}
+          QUEFAIRE_LLM_CLARIFY2: ${{ vars.QUEFAIRE_LLM_CLARIFY2 || secrets.QUEFAIRE_LLM_CLARIFY2 }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          DEEPSEEK_API_KEY: ${{ secrets.DEEPSEEK_API_KEY }}
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+          MISTRAL_API_KEY: ${{ secrets.MISTRAL_API_KEY }}
+          # DATAtourisme : complète OpenStreetMap (descriptions, horaires,
+          # labels). Deux modes, le FLUX est préféré (1 requête au lieu d'une par
+          # page). Sans l'un ni l'autre, la découverte tourne avec OSM seul.
+          DATATOURISME_FLUX_URL: ${{ secrets.DATATOURISME_FLUX_URL }}
+          DATATOURISME_API_KEY: ${{ secrets.DATATOURISME_API_KEY }}
+          # Filtres serveur du catalogue (ex. « department=12 ») : indispensables
+          # en mode API pour ne pas parcourir les 530 000 fiches nationales.
+          DATATOURISME_API_PARAMS: ${{ vars.DATATOURISME_API_PARAMS }}
+          # Notes d'avis — collectées seulement si une clé existe, mais NON
+          # affichées : conditions d'utilisation des fournisseurs (voir ratings.py).
+          GOOGLE_PLACES_KEY: ${{ secrets.GOOGLE_PLACES_KEY }}
+          TRIPADVISOR_API_KEY: ${{ secrets.TRIPADVISOR_API_KEY }}
+          CITY: ${{ inputs.city }}
+          LIMIT: ${{ inputs.limit }}
+        run: |
+          if [ -n "$QUEFAIRE_LLM" ] || [ -n "$QUEFAIRE_LLM2" ]; then pip install autoagent-core; fi
+          cities="${CITY:-$(python -m quefaire sectors --active)}"
+          limit_arg=""
+          [ -n "$LIMIT" ] && limit_arg="--limit $LIMIT"
+          for city in $cities; do
+            echo "::group::activités $city"
+            # Overpass peut être saturé : on ne fait pas échouer tout le job pour
+            # une ville, les autres doivent quand même être rafraîchies.
+            python -m quefaire discover-places --sector "$city" $limit_arg || \
+              echo "::warning::découverte échouée pour $city — places.json inchangé"
+            echo "::endgroup::"
+            sleep 5   # courtoisie envers l'API publique Overpass
+          done
+
+      - name: Commit places
+        run: |
+          git config user.name "quefaire-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add site/src/data pipeline/cache
+          git diff --cached --quiet || \
+            git commit -m "data: activités permanentes ($(date -u +%F))"
+          git push

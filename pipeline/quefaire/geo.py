@@ -42,6 +42,24 @@ def travel_minutes(km: float, mode: str = "car") -> float:
     return (km * DETOUR.get(mode, 1.3)) / speed * 60
 
 
+def radius_km(radius_minutes: float, mode: str = "car") -> float:
+    """Rayon en km correspondant à `radius_minutes` — réciproque de `travel_minutes`.
+
+    Sert à borner une requête géographique (Overpass ne sait interroger qu'un
+    rayon en mètres, pas en minutes). `travel_minutes` étant monotone croissante
+    en km, une simple dichotomie suffit et évite d'inverser la formule à la main
+    — qui changerait si le modèle de vitesse évolue.
+    """
+    lo, hi = 0.0, 500.0
+    for _ in range(40):
+        mid = (lo + hi) / 2
+        if travel_minutes(mid, mode) < radius_minutes:
+            lo = mid
+        else:
+            hi = mid
+    return lo
+
+
 def within_radius(
     event: Event, center_lat: float, center_lon: float, radius_minutes: float, mode: str = "car"
 ) -> bool:

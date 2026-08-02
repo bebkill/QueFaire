@@ -937,3 +937,394 @@ def test_health_partitioned_per_city(tmp_path, monkeypatch):
 
     a = json.loads((tmp_path / "ville-a" / "source_health.json").read_text(encoding="utf-8"))
     assert "src-a" in a  # l'état de ville-a survit au crawl de ville-b
+
+
+# --- Activités permanentes ---------------------------------------------------
+
+# Réponse Overpass réaliste : un musée (node), un château (way avec `center`),
+# un parc anonyme (à écarter), une piscine privée (à écarter), une œuvre d'art
+# insolite, et un objet hors rayon.
+OVERPASS_SAMPLE = {
+    "elements": [
+        {"type": "node", "id": 1, "lat": 44.28, "lon": 2.73,
+         "tags": {"tourism": "museum", "name": "Musée du Rouergue",
+                  "website": "musee-rouergue.fr", "opening_hours": "Tu-Su 10:00-18:00",
+                  "addr:city": "Pont-de-Salars", "wikidata": "Q1"}},
+        {"type": "way", "id": 2, "center": {"lat": 44.30, "lon": 2.75},
+         "tags": {"historic": "castle", "name": "Château de Bouloc", "fee": "yes"}},
+        {"type": "node", "id": 3, "lat": 44.28, "lon": 2.74,
+         "tags": {"leisure": "park"}},  # sans nom → écarté
+        {"type": "node", "id": 4, "lat": 44.28, "lon": 2.74,
+         "tags": {"leisure": "park", "name": "Square des Tilleuls"}},  # anonyme → écarté
+        {"type": "node", "id": 5, "lat": 44.29, "lon": 2.72,
+         "tags": {"leisure": "swimming_pool", "name": "Piscine privée", "access": "private"}},
+        {"type": "node", "id": 6, "lat": 44.27, "lon": 2.71,
+         "tags": {"tourism": "artwork", "name": "La Girafe de ferraille"}},
+        {"type": "node", "id": 7, "lat": 48.85, "lon": 2.35,
+         "tags": {"tourism": "museum", "name": "Louvre"}},  # Paris → hors rayon
+    ]
+}
+
+
+class _FakeResp:
+    def __init__(self, payload):
+        self._payload = payload
+
+    def json(self):
+        return self._payload
+
+
+def test_places_osm_mapping_and_radius(monkeypatch):
+    from quefaire import places
+
+    monkeypatch.setattr(
+        "quefaire.fetchers.base.http_get", lambda *a, **k: _FakeResp(OVERPASS_SAMPLE)
+    )
+    found = places.fetch_osm(load_sector("pont-de-salars"))
+    by_name = {p.name: p for p in found}
+
+    assert set(by_name) == {"Musée du Rouergue", "Château de Bouloc", "La Girafe de ferraille"}
+    assert by_name["Musée du Rouergue"].category == "musee"
+    assert by_name["Château de Bouloc"].category == "patrimoine"  # historic prime sur tourism
+    assert by_name["Château de Bouloc"].lat == 44.30  # `center` des ways exploité
+    assert by_name["Château de Bouloc"].fee is True
+    # Le site sans schéma est complété, pas recopié tel quel.
+    assert by_name["Musée du Rouergue"].url == "https://musee-rouergue.fr"
+    # Insolite : l'œuvre de bord de route oui, le musée référencé sur wikidata non.
+    assert by_name["La Girafe de ferraille"].unusual is True
+    assert by_name["Musée du Rouergue"].unusual is False
+
+
+def test_places_merge_preserves_enrichment():
+    from quefaire.models import Place
+    from quefaire.places import merge
+
+    old = Place(name="Musée", category="musee", source_id="osm", sector="s",
+                external_id="node/1", tldr="Une phrase déjà payée", rating=4.5,
+                rating_count=120, rating_source="google", unusual=True,
+                first_seen="2026-01-01", last_seen="2026-06-01")
+    fresh = Place(name="Musée du Rouergue", category="musee", source_id="osm", sector="s",
+                  external_id="node/1", opening_hours="Mo-Fr 09:00-17:00")
+
+    [merged] = merge([old], [fresh], today="2026-08-02")
+    assert merged.name == "Musée du Rouergue"          # OSM fait autorité sur les faits
+    assert merged.opening_hours == "Mo-Fr 09:00-17:00"
+    assert merged.tldr == "Une phrase déjà payée"      # enrichissement conservé
+    assert merged.rating == 4.5
+    assert merged.unusual is True
+    assert merged.first_seen == "2026-01-01"           # découverte d'origine gardée
+    assert merged.last_seen == "2026-08-02"
+
+
+def test_places_merge_keeps_then_drops_missing():
+    from quefaire.models import Place
+    from quefaire.places import merge
+
+    gone = Place(name="Cinéma fermé", category="cinema", source_id="osm", sector="s",
+                 external_id="node/9", last_seen="2026-07-28")
+    # Absente depuis peu : conservée (Overpass peut avoir hoqueté).
+    assert [p.name for p in merge([gone], [], today="2026-08-02")] == ["Cinéma fermé"]
+    # Absente depuis plus de deux sweeps : retirée.
+    assert merge([gone], [], today="2026-09-15") == []
+
+
+def test_places_roundtrip_and_place_count(tmp_path):
+    from quefaire.export import _count_places
+    from quefaire.models import Place
+    from quefaire.places import load, save
+
+    items = [Place(name="Ludothèque", category="ludotheque", source_id="osm",
+                   sector="pont-de-salars", external_id="node/3", lat=44.2, lon=2.7)]
+    save(items, "pont-de-salars", tmp_path)
+    [back] = load("pont-de-salars", tmp_path)
+    assert back.name == "Ludothèque" and back.category == "ludotheque"
+    assert back.id == items[0].id  # identifiant stable entre deux passages
+    assert _count_places("pont-de-salars", tmp_path) == 1
+    assert _count_places("ville-sans-activites", tmp_path) == 0
+
+
+def test_place_category_falls_back():
+    from quefaire.models import Place
+
+    p = Place(name="X", category="n-importe-quoi", source_id="osm", sector="s")
+    assert p.category == "autre"
+
+
+def test_ratings_skipped_without_key(monkeypatch, caplog):
+    from quefaire import ratings
+    from quefaire.models import Place
+
+    monkeypatch.delenv("GOOGLE_PLACES_KEY", raising=False)
+    monkeypatch.delenv("TRIPADVISOR_API_KEY", raising=False)
+    assert ratings.provider() is None
+    p = Place(name="X", category="musee", source_id="osm", sector="s", lat=44.0, lon=2.0)
+    assert ratings.enrich([p])[0].rating is None  # dégradation gracieuse
+
+
+def test_radius_km_matches_front_approximation():
+    from quefaire.geo import radius_km, travel_minutes
+
+    km = radius_km(60)
+    assert 47 < km < 49  # 1 h de voiture ≈ 48 km, comme annoncé dans la doc
+    assert travel_minutes(km) == pytest.approx(60, abs=0.1)
+
+
+# --- DATAtourisme et signaux de qualité --------------------------------------
+
+# Flux JSON-LD réaliste : formes de valeurs volontairement hétérogènes (chaîne
+# nue, {"@value"}, dictionnaire de langues), car les producteurs DATAtourisme
+# remplissent l'ontologie inégalement.
+DT_SAMPLE = {
+    "@graph": [
+        {
+            "@id": "https://data.datatourisme.fr/1",
+            "@type": ["PointOfInterest", "CulturalSite", "Museum"],
+            "rdfs:label": {"fr": ["Musée du Rouergue"]},
+            "hasDescription": {"shortDescription": {"fr": ["Outils et costumes du Rouergue."]}},
+            "hasLabel": [{"rdfs:label": {"fr": ["Musée de France"]}}, "Qualité Tourisme"],
+            "isLocatedAt": {
+                "schema:geo": {"schema:latitude": "44.28", "schema:longitude": "2.73"},
+                "schema:address": {"schema:addressLocality": "Pont-de-Salars",
+                                   "schema:streetAddress": "3 rue du Moulin"},
+            },
+            "hasContact": {"foaf:homepage": ["https://musee-rouergue.fr"],
+                           "schema:telephone": "0565000000"},
+        },
+        {
+            "@id": "https://data.datatourisme.fr/2",
+            "@type": ["PointOfInterest", "SportsAndLeisurePlace"],
+            "rdfs:label": "Accrobranche du Lévézou",
+            "isLocatedAt": {"schema:geo": {"schema:latitude": 44.30, "schema:longitude": 2.75}},
+        },
+        {  # hors rayon : doit être écarté
+            "@id": "https://data.datatourisme.fr/3",
+            "@type": ["Museum"],
+            "rdfs:label": "Louvre",
+            "isLocatedAt": {"schema:geo": {"schema:latitude": 48.86, "schema:longitude": 2.34}},
+        },
+        {  # sans coordonnées : inexploitable
+            "@id": "https://data.datatourisme.fr/4",
+            "@type": ["Museum"],
+            "rdfs:label": "Musée fantôme",
+        },
+    ]
+}
+
+
+def test_datatourisme_parses_heterogeneous_jsonld(monkeypatch):
+    from quefaire import datatourisme
+
+    monkeypatch.setenv(datatourisme.FLUX_ENV, "https://flux.test/x")
+    monkeypatch.setattr(
+        "quefaire.fetchers.base.http_get", lambda *a, **k: _FakeResp(DT_SAMPLE)
+    )
+    found = datatourisme.fetch(load_sector("pont-de-salars"))
+    by_name = {p.name: p for p in found}
+
+    assert set(by_name) == {"Musée du Rouergue", "Accrobranche du Lévézou"}
+    musee = by_name["Musée du Rouergue"]
+    assert musee.category == "musee"           # Museum gagne sur PointOfInterest
+    assert musee.commune == "Pont-de-Salars"
+    assert musee.url == "https://musee-rouergue.fr"
+    assert "Outils et costumes" in musee.description
+    # Labels reconnus quelle que soit leur forme (objet imbriqué ou chaîne nue).
+    assert set(musee.quality) == {"musee-de-france", "qualite-tourisme"}
+    assert musee.providers == ["datatourisme"]
+    assert by_name["Accrobranche du Lévézou"].category == "sport-loisir"
+
+
+def test_datatourisme_skipped_without_flux(monkeypatch):
+    from quefaire import datatourisme
+
+    monkeypatch.delenv(datatourisme.FLUX_ENV, raising=False)
+    assert datatourisme.available() is False
+    assert datatourisme.fetch(load_sector("pont-de-salars")) == []  # complément absent ≠ échec
+
+
+def test_osm_quality_signals():
+    from quefaire.places import _quality_of
+
+    assert "monument-historique" in _quality_of({"heritage:operator": "mhs", "ref:mhs": "PA00"})
+    assert "notoriete" in _quality_of({"wikidata": "Q42"})
+    assert _quality_of({}) == []
+
+
+def test_dedupe_providers_merges_same_place():
+    from quefaire.models import Place
+    from quefaire.places import dedupe_providers
+
+    osm = Place(name="Musée du Rouergue", category="musee", source_id="osm", sector="s",
+                external_id="node/1", lat=44.2800, lon=2.7300,
+                opening_hours="Tu-Su 10:00-18:00", quality=["notoriete"], providers=["osm"])
+    dt = Place(name="Le Musée du Rouergue", category="musee", source_id="datatourisme",
+               sector="s", external_id="https://data.datatourisme.fr/1",
+               lat=44.2802, lon=2.7305, description="Outils et costumes.",
+               url="https://musee-rouergue.fr", quality=["musee-de-france"],
+               providers=["datatourisme"])
+
+    [merged] = dedupe_providers([osm, dt])
+    # « Le » ignoré, 20 m d'écart, même catégorie → un seul lieu.
+    assert merged.description == "Outils et costumes."   # apporté par DATAtourisme
+    assert merged.url == "https://musee-rouergue.fr"
+    assert merged.opening_hours == "Tu-Su 10:00-18:00"   # apporté par OSM
+    assert set(merged.quality) == {"notoriete", "musee-de-france"}
+    assert set(merged.providers) == {"osm", "datatourisme"}
+    assert merged.external_id == "node/1"                # l'id OSM prime (stable)
+    assert merged.source_id == "osm"
+
+
+def test_dedupe_providers_keeps_distinct_places():
+    from quefaire.models import Place
+    from quefaire.places import dedupe_providers
+
+    a = Place(name="Cinéma Le Royal", category="cinema", source_id="osm", sector="s",
+              external_id="node/1", lat=44.28, lon=2.73)
+    b = Place(name="Cinéma Le Rex", category="cinema", source_id="osm", sector="s",
+              external_id="node/2", lat=44.28, lon=2.73)          # même point, autre nom
+    c = Place(name="Cinéma Le Royal", category="cinema", source_id="osm", sector="s",
+              external_id="node/3", lat=44.40, lon=2.90)          # même nom, 15 km
+    assert len(dedupe_providers([a, b, c])) == 3
+
+
+def test_merge_keeps_labels_when_flux_unavailable():
+    from quefaire.models import Place
+    from quefaire.places import merge
+
+    old = Place(name="Musée", category="musee", source_id="osm", sector="s",
+                external_id="node/1", quality=["musee-de-france"],
+                providers=["osm", "datatourisme"], last_seen="2026-07-30")
+    # Sweep OSM seule : le label DATAtourisme ne doit pas être perdu.
+    fresh = Place(name="Musée", category="musee", source_id="osm", sector="s",
+                  external_id="node/1", quality=["notoriete"], providers=["osm"])
+    [out] = merge([old], [fresh], today="2026-08-02")
+    assert set(out.quality) == {"notoriete", "musee-de-france"}
+    assert set(out.providers) == {"osm", "datatourisme"}
+
+
+def test_notable_excludes_wikipedia_only():
+    from quefaire.models import NOTABLE_LABELS
+
+    assert "notoriete" not in NOTABLE_LABELS       # notoriété ≠ distinction
+    assert "monument-historique" in NOTABLE_LABELS
+
+
+def test_datatourisme_respects_quota_guard(monkeypatch):
+    """Un 429 est rejoué en respectant Retry-After, pas abandonné ni martelé."""
+    import requests
+
+    from quefaire import datatourisme as dt
+
+    monkeypatch.setattr(dt, "MIN_INTERVAL_S", 0)  # pas d'attente réelle en test
+    monkeypatch.setattr(dt, "_requests_made", 0)
+    slept: list[float] = []
+    monkeypatch.setattr("time.sleep", lambda s: slept.append(s))
+
+    calls = {"n": 0}
+
+    def flaky(*a, **k):
+        calls["n"] += 1
+        if calls["n"] == 1:
+            resp = requests.Response()
+            resp.status_code = 429
+            resp.headers["Retry-After"] = "7"
+            raise requests.HTTPError("429", response=resp)
+        return _FakeResp(DT_SAMPLE)
+
+    monkeypatch.setattr("quefaire.fetchers.base.http_get", flaky)
+    assert dt._request("https://flux.test/x").json() == DT_SAMPLE
+    assert calls["n"] == 2       # rejoué une fois
+    assert 7 in slept            # Retry-After honoré plutôt qu'un délai arbitraire
+
+
+def test_datatourisme_stops_before_quota(monkeypatch):
+    """Le plafond de sécurité coupe une boucle anormale avant le quota réel."""
+    from quefaire import datatourisme as dt
+
+    monkeypatch.setattr(dt, "_requests_made", dt.MAX_REQUESTS_PER_HOUR)
+    with pytest.raises(RuntimeError, match="plafond de sécurité"):
+        dt._request("https://flux.test/x")
+
+
+def test_datatourisme_api_follows_next_url(monkeypatch):
+    """Mode API : on suit meta.next (méthode recommandée), pas un compteur de pages."""
+    from quefaire import datatourisme as dt
+
+    monkeypatch.delenv(dt.FLUX_ENV, raising=False)
+    monkeypatch.setenv(dt.API_KEY_ENV, "K")
+    monkeypatch.setattr(dt, "MIN_INTERVAL_S", 0)
+    monkeypatch.setattr(dt, "_requests_made", 0)
+
+    page1 = {"objects": DT_SAMPLE["@graph"][:2],
+             "meta": {"next": "https://api.datatourisme.fr/v1/catalog?api_key=K&page=2"}}
+    page2 = {"objects": DT_SAMPLE["@graph"][2:], "meta": {"next": None}}
+    seen: list[str] = []
+
+    def fake(url, **k):
+        seen.append(url)
+        return _FakeResp(page1 if len(seen) == 1 else page2)
+
+    monkeypatch.setattr("quefaire.fetchers.base.http_get", fake)
+    found = dt.fetch(load_sector("pont-de-salars"))
+
+    assert len(seen) == 2                      # deux pages, puis arrêt sur next=None
+    assert "api_key=K" in seen[0]
+    assert seen[1].endswith("page=2")          # l'URL next est suivie telle quelle
+    assert {p.name for p in found} == {"Musée du Rouergue", "Accrobranche du Lévézou"}
+
+
+def test_datatourisme_api_extra_filters(monkeypatch):
+    """Les filtres serveur sont configurables sans toucher au code."""
+    from quefaire import datatourisme as dt
+
+    monkeypatch.delenv(dt.FLUX_ENV, raising=False)
+    monkeypatch.setenv(dt.API_KEY_ENV, "K")
+    monkeypatch.setenv(dt.API_PARAMS_ENV, "?department=12")
+    monkeypatch.setattr(dt, "MIN_INTERVAL_S", 0)
+    monkeypatch.setattr(dt, "_requests_made", 0)
+    seen: list[str] = []
+    monkeypatch.setattr(
+        "quefaire.fetchers.base.http_get",
+        lambda url, **k: (seen.append(url), _FakeResp({"objects": [], "meta": {}}))[1],
+    )
+    dt.fetch(load_sector("pont-de-salars"))
+    assert seen[0] == "https://api.datatourisme.fr/v1/catalog?api_key=K&department=12"
+
+
+def test_datatourisme_api_caps_pagination(monkeypatch, caplog):
+    """Un catalogue non filtré est tronqué — mais bruyamment, jamais en silence."""
+    from quefaire import datatourisme as dt
+
+    monkeypatch.delenv(dt.FLUX_ENV, raising=False)
+    monkeypatch.setenv(dt.API_KEY_ENV, "K")
+    monkeypatch.delenv(dt.API_PARAMS_ENV, raising=False)
+    monkeypatch.setattr(dt, "MIN_INTERVAL_S", 0)
+    monkeypatch.setattr(dt, "MAX_PAGES", 3)
+    monkeypatch.setattr(dt, "_requests_made", 0)
+    calls = {"n": 0}
+
+    def endless(url, **k):
+        calls["n"] += 1
+        return _FakeResp({"objects": [], "meta": {"next": "https://api.datatourisme.fr/v1/catalog?p=x"}})
+
+    monkeypatch.setattr("quefaire.fetchers.base.http_get", endless)
+    with caplog.at_level("WARNING"):
+        dt.fetch(load_sector("pont-de-salars"))
+    assert calls["n"] == 3                                  # plafonné
+    assert "TRONQUÉ" in caplog.text                          # et signalé
+
+
+def test_datatourisme_flux_preferred_over_api(monkeypatch):
+    """Le flux coûte une requête là où l'API en coûte une par page : il prime."""
+    from quefaire import datatourisme as dt
+
+    monkeypatch.setenv(dt.FLUX_ENV, "https://flux.test/x")
+    monkeypatch.setenv(dt.API_KEY_ENV, "K")
+    monkeypatch.setattr(dt, "MIN_INTERVAL_S", 0)
+    monkeypatch.setattr(dt, "_requests_made", 0)
+    seen: list[str] = []
+    monkeypatch.setattr(
+        "quefaire.fetchers.base.http_get",
+        lambda url, **k: (seen.append(url), _FakeResp(DT_SAMPLE))[1],
+    )
+    dt.fetch(load_sector("pont-de-salars"))
+    assert seen == ["https://flux.test/x"]   # l'API n'est pas sollicitée
