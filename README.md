@@ -153,7 +153,8 @@ avec OpenStreetMap seul :
 
 En mode API, le catalogue est parcouru en suivant `meta.next` (méthode
 recommandée par DATAtourisme, la seule qui garantisse de ne rater aucun
-résultat), avec `page_size=500` pour limiter le nombre de pages.
+résultat), avec `page_size=250` (le maximum autorisé) pour limiter le nombre de
+pages.
 
 **Le mode API ne demande aucune configuration** : la clé suffit. Le pipeline
 appelle `/v1/placeOfInterest` (raccourci vers `/catalog` avec le filtre de type
@@ -174,7 +175,7 @@ Réglages facultatifs :
 | `datatourisme_filters` (registre du secteur) | expression `filters` pour affiner, ex. `hasReview.hasReviewValue[gte]=3` |
 | `DATATOURISME_API_URL` | changer d'endpoint (`…/v1/catalog` pour tout inclure) |
 | `DATATOURISME_API_FILTERS` | expression de repli si le secteur n'en déclare pas |
-| `DATATOURISME_API_PARAMS` | échappatoire brute (`sort`, `lang`…) |
+| `DATATOURISME_API_PARAMS` | échappatoire brute pour un paramètre d'URL non modélisé (`sort`…). **À laisser vide** en temps normal : le contenu est collé tel quel à chaque requête. Ne pas y mettre `lang`, le code le fixe déjà à `fr` |
 
 La pagination est plafonnée à 60 pages (15 000 activités) et **toute troncature
 est signalée par un warning explicite** dans les logs, jamais silencieuse.

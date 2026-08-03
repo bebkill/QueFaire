@@ -43,7 +43,11 @@ log = logging.getLogger("quefaire")
 
 FLUX_ENV = "DATATOURISME_FLUX_URL"
 API_KEY_ENV = "DATATOURISME_API_KEY"
-API_PARAMS_ENV = "DATATOURISME_API_PARAMS"  # échappatoire brute (sort, lang…)
+# Échappatoire brute : tout paramètre d'URL non modélisé ici (`sort`…). À laisser
+# VIDE en temps normal — son contenu est collé tel quel à la requête, donc une
+# valeur mal formée part sur chaque appel. Ne pas y mettre `lang` : le code le
+# fixe à `fr`, et le doublon rendrait la langue de la réponse indéterminée.
+API_PARAMS_ENV = "DATATOURISME_API_PARAMS"
 # Expression `filters` optionnelle, syntaxe de l'API :
 #     type=PlaceOfInterest AND isLocatedAt.address.hasAddressCity.insee=35238
 # Opérateurs entre crochets ([in], [ne], [gte]…), combinables par AND/OR et
