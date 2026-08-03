@@ -4639,7 +4639,7 @@
   "description": "3 heures d'aventures, vous assisterez à la préparation et au gonflage du ballon, 1 heure de vol au gré du vent avec à l'atterrissage le toast de l'aérostier suivi de la remise du diplôme du \"Passager du Vent\" (accessible aux personnes à mobilité réduite).\nTarif entre 195€ et 255€ par personne",
   "tldr": "Vivez l’aventure d’un vol en montgolfière : gonflage, 1h de vol et diplôme du passager à l’atterrissage.",
   "commune": "Arvieu",
-  "address": "Cité de Pareloup",
+  "address": "Plage d'Arvieu Pareloup",
   "lat": 44.2072036,
   "lon": 2.70889784,
   "url": "https://www.atmosphair-montgolfieres.fr/",
@@ -7945,42 +7945,6 @@
   "id": "brameloup-geocach-en-foret-d-aubrac-b33639c7"
  },
  {
-  "name": "Brasserie La Beau Soleil (groupes)",
-  "category": "ferme",
-  "source_id": "datatourisme",
-  "sector": "pont-de-salars",
-  "external_id": "https://data.datatourisme.fr/31/21a7129f-80f8-31c8-a592-597324230a3f",
-  "description": "Grâce à sa pointe de miel on découvre une flaveur moelleuse, des recettes douces et parfumées à base d'ingrédients biologiques de qualité : Blanche, Blonde, IPA, Rousse, Brune, Noire, Printemps, Saison, Automne, Hiver, Triple, Impériale. La bière est brassée par l'apiculteur, Matthew, ce passionné gourmand, qui partage avec délice son goût développé pour l'équilibre des saveurs. \nDans une démarche écologique et environnementale, Matthew a choisi de faire des petits brassins de 800 litres. Ainsi, il fait pousser son houblon, concasse lui-même le malt juste avant la fabrication pour garder tous ",
-  "tldr": "Savourez des bières bio aux saveurs douces et parfumées, comme une Blanche au miel ou une IPA houblonnée.",
-  "commune": "Saint Geniez d'Olt et d'Aubrac",
-  "address": "Beau Soleil",
-  "lat": 44.46171118,
-  "lon": 2.97970507,
-  "url": "https://www.labeausoleil.fr/",
-  "phone": "+33 7 81 67 82 69",
-  "opening_hours": null,
-  "fee": null,
-  "rating": null,
-  "rating_count": null,
-  "rating_source": null,
-  "rating_url": null,
-  "unusual": false,
-  "unusual_hint": false,
-  "quality": [],
-  "providers": [
-   "datatourisme"
-  ],
-  "image_url": "https://medias.hit.enaveyron.fr/fiches/9814/images/113778_183ca59c-d488-442f-912f-6e1691bd14df/600.webp",
-  "image_credit": null,
-  "image_page": null,
-  "tags": [
-   "dt:Producer"
-  ],
-  "first_seen": "2026-08-02",
-  "last_seen": "2026-08-03",
-  "id": "brasserie-la-beau-soleil-groupes-aacef63e"
- },
- {
   "name": "Brasserie de la Muze",
   "category": "ferme",
   "source_id": "datatourisme",
@@ -8051,6 +8015,42 @@
   "first_seen": "2026-08-02",
   "last_seen": "2026-08-03",
   "id": "brasserie-l-astrolabe-1cfb548c"
+ },
+ {
+  "name": "Brasserie La Beau Soleil (groupes)",
+  "category": "ferme",
+  "source_id": "datatourisme",
+  "sector": "pont-de-salars",
+  "external_id": "https://data.datatourisme.fr/31/21a7129f-80f8-31c8-a592-597324230a3f",
+  "description": "Grâce à sa pointe de miel on découvre une flaveur moelleuse, des recettes douces et parfumées à base d'ingrédients biologiques de qualité : Blanche, Blonde, IPA, Rousse, Brune, Noire, Printemps, Saison, Automne, Hiver, Triple, Impériale. La bière est brassée par l'apiculteur, Matthew, ce passionné gourmand, qui partage avec délice son goût développé pour l'équilibre des saveurs. \nDans une démarche écologique et environnementale, Matthew a choisi de faire des petits brassins de 800 litres. Ainsi, il fait pousser son houblon, concasse lui-même le malt juste avant la fabrication pour garder tous ",
+  "tldr": "Savourez des bières bio aux saveurs douces et parfumées, comme une Blanche au miel ou une IPA houblonnée.",
+  "commune": "Saint Geniez d'Olt et d'Aubrac",
+  "address": "Beau Soleil",
+  "lat": 44.46171118,
+  "lon": 2.97970507,
+  "url": "https://www.labeausoleil.fr/",
+  "phone": "+33 7 81 67 82 69",
+  "opening_hours": null,
+  "fee": null,
+  "rating": null,
+  "rating_count": null,
+  "rating_source": null,
+  "rating_url": null,
+  "unusual": false,
+  "unusual_hint": false,
+  "quality": [],
+  "providers": [
+   "datatourisme"
+  ],
+  "image_url": "https://medias.hit.enaveyron.fr/fiches/9814/images/113778_183ca59c-d488-442f-912f-6e1691bd14df/600.webp",
+  "image_credit": null,
+  "image_page": null,
+  "tags": [
+   "dt:Producer"
+  ],
+  "first_seen": "2026-08-02",
+  "last_seen": "2026-08-03",
+  "id": "brasserie-la-beau-soleil-groupes-aacef63e"
  },
  {
   "name": "Brasserie la Calmettoise - Bière paysanne",
@@ -22737,6 +22737,7 @@
   "image_credit": null,
   "image_page": null,
   "tags": [
+   "dt:ReligiousSite",
    "dt:Church"
   ],
   "first_seen": "2026-08-02",
@@ -38966,42 +38967,6 @@
   "id": "lac-et-tourbieres-de-souveyrols-31a5b8ff"
  },
  {
-  "name": "LE LAC DE SAINT-ANDÉOL",
-  "category": "nature",
-  "source_id": "datatourisme",
-  "sector": "pont-de-salars",
-  "external_id": "https://data.datatourisme.fr/45/7ccb59fa-63f1-3d26-bd57-aa4ca4b6de8e",
-  "description": "Plus vaste lac de l'Aubrac avec ses 12 hectares, Saint-Andéol s'est logé au cœur d'un ancien cratère volcanique sur la commune de Marchastel. Étape incontournable et facilement accessible pour les marcheurs de Saint-Jacques-de-Compostelle, ce site fascinant séduit autant par sa géologie remarquable que par son histoire chargée de mystères. Dès le VIe siècle, Grégoire de Tours y décrivait des rites païens où des milliers de pèlerins jetaient des offrandes (pièces, laine, fromage) dans l'espoir d'obtenir des guérisons miraculeuses. Entre la célèbre légende d'une cité engloutie et sa haute croix ",
-  "tldr": "Baignade, pêche ou pique-nique au lac de Saint-Andéol, niché dans un cratère volcanique préservé.",
-  "commune": "Marchastel",
-  "address": null,
-  "lat": 44.6180844,
-  "lon": 3.0814146,
-  "url": "https://www.aubrac-lozere.com/",
-  "phone": "+33 4 66 32 55 73",
-  "opening_hours": null,
-  "fee": null,
-  "rating": null,
-  "rating_count": null,
-  "rating_source": null,
-  "rating_url": null,
-  "unusual": false,
-  "unusual_hint": false,
-  "quality": [],
-  "providers": [
-   "datatourisme"
-  ],
-  "image_url": "https://cdt48.media.tourinsoft.eu/upload/Lac-de-Saint-Andeol--8---B.-Colomb---Loze-re-Sauvage-pour-PACT-Aubrac.jpg",
-  "image_credit": "© B. Colomb - Lozere Sauvage pour PACT Aubrac",
-  "image_page": null,
-  "tags": [
-   "dt:NaturalHeritage"
-  ],
-  "first_seen": "2026-08-02",
-  "last_seen": "2026-08-03",
-  "id": "le-lac-de-saint-andeol-c2ab5fe5"
- },
- {
   "name": "Laguiole Equitation",
   "category": "prestation",
   "source_id": "datatourisme",
@@ -40267,6 +40232,42 @@
   "first_seen": "2026-08-02",
   "last_seen": "2026-08-03",
   "id": "le-laboureur-du-segala-526ca4fc"
+ },
+ {
+  "name": "LE LAC DE SAINT-ANDÉOL",
+  "category": "nature",
+  "source_id": "datatourisme",
+  "sector": "pont-de-salars",
+  "external_id": "https://data.datatourisme.fr/45/7ccb59fa-63f1-3d26-bd57-aa4ca4b6de8e",
+  "description": "Plus vaste lac de l'Aubrac avec ses 12 hectares, Saint-Andéol s'est logé au cœur d'un ancien cratère volcanique sur la commune de Marchastel. Étape incontournable et facilement accessible pour les marcheurs de Saint-Jacques-de-Compostelle, ce site fascinant séduit autant par sa géologie remarquable que par son histoire chargée de mystères. Dès le VIe siècle, Grégoire de Tours y décrivait des rites païens où des milliers de pèlerins jetaient des offrandes (pièces, laine, fromage) dans l'espoir d'obtenir des guérisons miraculeuses. Entre la célèbre légende d'une cité engloutie et sa haute croix ",
+  "tldr": "Baignade, pêche ou pique-nique au lac de Saint-Andéol, niché dans un cratère volcanique préservé.",
+  "commune": "Marchastel",
+  "address": null,
+  "lat": 44.6180844,
+  "lon": 3.0814146,
+  "url": "https://www.aubrac-lozere.com/",
+  "phone": "+33 4 66 32 55 73",
+  "opening_hours": null,
+  "fee": null,
+  "rating": null,
+  "rating_count": null,
+  "rating_source": null,
+  "rating_url": null,
+  "unusual": false,
+  "unusual_hint": false,
+  "quality": [],
+  "providers": [
+   "datatourisme"
+  ],
+  "image_url": "https://cdt48.media.tourinsoft.eu/upload/Lac-de-Saint-Andeol--8---B.-Colomb---Loze-re-Sauvage-pour-PACT-Aubrac.jpg",
+  "image_credit": "© B. Colomb - Lozere Sauvage pour PACT Aubrac",
+  "image_page": null,
+  "tags": [
+   "dt:NaturalHeritage"
+  ],
+  "first_seen": "2026-08-02",
+  "last_seen": "2026-08-03",
+  "id": "le-lac-de-saint-andeol-c2ab5fe5"
  },
  {
   "name": "LE LIEU DIT DE VOLCÉGUR",
@@ -46196,13 +46197,13 @@
   "source_id": "datatourisme",
   "sector": "pont-de-salars",
   "external_id": "https://data.datatourisme.fr/31/73344d60-f2b8-3f86-adfc-80f2ff82dff6",
-  "description": "Services proposés\nMassages - Rituel\nMagnétisme - Soins énergétiques\nRelaxation guidée - Yoga Nidra\nMéditation\nValérie adapte ses soins aux besoins de chacun .\nSon approche holistique vise à restaurer l'équilibre et l'harmonie sur les plans physique, émotionnel, mental et spirituel\nCadre apaisant\nSitué en pleine nature à Viala-du-Tarn, au sein de La Villa des Raspes l'espace de bien être offre un environnement propice à la détente et au ressourcement .\nValérie vous accueille dans une atmosphère chaleureuse et bienveillante pour des moments de bien-être sur-mesure.\nPrendre Rendez vous\nPour prend",
+  "description": "Services proposés sur demande\nMassages Intuitif\nMagnétisme - Soins énergétiques\nRelaxation -Yoga Nidra\nStage de Méditation\nCercle de soin collectif\nValérie adapte ses soins aux besoins de chacun .\nSon approche holistique vise à restaurer l'équilibre et l'harmonie sur les plans physique, émotionnel, mental et spirituel\nCadre apaisant\nCabinet privée situé au coeur du Viala-du-Tarn .\nValérie vous accueille dans une atmosphère chaleureuse et bienveillante pour des moments de bien-être et de libération .\nPrendre Rendez vous\nPour prendre soin de vous et profiter d'une parenthèse relaxante et libérat",
   "tldr": "Offrez-vous une pause bien-être avec massages, magnétisme ou méditation adaptés à vos besoins à Viala-du-Tarn.",
   "commune": "Viala-du-Tarn",
-  "address": "81 Impasse la coste",
-  "lat": 44.07279483,
-  "lon": 2.87871838,
-  "url": "https://www.lavilladesraspes-aveyron.com/presentation/espace-bien-etre-et-soin.html",
+  "address": "113 Rue Capitaine Malaval",
+  "lat": 44.071764,
+  "lon": 2.878513,
+  "url": "https://valerierossi.fr/",
   "phone": "+33 6 23 82 73 45",
   "opening_hours": null,
   "fee": null,
@@ -46216,8 +46217,8 @@
   "providers": [
    "datatourisme"
   ],
-  "image_url": "https://medias.hit.enaveyron.fr/fiches/93753/images/1333362_dc8235e8-2c50-43d8-88c5-ca80da20c5e1/600.webp",
-  "image_credit": "Centre de bien être Valérie Rossi",
+  "image_url": "https://medias.hit.enaveyron.fr/fiches/21184/images/1333368_d9a791ee-4b2f-41c4-b1bb-4a193679be8e/600.webp",
+  "image_credit": "Valérie Rossi Magnétiseur",
   "image_page": null,
   "tags": [
    "dt:LeisureSportActivityProvider"
