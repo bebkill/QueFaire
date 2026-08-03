@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-08-03T07:02:03",
+ "generated_at": "2026-08-03T17:05:15",
  "cities": [
   {
    "id": "pont-de-salars",
@@ -10,7 +10,7 @@
    },
    "radius_minutes": 60.0,
    "event_count": 28,
-   "generated_at": "2026-08-03T06:56:16",
+   "generated_at": "2026-08-03T17:05:08",
    "url": "pont-de-salars/"
   },
   {
@@ -22,7 +22,7 @@
    },
    "radius_minutes": 60.0,
    "event_count": 48,
-   "generated_at": "2026-08-03T07:02:03",
+   "generated_at": "2026-08-03T17:05:15",
    "url": "villemoirieu/"
   }
  ]
