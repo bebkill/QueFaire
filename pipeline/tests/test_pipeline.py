@@ -1057,12 +1057,12 @@ def test_places_merge_drops_deliberately_excluded_type():
     assert [p.name for p in merge([dt], [], today="2026-08-02")] == ["Musée"]
 
 
-def test_filter_relevant_drops_mute_heritage():
-    """Le patrimoine muet est du bruit ; le patrimoine documenté reste.
+def test_filter_relevant_drops_mute_places_in_every_category():
+    """Une fiche muette n'est pas exploitable, quelle que soit sa catégorie.
 
-    Un signal = quelqu'un a jugé le lieu digne d'un mot. Aucun signal, c'est
-    cinq sources qui disent non en même temps (DATAtourisme, un site officiel,
-    Wikipédia, un classement, des horaires).
+    Un signal = quelqu'un a jugé le lieu digne d'être documenté. Aucun signal,
+    c'est six sources qui disent non en même temps — et la tuile n'aurait rien
+    à montrer ni de destination où envoyer le visiteur.
     """
     from quefaire.models import Place
     from quefaire.places import filter_relevant
@@ -1080,34 +1080,15 @@ def test_filter_relevant_drops_mute_heritage():
         pat("Beffroi de Millau", opening_hours="Mo-Su 10:00-18:00"),
         pat("Ancien prieuré", quality=["monument-historique"]),
         pat("Abbaye de Bonneval", providers=["osm", "datatourisme"]),
+        pat("Chapelle Saint-Roch", image_url="https://commons.test/x.jpg"),
     ]
-    # Une catégorie hors _NEEDS_SIGNAL_PLACE n'est pas concernée, même muette.
-    cinema = Place(name="Ciné", category="cinema", source_id="osm", sector="s")
+    # AUCUNE catégorie n'est exemptée : une salle des fêtes sans un mot tombe
+    # comme un four à chaux sans un mot.
+    salle = Place(name="Salle des Tilleuls", category="spectacle", source_id="osm", sector="s")
+    piscine = Place(name="Piscine", category="parc-aquatique", source_id="osm", sector="s")
 
-    kept = filter_relevant([muet, présenté, *gardés, cinema])
-    assert [p.name for p in kept] == [*(p.name for p in gardés), "Ciné"]
-
-
-def test_filter_relevant_targets_artwork_not_whole_category():
-    """Dans `visite`, la catégorie est trop grossière pour porter la décision.
-
-    Les sculptures de rond-point (`tourism=artwork`) doivent prouver leur
-    intérêt ; le loueur de canoë (`tourism=attraction`), non — c'est une vraie
-    sortie, simplement pas décrite dans OSM.
-    """
-    from quefaire.models import Place
-    from quefaire.places import filter_relevant
-
-    def visite(name, tag, **kw):
-        return Place(name=name, category="visite", source_id="osm", sector="s",
-                     tags=[f"osm:tourism={tag}"], **kw)
-
-    sculpture = visite("Ange de la résurrection", "artwork")
-    sculpture_connue = visite("Arbre de Vie", "artwork", description="Œuvre de…")
-    canoe = visite("Alternative Canoe Kayak", "attraction")
-
-    kept = filter_relevant([sculpture, sculpture_connue, canoe])
-    assert [p.name for p in kept] == ["Arbre de Vie", "Alternative Canoe Kayak"]
+    kept = filter_relevant([muet, présenté, *gardés, salle, piscine])
+    assert [p.name for p in kept] == [p.name for p in gardés]
 
 
 def test_place_id_distinguishes_homonyms_without_external_id():
@@ -1395,6 +1376,10 @@ DT_SAMPLE = {
             "@id": "https://data.datatourisme.fr/2",
             "@type": ["PointOfInterest", "SportsAndLeisurePlace"],
             "rdfs:label": "Accrobranche du Lévézou",
+            # Une description, comme 99 % des fiches réelles de DATAtourisme :
+            # sans elle, `filter_relevant` l'écarterait à juste titre et ce test
+            # ne mesurerait plus ce qu'il prétend (la panne d'OSM, pas le filtre).
+            "hasDescription": [{"shortDescription": {"fr": ["Parcours dans les arbres."]}}],
             "isLocatedAt": {"schema:geo": {"schema:latitude": 44.30, "schema:longitude": 2.75}},
         },
         {  # hors rayon : doit être écarté

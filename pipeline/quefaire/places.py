@@ -114,21 +114,10 @@ _SKIP_IF = (
 # les catégories très denses (parcs, aires de pique-nique) un signal de qualité.
 _NEEDS_SIGNAL = {"nature"}
 
-# Même principe, mais appliqué à la fiche FUSIONNÉE plutôt qu'aux tags d'un
-# fournisseur : `patrimoine` est assez dense pour qu'une fiche dont personne n'a
-# jamais écrit une ligne y soit du bruit (fours à chaux anonymes, tas de pierres
-# cartographiés pour la carte, pas pour la visite). Le test tardif est délibéré :
-# un château qu'OSM ne connaît que comme un point survit si DATAtourisme le
-# décrit — c'est la fusion qui doit trancher, pas un fournisseur isolé.
-_NEEDS_SIGNAL_PLACE = {"patrimoine"}
-
-# Parfois la catégorie est trop grossière pour porter la décision : dans
-# `visite`, les 88 `tourism=artwork` sont des sculptures de rond-point et une
-# meule posée sur un talus, quand les 70 `tourism=attraction` comptent un loueur
-# de canoë et une cave de dégustation — de vraies sorties, simplement pas
-# décrites dans OSM. Filtrer la catégorie entière tuerait les secondes. On exige
-# donc le signal au niveau du TAG de provenance pour ces cas-là.
-_NEEDS_SIGNAL_TAG = {"osm:tourism=artwork"}
+# L'exigence de signal sur la fiche FUSIONNÉE est désormais GÉNÉRALE — voir
+# `has_signal` et `filter_relevant`. Le test tardif reste délibéré : un château
+# qu'OSM ne connaît que comme un point survit si DATAtourisme le décrit, c'est la
+# fusion qui tranche et pas un fournisseur isolé.
 
 
 def _category_of(tags: dict) -> str | None:
@@ -492,35 +481,41 @@ def load(sector_id: str, out: Path) -> list[Place]:
 
 
 def has_signal(place: Place) -> bool:
-    """Au moins une source a-t-elle jugé ce lieu digne d'être décrit ?
+    """Au moins une source a-t-elle jugé ce lieu digne d'être documenté ?
 
-    Description, site officiel, horaires, distinction, ou présence chez deux
-    fournisseurs : chacun atteste que quelqu'un s'est donné la peine. Le `tldr`
-    n'en fait PAS partie — il est dérivé de ce qu'on a déjà, il ne prouve rien
-    de plus, et l'inclure rendrait le filtre circulaire.
+    Description, site officiel, horaires, distinction, photo, ou présence chez
+    deux fournisseurs : chacun atteste que quelqu'un s'est donné la peine.
+
+    Le `tldr` n'en fait PAS partie — il est dérivé de ce qu'on a déjà, il ne
+    prouve rien de plus, et l'inclure rendrait le filtre circulaire.
     """
     return bool(
         (place.description or "").strip()
         or place.url
         or place.opening_hours
         or place.quality
+        or place.image_url
         or len(place.providers or []) > 1
     )
 
 
-def _needs_signal(place: Place) -> bool:
-    """Cette fiche doit-elle prouver son intérêt pour être publiée ?
-
-    Soit par sa catégorie (dense de bout en bout), soit par son tag de
-    provenance quand la catégorie mélange le bon et le décoratif.
-    """
-    return place.category in _NEEDS_SIGNAL_PLACE or any(
-        t in _NEEDS_SIGNAL_TAG for t in (place.tags or [])
-    )
-
-
 def filter_relevant(places: list[Place]) -> list[Place]:
-    """Écarte les fiches muettes des catégories et types denses.
+    """Écarte les fiches muettes, dans TOUTES les catégories.
+
+    Une fiche sans description, sans site, sans horaires, sans photo et sans
+    distinction n'est pas exploitable par un visiteur : la tuile ne dit pas ce
+    qu'on peut y faire et le lien ne mène nulle part. La publier est au mieux
+    inutile, au pire trompeur — « Piscine », « Salle des Tilleuls » ou
+    « Marché aux veaux » ne sont pas des sorties.
+
+    La règle a d'abord été posée par catégorie (`patrimoine`), puis par tag
+    (`tourism=artwork`), avant d'être généralisée : chaque resserrement partiel
+    laissait passer le même bruit ailleurs — halles municipales en `spectacle`,
+    piscines sans nom en `parc-aquatique`, galeries vides en `musee`.
+
+    RIEN N'EST PERDU DÉFINITIVEMENT : le filtre s'applique à la sweep fraîche à
+    chaque passage, donc une fiche que sa source enrichit plus tard réapparaît
+    d'elle-même, sans intervention. C'est ce qui rend l'exigence tenable.
 
     Appelé AVANT `present()` : inutile de payer une présentation LLM pour une
     fiche qu'on ne publiera pas.
@@ -528,7 +523,7 @@ def filter_relevant(places: list[Place]) -> list[Place]:
     kept: list[Place] = []
     dropped: Counter = Counter()
     for place in places:
-        if _needs_signal(place) and not has_signal(place):
+        if not has_signal(place):
             dropped[place.category] += 1
             continue
         kept.append(place)
