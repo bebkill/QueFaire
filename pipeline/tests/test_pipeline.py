@@ -1261,6 +1261,35 @@ def test_dedupe_after_merge_absorbs_retained_duplicates():
     assert set(unique.providers) == {"osm", "datatourisme"}
 
 
+def test_place_stats_feed_the_city_portal(tmp_path):
+    """Le portail annonçait les seuls événements temporaires — le plus petit
+    et le plus volatil des deux chiffres. Il lui faut les activités."""
+    import json
+
+    from quefaire.export import _place_stats
+
+    city = tmp_path / "cities" / "pont-de-salars"
+    city.mkdir(parents=True)
+    (city / "places.json").write_text(json.dumps([
+        {"name": "A", "unusual": True, "quality": ["monument-historique"], "image_url": "https://x/1"},
+        {"name": "B", "unusual": False, "quality": ["notoriete"]},
+        {"name": "C", "quality": [], "image_url": "https://x/2"},
+    ]), encoding="utf-8")
+
+    stats = _place_stats("pont-de-salars", tmp_path)
+    assert stats == {
+        "place_count": 3,
+        "unusual_count": 1,
+        # « notoriete » (Wikipédia) n'est pas une valeur sûre : c'est une
+        # notoriété, pas une distinction décernée par un tiers.
+        "notable_count": 1,
+        "photo_count": 2,
+    }
+    # Ville jamais découverte : des zéros, jamais une exception — le crawl ne
+    # doit pas échouer parce que le cycle hebdomadaire n'a pas encore tourné.
+    assert _place_stats("inconnue", tmp_path)["place_count"] == 0
+
+
 def test_places_roundtrip_and_place_count(tmp_path):
     from quefaire.export import _count_places
     from quefaire.models import Place

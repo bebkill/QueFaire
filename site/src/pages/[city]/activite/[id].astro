@@ -134,8 +134,21 @@ const providerNames = { osm: 'OpenStreetMap', datatourisme: 'DATAtourisme' };
         <p class="loc-source">
           Position publiée par {positionSource.lien
             ? <a href={positionSource.lien} target="_blank" rel="noopener">{positionSource.nom} ↗</a>
-            : positionSource.nom}, reprise telle quelle. Elle situe l'activité,
-          elle ne remplace pas une adresse postale vérifiée.
+            : positionSource.nom}. L'adresse exacte n'est pas vérifiée. Nous
+          recommandons de réaliser des recherches complémentaires avant de vous
+          déplacer.
+        </p>
+
+        {/* Avertissement de fraîcheur. Une activité peut avoir fermé entre deux
+            découvertes : le pipeline ne le détecte qu'à son absence de deux
+            sweeps consécutives, soit deux semaines. Vécu sur « Accrobranche »,
+            définitivement fermée et toujours publiée. Le dire vaut mieux que
+            laisser croire à une vérification qu'on ne fait pas. */}
+        <p class="loc-warning">
+          <strong>⚠ Vérifiez avant de partir.</strong> Nous faisons notre possible
+          pour ne présenter que des activités pertinentes et existantes, mais nos
+          sources ne signalent pas toujours une fermeture. Renseignez-vous sur les
+          horaires d'ouverture et le maintien en activité avant de vous déplacer.
         </p>
 
         <a class="backlink" href={cityBase}>← Retour aux activités</a>
@@ -196,7 +209,20 @@ const providerNames = { osm: 'OpenStreetMap', datatourisme: 'DATAtourisme' };
         maxZoom: 18,
         attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
       }).addTo(map);
-      L.marker([lat, lon]).addTo(map).bindPopup(el.dataset.name);
+      // `circleMarker` et non `marker` : l'épingle par défaut de Leaflet est une
+      // IMAGE dont l'URL est résolue depuis le CSS, et le bundler la casse — la
+      // carte s'affichait sans son marqueur. Un cercle vectoriel n'a pas ce
+      // problème, et c'est déjà ce qu'utilise la carte de l'agenda.
+      L.circleMarker([lat, lon], {
+        radius: 9,
+        color: '#fff',
+        weight: 3,
+        fillColor: '#e2582a',
+        fillOpacity: 1,
+      })
+        .addTo(map)
+        .bindPopup(el.dataset.name)
+        .openPopup();
     };
     if ('IntersectionObserver' in window) {
       const obs = new IntersectionObserver((entries) => {

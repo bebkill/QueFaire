@@ -88,7 +88,11 @@ const notableCount = sortedPlaces.filter((p) => isNotable(p.quality)).length;
 
   <main class="wrap">
     <div class="toolbar">
-      <span class="count" id="count">{events.length} événements</span>
+      {/* Valeur de repli pour un rendu sans JavaScript ; `apply()` la recalcule
+          dès le chargement et à chaque filtre. */}
+      <span class="count" id="count">
+        {events.length} événements · {sortedPlaces.length} activités permanentes
+      </span>
       <label class="timefilter">
         ⏱ à moins de
         <select id="timelimit">
@@ -614,4 +618,10 @@ const notableCount = sortedPlaces.filter((p) => isNotable(p.quality)).length;
       form.requestSubmit();
     });
   }
+
+  // Premier calcul au chargement. Sans lui, le compteur gardait la valeur rendue
+  // par le serveur — « 36 événements » — alors que la grille affichait déjà les
+  // 336 tuiles, événements ET activités permanentes : le chiffre annonçait un
+  // dixième de ce qu'on avait sous les yeux jusqu'à la première interaction.
+  apply();
 </script>

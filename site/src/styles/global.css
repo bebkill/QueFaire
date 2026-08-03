@@ -428,6 +428,12 @@ a { color: inherit; }
   overflow: hidden; background: var(--bg-soft);
 }
 .loc-source { margin: 10px 0 0; font-size: 0.82rem; color: var(--ink-soft); }
+.loc-warning {
+  margin: 14px 0 0; padding: 12px 14px; font-size: 0.86rem; line-height: 1.5;
+  border-radius: 10px; border: 1px solid var(--line);
+  background: color-mix(in srgb, var(--accent) 8%, var(--card));
+}
+.loc-warning strong { display: block; margin-bottom: 3px; }
 .infobox .src-note { display: block; margin-top: 8px; font-size: 0.8rem; color: var(--ink-soft); }
 
 /* Vignette sur les tuiles sans site officiel : c'est leur seul aperçu, mais
@@ -486,6 +492,14 @@ a { color: inherit; }
 .city-card-head { display: flex; align-items: baseline; justify-content: space-between; gap: 8px; }
 .city-card h2 { margin: 0; font-size: 1.15rem; }
 .city-count { font-size: 0.8rem; font-weight: 600; color: var(--ink-soft); white-space: nowrap; }
+/* Chiffres d'appel de la tuile de ville : ce qu'il y a à faire là-bas. */
+.city-stats {
+  list-style: none; margin: 8px 0 2px; padding: 0;
+  display: flex; flex-wrap: wrap; gap: 4px 14px;
+  font-size: 0.86rem; color: var(--ink-soft);
+}
+.city-stats b { color: var(--ink); font-weight: 800; }
+.city-stats .stat-unusual b, .city-stats .stat-notable b { color: var(--accent); }
 .city-radius { font-size: 0.85rem; color: var(--ink-soft); margin: 4px 0 12px; }
 .btn-open {
   display: inline-block; background: var(--accent); color: var(--accent-ink);

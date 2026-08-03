@@ -16,7 +16,7 @@ from datetime import datetime, timedelta
 from pathlib import Path
 
 from .geocode import commune_table
-from .models import CATEGORIES, PLACE_CATEGORIES, QUALITY_LABELS, Event
+from .models import CATEGORIES, NOTABLE_LABELS, PLACE_CATEGORIES, QUALITY_LABELS, Event
 from .registry import Sector, available_sectors, load_sector
 
 SITE_DATA_DIR = Path(__file__).resolve().parent.parent.parent / "site" / "src" / "data"
@@ -88,19 +88,41 @@ def export(sector: Sector, events: list[Event], out_dir: Path | None = None) -> 
     return meta
 
 
-def _count_places(sector_id: str, out: Path) -> int:
-    """Nombre d'activités permanentes déjà publiées pour cette ville (0 si aucune).
+_STATS_VIDES = {"place_count": 0, "unusual_count": 0, "notable_count": 0, "photo_count": 0}
 
-    Lecture seule et tolérante : le crawl ne doit jamais échouer parce que la
-    découverte d'activités n'a pas encore tourné.
+
+def _place_stats(sector_id: str, out: Path) -> dict:
+    """Compteurs d'activités permanentes d'une ville, lus sur le disque.
+
+    Le portail « choisir sa ville » n'affichait que le nombre d'événements
+    temporaires — le chiffre le plus petit et le plus volatil des deux. Ces
+    compteurs lui donnent de quoi donner envie d'entrer.
+
+    Lecture seule et tolérante : ni le crawl ni l'export ne doivent échouer
+    parce que la découverte d'activités n'a pas encore tourné pour cette ville.
     """
     path = out / "cities" / sector_id / "places.json"
     if not path.exists():
-        return 0
+        return dict(_STATS_VIDES)
     try:
-        return len(json.loads(path.read_text(encoding="utf-8")))
+        items = json.loads(path.read_text(encoding="utf-8"))
     except (ValueError, OSError):
-        return 0
+        return dict(_STATS_VIDES)
+    if not isinstance(items, list):
+        return dict(_STATS_VIDES)
+    return {
+        "place_count": len(items),
+        "unusual_count": sum(1 for p in items if p.get("unusual")),
+        "notable_count": sum(
+            1 for p in items if set(p.get("quality") or []) & set(NOTABLE_LABELS)
+        ),
+        "photo_count": sum(1 for p in items if p.get("image_url")),
+    }
+
+
+def _count_places(sector_id: str, out: Path) -> int:
+    """Nombre d'activités permanentes déjà publiées pour cette ville (0 si aucune)."""
+    return _place_stats(sector_id, out)["place_count"]
 
 
 def refresh_place_count(sector_id: str, count: int, out: Path) -> None:
@@ -120,6 +142,22 @@ def refresh_place_count(sector_id: str, count: int, out: Path) -> None:
     meta.setdefault("place_categories", PLACE_CATEGORIES)
     meta.setdefault("quality_labels", QUALITY_LABELS)
     path.write_text(json.dumps(meta, ensure_ascii=False, indent=1), encoding="utf-8")
+
+    # cities.json aussi : le portail affiche ces compteurs, et `discover-places`
+    # tourne hors du crawl — sans ce rafraîchissement, le portail resterait sur
+    # les chiffres de la dernière collecte d'événements.
+    annuaire = out / "cities.json"
+    if not annuaire.exists():
+        return
+    try:
+        data = json.loads(annuaire.read_text(encoding="utf-8"))
+    except (ValueError, OSError):
+        return
+    stats = _place_stats(sector_id, out)
+    for city in data.get("cities", []):
+        if isinstance(city, dict) and city.get("id") == sector_id:
+            city.update(stats)
+    annuaire.write_text(json.dumps(data, ensure_ascii=False, indent=1), encoding="utf-8")
 
 
 def _write_cities(sector: Sector, event_count: int, generated_at: str, out: Path) -> None:
@@ -152,6 +190,10 @@ def _write_cities(sector: Sector, event_count: int, generated_at: str, out: Path
             "center": {"lat": s.center_lat, "lon": s.center_lon},
             "radius_minutes": s.radius_minutes,
             "event_count": event_count if current else p.get("event_count"),
+            # Les compteurs d'activités se lisent sur le disque pour TOUTES les
+            # villes, pas seulement celle qu'on crawle : places.json est écrit
+            # par un cycle distinct (hebdomadaire), il est donc déjà là.
+            **_place_stats(sid, out),
             "generated_at": generated_at if current else p.get("generated_at"),
             # Une URL déjà posée est préservée (déploiement dédié renseigné à la
             # main) ; sinon la ville crawlée prend son sous-chemin. Une ville
