@@ -35,6 +35,7 @@
   "marche": "Marché",
   "visite": "Visite & curiosité",
   "sport-loisir": "Sport & loisirs",
+  "prestation": "Activité encadrée",
   "ferme": "Ferme & artisanat",
   "bien-etre": "Thermes & bien-être",
   "autre": "Autre activité"
@@ -292,6 +293,1203 @@
   "Vimenet",
   "Vézins-de-Lévézou"
  ],
+ "commune_points": [
+  {
+   "nom": "Agen-d'Aveyron",
+   "lat": 44.3509,
+   "lon": 2.6915
+  },
+  {
+   "nom": "Aguessac",
+   "lat": 44.1584,
+   "lon": 3.0669
+  },
+  {
+   "nom": "Alrance",
+   "lat": 44.1396,
+   "lon": 2.6756
+  },
+  {
+   "nom": "Ambialet",
+   "lat": 43.9267,
+   "lon": 2.3837
+  },
+  {
+   "nom": "Andouque",
+   "lat": 44.0009,
+   "lon": 2.3043
+  },
+  {
+   "nom": "Anglars-Saint-Félix",
+   "lat": 44.4143,
+   "lon": 2.2352
+  },
+  {
+   "nom": "Arques",
+   "lat": 44.32,
+   "lon": 2.8063
+  },
+  {
+   "nom": "Arvieu",
+   "lat": 44.1908,
+   "lon": 2.6704
+  },
+  {
+   "nom": "Assac",
+   "lat": 43.979,
+   "lon": 2.4306
+  },
+  {
+   "nom": "Aubin",
+   "lat": 44.5309,
+   "lon": 2.2531
+  },
+  {
+   "nom": "Auriac-Lagast",
+   "lat": 44.1421,
+   "lon": 2.6002
+  },
+  {
+   "nom": "Auzits",
+   "lat": 44.4954,
+   "lon": 2.32
+  },
+  {
+   "nom": "Ayssènes",
+   "lat": 44.0916,
+   "lon": 2.7619
+  },
+  {
+   "nom": "Balaguier-sur-Rance",
+   "lat": 43.8945,
+   "lon": 2.5761
+  },
+  {
+   "nom": "Banassac-Canilhac",
+   "lat": 44.4296,
+   "lon": 3.1693
+  },
+  {
+   "nom": "Baraqueville",
+   "lat": 44.2824,
+   "lon": 2.4527
+  },
+  {
+   "nom": "Belcastel",
+   "lat": 44.397,
+   "lon": 2.331
+  },
+  {
+   "nom": "Bertholène",
+   "lat": 44.3904,
+   "lon": 2.7926
+  },
+  {
+   "nom": "Bessuéjouls",
+   "lat": 44.5168,
+   "lon": 2.7104
+  },
+  {
+   "nom": "Bournazel",
+   "lat": 44.4615,
+   "lon": 2.3054
+  },
+  {
+   "nom": "Boussac",
+   "lat": 44.2961,
+   "lon": 2.3846
+  },
+  {
+   "nom": "Bozouls",
+   "lat": 44.4724,
+   "lon": 2.7142
+  },
+  {
+   "nom": "Brasc",
+   "lat": 43.9803,
+   "lon": 2.5777
+  },
+  {
+   "nom": "Broquiès",
+   "lat": 44.024,
+   "lon": 2.7155
+  },
+  {
+   "nom": "Brousse-le-Château",
+   "lat": 44.0078,
+   "lon": 2.6401
+  },
+  {
+   "nom": "Cabanès",
+   "lat": 44.193,
+   "lon": 2.2922
+  },
+  {
+   "nom": "Cadix",
+   "lat": 43.9738,
+   "lon": 2.4722
+  },
+  {
+   "nom": "Calmels-et-le-Viala",
+   "lat": 43.9577,
+   "lon": 2.7583
+  },
+  {
+   "nom": "Calmont",
+   "lat": 44.2643,
+   "lon": 2.5256
+  },
+  {
+   "nom": "Camboulazet",
+   "lat": 44.2244,
+   "lon": 2.4462
+  },
+  {
+   "nom": "Camjac",
+   "lat": 44.1739,
+   "lon": 2.3985
+  },
+  {
+   "nom": "Campagnac",
+   "lat": 44.4033,
+   "lon": 3.0889
+  },
+  {
+   "nom": "Campouriez",
+   "lat": 44.6814,
+   "lon": 2.6165
+  },
+  {
+   "nom": "Campuac",
+   "lat": 44.5656,
+   "lon": 2.5808
+  },
+  {
+   "nom": "Canet-de-Salars",
+   "lat": 44.2392,
+   "lon": 2.7379
+  },
+  {
+   "nom": "Cassagnes-Bégonhès",
+   "lat": 44.1738,
+   "lon": 2.5175
+  },
+  {
+   "nom": "Castanet",
+   "lat": 44.2882,
+   "lon": 2.3085
+  },
+  {
+   "nom": "Castelmary",
+   "lat": 44.1732,
+   "lon": 2.2389
+  },
+  {
+   "nom": "Castelnau-Pégayrols",
+   "lat": 44.1456,
+   "lon": 2.9304
+  },
+  {
+   "nom": "Castelnau-de-Mandailles",
+   "lat": 44.5309,
+   "lon": 2.8906
+  },
+  {
+   "nom": "Centrès",
+   "lat": 44.1715,
+   "lon": 2.433
+  },
+  {
+   "nom": "Clairvaux-d'Aveyron",
+   "lat": 44.4008,
+   "lon": 2.4021
+  },
+  {
+   "nom": "Colombiès",
+   "lat": 44.3443,
+   "lon": 2.3262
+  },
+  {
+   "nom": "Compeyre",
+   "lat": 44.1771,
+   "lon": 3.1026
+  },
+  {
+   "nom": "Compolibat",
+   "lat": 44.3754,
+   "lon": 2.1836
+  },
+  {
+   "nom": "Comprégnac",
+   "lat": 44.0966,
+   "lon": 2.9806
+  },
+  {
+   "nom": "Comps-la-Grand-Ville",
+   "lat": 44.2269,
+   "lon": 2.5663
+  },
+  {
+   "nom": "Condom-d'Aubrac",
+   "lat": 44.6032,
+   "lon": 2.8836
+  },
+  {
+   "nom": "Connac",
+   "lat": 44.0224,
+   "lon": 2.5925
+  },
+  {
+   "nom": "Conques-en-Rouergue",
+   "lat": 44.5817,
+   "lon": 2.3895
+  },
+  {
+   "nom": "Coubisou",
+   "lat": 44.5807,
+   "lon": 2.735
+  },
+  {
+   "nom": "Coupiac",
+   "lat": 43.9367,
+   "lon": 2.5888
+  },
+  {
+   "nom": "Courris",
+   "lat": 43.9537,
+   "lon": 2.404
+  },
+  {
+   "nom": "Cransac-les-Thermes",
+   "lat": 44.5175,
+   "lon": 2.2901
+  },
+  {
+   "nom": "Creissels",
+   "lat": 44.0621,
+   "lon": 3.0572
+  },
+  {
+   "nom": "Crespin",
+   "lat": 44.0451,
+   "lon": 2.3046
+  },
+  {
+   "nom": "Curan",
+   "lat": 44.1999,
+   "lon": 2.8642
+  },
+  {
+   "nom": "Curières",
+   "lat": 44.6398,
+   "lon": 2.8954
+  },
+  {
+   "nom": "Curvalle",
+   "lat": 43.9111,
+   "lon": 2.5112
+  },
+  {
+   "nom": "Druelle Balsac",
+   "lat": 44.3782,
+   "lon": 2.4721
+  },
+  {
+   "nom": "Durenque",
+   "lat": 44.0999,
+   "lon": 2.6206
+  },
+  {
+   "nom": "Entraygues-sur-Truyère",
+   "lat": 44.6604,
+   "lon": 2.5853
+  },
+  {
+   "nom": "Escandolières",
+   "lat": 44.4727,
+   "lon": 2.3515
+  },
+  {
+   "nom": "Espalion",
+   "lat": 44.5191,
+   "lon": 2.7624
+  },
+  {
+   "nom": "Espeyrac",
+   "lat": 44.6137,
+   "lon": 2.5164
+  },
+  {
+   "nom": "Estaing",
+   "lat": 44.5764,
+   "lon": 2.6813
+  },
+  {
+   "nom": "Faussergues",
+   "lat": 44.0386,
+   "lon": 2.4318
+  },
+  {
+   "nom": "Firmi",
+   "lat": 44.5451,
+   "lon": 2.3268
+  },
+  {
+   "nom": "Flavin",
+   "lat": 44.2871,
+   "lon": 2.631
+  },
+  {
+   "nom": "Florentin-la-Capelle",
+   "lat": 44.6387,
+   "lon": 2.6424
+  },
+  {
+   "nom": "Fraissines",
+   "lat": 43.9752,
+   "lon": 2.5077
+  },
+  {
+   "nom": "Gabriac",
+   "lat": 44.4636,
+   "lon": 2.8061
+  },
+  {
+   "nom": "Gaillac-d'Aveyron",
+   "lat": 44.3622,
+   "lon": 2.9059
+  },
+  {
+   "nom": "Gissac",
+   "lat": 43.8702,
+   "lon": 2.8996
+  },
+  {
+   "nom": "Golinhac",
+   "lat": 44.5972,
+   "lon": 2.5921
+  },
+  {
+   "nom": "Goutrens",
+   "lat": 44.4377,
+   "lon": 2.3651
+  },
+  {
+   "nom": "Gramond",
+   "lat": 44.2623,
+   "lon": 2.3723
+  },
+  {
+   "nom": "La Bastide-Pradines",
+   "lat": 44.0098,
+   "lon": 3.0549
+  },
+  {
+   "nom": "La Bastide-Solages",
+   "lat": 43.9488,
+   "lon": 2.5243
+  },
+  {
+   "nom": "La Canourgue",
+   "lat": 44.4253,
+   "lon": 3.2583
+  },
+  {
+   "nom": "La Capelle-Bleys",
+   "lat": 44.305,
+   "lon": 2.1758
+  },
+  {
+   "nom": "La Capelle-Bonance",
+   "lat": 44.4515,
+   "lon": 3.0258
+  },
+  {
+   "nom": "La Cavalerie",
+   "lat": 44.0148,
+   "lon": 3.1746
+  },
+  {
+   "nom": "La Cresse",
+   "lat": 44.169,
+   "lon": 3.1621
+  },
+  {
+   "nom": "La Loubière",
+   "lat": 44.3889,
+   "lon": 2.6588
+  },
+  {
+   "nom": "La Malène",
+   "lat": 44.3073,
+   "lon": 3.3164
+  },
+  {
+   "nom": "La Roque-Sainte-Marguerite",
+   "lat": 44.1029,
+   "lon": 3.2517
+  },
+  {
+   "nom": "La Salvetat-Peyralès",
+   "lat": 44.2228,
+   "lon": 2.1986
+  },
+  {
+   "nom": "La Selve",
+   "lat": 44.1072,
+   "lon": 2.5356
+  },
+  {
+   "nom": "La Serre",
+   "lat": 43.8959,
+   "lon": 2.6537
+  },
+  {
+   "nom": "La Tieule",
+   "lat": 44.3828,
+   "lon": 3.1691
+  },
+  {
+   "nom": "Lacapelle-Pinet",
+   "lat": 44.0667,
+   "lon": 2.3572
+  },
+  {
+   "nom": "Laguiole",
+   "lat": 44.6936,
+   "lon": 2.8679
+  },
+  {
+   "nom": "Laissac-Sévérac l'Église",
+   "lat": 44.3692,
+   "lon": 2.8352
+  },
+  {
+   "nom": "Lanuéjouls",
+   "lat": 44.42,
+   "lon": 2.1615
+  },
+  {
+   "nom": "Lapanouse-de-Cernon",
+   "lat": 44.0088,
+   "lon": 3.0947
+  },
+  {
+   "nom": "Lassouts",
+   "lat": 44.484,
+   "lon": 2.8509
+  },
+  {
+   "nom": "Le Bas Ségala",
+   "lat": 44.3056,
+   "lon": 2.1369
+  },
+  {
+   "nom": "Le Cayrol",
+   "lat": 44.5866,
+   "lon": 2.7865
+  },
+  {
+   "nom": "Le Dourn",
+   "lat": 44.0162,
+   "lon": 2.4696
+  },
+  {
+   "nom": "Le Fel",
+   "lat": 44.67,
+   "lon": 2.5153
+  },
+  {
+   "nom": "Le Monastère",
+   "lat": 44.3315,
+   "lon": 2.59
+  },
+  {
+   "nom": "Le Nayrac",
+   "lat": 44.6012,
+   "lon": 2.6765
+  },
+  {
+   "nom": "Le Rozier",
+   "lat": 44.1972,
+   "lon": 3.2173
+  },
+  {
+   "nom": "Le Truel",
+   "lat": 44.0549,
+   "lon": 2.7511
+  },
+  {
+   "nom": "Le Vibal",
+   "lat": 44.3166,
+   "lon": 2.7286
+  },
+  {
+   "nom": "Les Costes-Gozon",
+   "lat": 44.0136,
+   "lon": 2.7968
+  },
+  {
+   "nom": "Les Hermaux",
+   "lat": 44.5182,
+   "lon": 3.1312
+  },
+  {
+   "nom": "Les Salces",
+   "lat": 44.5568,
+   "lon": 3.1316
+  },
+  {
+   "nom": "Lescure-Jaoul",
+   "lat": 44.2262,
+   "lon": 2.1471
+  },
+  {
+   "nom": "Lestrade-et-Thouels",
+   "lat": 44.0516,
+   "lon": 2.6403
+  },
+  {
+   "nom": "Luc-la-Primaube",
+   "lat": 44.3046,
+   "lon": 2.5379
+  },
+  {
+   "nom": "Lugan",
+   "lat": 44.4858,
+   "lon": 2.2592
+  },
+  {
+   "nom": "Lédas-et-Penthiès",
+   "lat": 44.0784,
+   "lon": 2.3812
+  },
+  {
+   "nom": "Lédergues",
+   "lat": 44.0856,
+   "lon": 2.4442
+  },
+  {
+   "nom": "Manhac",
+   "lat": 44.2576,
+   "lon": 2.4782
+  },
+  {
+   "nom": "Marcillac-Vallon",
+   "lat": 44.4776,
+   "lon": 2.4612
+  },
+  {
+   "nom": "Martrin",
+   "lat": 43.928,
+   "lon": 2.6389
+  },
+  {
+   "nom": "Massegros Causses Gorges",
+   "lat": 44.308,
+   "lon": 3.2055
+  },
+  {
+   "nom": "Mayran",
+   "lat": 44.3912,
+   "lon": 2.3738
+  },
+  {
+   "nom": "Meljac",
+   "lat": 44.1326,
+   "lon": 2.4316
+  },
+  {
+   "nom": "Millau",
+   "lat": 44.0982,
+   "lon": 3.1176
+  },
+  {
+   "nom": "Miolles",
+   "lat": 43.877,
+   "lon": 2.5522
+  },
+  {
+   "nom": "Mirandol-Bourgnounac",
+   "lat": 44.1459,
+   "lon": 2.1792
+  },
+  {
+   "nom": "Montauriol",
+   "lat": 44.0796,
+   "lon": 2.3248
+  },
+  {
+   "nom": "Montbazens",
+   "lat": 44.48,
+   "lon": 2.214
+  },
+  {
+   "nom": "Montclar",
+   "lat": 43.9805,
+   "lon": 2.6247
+  },
+  {
+   "nom": "Montjaux",
+   "lat": 44.0984,
+   "lon": 2.9045
+  },
+  {
+   "nom": "Montlaur",
+   "lat": 43.8673,
+   "lon": 2.8339
+  },
+  {
+   "nom": "Montpeyroux",
+   "lat": 44.6324,
+   "lon": 2.7769
+  },
+  {
+   "nom": "Montrozier",
+   "lat": 44.3859,
+   "lon": 2.7088
+  },
+  {
+   "nom": "Mostuéjouls",
+   "lat": 44.2333,
+   "lon": 3.1842
+  },
+  {
+   "nom": "Moularès",
+   "lat": 44.0762,
+   "lon": 2.282
+  },
+  {
+   "nom": "Mouret",
+   "lat": 44.5154,
+   "lon": 2.5174
+  },
+  {
+   "nom": "Moyrazès",
+   "lat": 44.328,
+   "lon": 2.429
+  },
+  {
+   "nom": "Muret-le-Château",
+   "lat": 44.495,
+   "lon": 2.5702
+  },
+  {
+   "nom": "Nasbinals",
+   "lat": 44.646,
+   "lon": 3.0462
+  },
+  {
+   "nom": "Naucelle",
+   "lat": 44.1863,
+   "lon": 2.3468
+  },
+  {
+   "nom": "Nauviale",
+   "lat": 44.5119,
+   "lon": 2.4313
+  },
+  {
+   "nom": "Olemps",
+   "lat": 44.3391,
+   "lon": 2.5504
+  },
+  {
+   "nom": "Onet-le-Château",
+   "lat": 44.3824,
+   "lon": 2.5614
+  },
+  {
+   "nom": "Padiès",
+   "lat": 44.0478,
+   "lon": 2.3607
+  },
+  {
+   "nom": "Palmas d'Aveyron",
+   "lat": 44.4231,
+   "lon": 2.8588
+  },
+  {
+   "nom": "Pampelonne",
+   "lat": 44.108,
+   "lon": 2.2432
+  },
+  {
+   "nom": "Paulhe",
+   "lat": 44.1487,
+   "lon": 3.1141
+  },
+  {
+   "nom": "Peyreleau",
+   "lat": 44.174,
+   "lon": 3.2066
+  },
+  {
+   "nom": "Pierrefiche",
+   "lat": 44.4347,
+   "lon": 2.9233
+  },
+  {
+   "nom": "Plaisance",
+   "lat": 43.9283,
+   "lon": 2.5626
+  },
+  {
+   "nom": "Pomayrols",
+   "lat": 44.4898,
+   "lon": 3.0563
+  },
+  {
+   "nom": "Pont-de-Salars",
+   "lat": 44.2771,
+   "lon": 2.7171
+  },
+  {
+   "nom": "Prades-Salars",
+   "lat": 44.2461,
+   "lon": 2.7901
+  },
+  {
+   "nom": "Prades-d'Aubrac",
+   "lat": 44.541,
+   "lon": 2.9714
+  },
+  {
+   "nom": "Pradinas",
+   "lat": 44.2485,
+   "lon": 2.2676
+  },
+  {
+   "nom": "Privezac",
+   "lat": 44.4103,
+   "lon": 2.1976
+  },
+  {
+   "nom": "Pruines",
+   "lat": 44.5337,
+   "lon": 2.4875
+  },
+  {
+   "nom": "Prévinquières",
+   "lat": 44.3683,
+   "lon": 2.244
+  },
+  {
+   "nom": "Quins",
+   "lat": 44.2333,
+   "lon": 2.375
+  },
+  {
+   "nom": "Rebourguil",
+   "lat": 43.8853,
+   "lon": 2.753
+  },
+  {
+   "nom": "Rieupeyroux",
+   "lat": 44.3038,
+   "lon": 2.2347
+  },
+  {
+   "nom": "Rignac",
+   "lat": 44.4045,
+   "lon": 2.2944
+  },
+  {
+   "nom": "Rivière-sur-Tarn",
+   "lat": 44.2136,
+   "lon": 3.1302
+  },
+  {
+   "nom": "Rodelle",
+   "lat": 44.4792,
+   "lon": 2.627
+  },
+  {
+   "nom": "Rodez",
+   "lat": 44.3591,
+   "lon": 2.5699
+  },
+  {
+   "nom": "Roquefort-sur-Soulzon",
+   "lat": 43.9685,
+   "lon": 2.9826
+  },
+  {
+   "nom": "Roussennac",
+   "lat": 44.4493,
+   "lon": 2.2491
+  },
+  {
+   "nom": "Rullac-Saint-Cirq",
+   "lat": 44.1209,
+   "lon": 2.4755
+  },
+  {
+   "nom": "Réquista",
+   "lat": 44.0292,
+   "lon": 2.5526
+  },
+  {
+   "nom": "Saint Geniez d'Olt et d'Aubrac",
+   "lat": 44.5112,
+   "lon": 3.0077
+  },
+  {
+   "nom": "Saint-Affrique",
+   "lat": 43.9571,
+   "lon": 2.8533
+  },
+  {
+   "nom": "Saint-Amans-des-Cots",
+   "lat": 44.6905,
+   "lon": 2.6839
+  },
+  {
+   "nom": "Saint-André",
+   "lat": 43.929,
+   "lon": 2.4559
+  },
+  {
+   "nom": "Saint-André-de-Vézines",
+   "lat": 44.1476,
+   "lon": 3.2731
+  },
+  {
+   "nom": "Saint-Beauzély",
+   "lat": 44.1676,
+   "lon": 2.9574
+  },
+  {
+   "nom": "Saint-Christophe-Vallon",
+   "lat": 44.4785,
+   "lon": 2.3927
+  },
+  {
+   "nom": "Saint-Chély-d'Aubrac",
+   "lat": 44.5912,
+   "lon": 2.9419
+  },
+  {
+   "nom": "Saint-Cirgue",
+   "lat": 43.9699,
+   "lon": 2.3675
+  },
+  {
+   "nom": "Saint-Côme-d'Olt",
+   "lat": 44.5327,
+   "lon": 2.8195
+  },
+  {
+   "nom": "Saint-Félix-de-Lunel",
+   "lat": 44.5694,
+   "lon": 2.5113
+  },
+  {
+   "nom": "Saint-Georges-de-Luzençon",
+   "lat": 44.0567,
+   "lon": 2.9875
+  },
+  {
+   "nom": "Saint-Germain-du-Teil",
+   "lat": 44.4841,
+   "lon": 3.175
+  },
+  {
+   "nom": "Saint-Izaire",
+   "lat": 43.9701,
+   "lon": 2.7006
+  },
+  {
+   "nom": "Saint-Jean-Delnous",
+   "lat": 44.0391,
+   "lon": 2.4912
+  },
+  {
+   "nom": "Saint-Jean-d'Alcapiès",
+   "lat": 43.9507,
+   "lon": 2.9647
+  },
+  {
+   "nom": "Saint-Jean-de-Marcel",
+   "lat": 44.0562,
+   "lon": 2.25
+  },
+  {
+   "nom": "Saint-Jean-et-Saint-Paul",
+   "lat": 43.9291,
+   "lon": 3.0255
+  },
+  {
+   "nom": "Saint-Julien-Gaulène",
+   "lat": 43.9971,
+   "lon": 2.3408
+  },
+  {
+   "nom": "Saint-Just-sur-Viaur",
+   "lat": 44.1205,
+   "lon": 2.3874
+  },
+  {
+   "nom": "Saint-Juéry",
+   "lat": 43.9202,
+   "lon": 2.6972
+  },
+  {
+   "nom": "Saint-Laurent-d'Olt",
+   "lat": 44.4464,
+   "lon": 3.0946
+  },
+  {
+   "nom": "Saint-Laurent-de-Lévézou",
+   "lat": 44.2124,
+   "lon": 2.9422
+  },
+  {
+   "nom": "Saint-Léons",
+   "lat": 44.2224,
+   "lon": 2.9833
+  },
+  {
+   "nom": "Saint-Martin-de-Lenne",
+   "lat": 44.4259,
+   "lon": 2.9654
+  },
+  {
+   "nom": "Saint-Michel-Labadié",
+   "lat": 44.0045,
+   "lon": 2.4293
+  },
+  {
+   "nom": "Saint-Pierre-de-Nogaret",
+   "lat": 44.4896,
+   "lon": 3.1256
+  },
+  {
+   "nom": "Saint-Pierre-des-Tripiers",
+   "lat": 44.2243,
+   "lon": 3.2749
+  },
+  {
+   "nom": "Saint-Rome-de-Cernon",
+   "lat": 44.0099,
+   "lon": 2.9876
+  },
+  {
+   "nom": "Saint-Rome-de-Tarn",
+   "lat": 44.0362,
+   "lon": 2.8923
+  },
+  {
+   "nom": "Saint-Saturnin",
+   "lat": 44.4059,
+   "lon": 3.1949
+  },
+  {
+   "nom": "Saint-Saturnin-de-Lenne",
+   "lat": 44.4095,
+   "lon": 3.0203
+  },
+  {
+   "nom": "Saint-Sernin-sur-Rance",
+   "lat": 43.8793,
+   "lon": 2.6248
+  },
+  {
+   "nom": "Saint-Victor-et-Melvieu",
+   "lat": 44.0502,
+   "lon": 2.8074
+  },
+  {
+   "nom": "Sainte-Eulalie-d'Olt",
+   "lat": 44.4662,
+   "lon": 2.9231
+  },
+  {
+   "nom": "Sainte-Gemme",
+   "lat": 44.0876,
+   "lon": 2.1949
+  },
+  {
+   "nom": "Sainte-Juliette-sur-Viaur",
+   "lat": 44.2178,
+   "lon": 2.5027
+  },
+  {
+   "nom": "Sainte-Radegonde",
+   "lat": 44.3297,
+   "lon": 2.6333
+  },
+  {
+   "nom": "Salles-Curan",
+   "lat": 44.1594,
+   "lon": 2.7797
+  },
+  {
+   "nom": "Salles-la-Source",
+   "lat": 44.4471,
+   "lon": 2.5291
+  },
+  {
+   "nom": "Salmiech",
+   "lat": 44.1959,
+   "lon": 2.5851
+  },
+  {
+   "nom": "Sauveterre-de-Rouergue",
+   "lat": 44.2503,
+   "lon": 2.3151
+  },
+  {
+   "nom": "Soulages-Bonneval",
+   "lat": 44.6772,
+   "lon": 2.7729
+  },
+  {
+   "nom": "Sébazac-Concourès",
+   "lat": 44.4236,
+   "lon": 2.6156
+  },
+  {
+   "nom": "Sébrazac",
+   "lat": 44.5358,
+   "lon": 2.6577
+  },
+  {
+   "nom": "Ségur",
+   "lat": 44.2879,
+   "lon": 2.834
+  },
+  {
+   "nom": "Sénergues",
+   "lat": 44.5993,
+   "lon": 2.4564
+  },
+  {
+   "nom": "Sérénac",
+   "lat": 43.9601,
+   "lon": 2.3305
+  },
+  {
+   "nom": "Sévérac d'Aveyron",
+   "lat": 44.3138,
+   "lon": 3.0294
+  },
+  {
+   "nom": "Tanus",
+   "lat": 44.1115,
+   "lon": 2.3094
+  },
+  {
+   "nom": "Tauriac-de-Naucelle",
+   "lat": 44.1436,
+   "lon": 2.3272
+  },
+  {
+   "nom": "Tayrac",
+   "lat": 44.2042,
+   "lon": 2.2466
+  },
+  {
+   "nom": "Tournemire",
+   "lat": 43.9678,
+   "lon": 3.0242
+  },
+  {
+   "nom": "Tréban",
+   "lat": 44.0924,
+   "lon": 2.3452
+  },
+  {
+   "nom": "Trébas",
+   "lat": 43.9574,
+   "lon": 2.4871
+  },
+  {
+   "nom": "Trélans",
+   "lat": 44.5244,
+   "lon": 3.0974
+  },
+  {
+   "nom": "Trémouilles",
+   "lat": 44.2397,
+   "lon": 2.6371
+  },
+  {
+   "nom": "Vabres-l'Abbaye",
+   "lat": 43.9252,
+   "lon": 2.8106
+  },
+  {
+   "nom": "Valady",
+   "lat": 44.4462,
+   "lon": 2.4412
+  },
+  {
+   "nom": "Valence-d'Albigeois",
+   "lat": 44.0125,
+   "lon": 2.385
+  },
+  {
+   "nom": "Valzergues",
+   "lat": 44.5074,
+   "lon": 2.2195
+  },
+  {
+   "nom": "Vaureilles",
+   "lat": 44.4559,
+   "lon": 2.1874
+  },
+  {
+   "nom": "Verrières",
+   "lat": 44.2155,
+   "lon": 3.048
+  },
+  {
+   "nom": "Versols-et-Lapeyre",
+   "lat": 43.9003,
+   "lon": 2.9323
+  },
+  {
+   "nom": "Veyreau",
+   "lat": 44.1744,
+   "lon": 3.3013
+  },
+  {
+   "nom": "Viala-du-Pas-de-Jaux",
+   "lat": 43.953,
+   "lon": 3.0649
+  },
+  {
+   "nom": "Viala-du-Tarn",
+   "lat": 44.0893,
+   "lon": 2.8437
+  },
+  {
+   "nom": "Vieillevie",
+   "lat": 44.6518,
+   "lon": 2.4341
+  },
+  {
+   "nom": "Villecomtal",
+   "lat": 44.5434,
+   "lon": 2.5753
+  },
+  {
+   "nom": "Villefranche-de-Panat",
+   "lat": 44.0851,
+   "lon": 2.7148
+  },
+  {
+   "nom": "Vimenet",
+   "lat": 44.4019,
+   "lon": 2.9267
+  },
+  {
+   "nom": "Vézins-de-Lévézou",
+   "lat": 44.2628,
+   "lon": 2.9426
+  }
+ ],
  "sources": [
   {
    "id": "html-levezou-pontsalars",
@@ -318,6 +1516,6 @@
    "url": "https://aveyron.fr/agenda"
   }
  ],
- "generated_at": "2026-08-03T17:05:08",
+ "generated_at": "2026-08-03T21:58:32",
  "event_count": 28
 }

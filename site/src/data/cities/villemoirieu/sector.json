@@ -35,6 +35,7 @@
   "marche": "Marché",
   "visite": "Visite & curiosité",
   "sport-loisir": "Sport & loisirs",
+  "prestation": "Activité encadrée",
   "ferme": "Ferme & artisanat",
   "bien-etre": "Thermes & bien-être",
   "autre": "Autre activité"
@@ -638,6 +639,2933 @@
   "Écully",
   "Évosges"
  ],
+ "commune_points": [
+  {
+   "nom": "Albigny-sur-Saône",
+   "lat": 45.8666,
+   "lon": 4.8284
+  },
+  {
+   "nom": "Ambléon",
+   "lat": 45.7483,
+   "lon": 5.5928
+  },
+  {
+   "nom": "Ambronay",
+   "lat": 46.0099,
+   "lon": 5.3627
+  },
+  {
+   "nom": "Ambutrix",
+   "lat": 45.9347,
+   "lon": 5.3359
+  },
+  {
+   "nom": "Ambérieu-en-Bugey",
+   "lat": 45.9575,
+   "lon": 5.3706
+  },
+  {
+   "nom": "Ambérieux",
+   "lat": 45.9264,
+   "lon": 4.7427
+  },
+  {
+   "nom": "Ambérieux-en-Dombes",
+   "lat": 45.9992,
+   "lon": 4.9119
+  },
+  {
+   "nom": "Ampuis",
+   "lat": 45.5034,
+   "lon": 4.8079
+  },
+  {
+   "nom": "Andert-et-Condon",
+   "lat": 45.7841,
+   "lon": 5.6607
+  },
+  {
+   "nom": "Anglefort",
+   "lat": 45.9086,
+   "lon": 5.7948
+  },
+  {
+   "nom": "Annoisin-Chatelans",
+   "lat": 45.7657,
+   "lon": 5.289
+  },
+  {
+   "nom": "Anthon",
+   "lat": 45.7812,
+   "lon": 5.1583
+  },
+  {
+   "nom": "Aoste",
+   "lat": 45.6015,
+   "lon": 5.611
+  },
+  {
+   "nom": "Apprieu",
+   "lat": 45.3918,
+   "lon": 5.4983
+  },
+  {
+   "nom": "Aranc",
+   "lat": 45.9972,
+   "lon": 5.514
+  },
+  {
+   "nom": "Arandas",
+   "lat": 45.8885,
+   "lon": 5.4982
+  },
+  {
+   "nom": "Arandon-Passins",
+   "lat": 45.7064,
+   "lon": 5.4373
+  },
+  {
+   "nom": "Arboys en Bugey",
+   "lat": 45.7189,
+   "lon": 5.6404
+  },
+  {
+   "nom": "Argis",
+   "lat": 45.9322,
+   "lon": 5.4819
+  },
+  {
+   "nom": "Armix",
+   "lat": 45.8523,
+   "lon": 5.5837
+  },
+  {
+   "nom": "Ars-sur-Formans",
+   "lat": 45.9904,
+   "lon": 4.8195
+  },
+  {
+   "nom": "Artas",
+   "lat": 45.5385,
+   "lon": 5.1676
+  },
+  {
+   "nom": "Artemare",
+   "lat": 45.8701,
+   "lon": 5.692
+  },
+  {
+   "nom": "Arvière-en-Valromey",
+   "lat": 45.9153,
+   "lon": 5.7346
+  },
+  {
+   "nom": "Assieu",
+   "lat": 45.4102,
+   "lon": 4.88
+  },
+  {
+   "nom": "Attignat-Oncin",
+   "lat": 45.5151,
+   "lon": 5.7825
+  },
+  {
+   "nom": "Auberives-sur-Varèze",
+   "lat": 45.426,
+   "lon": 4.8162
+  },
+  {
+   "nom": "Avressieux",
+   "lat": 45.5739,
+   "lon": 5.6968
+  },
+  {
+   "nom": "Ayn",
+   "lat": 45.5724,
+   "lon": 5.7517
+  },
+  {
+   "nom": "Balan",
+   "lat": 45.8268,
+   "lon": 5.1076
+  },
+  {
+   "nom": "Beaucroissant",
+   "lat": 45.3437,
+   "lon": 5.4694
+  },
+  {
+   "nom": "Beaufort",
+   "lat": 45.3292,
+   "lon": 5.1154
+  },
+  {
+   "nom": "Beaurepaire",
+   "lat": 45.3376,
+   "lon": 5.0439
+  },
+  {
+   "nom": "Beauvallon",
+   "lat": 45.5898,
+   "lon": 4.7041
+  },
+  {
+   "nom": "Beauvoir-de-Marc",
+   "lat": 45.5183,
+   "lon": 5.0807
+  },
+  {
+   "nom": "Bellegarde-Poussieu",
+   "lat": 45.3755,
+   "lon": 4.95
+  },
+  {
+   "nom": "Belley",
+   "lat": 45.743,
+   "lon": 5.6927
+  },
+  {
+   "nom": "Belmont",
+   "lat": 45.4724,
+   "lon": 5.3602
+  },
+  {
+   "nom": "Belmont-Tramonet",
+   "lat": 45.5656,
+   "lon": 5.6752
+  },
+  {
+   "nom": "Belmont-d'Azergues",
+   "lat": 45.8673,
+   "lon": 4.6685
+  },
+  {
+   "nom": "Bettant",
+   "lat": 45.9366,
+   "lon": 5.3648
+  },
+  {
+   "nom": "Beynost",
+   "lat": 45.8359,
+   "lon": 4.9964
+  },
+  {
+   "nom": "Bilieu",
+   "lat": 45.4455,
+   "lon": 5.55
+  },
+  {
+   "nom": "Billième",
+   "lat": 45.718,
+   "lon": 5.8153
+  },
+  {
+   "nom": "Biol",
+   "lat": 45.4971,
+   "lon": 5.3674
+  },
+  {
+   "nom": "Birieux",
+   "lat": 45.9509,
+   "lon": 5.0401
+  },
+  {
+   "nom": "Bizonnes",
+   "lat": 45.448,
+   "lon": 5.3777
+  },
+  {
+   "nom": "Blandin",
+   "lat": 45.4791,
+   "lon": 5.4487
+  },
+  {
+   "nom": "Blyes",
+   "lat": 45.8442,
+   "lon": 5.2515
+  },
+  {
+   "nom": "Bohas-Meyriat-Rignat",
+   "lat": 46.1422,
+   "lon": 5.375
+  },
+  {
+   "nom": "Bonnefamille",
+   "lat": 45.599,
+   "lon": 5.1087
+  },
+  {
+   "nom": "Bossieu",
+   "lat": 45.4189,
+   "lon": 5.1534
+  },
+  {
+   "nom": "Bouligneux",
+   "lat": 46.0202,
+   "lon": 4.9957
+  },
+  {
+   "nom": "Bourdeau",
+   "lat": 45.6764,
+   "lon": 5.8493
+  },
+  {
+   "nom": "Bourg-Saint-Christophe",
+   "lat": 45.8842,
+   "lon": 5.1393
+  },
+  {
+   "nom": "Bourgoin-Jallieu",
+   "lat": 45.6025,
+   "lon": 5.2747
+  },
+  {
+   "nom": "Bouvesse-Quirieu",
+   "lat": 45.7794,
+   "lon": 5.4193
+  },
+  {
+   "nom": "Boyeux-Saint-Jérôme",
+   "lat": 46.0356,
+   "lon": 5.4616
+  },
+  {
+   "nom": "Brangues",
+   "lat": 45.6952,
+   "lon": 5.5422
+  },
+  {
+   "nom": "Brens",
+   "lat": 45.7163,
+   "lon": 5.69
+  },
+  {
+   "nom": "Bressieux",
+   "lat": 45.3217,
+   "lon": 5.2785
+  },
+  {
+   "nom": "Bressolles",
+   "lat": 45.8714,
+   "lon": 5.0984
+  },
+  {
+   "nom": "Brignais",
+   "lat": 45.6751,
+   "lon": 4.7527
+  },
+  {
+   "nom": "Brindas",
+   "lat": 45.7183,
+   "lon": 4.703
+  },
+  {
+   "nom": "Brion",
+   "lat": 45.2929,
+   "lon": 5.3416
+  },
+  {
+   "nom": "Briord",
+   "lat": 45.768,
+   "lon": 5.4832
+  },
+  {
+   "nom": "Bron",
+   "lat": 45.7355,
+   "lon": 4.9116
+  },
+  {
+   "nom": "Brégnier-Cordon",
+   "lat": 45.6406,
+   "lon": 5.6174
+  },
+  {
+   "nom": "Brézins",
+   "lat": 45.3475,
+   "lon": 5.3058
+  },
+  {
+   "nom": "Burcin",
+   "lat": 45.4332,
+   "lon": 5.4467
+  },
+  {
+   "nom": "Béligneux",
+   "lat": 45.8622,
+   "lon": 5.1415
+  },
+  {
+   "nom": "Bénonces",
+   "lat": 45.842,
+   "lon": 5.4834
+  },
+  {
+   "nom": "Bévenais",
+   "lat": 45.3946,
+   "lon": 5.3924
+  },
+  {
+   "nom": "Cailloux-sur-Fontaines",
+   "lat": 45.8592,
+   "lon": 4.8817
+  },
+  {
+   "nom": "Caluire-et-Cuire",
+   "lat": 45.7986,
+   "lon": 4.8494
+  },
+  {
+   "nom": "Cerdon",
+   "lat": 46.075,
+   "lon": 5.4755
+  },
+  {
+   "nom": "Certines",
+   "lat": 46.1336,
+   "lon": 5.2638
+  },
+  {
+   "nom": "Cessieu",
+   "lat": 45.5694,
+   "lon": 5.3746
+  },
+  {
+   "nom": "Ceyzérieu",
+   "lat": 45.8368,
+   "lon": 5.7197
+  },
+  {
+   "nom": "Chalamont",
+   "lat": 46.0149,
+   "lon": 5.1735
+  },
+  {
+   "nom": "Chaley",
+   "lat": 45.9511,
+   "lon": 5.5408
+  },
+  {
+   "nom": "Challes-la-Montagne",
+   "lat": 46.1237,
+   "lon": 5.456
+  },
+  {
+   "nom": "Chalon",
+   "lat": 45.4496,
+   "lon": 4.9393
+  },
+  {
+   "nom": "Chamagnieu",
+   "lat": 45.6887,
+   "lon": 5.1679
+  },
+  {
+   "nom": "Champagne-au-Mont-d'Or",
+   "lat": 45.8006,
+   "lon": 4.7864
+  },
+  {
+   "nom": "Champagne-en-Valromey",
+   "lat": 45.9317,
+   "lon": 5.6921
+  },
+  {
+   "nom": "Champagneux",
+   "lat": 45.6296,
+   "lon": 5.6709
+  },
+  {
+   "nom": "Champdor-Corcelles",
+   "lat": 46.0371,
+   "lon": 5.5882
+  },
+  {
+   "nom": "Champier",
+   "lat": 45.4578,
+   "lon": 5.2861
+  },
+  {
+   "nom": "Chanaz",
+   "lat": 45.8052,
+   "lon": 5.7996
+  },
+  {
+   "nom": "Chaponnay",
+   "lat": 45.6315,
+   "lon": 4.9584
+  },
+  {
+   "nom": "Chaponost",
+   "lat": 45.7089,
+   "lon": 4.7452
+  },
+  {
+   "nom": "Charancieu",
+   "lat": 45.5191,
+   "lon": 5.5789
+  },
+  {
+   "nom": "Charantonnay",
+   "lat": 45.5375,
+   "lon": 5.1171
+  },
+  {
+   "nom": "Charavines",
+   "lat": 45.4231,
+   "lon": 5.5166
+  },
+  {
+   "nom": "Charbonnières-les-Bains",
+   "lat": 45.7792,
+   "lon": 4.743
+  },
+  {
+   "nom": "Charette",
+   "lat": 45.8045,
+   "lon": 5.3593
+  },
+  {
+   "nom": "Charly",
+   "lat": 45.6527,
+   "lon": 4.7871
+  },
+  {
+   "nom": "Charnoz-sur-Ain",
+   "lat": 45.8756,
+   "lon": 5.2251
+  },
+  {
+   "nom": "Charnècles",
+   "lat": 45.3411,
+   "lon": 5.5283
+  },
+  {
+   "nom": "Charvieu-Chavagneux",
+   "lat": 45.7386,
+   "lon": 5.1522
+  },
+  {
+   "nom": "Chasse-sur-Rhône",
+   "lat": 45.578,
+   "lon": 4.8129
+  },
+  {
+   "nom": "Chasselay",
+   "lat": 45.8733,
+   "lon": 4.7699
+  },
+  {
+   "nom": "Chassieu",
+   "lat": 45.7366,
+   "lon": 4.9638
+  },
+  {
+   "nom": "Chassignieu",
+   "lat": 45.5014,
+   "lon": 5.5138
+  },
+  {
+   "nom": "Chavanoz",
+   "lat": 45.7696,
+   "lon": 5.1719
+  },
+  {
+   "nom": "Chazay-d'Azergues",
+   "lat": 45.8743,
+   "lon": 4.71
+  },
+  {
+   "nom": "Chazey-Bons",
+   "lat": 45.8007,
+   "lon": 5.6678
+  },
+  {
+   "nom": "Chazey-sur-Ain",
+   "lat": 45.8937,
+   "lon": 5.2604
+  },
+  {
+   "nom": "Cheignieu-la-Balme",
+   "lat": 45.8233,
+   "lon": 5.6022
+  },
+  {
+   "nom": "Cheyssieu",
+   "lat": 45.4266,
+   "lon": 4.8423
+  },
+  {
+   "nom": "Chimilin",
+   "lat": 45.5723,
+   "lon": 5.5884
+  },
+  {
+   "nom": "Chindrieux",
+   "lat": 45.8118,
+   "lon": 5.8387
+  },
+  {
+   "nom": "Chirens",
+   "lat": 45.4148,
+   "lon": 5.5587
+  },
+  {
+   "nom": "Chonas-l'Amballan",
+   "lat": 45.4647,
+   "lon": 4.8041
+  },
+  {
+   "nom": "Chozeau",
+   "lat": 45.6987,
+   "lon": 5.2083
+  },
+  {
+   "nom": "Chuzelles",
+   "lat": 45.577,
+   "lon": 4.8792
+  },
+  {
+   "nom": "Châbons",
+   "lat": 45.4477,
+   "lon": 5.428
+  },
+  {
+   "nom": "Château-Gaillard",
+   "lat": 45.9723,
+   "lon": 5.3091
+  },
+  {
+   "nom": "Châteauvilain",
+   "lat": 45.5142,
+   "lon": 5.3318
+  },
+  {
+   "nom": "Châtenay",
+   "lat": 45.3245,
+   "lon": 5.2268
+  },
+  {
+   "nom": "Châtillon-la-Palud",
+   "lat": 45.9757,
+   "lon": 5.246
+  },
+  {
+   "nom": "Châtonnay",
+   "lat": 45.4784,
+   "lon": 5.2225
+  },
+  {
+   "nom": "Chèzeneuve",
+   "lat": 45.5617,
+   "lon": 5.2151
+  },
+  {
+   "nom": "Chélieu",
+   "lat": 45.5046,
+   "lon": 5.4771
+  },
+  {
+   "nom": "Civrieux",
+   "lat": 45.9208,
+   "lon": 4.8895
+  },
+  {
+   "nom": "Civrieux-d'Azergues",
+   "lat": 45.8573,
+   "lon": 4.7121
+  },
+  {
+   "nom": "Cleyzieu",
+   "lat": 45.9027,
+   "lon": 5.4317
+  },
+  {
+   "nom": "Collonges-au-Mont-d'Or",
+   "lat": 45.8188,
+   "lon": 4.8425
+  },
+  {
+   "nom": "Colombe",
+   "lat": 45.3934,
+   "lon": 5.4488
+  },
+  {
+   "nom": "Colombier-Saugnieu",
+   "lat": 45.7174,
+   "lon": 5.1084
+  },
+  {
+   "nom": "Colomieu",
+   "lat": 45.7338,
+   "lon": 5.6269
+  },
+  {
+   "nom": "Communay",
+   "lat": 45.5977,
+   "lon": 4.8359
+  },
+  {
+   "nom": "Conand",
+   "lat": 45.8836,
+   "lon": 5.4787
+  },
+  {
+   "nom": "Condrieu",
+   "lat": 45.4748,
+   "lon": 4.7516
+  },
+  {
+   "nom": "Conjux",
+   "lat": 45.7934,
+   "lon": 5.8239
+  },
+  {
+   "nom": "Contrevoz",
+   "lat": 45.7971,
+   "lon": 5.6164
+  },
+  {
+   "nom": "Conzieu",
+   "lat": 45.7246,
+   "lon": 5.602
+  },
+  {
+   "nom": "Corbas",
+   "lat": 45.6654,
+   "lon": 4.9104
+  },
+  {
+   "nom": "Corbelin",
+   "lat": 45.6004,
+   "lon": 5.5502
+  },
+  {
+   "nom": "Corlier",
+   "lat": 46.0369,
+   "lon": 5.5003
+  },
+  {
+   "nom": "Cour-et-Buis",
+   "lat": 45.4361,
+   "lon": 5.0267
+  },
+  {
+   "nom": "Courtenay",
+   "lat": 45.7396,
+   "lon": 5.3887
+  },
+  {
+   "nom": "Couzon-au-Mont-d'Or",
+   "lat": 45.8479,
+   "lon": 4.8214
+  },
+  {
+   "nom": "Crachier",
+   "lat": 45.5462,
+   "lon": 5.2194
+  },
+  {
+   "nom": "Crans",
+   "lat": 45.9667,
+   "lon": 5.1917
+  },
+  {
+   "nom": "Craponne",
+   "lat": 45.7456,
+   "lon": 4.7294
+  },
+  {
+   "nom": "Cressin-Rochefort",
+   "lat": 45.7833,
+   "lon": 5.765
+  },
+  {
+   "nom": "Creys-Mépieu",
+   "lat": 45.7444,
+   "lon": 5.4695
+  },
+  {
+   "nom": "Crémieu",
+   "lat": 45.7314,
+   "lon": 5.2635
+  },
+  {
+   "nom": "Culin",
+   "lat": 45.5215,
+   "lon": 5.2493
+  },
+  {
+   "nom": "Culoz-Béon",
+   "lat": 45.8553,
+   "lon": 5.7716
+  },
+  {
+   "nom": "Curis-au-Mont-d'Or",
+   "lat": 45.8682,
+   "lon": 4.8201
+  },
+  {
+   "nom": "Cuzieu",
+   "lat": 45.8216,
+   "lon": 5.6802
+  },
+  {
+   "nom": "Dagneux",
+   "lat": 45.854,
+   "lon": 5.0748
+  },
+  {
+   "nom": "Dardilly",
+   "lat": 45.8133,
+   "lon": 4.7466
+  },
+  {
+   "nom": "Dizimieu",
+   "lat": 45.7112,
+   "lon": 5.2846
+  },
+  {
+   "nom": "Diémoz",
+   "lat": 45.5911,
+   "lon": 5.0893
+  },
+  {
+   "nom": "Doissin",
+   "lat": 45.499,
+   "lon": 5.4248
+  },
+  {
+   "nom": "Dolomieu",
+   "lat": 45.6179,
+   "lon": 5.4759
+  },
+  {
+   "nom": "Domarin",
+   "lat": 45.5827,
+   "lon": 5.2491
+  },
+  {
+   "nom": "Domessin",
+   "lat": 45.5354,
+   "lon": 5.6988
+  },
+  {
+   "nom": "Dommartin",
+   "lat": 45.8372,
+   "lon": 4.7122
+  },
+  {
+   "nom": "Dompierre-sur-Veyle",
+   "lat": 46.0672,
+   "lon": 5.2167
+  },
+  {
+   "nom": "Douvres",
+   "lat": 45.9847,
+   "lon": 5.3724
+  },
+  {
+   "nom": "Druillat",
+   "lat": 46.0691,
+   "lon": 5.2947
+  },
+  {
+   "nom": "Dullin",
+   "lat": 45.5482,
+   "lon": 5.7519
+  },
+  {
+   "nom": "Décines-Charpieu",
+   "lat": 45.7759,
+   "lon": 4.9589
+  },
+  {
+   "nom": "Eclose-Badinières",
+   "lat": 45.4998,
+   "lon": 5.2987
+  },
+  {
+   "nom": "Estrablin",
+   "lat": 45.5094,
+   "lon": 4.9662
+  },
+  {
+   "nom": "Eydoche",
+   "lat": 45.4439,
+   "lon": 5.3355
+  },
+  {
+   "nom": "Eyzin-Pinet",
+   "lat": 45.4777,
+   "lon": 4.9977
+  },
+  {
+   "nom": "Faramans",
+   "lat": 45.3865,
+   "lon": 5.1548
+  },
+  {
+   "nom": "Faverges-de-la-Tour",
+   "lat": 45.5952,
+   "lon": 5.5121
+  },
+  {
+   "nom": "Feyzin",
+   "lat": 45.6736,
+   "lon": 4.8589
+  },
+  {
+   "nom": "Flachères",
+   "lat": 45.4686,
+   "lon": 5.3159
+  },
+  {
+   "nom": "Flaxieu",
+   "lat": 45.8125,
+   "lon": 5.7466
+  },
+  {
+   "nom": "Fleurieu-sur-Saône",
+   "lat": 45.8582,
+   "lon": 4.8566
+  },
+  {
+   "nom": "Fleurieux-sur-l'Arbresle",
+   "lat": 45.8406,
+   "lon": 4.6484
+  },
+  {
+   "nom": "Fontaines-Saint-Martin",
+   "lat": 45.8445,
+   "lon": 4.8521
+  },
+  {
+   "nom": "Fontaines-sur-Saône",
+   "lat": 45.8268,
+   "lon": 4.8537
+  },
+  {
+   "nom": "Four",
+   "lat": 45.5726,
+   "lon": 5.196
+  },
+  {
+   "nom": "Francheville",
+   "lat": 45.7386,
+   "lon": 4.7537
+  },
+  {
+   "nom": "Frans",
+   "lat": 45.9905,
+   "lon": 4.7819
+  },
+  {
+   "nom": "Frontonas",
+   "lat": 45.6496,
+   "lon": 5.1844
+  },
+  {
+   "nom": "Genas",
+   "lat": 45.7286,
+   "lon": 5.0172
+  },
+  {
+   "nom": "Genay",
+   "lat": 45.8989,
+   "lon": 4.8389
+  },
+  {
+   "nom": "Gerbaix",
+   "lat": 45.6069,
+   "lon": 5.7378
+  },
+  {
+   "nom": "Gillonnay",
+   "lat": 45.3841,
+   "lon": 5.2963
+  },
+  {
+   "nom": "Givors",
+   "lat": 45.5845,
+   "lon": 4.7561
+  },
+  {
+   "nom": "Granieu",
+   "lat": 45.6,
+   "lon": 5.5907
+  },
+  {
+   "nom": "Grenay",
+   "lat": 45.6597,
+   "lon": 5.0756
+  },
+  {
+   "nom": "Grigny-sur-Rhône",
+   "lat": 45.6104,
+   "lon": 4.7858
+  },
+  {
+   "nom": "Groslée-Saint-Benoit",
+   "lat": 45.7011,
+   "lon": 5.5823
+  },
+  {
+   "nom": "Grézieu-la-Varenne",
+   "lat": 45.7469,
+   "lon": 4.6799
+  },
+  {
+   "nom": "Heyrieux",
+   "lat": 45.6275,
+   "lon": 5.0579
+  },
+  {
+   "nom": "Hières-sur-Amby",
+   "lat": 45.8009,
+   "lon": 5.2914
+  },
+  {
+   "nom": "Innimond",
+   "lat": 45.7875,
+   "lon": 5.5723
+  },
+  {
+   "nom": "Irigny",
+   "lat": 45.6747,
+   "lon": 4.8143
+  },
+  {
+   "nom": "Izeaux",
+   "lat": 45.3444,
+   "lon": 5.4305
+  },
+  {
+   "nom": "Izenave",
+   "lat": 46.038,
+   "lon": 5.5234
+  },
+  {
+   "nom": "Izieu",
+   "lat": 45.6555,
+   "lon": 5.6387
+  },
+  {
+   "nom": "Janneyrias",
+   "lat": 45.7512,
+   "lon": 5.1145
+  },
+  {
+   "nom": "Jardin",
+   "lat": 45.49,
+   "lon": 4.9113
+  },
+  {
+   "nom": "Jassans-Riottier",
+   "lat": 45.9771,
+   "lon": 4.7626
+  },
+  {
+   "nom": "Jonage",
+   "lat": 45.7886,
+   "lon": 5.0377
+  },
+  {
+   "nom": "Jongieux",
+   "lat": 45.7358,
+   "lon": 5.8017
+  },
+  {
+   "nom": "Jons",
+   "lat": 45.7978,
+   "lon": 5.0798
+  },
+  {
+   "nom": "Journans",
+   "lat": 46.1455,
+   "lon": 5.3333
+  },
+  {
+   "nom": "Joyeux",
+   "lat": 45.946,
+   "lon": 5.0998
+  },
+  {
+   "nom": "Jujurieux",
+   "lat": 46.0503,
+   "lon": 5.4122
+  },
+  {
+   "nom": "L'Abergement-de-Varey",
+   "lat": 46.0071,
+   "lon": 5.4247
+  },
+  {
+   "nom": "L'Isle-d'Abeau",
+   "lat": 45.6153,
+   "lon": 5.2234
+  },
+  {
+   "nom": "La Balme",
+   "lat": 45.6765,
+   "lon": 5.7066
+  },
+  {
+   "nom": "La Balme-les-Grottes",
+   "lat": 45.8435,
+   "lon": 5.3196
+  },
+  {
+   "nom": "La Boisse",
+   "lat": 45.8483,
+   "lon": 5.0262
+  },
+  {
+   "nom": "La Bridoire",
+   "lat": 45.5303,
+   "lon": 5.7402
+  },
+  {
+   "nom": "La Burbanche",
+   "lat": 45.8629,
+   "lon": 5.548
+  },
+  {
+   "nom": "La Bâtie-Montgascon",
+   "lat": 45.5744,
+   "lon": 5.5391
+  },
+  {
+   "nom": "La Chapelle-Saint-Martin",
+   "lat": 45.6516,
+   "lon": 5.7535
+  },
+  {
+   "nom": "La Chapelle-de-Surieu",
+   "lat": 45.3941,
+   "lon": 4.9186
+  },
+  {
+   "nom": "La Chapelle-de-la-Tour",
+   "lat": 45.5913,
+   "lon": 5.4788
+  },
+  {
+   "nom": "La Chapelle-du-Châtelard",
+   "lat": 46.0683,
+   "lon": 5.0174
+  },
+  {
+   "nom": "La Chapelle-du-Mont-du-Chat",
+   "lat": 45.7176,
+   "lon": 5.8504
+  },
+  {
+   "nom": "La Côte-Saint-André",
+   "lat": 45.3844,
+   "lon": 5.2586
+  },
+  {
+   "nom": "La Frette",
+   "lat": 45.39,
+   "lon": 5.3665
+  },
+  {
+   "nom": "La Mulatière",
+   "lat": 45.7338,
+   "lon": 4.8118
+  },
+  {
+   "nom": "La Murette",
+   "lat": 45.383,
+   "lon": 5.5424
+  },
+  {
+   "nom": "La Tour-de-Salvagny",
+   "lat": 45.8086,
+   "lon": 4.7129
+  },
+  {
+   "nom": "La Tour-du-Pin",
+   "lat": 45.5743,
+   "lon": 5.4459
+  },
+  {
+   "nom": "La Tranclière",
+   "lat": 46.0915,
+   "lon": 5.2656
+  },
+  {
+   "nom": "La Verpillière",
+   "lat": 45.6376,
+   "lon": 5.1494
+  },
+  {
+   "nom": "Labalme",
+   "lat": 46.0915,
+   "lon": 5.4945
+  },
+  {
+   "nom": "Lagnieu",
+   "lat": 45.8863,
+   "lon": 5.3396
+  },
+  {
+   "nom": "Lantenay",
+   "lat": 46.0531,
+   "lon": 5.5379
+  },
+  {
+   "nom": "Lapeyrouse",
+   "lat": 45.9849,
+   "lon": 4.9821
+  },
+  {
+   "nom": "Lavours",
+   "lat": 45.8108,
+   "lon": 5.7707
+  },
+  {
+   "nom": "Le Bouchage",
+   "lat": 45.6689,
+   "lon": 5.5288
+  },
+  {
+   "nom": "Le Grand-Lemps",
+   "lat": 45.3971,
+   "lon": 5.4155
+  },
+  {
+   "nom": "Le Montellier",
+   "lat": 45.9284,
+   "lon": 5.0699
+  },
+  {
+   "nom": "Le Passage",
+   "lat": 45.5265,
+   "lon": 5.5157
+  },
+  {
+   "nom": "Le Plantay",
+   "lat": 46.0236,
+   "lon": 5.0891
+  },
+  {
+   "nom": "Le Pont-de-Beauvoisin",
+   "lat": 45.5358,
+   "lon": 5.6807
+  },
+  {
+   "nom": "Lent",
+   "lat": 46.1165,
+   "lon": 5.1974
+  },
+  {
+   "nom": "Lentilly",
+   "lat": 45.8166,
+   "lon": 4.6691
+  },
+  {
+   "nom": "Lentiol",
+   "lat": 45.2977,
+   "lon": 5.1027
+  },
+  {
+   "nom": "Les Abrets en Dauphiné",
+   "lat": 45.5314,
+   "lon": 5.5852
+  },
+  {
+   "nom": "Les Avenières Veyrins-Thuellin",
+   "lat": 45.6413,
+   "lon": 5.5567
+  },
+  {
+   "nom": "Les Chères",
+   "lat": 45.8948,
+   "lon": 4.7454
+  },
+  {
+   "nom": "Les Côtes-d'Arey",
+   "lat": 45.4594,
+   "lon": 4.8725
+  },
+  {
+   "nom": "Les Haies",
+   "lat": 45.5122,
+   "lon": 4.7401
+  },
+  {
+   "nom": "Les Roches-de-Condrieu",
+   "lat": 45.4532,
+   "lon": 4.7656
+  },
+  {
+   "nom": "Les Éparres",
+   "lat": 45.5371,
+   "lon": 5.2908
+  },
+  {
+   "nom": "Leyment",
+   "lat": 45.9287,
+   "lon": 5.2927
+  },
+  {
+   "nom": "Leyrieu",
+   "lat": 45.7556,
+   "lon": 5.2572
+  },
+  {
+   "nom": "Lhuis",
+   "lat": 45.7469,
+   "lon": 5.5398
+  },
+  {
+   "nom": "Lieudieu",
+   "lat": 45.4579,
+   "lon": 5.1779
+  },
+  {
+   "nom": "Limonest",
+   "lat": 45.8267,
+   "lon": 4.7682
+  },
+  {
+   "nom": "Lissieu",
+   "lat": 45.8582,
+   "lon": 4.7496
+  },
+  {
+   "nom": "Loire-sur-Rhône",
+   "lat": 45.5482,
+   "lon": 4.7847
+  },
+  {
+   "nom": "Loisieux",
+   "lat": 45.6478,
+   "lon": 5.7276
+  },
+  {
+   "nom": "Lompnas",
+   "lat": 45.8118,
+   "lon": 5.5263
+  },
+  {
+   "nom": "Longechenal",
+   "lat": 45.4238,
+   "lon": 5.3618
+  },
+  {
+   "nom": "Loyettes",
+   "lat": 45.7953,
+   "lon": 5.2163
+  },
+  {
+   "nom": "Lozanne",
+   "lat": 45.853,
+   "lon": 4.6846
+  },
+  {
+   "nom": "Lucenay",
+   "lat": 45.9138,
+   "lon": 4.7095
+  },
+  {
+   "nom": "Lucey",
+   "lat": 45.7626,
+   "lon": 5.799
+  },
+  {
+   "nom": "Luzinay",
+   "lat": 45.5876,
+   "lon": 4.9627
+  },
+  {
+   "nom": "Lyon",
+   "lat": 45.758,
+   "lon": 4.8351
+  },
+  {
+   "nom": "Lépin-le-Lac",
+   "lat": 45.5331,
+   "lon": 5.7895
+  },
+  {
+   "nom": "Magnieu",
+   "lat": 45.7763,
+   "lon": 5.7197
+  },
+  {
+   "nom": "Marchamp",
+   "lat": 45.7762,
+   "lon": 5.5509
+  },
+  {
+   "nom": "Marcieux",
+   "lat": 45.6163,
+   "lon": 5.7859
+  },
+  {
+   "nom": "Marcilloles",
+   "lat": 45.3505,
+   "lon": 5.1774
+  },
+  {
+   "nom": "Marcilly-d'Azergues",
+   "lat": 45.8685,
+   "lon": 4.7301
+  },
+  {
+   "nom": "Marcollin",
+   "lat": 45.3116,
+   "lon": 5.0897
+  },
+  {
+   "nom": "Marcy-l'Étoile",
+   "lat": 45.7855,
+   "lon": 4.7129
+  },
+  {
+   "nom": "Marennes",
+   "lat": 45.6248,
+   "lon": 4.9097
+  },
+  {
+   "nom": "Marignieu",
+   "lat": 45.8023,
+   "lon": 5.718
+  },
+  {
+   "nom": "Marlieux",
+   "lat": 46.0542,
+   "lon": 5.0756
+  },
+  {
+   "nom": "Marnans",
+   "lat": 45.2902,
+   "lon": 5.2509
+  },
+  {
+   "nom": "Massieu",
+   "lat": 45.438,
+   "lon": 5.6017
+  },
+  {
+   "nom": "Massieux",
+   "lat": 45.9101,
+   "lon": 4.8279
+  },
+  {
+   "nom": "Massignieu-de-Rives",
+   "lat": 45.7564,
+   "lon": 5.7566
+  },
+  {
+   "nom": "Maubec",
+   "lat": 45.5677,
+   "lon": 5.2583
+  },
+  {
+   "nom": "Merlas",
+   "lat": 45.44,
+   "lon": 5.6536
+  },
+  {
+   "nom": "Messimy",
+   "lat": 45.6978,
+   "lon": 4.6748
+  },
+  {
+   "nom": "Meximieux",
+   "lat": 45.9047,
+   "lon": 5.2116
+  },
+  {
+   "nom": "Meyrieu-les-Étangs",
+   "lat": 45.5156,
+   "lon": 5.2014
+  },
+  {
+   "nom": "Meyrieux-Trouet",
+   "lat": 45.646,
+   "lon": 5.7865
+  },
+  {
+   "nom": "Meyrié",
+   "lat": 45.5606,
+   "lon": 5.2834
+  },
+  {
+   "nom": "Meyssiez",
+   "lat": 45.4633,
+   "lon": 5.0608
+  },
+  {
+   "nom": "Meyzieu",
+   "lat": 45.7785,
+   "lon": 5.0114
+  },
+  {
+   "nom": "Millery",
+   "lat": 45.6307,
+   "lon": 4.781
+  },
+  {
+   "nom": "Mionnay",
+   "lat": 45.8959,
+   "lon": 4.9274
+  },
+  {
+   "nom": "Mions",
+   "lat": 45.6628,
+   "lon": 4.9467
+  },
+  {
+   "nom": "Miribel",
+   "lat": 45.8444,
+   "lon": 4.941
+  },
+  {
+   "nom": "Miribel-les-Échelles",
+   "lat": 45.4363,
+   "lon": 5.7076
+  },
+  {
+   "nom": "Misérieux",
+   "lat": 45.9745,
+   "lon": 4.8138
+  },
+  {
+   "nom": "Moidieu-Détourbe",
+   "lat": 45.5151,
+   "lon": 5.0181
+  },
+  {
+   "nom": "Moissieu-sur-Dolon",
+   "lat": 45.3889,
+   "lon": 4.9873
+  },
+  {
+   "nom": "Monsteroux-Milieu",
+   "lat": 45.4344,
+   "lon": 4.952
+  },
+  {
+   "nom": "Montagnieu",
+   "lat": 45.5268,
+   "lon": 5.4549
+  },
+  {
+   "nom": "Montagny",
+   "lat": 45.6296,
+   "lon": 4.752
+  },
+  {
+   "nom": "Montalieu-Vercieu",
+   "lat": 45.8143,
+   "lon": 5.4036
+  },
+  {
+   "nom": "Montanay",
+   "lat": 45.8793,
+   "lon": 4.8657
+  },
+  {
+   "nom": "Montcarra",
+   "lat": 45.6091,
+   "lon": 5.4017
+  },
+  {
+   "nom": "Montferrat",
+   "lat": 45.4785,
+   "lon": 5.58
+  },
+  {
+   "nom": "Monthieux",
+   "lat": 45.9631,
+   "lon": 4.948
+  },
+  {
+   "nom": "Montluel",
+   "lat": 45.8868,
+   "lon": 5.0185
+  },
+  {
+   "nom": "Montrevel",
+   "lat": 45.4764,
+   "lon": 5.4095
+  },
+  {
+   "nom": "Montseveroux",
+   "lat": 45.4327,
+   "lon": 4.9728
+  },
+  {
+   "nom": "Morancé",
+   "lat": 45.8938,
+   "lon": 4.7016
+  },
+  {
+   "nom": "Moras",
+   "lat": 45.6856,
+   "lon": 5.2626
+  },
+  {
+   "nom": "Morestel",
+   "lat": 45.6812,
+   "lon": 5.4716
+  },
+  {
+   "nom": "Mornant",
+   "lat": 45.6162,
+   "lon": 4.6747
+  },
+  {
+   "nom": "Mottier",
+   "lat": 45.4225,
+   "lon": 5.3086
+  },
+  {
+   "nom": "Murs-et-Gélignieux",
+   "lat": 45.6404,
+   "lon": 5.6585
+  },
+  {
+   "nom": "Mérignat",
+   "lat": 46.065,
+   "lon": 5.4425
+  },
+  {
+   "nom": "Nances",
+   "lat": 45.5852,
+   "lon": 5.7992
+  },
+  {
+   "nom": "Neuville-sur-Ain",
+   "lat": 46.0909,
+   "lon": 5.3702
+  },
+  {
+   "nom": "Neuville-sur-Saône",
+   "lat": 45.8821,
+   "lon": 4.8404
+  },
+  {
+   "nom": "Neyron",
+   "lat": 45.8204,
+   "lon": 4.9356
+  },
+  {
+   "nom": "Nivolas-Vermelle",
+   "lat": 45.5638,
+   "lon": 5.3084
+  },
+  {
+   "nom": "Nivollet-Montgriffon",
+   "lat": 46.0002,
+   "lon": 5.4567
+  },
+  {
+   "nom": "Niévroz",
+   "lat": 45.8241,
+   "lon": 5.0615
+  },
+  {
+   "nom": "Novalaise",
+   "lat": 45.5864,
+   "lon": 5.7672
+  },
+  {
+   "nom": "Oncieu",
+   "lat": 45.9685,
+   "lon": 5.4716
+  },
+  {
+   "nom": "Ontex",
+   "lat": 45.7505,
+   "lon": 5.8233
+  },
+  {
+   "nom": "Optevoz",
+   "lat": 45.752,
+   "lon": 5.3406
+  },
+  {
+   "nom": "Ordonnaz",
+   "lat": 45.8357,
+   "lon": 5.5439
+  },
+  {
+   "nom": "Orliénas",
+   "lat": 45.6609,
+   "lon": 4.7207
+  },
+  {
+   "nom": "Ornacieux-Balbins",
+   "lat": 45.3943,
+   "lon": 5.2137
+  },
+  {
+   "nom": "Oullins-Pierre-Bénite",
+   "lat": 45.708,
+   "lon": 4.8112
+  },
+  {
+   "nom": "Outriaz",
+   "lat": 46.0631,
+   "lon": 5.5543
+  },
+  {
+   "nom": "Oyeu",
+   "lat": 45.4283,
+   "lon": 5.4787
+  },
+  {
+   "nom": "Oytier-Saint-Oblas",
+   "lat": 45.5613,
+   "lon": 5.0303
+  },
+  {
+   "nom": "Pact",
+   "lat": 45.3532,
+   "lon": 4.9867
+  },
+  {
+   "nom": "Pajay",
+   "lat": 45.3626,
+   "lon": 5.1279
+  },
+  {
+   "nom": "Panossas",
+   "lat": 45.6772,
+   "lon": 5.1902
+  },
+  {
+   "nom": "Parcieux",
+   "lat": 45.9197,
+   "lon": 4.8299
+  },
+  {
+   "nom": "Parmilieu",
+   "lat": 45.8437,
+   "lon": 5.3595
+  },
+  {
+   "nom": "Parves et Nattages",
+   "lat": 45.7318,
+   "lon": 5.7495
+  },
+  {
+   "nom": "Penol",
+   "lat": 45.3691,
+   "lon": 5.1625
+  },
+  {
+   "nom": "Peyrieu",
+   "lat": 45.674,
+   "lon": 5.6829
+  },
+  {
+   "nom": "Pisieu",
+   "lat": 45.3858,
+   "lon": 5.0723
+  },
+  {
+   "nom": "Pizay",
+   "lat": 45.8906,
+   "lon": 5.0901
+  },
+  {
+   "nom": "Plan",
+   "lat": 45.3161,
+   "lon": 5.3902
+  },
+  {
+   "nom": "Plateau d'Hauteville",
+   "lat": 45.9305,
+   "lon": 5.5775
+  },
+  {
+   "nom": "Poleymieux-au-Mont-d'Or",
+   "lat": 45.856,
+   "lon": 4.7927
+  },
+  {
+   "nom": "Pollieu",
+   "lat": 45.7953,
+   "lon": 5.7463
+  },
+  {
+   "nom": "Pollionnay",
+   "lat": 45.7707,
+   "lon": 4.6585
+  },
+  {
+   "nom": "Pommier-de-Beaurepaire",
+   "lat": 45.3882,
+   "lon": 5.1134
+  },
+  {
+   "nom": "Poncin",
+   "lat": 46.0918,
+   "lon": 5.4129
+  },
+  {
+   "nom": "Pont-d'Ain",
+   "lat": 46.0556,
+   "lon": 5.3491
+  },
+  {
+   "nom": "Pont-de-Chéruy",
+   "lat": 45.7494,
+   "lon": 5.1728
+  },
+  {
+   "nom": "Pont-Évêque",
+   "lat": 45.5335,
+   "lon": 4.9278
+  },
+  {
+   "nom": "Porcieu-Amblagnieu",
+   "lat": 45.8373,
+   "lon": 5.3982
+  },
+  {
+   "nom": "Porte-des-Bonnevaux",
+   "lat": 45.432,
+   "lon": 5.2153
+  },
+  {
+   "nom": "Pressins",
+   "lat": 45.5271,
+   "lon": 5.6318
+  },
+  {
+   "nom": "Priay",
+   "lat": 46.019,
+   "lon": 5.2829
+  },
+  {
+   "nom": "Primarette",
+   "lat": 45.4056,
+   "lon": 5.0319
+  },
+  {
+   "nom": "Prémeyzel",
+   "lat": 45.6827,
+   "lon": 5.6423
+  },
+  {
+   "nom": "Prémillieu",
+   "lat": 45.8785,
+   "lon": 5.5657
+  },
+  {
+   "nom": "Pusignan",
+   "lat": 45.7571,
+   "lon": 5.0659
+  },
+  {
+   "nom": "Pérouges",
+   "lat": 45.8789,
+   "lon": 5.1791
+  },
+  {
+   "nom": "Quincieux",
+   "lat": 45.9168,
+   "lon": 4.7724
+  },
+  {
+   "nom": "Rancé",
+   "lat": 45.9674,
+   "lon": 4.8665
+  },
+  {
+   "nom": "Relevant",
+   "lat": 46.0808,
+   "lon": 4.9399
+  },
+  {
+   "nom": "Renage",
+   "lat": 45.3295,
+   "lon": 5.4939
+  },
+  {
+   "nom": "Revel-Tourdan",
+   "lat": 45.372,
+   "lon": 5.0295
+  },
+  {
+   "nom": "Reventin-Vaugris",
+   "lat": 45.4757,
+   "lon": 4.8438
+  },
+  {
+   "nom": "Reyrieux",
+   "lat": 45.9368,
+   "lon": 4.8314
+  },
+  {
+   "nom": "Rignieux-le-Franc",
+   "lat": 45.9513,
+   "lon": 5.1675
+  },
+  {
+   "nom": "Rillieux-la-Pape",
+   "lat": 45.8265,
+   "lon": 4.895
+  },
+  {
+   "nom": "Rives",
+   "lat": 45.3606,
+   "lon": 5.4848
+  },
+  {
+   "nom": "Roche",
+   "lat": 45.578,
+   "lon": 5.1557
+  },
+  {
+   "nom": "Rochefort",
+   "lat": 45.5802,
+   "lon": 5.7088
+  },
+  {
+   "nom": "Rochetaillée-sur-Saône",
+   "lat": 45.8427,
+   "lon": 4.8396
+  },
+  {
+   "nom": "Rochetoirin",
+   "lat": 45.5854,
+   "lon": 5.414
+  },
+  {
+   "nom": "Romagnieu",
+   "lat": 45.5653,
+   "lon": 5.6446
+  },
+  {
+   "nom": "Romans",
+   "lat": 46.1216,
+   "lon": 5.0217
+  },
+  {
+   "nom": "Rossillon",
+   "lat": 45.8359,
+   "lon": 5.5987
+  },
+  {
+   "nom": "Royas",
+   "lat": 45.5048,
+   "lon": 5.1019
+  },
+  {
+   "nom": "Ruy-Montceau",
+   "lat": 45.5881,
+   "lon": 5.3482
+  },
+  {
+   "nom": "Réaumont",
+   "lat": 45.3598,
+   "lon": 5.524
+  },
+  {
+   "nom": "Saint-Agnin-sur-Bion",
+   "lat": 45.537,
+   "lon": 5.236
+  },
+  {
+   "nom": "Saint-Alban",
+   "lat": 46.0968,
+   "lon": 5.4568
+  },
+  {
+   "nom": "Saint-Alban-de-Montbel",
+   "lat": 45.5524,
+   "lon": 5.7765
+  },
+  {
+   "nom": "Saint-Alban-de-Roche",
+   "lat": 45.5889,
+   "lon": 5.2243
+  },
+  {
+   "nom": "Saint-Albin-de-Vaulserre",
+   "lat": 45.5022,
+   "lon": 5.6985
+  },
+  {
+   "nom": "Saint-André-de-Corcy",
+   "lat": 45.9287,
+   "lon": 4.9529
+  },
+  {
+   "nom": "Saint-André-le-Bouchoux",
+   "lat": 46.1137,
+   "lon": 5.0775
+  },
+  {
+   "nom": "Saint-André-le-Gaz",
+   "lat": 45.5477,
+   "lon": 5.5336
+  },
+  {
+   "nom": "Saint-Aupre",
+   "lat": 45.4038,
+   "lon": 5.6603
+  },
+  {
+   "nom": "Saint-Barthélemy",
+   "lat": 45.342,
+   "lon": 5.0823
+  },
+  {
+   "nom": "Saint-Baudille-de-la-Tour",
+   "lat": 45.7905,
+   "lon": 5.347
+  },
+  {
+   "nom": "Saint-Bernard",
+   "lat": 45.95,
+   "lon": 4.7419
+  },
+  {
+   "nom": "Saint-Blaise-du-Buis",
+   "lat": 45.3821,
+   "lon": 5.5119
+  },
+  {
+   "nom": "Saint-Bonnet-de-Mure",
+   "lat": 45.6975,
+   "lon": 5.0241
+  },
+  {
+   "nom": "Saint-Bueil",
+   "lat": 45.475,
+   "lon": 5.6807
+  },
+  {
+   "nom": "Saint-Béron",
+   "lat": 45.502,
+   "lon": 5.7254
+  },
+  {
+   "nom": "Saint-Cassien",
+   "lat": 45.3594,
+   "lon": 5.5498
+  },
+  {
+   "nom": "Saint-Chef",
+   "lat": 45.6401,
+   "lon": 5.3619
+  },
+  {
+   "nom": "Saint-Clair-de-la-Tour",
+   "lat": 45.5717,
+   "lon": 5.4863
+  },
+  {
+   "nom": "Saint-Cyr-au-Mont-d'Or",
+   "lat": 45.8216,
+   "lon": 4.8162
+  },
+  {
+   "nom": "Saint-Cyr-sur-le-Rhône",
+   "lat": 45.5154,
+   "lon": 4.8242
+  },
+  {
+   "nom": "Saint-Denis-en-Bugey",
+   "lat": 45.9497,
+   "lon": 5.326
+  },
+  {
+   "nom": "Saint-Didier-au-Mont-d'Or",
+   "lat": 45.8159,
+   "lon": 4.8003
+  },
+  {
+   "nom": "Saint-Didier-de-Bizonnes",
+   "lat": 45.4599,
+   "lon": 5.3437
+  },
+  {
+   "nom": "Saint-Didier-de-Formans",
+   "lat": 45.9587,
+   "lon": 4.7767
+  },
+  {
+   "nom": "Saint-Didier-de-la-Tour",
+   "lat": 45.5446,
+   "lon": 5.4877
+  },
+  {
+   "nom": "Saint-Fons",
+   "lat": 45.6997,
+   "lon": 4.8514
+  },
+  {
+   "nom": "Saint-Franc",
+   "lat": 45.4919,
+   "lon": 5.7391
+  },
+  {
+   "nom": "Saint-Genis-Laval",
+   "lat": 45.6922,
+   "lon": 4.7929
+  },
+  {
+   "nom": "Saint-Genis-les-Ollières",
+   "lat": 45.7614,
+   "lon": 4.7248
+  },
+  {
+   "nom": "Saint-Genix-les-Villages",
+   "lat": 45.6102,
+   "lon": 5.6703
+  },
+  {
+   "nom": "Saint-Geoire-en-Valdaine",
+   "lat": 45.4628,
+   "lon": 5.6335
+  },
+  {
+   "nom": "Saint-Geoirs",
+   "lat": 45.3128,
+   "lon": 5.3555
+  },
+  {
+   "nom": "Saint-Georges-d'Espéranche",
+   "lat": 45.5628,
+   "lon": 5.089
+  },
+  {
+   "nom": "Saint-Georges-sur-Renon",
+   "lat": 46.1033,
+   "lon": 5.0286
+  },
+  {
+   "nom": "Saint-Germain-au-Mont-d'Or",
+   "lat": 45.8842,
+   "lon": 4.8036
+  },
+  {
+   "nom": "Saint-Germain-les-Paroisses",
+   "lat": 45.773,
+   "lon": 5.6191
+  },
+  {
+   "nom": "Saint-Germain-sur-Renon",
+   "lat": 46.0764,
+   "lon": 5.0626
+  },
+  {
+   "nom": "Saint-Hilaire-de-Brens",
+   "lat": 45.677,
+   "lon": 5.2913
+  },
+  {
+   "nom": "Saint-Hilaire-de-la-Côte",
+   "lat": 45.3875,
+   "lon": 5.3333
+  },
+  {
+   "nom": "Saint-Jean-d'Avelanne",
+   "lat": 45.5079,
+   "lon": 5.6679
+  },
+  {
+   "nom": "Saint-Jean-de-Bournay",
+   "lat": 45.4964,
+   "lon": 5.145
+  },
+  {
+   "nom": "Saint-Jean-de-Chevelu",
+   "lat": 45.6953,
+   "lon": 5.8245
+  },
+  {
+   "nom": "Saint-Jean-de-Niost",
+   "lat": 45.8384,
+   "lon": 5.2066
+  },
+  {
+   "nom": "Saint-Jean-de-Soudain",
+   "lat": 45.5842,
+   "lon": 5.435
+  },
+  {
+   "nom": "Saint-Jean-de-Thurigneux",
+   "lat": 45.9597,
+   "lon": 4.8959
+  },
+  {
+   "nom": "Saint-Jean-des-Vignes",
+   "lat": 45.8746,
+   "lon": 4.683
+  },
+  {
+   "nom": "Saint-Jean-le-Vieux",
+   "lat": 46.028,
+   "lon": 5.3799
+  },
+  {
+   "nom": "Saint-Julien-de-l'Herms",
+   "lat": 45.4306,
+   "lon": 5.0893
+  },
+  {
+   "nom": "Saint-Just-Chaleyssin",
+   "lat": 45.5867,
+   "lon": 5.0077
+  },
+  {
+   "nom": "Saint-Laurent-d'Agny",
+   "lat": 45.6406,
+   "lon": 4.6828
+  },
+  {
+   "nom": "Saint-Laurent-de-Mure",
+   "lat": 45.6842,
+   "lon": 5.0597
+  },
+  {
+   "nom": "Saint-Marcel",
+   "lat": 45.9485,
+   "lon": 4.9862
+  },
+  {
+   "nom": "Saint-Marcel-Bel-Accueil",
+   "lat": 45.6502,
+   "lon": 5.2419
+  },
+  {
+   "nom": "Saint-Martin-de-Bavel",
+   "lat": 45.8467,
+   "lon": 5.6779
+  },
+  {
+   "nom": "Saint-Martin-de-Vaulserre",
+   "lat": 45.4911,
+   "lon": 5.6835
+  },
+  {
+   "nom": "Saint-Martin-du-Mont",
+   "lat": 46.1063,
+   "lon": 5.33
+  },
+  {
+   "nom": "Saint-Maurice-de-Beynost",
+   "lat": 45.8325,
+   "lon": 4.9763
+  },
+  {
+   "nom": "Saint-Maurice-de-Gourdans",
+   "lat": 45.819,
+   "lon": 5.172
+  },
+  {
+   "nom": "Saint-Maurice-de-Rémens",
+   "lat": 45.9542,
+   "lon": 5.2706
+  },
+  {
+   "nom": "Saint-Michel-de-Saint-Geoirs",
+   "lat": 45.3008,
+   "lon": 5.3587
+  },
+  {
+   "nom": "Saint-Nicolas-de-Macherin",
+   "lat": 45.4057,
+   "lon": 5.6152
+  },
+  {
+   "nom": "Saint-Nizier-le-Désert",
+   "lat": 46.0518,
+   "lon": 5.1471
+  },
+  {
+   "nom": "Saint-Ondras",
+   "lat": 45.5185,
+   "lon": 5.5452
+  },
+  {
+   "nom": "Saint-Paul-d'Izeaux",
+   "lat": 45.313,
+   "lon": 5.4333
+  },
+  {
+   "nom": "Saint-Paul-de-Varax",
+   "lat": 46.0949,
+   "lon": 5.1309
+  },
+  {
+   "nom": "Saint-Paul-sur-Yenne",
+   "lat": 45.6721,
+   "lon": 5.7935
+  },
+  {
+   "nom": "Saint-Pierre-d'Alvey",
+   "lat": 45.6265,
+   "lon": 5.7378
+  },
+  {
+   "nom": "Saint-Pierre-de-Bressieux",
+   "lat": 45.3034,
+   "lon": 5.2968
+  },
+  {
+   "nom": "Saint-Pierre-de-Chandieu",
+   "lat": 45.6471,
+   "lon": 5.0085
+  },
+  {
+   "nom": "Saint-Pierre-de-Curtille",
+   "lat": 45.7634,
+   "lon": 5.8318
+  },
+  {
+   "nom": "Saint-Priest",
+   "lat": 45.7014,
+   "lon": 4.9474
+  },
+  {
+   "nom": "Saint-Prim",
+   "lat": 45.4441,
+   "lon": 4.8067
+  },
+  {
+   "nom": "Saint-Quentin-Fallavier",
+   "lat": 45.6392,
+   "lon": 5.1128
+  },
+  {
+   "nom": "Saint-Rambert-en-Bugey",
+   "lat": 45.953,
+   "lon": 5.4418
+  },
+  {
+   "nom": "Saint-Romain-au-Mont-d'Or",
+   "lat": 45.8355,
+   "lon": 4.8224
+  },
+  {
+   "nom": "Saint-Romain-de-Jalionas",
+   "lat": 45.7527,
+   "lon": 5.2227
+  },
+  {
+   "nom": "Saint-Romain-de-Surieu",
+   "lat": 45.3912,
+   "lon": 4.8898
+  },
+  {
+   "nom": "Saint-Romain-en-Gal",
+   "lat": 45.5402,
+   "lon": 4.8307
+  },
+  {
+   "nom": "Saint-Romain-en-Gier",
+   "lat": 45.5637,
+   "lon": 4.7065
+  },
+  {
+   "nom": "Saint-Savin",
+   "lat": 45.6282,
+   "lon": 5.3216
+  },
+  {
+   "nom": "Saint-Siméon-de-Bressieux",
+   "lat": 45.321,
+   "lon": 5.266
+  },
+  {
+   "nom": "Saint-Sorlin-de-Morestel",
+   "lat": 45.632,
+   "lon": 5.4716
+  },
+  {
+   "nom": "Saint-Sorlin-de-Vienne",
+   "lat": 45.4756,
+   "lon": 4.9391
+  },
+  {
+   "nom": "Saint-Sorlin-en-Bugey",
+   "lat": 45.8863,
+   "lon": 5.369
+  },
+  {
+   "nom": "Saint-Sulpice-des-Rivoires",
+   "lat": 45.4681,
+   "lon": 5.6019
+  },
+  {
+   "nom": "Saint-Symphorien-d'Ozon",
+   "lat": 45.6386,
+   "lon": 4.8666
+  },
+  {
+   "nom": "Saint-Trivier-sur-Moignans",
+   "lat": 46.0632,
+   "lon": 4.8984
+  },
+  {
+   "nom": "Saint-Victor-de-Cessieu",
+   "lat": 45.5379,
+   "lon": 5.3814
+  },
+  {
+   "nom": "Saint-Victor-de-Morestel",
+   "lat": 45.7042,
+   "lon": 5.4956
+  },
+  {
+   "nom": "Saint-Vulbas",
+   "lat": 45.8234,
+   "lon": 5.267
+  },
+  {
+   "nom": "Saint-Éloi",
+   "lat": 45.9343,
+   "lon": 5.1507
+  },
+  {
+   "nom": "Saint-Étienne-de-Saint-Geoirs",
+   "lat": 45.3468,
+   "lon": 5.3504
+  },
+  {
+   "nom": "Sainte-Anne-sur-Gervonde",
+   "lat": 45.4998,
+   "lon": 5.2354
+  },
+  {
+   "nom": "Sainte-Blandine",
+   "lat": 45.545,
+   "lon": 5.436
+  },
+  {
+   "nom": "Sainte-Colombe",
+   "lat": 45.5247,
+   "lon": 4.8582
+  },
+  {
+   "nom": "Sainte-Consorce",
+   "lat": 45.7765,
+   "lon": 4.6959
+  },
+  {
+   "nom": "Sainte-Croix",
+   "lat": 45.8978,
+   "lon": 5.0477
+  },
+  {
+   "nom": "Sainte-Euphémie",
+   "lat": 45.9651,
+   "lon": 4.7927
+  },
+  {
+   "nom": "Sainte-Foy-lès-Lyon",
+   "lat": 45.7362,
+   "lon": 4.7926
+  },
+  {
+   "nom": "Sainte-Julie",
+   "lat": 45.8802,
+   "lon": 5.2837
+  },
+  {
+   "nom": "Sainte-Marie-d'Alvey",
+   "lat": 45.5954,
+   "lon": 5.7133
+  },
+  {
+   "nom": "Sainte-Olive",
+   "lat": 46.0147,
+   "lon": 4.9349
+  },
+  {
+   "nom": "Salagnon",
+   "lat": 45.6717,
+   "lon": 5.3523
+  },
+  {
+   "nom": "Sandrans",
+   "lat": 46.0709,
+   "lon": 4.9824
+  },
+  {
+   "nom": "Sardieu",
+   "lat": 45.3601,
+   "lon": 5.2192
+  },
+  {
+   "nom": "Sathonay-Camp",
+   "lat": 45.8255,
+   "lon": 4.8792
+  },
+  {
+   "nom": "Sathonay-Village",
+   "lat": 45.8394,
+   "lon": 4.8858
+  },
+  {
+   "nom": "Satolas-et-Bonce",
+   "lat": 45.6821,
+   "lon": 5.1218
+  },
+  {
+   "nom": "Sault-Brénaz",
+   "lat": 45.8612,
+   "lon": 5.4007
+  },
+  {
+   "nom": "Savas-Mépin",
+   "lat": 45.5029,
+   "lon": 5.0638
+  },
+  {
+   "nom": "Savigneux",
+   "lat": 45.9946,
+   "lon": 4.8559
+  },
+  {
+   "nom": "Seillonnaz",
+   "lat": 45.8006,
+   "lon": 5.504
+  },
+  {
+   "nom": "Septème",
+   "lat": 45.5514,
+   "lon": 4.9881
+  },
+  {
+   "nom": "Sermérieu",
+   "lat": 45.6689,
+   "lon": 5.4123
+  },
+  {
+   "nom": "Serpaize",
+   "lat": 45.5581,
+   "lon": 4.9211
+  },
+  {
+   "nom": "Serrières-de-Briord",
+   "lat": 45.8129,
+   "lon": 5.4424
+  },
+  {
+   "nom": "Servas",
+   "lat": 46.1366,
+   "lon": 5.1845
+  },
+  {
+   "nom": "Seyssuel",
+   "lat": 45.5624,
+   "lon": 4.841
+  },
+  {
+   "nom": "Siccieu-Saint-Julien-et-Carisieu",
+   "lat": 45.7286,
+   "lon": 5.3089
+  },
+  {
+   "nom": "Sillans",
+   "lat": 45.3473,
+   "lon": 5.3924
+  },
+  {
+   "nom": "Simandres",
+   "lat": 45.6111,
+   "lon": 4.8718
+  },
+  {
+   "nom": "Solaize",
+   "lat": 45.6462,
+   "lon": 4.8331
+  },
+  {
+   "nom": "Soleymieu",
+   "lat": 45.7031,
+   "lon": 5.3622
+  },
+  {
+   "nom": "Sonnay",
+   "lat": 45.3563,
+   "lon": 4.9163
+  },
+  {
+   "nom": "Soucieu-en-Jarrest",
+   "lat": 45.677,
+   "lon": 4.6907
+  },
+  {
+   "nom": "Souclin",
+   "lat": 45.8811,
+   "lon": 5.4368
+  },
+  {
+   "nom": "Succieu",
+   "lat": 45.5285,
+   "lon": 5.3416
+  },
+  {
+   "nom": "Sérézin-de-la-Tour",
+   "lat": 45.5554,
+   "lon": 5.3483
+  },
+  {
+   "nom": "Sérézin-du-Rhône",
+   "lat": 45.6285,
+   "lon": 4.8248
+  },
+  {
+   "nom": "Talissieu",
+   "lat": 45.8627,
+   "lon": 5.7199
+  },
+  {
+   "nom": "Taluyers",
+   "lat": 45.6343,
+   "lon": 4.7265
+  },
+  {
+   "nom": "Tassin-la-Demi-Lune",
+   "lat": 45.7637,
+   "lon": 4.7521
+  },
+  {
+   "nom": "Tenay",
+   "lat": 45.9222,
+   "lon": 5.5147
+  },
+  {
+   "nom": "Ternay",
+   "lat": 45.6083,
+   "lon": 4.803
+  },
+  {
+   "nom": "Thil",
+   "lat": 45.8184,
+   "lon": 5.0189
+  },
+  {
+   "nom": "Thodure",
+   "lat": 45.3154,
+   "lon": 5.1558
+  },
+  {
+   "nom": "Tignieu-Jameyzieu",
+   "lat": 45.7321,
+   "lon": 5.183
+  },
+  {
+   "nom": "Torchefelon",
+   "lat": 45.5172,
+   "lon": 5.3984
+  },
+  {
+   "nom": "Torcieu",
+   "lat": 45.9189,
+   "lon": 5.4056
+  },
+  {
+   "nom": "Tossiat",
+   "lat": 46.1355,
+   "lon": 5.3076
+  },
+  {
+   "nom": "Toussieu",
+   "lat": 45.6585,
+   "lon": 4.9819
+  },
+  {
+   "nom": "Toussieux",
+   "lat": 45.961,
+   "lon": 4.8289
+  },
+  {
+   "nom": "Traize",
+   "lat": 45.6739,
+   "lon": 5.7384
+  },
+  {
+   "nom": "Tramolé",
+   "lat": 45.5153,
+   "lon": 5.2656
+  },
+  {
+   "nom": "Tramoyes",
+   "lat": 45.8742,
+   "lon": 4.9624
+  },
+  {
+   "nom": "Trept",
+   "lat": 45.6864,
+   "lon": 5.3239
+  },
+  {
+   "nom": "Trèves",
+   "lat": 45.5358,
+   "lon": 4.6918
+  },
+  {
+   "nom": "Trévoux",
+   "lat": 45.9398,
+   "lon": 4.771
+  },
+  {
+   "nom": "Tupin-et-Semons",
+   "lat": 45.4941,
+   "lon": 4.7776
+  },
+  {
+   "nom": "Val-de-Virieu",
+   "lat": 45.476,
+   "lon": 5.4716
+  },
+  {
+   "nom": "Valencin",
+   "lat": 45.6058,
+   "lon": 5.0259
+  },
+  {
+   "nom": "Valencogne",
+   "lat": 45.4893,
+   "lon": 5.5344
+  },
+  {
+   "nom": "Valromey-sur-Séran",
+   "lat": 45.9236,
+   "lon": 5.6626
+  },
+  {
+   "nom": "Varambon",
+   "lat": 46.0443,
+   "lon": 5.2909
+  },
+  {
+   "nom": "Vasselin",
+   "lat": 45.6293,
+   "lon": 5.4504
+  },
+  {
+   "nom": "Vaugneray",
+   "lat": 45.73,
+   "lon": 4.6502
+  },
+  {
+   "nom": "Vaulx-Milieu",
+   "lat": 45.6174,
+   "lon": 5.1868
+  },
+  {
+   "nom": "Vaulx-en-Velin",
+   "lat": 45.7776,
+   "lon": 4.925
+  },
+  {
+   "nom": "Vaux-en-Bugey",
+   "lat": 45.9184,
+   "lon": 5.3612
+  },
+  {
+   "nom": "Velanne",
+   "lat": 45.4888,
+   "lon": 5.6441
+  },
+  {
+   "nom": "Verel-de-Montbel",
+   "lat": 45.5547,
+   "lon": 5.7225
+  },
+  {
+   "nom": "Vernaison",
+   "lat": 45.6464,
+   "lon": 4.8121
+  },
+  {
+   "nom": "Vernas",
+   "lat": 45.7769,
+   "lon": 5.2647
+  },
+  {
+   "nom": "Vernioz",
+   "lat": 45.4345,
+   "lon": 4.8946
+  },
+  {
+   "nom": "Versailleux",
+   "lat": 45.9883,
+   "lon": 5.115
+  },
+  {
+   "nom": "Verthemex",
+   "lat": 45.6285,
+   "lon": 5.7923
+  },
+  {
+   "nom": "Vertrieu",
+   "lat": 45.8692,
+   "lon": 5.3703
+  },
+  {
+   "nom": "Veyssilieu",
+   "lat": 45.6805,
+   "lon": 5.2283
+  },
+  {
+   "nom": "Vienne",
+   "lat": 45.5221,
+   "lon": 4.8803
+  },
+  {
+   "nom": "Vieu-d'Izenave",
+   "lat": 46.0823,
+   "lon": 5.5555
+  },
+  {
+   "nom": "Vignieu",
+   "lat": 45.6315,
+   "lon": 5.4227
+  },
+  {
+   "nom": "Villages du Lac de Paladru",
+   "lat": 45.4743,
+   "lon": 5.5339
+  },
+  {
+   "nom": "Villars-les-Dombes",
+   "lat": 46.0,
+   "lon": 5.0443
+  },
+  {
+   "nom": "Villebois",
+   "lat": 45.8499,
+   "lon": 5.4483
+  },
+  {
+   "nom": "Villefontaine",
+   "lat": 45.6161,
+   "lon": 5.1549
+  },
+  {
+   "nom": "Villemoirieu",
+   "lat": 45.7138,
+   "lon": 5.2348
+  },
+  {
+   "nom": "Villeneuve",
+   "lat": 46.0346,
+   "lon": 4.8598
+  },
+  {
+   "nom": "Villeneuve-de-Marc",
+   "lat": 45.4627,
+   "lon": 5.1202
+  },
+  {
+   "nom": "Villette-d'Anthon",
+   "lat": 45.7878,
+   "lon": 5.1019
+  },
+  {
+   "nom": "Villette-de-Vienne",
+   "lat": 45.5883,
+   "lon": 4.9109
+  },
+  {
+   "nom": "Villette-sur-Ain",
+   "lat": 46.0125,
+   "lon": 5.254
+  },
+  {
+   "nom": "Villeurbanne",
+   "lat": 45.7719,
+   "lon": 4.8898
+  },
+  {
+   "nom": "Villieu-Loyes-Mollon",
+   "lat": 45.929,
+   "lon": 5.2265
+  },
+  {
+   "nom": "Vions",
+   "lat": 45.8281,
+   "lon": 5.8077
+  },
+  {
+   "nom": "Virieu-le-Grand",
+   "lat": 45.8465,
+   "lon": 5.639
+  },
+  {
+   "nom": "Virignin",
+   "lat": 45.7282,
+   "lon": 5.7149
+  },
+  {
+   "nom": "Viriville",
+   "lat": 45.3056,
+   "lon": 5.2082
+  },
+  {
+   "nom": "Voiron",
+   "lat": 45.3805,
+   "lon": 5.5869
+  },
+  {
+   "nom": "Voissant",
+   "lat": 45.4807,
+   "lon": 5.7045
+  },
+  {
+   "nom": "Vongnes",
+   "lat": 45.8122,
+   "lon": 5.7255
+  },
+  {
+   "nom": "Vourles",
+   "lat": 45.6569,
+   "lon": 4.7691
+  },
+  {
+   "nom": "Vénissieux",
+   "lat": 45.7012,
+   "lon": 4.8805
+  },
+  {
+   "nom": "Vénérieu",
+   "lat": 45.6593,
+   "lon": 5.2785
+  },
+  {
+   "nom": "Vézeronce-Curtin",
+   "lat": 45.6534,
+   "lon": 5.469
+  },
+  {
+   "nom": "Yenne",
+   "lat": 45.708,
+   "lon": 5.7612
+  },
+  {
+   "nom": "Échalas",
+   "lat": 45.5501,
+   "lon": 4.7294
+  },
+  {
+   "nom": "Écully",
+   "lat": 45.7822,
+   "lon": 4.7737
+  },
+  {
+   "nom": "Évosges",
+   "lat": 45.963,
+   "lon": 5.5008
+  }
+ ],
  "sources": [
   {
    "id": "html-capi",
@@ -670,6 +3598,6 @@
    "url": "https://cafe-crem.fr/"
   }
  ],
- "generated_at": "2026-08-03T17:05:15",
+ "generated_at": "2026-08-03T21:58:39",
  "event_count": 48
 }
