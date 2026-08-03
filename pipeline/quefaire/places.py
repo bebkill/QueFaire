@@ -349,11 +349,34 @@ def fetch_osm(sector, limit: int | None = None) -> list[Place]:
 SAME_PLACE_KM = 0.4
 
 
+_MOTS_VIDES = {
+    "le", "la", "les", "l", "du", "de", "des", "d",
+    "au", "aux", "a", "et", "en", "sur", "the",
+}
+
+
 def _name_key(name: str) -> str:
-    """Nom replié et débarrassé des mots vides qui varient d'une base à l'autre
-    (« Musée du Rouergue » / « Le musée du Rouergue »)."""
-    words = [w for w in fold(name).split() if w not in {"le", "la", "les", "l", "du", "de", "des", "d"}]
-    return " ".join(words)
+    """Nom réduit à ce qui identifie le lieu, quelle que soit la base d'origine.
+
+    Trois écarts observés sur des doublons publiés, tous corrigés ici :
+
+    - Les TRAITS D'UNION ne coupaient pas les mots : « Brousse-le-Château »
+      restait un seul jeton, donc son « le » échappait aux mots vides et ne
+      rejoignait jamais « Brousse ». Même cause pour « Denys-Puech » /
+      « Denys Puech » ou « Calmont-d'Olt » / « Calmont d'Olt ».
+    - Le SUFFIXE ENTRE PARENTHÈSES : DATAtourisme publie la variante
+      groupes d'une même offre sous « … (groupes) ». C'est le même lieu.
+    - Les MOTS RÉPÉTÉS : « Château de Brousse-le-Château » donne
+      « chateau brousse chateau », que « chateau brousse » ne pouvait égaler.
+
+    Mesuré sur pont-de-salars : 113 doublons rapprochés en plus, dont les 10 sans
+    parenthèse relus un par un — tous de vrais doublons. Le filtre reste garanti
+    par les deux autres conditions de `dedupe_providers` : même catégorie et
+    moins de 400 m.
+    """
+    base = re.sub(r"\s*\([^)]*\)\s*$", " ", name)
+    mots = [w for w in re.split(r"[^0-9a-z]+", fold(base)) if w and w not in _MOTS_VIDES]
+    return " ".join(w for i, w in enumerate(mots) if w not in mots[:i])
 
 
 def _richness(place: Place) -> int:

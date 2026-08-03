@@ -31,6 +31,9 @@ const unusualCount = sortedPlaces.filter((p) => p.unusual).length;
 // « Valeur sûre » = porte au moins une distinction officielle (la simple notice
 // Wikipédia ne compte pas). Le chip n'apparaît que s'il a de quoi filtrer.
 const notableCount = sortedPlaces.filter((p) => isNotable(p.quality)).length;
+// Communes du rayon avec leurs coordonnées : c'est ce qui permet de calculer un
+// temps de trajet SANS géolocalisation, pour qui la refuse.
+const communePoints = sector.commune_points || [];
 ---
 
 <Base title={title} sector={sector}>
@@ -72,6 +75,11 @@ const notableCount = sortedPlaces.filter((p) => isNotable(p.quality)).length;
         <button class="chip" data-chip="nearme" aria-pressed="false">📍 Près de moi</button>
         {places.length > 0 && (
           <>
+            {/* Pendant symétrique de « Activités permanentes » : l'actualité,
+                c'est-à-dire ce qui a une date et ne repassera pas. Sans lui, les
+                2206 activités permanentes noyaient les 36 événements et il n'y
+                avait aucun moyen de ne voir que ces derniers. */}
+            <button class="chip" data-chip="evenements" aria-pressed="false">🎪 Événements datés</button>
             <button class="chip" data-chip="permanent" aria-pressed="false">🏛️ Activités permanentes</button>
             {unusualCount > 0 && (
               <button class="chip" data-chip="insolite" aria-pressed="false">✨ Insolite</button>
@@ -93,6 +101,20 @@ const notableCount = sortedPlaces.filter((p) => isNotable(p.quality)).length;
       <span class="count" id="count">
         {events.length} événements · {sortedPlaces.length} activités permanentes
       </span>
+      <label class="timefilter origin-field">
+        🏠 depuis
+        <input
+          id="origin"
+          list="communes-list"
+          type="text"
+          placeholder={`ex. ${sector.name}`}
+          autocomplete="off"
+          aria-label="Commune de départ pour le calcul des temps de trajet"
+        />
+      </label>
+      <datalist id="communes-list">
+        {communePoints.map((c) => <option value={c.nom}>{c.nom}</option>)}
+      </datalist>
       <label class="timefilter">
         ⏱ à moins de
         <select id="timelimit">
@@ -211,6 +233,7 @@ const notableCount = sortedPlaces.filter((p) => isNotable(p.quality)).length;
     if (state.chips.has('nearme')) filter.nearMe = true;
     // Les trois chips « activités » restreignent au type permanent : demander
     // les insolites ou les mieux notées n'a pas de sens pour un événement daté.
+    if (state.chips.has('evenements')) filter.kind = 'event';
     if (state.chips.has('permanent')) filter.kind = 'place';
     if (state.chips.has('insolite')) {
       filter.kind = 'place';
@@ -223,10 +246,40 @@ const notableCount = sortedPlaces.filter((p) => isNotable(p.quality)).length;
     return filter;
   }
 
+  // ---------------- Point de départ ----------------
+  // Refuser la géolocalisation ne doit pas priver du filtre temps de trajet :
+  // on retombait sur le centre du secteur, ce qui donne des temps faux pour qui
+  // habite le bord du rayon. Le visiteur peut donc NOMMER sa commune. La table
+  // de coordonnées est embarquée dans sector.json (géocodage hors-ligne, quelques
+  // Ko) : aucun appel réseau, aucune donnée envoyée nulle part — et la précision
+  // au centre de la commune est exactement celle de nos temps de trajet.
+  const originEl = document.getElementById('origin');
+  const communePoints = sector.commune_points || [];
+  const parCle = new Map(communePoints.map((c) => [fold(c.nom), c]));
+
+  /** Applique la commune saisie comme point de départ. Rend true si reconnue. */
+  function setOrigin(saisie) {
+    const cle = fold((saisie || '').trim());
+    if (!cle) {
+      userPos = null;
+      geostate.textContent = '';
+      return true;
+    }
+    const trouve = parCle.get(cle) || communePoints.find((c) => fold(c.nom).startsWith(cle));
+    if (!trouve) {
+      geostate.textContent = `« ${saisie} » n'est pas dans le rayon — essayez une commune voisine.`;
+      return false;
+    }
+    userPos = { lat: trouve.lat, lon: trouve.lon };
+    geostate.textContent = `Départ : ${trouve.nom}`;
+    if (originEl) originEl.value = trouve.nom;
+    return true;
+  }
+
   function requestGeoloc(cb) {
     if (userPos) return cb();
     if (!navigator.geolocation) {
-      geostate.textContent = 'Géolocalisation non disponible sur ce navigateur.';
+      geostate.textContent = 'Géolocalisation non disponible — indiquez votre commune ci-dessus.';
       return cb();
     }
     geostate.textContent = 'Localisation en cours…';
@@ -237,8 +290,11 @@ const notableCount = sortedPlaces.filter((p) => isNotable(p.quality)).length;
         cb();
       },
       () => {
-        geostate.textContent = `Position refusée — tri depuis le centre ${sector.name}.`;
+        // Position refusée : on N'INVENTE PAS un point de départ. On le demande,
+        // et on se rabat sur le centre du secteur en le disant.
+        geostate.textContent = `Position refusée — indiquez votre commune pour des temps justes (calcul depuis ${sector.name} en attendant).`;
         userPos = { lat: sector.center.lat, lon: sector.center.lon };
+        if (originEl) originEl.focus();
         cb();
       },
       // Haute précision : privilégie le wifi/GPS à la géoloc par IP (peu fiable
@@ -555,6 +611,13 @@ const notableCount = sortedPlaces.filter((p) => isNotable(p.quality)).length;
   timeLimitEl.addEventListener('change', apply);
   timeModeEl.addEventListener('change', apply);
 
+  if (originEl) {
+    // `change` couvre la sélection dans la liste ET la validation au clavier.
+    originEl.addEventListener('change', () => {
+      if (setOrigin(originEl.value)) apply();
+    });
+  }
+
   form.addEventListener('submit', (e) => {
     e.preventDefault();
     state.query = input.value;
@@ -585,18 +648,35 @@ const notableCount = sortedPlaces.filter((p) => isNotable(p.quality)).length;
         (key === 'famille' && parsed.audience.includes('famille')) ||
         (key === 'nearme' && parsed.nearMe) ||
         (key === 'permanent' && parsed.kind === 'place') ||
+        (key === 'evenements' && parsed.kind === 'event') ||
         (key === 'insolite' && parsed.unusual) ||
         (key === 'valeur-sure' && parsed.notable);
       chip.setAttribute('aria-pressed', String(active));
     }
   }
 
+  // « Événements datés » et les trois chips d'activités permanentes demandent
+  // des types OPPOSÉS : les activer ensemble ne rendrait rien. Activer l'un
+  // relâche donc les autres, plutôt que de laisser l'ordre du code décider en
+  // silence lequel gagne.
+  const EXCLUSIFS = [['evenements'], ['permanent', 'insolite', 'valeur-sure']];
+
   for (const chip of chips) {
     chip.addEventListener('click', () => {
       const key = chip.dataset.chip;
       if (state.chips.has(key)) state.chips.delete(key);
-      else state.chips.add(key);
-      chip.setAttribute('aria-pressed', String(state.chips.has(key)));
+      else {
+        state.chips.add(key);
+        const camp = EXCLUSIFS.find((g) => g.includes(key));
+        if (camp) {
+          for (const autre of EXCLUSIFS.flat()) {
+            if (!camp.includes(autre)) state.chips.delete(autre);
+          }
+        }
+      }
+      for (const c of chips) {
+        c.setAttribute('aria-pressed', String(state.chips.has(c.dataset.chip)));
+      }
       apply();
     });
   }
@@ -606,6 +686,12 @@ const notableCount = sortedPlaces.filter((p) => isNotable(p.quality)).length;
     state.chips.clear();
     input.value = '';
     timeLimitEl.value = '';
+    if (originEl) originEl.value = '';
+    // Le point de départ retombe à « inconnu », pas au centre du secteur : mieux
+    // vaut ne pas afficher de temps que d'en afficher un depuis un point que le
+    // visiteur n'a pas choisi.
+    userPos = null;
+    geostate.textContent = '';
     for (const chip of chips) chip.setAttribute('aria-pressed', 'false');
     apply();
   }

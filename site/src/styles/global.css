@@ -491,6 +491,12 @@ a { color: inherit; }
 .city-card.is-active { border-color: var(--accent); box-shadow: var(--shadow-lift); }
 .city-card-head { display: flex; align-items: baseline; justify-content: space-between; gap: 8px; }
 .city-card h2 { margin: 0; font-size: 1.15rem; }
+/* Commune de départ : l'alternative à la géolocalisation, pour qui la refuse. */
+.origin-field input {
+  font: inherit; padding: 5px 9px; border: 1px solid var(--line); border-radius: 8px;
+  background: var(--card); color: var(--ink); min-width: 11ch; max-width: 22ch;
+}
+
 .city-count { font-size: 0.8rem; font-weight: 600; color: var(--ink-soft); white-space: nowrap; }
 /* Chiffres d'appel de la tuile de ville : ce qu'il y a à faire là-bas. */
 .city-stats {

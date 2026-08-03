@@ -74,6 +74,17 @@ def export(sector: Sector, events: list[Event], out_dir: Path | None = None) -> 
             {e.commune for e in upcoming if e.commune}
             | {name for name, _, _ in commune_table(sector.id).values()}
         ),
+        # Coordonnées des communes du rayon, pour que le visiteur qui REFUSE la
+        # géolocalisation puisse quand même filtrer par temps de trajet en
+        # nommant son point de départ. La table est déjà là (géocodage
+        # hors-ligne) et pèse quelques kilo-octets : aucune raison d'aller
+        # interroger un géocodeur en ligne, et la précision au centre de la
+        # commune est EXACTEMENT celle de nos temps de trajet — un géocodage à
+        # la rue donnerait une fausse impression d'exactitude.
+        "commune_points": [
+            {"nom": name, "lat": lat, "lon": lon}
+            for name, lat, lon in sorted(commune_table(sector.id).values())
+        ],
         "sources": [
             {"id": s.id, "name": s.name, "type": s.type, "url": s.url}
             for s in sector.sources

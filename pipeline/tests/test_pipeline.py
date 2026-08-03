@@ -1261,6 +1261,24 @@ def test_dedupe_after_merge_absorbs_retained_duplicates():
     assert set(unique.providers) == {"osm", "datatourisme"}
 
 
+def test_name_key_matches_hyphen_and_group_variants():
+    """Trois doublons publiés du même château, tous dus à la clé de nom."""
+    from quefaire.places import _name_key
+
+    attendu = _name_key("Château de Brousse")
+    # Trait d'union non coupé : le « le » de Brousse-le-Château échappait aux
+    # mots vides, et « chateau » répété empêchait l'égalité.
+    assert _name_key("Château de Brousse-le-Château") == attendu
+    # Variante « groupes » de DATAtourisme : même lieu, même offre.
+    assert _name_key("Château de Brousse (groupes)") == attendu
+    # Autres écarts relevés dans le corpus.
+    assert _name_key("Musée des Beaux Arts Denys-Puech") == _name_key("Musée des Beaux-Arts Denys-Puech")
+    assert _name_key("Saint-Rome Plage") == _name_key("Saint-Rome-Plage")
+    # Et ce qui doit RESTER distinct : deux lieux différents du même village.
+    assert _name_key("Pont de Brousse-le-Château") != attendu
+    assert _name_key("Village médiéval de Brousse-le-Château") != attendu
+
+
 def test_place_stats_feed_the_city_portal(tmp_path):
     """Le portail annonçait les seuls événements temporaires — le plus petit
     et le plus volatil des deux chiffres. Il lui faut les activités."""
