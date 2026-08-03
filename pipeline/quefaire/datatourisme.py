@@ -114,6 +114,15 @@ MAX_REQUESTS_PER_HOUR = 1000
 MIN_INTERVAL_S = 0.2  # ≤ 5 req/s, la moitié du régime prolongé toléré
 MAX_RETRIES = 3
 
+# Statuts rejoués avec un temps d'attente croissant : quota (429) et pannes de
+# passerelle transitoires. Le 504 « Aucune réponse du serveur de traitement » de
+# DATAtourisme y a été ajouté après l'avoir vu faire échouer un flux sans même
+# une seconde tentative — alors que c'est l'archétype de l'erreur passagère, et
+# que la génération du flux est justement une opération longue côté serveur. Les
+# miroirs Overpass traitaient déjà le 504 comme transitoire ; l'incohérence entre
+# les deux fournisseurs n'avait pas de raison d'être.
+_STATUTS_REJOUES = (429, 502, 503, 504)
+
 _last_request_at = 0.0
 _requests_made = 0
 
@@ -156,7 +165,7 @@ def _request(url: str, headers: dict | None = None):
             return http_get(url, timeout=TIMEOUT, headers=headers or {})
         except requests.HTTPError as exc:
             status = getattr(exc.response, "status_code", None)
-            if status not in (429, 503) or attempt == MAX_RETRIES:
+            if status not in _STATUTS_REJOUES or attempt == MAX_RETRIES:
                 raise
             retry_after = (exc.response.headers or {}).get("Retry-After")
             delay = float(retry_after) if (retry_after or "").isdigit() else 2 ** (attempt + 1)
