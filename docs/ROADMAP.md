@@ -118,6 +118,76 @@ rafraîchis 2×/jour par la CI, sans intervention.
 - [ ] Extension aux professionnels et commerçants (« je cherche un électricien »,
       « un tailleur de pierre ») : même pipeline, schéma `Place`, même recherche
 
+### Confiance dans l'existence des activités
+
+On publie ce qu'OSM et DATAtourisme déclarent, sans rien savoir de leur
+existence réelle. Vécu : « Accrobranche » définitivement fermé, toujours en
+ligne. Aujourd'hui le seul signal est l'absence de deux sweeps consécutives
+(≈ 14 jours), et il ne se déclenche que si la source retire la fiche — ce que
+les offices de tourisme ne font pas toujours.
+
+Le patron existe déjà dans le projet : `health.py` désactive une source qui ne
+produit plus, **sans jamais supprimer la ligne**, et un humain peut revenir en
+arrière. C'est ce modèle qu'il faut décliner sur les activités.
+
+**Vérification automatique**, par ordre de coût croissant :
+
+- [ ] **Le site officiel répond-il ?** 1233 fiches sur ~2100 ont une URL. Une
+      requête HEAD par fiche, mensuelle, à travers le garde-fou anti-SSRF déjà
+      écrit (`security.py`). Un site mort n'est pas une preuve de fermeture, mais
+      c'est un signal fort et gratuit. À croiser, jamais à appliquer seul.
+- [ ] **`businessStatus` de Google Places** (`OPERATIONAL`,
+      `CLOSED_TEMPORARILY`, `CLOSED_PERMANENTLY`) : c'est *exactement* le champ
+      cherché, et ce n'est pas un avis. Deux réserves à traiter : l'API est
+      payante au-delà du palier gratuit, et Google interdit de conserver ses
+      données au-delà de 30 jours (hors `place_id`). Donc utilisable comme
+      **filtre transitoire re-vérifié**, pas comme donnée stockée dans
+      `places.json`.
+- [ ] **Recoupement inter-fournisseurs** : une fiche que DATAtourisme retire
+      alors qu'OSM la garde (ou l'inverse) mérite un examen. Gratuit, on a déjà
+      les deux flux et la provenance par tag.
+
+**Vote des utilisateurs** — 👍 top / 👌 correct / 👎 nul / ❌ n'existe plus.
+L'idée est juste, mais trois obstacles doivent être réglés AVANT d'écrire une
+ligne, sinon on livre une faille :
+
+- [ ] **Il n'y a pas de serveur pour recevoir les votes.** Le site est
+      statique. Forme envisagée, cohérente avec l'existant : une fonction
+      *serverless* reçoit le vote, un bot agrège dans un JSON committé — exactement
+      ce que fait `refresh.yml` pour les données. Les votes redeviennent de la
+      donnée statique au build suivant.
+- [ ] **❌ ne doit JAMAIS supprimer automatiquement.** Un vote anonyme qui
+      supprime, c'est une primitive de suppression offerte à n'importe qui : un
+      script vide le catalogue, un concurrent efface un rival. La règle doit être
+      celle de `health.py` — un seuil **masque** (drapeau réversible), il ne
+      supprime pas, et la fiche revient du fournisseur si le signalement était
+      faux. Exiger une corroboration : plusieurs signalements indépendants, ou un
+      signalement **plus** un site officiel mort.
+- [ ] **« Anonyme » n'est pas gratuit.** Sans clé de déduplication, le vote est
+      bourrable en une ligne de script ; avec une clé (hash d'IP, empreinte de
+      navigateur), on traite une donnée personnelle pseudonymisée — donc du RGPD,
+      ce qu'on cherchait à éviter. Voie défendable : limitation de débit **au
+      bord** (Cloudflare Turnstile, sans cookie ni stockage d'IP) et n'agréger
+      que des compteurs, sans conserver aucun identifiant. À écrire noir sur blanc
+      dans la page « à propos ».
+- [ ] Une fois ces trois points réglés : statistiques, classement par
+      satisfaction, et alimentation du **score de match** déjà en roadmap.
+
+**Renvoyer les corrections aux sources** — la partie où il faut être lucide :
+
+- [ ] **OpenStreetMap : tractable.** L'API Notes accepte la création d'une note
+      géolocalisée sans authentification. Un ❌ corroboré peut donc ouvrir une
+      note « signalé comme définitivement fermé par les visiteurs de QueFaire,
+      à vérifier sur place » — que la communauté OSM traite avec ses propres
+      règles. C'est une contribution réelle, et le bon usage : on signale, on ne
+      modifie pas la base d'autrui.
+- [ ] **DATAtourisme : pas d'API de signalement.** La plateforme agrège, elle ne
+      possède pas la donnée : le producteur est l'office de tourisme identifiable
+      sur la fiche. Il n'existe pas d'API pour lui écrire. Réaliste : une page
+      publique listant les signalements par producteur, plus un envoi groupé par
+      courriel. Boucle manuelle et lente, à ne pas survendre — mais elle a de la
+      valeur pour eux, et c'est un argument de partenariat.
+
 ### Recherche par intention (LLM)
 
 Aujourd'hui la barre de recherche est un parseur de règles français
@@ -162,6 +232,52 @@ Ordre de valeur décroissante :
       dehors. **Le parseur de règles reste le chemin par défaut et le repli** :
       fonction absente, en panne ou non configurée, la recherche marche encore —
       c'est la dégradation gracieuse appliquée partout ailleurs dans le projet.
+
+#### Faire tourner le modèle ailleurs que chez un fournisseur
+
+Deux pistes envisagées, dont une seule tient.
+
+**Un petit LLM sur GitHub Actions : pas pour l'intention.** Actions tourne au
+*build*, pas à la requête — il ne peut pas répondre à quelqu'un qui tape dans la
+barre de recherche. Le raisonnement vaut en revanche pour le travail de build
+(facettes, présentations) : un modèle 1–3 B quantifié via llama.cpp tient sur un
+runner (4 vCPU, 16 Go, **pas de GPU**), mais à quelques jetons par seconde sur
+CPU, les ~2000 extractions passeraient de 100 secondes à plusieurs heures — et le
+job Actions est plafonné à 6 h. Piste réelle mais mauvaise affaire, **sauf comme
+dernier maillon de la chaîne de backups** quand tous les quotas d'API sont morts :
+là, lent et gratuit vaut mieux que rien.
+
+**Un modèle dans le navigateur : la bonne réponse, mal dimensionnée si on prend
+un LLM génératif.** Le raisonnement sur la confidentialité est juste et c'est ce
+qui rend la piste séduisante : rien ne sort de l'appareil, donc aucun secret à
+protéger, aucune donnée personnelle traitée, aucune obligation RGPD. Mais :
+
+- un LLM génératif utile pèse **plusieurs centaines de Mo** en 4 bits, même à
+  0,5–1,5 B de paramètres. Sur une page qui fait aujourd'hui 0,5 Mo, c'est
+  disqualifiant pour un visiteur venu chercher une idée de sortie dimanche ;
+- WebGPU n'est pas universel, en particulier sur mobile — et le mobile est
+  précisément l'appareil de l'utilisateur en vadrouille ;
+- l'inférence *distribuée entre* appareils (façon Petals) est à écarter : elle
+  suppose des pairs connectés au même instant et donne une latence incompatible
+  avec une barre de recherche. « Distribué » ici doit vouloir dire **local sur
+  l'appareil de chacun**, pas réparti entre les visiteurs.
+
+- [ ] **La forme viable : un petit modèle de tâche, pas un LLM.** Extraire une
+      intention sur un vocabulaire FERMÉ (14 catégories, une dizaine de facettes,
+      dates, distances) est de la classification et du remplissage de champs, pas
+      de la génération. Un encodeur distillé de classe MiniLM en ONNX quantifié
+      pèse quelques dizaines de Mo, tourne en WASM **sans exiger WebGPU**, et
+      suffit à projeter une phrase sur nos facettes. C'est un à deux ordres de
+      grandeur sous un LLM génératif, pour le même service ici.
+- [ ] **Et à activer explicitement.** Chargement à la demande derrière un
+      interrupteur (« recherche intelligente — téléchargement unique »), le
+      parseur de règles restant le défaut. Le choix appartient à l'utilisateur et
+      se mémorise dans son fichier de préférences, comme le reste.
+
+À noter : si les **facettes récoltées au build** (point précédent) sont en place,
+le navigateur n'a plus qu'à faire correspondre une phrase à des facettes déjà
+calculées. Le besoin en modèle embarqué s'effondre — raison de plus pour traiter
+les facettes d'abord.
 - [ ] **Plongements, seulement si la mesure les justifie.** Précalculés par le
       pipeline (cache par hash de contenu), livrés en fichier quantifié par ville,
       parcourus en force brute dans le navigateur. Reste à trancher : le
