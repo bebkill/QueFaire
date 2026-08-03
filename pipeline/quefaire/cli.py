@@ -11,6 +11,7 @@ from __future__ import annotations
 import argparse
 import logging
 import sys
+from datetime import date
 from pathlib import Path
 
 from .dedupe import dedupe
@@ -145,12 +146,17 @@ def discover_places(
     from . import datatourisme
 
     found: list = []
+    manquants: list[str] = []
     try:
         found = places_mod.fetch_osm(sector, limit=limit)
     except Exception as exc:
         log.error("[places] OpenStreetMap indisponible (%s) — on continue sans lui", exc)
+    if not found:
+        manquants.append("OpenStreetMap")
 
     dt = datatourisme.fetch(sector, limit=limit)
+    if not dt:
+        manquants.append("DATAtourisme")
     if dt:
         log.info("[places] DATAtourisme : %s", datatourisme.report(dt))
         found = places_mod.dedupe_providers(found + dt) if found else dt
@@ -230,6 +236,19 @@ def discover_places(
         "%d connues des deux fournisseurs) → %s",
         len(merged), sector.name, unusual, labelled, both, path,
     )
+    # La ligne de synthèse doit AVOUER une sweep incomplète. Deux runs de suite
+    # ont publié un jeu d'apparence saine — 2206 fiches, 1608 illustrations —
+    # alors qu'un fournisseur était absent : la rétention masque la panne
+    # précisément parce qu'elle fait son travail. Sur un cycle hebdomadaire dont
+    # personne ne lit le log, le jeu dériverait jusqu'à ce que les fiches
+    # conservées tombent d'un coup au bout des deux sweeps de sursis.
+    if manquants:
+        conserve = sum(1 for p in merged if p.last_seen and p.last_seen != date.today().isoformat())
+        log.warning(
+            "[places] SWEEP INCOMPLÈTE — %s absent(s) de ce run : %d fiches publiées "
+            "depuis la rétention, retrait automatique si l'absence dure plus de %d jours",
+            " et ".join(manquants), conserve, 7 * places_mod.MISSING_SWEEPS_BEFORE_DROP,
+        )
     return 0
 
 
