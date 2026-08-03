@@ -70,7 +70,15 @@ _TAG_RULES: list[tuple[str, str, str]] = [
     ("amenity", "cinema", "cinema"),
     ("amenity", "theatre|arts_centre", "spectacle"),
     ("amenity", "toy_library", "ludotheque"),
-    ("leisure", "amusement_arcade|escape_game|adventure_park|sports_centre|climbing|horse_riding|golf_course|bowling_alley|ice_rink", "sport-loisir"),
+    # `sports_centre` a été RETIRÉ : c'est le fourre-tout d'OSM pour les
+    # équipements sportifs municipaux — 112 fiches dont « Gymnase » cinq fois,
+    # des complexes de tennis et des salles de remise en forme. Personne ne
+    # cherche un gymnase pour un week-end. Les vraies activités de loisir ont
+    # leurs propres tags (escape_game, climbing, adventure_park…), et l'offre
+    # destinée aux visiteurs vient de DATAtourisme. Perte mesurée : 4 fiches
+    # réelles (base ULM, club de canoë, une école de grimpe, un accrobranche)
+    # contre 107 équipements retirés — dont l'accrobranche définitivement fermé.
+    ("leisure", "amusement_arcade|escape_game|adventure_park|climbing|horse_riding|golf_course|bowling_alley|ice_rink", "sport-loisir"),
     ("amenity", "marketplace", "marche"),
     ("amenity", "public_bath", "bien-etre"),
     ("leisure", "spa", "bien-etre"),
@@ -88,7 +96,9 @@ _TAG_RULES: list[tuple[str, str, str]] = [
 _OVERPASS_SELECTORS = [
     'nwr["tourism"~"^(museum|gallery|theme_park|zoo|aquarium|attraction|artwork|viewpoint|picnic_site|farm)$"]',
     'nwr["historic"~"^(castle|fort|monument|ruins|archaeological_site|city_gate|tower)$"]',
-    'nwr["leisure"~"^(water_park|swimming_pool|beach_resort|amusement_arcade|escape_game|adventure_park|sports_centre|climbing|horse_riding|golf_course|bowling_alley|ice_rink|park|garden|nature_reserve|spa)$"]',
+    # `sports_centre` retiré ici AUSSI : inutile de rapatrier 112 objets pour les
+    # jeter ensuite, et la requête Overpass allège d'autant (elle sature déjà).
+    'nwr["leisure"~"^(water_park|swimming_pool|beach_resort|amusement_arcade|escape_game|adventure_park|climbing|horse_riding|golf_course|bowling_alley|ice_rink|park|garden|nature_reserve|spa)$"]',
     'nwr["amenity"~"^(cinema|theatre|arts_centre|toy_library|marketplace|public_bath)$"]',
     'nwr["natural"="beach"]',
     'nwr["shop"="farm"]',

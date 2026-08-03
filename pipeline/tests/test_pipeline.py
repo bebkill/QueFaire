@@ -1261,6 +1261,21 @@ def test_dedupe_after_merge_absorbs_retained_duplicates():
     assert set(unique.providers) == {"osm", "datatourisme"}
 
 
+def test_sports_centre_is_not_an_activity():
+    """Un gymnase municipal n'est pas une sortie de week-end.
+
+    `leisure=sports_centre` est le fourre-tout d'OSM pour les équipements
+    sportifs : 112 fiches dont « Gymnase » cinq fois. Les vraies activités de
+    loisir ont leurs propres tags, qui restent classés.
+    """
+    from quefaire.places import _category_of
+
+    assert _category_of({"leisure": "sports_centre"}) is None
+    for value in ("escape_game", "climbing", "horse_riding", "golf_course",
+                  "bowling_alley", "adventure_park", "ice_rink"):
+        assert _category_of({"leisure": value}) == "sport-loisir", value
+
+
 def test_name_key_matches_hyphen_and_group_variants():
     """Trois doublons publiés du même château, tous dus à la clé de nom."""
     from quefaire.places import _name_key

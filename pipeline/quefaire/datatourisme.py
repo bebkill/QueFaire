@@ -34,6 +34,7 @@ from __future__ import annotations
 
 import logging
 import os
+from collections import Counter
 from datetime import date
 
 from .geo import haversine_km, travel_minutes
@@ -222,6 +223,15 @@ _TYPE_RULES: list[tuple[tuple[str, ...], str]] = [
 # Types que l'on sait exploiter — envoyés à l'API en filtre serveur pour ne pas
 # rapatrier (ni faire présenter par le LLM) ce qu'on jetterait ensuite.
 WANTED_TYPES = sorted({name for names, _ in _TYPE_RULES for name in names})
+
+# Types RACINE et facettes transverses : les compter parmi les « non classés »
+# n'apprendrait rien, chaque fiche les porte. Le décompte des types ignorés ne
+# doit lister que des types PARLANTS, sinon il devient illisible et on cesse de
+# le lire — c'est-à-dire inutile.
+_RACINES_ONTOLOGIE = {
+    "PlaceOfInterest", "PointOfInterest", "Place", "Product", "Thing",
+    "schema:Place", "schema:Thing", "owl:Thing",
+}
 
 # Libellés de labels DATAtourisme → codes QUALITY_LABELS. Comparaison sur le
 # texte replié (sans accents, minuscules) : les producteurs écrivent
@@ -685,10 +695,19 @@ def fetch(sector, limit: int | None = None) -> list[Place]:
     today = date.today().isoformat()
     places: list[Place] = []
     seen: set[str] = set()
+    # Types reçus que nos règles ne classent PAS. Ils étaient jetés en silence :
+    # rien ne disait ce que la source apporte et qu'on laisse de côté, donc rien
+    # ne permettait de décider d'ajouter une catégorie autrement qu'au jugé.
+    # C'est ce compteur qui répond à « est-ce qu'on perd de la matière ? ».
+    ignores: Counter = Counter()
     for node in nodes:
         if not isinstance(node, dict):
             continue
         place = _to_place(node, sector.id, today)
+        if place is None:
+            for t in _type_names(node):
+                if t not in _RACINES_ONTOLOGIE:
+                    ignores[t] += 1
         if place is None or (place.external_id and place.external_id in seen):
             continue
         dist = haversine_km(sector.center_lat, sector.center_lon, place.lat, place.lon)
@@ -699,6 +718,14 @@ def fetch(sector, limit: int | None = None) -> list[Place]:
         places.append(place)
 
     log.info("[datatourisme] %d activités retenues sur %d fiches", len(places), len(nodes))
+    if ignores:
+        # À lire à chaque changement de flux : c'est l'inventaire de ce que la
+        # source propose et qu'on écarte. Un type qui monte haut ici est un
+        # candidat à ajouter dans _TYPE_RULES, pas une fatalité.
+        log.info(
+            "[datatourisme] types reçus NON classés (matière disponible, écartée) : %s",
+            ", ".join(f"{t}×{n}" for t, n in ignores.most_common(12)),
+        )
     if nodes and not places:
         # Des fiches reçues mais aucune reconnue : c'est le symptôme d'un
         # mapping de champs à corriger (l'ontologie est riche et les
@@ -718,7 +745,7 @@ def report(places: list[Place]) -> dict:
     L'ontologie est riche mais inégalement remplie : ce compte-rendu dit si le
     mapping des champs tient face aux données réelles, plutôt que de le supposer.
     """
-    from collections import Counter
+
 
     # Types d'ontologie qui ont produit chaque catégorie : c'est CE tableau qui
     # permet de dire quel type gonfle une catégorie, et donc lequel retirer.
