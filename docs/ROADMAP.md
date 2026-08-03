@@ -118,6 +118,95 @@ rafraîchis 2×/jour par la CI, sans intervention.
 - [ ] Extension aux professionnels et commerçants (« je cherche un électricien »,
       « un tailleur de pierre ») : même pipeline, schéma `Place`, même recherche
 
+### Recherche par intention (LLM)
+
+Aujourd'hui la barre de recherche est un parseur de règles français
+(`nlsearch.js`) : instantané, hors-ligne, et il couvre bien ce qui est fait de
+dates, de catégories, de distance et de prix. Il ne comprend pas
+« un truc à faire sous la pluie avec un enfant de quatre ans ».
+
+**Faut-il une base vectorielle / un RAG ?** Non — et il faut séparer deux
+problèmes qu'on a tendance à confondre :
+
+1. **Comprendre la requête** → en extraire un filtre structuré (catégories,
+   public, intérieur/extérieur, temps de trajet). C'est là qu'est presque toute
+   la valeur, et ça ne demande aucun RAG : notre corpus est **déjà structuré**.
+   « à moins de 30 minutes », « gratuit », « en intérieur » sont des FAITS, pas
+   des similarités — un filtre exact sur 2000 fiches typées battra la similarité
+   sémantique, qui est mauvaise sur la négation, les nombres et les distances.
+2. **Classer le corpus** sémantiquement sur le texte libre résiduel
+   (« insolite pour impressionner mes beaux-parents »). C'est la queue de
+   distribution, et la seule part où un plongement apporterait quelque chose.
+
+Et **jamais de base vectorielle** au sens Pinecone/Qdrant/pgvector : ces outils
+paient leur coût à partir de 10⁵–10⁸ vecteurs. À 2000 fiches, un index tient
+dans ~0,8 Mo quantifié en int8, et 2000 produits scalaires en JavaScript sont
+plus rapides que l'aller-retour réseau vers la base. Si plongements il y a, ce
+sera **un fichier statique de plus**, pas un service.
+
+Ordre de valeur décroissante :
+
+- [ ] **Récolter des facettes au build, avec le LLM qu'on paie déjà.** `present()`
+      lit déjà chaque activité pour en écrire le `tldr` : lui demander au même
+      appel d'émettre ce que les règles ne savent pas déduire —
+      intérieur/extérieur, sensible à la météo, tranche d'âge, durée typique,
+      effort physique, « romantique », « impressionne » — transforme la
+      compréhension du LLM en **données statiques**, cherchables hors-ligne, sans
+      coût à l'exécution. Le cache adressé par contenu fait que ça ne se paie
+      qu'une fois par fiche. C'est le meilleur rapport valeur/complexité de toute
+      cette section, et ça n'exige aucune infrastructure nouvelle.
+- [ ] **Extraction d'intention à l'exécution.** Elle suppose un secret d'API,
+      donc un bout de serveur : une fonction *serverless* (Cloudflare Worker,
+      ~30 lignes, gratuite à ce volume) qui prend la phrase et rend le filtre
+      structuré. Le site reste statique, seule la barre de recherche appelle
+      dehors. **Le parseur de règles reste le chemin par défaut et le repli** :
+      fonction absente, en panne ou non configurée, la recherche marche encore —
+      c'est la dégradation gracieuse appliquée partout ailleurs dans le projet.
+- [ ] **Plongements, seulement si la mesure les justifie.** Précalculés par le
+      pipeline (cache par hash de contenu), livrés en fichier quantifié par ville,
+      parcourus en force brute dans le navigateur. Reste à trancher : le
+      plongement de la REQUÊTE. Soit le Worker ci-dessus le calcule aussi, soit
+      un modèle embarqué (transformers.js) — mais 20 à 30 Mo au premier
+      chargement, ce qui est disqualifiant pour une page qui pèse 0,5 Mo.
+      À ne lancer qu'avec un jeu de requêtes réelles pour mesurer si le gain
+      existe.
+
+### Moteur de visite (séjour jour par jour)
+
+L'utilisateur indique une durée de séjour, ses goûts et ses contraintes ; le
+moteur propose un itinéraire jour par jour, détaillé, qu'il peut sauvegarder ou
+imprimer. Sur chaque proposition il vote 👍/👎 ; on garde les 👍, on remplace les
+👎, et un champ libre permet de dire *ce qui ne va pas* (« trop de châteaux »,
+« trop loin le matin »). On apprend des rejets autant que des validations.
+
+C'est la brique qui donne son sens à tout le reste : le catalogue devient un
+outil de décision et non un annuaire.
+
+- [ ] **Prérequis bloquant : les horaires.** 70 fiches sur ~2000 portent des
+      horaires exploitables. Un itinéraire jour par jour sans savoir les jours de
+      fermeture envoie les gens devant une porte close, avec l'aplomb d'un
+      programme imprimé. Il faut d'abord monter la couverture (parsing
+      `opening_hours`, champ `openingHoursSpecification` de DATAtourisme,
+      enrichissement des fiches sans site) — sinon le moteur produit des
+      absurdités confiantes, ce qui est pire que pas de moteur.
+- [ ] **Temps de trajet entre deux activités**, et non depuis l'épicentre : c'est
+      une matrice 300×300, calculable dans le navigateur avec la fonction
+      existante. Le vrai moteur isochrone (déjà en court terme) la rendrait juste.
+- [ ] **Composition du séjour** : regrouper par proximité géographique dans la
+      journée, alterner les registres (patrimoine / nature / gourmand), respecter
+      une durée de journée plausible, placer les incontournables tôt dans le
+      séjour (météo, fermeture imprévue).
+- [ ] **Boucle de vote.** Les 👍/👎 et le texte libre alimentent le **fichier de
+      préférences** décrit plus haut : pas de compte, pas de base, pas de RGPD, et
+      l'utilisateur retrouve ses recherches sans tout refaire. C'est la même
+      brique, et c'est ce qui rend la sauvegarde utile plutôt que gadget.
+- [ ] **Impression** : feuille de style dédiée (une journée par page, carte
+      statique, adresses et horaires en clair, pas de navigation).
+- [ ] Reformulation LLM du texte de rejet en contraintes exploitables — même
+      remarque que pour la recherche par intention : ça suppose la fonction
+      *serverless*, et le moteur doit rester utilisable sans elle (le vote seul
+      suffit à réorienter les propositions).
+
 ## Écarté
 
 - **Réseaux sociaux (Facebook, Instagram)** — implémenté puis retiré : pas
