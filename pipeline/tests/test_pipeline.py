@@ -967,11 +967,22 @@ OVERPASS_SAMPLE = {
 
 
 class _FakeResp:
-    def __init__(self, payload):
+    def __init__(self, payload, content=None):
         self._payload = payload
+        # `content` sert au mode FLUX, qui lit les octets bruts pour reconnaître
+        # l'emballage (ZIP, gzip, JSON nu) au lieu de supposer du JSON.
+        self._content = content
 
     def json(self):
         return self._payload
+
+    @property
+    def content(self):
+        if self._content is not None:
+            return self._content
+        import json as _json
+
+        return _json.dumps(self._payload).encode("utf-8")
 
 
 def test_places_osm_mapping_and_radius(monkeypatch):
@@ -1176,6 +1187,78 @@ def test_osm_image_only_from_commons():
     assert _image_of({"image": "https://exemple.test/p.jpg"}) == (None, None, None)
     assert _image_of({"wikimedia_commons": "Category:Rodez"}) == (None, None, None)
     assert _image_of({}) == (None, None, None)
+
+
+def _zip_flux(fichiers: dict) -> bytes:
+    """Archive ZIP en mémoire, comme celle que livre le diffuseur DATAtourisme."""
+    import io
+    import json as _json
+    import zipfile
+
+    tampon = io.BytesIO()
+    with zipfile.ZipFile(tampon, "w") as zf:
+        for nom, contenu in fichiers.items():
+            zf.writestr(nom, contenu if isinstance(contenu, str) else _json.dumps(contenu))
+    return tampon.getvalue()
+
+
+def test_flux_lit_une_archive_zip(monkeypatch):
+    """Un flux DATAtourisme est livré en ZIP, pas en JSON nu.
+
+    Le premier vrai passage en mode flux a échoué sur
+    « Expecting value: line 1 column 1 » : le téléchargement réussissait et
+    `.json()` recevait du binaire. La disposition interne de l'archive n'est pas
+    devinée — on lit tout membre JSON et on garde ce qui se lit.
+    """
+    from quefaire import datatourisme as dt
+    from quefaire.cli import load_sector
+
+    musee = {
+        "@id": "https://data.datatourisme.fr/9",
+        "@type": ["Museum"],
+        "rdfs:label": {"fr": ["Musée du flux"]},
+        "isLocatedAt": {"schema:geo": {"schema:latitude": 44.28, "schema:longitude": 2.74}},
+    }
+    archive = _zip_flux({
+        "index.json": ["objects/9.json"],       # index de chemins : aucune fiche
+        "objects/9.json": musee,                # un fichier PAR fiche, sans enveloppe
+        "LISEZ-MOI.txt": "pas du json",         # membre non JSON : ignoré
+    })
+
+    monkeypatch.setenv(dt.FLUX_ENV, "https://flux.test/export.zip")
+    monkeypatch.setattr(
+        "quefaire.fetchers.base.http_get", lambda *a, **k: _FakeResp(None, content=archive)
+    )
+    found = dt.fetch(load_sector("pont-de-salars"))
+    assert [p.name for p in found] == ["Musée du flux"]
+
+
+def test_flux_accepte_graph_et_json_nu(monkeypatch):
+    """Les autres emballages restent acceptés : le mode flux ne doit pas casser
+    si le diffuseur change de format."""
+    from quefaire import datatourisme as dt
+    from quefaire.cli import load_sector
+
+    fiche = {
+        "@id": "https://data.datatourisme.fr/10",
+        "@type": ["Museum"],
+        "rdfs:label": {"fr": ["Musée enveloppé"]},
+        "isLocatedAt": {"schema:geo": {"schema:latitude": 44.28, "schema:longitude": 2.74}},
+    }
+    monkeypatch.setenv(dt.FLUX_ENV, "https://flux.test/x")
+
+    # a) ZIP contenant un seul gros JSON-LD sous @graph
+    archive = _zip_flux({"flux.jsonld": {"@graph": [fiche]}})
+    monkeypatch.setattr(
+        "quefaire.fetchers.base.http_get", lambda *a, **k: _FakeResp(None, content=archive)
+    )
+    assert [p.name for p in dt.fetch(load_sector("pont-de-salars"))] == ["Musée enveloppé"]
+
+    # b) JSON nu, sans archive (comportement d'origine)
+    monkeypatch.setattr(
+        "quefaire.fetchers.base.http_get", lambda *a, **k: _FakeResp({"@graph": [fiche]})
+    )
+    assert [p.name for p in dt.fetch(load_sector("pont-de-salars"))] == ["Musée enveloppé"]
 
 
 def test_datatourisme_falls_back_to_api_when_flux_refused(monkeypatch):

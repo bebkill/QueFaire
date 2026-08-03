@@ -90,6 +90,10 @@ TIMEOUT = 120
 # 60 pages × 250 fiches = 15 000 activités, largement au-delà du réaliste.
 MAX_PAGES = 60
 
+# Garde-fou de décompression du flux : le disque du runner est une allocation
+# fixe, et une archive aberrante ne doit pas le remplir.
+MAX_FLUX_BYTES = 500_000_000
+
 # --- Quotas DATAtourisme -----------------------------------------------------
 # La plateforme annonce : 20 à 30 requêtes concurrentes, ~10 req/s en régime
 # prolongé, 1000 requêtes/heure.
@@ -560,12 +564,101 @@ def _nodes_from_flux(flux: str) -> list[dict]:
     # résultat s'explique d'abord par le mode, et il faut pouvoir le constater
     # au lieu de le déduire de l'absence de lignes de pagination.
     log.info("[datatourisme] mode FLUX (une requête, périmètre défini par le diffuseur)")
-    payload = _request(flux).json()
-    nodes = payload.get("@graph") if isinstance(payload, dict) else payload
-    if not isinstance(nodes, list):
-        log.warning("[datatourisme] format de flux inattendu — ni @graph ni liste")
+    corps = _request(flux).content
+    documents = list(_documents_du_flux(corps))
+    if not documents:
+        log.warning(
+            "[datatourisme] flux téléchargé (%.1f Mo) mais aucun document JSON exploitable "
+            "— archive vide ou format inattendu",
+            len(corps) / 1e6,
+        )
         return []
-    return [n for n in nodes if isinstance(n, dict)]
+
+    nodes: list[dict] = []
+    for doc in documents:
+        nodes.extend(_nodes_du_document(doc))
+    log.info(
+        "[datatourisme] flux : %.1f Mo, %d document(s), %d fiche(s) brutes",
+        len(corps) / 1e6, len(documents), len(nodes),
+    )
+    return nodes
+
+
+def _documents_du_flux(corps: bytes):
+    """Rend les documents JSON contenus dans le corps du flux, quel qu'en soit
+    l'emballage.
+
+    Un flux DATAtourisme est livré en **archive ZIP** — c'est ce qui a fait
+    échouer le premier vrai passage en mode flux, avec un
+    `Expecting value: line 1 column 1` parfaitement opaque : le téléchargement
+    réussissait, `.json()` recevait du binaire.
+
+    On reconnaît l'emballage aux octets de tête plutôt qu'à l'extension de l'URL
+    ou à l'en-tête `Content-Type`, ni l'un ni l'autre n'étant fiables sur un lien
+    de téléchargement signé. Le JSON nu et le gzip restent acceptés : le mode
+    flux doit survivre à un changement d'emballage côté diffuseur.
+
+    La disposition interne de l'archive n'est PAS devinée (un seul gros JSON-LD,
+    un `index.json` plus un fichier par fiche, un sous-dossier `objects/`…) : on
+    tente chaque membre `.json`/`.jsonld` et on garde ce qui se lit. Un index
+    qui ne contient que des chemins ne produira aucune fiche et sera ignoré sans
+    bruit. C'est le même parti que pour les champs de l'ontologie — je ne peux
+    pas vérifier la forme depuis l'environnement de développement, donc je ne la
+    fige pas.
+    """
+    import gzip
+    import io
+    import json as _json
+    import zipfile
+
+    if corps[:4] == b"PK\x03\x04":
+        with zipfile.ZipFile(io.BytesIO(corps)) as zf:
+            lus = 0
+            for info in zf.infolist():
+                if info.is_dir() or not info.filename.lower().endswith((".json", ".jsonld")):
+                    continue
+                # Garde-fou : une archive malveillante ou aberrante ne doit pas
+                # remplir le disque du runner (déjà limité).
+                lus += info.file_size
+                if lus > MAX_FLUX_BYTES:
+                    log.warning(
+                        "[datatourisme] archive tronquée à %d Mo décompressés — "
+                        "garde-fou, le flux est anormalement gros",
+                        MAX_FLUX_BYTES // 1_000_000,
+                    )
+                    return
+                try:
+                    yield _json.loads(zf.read(info))
+                except (ValueError, OSError):
+                    continue
+        return
+
+    if corps[:2] == b"\x1f\x8b":
+        corps = gzip.decompress(corps)
+
+    try:
+        yield _json.loads(corps)
+    except ValueError as exc:
+        log.warning("[datatourisme] corps de flux illisible : %s", exc)
+
+
+def _nodes_du_document(doc) -> list[dict]:
+    """Fiches contenues dans un document : `@graph`, liste nue, ou fiche unique.
+
+    Le cas « fiche unique » compte : si l'archive contient un fichier par POI,
+    chaque document EST une fiche, sans enveloppe.
+    """
+    if isinstance(doc, dict):
+        graph = doc.get("@graph")
+        if isinstance(graph, list):
+            return [n for n in graph if isinstance(n, dict)]
+        # Une fiche seule se reconnaît à son type ou à son identifiant.
+        if doc.get("@type") or doc.get("@id") or doc.get("uri"):
+            return [doc]
+        return []
+    if isinstance(doc, list):
+        return [n for n in doc if isinstance(n, dict)]
+    return []
 
 
 def _nodes_from_api(key: str, sector, filters: str = "") -> list[dict]:
@@ -677,7 +770,18 @@ def fetch(sector, limit: int | None = None) -> list[Place]:
         try:
             nodes = _nodes_from_flux(flux)
         except Exception as exc:
-            log.warning("[datatourisme] flux injoignable (%s)", exc)
+            # Distinguer « pas joignable » de « joignable mais illisible » : le
+            # premier vrai passage en mode flux a affiché « injoignable » pour un
+            # JSONDecodeError, ce qui a fait chercher un problème d'accès alors
+            # que le fichier était bien arrivé — en ZIP.
+            import requests
+
+            reseau = isinstance(exc, requests.RequestException)
+            log.warning(
+                "[datatourisme] flux %s (%s)",
+                "injoignable" if reseau else "téléchargé mais inexploitable",
+                exc,
+            )
         if not nodes and key:
             log.warning(
                 "[datatourisme] le flux n'a rien rendu — repli sur l'API (%s)", API_KEY_ENV
