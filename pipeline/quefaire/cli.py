@@ -178,10 +178,7 @@ def discover_places(
     # tout rapprochement. Vécu sur le flux refusé en 403 : 26 doublons publiés,
     # dont « Cathédrale Notre-Dame de Rodez » deux fois — une panne ne doit pas
     # dégrader la qualité du jeu, seulement sa fraîcheur.
-    avant = len(merged)
-    merged = places_mod.dedupe_providers(merged)
-    if len(merged) < avant:
-        log.info("[places] %d doublons inter-fournisseurs résorbés après fusion", avant - len(merged))
+    merged = places_mod.dedupe_providers(merged, phase="après fusion")
     merged = places_mod.filter_relevant(merged)
 
     if use_llm:

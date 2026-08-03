@@ -369,13 +369,18 @@ def _richness(place: Place) -> int:
     )
 
 
-def dedupe_providers(places: list[Place]) -> list[Place]:
+def dedupe_providers(places: list[Place], phase: str = "sweep") -> list[Place]:
     """Réunit les fiches d'un même lieu venues de fournisseurs différents.
 
     La plus complète sert de base ; les champs qui lui manquent sont pris chez
     l'autre. On préfère garder l'`external_id` OpenStreetMap quand il existe :
     c'est l'identifiant le plus stable dans le temps, et il fait la clé de
     réconciliation entre deux sweeps (voir `merge`).
+
+    `phase` nomme la passe dans le log : la fonction est appelée deux fois par
+    run (sur la sweep, puis sur l'ensemble fusionné) et deux lignes identiques
+    aux totaux différents se lisaient comme un effondrement du rapprochement
+    (« 111 fiches fusionnées » puis « 1 fiches fusionnées »).
     """
     groups: list[list[Place]] = []
     index: dict[str, list[list[Place]]] = {}
@@ -429,7 +434,7 @@ def dedupe_providers(places: list[Place]) -> list[Place]:
 
     dropped = len(places) - len(merged)
     if dropped:
-        log.info("[places] %d fiches fusionnées entre fournisseurs", dropped)
+        log.info("[places] %d fiches fusionnées entre fournisseurs (%s)", dropped, phase)
     return merged
 
 
