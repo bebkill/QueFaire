@@ -967,11 +967,22 @@ OVERPASS_SAMPLE = {
 
 
 class _FakeResp:
-    def __init__(self, payload):
+    def __init__(self, payload, content=None):
         self._payload = payload
+        # `content` sert au mode FLUX, qui lit les octets bruts pour reconnaître
+        # l'emballage (ZIP, gzip, JSON nu) au lieu de supposer du JSON.
+        self._content = content
 
     def json(self):
         return self._payload
+
+    @property
+    def content(self):
+        if self._content is not None:
+            return self._content
+        import json as _json
+
+        return _json.dumps(self._payload).encode("utf-8")
 
 
 def test_places_osm_mapping_and_radius(monkeypatch):
@@ -990,9 +1001,11 @@ def test_places_osm_mapping_and_radius(monkeypatch):
     assert by_name["Château de Bouloc"].fee is True
     # Le site sans schéma est complété, pas recopié tel quel.
     assert by_name["Musée du Rouergue"].url == "https://musee-rouergue.fr"
-    # Insolite : l'œuvre de bord de route oui, le musée référencé sur wikidata non.
-    assert by_name["La Girafe de ferraille"].unusual is True
-    assert by_name["Musée du Rouergue"].unusual is False
+    # Présomption d'insolite : l'œuvre de bord de route oui, le musée référencé
+    # sur wikidata non. `unusual` reste faux tant que le LLM n'a pas tranché.
+    assert by_name["La Girafe de ferraille"].unusual_hint is True
+    assert by_name["Musée du Rouergue"].unusual_hint is False
+    assert all(p.unusual is False for p in found)
 
 
 def test_places_merge_preserves_enrichment():
@@ -1026,6 +1039,352 @@ def test_places_merge_keeps_then_drops_missing():
     assert [p.name for p in merge([gone], [], today="2026-08-02")] == ["Cinéma fermé"]
     # Absente depuis plus de deux sweeps : retirée.
     assert merge([gone], [], today="2026-09-15") == []
+
+
+def test_places_merge_drops_deliberately_excluded_type():
+    """Un resserrement des règles doit s'appliquer TOUT DE SUITE.
+
+    Le sursis de deux sweeps encaisse une panne de fournisseur ; il ne doit pas
+    maintenir en vie ce qu'une règle vient d'écarter, sinon un resserrement met
+    quinze jours à produire son effet.
+    """
+    from quefaire.models import Place
+    from quefaire.places import merge
+
+    # `historic=memorial` n'est plus classé : la fiche part au premier passage.
+    memorial = Place(name="Monument aux morts", category="patrimoine", source_id="osm",
+                     sector="s", external_id="node/7", tags=["osm:historic=memorial"],
+                     last_seen="2026-08-01")
+    assert merge([memorial], [], today="2026-08-02") == []
+
+    # Toujours classée, juste absente de la sweep du jour : conservée.
+    cinema = Place(name="Cinéma", category="cinema", source_id="osm", sector="s",
+                   external_id="node/8", tags=["osm:amenity=cinema"], last_seen="2026-08-01")
+    assert [p.name for p in merge([cinema], [], today="2026-08-02")] == ["Cinéma"]
+
+    # Type DATAtourisme encore retenu : conservé de même.
+    dt = Place(name="Musée", category="musee", source_id="datatourisme", sector="s",
+               external_id="dt/1", tags=["dt:Museum"], last_seen="2026-08-01")
+    assert [p.name for p in merge([dt], [], today="2026-08-02")] == ["Musée"]
+
+
+def test_filter_relevant_drops_mute_places_in_every_category():
+    """Une fiche muette n'est pas exploitable, quelle que soit sa catégorie.
+
+    Un signal = quelqu'un a jugé le lieu digne d'être documenté. Aucun signal,
+    c'est six sources qui disent non en même temps — et la tuile n'aurait rien
+    à montrer ni de destination où envoyer le visiteur.
+    """
+    from quefaire.models import Place
+    from quefaire.places import filter_relevant
+
+    def pat(name, **kw):
+        return Place(name=name, category="patrimoine", source_id="osm", sector="s", **kw)
+
+    muet = pat("Ancien four à chaux")
+    # Le tldr est DÉRIVÉ : il ne doit pas suffire à sauver une fiche muette,
+    # sinon le filtre se mord la queue.
+    présenté = pat("Ancien moulin", tldr="Une jolie phrase déjà payée")
+    gardés = [
+        pat("Abbatiale de Conques", description="Chef-d'œuvre roman."),
+        pat("Château de Calmont", url="https://example.org"),
+        pat("Beffroi de Millau", opening_hours="Mo-Su 10:00-18:00"),
+        pat("Ancien prieuré", quality=["monument-historique"]),
+        pat("Abbaye de Bonneval", providers=["osm", "datatourisme"]),
+        pat("Chapelle Saint-Roch", image_url="https://commons.test/x.jpg"),
+    ]
+    # AUCUNE catégorie n'est exemptée : une salle des fêtes sans un mot tombe
+    # comme un four à chaux sans un mot.
+    salle = Place(name="Salle des Tilleuls", category="spectacle", source_id="osm", sector="s")
+    piscine = Place(name="Piscine", category="parc-aquatique", source_id="osm", sector="s")
+
+    kept = filter_relevant([muet, présenté, *gardés, salle, piscine])
+    assert [p.name for p in kept] == [p.name for p in gardés]
+
+
+def test_place_id_distinguishes_homonyms_without_external_id():
+    """Quatre « Point lecture » dans quatre communes = quatre pages distinctes.
+
+    Sans identifiant de source, l'id retombait sur le nom seul : les homonymes
+    partageaient une page, et le visiteur y lisait les coordonnées d'une autre
+    commune — exactement ce que la page de détail promet de ne pas faire.
+    """
+    from quefaire.models import Place
+
+    def lecture(lat, lon):
+        return Place(name="Point lecture", category="ludotheque", source_id="datatourisme",
+                     sector="s", lat=lat, lon=lon)
+
+    a, b = lecture(44.4816, 2.2594), lecture(44.4114, 2.1891)
+    assert a.id != b.id
+    # Stable d'un run à l'autre : même position → même URL.
+    assert a.id == lecture(44.4816, 2.2594).id
+    # Un identifiant de source reste prioritaire : un lieu déplacé de quelques
+    # mètres ne doit pas changer d'URL.
+    avec_id = Place(name="Musée", category="musee", source_id="osm", sector="s",
+                    external_id="node/1", lat=44.0, lon=2.0)
+    bouge = Place(name="Musée", category="musee", source_id="osm", sector="s",
+                  external_id="node/1", lat=44.001, lon=2.001)
+    assert avec_id.id == bouge.id
+
+
+def test_datatourisme_prefers_french():
+    """Le flux rend fr ET en ; l'ordre ne doit pas décider de la langue affichée."""
+    from quefaire.datatourisme import _first
+
+    assert _first([
+        {"@language": "en", "@value": "The mission of the network…"},
+        {"@language": "fr", "@value": "Lisez ou empruntez des livres."},
+    ]) == "Lisez ou empruntez des livres."
+    # Dictionnaire de langues : comportement inchangé.
+    assert _first({"en": ["Museum"], "fr": ["Musée"]}) == "Musée"
+    # Aucune étiquette de langue : on prend ce qui vient, plutôt que rien.
+    assert _first([{"@value": "Sans étiquette"}]) == "Sans étiquette"
+
+
+def test_datatourisme_external_id_from_api_shape():
+    """En mode API la fiche s'identifie par `uri`/`uuid`, pas par `@id`."""
+    from quefaire.datatourisme import _to_place
+
+    node = {
+        "uri": "https://data.datatourisme.fr/42",
+        "uuid": "42",
+        "@type": ["Museum"],
+        "rdfs:label": {"fr": ["Musée"]},
+        "isLocatedAt": {"schema:geo": {"schema:latitude": "44.2", "schema:longitude": "2.7"}},
+    }
+    place = _to_place(node, "s", "2026-08-02")
+    assert place.external_id == "https://data.datatourisme.fr/42"
+
+
+def test_datatourisme_reads_image_and_credit():
+    """Chaîne image de l'ontologie §8.9 : locator = l'URL, crédits à côté."""
+    from quefaire.datatourisme import _image_of
+
+    node = {
+        "hasMainRepresentation": {
+            "ebucore:hasRelatedResource": {
+                "ebucore:locator": "https://photos.test/musee.jpg",
+            },
+            "hasCredits": {"rdfs:label": {"fr": ["Office de tourisme du Lévézou"]}},
+        }
+    }
+    assert _image_of(node) == ("https://photos.test/musee.jpg", "Office de tourisme du Lévézou")
+    # Pas de média, ou un média sans URL exploitable : aucune invention.
+    assert _image_of({}) == (None, None)
+    assert _image_of({"hasMainRepresentation": {"ebucore:locator": "http://pas-sur.test/x.jpg"}}) == (None, None)
+
+
+def test_osm_image_only_from_commons():
+    """Commons seulement : licence libre et page qui nomme l'auteur."""
+    from quefaire.places import _image_of
+
+    url, credit, page = _image_of({"wikimedia_commons": "File:Château de Tholet.jpg"})
+    assert url.startswith("https://commons.wikimedia.org/wiki/Special:FilePath/Ch")
+    assert credit == "Wikimedia Commons" and page.endswith("Ch%C3%A2teau_de_Tholet.jpg")
+    # Le tag `image` est ignoré : URL d'un tiers, licence inconnue, et le
+    # créditer à OpenStreetMap serait une attribution inventée.
+    assert _image_of({"image": "https://exemple.test/p.jpg"}) == (None, None, None)
+    assert _image_of({"wikimedia_commons": "Category:Rodez"}) == (None, None, None)
+    assert _image_of({}) == (None, None, None)
+
+
+def _zip_flux(fichiers: dict) -> bytes:
+    """Archive ZIP en mémoire, comme celle que livre le diffuseur DATAtourisme."""
+    import io
+    import json as _json
+    import zipfile
+
+    tampon = io.BytesIO()
+    with zipfile.ZipFile(tampon, "w") as zf:
+        for nom, contenu in fichiers.items():
+            zf.writestr(nom, contenu if isinstance(contenu, str) else _json.dumps(contenu))
+    return tampon.getvalue()
+
+
+def test_flux_lit_une_archive_zip(monkeypatch):
+    """Un flux DATAtourisme est livré en ZIP, pas en JSON nu.
+
+    Le premier vrai passage en mode flux a échoué sur
+    « Expecting value: line 1 column 1 » : le téléchargement réussissait et
+    `.json()` recevait du binaire. La disposition interne de l'archive n'est pas
+    devinée — on lit tout membre JSON et on garde ce qui se lit.
+    """
+    from quefaire import datatourisme as dt
+    from quefaire.cli import load_sector
+
+    musee = {
+        "@id": "https://data.datatourisme.fr/9",
+        "@type": ["Museum"],
+        "rdfs:label": {"fr": ["Musée du flux"]},
+        "isLocatedAt": {"schema:geo": {"schema:latitude": 44.28, "schema:longitude": 2.74}},
+    }
+    archive = _zip_flux({
+        "index.json": ["objects/9.json"],       # index de chemins : aucune fiche
+        "objects/9.json": musee,                # un fichier PAR fiche, sans enveloppe
+        "LISEZ-MOI.txt": "pas du json",         # membre non JSON : ignoré
+    })
+
+    monkeypatch.setenv(dt.FLUX_ENV, "https://flux.test/export.zip")
+    monkeypatch.setattr(
+        "quefaire.fetchers.base.http_get", lambda *a, **k: _FakeResp(None, content=archive)
+    )
+    found = dt.fetch(load_sector("pont-de-salars"))
+    assert [p.name for p in found] == ["Musée du flux"]
+
+
+def test_flux_accepte_graph_et_json_nu(monkeypatch):
+    """Les autres emballages restent acceptés : le mode flux ne doit pas casser
+    si le diffuseur change de format."""
+    from quefaire import datatourisme as dt
+    from quefaire.cli import load_sector
+
+    fiche = {
+        "@id": "https://data.datatourisme.fr/10",
+        "@type": ["Museum"],
+        "rdfs:label": {"fr": ["Musée enveloppé"]},
+        "isLocatedAt": {"schema:geo": {"schema:latitude": 44.28, "schema:longitude": 2.74}},
+    }
+    monkeypatch.setenv(dt.FLUX_ENV, "https://flux.test/x")
+
+    # a) ZIP contenant un seul gros JSON-LD sous @graph
+    archive = _zip_flux({"flux.jsonld": {"@graph": [fiche]}})
+    monkeypatch.setattr(
+        "quefaire.fetchers.base.http_get", lambda *a, **k: _FakeResp(None, content=archive)
+    )
+    assert [p.name for p in dt.fetch(load_sector("pont-de-salars"))] == ["Musée enveloppé"]
+
+    # b) JSON nu, sans archive (comportement d'origine)
+    monkeypatch.setattr(
+        "quefaire.fetchers.base.http_get", lambda *a, **k: _FakeResp({"@graph": [fiche]})
+    )
+    assert [p.name for p in dt.fetch(load_sector("pont-de-salars"))] == ["Musée enveloppé"]
+
+
+def test_datatourisme_falls_back_to_api_when_flux_refused(monkeypatch):
+    """Un flux dépublié rend 403 : la clé d'API doit prendre le relais.
+
+    Sans ce repli, le run publiait un jeu OSM seul — amputé du tiers de ses
+    fiches — sans autre signe qu'un warning noyé dans le log.
+    """
+    from quefaire import datatourisme as dt
+    from quefaire.cli import load_sector
+
+    monkeypatch.setenv(dt.FLUX_ENV, "https://flux.test/refuse")
+    monkeypatch.setenv(dt.API_KEY_ENV, "K")
+    monkeypatch.delenv(dt.API_PARAMS_ENV, raising=False)
+    monkeypatch.delenv(dt.API_FILTERS_ENV, raising=False)
+
+    def flux_refuse(_url):
+        raise RuntimeError("403 Client Error: Forbidden")
+
+    appels = []
+
+    def api(key, sector, filters=""):
+        appels.append(key)
+        return [{
+            "uri": "https://data.datatourisme.fr/7",
+            "@type": ["Museum"],
+            "rdfs:label": {"fr": ["Musée de secours"]},
+            "isLocatedAt": {"schema:geo": {"schema:latitude": "44.19", "schema:longitude": "2.68"}},
+        }]
+
+    monkeypatch.setattr(dt, "_nodes_from_flux", flux_refuse)
+    monkeypatch.setattr(dt, "_nodes_from_api", api)
+
+    found = dt.fetch(load_sector("pont-de-salars"))
+    assert appels == ["K"]                       # le repli a bien été emprunté
+    assert [p.name for p in found] == ["Musée de secours"]
+
+
+def test_dedupe_after_merge_absorbs_retained_duplicates():
+    """Une panne de fournisseur ne doit pas publier deux fois le même lieu.
+
+    Les fiches d'un fournisseur muet survivent par la rétention de merge() ;
+    elles échappent donc au dédoublonnage d'avant fusion, et se retrouvaient
+    côte à côte avec la fiche OSM fraîche du même lieu.
+    """
+    from quefaire.models import Place
+    from quefaire.places import dedupe_providers, merge
+
+    retenue = Place(name="Cathédrale Notre-Dame de Rodez", category="patrimoine",
+                    source_id="datatourisme", sector="s", external_id="dt/1",
+                    lat=44.3496, lon=2.5751, description="Gothique méridional.",
+                    tldr="Une flèche de 87 m.", providers=["datatourisme"],
+                    tags=["dt:Church"], last_seen="2026-08-02")
+    fraiche = Place(name="Cathédrale Notre-Dame de Rodez", category="patrimoine",
+                    source_id="osm", sector="s", external_id="way/9",
+                    lat=44.3497, lon=2.5752, opening_hours="Mo-Su 09:00-19:00",
+                    providers=["osm"], tags=["osm:historic=church"])
+
+    fusion = merge([retenue], [fraiche], today="2026-08-03")
+    assert len(fusion) == 2  # la rétention les laisse côte à côte…
+    [unique] = dedupe_providers(fusion)  # …le dédoublonnage les réunit
+    assert unique.opening_hours == "Mo-Su 09:00-19:00"   # fait frais conservé
+    assert unique.tldr == "Une flèche de 87 m."          # enrichissement conservé
+    assert set(unique.providers) == {"osm", "datatourisme"}
+
+
+def test_sports_centre_is_not_an_activity():
+    """Un gymnase municipal n'est pas une sortie de week-end.
+
+    `leisure=sports_centre` est le fourre-tout d'OSM pour les équipements
+    sportifs : 112 fiches dont « Gymnase » cinq fois. Les vraies activités de
+    loisir ont leurs propres tags, qui restent classés.
+    """
+    from quefaire.places import _category_of
+
+    assert _category_of({"leisure": "sports_centre"}) is None
+    for value in ("escape_game", "climbing", "horse_riding", "golf_course",
+                  "bowling_alley", "adventure_park", "ice_rink"):
+        assert _category_of({"leisure": value}) == "sport-loisir", value
+
+
+def test_name_key_matches_hyphen_and_group_variants():
+    """Trois doublons publiés du même château, tous dus à la clé de nom."""
+    from quefaire.places import _name_key
+
+    attendu = _name_key("Château de Brousse")
+    # Trait d'union non coupé : le « le » de Brousse-le-Château échappait aux
+    # mots vides, et « chateau » répété empêchait l'égalité.
+    assert _name_key("Château de Brousse-le-Château") == attendu
+    # Variante « groupes » de DATAtourisme : même lieu, même offre.
+    assert _name_key("Château de Brousse (groupes)") == attendu
+    # Autres écarts relevés dans le corpus.
+    assert _name_key("Musée des Beaux Arts Denys-Puech") == _name_key("Musée des Beaux-Arts Denys-Puech")
+    assert _name_key("Saint-Rome Plage") == _name_key("Saint-Rome-Plage")
+    # Et ce qui doit RESTER distinct : deux lieux différents du même village.
+    assert _name_key("Pont de Brousse-le-Château") != attendu
+    assert _name_key("Village médiéval de Brousse-le-Château") != attendu
+
+
+def test_place_stats_feed_the_city_portal(tmp_path):
+    """Le portail annonçait les seuls événements temporaires — le plus petit
+    et le plus volatil des deux chiffres. Il lui faut les activités."""
+    import json
+
+    from quefaire.export import _place_stats
+
+    city = tmp_path / "cities" / "pont-de-salars"
+    city.mkdir(parents=True)
+    (city / "places.json").write_text(json.dumps([
+        {"name": "A", "unusual": True, "quality": ["monument-historique"], "image_url": "https://x/1"},
+        {"name": "B", "unusual": False, "quality": ["notoriete"]},
+        {"name": "C", "quality": [], "image_url": "https://x/2"},
+    ]), encoding="utf-8")
+
+    stats = _place_stats("pont-de-salars", tmp_path)
+    assert stats == {
+        "place_count": 3,
+        "unusual_count": 1,
+        # « notoriete » (Wikipédia) n'est pas une valeur sûre : c'est une
+        # notoriété, pas une distinction décernée par un tiers.
+        "notable_count": 1,
+        "photo_count": 2,
+    }
+    # Ville jamais découverte : des zéros, jamais une exception — le crawl ne
+    # doit pas échouer parce que le cycle hebdomadaire n'a pas encore tourné.
+    assert _place_stats("inconnue", tmp_path)["place_count"] == 0
 
 
 def test_places_roundtrip_and_place_count(tmp_path):
@@ -1081,11 +1440,17 @@ DT_SAMPLE = {
             "@type": ["PointOfInterest", "CulturalSite", "Museum"],
             "rdfs:label": {"fr": ["Musée du Rouergue"]},
             "hasDescription": {"shortDescription": {"fr": ["Outils et costumes du Rouergue."]}},
-            "hasLabel": [{"rdfs:label": {"fr": ["Musée de France"]}}, "Qualité Tourisme"],
+            # §8.2 : labels et classements passent par hasReview, pas hasLabel.
+            "hasReview": [{"rdfs:label": {"fr": ["Musée de France"]}}, "Qualité Tourisme"],
             "isLocatedAt": {
                 "schema:geo": {"schema:latitude": "44.28", "schema:longitude": "2.73"},
                 "schema:address": {"schema:addressLocality": "Pont-de-Salars",
                                    "schema:streetAddress": "3 rue du Moulin"},
+                # §8.5 : les horaires vivent SOUS isLocatedAt.
+                "schema:openingHoursSpecification": [{
+                    "schema:dayOfWeek": ["Tuesday", "Wednesday"],
+                    "schema:opens": "10:00:00", "schema:closes": "18:00:00",
+                }],
             },
             "hasContact": {"foaf:homepage": ["https://musee-rouergue.fr"],
                            "schema:telephone": "0565000000"},
@@ -1094,6 +1459,10 @@ DT_SAMPLE = {
             "@id": "https://data.datatourisme.fr/2",
             "@type": ["PointOfInterest", "SportsAndLeisurePlace"],
             "rdfs:label": "Accrobranche du Lévézou",
+            # Une description, comme 99 % des fiches réelles de DATAtourisme :
+            # sans elle, `filter_relevant` l'écarterait à juste titre et ce test
+            # ne mesurerait plus ce qu'il prétend (la panne d'OSM, pas le filtre).
+            "hasDescription": [{"shortDescription": {"fr": ["Parcours dans les arbres."]}}],
             "isLocatedAt": {"schema:geo": {"schema:latitude": 44.30, "schema:longitude": 2.75}},
         },
         {  # hors rayon : doit être écarté
@@ -1121,6 +1490,8 @@ def test_datatourisme_parses_heterogeneous_jsonld(monkeypatch):
     found = datatourisme.fetch(load_sector("pont-de-salars"))
     by_name = {p.name: p for p in found}
 
+    # « Accrobranche du Lévézou » ne porte que SportsAndLeisurePlace + le type
+    # racine : elle reste reconnue. Une fiche sans type précis serait écartée.
     assert set(by_name) == {"Musée du Rouergue", "Accrobranche du Lévézou"}
     musee = by_name["Musée du Rouergue"]
     assert musee.category == "musee"           # Museum gagne sur PointOfInterest
@@ -1129,6 +1500,8 @@ def test_datatourisme_parses_heterogeneous_jsonld(monkeypatch):
     assert "Outils et costumes" in musee.description
     # Labels reconnus quelle que soit leur forme (objet imbriqué ou chaîne nue).
     assert set(musee.quality) == {"musee-de-france", "qualite-tourisme"}
+    # Horaires lus sous isLocatedAt et rendus lisibles en français.
+    assert musee.opening_hours == "mar, mer 10:00-18:00"
     assert musee.providers == ["datatourisme"]
     assert by_name["Accrobranche du Lévézou"].category == "sport-loisir"
 
@@ -1255,20 +1628,24 @@ def test_datatourisme_api_follows_next_url(monkeypatch):
     monkeypatch.setattr(dt, "_requests_made", 0)
 
     page1 = {"objects": DT_SAMPLE["@graph"][:2],
-             "meta": {"next": "https://api.datatourisme.fr/v1/catalog?api_key=K&page=2"}}
+             "meta": {"total": 4, "total_pages": 2,
+                      "next": "https://api.datatourisme.fr/v1/placeOfInterest?page=2"}}
     page2 = {"objects": DT_SAMPLE["@graph"][2:], "meta": {"next": None}}
-    seen: list[str] = []
+    seen: list[tuple[str, dict]] = []
 
     def fake(url, **k):
-        seen.append(url)
+        seen.append((url, k.get("headers") or {}))
         return _FakeResp(page1 if len(seen) == 1 else page2)
 
     monkeypatch.setattr("quefaire.fetchers.base.http_get", fake)
     found = dt.fetch(load_sector("pont-de-salars"))
 
-    assert len(seen) == 2                      # deux pages, puis arrêt sur next=None
-    assert "api_key=K" in seen[0]
-    assert seen[1].endswith("page=2")          # l'URL next est suivie telle quelle
+    assert len(seen) == 2                          # deux pages, puis arrêt sur next=None
+    # Clé en en-tête (méthode recommandée) et non dans l'URL : elle ne fuite pas
+    # dans les journaux de requêtes.
+    assert seen[0][1].get("X-API-Key") == "K"
+    assert "api_key" not in seen[0][0]
+    assert seen[1][0].endswith("page=2")           # l'URL next est suivie telle quelle
     assert {p.name for p in found} == {"Musée du Rouergue", "Accrobranche du Lévézou"}
 
 
@@ -1278,7 +1655,8 @@ def test_datatourisme_api_extra_filters(monkeypatch):
 
     monkeypatch.delenv(dt.FLUX_ENV, raising=False)
     monkeypatch.setenv(dt.API_KEY_ENV, "K")
-    monkeypatch.setenv(dt.API_PARAMS_ENV, "?department=12")
+    monkeypatch.delenv(dt.API_PARAMS_ENV, raising=False)
+    monkeypatch.delenv(dt.API_FILTERS_ENV, raising=False)
     monkeypatch.setattr(dt, "MIN_INTERVAL_S", 0)
     monkeypatch.setattr(dt, "_requests_made", 0)
     seen: list[str] = []
@@ -1286,8 +1664,43 @@ def test_datatourisme_api_extra_filters(monkeypatch):
         "quefaire.fetchers.base.http_get",
         lambda url, **k: (seen.append(url), _FakeResp({"objects": [], "meta": {}}))[1],
     )
-    dt.fetch(load_sector("pont-de-salars"))
-    assert seen[0] == "https://api.datatourisme.fr/v1/catalog?api_key=K&department=12"
+    # Le périmètre est DÉRIVÉ de l'épicentre : ni liste de communes, ni code
+    # départemental à maintenir. 60 min de voiture ≈ 48 km.
+    sector = load_sector("pont-de-salars")
+    dt.fetch(sector)
+    assert "geo_distance=44.2789%2C2.73%2C48km" in seen[0]
+    # Filtre de type côté serveur : on ne rapatrie pas ce qu'on jetterait.
+    assert "filters=type%5Bin%5D=" in seen[0] or "filters=type%5Bin%5D%3D" in seen[0]
+    assert "Museum" in seen[0]
+    assert f"page_size={dt.MAX_PAGE_SIZE}" in seen[0]       # 250 = maximum autorisé
+    assert "fields=" in seen[0]                             # réponse allégée
+    assert dt.MAX_PAGE_SIZE == 250                          # plafond imposé par l'API
+
+    # Rayon plus court → cercle plus petit, sans rien changer d'autre.
+    seen.clear()
+    sector.radius_minutes = 30
+    dt.fetch(sector)
+    assert "%2C18km" in seen[0]
+
+
+def test_datatourisme_type_mapping_uses_real_ontology_names():
+    """Noms de types relevés dans l'énumération `type` de la doc de l'API."""
+    from quefaire.datatourisme import _category_of
+
+    assert _category_of(["PointOfInterest", "Museum"]) == "musee"
+    assert _category_of(["PointOfInterest", "ParkAndGarden"]) == "nature"
+    assert _category_of(["PointOfInterest", "PointOfView"]) == "nature"
+    assert _category_of(["PointOfInterest", "IceSkatingRink"]) == "sport-loisir"
+    assert _category_of(["PointOfInterest", "MegalithDolmenMenhir"]) == "patrimoine"
+    assert _category_of(["PointOfInterest", "Producer"]) == "ferme"
+    # PAS de repli générique : PlaceOfInterest/PointOfInterest sont les types
+    # RACINE que porte CHAQUE fiche, hôtels et restaurants compris. Un repli sur
+    # eux classait tout le territoire en « visite » (6431/6431 au premier run).
+    assert _category_of(["PlaceOfInterest"]) is None
+    assert _category_of(["PointOfInterest", "Hotel"]) is None
+    assert _category_of(["PointOfInterest", "Restaurant"]) is None
+    # …mais un type précis reste reconnu même accompagné du type racine.
+    assert _category_of(["PointOfInterest", "PlaceOfInterest", "Museum"]) == "musee"
 
 
 def test_datatourisme_api_caps_pagination(monkeypatch, caplog):
@@ -1328,3 +1741,278 @@ def test_datatourisme_flux_preferred_over_api(monkeypatch):
     )
     dt.fetch(load_sector("pont-de-salars"))
     assert seen == ["https://flux.test/x"]   # l'API n'est pas sollicitée
+
+
+def test_cache_partitioned_per_cycle(tmp_path, monkeypatch):
+    """Crawl et découverte d'activités ne doivent pas s'évincer mutuellement.
+
+    L'élagage ne garde que les clés vues pendant le run : deux cycles partageant
+    le même fichier s'effaceraient l'un l'autre à chaque passage (vécu au
+    premier run réel — 40 entrées de crawl remplacées par 7157 d'activités).
+    """
+    import quefaire.cache as c
+
+    monkeypatch.setattr(c, "CACHE_DIR", tmp_path)
+    cache = c._ContentCache()
+
+    cache.bind("ville", "content")          # cycle crawl
+    cache.put("extract:page", ["A"])
+    cache.save()
+    cache.bind("ville", "places")           # cycle découverte d'activités
+    cache.put("place:musee", "phrase")
+    cache.save()
+
+    crawl = json.loads((tmp_path / "ville" / "content.json").read_text(encoding="utf-8"))
+    places = json.loads((tmp_path / "ville" / "places.json").read_text(encoding="utf-8"))
+    assert crawl == {"extract:page": ["A"]}   # survit au cycle activités
+    assert places == {"place:musee": "phrase"}
+
+
+def test_overpass_falls_back_to_mirror(monkeypatch):
+    """Un 504 de l'instance publique bascule sur un miroir, sans perdre le run."""
+    import requests
+
+    from quefaire import places
+
+    tried: list[str] = []
+
+    def flaky(url, **k):
+        tried.append(url)
+        if len(tried) == 1:
+            resp = requests.Response()
+            resp.status_code = 504
+            raise requests.HTTPError("504", response=resp)
+        return _FakeResp(OVERPASS_SAMPLE)
+
+    monkeypatch.setattr("quefaire.fetchers.base.http_get", flaky)
+    found = places.fetch_osm(load_sector("pont-de-salars"))
+    assert len(tried) == 2                       # bascule sur le miroir suivant
+    assert tried[0] != tried[1]
+    assert any(p.name == "Musée du Rouergue" for p in found)
+
+
+def test_overpass_raises_when_all_mirrors_fail(monkeypatch):
+    import requests
+
+    from quefaire import places
+
+    def dead(url, **k):
+        resp = requests.Response()
+        resp.status_code = 504
+        raise requests.HTTPError("504", response=resp)
+
+    monkeypatch.setattr("quefaire.fetchers.base.http_get", dead)
+    with pytest.raises(RuntimeError, match="Overpass"):
+        places.fetch_osm(load_sector("pont-de-salars"))
+
+
+def test_discover_places_survives_osm_outage(monkeypatch, tmp_path):
+    """Overpass en panne ne doit pas priver le secteur de DATAtourisme."""
+    from quefaire import cli, datatourisme, places
+
+    monkeypatch.setenv(datatourisme.API_KEY_ENV, "K")
+    monkeypatch.delenv(datatourisme.FLUX_ENV, raising=False)
+    monkeypatch.setattr(datatourisme, "MIN_INTERVAL_S", 0)
+    monkeypatch.setattr(datatourisme, "_requests_made", 0)
+    monkeypatch.setattr(places, "fetch_osm", lambda *a, **k: (_ for _ in ()).throw(RuntimeError("504")))
+    monkeypatch.setattr(
+        "quefaire.fetchers.base.http_get",
+        lambda url, **k: _FakeResp({"objects": DT_SAMPLE["@graph"], "meta": {"next": None}}),
+    )
+    _reset_cache()
+
+    assert cli.discover_places("pont-de-salars", tmp_path, use_llm=False, use_ratings=False) == 0
+    saved = places.load("pont-de-salars", tmp_path)
+    assert {p.name for p in saved} == {"Musée du Rouergue", "Accrobranche du Lévézou"}
+
+
+def test_discover_places_keeps_file_when_all_providers_down(monkeypatch, tmp_path):
+    """Deux fournisseurs muets = on ne touche à rien, jamais de secteur vidé."""
+    from quefaire import cli, datatourisme, places
+    from quefaire.models import Place
+
+    existing = [Place(name="Musée", category="musee", source_id="osm",
+                      sector="pont-de-salars", external_id="node/1", lat=44.2, lon=2.7)]
+    places.save(existing, "pont-de-salars", tmp_path)
+
+    monkeypatch.delenv(datatourisme.API_KEY_ENV, raising=False)
+    monkeypatch.delenv(datatourisme.FLUX_ENV, raising=False)
+    monkeypatch.setattr(places, "fetch_osm", lambda *a, **k: (_ for _ in ()).throw(RuntimeError("504")))
+
+    assert cli.discover_places("pont-de-salars", tmp_path, use_llm=False, use_ratings=False) == 1
+    assert [p.name for p in places.load("pont-de-salars", tmp_path)] == ["Musée"]
+
+
+def test_unusual_requires_llm_confirmation():
+    """L'heuristique PROPOSE, seul le LLM DISPOSE.
+
+    Au run réel, l'heuristique taguait 615 activités « insolites » (23 % du
+    corpus) dont 585 que le LLM n'avait jamais examinées — une affirmation
+    affichée au visiteur sans examen.
+    """
+    from quefaire import places
+
+    tags = {"name": "La Girafe de ferraille", "tourism": "artwork"}
+    assert places._looks_unusual(tags, "visite") is True   # présomption
+    place = places._element_to_place(
+        {"type": "node", "id": 1, "lat": 44.28, "lon": 2.73, "tags": tags}, "s", "2026-08-02"
+    )
+    assert place.unusual_hint is True     # candidate à l'examen
+    assert place.unusual is False         # …mais rien n'est affirmé avant le LLM
+
+
+def test_merge_keeps_llm_verdict_not_heuristic():
+    from quefaire.models import Place
+    from quefaire.places import merge
+
+    old = Place(name="X", category="visite", source_id="osm", sector="s",
+                external_id="node/1", tldr="phrase", unusual=True, unusual_hint=True)
+    fresh = Place(name="X", category="visite", source_id="osm", sector="s",
+                  external_id="node/1", unusual_hint=True)
+    [out] = merge([old], [fresh], today="2026-08-02")
+    assert out.unusual is True        # verdict LLM conservé
+    assert out.unusual_hint is True
+
+
+def test_presentation_queue_follows_display_order(monkeypatch):
+    """La file LLM suit l'ordre d'AFFICHAGE, pas les présomptions d'insolite.
+
+    Vécu au run réel : la file privilégiait 594 présomptions dont 533 sans
+    description — le LLM n'avait rien à lire et rendait du vide. 26 phrases
+    utiles pour 400 tentatives.
+    """
+    from quefaire import places
+    from quefaire.models import Place
+
+    riche = Place(name="Château classé", category="patrimoine", source_id="osm",
+                  sector="s", external_id="node/1", description="Un donjon du XIIe.",
+                  url="https://x.fr", opening_hours="Tu-Su 10:00-18:00",
+                  quality=["monument-historique"])
+    pauvre = Place(name="Aire de pique-nique", category="nature", source_id="osm",
+                   sector="s", external_id="node/2", unusual_hint=True)
+    assert places.display_score(riche) > places.display_score(pauvre)
+
+    monkeypatch.setattr(places, "PRESENT_MAX_PER_RUN", 1)
+    _reset_cache()
+    soumis: list[str] = []
+
+    class _Chain:
+        def available(self): return True
+        def healthy(self): return True
+        def run(self, prompt):
+            soumis.append(prompt)
+            raise RuntimeError("stop")  # on n'observe que la sélection
+
+    monkeypatch.setattr("quefaire.llm.clarify_chain", lambda: _Chain())
+    places.present([pauvre, riche])
+    assert "Château classé" in soumis[0]        # la fiche documentée passe d'abord
+    assert "Aire de pique-nique" not in soumis[0]
+
+
+def test_display_score_mirrors_site_constants():
+    """Le plafond côté pipeline doit refléter celui du site (places.js)."""
+    from pathlib import Path
+
+    from quefaire.places import DISPLAY_LIMIT
+
+    js = (Path(__file__).resolve().parents[2] / "site/src/lib/places.js").read_text(encoding="utf-8")
+    assert f"MAX_RENDERED = {DISPLAY_LIMIT}" in js
+
+
+def test_display_score_is_intrinsic_not_circular():
+    """Le score ne doit dépendre d'AUCUN enrichissement LLM.
+
+    Sinon le classement est circulaire : présenter une fiche la fait monter et
+    en déloge une autre, restée sans phrase. Mesuré au run #6 — 385 phrases
+    payées jamais affichées, 74 activités affichées sans phrase.
+    """
+    from quefaire.models import Place
+    from quefaire.places import display_score
+
+    nu = Place(name="X", category="musee", source_id="osm", sector="s",
+               external_id="node/1", url="https://x.fr", description="d")
+    enrichi = Place(name="X", category="musee", source_id="osm", sector="s",
+                    external_id="node/1", url="https://x.fr", description="d",
+                    tldr="Une phrase.", unusual=True)
+    assert display_score(nu) == display_score(enrichi)
+
+
+def test_presentation_covers_the_displayed_set():
+    """La file de présentation couvre exactement l'ensemble affiché."""
+    from quefaire.models import Place
+    from quefaire.places import display_order_key
+
+    # 5 fiches documentées (affichées), 5 nues (hors écran).
+    riches = [Place(name=f"Musée {i}", category="musee", source_id="osm", sector="s",
+                    external_id=f"node/{i}", url="https://x.fr", description="d",
+                    quality=["monument-historique"]) for i in range(5)]
+    nues = [Place(name=f"Aire {i}", category="nature", source_id="osm", sector="s",
+                  external_id=f"node/1{i}") for i in range(5)]
+    ordre = sorted(riches + nues, key=display_order_key)
+    affichees = {p.id for p in ordre[:5]}
+    file_ = [p for p in ordre if not p.tldr][:5]
+    assert affichees == {p.id for p in file_}   # on présente ce qui est affiché
+
+
+def test_classification_provenance_is_recorded():
+    """Chaque fiche garde le tag/type qui a déclenché son classement.
+
+    Sans cette traçabilité, une catégorie anormalement grosse ne dit pas QUEL
+    tag la gonfle — on ne peut qu'élaguer au jugé.
+    """
+    from quefaire import datatourisme, places
+
+    osm = places._element_to_place(
+        {"type": "node", "id": 1, "lat": 44.28, "lon": 2.73,
+         "tags": {"name": "Piscine", "leisure": "swimming_pool"}}, "s", "2026-08-02")
+    assert osm.tags == ["osm:leisure=swimming_pool"]
+
+    dt = datatourisme._to_place(DT_SAMPLE["@graph"][1], "s", "2026-08-02")
+    assert dt.tags == ["dt:SportsAndLeisurePlace"]
+
+
+def test_report_breaks_down_categories_by_raw_type():
+    from quefaire.datatourisme import report
+    from quefaire.models import Place
+
+    places_ = [
+        Place(name="A", category="sport-loisir", source_id="datatourisme", sector="s",
+              tags=["dt:LeisureSportActivityProvider"]),
+        Place(name="B", category="sport-loisir", source_id="datatourisme", sector="s",
+              tags=["dt:LeisureSportActivityProvider"]),
+        Place(name="C", category="sport-loisir", source_id="datatourisme", sector="s",
+              tags=["dt:GolfCourse"]),
+        Place(name="D", category="musee", source_id="datatourisme", sector="s",
+              tags=["dt:Museum"]),
+    ]
+    r = report(places_)
+    # La catégorie la plus grosse d'abord, et le type qui la gonfle identifié.
+    assert list(r["types_bruts"]) == ["sport-loisir", "musee"]
+    assert r["types_bruts"]["sport-loisir"]["LeisureSportActivityProvider"] == 2
+
+
+def test_provider_is_not_a_place():
+    """Un PRESTATAIRE d'activités relève de sa propre catégorie, pas d'un lieu.
+
+    Mesuré : `LeisureSportActivityProvider` pesait 597 fiches, soit 74 % de
+    « sport & loisirs » — « Grimpe d'arbres », « Balade numérique », « séances
+    de bien-être ». Du vrai contenu, mais d'une autre nature qu'une adresse.
+    """
+    from quefaire.datatourisme import _category_of
+    from quefaire.models import PLACE_CATEGORIES
+
+    assert "prestation" in PLACE_CATEGORIES
+    assert _category_of(["PointOfInterest", "LeisureSportActivityProvider"]) == "prestation"
+    # Un vrai lieu de sport reste un lieu.
+    assert _category_of(["PointOfInterest", "SportsAndLeisurePlace"]) == "sport-loisir"
+    assert _category_of(["PointOfInterest", "GolfCourse"]) == "sport-loisir"
+
+
+def test_noise_types_are_dropped():
+    """Bibliothèques de village et monuments aux morts : mesurés sans valeur."""
+    from quefaire.datatourisme import _category_of
+    from quefaire.places import _category_of as osm_category
+
+    assert _category_of(["PointOfInterest", "Library"]) is None
+    assert osm_category({"historic": "memorial", "name": "10 août 1944"}) is None
+    assert osm_category({"historic": "castle", "name": "Château"}) == "patrimoine"

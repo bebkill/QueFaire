@@ -23,6 +23,10 @@ sector:
   center_lat: 45.7192
   center_lon: 5.2431
   radius_minutes: 60
+  # Filtre DATAtourisme additionnel (mode API), facultatif : le périmètre est
+  # déjà dérivé de center_lat/lon + radius_minutes (paramètre geo_distance) et
+  # l'endpoint /placeOfInterest applique déjà le filtre de type.
+  datatourisme_filters: ""
 
 sources:
   # --- Pages agenda locales (extraction LLM, type html) ----------------------

@@ -31,6 +31,7 @@ export const PLACE_EMOJI = {
   marche: '🧺',
   visite: '🔭',
   'sport-loisir': '⛳',
+  prestation: '🎟️',
   ferme: '🚜',
   'bien-etre': '♨️',
   autre: '📍',
@@ -84,15 +85,28 @@ export function ratingStars(rating) {
  *  laisse passer le reste tel quel plutôt que d'afficher faux. */
 const OSM_DAYS = { Mo: 'lun', Tu: 'mar', We: 'mer', Th: 'jeu', Fr: 'ven', Sa: 'sam', Su: 'dim' };
 
+// La syntaxe OSM exprime aussi les SAISONS, en mois anglais abrégés
+// (« Feb-Mar We-Su 14:00-17:00 »). Sans cette table, les tuiles affichaient
+// « Feb-Mar mer-dim » : des jours en français et des mois en anglais dans la
+// même phrase. Les mois sont capitalisés en OSM et les jours tiennent sur deux
+// lettres, donc aucune collision possible entre les deux tables.
+const OSM_MONTHS = {
+  Jan: 'janv', Feb: 'févr', Mar: 'mars', Apr: 'avr', May: 'mai', Jun: 'juin',
+  Jul: 'juil', Aug: 'août', Sep: 'sept', Oct: 'oct', Nov: 'nov', Dec: 'déc',
+};
+
 export function openingLabel(hours) {
   if (!hours) return null;
   if (/^24\/7$/.test(hours.trim())) return 'Ouvert en permanence';
   return hours
+    .replace(/\b(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\b/g, (m) => OSM_MONTHS[m])
     .replace(/\b(Mo|Tu|We|Th|Fr|Sa|Su)\b/g, (d) => OSM_DAYS[d])
     .replace(/;\s*/g, ' · ')
     .replace(/,/g, ', ')
     .replace(/\boff\b/g, 'fermé')
-    .replace(/\bPH\b/g, 'jours fériés');
+    .replace(/\bPH\b/g, 'jours fériés')
+    .replace(/\bsunrise\b/g, 'lever du soleil')
+    .replace(/\bsunset\b/g, 'coucher du soleil');
 }
 
 const MONTHS_SHORT = ['janv', 'févr', 'mars', 'avr', 'mai', 'juin', 'juil', 'août', 'sept', 'oct', 'nov', 'déc'];

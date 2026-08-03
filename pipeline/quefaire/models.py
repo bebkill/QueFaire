@@ -56,6 +56,11 @@ PLACE_CATEGORIES = {
     "marche": "Marché",
     "visite": "Visite & curiosité",
     "sport-loisir": "Sport & loisirs",
+    # Prestation à réserver (grimpe d'arbres, balade guidée, escape game) plutôt
+    # qu'un lieu où l'on se rend librement. Distinguée parce qu'elle répond à
+    # « que faire ? » sans être une adresse à visiter — et parce qu'à 597 fiches
+    # elle noyait « sport & loisirs » (806) à elle seule.
+    "prestation": "Activité encadrée",
     "ferme": "Ferme & artisanat",
     "bien-etre": "Thermes & bien-être",
     "autre": "Autre activité",
@@ -183,9 +188,15 @@ class Place:
     rating_count: Optional[int] = None
     rating_source: Optional[str] = None
     rating_url: Optional[str] = None
-    # « Insolite » : activité méconnue ou hors des sentiers battus. Décidée par
-    # heuristique puis confirmée par le LLM (voir places.present).
+    # « Insolite » : activité méconnue ou hors des sentiers battus. N'est vrai
+    # QUE si le LLM l'a confirmé — c'est une affirmation affichée au visiteur,
+    # elle doit reposer sur un examen de la fiche. L'heuristique seule taguait
+    # 23 % du corpus, dont 95 % que le LLM n'avait jamais regardés.
     unusual: bool = False
+    # Présomption d'insolite (ni marque, ni notice wikipédia) : sert UNIQUEMENT
+    # à faire passer ces fiches en tête de la file de présentation LLM, jamais
+    # à afficher quoi que ce soit.
+    unusual_hint: bool = False
     # Signaux de qualité LIBRES (codes de QUALITY_LABELS) : Monument Historique,
     # Musée de France, Qualité Tourisme… Ils remplacent la note d'avis, dont
     # l'affichage est contraint par les CGU des fournisseurs — voir ratings.py.
@@ -193,6 +204,13 @@ class Place:
     # Fournisseurs ayant contribué à cette fiche (« osm », « datatourisme ») :
     # une même activité est souvent connue des deux, on garde la trace.
     providers: list[str] = field(default_factory=list)
+    # Illustration. Jamais fabriquée ni devinée : soit un fournisseur en publie
+    # une, soit la fiche n'en a pas. `image_credit` et `image_page` existent
+    # parce qu'une photo n'est pas une donnée comme les autres — elle a un
+    # auteur et une licence propres, distincts de ceux du jeu de données.
+    image_url: Optional[str] = None
+    image_credit: Optional[str] = None
+    image_page: Optional[str] = None  # page où vérifier auteur et licence
     tags: list[str] = field(default_factory=list)
     first_seen: Optional[str] = None  # date ISO de la première découverte
     last_seen: Optional[str] = None  # date ISO du dernier passage qui l'a revue
@@ -209,8 +227,22 @@ class Place:
 
         Basé sur `external_id` (et non sur le nom + la commune) pour qu'un musée
         renommé garde son URL et son historique.
+
+        À défaut d'identifiant de source, le nom seul ne suffit PAS : quatre
+        « Point lecture » de quatre communes différentes recevaient le même id,
+        donc la même page de détail — et trois visiteurs sur quatre y auraient
+        lu les coordonnées d'une autre commune. On complète alors par la
+        position, arrondie pour rester stable d'un run à l'autre.
         """
-        raw = f"{self.external_id or self.name}|{self.sector}".lower()
+        ancre = self.external_id
+        if not ancre:
+            lieu = (
+                f"{self.lat:.5f},{self.lon:.5f}"
+                if self.lat is not None and self.lon is not None
+                else ""
+            )
+            ancre = f"{self.name}|{lieu}"
+        raw = f"{ancre}|{self.sector}".lower()
         digest = hashlib.sha1(raw.encode("utf-8")).hexdigest()[:8]
         return f"{slugify(self.name)}-{digest}"
 

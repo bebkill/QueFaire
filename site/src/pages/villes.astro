@@ -46,10 +46,25 @@ const latestLabel = latest
         <li class="city-card" data-name={c.name.toLowerCase()} data-id={c.id}>
           <div class="city-card-head">
             <h2>{c.name}</h2>
-            {typeof c.event_count === 'number' && (
-              <span class="city-count">{c.event_count} événements</span>
-            )}
           </div>
+          {/* Le portail n'annonçait que les événements temporaires — le plus
+              petit et le plus volatil des deux chiffres. Les activités
+              permanentes sont dix fois plus nombreuses et c'est ce qui reste
+              vrai toute l'année : elles méritent la première place. */}
+          <ul class="city-stats">
+            {c.place_count > 0 && (
+              <li><b>{c.place_count}</b> activités toute l'année</li>
+            )}
+            {typeof c.event_count === 'number' && c.event_count > 0 && (
+              <li><b>{c.event_count}</b> événements à venir</li>
+            )}
+            {c.unusual_count > 0 && (
+              <li class="stat-unusual">✨ <b>{c.unusual_count}</b> insolites</li>
+            )}
+            {c.notable_count > 0 && (
+              <li class="stat-notable">🏅 <b>{c.notable_count}</b> valeurs sûres</li>
+            )}
+          </ul>
           <p class="city-radius">Rayon ~{Math.round(c.radius_minutes)} min de trajet</p>
           {isReady(c)
             ? <a class="btn-open" href={cityUrl(c)}>Ouvrir QueFaire — {c.name}</a>
@@ -192,7 +207,11 @@ const latestLabel = latest
       // Le rayon (~1 h) : conversion approx. temps→distance (1 h ≈ 48 km).
       const km = c.radius_minutes >= 60 ? 48 : (c.radius_minutes / 60) * 48;
       L.circle(ll, { radius: km * 1000, color: '#2563eb', weight: 1, fillOpacity: 0.06 }).addTo(map);
-      const count = typeof c.event_count === 'number' ? `<br>${c.event_count} événements` : '';
+      const chiffres = [
+        c.place_count > 0 ? `${c.place_count} activités toute l'année` : '',
+        typeof c.event_count === 'number' && c.event_count > 0 ? `${c.event_count} événements` : '',
+      ].filter(Boolean);
+      const count = chiffres.length ? `<br>${chiffres.join('<br>')}` : '';
       const action = isReady(c)
         ? `<br><a href="${cityUrl(c)}">Ouvrir l'agenda</a>`
         : '<br><em>Agenda en préparation</em>';

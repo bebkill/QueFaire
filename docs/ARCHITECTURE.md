@@ -142,11 +142,28 @@ cycle de vie entièrement distinct de celui du crawl :
    `first_seen`). Une activité absente d'une sweep n'est pas supprimée
    immédiatement — elle survit deux sweeps, le temps de distinguer une fermeture
    d'un hoquet d'Overpass.
-4. **Présentation** — à la première découverte seulement, un LLM écrit une
+
+   **Exception : une exclusion délibérée s'applique tout de suite.** Le sursis
+   sert à encaisser une panne, pas à maintenir en vie ce qu'une règle vient
+   d'écarter. `_tag_still_mapped()` rejoue donc la règle de classement sur le tag
+   de provenance de chaque fiche absente : plus aucune catégorie ⇒ retrait
+   immédiat. Sans ça, resserrer une règle mettait quinze jours à produire son
+   effet.
+4. **Exigence de signal** — `filter_relevant()` écarte, dans **toutes** les
+   catégories, les fiches sans description, sans site, sans horaires, sans photo,
+   sans distinction et connues d'un seul fournisseur. Une telle fiche n'est pas
+   exploitable : la tuile ne dit pas ce qu'on peut y faire et le lien ne mène
+   nulle part (« Piscine », « Salle des Tilleuls », « Marché aux veaux »). Le
+   test porte sur la fiche **fusionnée** — un château qu'OSM ne connaît que comme
+   un point survit si DATAtourisme le décrit — et il tourne **avant** la
+   présentation LLM, pour ne pas payer une phrase qu'on ne publiera pas. Rien
+   n'est perdu définitivement : le filtre s'applique à la sweep fraîche à chaque
+   passage, donc une fiche que sa source enrichit plus tard réapparaît d'elle-même.
+5. **Présentation** — à la première découverte seulement, un LLM écrit une
    phrase qui donne envie et tranche le caractère **insolite** (une heuristique
    pré-filtre : ni marque, ni page wikipédia). Mise en cache par contenu : une
    activité déjà présentée n'est jamais repayée.
-5. **Signaux de qualité** — plutôt qu'une note d'avis, chaque activité porte les
+6. **Signaux de qualité** — plutôt qu'une note d'avis, chaque activité porte les
    **distinctions officielles** lisibles en données ouvertes (`QUALITY_LABELS`) :
    Monument Historique et notoriété Wikipédia depuis les tags OSM, Musée de
    France / Qualité Tourisme / Tourisme & Handicap depuis les labels
@@ -175,6 +192,21 @@ commerces d'un bourg. La fiche la plus complète sert de base, les champs
 manquants sont pris chez l'autre, et l'`external_id` **OSM prime** : c'est le
 plus stable dans le temps, donc la meilleure clé de réconciliation entre sweeps.
 
+La concordance de nom a coûté trois corrections, chacune révélée par un doublon
+publié : les **traits d'union** doivent couper les mots (« Brousse-le-Château »
+gardait son « le » et ne rejoignait jamais « Brousse »), le **suffixe entre
+parenthèses** de DATAtourisme désigne la variante groupes d'une même offre, et
+les **mots répétés** doivent être réduits (« chateau brousse chateau »).
+L'URL partagée avait été envisagée comme critère puis **écartée sur mesure** :
+16 églises distinctes, jusqu'à 32 km l'une de l'autre, partagent le site de leur
+office de tourisme.
+
+Le dédoublonnage tourne **deux fois** : sur la sweep du jour, puis sur l'ensemble
+fusionné. La seconde passe existe parce que la première ne voit pas les fiches
+conservées d'un fournisseur muet — un flux refusé avait ainsi publié
+« Cathédrale Notre-Dame de Rodez » en double. Une panne peut dégrader la
+**fraîcheur** du jeu, pas sa qualité.
+
 #### Accès DATAtourisme et quotas
 
 La plateforme annonce 20–30 requêtes concurrentes, ~10 req/s en régime prolongé
@@ -182,13 +214,24 @@ et **1000 requêtes/heure**. Deux modes d'accès, et le choix pèse directement 
 ce budget :
 
 - **flux** (`DATATOURISME_FLUX_URL`, « API locale ») — une requête ramène tout
-  le jeu d'une ville. Mode préféré : ~1000 villes rafraîchissables en une heure ;
-- **API temps réel** (`DATATOURISME_API_KEY`) — `GET /v1/catalog`, parcouru en
-  suivant `meta.next` plutôt qu'en incrémentant un numéro de page (méthode
-  recommandée, la seule qui garantisse de ne rater aucun résultat). Le catalogue
-  doit être restreint côté serveur via `DATATOURISME_API_PARAMS`, sinon on
-  paginerait sur 530 000 fiches. La pagination est plafonnée (`MAX_PAGES`) et
-  toute troncature **journalisée en warning** — jamais silencieuse.
+  le jeu d'une ville. Mode préféré : ~1000 villes rafraîchissables en une heure.
+  Le fichier est livré en **archive ZIP**, reconnue aux octets de tête et non à
+  l'extension ni au `Content-Type` (ni l'un ni l'autre fiables sur un lien signé) ;
+  sa disposition interne n'est pas devinée — un seul JSON-LD sous `@graph` ou un
+  fichier par fiche, on lit tout membre JSON et on garde ce qui se lit. Deux
+  réserves : le flux ignore `fields` **et** `lang`, donc son contenu est celui que
+  l'export du diffuseur embarque, et la préférence français repose alors
+  uniquement sur le parseur ;
+- **API temps réel** (`DATATOURISME_API_KEY`) — `GET /v1/placeOfInterest`,
+  parcouru en suivant `meta.next` plutôt qu'en incrémentant un numéro de page
+  (méthode recommandée, et au-delà de 10 000 résultats l'accès par numéro n'est
+  plus possible). Le périmètre vient du paramètre **`geo_distance`**, dérivé de
+  l'épicentre : `lat,lon,<radius_km>km`. Le filtre géographique de l'API épouse
+  exactement le modèle du projet, donc **aucune configuration manuelle** — ni
+  liste de communes, ni code départemental. Pages de 250 fiches (le maximum),
+  clé en en-tête `X-API-Key` pour qu'elle n'apparaisse pas dans les journaux.
+  La pagination est plafonnée (`MAX_PAGES`) et toute troncature **journalisée en
+  warning** — jamais silencieuse.
 
 Garde-fous communs : intervalle minimal entre requêtes (≤ 5 req/s, moitié du
 régime toléré), rejeu sur 429/503 en respectant `Retry-After`, et coupe-circuit

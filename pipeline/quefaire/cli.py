@@ -11,6 +11,7 @@ from __future__ import annotations
 import argparse
 import logging
 import sys
+from datetime import date
 from pathlib import Path
 
 from .dedupe import dedupe
@@ -133,31 +134,52 @@ def discover_places(
     from .export import SITE_DATA_DIR, refresh_place_count
 
     sector = load_sector(sector_id)
-    cache.bind(sector_id)  # cache LLM/notes cloisonné par ville, comme le crawl
+    # Cache cloisonné par ville ET par cycle : « places » a son propre fichier,
+    # sinon son élagage effacerait le cache d'extraction du crawl (et l'inverse).
+    cache.bind(sector_id, "places")
     out_dir = out or SITE_DATA_DIR
 
+    # Les deux fournisseurs sont INDÉPENDANTS : Overpass est une API publique qui
+    # sature (504 vécu), DATAtourisme peut avoir son propre incident. La panne de
+    # l'un ne doit pas emporter l'autre — on n'abandonne que si les deux sont
+    # muets, auquel cas places.json reste tel quel plutôt que d'être vidé.
+    from . import datatourisme
+
+    found: list = []
+    manquants: list[str] = []
     try:
         found = places_mod.fetch_osm(sector, limit=limit)
     except Exception as exc:
-        log.error("[places] Overpass indisponible (%s) — places.json inchangé", exc)
-        return 1
-
-    # DATAtourisme complète OSM là où les contributeurs bénévoles manquent
-    # (description, horaires, labels). Complément : son absence n'est pas un
-    # échec, on continue avec OSM seul.
-    from . import datatourisme
+        log.error("[places] OpenStreetMap indisponible (%s) — on continue sans lui", exc)
+    if not found:
+        manquants.append("OpenStreetMap")
 
     dt = datatourisme.fetch(sector, limit=limit)
+    if not dt:
+        manquants.append("DATAtourisme")
     if dt:
         log.info("[places] DATAtourisme : %s", datatourisme.report(dt))
-        found = places_mod.dedupe_providers(found + dt)
+        found = places_mod.dedupe_providers(found + dt) if found else dt
 
     if not found:
-        log.error("[places] aucune activité trouvée — places.json inchangé (anomalie probable)")
+        log.error(
+            "[places] aucun fournisseur n'a répondu — places.json inchangé "
+            "(ne jamais publier un secteur vide sur une panne réseau)"
+        )
         return 1
+    if not dt and datatourisme.available():
+        log.warning("[places] DATAtourisme configuré mais muet — résultat OSM seul, incomplet")
 
     previous = places_mod.load(sector_id, out_dir)
     merged = places_mod.merge(previous, found)
+    # Dédoublonnage inter-fournisseurs REJOUÉ sur l'ensemble fusionné. Celui
+    # d'avant la fusion ne voit que la sweep du jour : quand un fournisseur est
+    # muet, ses fiches survivent par la rétention de merge() et échappent donc à
+    # tout rapprochement. Vécu sur le flux refusé en 403 : 26 doublons publiés,
+    # dont « Cathédrale Notre-Dame de Rodez » deux fois — une panne ne doit pas
+    # dégrader la qualité du jeu, seulement sa fraîcheur.
+    merged = places_mod.dedupe_providers(merged, phase="après fusion")
+    merged = places_mod.filter_relevant(merged)
 
     if use_llm:
         merged = places_mod.present(merged)  # no-op sans LLM
@@ -170,7 +192,38 @@ def discover_places(
     cache.save()
     refresh_place_count(sector_id, len(merged), out_dir)
 
+    # Provenance du classement sur l'ensemble FUSIONNÉ : c'est ce tableau qui
+    # dit quel tag OSM ou quel type d'ontologie gonfle une catégorie, et donc
+    # lequel resserrer. Sans lui on élague au jugé.
+    from collections import Counter
+
     from .models import NOTABLE_LABELS
+
+    # Le total affiché compte les FICHES, pas les tags : une fiche connue des
+    # deux fournisseurs en porte deux, et sommer les tags gonflait la catégorie
+    # (sport-loisir annoncé à 169 pour 159 fiches). Un instrument de diagnostic
+    # qui ment sur dix unités fait chercher un problème qui n'existe pas.
+    par_cat: dict[str, Counter] = {}
+    fiches: Counter = Counter()
+    for p in merged:
+        fiches[p.category] += 1
+        for tag in p.tags or []:
+            par_cat.setdefault(p.category, Counter())[tag] += 1
+    for cat, total in fiches.most_common():
+        counts = par_cat.get(cat, Counter())
+        log.info(
+            "[places] %-16s %4d — %s",
+            cat, total,
+            ", ".join(f"{t}×{n}" for t, n in counts.most_common(6)),
+        )
+
+    illustrees = sum(1 for p in merged if p.image_url)
+    sans_site = [p for p in merged if not p.url]
+    log.info(
+        "[places] %d fiches illustrées ; %d sans site officiel (page de détail), "
+        "dont %d avec photo",
+        illustrees, len(sans_site), sum(1 for p in sans_site if p.image_url),
+    )
 
     unusual = sum(1 for p in merged if p.unusual)
     labelled = sum(1 for p in merged if set(p.quality) & NOTABLE_LABELS)
@@ -180,6 +233,19 @@ def discover_places(
         "%d connues des deux fournisseurs) → %s",
         len(merged), sector.name, unusual, labelled, both, path,
     )
+    # La ligne de synthèse doit AVOUER une sweep incomplète. Deux runs de suite
+    # ont publié un jeu d'apparence saine — 2206 fiches, 1608 illustrations —
+    # alors qu'un fournisseur était absent : la rétention masque la panne
+    # précisément parce qu'elle fait son travail. Sur un cycle hebdomadaire dont
+    # personne ne lit le log, le jeu dériverait jusqu'à ce que les fiches
+    # conservées tombent d'un coup au bout des deux sweeps de sursis.
+    if manquants:
+        conserve = sum(1 for p in merged if p.last_seen and p.last_seen != date.today().isoformat())
+        log.warning(
+            "[places] SWEEP INCOMPLÈTE — %s absent(s) de ce run : %d fiches publiées "
+            "depuis la rétention, retrait automatique si l'absence dure plus de %d jours",
+            " et ".join(manquants), conserve, 7 * places_mod.MISSING_SWEEPS_BEFORE_DROP,
+        )
     return 0
 
 

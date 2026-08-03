@@ -20,6 +20,10 @@ sector:
   center_lat: 44.2789
   center_lon: 2.7300
   radius_minutes: 60
+  # Filtre DATAtourisme additionnel (mode API), facultatif : le périmètre est
+  # déjà dérivé de center_lat/lon + radius_minutes (paramètre geo_distance) et
+  # l'endpoint /placeOfInterest applique déjà le filtre de type.
+  datatourisme_filters: ""
 
 sources:
   # --- Cœur de l'épicentre (Lévézou / Pont-de-Salars) ------------------------

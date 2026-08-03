@@ -41,10 +41,17 @@ class _ContentCache:
         self._loaded = False
         self._path: Path | None = None  # None → CACHE_PATH (défaut)
 
-    def bind(self, sector_id: str) -> None:
-        """Cloisonne le cache sur cache/<sector_id>/content.json et repart à zéro
-        (relecture du fichier de cette ville au prochain accès)."""
-        self._path = CACHE_DIR / sector_id / "content.json"
+    def bind(self, sector_id: str, name: str = "content") -> None:
+        """Cloisonne le cache sur cache/<sector_id>/<name>.json et repart à zéro
+        (relecture du fichier de cette ville au prochain accès).
+
+        `name` sépare les CYCLES, pas seulement les villes. C'est indispensable :
+        l'élagage ne conserve que les clés vues pendant le run, donc un cycle qui
+        partagerait le fichier d'un autre l'effacerait. Vécu : la découverte
+        hebdomadaire d'activités a évincé le cache d'extraction du crawl, qui
+        aurait dû tout ré-appeler au passage suivant — et réciproquement.
+        """
+        self._path = CACHE_DIR / sector_id / f"{name}.json"
         self._store = {}
         self._used = set()
         self._loaded = False

@@ -49,6 +49,7 @@
   --p-marche: #8f6b28;
   --p-visite: #6741d9;
   --p-sport-loisir: #2b8a3e;
+  --p-prestation: #b5651d;
   --p-ferme: #7d6608;
   --p-bien-etre: #0c8599;
   --p-autre: #6b6558;
@@ -393,6 +394,55 @@ a { color: inherit; }
 }
 .backlink { display: inline-block; margin: 22px 0 0; color: var(--ink-soft); font-size: 0.9rem; }
 
+/* ---------------- Détail d'une activité permanente ----------------
+   Les badges de qualité et le tag « insolite » existent déjà pour les tuiles,
+   mais scopés sous .card-body : on les redécline ici plutôt que d'élargir les
+   sélecteurs de la grille, dont l'échelle typographique est différente. */
+
+.detail-hero .perm-badge {
+  display: inline-block; background: var(--cat); color: #fff; font-size: 0.72rem;
+  font-weight: 800; text-transform: uppercase; letter-spacing: 0.06em;
+  padding: 3px 9px; border-radius: 999px; vertical-align: 2px;
+}
+.detail-h2 { font-size: 1.05rem; margin: 32px 0 10px; letter-spacing: -0.01em; }
+.detail-desc.muted { color: var(--ink-soft); font-style: italic; }
+
+.place-photo { margin: 0 0 22px; }
+.place-photo img {
+  width: 100%; max-height: 380px; object-fit: cover;
+  border-radius: var(--radius); border: 1px solid var(--line); display: block;
+  background: var(--bg-soft);
+}
+.place-photo figcaption { margin-top: 6px; font-size: 0.78rem; color: var(--ink-soft); }
+
+.detail-cols .quality-badges { margin: 0 0 12px; display: flex; flex-wrap: wrap; gap: 6px; }
+.detail-cols .unusual-tag { margin: 0 0 12px; font-weight: 700; font-size: 0.92rem; }
+
+.loc-lines { line-height: 1.6; margin: 0 0 12px; }
+.loc-lines .coords {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 0.85rem;
+  color: var(--ink-soft);
+}
+.place-map {
+  height: 300px; border-radius: var(--radius); border: 1px solid var(--line);
+  overflow: hidden; background: var(--bg-soft);
+}
+.loc-source { margin: 10px 0 0; font-size: 0.82rem; color: var(--ink-soft); }
+.loc-warning {
+  margin: 14px 0 0; padding: 12px 14px; font-size: 0.86rem; line-height: 1.5;
+  border-radius: 10px; border: 1px solid var(--line);
+  background: color-mix(in srgb, var(--accent) 8%, var(--card));
+}
+.loc-warning strong { display: block; margin-bottom: 3px; }
+.infobox .src-note { display: block; margin-top: 8px; font-size: 0.8rem; color: var(--ink-soft); }
+
+/* Vignette sur les tuiles sans site officiel : c'est leur seul aperçu, mais
+   elle ne doit pas déséquilibrer la grille — hauteur fixe, recadrage centré. */
+.card-photo {
+  width: 100%; height: 140px; object-fit: cover; border-radius: 8px;
+  margin: 8px 0 4px; display: block; background: var(--bg-soft);
+}
+
 /* ---------------- Footer / à propos ---------------- */
 
 .site-footer {
@@ -441,7 +491,21 @@ a { color: inherit; }
 .city-card.is-active { border-color: var(--accent); box-shadow: var(--shadow-lift); }
 .city-card-head { display: flex; align-items: baseline; justify-content: space-between; gap: 8px; }
 .city-card h2 { margin: 0; font-size: 1.15rem; }
+/* Commune de départ : l'alternative à la géolocalisation, pour qui la refuse. */
+.origin-field input {
+  font: inherit; padding: 5px 9px; border: 1px solid var(--line); border-radius: 8px;
+  background: var(--card); color: var(--ink); min-width: 11ch; max-width: 22ch;
+}
+
 .city-count { font-size: 0.8rem; font-weight: 600; color: var(--ink-soft); white-space: nowrap; }
+/* Chiffres d'appel de la tuile de ville : ce qu'il y a à faire là-bas. */
+.city-stats {
+  list-style: none; margin: 8px 0 2px; padding: 0;
+  display: flex; flex-wrap: wrap; gap: 4px 14px;
+  font-size: 0.86rem; color: var(--ink-soft);
+}
+.city-stats b { color: var(--ink); font-weight: 800; }
+.city-stats .stat-unusual b, .city-stats .stat-notable b { color: var(--accent); }
 .city-radius { font-size: 0.85rem; color: var(--ink-soft); margin: 4px 0 12px; }
 .btn-open {
   display: inline-block; background: var(--accent); color: var(--accent-ink);
@@ -454,3 +518,11 @@ a { color: inherit; }
   background: var(--bg-soft); border: 1px solid var(--line); border-radius: 999px; padding: 7px 14px;
 }
 .loc-warn { color: var(--ink-soft); display: inline-block; margin-top: 4px; }
+
+/* Note de troncature sous la grille : un plafond doit se voir, sinon une liste
+   partielle passe pour exhaustive. */
+.truncated-note {
+  margin: 18px 2px 0; font-size: 0.85rem; color: var(--ink-soft);
+  background: var(--bg-soft); border: 1px solid var(--line);
+  border-radius: 10px; padding: 10px 14px;
+}

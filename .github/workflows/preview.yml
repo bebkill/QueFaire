@@ -1,0 +1,84 @@
+# Aperçu du site AVANT fusion dans main.
+#
+# GitHub Pages n'héberge qu'un site par dépôt : déployer `dev` écraserait la
+# production. On produit donc le site complet en ARTEFACT téléchargeable, que
+# l'on sert depuis sa propre machine.
+#
+# Ce n'est pas un pis-aller : c'est le seul moyen de vérifier ce qui dépend du
+# réseau du visiteur — les tuiles OpenStreetMap de la carte et les photos
+# DATAtourisme, qu'aucun environnement d'intégration ne peut charger à sa place.
+#
+# Le site est bâti avec SITE_BASE=/ (et non /QueFaire/ comme en production) pour
+# être servi à la racine d'un serveur local.
+name: Preview site
+
+on:
+  workflow_dispatch:
+    inputs:
+      ref:
+        description: "Branche ou commit à prévisualiser"
+        required: false
+        default: "dev"
+
+permissions:
+  contents: read
+
+jobs:
+  preview:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.ref }}
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: site/package-lock.json
+
+      - name: Build site
+        working-directory: site
+        env:
+          SITE_URL: http://localhost:8000
+          SITE_BASE: /
+        run: |
+          npm ci
+          npm run build
+
+      # Un récapitulatif dans l'onglet du run : combien de pages, combien
+      # d'activités, et le mode d'emploi — pour ne pas avoir à le rechercher.
+      - name: Récapitulatif
+        run: |
+          pages=$(find site/dist -name index.html | wc -l)
+          activites=$(find site/dist -path '*/activite/*' -name index.html | wc -l)
+          poids=$(du -sh site/dist | cut -f1)
+          {
+            echo "## Aperçu prêt — \`${{ inputs.ref }}\`"
+            echo ""
+            echo "| | |"
+            echo "|---|---|"
+            echo "| Pages générées | $pages |"
+            echo "| Fiches d'activité | $activites |"
+            echo "| Poids total | $poids |"
+            echo ""
+            echo "Télécharger l'artefact **site-preview** ci-dessous, puis :"
+            echo ""
+            echo '```bash'
+            echo "unzip site-preview.zip -d apercu && cd apercu"
+            echo "python3 -m http.server 8000"
+            echo '```'
+            echo ""
+            echo "Puis ouvrir <http://localhost:8000/villes/>."
+            echo ""
+            echo "À regarder en priorité : une fiche d'activité sans site officiel"
+            echo "(\`/pont-de-salars/activite/…\`) — c'est là que se vérifient la carte"
+            echo "de localisation et les photos, les deux seules choses qu'aucun runner"
+            echo "ne peut charger à votre place."
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: site-preview
+          path: site/dist
+          retention-days: 7

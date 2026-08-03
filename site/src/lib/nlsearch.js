@@ -79,6 +79,7 @@ const PLACE_CATEGORY_SYNONYMS = {
   marche: /marches?\b|halles?\b/,
   visite: /visites?|curiosites?|oeuvres?\b|street art/,
   'sport-loisir': /bowlings?|patinoires?|golfs?|escalades?|equitations?|escape games?/,
+  prestation: /accrobranches?|activites? encadrees?|stages?\b|initiations?|balades? guidees?|visites? guidees?|prestataires?/,
   ferme: /fermes?\b|artisans?|producteurs?|ateliers? d.artisan/,
   'bien-etre': /thermes?|spas?\b|bien etre/,
 };

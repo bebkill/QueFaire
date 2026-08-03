@@ -8,6 +8,14 @@ const { title = 'Que faire ?', description, sector } = Astro.props;
 const base = import.meta.env.BASE_URL;
 const cityBase = sector ? `${base}${sector.id}/` : base;
 const cityCount = cities.cities.length;
+// Le pied de page n'annonçait que les événements — le plus petit des deux
+// chiffres, et celui qui fond dès qu'une saison se termine. Ce qu'on propose
+// vraiment est la somme des deux, dont on détaille la part permanente.
+const totalOffre = (sector?.place_count || 0) + (sector?.event_count || 0);
+const permanentes = sector?.place_count
+  ? ` (dont ${sector.place_count} ouvertes toute l'année)`
+  : '';
+
 const desc = description
   || (sector
     ? `Toutes les sorties et activités en ${sector.name}, au même endroit.`
@@ -43,7 +51,8 @@ const desc = description
       <div class="wrap">
         {sector ? (
           <span>
-            Que faire ? — {sector.event_count} événements agrégés depuis {sector.sources.length || 'nos'} sources locales.
+            Que faire ? — {totalOffre} activités et sorties pour {sector.name}{permanentes},
+            agrégées depuis {sector.sources.length || 'nos'} sources locales.
             · <a href={`${base}villes/`}>{cityCount} {cityCount > 1 ? 'villes couvertes' : 'ville couverte'}</a>
           </span>
         ) : (

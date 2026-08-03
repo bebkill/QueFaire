@@ -1,0 +1,239 @@
+---
+import Base from '../../../layouts/Base.astro';
+import { cityIds, getSector, getPlaces } from '../../../lib/sectors.js';
+import { PLACE_EMOJI, openingLabel, qualityBadges } from '../../../lib/format.js';
+
+// Page de détail des activités permanentes SANS site officiel.
+//
+// Celles qui en ont un continuent d'envoyer directement chez l'exploitant :
+// c'est lui qui sait ses horaires et ses tarifs, et le trafic lui revient. Les
+// autres — 962 sur 2204 à Pont-de-Salars — n'avaient aucune destination : la
+// tuile pointait vers OpenStreetMap, c'est-à-dire vers une carte technique qui
+// ne dit pas ce qu'on peut y faire. D'où cette page, dont la promesse tient en
+// deux points : dire OÙ c'est exactement, et ne rien affirmer qu'on ne tienne
+// d'une source.
+export function getStaticPaths() {
+  return cityIds.flatMap((city) => {
+    const sector = getSector(city);
+    return getPlaces(city)
+      .filter((place) => !place.url)
+      .map((place) => ({ params: { city, id: place.id }, props: { place, sector } }));
+  });
+}
+
+const { place, sector } = Astro.props;
+const base = import.meta.env.BASE_URL;
+const cityBase = `${base}${sector.id}/`;
+const label = sector.place_categories?.[place.category] || 'Activité';
+const emoji = PLACE_EMOJI[place.category] || '📍';
+const badges = qualityBadges(place.quality, 6);
+const opening = openingLabel(place.opening_hours);
+const qualityLabels = sector.quality_labels || {};
+
+// Coordonnées telles que publiées, arrondies au dix-millionième de degré près
+// (~1 cm) : on affiche ce qu'on a reçu, sans recalcul ni « amélioration ».
+const coords = place.lat != null && place.lon != null
+  ? `${place.lat.toFixed(5)}, ${place.lon.toFixed(5)}`
+  : null;
+
+// Provenance de la POSITION, pas de la fiche. C'est la seule information que
+// cette page promet d'exactitude, elle doit donc être attribuable.
+const positionSource = place.providers?.includes('osm')
+  ? { nom: 'OpenStreetMap', lien: place.external_id?.includes('/') ? `https://www.openstreetmap.org/${place.external_id}` : null }
+  : { nom: 'DATAtourisme', lien: place.image_page?.startsWith('http') ? place.image_page : null };
+
+const itineraire = coords
+  ? `https://www.openstreetmap.org/directions?to=${place.lat}%2C${place.lon}`
+  : null;
+const surOsm = coords
+  ? `https://www.openstreetmap.org/?mlat=${place.lat}&mlon=${place.lon}#map=17/${place.lat}/${place.lon}`
+  : null;
+
+const providerNames = { osm: 'OpenStreetMap', datatourisme: 'DATAtourisme' };
+---
+
+<Base
+  title={`${place.name} · QueFaire — ${sector.name}`}
+  description={(place.tldr || place.description || `${label} à ${place.commune || sector.name}.`).slice(0, 150)}
+  sector={sector}
+>
+  <section class="detail-hero" style={`--cat: var(--p-${place.category})`}>
+    <div class="wrap">
+      <span class="cat-label">{emoji} {label}</span>
+      <h1>{place.name}</h1>
+      <p class="when">
+        <span class="perm-badge">Permanent</span>
+        {place.commune && <> · 📍 {place.commune}</>}
+      </p>
+    </div>
+  </section>
+
+  <main class="wrap">
+    <div class="detail-cols">
+      <div>
+        {place.image_url && (
+          <figure class="place-photo">
+            <img
+              src={place.image_url}
+              alt={`Photo de ${place.name}`}
+              loading="lazy"
+              decoding="async"
+              referrerpolicy="no-referrer"
+            />
+            <figcaption>
+              {/* Une photo a un auteur et une licence propres, distincts de ceux
+                  du jeu de données. Quand le crédit manque, on le dit — on
+                  n'attribue jamais l'image au hasard. */}
+              {place.image_credit ? `© ${place.image_credit}` : 'Crédit non communiqué par la source'}
+              {place.image_page && (
+                <> · <a href={place.image_page} target="_blank" rel="noopener">auteur et licence ↗</a></>
+              )}
+            </figcaption>
+          </figure>
+        )}
+
+        {badges.length > 0 && (
+          <p class="quality-badges">
+            {badges.map((b) => (
+              <span class="q-badge" title={qualityLabels[b.code] || b.short}>
+                <span aria-hidden="true">{b.emoji}</span> {b.short}
+              </span>
+            ))}
+          </p>
+        )}
+        {place.unusual && <p class="unusual-tag">✨ Insolite — hors des sentiers battus</p>}
+        {place.tldr && <p class="detail-tldr">💡 En clair : {place.tldr}</p>}
+
+        {place.description ? (
+          <p class="detail-desc">{place.description}</p>
+        ) : (
+          !place.tldr && (
+            <p class="detail-desc muted">
+              Aucune description n'est publiée pour cette activité. Nous préférons
+              vous le dire plutôt que de vous en inventer une — les informations
+              ci-contre sont celles que la source fournit, rien de plus.
+            </p>
+          )
+        )}
+
+        <h2 class="detail-h2">Où est-ce exactement ?</h2>
+        <p class="loc-lines">
+          {place.address && <><b>{place.address}</b><br /></>}
+          {place.commune && <>{place.commune}<br /></>}
+          {coords && <span class="coords">{coords}</span>}
+        </p>
+        {coords && (
+          <div
+            id="place-map"
+            class="place-map"
+            data-lat={place.lat}
+            data-lon={place.lon}
+            data-name={place.name}
+          ></div>
+        )}
+        <p class="loc-source">
+          Position publiée par {positionSource.lien
+            ? <a href={positionSource.lien} target="_blank" rel="noopener">{positionSource.nom} ↗</a>
+            : positionSource.nom}. L'adresse exacte n'est pas vérifiée. Nous
+          recommandons de réaliser des recherches complémentaires avant de vous
+          déplacer.
+        </p>
+
+        {/* Avertissement de fraîcheur. Une activité peut avoir fermé entre deux
+            découvertes : le pipeline ne le détecte qu'à son absence de deux
+            sweeps consécutives, soit deux semaines. Vécu sur « Accrobranche »,
+            définitivement fermée et toujours publiée. Le dire vaut mieux que
+            laisser croire à une vérification qu'on ne fait pas. */}
+        <p class="loc-warning">
+          <strong>⚠ Vérifiez avant de partir.</strong> Nous faisons notre possible
+          pour ne présenter que des activités pertinentes et existantes, mais nos
+          sources ne signalent pas toujours une fermeture. Renseignez-vous sur les
+          horaires d'ouverture et le maintien en activité avant de vous déplacer.
+        </p>
+
+        <a class="backlink" href={cityBase}>← Retour aux activités</a>
+      </div>
+
+      <aside class="infobox">
+        {opening && (
+          <div class="row">
+            <b>Horaires</b>
+            🕒 {opening}
+          </div>
+        )}
+        {place.phone && (
+          <div class="row">
+            <b>Téléphone</b>
+            <a href={`tel:${place.phone.replace(/\s/g, '')}`}>{place.phone}</a>
+          </div>
+        )}
+        {place.fee === false && (
+          <div class="row">
+            <b>Tarif</b>
+            Gratuit
+          </div>
+        )}
+        {itineraire && (
+          <div class="row">
+            <b>Y aller</b>
+            <a class="src" href={itineraire} target="_blank" rel="noopener">Calculer un itinéraire ↗</a>
+            <a class="src" href={surOsm} target="_blank" rel="noopener">Voir sur OpenStreetMap ↗</a>
+          </div>
+        )}
+        <div class="row">
+          <b>{place.providers?.length > 1 ? 'Sources' : 'Source'}</b>
+          {(place.providers || []).map((p) => providerNames[p] || p).join(' · ') || '—'}
+          <span class="src-note">
+            Pas de site officiel connu pour cette activité. Si vous en connaissez
+            un, <a href={`${cityBase}proposer/`}>signalez-le nous</a>.
+          </span>
+        </div>
+      </aside>
+    </div>
+  </main>
+</Base>
+
+<script>
+  // Carte d'un point unique : même fond et même attribution que l'agenda, mais
+  // chargée seulement si le navigateur affiche la page (Leaflet pèse lourd pour
+  // une seule épingle). Pas d'interaction à la molette, la page défile.
+  const el = document.getElementById('place-map');
+  if (el) {
+    const lat = Number(el.dataset.lat);
+    const lon = Number(el.dataset.lon);
+    const afficher = async () => {
+      const L = (await import('leaflet')).default;
+      await import('leaflet/dist/leaflet.css');
+      const map = L.map(el, { scrollWheelZoom: false }).setView([lat, lon], 15);
+      L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 18,
+        attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+      }).addTo(map);
+      // `circleMarker` et non `marker` : l'épingle par défaut de Leaflet est une
+      // IMAGE dont l'URL est résolue depuis le CSS, et le bundler la casse — la
+      // carte s'affichait sans son marqueur. Un cercle vectoriel n'a pas ce
+      // problème, et c'est déjà ce qu'utilise la carte de l'agenda.
+      L.circleMarker([lat, lon], {
+        radius: 9,
+        color: '#fff',
+        weight: 3,
+        fillColor: '#e2582a',
+        fillOpacity: 1,
+      })
+        .addTo(map)
+        .bindPopup(el.dataset.name)
+        .openPopup();
+    };
+    if ('IntersectionObserver' in window) {
+      const obs = new IntersectionObserver((entries) => {
+        if (entries.some((e) => e.isIntersecting)) {
+          obs.disconnect();
+          afficher();
+        }
+      });
+      obs.observe(el);
+    } else {
+      afficher();
+    }
+  }
+</script>
