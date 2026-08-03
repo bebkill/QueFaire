@@ -1197,6 +1197,70 @@ def test_osm_image_only_from_commons():
     assert _image_of({}) == (None, None, None)
 
 
+def test_datatourisme_falls_back_to_api_when_flux_refused(monkeypatch):
+    """Un flux dépublié rend 403 : la clé d'API doit prendre le relais.
+
+    Sans ce repli, le run publiait un jeu OSM seul — amputé du tiers de ses
+    fiches — sans autre signe qu'un warning noyé dans le log.
+    """
+    from quefaire import datatourisme as dt
+    from quefaire.cli import load_sector
+
+    monkeypatch.setenv(dt.FLUX_ENV, "https://flux.test/refuse")
+    monkeypatch.setenv(dt.API_KEY_ENV, "K")
+    monkeypatch.delenv(dt.API_PARAMS_ENV, raising=False)
+    monkeypatch.delenv(dt.API_FILTERS_ENV, raising=False)
+
+    def flux_refuse(_url):
+        raise RuntimeError("403 Client Error: Forbidden")
+
+    appels = []
+
+    def api(key, sector, filters=""):
+        appels.append(key)
+        return [{
+            "uri": "https://data.datatourisme.fr/7",
+            "@type": ["Museum"],
+            "rdfs:label": {"fr": ["Musée de secours"]},
+            "isLocatedAt": {"schema:geo": {"schema:latitude": "44.19", "schema:longitude": "2.68"}},
+        }]
+
+    monkeypatch.setattr(dt, "_nodes_from_flux", flux_refuse)
+    monkeypatch.setattr(dt, "_nodes_from_api", api)
+
+    found = dt.fetch(load_sector("pont-de-salars"))
+    assert appels == ["K"]                       # le repli a bien été emprunté
+    assert [p.name for p in found] == ["Musée de secours"]
+
+
+def test_dedupe_after_merge_absorbs_retained_duplicates():
+    """Une panne de fournisseur ne doit pas publier deux fois le même lieu.
+
+    Les fiches d'un fournisseur muet survivent par la rétention de merge() ;
+    elles échappent donc au dédoublonnage d'avant fusion, et se retrouvaient
+    côte à côte avec la fiche OSM fraîche du même lieu.
+    """
+    from quefaire.models import Place
+    from quefaire.places import dedupe_providers, merge
+
+    retenue = Place(name="Cathédrale Notre-Dame de Rodez", category="patrimoine",
+                    source_id="datatourisme", sector="s", external_id="dt/1",
+                    lat=44.3496, lon=2.5751, description="Gothique méridional.",
+                    tldr="Une flèche de 87 m.", providers=["datatourisme"],
+                    tags=["dt:Church"], last_seen="2026-08-02")
+    fraiche = Place(name="Cathédrale Notre-Dame de Rodez", category="patrimoine",
+                    source_id="osm", sector="s", external_id="way/9",
+                    lat=44.3497, lon=2.5752, opening_hours="Mo-Su 09:00-19:00",
+                    providers=["osm"], tags=["osm:historic=church"])
+
+    fusion = merge([retenue], [fraiche], today="2026-08-03")
+    assert len(fusion) == 2  # la rétention les laisse côte à côte…
+    [unique] = dedupe_providers(fusion)  # …le dédoublonnage les réunit
+    assert unique.opening_hours == "Mo-Su 09:00-19:00"   # fait frais conservé
+    assert unique.tldr == "Une flèche de 87 m."          # enrichissement conservé
+    assert set(unique.providers) == {"osm", "datatourisme"}
+
+
 def test_places_roundtrip_and_place_count(tmp_path):
     from quefaire.export import _count_places
     from quefaire.models import Place

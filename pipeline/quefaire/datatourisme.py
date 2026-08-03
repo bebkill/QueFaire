@@ -643,11 +643,15 @@ def fetch(sector, limit: int | None = None) -> list[Place]:
     """Rend les activités DATAtourisme du rayon, par flux ou par API.
 
     Le **flux** est préféré quand il est configuré : une requête au lieu d'une
-    par page, donc un coût dérisoire face au quota horaire. L'API sert de repli
-    quand on ne dispose que d'une clé.
+    par page, donc un coût dérisoire face au quota horaire. Mais il n'est pas
+    plus fiable qu'autre chose — un flux dépublié ou mal partagé rend 403 —, et
+    la clé d'API reste alors disponible : elle sert de **repli**, comme les
+    miroirs Overpass et la chaîne de backups LLM. Sans ce repli, une URL de flux
+    fautive faisait publier un jeu OSM seul, silencieusement amputé du tiers de
+    ses fiches.
 
-    Retourne [] (sans lever) si rien n'est configuré ou si la source est
-    injoignable : c'est un complément d'OSM, son absence ne doit pas faire
+    Retourne [] (sans lever) si rien n'est configuré ou si les deux voies sont
+    injoignables : c'est un complément d'OSM, son absence ne doit pas faire
     échouer la découverte.
     """
     flux = os.environ.get(FLUX_ENV)
@@ -658,14 +662,24 @@ def fetch(sector, limit: int | None = None) -> list[Place]:
         )
         return []
 
-    try:
-        nodes = _nodes_from_flux(flux) if flux else _nodes_from_api(
-            key, sector, getattr(sector, "datatourisme_filters", "")
-        )
-    except Exception as exc:
-        log.warning("[datatourisme] source injoignable (%s) — OSM seul", exc)
-        return []
+    nodes: list[dict] = []
+    if flux:
+        try:
+            nodes = _nodes_from_flux(flux)
+        except Exception as exc:
+            log.warning("[datatourisme] flux injoignable (%s)", exc)
+        if not nodes and key:
+            log.warning(
+                "[datatourisme] le flux n'a rien rendu — repli sur l'API (%s)", API_KEY_ENV
+            )
+    if not nodes and key:
+        try:
+            nodes = _nodes_from_api(key, sector, getattr(sector, "datatourisme_filters", ""))
+        except Exception as exc:
+            log.warning("[datatourisme] API injoignable (%s) — OSM seul", exc)
+            return []
     if not nodes:
+        log.warning("[datatourisme] aucune voie n'a rendu de fiche — OSM seul")
         return []
 
     today = date.today().isoformat()
