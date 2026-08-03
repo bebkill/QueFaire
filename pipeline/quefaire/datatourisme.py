@@ -545,6 +545,11 @@ def _to_place(node: dict, sector_id: str, today: str) -> Place | None:
 
 def _nodes_from_flux(flux: str) -> list[dict]:
     """Mode FLUX (« API locale ») : une seule requête ramène tout le jeu."""
+    # Le mode retenu doit se lire dans le log : les deux branches ne rendent PAS
+    # les mêmes champs (le flux ignore `fields` et `lang`), donc un écart de
+    # résultat s'explique d'abord par le mode, et il faut pouvoir le constater
+    # au lieu de le déduire de l'absence de lignes de pagination.
+    log.info("[datatourisme] mode FLUX (une requête, périmètre défini par le diffuseur)")
     payload = _request(flux).json()
     nodes = payload.get("@graph") if isinstance(payload, dict) else payload
     if not isinstance(nodes, list):
@@ -602,7 +607,7 @@ def _nodes_from_api(key: str, sector, filters: str = "") -> list[dict]:
     # doc, et elle évite que la clé se retrouve dans les logs de requêtes.
     headers = {"X-API-Key": key}
 
-    log.info("[datatourisme] rayon %.0f km autour de %s", km, sector.name)
+    log.info("[datatourisme] mode API — rayon %.0f km autour de %s", km, sector.name)
     nodes: list[dict] = []
     for page in range(MAX_PAGES):
         payload = _request(url, headers).json()
@@ -724,6 +729,11 @@ def report(places: list[Place]) -> dict:
         "avec_site": sum(1 for p in places if p.url),
         "avec_horaires": sum(1 for p in places if p.opening_hours),
         "avec_label": sum(1 for p in places if p.quality),
+        # Les images, à surveiller de près en mode FLUX : le paramètre `fields`
+        # n'y existe pas, le contenu est celui que l'export du diffuseur embarque.
+        # Un flux sans `hasMainRepresentation` ferait disparaître d'un coup les
+        # ~1600 illustrations sans autre signe qu'un chiffre qui tombe ici.
+        "avec_image": sum(1 for p in places if p.image_url),
         "taux_description": round(100 * sum(1 for p in places if p.description) / total),
         "taux_site": round(100 * sum(1 for p in places if p.url) / total),
     }
