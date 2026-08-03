@@ -43,19 +43,36 @@ rafraîchis 2×/jour par la CI, sans intervention.
 
 **Épicentres actifs** : Villemoirieu (nord-Isère) et Pont-de-Salars (Aveyron).
 
-## En cours (branche `dev`)
+## v1.1 — livré : les activités permanentes
 
-- [x] **Activités permanentes** : découverte OpenStreetMap (musées, monuments,
-      parcs d'attraction et aquatiques, cinémas, ludothèques, marchés, fermes,
-      curiosités), cadence hebdomadaire découplée du crawl
+Un agenda ne répond qu'à « qu'est-ce qui se passe ce week-end ». Il manquait
+« qu'est-ce qu'on peut faire, tout simplement » — musées, monuments, fermes,
+parcs, curiosités : ce qui est vrai toute l'année. **1876 activités** pour
+Pont-de-Salars, contre 36 événements datés.
+
+- [x] **Deux fournisseurs complémentaires** : OpenStreetMap (Overpass, 3 miroirs)
+      et **DATAtourisme** (Licence Ouverte), indépendants — la panne de l'un
+      n'emporte pas l'autre. Flux préféré, API en repli automatique.
 - [x] Repérage dédié sur les tuiles (badge « Permanent », icône, liseré), sur la
-      carte (pastille à icône) et dans la recherche (chips + langage naturel)
-- [x] Note d'avis Google ou TripAdvisor, affichée et filtrable (« bien noté »),
-      optionnelle — sans clé d'API, les activités sortent sans note
-- [x] Tag **✨ Insolite** pour les activités méconnues : heuristique (ni marque,
-      ni page wikipédia) confirmée par le LLM, filtrable
-- [x] Présentation « donne envie » générée une seule fois à la découverte, et
-      lien direct vers le site de l'activité
+      carte et dans la recherche (chips + langage naturel), plus un filtre
+      **🎪 Événements datés** pour ne voir que l'actualité
+- [x] Tag **✨ Insolite**, confirmé par le LLM et non par la seule heuristique,
+      et **🏅 Valeurs sûres** adossé aux distinctions officielles
+- [x] Présentation « donne envie » générée une seule fois, cache par contenu
+- [x] **Page de détail** pour les 716 activités sans site officiel : emplacement
+      exact (carte, coordonnées telles que publiées, itinéraire), **photo créditée**
+      quand la source en fournit une (Wikimedia Commons, DATAtourisme §8.9), et
+      avertissement explicite invitant à vérifier ouverture et maintien en activité
+- [x] **Exigence de signal** dans toutes les catégories : une fiche sans
+      description, site, horaires, photo ni distinction n'est pas publiée
+      (2624 → 1876 fiches). Réversible : une fiche enrichie par sa source
+      réapparaît d'elle-même.
+- [x] **Commune de départ** saisissable, pour qui refuse la géolocalisation —
+      coordonnées embarquées, aucun appel réseau
+- [x] Note d'avis Google ou TripAdvisor **collectée mais non affichée** : les CGU
+      des deux fournisseurs l'interdisent hors de leurs composants (voir
+      `ARCHITECTURE.md`). Remplacée par les distinctions officielles en données
+      ouvertes.
 
 ## Ensuite
 
