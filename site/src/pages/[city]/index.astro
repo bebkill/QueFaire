@@ -131,6 +131,28 @@ const communePoints = sector.commune_points || [];
           <option value="walk">à pied</option>
         </select>
       </label>
+      <label class="timefilter">
+        ↕ trier par
+        <select id="sortby">
+          <option value="pertinence">pertinence</option>
+          <option value="distance">distance</option>
+          <option value="date">date</option>
+          {/* « Gratuit d'abord » et non « prix croissant » : on ne dispose que
+              d'un booléen de gratuité et d'un texte de tarif libre, pas d'un
+              montant comparable. Annoncer un tri par prix serait mentir. */}
+          <option value="gratuit">gratuit d'abord</option>
+          <option value="nom">nom</option>
+        </select>
+      </label>
+      <label class="timefilter">
+        ▦ par page
+        <select id="pagesize">
+          <option value="12">12</option>
+          <option value="24" selected>24</option>
+          <option value="48">48</option>
+          <option value="0">tout</option>
+        </select>
+      </label>
       <span class="geostate" id="geostate"></span>
       <button class="reset" id="reset" type="button">Tout réafficher</button>
     </div>
@@ -140,20 +162,43 @@ const communePoints = sector.commune_points || [];
       <p class="map-note">Temps de trajet estimés à vol d'oiseau corrigé — un calcul d'itinéraire précis arrive en roadmap.</p>
     </div>
 
-    <div class="grid" id="grid">
-      {events.map((event) => <EventCard event={event} cityBase={cityBase} categories={sector.categories} />)}
-      {sortedPlaces.map((place) => (
-        <PlaceCard place={place} categories={placeCategories} sectorQuality={qualityLabels} cityBase={cityBase} />
-      ))}
-    </div>
+    {/* Deux sections plutôt qu'une grille mêlée : un concert du 12 avril et un
+        musée ouvert toute l'année ne se comparent pas, et les trier ensemble
+        obligeait à un ordre arbitraire (« les datés d'abord »). Séparés, chacun
+        garde son ordre naturel. Les filtres, eux, s'appliquent aux deux. */}
+    <section class="section" id="sec-events">
+      <div class="section-head">
+        <h2>🎪 À l'affiche</h2>
+        <span class="section-count" id="count-events"></span>
+      </div>
+      <p class="section-hint">Événements datés — ils ne repasseront pas.</p>
+      <div class="grid" id="grid-events">
+        {events.map((event) => <EventCard event={event} cityBase={cityBase} categories={sector.categories} />)}
+      </div>
+      <nav class="pager" id="pager-events" aria-label="Pages des événements"></nav>
+    </section>
 
-    {hiddenPlaces > 0 && (
-      <p class="truncated-note">
-        {hiddenPlaces} autres activités permanentes recensées dans le rayon ne sont pas
-        affichées ici&nbsp;: la page montre les {MAX_RENDERED} plus documentées
-        (distinction officielle, horaires, site officiel).
-      </p>
-    )}
+    <section class="section" id="sec-places">
+      <div class="section-head">
+        <h2>🏛️ Toute l'année</h2>
+        <span class="section-count" id="count-places"></span>
+      </div>
+      <p class="section-hint">Activités permanentes — à faire quand vous voulez.</p>
+      <div class="grid" id="grid-places">
+        {sortedPlaces.map((place) => (
+          <PlaceCard place={place} categories={placeCategories} sectorQuality={qualityLabels} cityBase={cityBase} />
+        ))}
+      </div>
+      <nav class="pager" id="pager-places" aria-label="Pages des activités"></nav>
+      {hiddenPlaces > 0 && (
+        <p class="truncated-note">
+          {hiddenPlaces} autres activités permanentes recensées dans le rayon ne sont pas
+          affichées ici&nbsp;: la page montre les {MAX_RENDERED} plus documentées
+          (distinction officielle, horaires, site officiel). La pagination découpe
+          l'affichage, elle ne change pas ce que la page embarque.
+        </p>
+      )}
+    </section>
 
     <div class="empty" id="empty">
       <div class="big">🔍</div>
@@ -175,8 +220,34 @@ const communePoints = sector.commune_points || [];
   // qu'importé statiquement — le script est partagé par toutes les routes [city].
   const sector = JSON.parse(document.getElementById('sector-data').textContent);
 
-  const grid = document.getElementById('grid');
-  const cards = Array.from(grid.querySelectorAll('.card'));
+  // Deux sections, deux grilles, deux paginations indépendantes : filtrer les
+  // événements ne doit pas renvoyer les activités à leur première page.
+  const SECTIONS = {
+    event: {
+      section: document.getElementById('sec-events'),
+      grid: document.getElementById('grid-events'),
+      pager: document.getElementById('pager-events'),
+      count: document.getElementById('count-events'),
+      page: 1,
+      visible: [],
+      un: 'événement', plusieurs: 'événements',
+    },
+    place: {
+      section: document.getElementById('sec-places'),
+      grid: document.getElementById('grid-places'),
+      pager: document.getElementById('pager-places'),
+      count: document.getElementById('count-places'),
+      page: 1,
+      visible: [],
+      un: 'activité', plusieurs: 'activités',
+    },
+  };
+  const cards = Object.values(SECTIONS).flatMap((s) => Array.from(s.grid.querySelectorAll('.card')));
+  // Rang d'origine figé AVANT tout réordonnancement : une fois les cartes
+  // déplacées par un tri, l'ordre du DOM ne dit plus celui du pipeline.
+  const rangInitial = new Map(cards.map((card, i) => [card, i]));
+  const sortEl = document.getElementById('sortby');
+  const pageSizeEl = document.getElementById('pagesize');
   const input = document.getElementById('searchinput');
   const form = document.getElementById('searchform');
   const countEl = document.getElementById('count');
@@ -316,7 +387,10 @@ const communePoints = sector.commune_points || [];
   function apply() {
     clearMapSelection(); // les fiches changent : la sélection carte n'a plus de sens
     const filter = currentFilter();
-    const needsGeo = filter.nearMe || filter.maxMinutes != null;
+    // Trier par distance exige un point de départ, exactement comme « Près de
+    // moi » : choisir ce tri déclenche donc la même demande (géolocalisation, ou
+    // invitation à nommer sa commune si elle est refusée).
+    const needsGeo = filter.nearMe || filter.maxMinutes != null || sortEl.value === 'distance';
 
     if (needsGeo && !userPos) {
       requestGeoloc(apply);
@@ -360,25 +434,30 @@ const communePoints = sector.commune_points || [];
           card, dist, date: data.date, data,
           isPlace: data.kind === 'place',
           notable: data.notable === 'true',
+          // Rang d'origine dans le DOM = ordre voulu par le pipeline (date pour
+          // les événements, score de documentation pour les activités). C'est la
+          // « pertinence », et le repli de tous les autres tris à égalité.
+          rang: rangInitial.get(card),
+          nom: card.querySelector('h3')?.textContent?.trim() || '',
         });
       } else {
         distEl.textContent = '';
       }
     }
 
-    // Tri : proximité si géolocalisé. Sinon les événements datés d'abord (par
-    // date), puis les activités permanentes (par note) — une activité ouverte
-    // toute l'année n'a pas de place dans une chronologie.
-    visible.sort((a, b) => {
-      if (needsGeo && a.dist != null && b.dist != null) return a.dist - b.dist;
-      if (a.isPlace !== b.isPlace) return a.isPlace ? 1 : -1;
-      if (a.isPlace) return Number(b.notable) - Number(a.notable);
-      return a.date.localeCompare(b.date);
-    });
-    for (const { card } of visible) grid.appendChild(card);
+    // Chaque section garde son ordre naturel. `ordre` est le comparateur commun,
+    // « pertinence » étant le seul à s'interpréter différemment selon le type :
+    // une chronologie n'a pas de sens pour un lieu ouvert toute l'année, et un
+    // score de documentation n'en a pas pour un concert daté.
+    for (const [kind, sec] of Object.entries(SECTIONS)) {
+      sec.visible = visible.filter((v) => (v.isPlace ? 'place' : 'event') === kind);
+      sec.visible.sort(ordre(sortEl.value, kind));
+      if (sec.page > pagesTotal(sec)) sec.page = 1; // le filtre a raccourci la liste
+      rendre(sec);
+    }
 
-    const nbPlaces = visible.filter((v) => v.isPlace).length;
-    const nbEvents = shown - nbPlaces;
+    const nbEvents = SECTIONS.event.visible.length;
+    const nbPlaces = SECTIONS.place.visible.length;
     const parts = [];
     if (nbEvents || !nbPlaces) parts.push(nbEvents === 1 ? '1 événement' : `${nbEvents} événements`);
     if (nbPlaces) parts.push(nbPlaces === 1 ? '1 activité permanente' : `${nbPlaces} activités permanentes`);
@@ -388,13 +467,95 @@ const communePoints = sector.commune_points || [];
         ? ` (+ ${unlocated} sans lieu précis, masqué${unlocated > 1 ? 's' : ''} par le filtre temps)`
         : '');
     emptyEl.classList.toggle('visible', shown === 0);
-    grid.style.display = shown === 0 ? 'none' : '';
     const isFiltered =
-      state.query.trim() !== '' || state.chips.size > 0 || timeLimitEl.value !== '';
+      state.query.trim() !== '' || state.chips.size > 0 || timeLimitEl.value !== '' ||
+      sortEl.value !== 'pertinence';
     resetBtn.classList.toggle('visible', isFiltered);
 
+    // La carte suit le FILTRE, pas la pagination : elle sert de vue d'ensemble
+    // spatiale, la pagination n'est qu'un confort de lecture. Cliquer une bulle
+    // dont la fiche est sur une autre page change de page — voir `allerA`.
     lastVisible = visible;
     updateMap(visible, true);
+  }
+
+  /** Comparateur pour un type donné. */
+  function ordre(critere, kind) {
+    const parNom = (a, b) => fold(a.nom).localeCompare(fold(b.nom));
+    const parDate = (a, b) => (a.date || '').localeCompare(b.date || '');
+    // Pertinence : l'ordre du DOM, qui est déjà celui du pipeline — date pour les
+    // événements, score de documentation pour les activités (`rankPlaces`).
+    const parDefaut = (a, b) => a.rang - b.rang;
+    switch (critere) {
+      case 'distance':
+        return (a, b) => (a.dist ?? Infinity) - (b.dist ?? Infinity) || parDefaut(a, b);
+      case 'date':
+        // Les activités permanentes n'ont pas de date : elles gardent leur ordre.
+        return kind === 'event' ? parDate : parDefaut;
+      case 'gratuit':
+        return (a, b) =>
+          Number(b.data.free === 'true') - Number(a.data.free === 'true') || parDefaut(a, b);
+      case 'nom':
+        return parNom;
+      default:
+        return parDefaut;
+    }
+  }
+
+  const taillePage = () => parseInt(pageSizeEl.value, 10) || Infinity;
+  const pagesTotal = (sec) => Math.max(1, Math.ceil(sec.visible.length / taillePage()));
+
+  /** Réordonne la grille, n'affiche que la page courante, redessine le pageur. */
+  function rendre(sec) {
+    const taille = taillePage();
+    const debut = (sec.page - 1) * taille;
+    const fin = debut + taille;
+    sec.visible.forEach(({ card }, i) => {
+      sec.grid.appendChild(card);                       // l'ordre du tri
+      card.classList.toggle('hidden', i < debut || i >= fin);  // la page courante
+    });
+    const n = sec.visible.length;
+    sec.count.textContent = n ? `${n} ${n === 1 ? sec.un : sec.plusieurs}` : '';
+    // Une section vide disparaît entièrement, titre compris : mieux qu'un
+    // intertitre suivi du vide, et c'est ce que fait le filtre « Événements
+    // datés » ou « Activités permanentes ».
+    sec.section.hidden = n === 0;
+    dessinerPageur(sec);
+  }
+
+  function dessinerPageur(sec) {
+    const total = pagesTotal(sec);
+    sec.pager.replaceChildren();
+    if (total <= 1) return;
+    const bouton = (libelle, page, courante = false, aria = null) => {
+      const b = document.createElement('button');
+      b.type = 'button';
+      b.textContent = libelle;
+      b.className = 'page-btn' + (courante ? ' current' : '');
+      if (aria) b.setAttribute('aria-label', aria);
+      if (courante) b.setAttribute('aria-current', 'page');
+      b.disabled = page == null;
+      if (page != null) b.addEventListener('click', () => allerA(sec, page));
+      sec.pager.appendChild(b);
+      return b;
+    };
+    bouton('‹', sec.page > 1 ? sec.page - 1 : null, false, 'Page précédente');
+    // Fenêtre glissante autour de la page courante : avec 300 activités et 12 par
+    // page, aligner 25 numéros serait illisible.
+    const debut = Math.max(1, Math.min(sec.page - 2, total - 4));
+    const fin = Math.min(total, debut + 4);
+    if (debut > 1) bouton('1', 1);
+    if (debut > 2) bouton('…', null);
+    for (let p = debut; p <= fin; p++) bouton(String(p), p, p === sec.page, `Page ${p}`);
+    if (fin < total - 1) bouton('…', null);
+    if (fin < total) bouton(String(total), total);
+    bouton('›', sec.page < total ? sec.page + 1 : null, false, 'Page suivante');
+  }
+
+  function allerA(sec, page) {
+    sec.page = Math.min(Math.max(1, page), pagesTotal(sec));
+    rendre(sec);
+    sec.section.scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
 
   // ---------------- Carte (Leaflet, chargé à la demande) ----------------
@@ -411,7 +572,25 @@ const communePoints = sector.commune_points || [];
     for (const c of selectedCards) c.classList.remove('map-selected');
     selectedCards = cards;
     for (const c of cards) c.classList.add('map-selected');
-    if (cards.length) cards[0].scrollIntoView({ behavior: 'smooth', block: 'center' });
+    if (!cards.length) return;
+    // La carte montre tout ce que les filtres retiennent, la liste n'en montre
+    // qu'une page : la fiche visée peut donc être ailleurs. On l'y amène, sinon
+    // cliquer une bulle défilait vers une carte masquée — c'est-à-dire nulle part.
+    amenerSurSaPage(cards[0]);
+    cards[0].scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
+
+  function amenerSurSaPage(card) {
+    for (const sec of Object.values(SECTIONS)) {
+      const i = sec.visible.findIndex((v) => v.card === card);
+      if (i < 0) continue;
+      const page = Math.floor(i / taillePage()) + 1;
+      if (page !== sec.page) {
+        sec.page = page;
+        rendre(sec);
+      }
+      return;
+    }
   }
 
   function clearMapSelection() {
@@ -611,6 +790,16 @@ const communePoints = sector.commune_points || [];
   timeLimitEl.addEventListener('change', apply);
   timeModeEl.addEventListener('change', apply);
 
+  // Changer de tri ou de taille de page ramène les deux sections à leur première
+  // page : rester en page 7 d'un classement qui vient d'être refait n'aurait pas
+  // de sens, et on y perdrait de vue le haut du nouveau classement.
+  for (const el of [sortEl, pageSizeEl]) {
+    el.addEventListener('change', () => {
+      for (const sec of Object.values(SECTIONS)) sec.page = 1;
+      apply();
+    });
+  }
+
   if (originEl) {
     // `change` couvre la sélection dans la liste ET la validation au clavier.
     originEl.addEventListener('change', () => {
@@ -686,6 +875,8 @@ const communePoints = sector.commune_points || [];
     state.chips.clear();
     input.value = '';
     timeLimitEl.value = '';
+    sortEl.value = 'pertinence';
+    for (const sec of Object.values(SECTIONS)) sec.page = 1;
     if (originEl) originEl.value = '';
     // Le point de départ retombe à « inconnu », pas au centre du secteur : mieux
     // vaut ne pas afficher de temps que d'en afficher un depuis un point que le
