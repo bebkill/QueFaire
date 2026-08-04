@@ -1358,6 +1358,37 @@ def test_name_key_matches_hyphen_and_group_variants():
     assert _name_key("Village médiéval de Brousse-le-Château") != attendu
 
 
+def test_casino_reste_au_catalogue_mais_pas_en_famille():
+    """Un casino est une sortie, pas une sortie en famille.
+
+    Le filtre « En famille » existait côté site mais était inopérant sur les
+    activités permanentes : leur `data-audience` valait « tous » en dur, donc
+    aucune n'était jamais écartée.
+    """
+    from quefaire.models import Place
+
+    casino = Place(name="Casino de Cransac", category="ludotheque", source_id="datatourisme",
+                   sector="s", tags=["dt:Casino"])
+    ludo = Place(name="Ludothèque", category="ludotheque", source_id="osm",
+                 sector="s", tags=["osm:amenity=toy_library"])
+
+    # Il garde sa catégorie et sa place au catalogue…
+    assert casino.category == "ludotheque"
+    # …mais son public le sort des résultats « En famille ».
+    assert casino.audience == ["adultes"]
+    assert ludo.audience == ["tous"]
+
+    # La règle porte sur le TAG : la catégorie « Ludothèque & jeux » ne suffirait
+    # pas à distinguer les deux.
+    assert Place(name="X", category="autre", source_id="osm", sector="s",
+                 tags=["osm:amenity=casino"]).audience == ["adultes"]
+
+    # Recalculé à la relecture : la règle s'applique aux fiches déjà publiées,
+    # sans attendre une nouvelle découverte.
+    relu = Place(**{**casino.to_dict(), "audience": ["tous"]})
+    assert relu.audience == ["adultes"]
+
+
 def test_place_stats_feed_the_city_portal(tmp_path):
     """Le portail annonçait les seuls événements temporaires — le plus petit
     et le plus volatil des deux chiffres. Il lui faut les activités."""

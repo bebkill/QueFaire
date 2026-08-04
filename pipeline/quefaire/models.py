@@ -40,6 +40,21 @@ CATEGORIES = {
 
 AUDIENCES = ("famille", "enfants", "ados", "adultes", "seniors", "tous")
 
+# Tags de provenance qui désignent une activité RÉSERVÉE AUX MAJEURS. Elle garde
+# sa place au catalogue — un casino est une sortie — mais ne doit jamais remonter
+# sous « En famille ». Le filtre existait déjà côté site ; il était inopérant sur
+# les activités permanentes, dont le public était codé en dur à « tous ».
+#
+# La règle porte sur le TAG et non sur la catégorie : « Ludothèque & jeux »
+# contient à la fois une ludothèque municipale et un casino, et seul le tag les
+# distingue.
+ADULTES_SEULEMENT = frozenset({
+    "dt:Casino",
+    "osm:amenity=casino",
+    "osm:amenity=nightclub",
+    "osm:leisure=adult_gaming_centre",
+})
+
 # Catégories des activités PERMANENTES. Volontairement distinctes de CATEGORIES
 # (événements) : « marché » désigne ici le marché hebdomadaire qui a lieu tous
 # les mardis, pas la brocante du 12 avril. Les deux jeux se recoupent (cinéma,
@@ -212,6 +227,10 @@ class Place:
     image_credit: Optional[str] = None
     image_page: Optional[str] = None  # page où vérifier auteur et licence
     tags: list[str] = field(default_factory=list)
+    # Public visé, mêmes valeurs que pour un événement (`AUDIENCES`). « tous » par
+    # défaut : une activité permanente s'adresse a priori à tout le monde. Dérivé
+    # des tags, jamais saisi — voir `ADULTES_SEULEMENT`.
+    audience: list[str] = field(default_factory=lambda: ["tous"])
     first_seen: Optional[str] = None  # date ISO de la première découverte
     last_seen: Optional[str] = None  # date ISO du dernier passage qui l'a revue
     id: str = ""
@@ -219,6 +238,14 @@ class Place:
     def __post_init__(self) -> None:
         if self.category not in PLACE_CATEGORIES:
             self.category = "autre"
+        # Le public se DÉDUIT des tags de provenance, il n'est pas stocké par le
+        # fournisseur. Le recalculer ici plutôt que dans chaque `_to_place` garantit
+        # qu'aucun des deux fournisseurs ne peut l'oublier — et le recalcul
+        # s'applique aussi aux fiches relues depuis places.json, donc la règle
+        # prend effet sans attendre une nouvelle découverte.
+        if any(t in ADULTES_SEULEMENT for t in (self.tags or [])):
+            self.audience = ["adultes"]
+        self.audience = [a for a in self.audience if a in AUDIENCES] or ["tous"]
         if not self.id:
             self.id = self.compute_id()
 
