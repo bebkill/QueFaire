@@ -1,10 +1,9 @@
 ---
 import Base from '../../layouts/Base.astro';
 import EventCard from '../../components/EventCard.astro';
-import PlaceCard from '../../components/PlaceCard.astro';
 import { cityIds, getSector, getEvents, getPlaces } from '../../lib/sectors.js';
 import { isNotable } from '../../lib/format.js';
-import { MAX_RENDERED, rankPlaces } from '../../lib/places.js';
+import { rankPlaces } from '../../lib/places.js';
 
 export function getStaticPaths() {
   return cityIds.map((city) => ({
@@ -18,19 +17,44 @@ const base = import.meta.env.BASE_URL;
 const cityBase = `${base}${sector.id}/`;
 const title = `QueFaire — ${sector.name} · sorties, événements et activités`;
 
-// Activités permanentes : classées par intérêt (distinction officielle,
-// insolite confirmé, présentation, horaires…) et PLAFONNÉES à l'affichage.
-// Un rayon d'une heure en ramène ~2600 : toutes les rendre donnait une page de
-// 3,7 Mo. places.json reste complet, seul le rendu est borné — et le nombre
-// d'activités non affichées est annoncé, jamais tu.
+// Activités permanentes : classées par intérêt (distinction officielle, insolite
+// confirmé, présentation, horaires…) mais PLUS DE PLAFOND. Le plafond de 300
+// existait parce qu'on pré-rendait chaque tuile en HTML — 2232 tuiles faisaient
+// 3,7 Mo. C'était donc une limite de POIDS DE PAGE qui écartait 1900 activités de
+// la recherche, alors que ce qui doit trier, ce sont les préférences du visiteur.
+//
+// On embarque désormais les données MAIGRES de tout le catalogue et le navigateur
+// ne fabrique que les tuiles de la page affichée (`lib/placecard.js`). Mesuré :
+// 0,35 Mo compressés pour 2232 fiches, contre 0,07 Mo pour la page qui n'en
+// montrait que 300. Cinq fois plus, 280 Ko en absolu — et le plafond disparaît.
 const sortedPlaces = rankPlaces(places);
-const hiddenPlaces = places.length - sortedPlaces.length;
 const placeCategories = sector.place_categories || {};
 const qualityLabels = sector.quality_labels || {};
 const unusualCount = sortedPlaces.filter((p) => p.unusual).length;
 // « Valeur sûre » = porte au moins une distinction officielle (la simple notice
 // Wikipédia ne compte pas). Le chip n'apparaît que s'il a de quoi filtrer.
 const notableCount = sortedPlaces.filter((p) => isNotable(p.quality)).length;
+
+// Fiche maigre : uniquement ce dont la tuile et les filtres ont besoin. Les
+// champs absents sont OMIS (et non mis à null) — sur 2232 fiches, les clés vides
+// pesaient plus que les valeurs utiles.
+//
+// Le texte de recherche n'est PAS embarqué : il recopierait nom, présentation,
+// description et commune, soit 112 Ko compressés de pure duplication — le poste
+// le plus lourd du blob, mesuré. Il est reconstruit une fois au chargement par
+// `texteRecherche()`, qui le met en cache. On y perd la recherche sur les tags de
+// provenance (`dt:Church`), qui n'est pas un vocabulaire de visiteur.
+const CHAMPS = ['id', 'name', 'category', 'commune', 'lat', 'lon', 'tldr', 'description',
+                'url', 'opening_hours', 'fee', 'quality', 'unusual', 'image_url',
+                'audience', 'rating', 'rating_count', 'rating_source'];
+const placesData = sortedPlaces.map((p) => {
+  const maigre = {};
+  for (const k of CHAMPS) {
+    const v = p[k];
+    if (v !== null && v !== undefined && v !== '' && !(Array.isArray(v) && !v.length)) maigre[k] = v;
+  }
+  return maigre;
+});
 // Communes du rayon avec leurs coordonnées : c'est ce qui permet de calculer un
 // temps de trajet SANS géolocalisation, pour qui la refuse.
 const communePoints = sector.commune_points || [];
@@ -184,20 +208,17 @@ const communePoints = sector.commune_points || [];
         <span class="section-count" id="count-places"></span>
       </div>
       <p class="section-hint">Activités permanentes — à faire quand vous voulez.</p>
-      <div class="grid" id="grid-places">
-        {sortedPlaces.map((place) => (
-          <PlaceCard place={place} categories={placeCategories} sectorQuality={qualityLabels} cityBase={cityBase} />
-        ))}
-      </div>
-      <nav class="pager" id="pager-places" aria-label="Pages des activités"></nav>
-      {hiddenPlaces > 0 && (
-        <p class="truncated-note">
-          {hiddenPlaces} autres activités permanentes recensées dans le rayon ne sont pas
-          affichées ici&nbsp;: la page montre les {MAX_RENDERED} plus documentées
-          (distinction officielle, horaires, site officiel). La pagination découpe
-          l'affichage, elle ne change pas ce que la page embarque.
+      {/* Grille vide au départ : les tuiles sont fabriquées par le navigateur,
+          page par page, depuis `places-data`. C'est ce qui supprime le plafond. */}
+      <div class="grid" id="grid-places"></div>
+      <noscript>
+        <p class="section-hint">
+          Les {sortedPlaces.length} activités permanentes de ce secteur nécessitent
+          JavaScript pour être parcourues et filtrées. Les événements datés
+          ci-dessus s'affichent sans.
         </p>
-      )}
+      </noscript>
+      <nav class="pager" id="pager-places" aria-label="Pages des activités"></nav>
     </section>
 
     <div class="empty" id="empty">
@@ -210,11 +231,16 @@ const communePoints = sector.commune_points || [];
   </main>
 
   <script id="sector-data" type="application/json" is:inline set:html={JSON.stringify(sector)}></script>
+  {/* Catalogue complet en données maigres. Inline plutôt qu'en fichier séparé :
+      la recherche a besoin de tout avant de pouvoir répondre, donc un second
+      aller-retour réseau ne gagnerait rien, et le blob se compresse avec la page. */}
+  <script id="places-data" type="application/json" is:inline set:html={JSON.stringify(placesData)}></script>
 </Base>
 
 <script>
   import { parseQuery, matches, distanceKm, travelMinutes, roundMinutes, fold } from '../../lib/nlsearch.js';
   import { CATEGORY_EMOJI, PLACE_EMOJI, formatWhen, openingLabel } from '../../lib/format.js';
+  import { carteActivite, donneesActivite } from '../../lib/placecard.js';
 
   // Le secteur de la page (multi-villes) est injecté en JSON dans le DOM plutôt
   // qu'importé statiquement — le script est partagé par toutes les routes [city].
@@ -242,10 +268,26 @@ const communePoints = sector.commune_points || [];
       un: 'activité', plusieurs: 'activités',
     },
   };
-  const cards = Object.values(SECTIONS).flatMap((s) => Array.from(s.grid.querySelectorAll('.card')));
-  // Rang d'origine figé AVANT tout réordonnancement : une fois les cartes
-  // déplacées par un tri, l'ordre du DOM ne dit plus celui du pipeline.
-  const rangInitial = new Map(cards.map((card, i) => [card, i]));
+  // Les ÉVÉNEMENTS sont pré-rendus (36 tuiles, elles marchent sans JavaScript et
+  // portent le référencement). Les ACTIVITÉS sont des données : le navigateur
+  // fabrique leurs tuiles page par page, ce qui supprime le plafond de 300.
+  const eventCards = Array.from(SECTIONS.event.grid.querySelectorAll('.card'));
+  const placesData = JSON.parse(document.getElementById('places-data').textContent);
+  const ctxTuile = {
+    categories: sector.place_categories || {},
+    qualityLabels: sector.quality_labels || {},
+    cityBase: new URL('.', location.href).pathname,
+  };
+  // Tuiles mises en cache une fois construites : revenir à une page déjà vue ne
+  // doit pas tout refabriquer, et la fiche gardée par la carte reste la même.
+  const tuiles = new Map();
+  const tuileDe = (i) => {
+    if (!tuiles.has(i)) tuiles.set(i, carteActivite(placesData[i], ctxTuile));
+    return tuiles.get(i);
+  };
+  // Rang d'origine des événements, figé AVANT tout réordonnancement : une fois les
+  // cartes déplacées par un tri, l'ordre du DOM ne dit plus celui du pipeline.
+  const rangEvent = new Map(eventCards.map((card, i) => [card, i]));
   const sortEl = document.getElementById('sortby');
   const pageSizeEl = document.getElementById('pagesize');
   const input = document.getElementById('searchinput');
@@ -400,8 +442,11 @@ const communePoints = sector.commune_points || [];
     let shown = 0;
     let unlocated = 0;
     const visible = [];
-    for (const card of cards) {
-      const data = cardData(card);
+
+    /** Juge une fiche, quelle que soit sa provenance, et l'ajoute si elle passe.
+     *  `entree` porte de quoi la retrouver ensuite : une carte du DOM pour un
+     *  événement, un index dans `placesData` pour une activité. */
+    const juger = (data, entree) => {
       let ok = matches(data, filter);
       let dist = null;
       let minutes = null;
@@ -419,31 +464,42 @@ const communePoints = sector.commune_points || [];
           if (filter.maxMinutes != null && minutes > filter.maxMinutes) ok = false;
         }
       }
-      card.classList.toggle('hidden', !ok);
-      const distEl = card.querySelector('[data-role="distance"]');
-      if (ok) {
-        shown += 1;
-        distEl.textContent =
-          filter.maxMinutes != null && minutes != null
-            ? `≈ ${roundMinutes(minutes)} min ${MODE_LABELS[filter.mode]}`
-            : dist != null
-              ? `≈ ${Math.round(dist)} km`
-              : '';
-        distEl.title = distEl.textContent ? ESTIMATE_HINT : '';
-        visible.push({
-          card, dist, date: data.date, data,
-          isPlace: data.kind === 'place',
-          notable: data.notable === 'true',
-          // Rang d'origine dans le DOM = ordre voulu par le pipeline (date pour
-          // les événements, score de documentation pour les activités). C'est la
-          // « pertinence », et le repli de tous les autres tris à égalité.
-          rang: rangInitial.get(card),
-          nom: card.querySelector('h3')?.textContent?.trim() || '',
-        });
-      } else {
-        distEl.textContent = '';
-      }
+      if (!ok) return false;
+      shown += 1;
+      visible.push({
+        ...entree, dist, minutes, data,
+        date: data.date,
+        isPlace: data.kind === 'place',
+        notable: data.notable === 'true',
+      });
+      return true;
+    };
+
+    for (const card of eventCards) {
+      const data = cardData(card);
+      // Le rang d'origine dans le DOM est l'ordre voulu par le pipeline (la date).
+      // C'est la « pertinence », et le repli des autres tris à égalité.
+      const garde = juger(data, {
+        card, rang: rangEvent.get(card),
+        nom: card.querySelector('h3')?.textContent?.trim() || '',
+        href: card.getAttribute('href'),
+        opening: card.dataset.opening || '',
+      });
+      card.classList.toggle('hidden', !garde);
+      if (!garde) card.querySelector('[data-role="distance"]').textContent = '';
     }
+
+    // Les activités sont jugées sur leurs DONNÉES : aucune tuile n'est construite
+    // pour une fiche écartée, ce qui rend le catalogue entier filtrable sans
+    // payer 2232 rendus. `placesData` est déjà dans l'ordre de `rankPlaces`, donc
+    // l'index vaut rang de pertinence.
+    placesData.forEach((p, i) => {
+      juger(donneesActivite(p, ctxTuile.categories), {
+        index: i, rang: i, nom: p.name,
+        href: p.url || `${ctxTuile.cityBase}activite/${p.id}/`,
+        opening: p.opening_hours || '',
+      });
+    });
 
     // Chaque section garde son ordre naturel. `ordre` est le comparateur commun,
     // « pertinence » étant le seul à s'interpréter différemment selon le type :
@@ -505,15 +561,42 @@ const communePoints = sector.commune_points || [];
   const taillePage = () => parseInt(pageSizeEl.value, 10) || Infinity;
   const pagesTotal = (sec) => Math.max(1, Math.ceil(sec.visible.length / taillePage()));
 
-  /** Réordonne la grille, n'affiche que la page courante, redessine le pageur. */
+  /** Élément d'une entrée : la carte pré-rendue d'un événement, ou la tuile
+   *  d'activité fabriquée à la demande. */
+  function elementDe(v) {
+    const card = v.card ?? tuileDe(v.index);
+    // Le temps de trajet s'écrit ici : pour une activité, la tuile peut n'exister
+    // qu'au moment de son affichage, donc après le calcul de la distance.
+    const distEl = card.querySelector('[data-role="distance"]');
+    if (distEl) {
+      distEl.textContent =
+        v.minutes != null ? `≈ ${roundMinutes(v.minutes)} min ${MODE_LABELS[currentFilter().mode]}`
+          : v.dist != null ? `≈ ${Math.round(v.dist)} km`
+            : '';
+      distEl.title = distEl.textContent ? ESTIMATE_HINT : '';
+    }
+    return card;
+  }
+
+  /** Réordonne la grille, n'affiche que la page courante, redessine le pageur.
+   *
+   *  Pour les activités, « n'afficher que la page » veut dire N'EN CONSTRUIRE que
+   *  la page : la grille est vidée et regarnie, au lieu de masquer 2200 tuiles
+   *  existantes. C'est tout l'intérêt du rendu client.
+   */
   function rendre(sec) {
     const taille = taillePage();
     const debut = (sec.page - 1) * taille;
-    const fin = debut + taille;
-    sec.visible.forEach(({ card }, i) => {
-      sec.grid.appendChild(card);                       // l'ordre du tri
-      card.classList.toggle('hidden', i < debut || i >= fin);  // la page courante
-    });
+    const page = sec.visible.slice(debut, debut + taille);
+    if (sec.grid === SECTIONS.place.grid) {
+      sec.grid.replaceChildren(...page.map(elementDe));
+    } else {
+      sec.visible.forEach((v, i) => {
+        const card = elementDe(v);
+        sec.grid.appendChild(card);                        // l'ordre du tri
+        card.classList.toggle('hidden', i < debut || i >= debut + taille);
+      });
+    }
     const n = sec.visible.length;
     sec.count.textContent = n ? `${n} ${n === 1 ? sec.un : sec.plusieurs}` : '';
     // Une section vide disparaît entièrement, titre compris : mieux qu'un
@@ -567,22 +650,24 @@ const communePoints = sector.commune_points || [];
   /** Met en évidence les fiches liées à la bulle cliquée sur la carte —
    *  une seule pour un marqueur isolé, toutes celles d'un cluster qui ne
    *  peut pas s'éclater (événements au même point). */
-  function selectCards(cards) {
+  function selectCards(entrees) {
     clearTimeout(popupCloseTimer); // le popup précédent se ferme : ne pas désélectionner
     for (const c of selectedCards) c.classList.remove('map-selected');
-    selectedCards = cards;
-    for (const c of cards) c.classList.add('map-selected');
-    if (!cards.length) return;
+    selectedCards = [];
+    if (!entrees.length) return;
     // La carte montre tout ce que les filtres retiennent, la liste n'en montre
-    // qu'une page : la fiche visée peut donc être ailleurs. On l'y amène, sinon
-    // cliquer une bulle défilait vers une carte masquée — c'est-à-dire nulle part.
-    amenerSurSaPage(cards[0]);
-    cards[0].scrollIntoView({ behavior: 'smooth', block: 'center' });
+    // qu'une page : la fiche visée peut donc être ailleurs — et s'il s'agit d'une
+    // activité, sa tuile peut ne pas exister encore. On change de page D'ABORD,
+    // puis on récupère les éléments, sinon on soulignerait des tuiles absentes.
+    amenerSurSaPage(entrees[0]);
+    selectedCards = entrees.map(elementDe);
+    for (const c of selectedCards) c.classList.add('map-selected');
+    selectedCards[0].scrollIntoView({ behavior: 'smooth', block: 'center' });
   }
 
-  function amenerSurSaPage(card) {
+  function amenerSurSaPage(entree) {
     for (const sec of Object.values(SECTIONS)) {
-      const i = sec.visible.findIndex((v) => v.card === card);
+      const i = sec.visible.indexOf(entree);
       if (i < 0) continue;
       const page = Math.floor(i / taillePage()) + 1;
       if (page !== sec.page) {
@@ -657,7 +742,7 @@ const communePoints = sector.commune_points || [];
         .join('<br>');
       const more = cluster.items.length > 12 ? `<br>… et ${cluster.items.length - 12} autres` : '';
       L.popup({ maxHeight: 220 }).setLatLng([cluster.lat, cluster.lon]).setContent(links + more).openOn(map);
-      selectCards(cluster.items.map((i) => i.card));
+      selectCards(cluster.items.map((i) => i.entree));
     } else {
       map.fitBounds(bounds, { padding: [50, 50] });
     }
@@ -717,20 +802,26 @@ const communePoints = sector.commune_points || [];
     const { L, map, layer } = leaflet;
     layer.clearLayers();
 
+    // Les bulles se construisent depuis les DONNÉES de l'entrée, plus depuis son
+    // élément : une activité peut n'avoir aucune tuile fabriquée (elle est sur une
+    // autre page), et la carte doit malgré tout la montrer — elle suit le filtre,
+    // pas la pagination.
+    const racine = getComputedStyle(document.documentElement);
     const items = [];
-    for (const { card, data, isPlace, notable } of visible) {
+    for (const v of visible) {
+      const { data, isPlace, notable } = v;
       if (Number.isNaN(data.lat)) continue;
       items.push({
-        card,
+        entree: v,
         lat: data.lat, lon: data.lon, cat: data.cat, commune: data.commune,
         date: data.date, end: data.end,
         isPlace, notable,
         unusual: data.unusual === 'true',
         emoji: isPlace ? PLACE_EMOJI[data.cat] || '📍' : CATEGORY_EMOJI[data.cat] || '📌',
-        opening: card.dataset.opening || '',
-        title: card.querySelector('h3').textContent.replace(/\s*↗$/, ''),
-        href: card.getAttribute('href'),
-        color: getComputedStyle(card.querySelector('.card-top')).borderBottomColor,
+        opening: v.opening || '',
+        title: (v.nom || '').replace(/\s*↗$/, ''),
+        href: v.href,
+        color: racine.getPropertyValue(`--${isPlace ? 'p' : 'c'}-${data.cat}`).trim() || 'currentColor',
       });
     }
 
@@ -761,7 +852,7 @@ const communePoints = sector.commune_points || [];
           .bindTooltip(markerTooltip(it), {
             direction: 'top', offset: [0, -6], opacity: 1, className: 'event-tip',
           })
-          .on('click', () => selectCards([it.card]))
+          .on('click', () => selectCards([it.entree]))
           .addTo(layer);
         points.push([it.lat, it.lon]);
       }
