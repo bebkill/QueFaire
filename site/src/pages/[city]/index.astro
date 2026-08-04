@@ -158,6 +158,9 @@ const communePoints = sector.commune_points || [];
       <label class="timefilter">
         ↕ trier par
         <select id="sortby">
+          {/* « Pour vous » n'apparaît qu'une fois qu'il y a de quoi le nourrir :
+              une option qui ne changerait rien serait une promesse creuse. Le
+              script l'ajoute et la sélectionne au premier vote. */}
           <option value="pertinence">pertinence</option>
           <option value="distance">distance</option>
           <option value="date">date</option>
@@ -178,6 +181,7 @@ const communePoints = sector.commune_points || [];
         </select>
       </label>
       <span class="geostate" id="geostate"></span>
+      <button class="reset" id="tuner-open" type="button">👍 Personnaliser</button>
       <button class="reset" id="reset" type="button">Tout réafficher</button>
     </div>
 
@@ -185,6 +189,25 @@ const communePoints = sector.commune_points || [];
       <div id="map"></div>
       <p class="map-note">Temps de trajet estimés à vol d'oiseau corrigé — un calcul d'itinéraire précis arrive en roadmap.</p>
     </div>
+
+    {/* Personnalisation par l'exemple. Un questionnaire d'accueil est un péage :
+        quatre questions avant d'avoir rien vu. Deux avis sur des activités
+        concrètes en apprennent davantage et se donnent en passant. Le panneau est
+        masqué par défaut et c'est le script qui l'ouvre — sans JavaScript il n'y
+        aurait rien à voter. */}
+    <section class="tuner" id="tuner" hidden>
+      <div class="tuner-head">
+        <h2>👋 Dites-nous ce qui vous plaît</h2>
+        <button type="button" class="tuner-close" id="tuner-close" aria-label="Masquer">✕</button>
+      </div>
+      <p class="tuner-lead">
+        <strong>Deux ou trois avis suffisent</strong> pour que la liste vous
+        ressemble. Rien n'est envoyé nulle part&nbsp;: vos goûts restent dans ce
+        navigateur, et vous pouvez les effacer d'un clic.
+      </p>
+      <div class="tuner-cards" id="tuner-cards"></div>
+      <p class="tuner-state" id="tuner-state"></p>
+    </section>
 
     {/* Deux sections plutôt qu'une grille mêlée : un concert du 12 avril et un
         musée ouvert toute l'année ne se comparent pas, et les trier ensemble
@@ -241,6 +264,7 @@ const communePoints = sector.commune_points || [];
   import { parseQuery, matches, distanceKm, travelMinutes, roundMinutes, fold } from '../../lib/nlsearch.js';
   import { CATEGORY_EMOJI, PLACE_EMOJI, formatWhen, openingLabel } from '../../lib/format.js';
   import { carteActivite, donneesActivite } from '../../lib/placecard.js';
+  import { aProposer, charger, nbVotes, oublier, resume, scorePrefs, voter } from '../../lib/prefs.js';
 
   // Le secteur de la page (multi-villes) est injecté en JSON dans le DOM plutôt
   // qu'importé statiquement — le script est partagé par toutes les routes [city].
@@ -303,6 +327,7 @@ const communePoints = sector.commune_points || [];
   const mapWrap = document.getElementById('mapwrap');
 
   let userPos = null; // {lat, lon}
+  let prefs = charger();          // goûts appris par 👍/👎, dans ce navigateur seul
   const state = { query: '', chips: new Set() };
   const MODE_LABELS = { walk: 'à pied', bike: 'en vélo', car: 'en voiture' };
   const ESTIMATE_HINT =
@@ -553,9 +578,24 @@ const communePoints = sector.commune_points || [];
           Number(b.data.free === 'true') - Number(a.data.free === 'true') || parDefaut(a, b);
       case 'nom':
         return parNom;
+      case 'gouts':
+        // Les goûts REORDONNENT, ils ne masquent rien : une activité mal notée
+        // recule, elle ne disparaît pas. Sur deux ou trois avis on ne sait
+        // presque rien, et cacher sur cette base serait de la censure déguisée
+        // en personnalisation.
+        return (a, b) => scoreGout(b) - scoreGout(a) || parDefaut(a, b);
       default:
         return parDefaut;
     }
+  }
+
+  /** Score de goût d'une entrée. Les événements n'ont pas de fiche d'activité :
+   *  on les note sur les traits qu'ils partagent (catégorie, gratuité). */
+  function scoreGout(v) {
+    const p = v.index != null ? placesData[v.index]
+      : { id: '', category: v.data.cat, fee: v.data.free === 'true' ? false : null,
+          unusual: v.data.unusual === 'true', quality: v.data.notable === 'true' ? ['x'] : [] };
+    return scorePrefs(prefs, p);
   }
 
   const taillePage = () => parseInt(pageSizeEl.value, 10) || Infinity;
@@ -986,6 +1026,106 @@ const communePoints = sector.commune_points || [];
       form.requestSubmit();
     });
   }
+
+  // ---------------- Personnalisation par 👍/👎 ----------------
+  const tuner = document.getElementById('tuner');
+  const tunerCards = document.getElementById('tuner-cards');
+  const tunerState = document.getElementById('tuner-state');
+
+  /** Ajoute (une fois) l'option « pour vous » et la sélectionne. */
+  function activerTriGouts(selectionner) {
+    if (!sortEl.querySelector('[value="gouts"]')) {
+      const opt = document.createElement('option');
+      opt.value = 'gouts';
+      opt.textContent = 'pour vous';
+      sortEl.prepend(opt);
+    }
+    if (selectionner) sortEl.value = 'gouts';
+  }
+
+  function ligneVote(p) {
+    const bloc = document.createElement('div');
+    bloc.className = 'tuner-card';
+    const titre = document.createElement('p');
+    titre.className = 'tuner-title';
+    titre.textContent = p.name;
+    const quoi = document.createElement('p');
+    quoi.className = 'tuner-what';
+    quoi.textContent = [ctxTuile.categories[p.category] || 'Activité', p.commune]
+      .filter(Boolean).join(' · ');
+    const phrase = document.createElement('p');
+    phrase.className = 'tuner-desc';
+    phrase.textContent = (p.tldr || p.description || '').slice(0, 130);
+
+    const boutons = document.createElement('div');
+    boutons.className = 'tuner-votes';
+    for (const [sens, libelle, aria] of [[1, '👍', "J'aime"], [-1, '👎', 'Pas pour moi']]) {
+      const b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'vote-btn';
+      b.textContent = libelle;
+      b.setAttribute('aria-label', `${aria} : ${p.name}`);
+      b.addEventListener('click', () => {
+        prefs = voter(prefs, p, sens);
+        // Effet IMMÉDIAT et visible : sans retour instantané, le visiteur ne peut
+        // pas savoir que son avis a compté, et ne donnera pas le suivant.
+        activerTriGouts(true);
+        for (const sec of Object.values(SECTIONS)) sec.page = 1;
+        majTuner();
+        apply();
+      });
+      boutons.appendChild(b);
+    }
+    bloc.append(titre, quoi, phrase, boutons);
+    return bloc;
+  }
+
+  function majTuner() {
+    const n = nbVotes(prefs);
+    const propositions = aProposer(prefs, placesData, 3);
+    tunerCards.replaceChildren(...propositions.map(ligneVote));
+
+    const dit = resume(prefs, ctxTuile.categories);
+    if (n === 0) {
+      tunerState.textContent = '';
+    } else {
+      tunerState.replaceChildren();
+      const phrase = document.createElement('span');
+      // Ce que QueFaire a compris, écrit noir sur blanc : le visiteur doit pouvoir
+      // le vérifier, et le contredire. Un score invisible ne se conteste pas.
+      const combien = n === 1 ? 'votre premier avis' : `vos ${n} avis`;
+      phrase.textContent = dit
+        ? `D'après ${combien} : ${dit}. La liste est réordonnée.`
+        : `${combien} enregistré${n > 1 ? 's' : ''}, sans préférence nette pour l'instant.`;
+      const effacer = document.createElement('button');
+      effacer.type = 'button';
+      effacer.className = 'tuner-forget';
+      effacer.textContent = 'Effacer mes goûts';
+      effacer.addEventListener('click', () => {
+        prefs = oublier();
+        sortEl.value = 'pertinence';
+        sortEl.querySelector('[value="gouts"]')?.remove();
+        majTuner();
+        apply();
+      });
+      tunerState.append(phrase, document.createTextNode(' '), effacer);
+    }
+    // Plus rien à proposer : le panneau n'a plus de raison d'occuper le haut de
+    // page. Il reste accessible par le bouton de la barre d'outils.
+    tuner.hidden = propositions.length === 0;
+  }
+
+  document.getElementById('tuner-close').addEventListener('click', () => {
+    tuner.hidden = true;
+  });
+  document.getElementById('tuner-open').addEventListener('click', () => {
+    tuner.hidden = false;
+    majTuner();
+    tuner.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  });
+
+  if (nbVotes(prefs)) activerTriGouts(true);
+  majTuner();
 
   // Premier calcul au chargement. Sans lui, le compteur gardait la valeur rendue
   // par le serveur — « 36 événements » — alors que la grille affichait déjà les
