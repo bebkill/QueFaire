@@ -631,6 +631,29 @@
   "id": "visite-libre-des-jardins-et-de-la-chapelle-du-chateau-teyssier-de-savy-a-saint-c-8bf8c1bb"
  },
  {
+  "title": "Découvrir les jeux de société de Kojak",
+  "start": "2026-08-06T18:30:00",
+  "source_id": "html-cafe-crem",
+  "sector": "villemoirieu",
+  "end": "2026-08-06T20:30:00",
+  "description": "Animation jeux de société. Inscription recommandée auprès de Kojak au 07 77 91 14 53.",
+  "tldr": null,
+  "category": "atelier",
+  "tags": [],
+  "audience": [
+   "tous"
+  ],
+  "commune": "Villemoirieu",
+  "address": "Le Buisson Partagé, zone d'activités de Buisson Rond, 38460 Villemoirieu",
+  "lat": 45.7138,
+  "lon": 5.2348,
+  "free": true,
+  "price_text": null,
+  "url": "https://cafe-crem.fr/#decouvrir-les-jeux-de-societe-de-kojak-1785999600000",
+  "image": null,
+  "id": "decouvrir-les-jeux-de-societe-de-kojak-4e103bf0"
+ },
+ {
   "title": "CSBJ Rugby vs Bourg-en-Bresse",
   "start": "2026-08-07T00:00:00",
   "source_id": "html-bourgoin",
@@ -722,6 +745,29 @@
   "url": "https://www.bourgoinjallieu.fr/agenda/2844-venez-observer-leclipse-en-bonne-compagnie",
   "image": null,
   "id": "venez-observer-leclipse-en-bonne-compagnie-5a415acb"
+ },
+ {
+  "title": "Découvrir les jeux de société de Kojak",
+  "start": "2026-08-12T16:00:00",
+  "source_id": "html-cafe-crem",
+  "sector": "villemoirieu",
+  "end": "2026-08-12T20:00:00",
+  "description": "Animation jeux de société. Inscription recommandée auprès de Kojak au 07 77 91 14 53.",
+  "tldr": null,
+  "category": "atelier",
+  "tags": [],
+  "audience": [
+   "tous"
+  ],
+  "commune": "Crémieu",
+  "address": "Le Crémolan (11 place du monument, Crémieu)",
+  "lat": 45.7314,
+  "lon": 5.2635,
+  "free": true,
+  "price_text": null,
+  "url": "https://cafe-crem.fr/#decouvrir-les-jeux-de-societe-de-kojak-1786518000000",
+  "image": null,
+  "id": "decouvrir-les-jeux-de-societe-de-kojak-e34cb154"
  },
  {
   "title": "Festiv'été : les Bals Carnot reprogrammés !",
@@ -931,6 +977,30 @@
   "url": "https://www.bourgoinjallieu.fr/agenda/1300-forum-des-associations-edition-2026",
   "image": null,
   "id": "forum-des-associations-edition-2026-f773d37b"
+ },
+ {
+  "title": "Stage de chants médiévaux",
+  "start": "2026-08-29T09:30:00",
+  "source_id": "html-cafe-crem",
+  "sector": "villemoirieu",
+  "end": "2026-08-29T15:00:00",
+  "description": "Organisé par la chorale BàO et Line Billard, cheffe de chœur. Participation aux frais de 8€, gratuit pour les moins de 18 ans.",
+  "tldr": null,
+  "category": "atelier",
+  "tags": [],
+  "audience": [
+   "ados",
+   "adultes"
+  ],
+  "commune": "Crémieu",
+  "address": "Maison des associations, rue de Lattre de Tassigny, Crémieu",
+  "lat": 45.7314,
+  "lon": 5.2635,
+  "free": false,
+  "price_text": "Participation aux frais de 8€ - gratuit pour les - 18 ans",
+  "url": "https://cafe-crem.fr/#stage-de-chants-medievaux-1787986800000",
+  "image": null,
+  "id": "stage-de-chants-medievaux-444e6aad"
  },
  {
   "title": "Dimanche 30 août, c'est la fête des familles",

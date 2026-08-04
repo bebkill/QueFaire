@@ -12,6 +12,7 @@
 "clarify:3e6f3c56b22c341840f72b60f9470538e470944050e76b201044357e13b26d92": "",
 "clarify:457f56947faf1714cb1990d8b98156ac1ccb52ad1d604d5ab702b175bbd31b85": "",
 "clarify:4dcf6543610c8beaa8317d8ac61e03a9bf9b5849900c5acbb272dab7903ab593": "",
+"clarify:4f2932bc073c302ed8a484c9ef896be8019031b85c3654677d7f21475c21ba4b": "",
 "clarify:50154a5dd7cfd107a2fcf498a95f42966cf52d7bc9826d3e5a9e584b4081cd5f": "",
 "clarify:58403de3fb6d4395979f4da7a4df552b69b7b82bed4007c7d485287e4fac57ca": "",
 "clarify:5bad1b4772342cd41537b34c1eccd0a960b44241d5d1686807416f5789b9beda": "",
@@ -25,6 +26,7 @@
 "clarify:8ab9a75dac76e8f10a5cd068e7d60215caa2ec728ee9705457e64e9c20991abb": "",
 "clarify:8bd423319d8957711bfe1e0e4f7f986c4c7e1e3826cb5f9dcf80a881b2cdec68": "",
 "clarify:8dc4a19303d0905f714e8001dc26f42ea3b15f99b33432402b16fdf93c748b80": "",
+"clarify:99673e5535119e9e6b1f301ceec5e8dbe754512cd0de88cf03b8bbf14985427f": "",
 "clarify:9c1a6addccfbbff22a887509c8418a36806f70908d1b649dd7a173bbbdf2e39e": "",
 "clarify:9f80e7e4c7143b06bdeb67caa947dbc3680ee43d70cc88abea7b01c40129652e": "",
 "clarify:9fff8f49d8f8241d279cd8a0337f88dbf2c04a378f14f77e3502da92885f7d9f": "",
@@ -47,6 +49,78 @@
 "clarify:eb33077f00e5dfbc0065016b9c694b0e11d5f673d6567a7bcd4da6d1a8b1fa9f": "",
 "clarify:ef02e742dcbf73d4799227d2309bbf3a5b7f254cfc47a77b2095e6b2f46ebc5d": "",
 "clarify:f99ec01b76b60eee30869f82e183a05e6d3586d6db9b43c2b6938685e544899a": "",
+"extract:01c2e24be8f5ffdea72483c50bca0e9bb1b822d2a4f03e0fd762005f314a3ab3": [
+{
+"address": "Le Buisson Partagé, zone d'activités de Buisson Rond, 38460 Villemoirieu",
+"audience": [
+"tous"
+],
+"category": "atelier",
+"commune": "Villemoirieu",
+"description": "Animation jeux de société. Inscription recommandée auprès de Kojak au 07 77 91 14 53.",
+"end": "2026-08-06T20:30:00",
+"free": true,
+"id": "decouvrir-les-jeux-de-societe-de-kojak-4e103bf0",
+"image": null,
+"lat": null,
+"lon": null,
+"price_text": null,
+"sector": "villemoirieu",
+"source_id": "html-cafe-crem",
+"start": "2026-08-06T18:30:00",
+"tags": [],
+"title": "Découvrir les jeux de société de Kojak",
+"tldr": null,
+"url": "https://cafe-crem.fr/#decouvrir-les-jeux-de-societe-de-kojak-1785999600000"
+},
+{
+"address": "Le Crémolan (11 place du monument, Crémieu)",
+"audience": [
+"tous"
+],
+"category": "atelier",
+"commune": "Crémieu",
+"description": "Animation jeux de société. Inscription recommandée auprès de Kojak au 07 77 91 14 53.",
+"end": "2026-08-12T20:00:00",
+"free": true,
+"id": "decouvrir-les-jeux-de-societe-de-kojak-e34cb154",
+"image": null,
+"lat": null,
+"lon": null,
+"price_text": null,
+"sector": "villemoirieu",
+"source_id": "html-cafe-crem",
+"start": "2026-08-12T16:00:00",
+"tags": [],
+"title": "Découvrir les jeux de société de Kojak",
+"tldr": null,
+"url": "https://cafe-crem.fr/#decouvrir-les-jeux-de-societe-de-kojak-1786518000000"
+},
+{
+"address": "Maison des associations, rue de Lattre de Tassigny, Crémieu",
+"audience": [
+"ados",
+"adultes"
+],
+"category": "atelier",
+"commune": "Crémieu",
+"description": "Organisé par la chorale BàO et Line Billard, cheffe de chœur. Participation aux frais de 8€, gratuit pour les moins de 18 ans.",
+"end": "2026-08-29T15:00:00",
+"free": false,
+"id": "stage-de-chants-medievaux-444e6aad",
+"image": null,
+"lat": null,
+"lon": null,
+"price_text": "Participation aux frais de 8€ - gratuit pour les - 18 ans",
+"sector": "villemoirieu",
+"source_id": "html-cafe-crem",
+"start": "2026-08-29T09:30:00",
+"tags": [],
+"title": "Stage de chants médiévaux",
+"tldr": null,
+"url": "https://cafe-crem.fr/#stage-de-chants-medievaux-1787986800000"
+}
+],
 "extract:105b20209a4ed44bcb30a070b5eed51fc3b3f45c75e2597e2e171d3158427164": [
 {
 "address": "Musée de Bourgoin-Jallieu",
@@ -652,7 +726,6 @@
 "url": "https://www.bourgoinjallieu.fr/agenda/662-tjv-26-27-lever-de-rideau-avec-secret-s-medical-michel-cymes"
 }
 ],
-"extract:41dacb3de49d2618da33638d149d42117ab63201a9b5929de1f0158987bedc3f": [],
 "extract:658c6e8ea708e4cbf2edfff047a0fd2531cea8d057c65296f7a33d71239fc53a": [
 {
 "address": null,
