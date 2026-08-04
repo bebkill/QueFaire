@@ -173,6 +173,13 @@ const providerNames = { osm: 'OpenStreetMap', datatourisme: 'DATAtourisme' };
             Gratuit
           </div>
         )}
+        {(place.audience || []).includes('adultes') && (
+          <div class="row">
+            <b>Public</b>
+            Réservé aux personnes majeures — cette activité n'apparaît pas dans
+            les résultats « En famille ».
+          </div>
+        )}
         {itineraire && (
           <div class="row">
             <b>Y aller</b>

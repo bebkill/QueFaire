@@ -491,6 +491,13 @@ a { color: inherit; }
 .city-card.is-active { border-color: var(--accent); box-shadow: var(--shadow-lift); }
 .city-card-head { display: flex; align-items: baseline; justify-content: space-between; gap: 8px; }
 .city-card h2 { margin: 0; font-size: 1.15rem; }
+/* Réservé aux majeurs — discret mais lisible d'un coup d'œil dans la grille. */
+.card-meta .adults {
+  font-weight: 800; font-size: 0.74rem; letter-spacing: 0.02em;
+  padding: 1px 6px; border-radius: 999px;
+  border: 1px solid var(--line); color: var(--ink-soft);
+}
+
 /* Commune de départ : l'alternative à la géolocalisation, pour qui la refuse. */
 .origin-field input {
   font: inherit; padding: 5px 9px; border: 1px solid var(--line); border-radius: 8px;

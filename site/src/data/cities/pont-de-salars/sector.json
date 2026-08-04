@@ -35,7 +35,6 @@
   "marche": "Marché",
   "visite": "Visite & curiosité",
   "sport-loisir": "Sport & loisirs",
-  "prestation": "Activité encadrée",
   "ferme": "Ferme & artisanat",
   "bien-etre": "Thermes & bien-être",
   "autre": "Autre activité"
@@ -51,7 +50,7 @@
   "tourisme-handicap": "Tourisme & Handicap",
   "notoriete": "Notice Wikipédia"
  },
- "place_count": 2231,
+ "place_count": 2232,
  "communes": [
   "Agen-d'Aveyron",
   "Aguessac",

@@ -17,6 +17,9 @@ const stars = ratingStars(place.rating);
 const badges = qualityBadges(place.quality);
 const notable = isNotable(place.quality);
 const labels = sectorQuality ?? {};
+// Réservé aux majeurs : le dire sur la tuile, pas seulement l'exclure du filtre
+// « En famille ». Un parent qui balaie la grille doit le voir sans cliquer.
+const adultesSeulement = (place.audience || []).includes('adultes');
 
 // Avec un site officiel, on envoie le visiteur chez l'exploitant — c'est lui
 // qui sait ses horaires et ses tarifs. Sans site (962 fiches sur 2204), la
@@ -45,7 +48,7 @@ const foldedText = fold(
   data-kind="place"
   data-cat={place.category}
   data-commune={place.commune || ''}
-  data-audience="tous"
+  data-audience={(place.audience || ['tous']).join(' ')}
   data-free={String(place.fee === false)}
   data-rating={place.rating ?? ''}
   data-unusual={String(place.unusual === true)}
@@ -82,6 +85,7 @@ const foldedText = fold(
     {opening && <p class="opening">🕒 {opening}</p>}
     <div class="card-meta">
       {place.commune && <span>📍 {place.commune}</span>}
+      {adultesSeulement && <span class="adults" title="Activité réservée aux personnes majeures">18+</span>}
       {place.rating != null && (
         <span class="rating" title={`${place.rating}/5 sur ${place.rating_source === 'tripadvisor' ? 'TripAdvisor' : 'Google'}${place.rating_count ? ` — ${place.rating_count} avis` : ''}`}>
           <span class="stars" aria-hidden="true">{stars}</span>
