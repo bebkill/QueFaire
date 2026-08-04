@@ -691,10 +691,21 @@ BATCH_SIZE = 20
 # de tout payer d'un coup.
 PRESENT_MAX_PER_RUN = 400
 
-# Nombre d'activités réellement rendues par le site — MIROIR de MAX_RENDERED
-# dans site/src/lib/places.js. Présenter au-delà, c'est payer un appel LLM pour
-# une fiche que personne ne verra.
-DISPLAY_LIMIT = 300
+# Budget de présentations : combien d'activités, au total, méritent une phrase
+# « donne envie » payée au LLM.
+#
+# Ce nombre a longtemps été le MIROIR de `MAX_RENDERED` côté site — le plafond
+# d'affichage — parce que présenter au-delà, c'était payer pour une fiche que
+# personne ne verrait. Ce plafond a disparu : le site affiche désormais TOUT le
+# catalogue, page par page. Le nombre reste, mais il ne veut plus dire la même
+# chose et le nom aurait menti : ce n'est plus une limite d'affichage, c'est un
+# budget. Les fiches au-delà s'affichent sans phrase, avec leur description de
+# source — c'est le comportement normal quand aucun LLM n'est configuré.
+#
+# La file est ordonnée par `display_order_key`, donc le budget va aux fiches les
+# mieux documentées d'abord. À relever quand le coût sera arbitré : 2232 fiches
+# présentées, c'est ~2232 appels une seule fois, le cache étant persistant.
+PRESENTATION_BUDGET = 300
 
 
 def display_order_key(place: Place):
@@ -773,8 +784,8 @@ def present(places: list[Place]) -> list[Place]:
         misses.sort(key=lambda pair: display_order_key(pair[0]))
         log.warning(
             "[places] %d activités à présenter, plafonné à %d pour ce run "
-            "(priorité aux %d affichées ; le reste suivra, le cache est persistant)",
-            len(misses), PRESENT_MAX_PER_RUN, DISPLAY_LIMIT,
+            "(les mieux documentées d'abord ; le reste suivra, le cache est persistant)",
+            len(misses), PRESENT_MAX_PER_RUN,
         )
         misses = misses[:PRESENT_MAX_PER_RUN]
 

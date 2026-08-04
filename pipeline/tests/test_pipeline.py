@@ -1999,14 +1999,22 @@ def test_presentation_queue_follows_display_order(monkeypatch):
     assert "Aire de pique-nique" not in soumis[0]
 
 
-def test_display_score_mirrors_site_constants():
-    """Le plafond côté pipeline doit refléter celui du site (places.js)."""
+def test_le_site_ne_plafonne_plus_l_affichage():
+    """Le site doit afficher TOUT le catalogue, pas une présélection.
+
+    Ce test remplace un miroir devenu faux : il vérifiait que le budget de
+    présentation du pipeline valait `MAX_RENDERED` côté site. Ce plafond de 300
+    tuiles n'était pas un filtre de pertinence mais une limite de poids de page,
+    et il écartait 1900 activités de la RECHERCHE. Il a été supprimé — ce qui doit
+    trier, ce sont les préférences du visiteur.
+
+    On pin donc l'invariant qui reste : `rankPlaces` ordonne sans tronquer.
+    """
     from pathlib import Path
 
-    from quefaire.places import DISPLAY_LIMIT
-
     js = (Path(__file__).resolve().parents[2] / "site/src/lib/places.js").read_text(encoding="utf-8")
-    assert f"MAX_RENDERED = {DISPLAY_LIMIT}" in js
+    assert "MAX_RENDERED" not in js, "le plafond d'affichage est revenu"
+    assert ".slice(" not in js, "rankPlaces tronque à nouveau le catalogue"
 
 
 def test_display_score_is_intrinsic_not_circular():
