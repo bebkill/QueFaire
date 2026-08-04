@@ -32,6 +32,7 @@ volontairement défensive (plusieurs noms de clés essayés, absence tolérée) 
 
 from __future__ import annotations
 
+import itertools
 import logging
 import os
 from collections import Counter
@@ -573,24 +574,45 @@ def _nodes_from_flux(flux: str) -> list[dict]:
     # résultat s'explique d'abord par le mode, et il faut pouvoir le constater
     # au lieu de le déduire de l'absence de lignes de pagination.
     log.info("[datatourisme] mode FLUX (une requête, périmètre défini par le diffuseur)")
+    # Le TÉLÉCHARGEMENT reste immédiat : c'est lui qui échoue (403, 503, 504), et
+    # son exception doit remonter à l'appelant pour déclencher le repli sur l'API.
+    # Dans un générateur pur, elle ne surviendrait qu'à la première itération,
+    # bien après le `try` de `fetch()` — le repli ne jouerait plus.
     corps = _request(flux).content
-    documents = list(_documents_du_flux(corps))
-    if not documents:
+
+    # Le PARCOURS, lui, est paresseux. Un flux élargi peut dépasser le
+    # demi-gigaoctet décompressé, et matérialiser tous les documents parsés en même
+    # temps coûte plusieurs gigaoctets de dictionnaires Python. `fetch()` convertit
+    # chaque fiche au fil de l'eau et libère aussitôt celles qu'il n'exploite pas.
+    # Un dépassement mémoire ne serait PAS rattrapable : le noyau tue le processus,
+    # et le repli sur l'API ne jouerait pas davantage.
+    flot = _fiches_du_corps(corps)
+    try:
+        premiere = next(flot)
+    except StopIteration:
+        # Une liste vide (donc fausse) plutôt qu'un générateur épuisé : c'est ce
+        # que `fetch()` teste pour décider du repli.
         log.warning(
-            "[datatourisme] flux téléchargé (%.1f Mo) mais aucun document JSON exploitable "
+            "[datatourisme] flux téléchargé (%.1f Mo) mais aucune fiche exploitable "
             "— archive vide ou format inattendu",
             len(corps) / 1e6,
         )
         return []
+    return itertools.chain([premiere], flot)
 
-    nodes: list[dict] = []
-    for doc in documents:
-        nodes.extend(_nodes_du_document(doc))
+
+def _fiches_du_corps(corps: bytes):
+    """Parcourt les documents du corps et rend les fiches, une à une."""
+    documents = fiches = 0
+    for doc in _documents_du_flux(corps):
+        documents += 1
+        for node in _nodes_du_document(doc):
+            fiches += 1
+            yield node
     log.info(
-        "[datatourisme] flux : %.1f Mo, %d document(s), %d fiche(s) brutes",
-        len(corps) / 1e6, len(documents), len(nodes),
+        "[datatourisme] flux : %.1f Mo compressés, %d document(s), %d fiche(s) brutes",
+        len(corps) / 1e6, documents, fiches,
     )
-    return nodes
 
 
 def _documents_du_flux(corps: bytes):
@@ -626,13 +648,17 @@ def _documents_du_flux(corps: bytes):
             for info in zf.infolist():
                 if info.is_dir() or not info.filename.lower().endswith((".json", ".jsonld")):
                     continue
-                # Garde-fou : une archive malveillante ou aberrante ne doit pas
-                # remplir le disque du runner (déjà limité).
+                # Garde-fou : une archive aberrante ne doit ni remplir le disque
+                # du runner (allocation fixe) ni le faire tuer pour dépassement
+                # mémoire. La troncature est ANNONCÉE, jamais silencieuse — c'est
+                # la différence entre un jeu incomplet qu'on sait incomplet et un
+                # jeu incomplet qui passe pour entier.
                 lus += info.file_size
                 if lus > MAX_FLUX_BYTES:
                     log.warning(
-                        "[datatourisme] archive tronquée à %d Mo décompressés — "
-                        "garde-fou, le flux est anormalement gros",
+                        "[datatourisme] archive TRONQUÉE à %d Mo décompressés (garde-fou) "
+                        "— le flux a dépassé la taille prévue, des fiches sont perdues. "
+                        "Relever MAX_FLUX_BYTES après avoir vérifié la mémoire du runner.",
                         MAX_FLUX_BYTES // 1_000_000,
                     )
                     return
@@ -640,6 +666,12 @@ def _documents_du_flux(corps: bytes):
                     yield _json.loads(zf.read(info))
                 except (ValueError, OSError):
                     continue
+            # Taille décompressée réelle : c'est elle qui dit à quelle distance on
+            # est du garde-fou, et le log ne montrait que le compressé.
+            log.info(
+                "[datatourisme] archive : %.0f Mo décompressés (garde-fou à %d Mo)",
+                lus / 1e6, MAX_FLUX_BYTES // 1_000_000,
+            )
         return
 
     if corps[:2] == b"\x1f\x8b":
@@ -813,7 +845,11 @@ def fetch(sector, limit: int | None = None) -> list[Place]:
     # ne permettait de décider d'ajouter une catégorie autrement qu'au jugé.
     # C'est ce compteur qui répond à « est-ce qu'on perd de la matière ? ».
     ignores: Counter = Counter()
+    # Compté à la volée : `nodes` peut être un flot paresseux (mode flux), dont on
+    # ne connaît pas la longueur avant de l'avoir parcouru.
+    recues = 0
     for node in nodes:
+        recues += 1
         if not isinstance(node, dict):
             continue
         place = _to_place(node, sector.id, today)
@@ -830,7 +866,7 @@ def fetch(sector, limit: int | None = None) -> list[Place]:
             seen.add(place.external_id)
         places.append(place)
 
-    log.info("[datatourisme] %d activités retenues sur %d fiches", len(places), len(nodes))
+    log.info("[datatourisme] %d activités retenues sur %d fiches", len(places), recues)
     if ignores:
         # À lire à chaque changement de flux : c'est l'inventaire de ce que la
         # source propose et qu'on écarte. Un type qui monte haut ici est un
@@ -839,7 +875,7 @@ def fetch(sector, limit: int | None = None) -> list[Place]:
             "[datatourisme] types reçus NON classés (matière disponible, écartée) : %s",
             ", ".join(f"{t}×{n}" for t, n in ignores.most_common(12)),
         )
-    if nodes and not places:
+    if recues and not places:
         # Des fiches reçues mais aucune reconnue : c'est le symptôme d'un
         # mapping de champs à corriger (l'ontologie est riche et les
         # producteurs la remplissent inégalement), pas d'un territoire vide.
@@ -847,7 +883,7 @@ def fetch(sector, limit: int | None = None) -> list[Place]:
             "[datatourisme] %d fiches reçues, AUCUNE exploitable — vérifier le mapping "
             "des types (@type) et des coordonnées (isLocatedAt/schema:geo) contre un "
             "échantillon réel du flux",
-            len(nodes),
+            recues,
         )
     return places[:limit] if limit else places
 

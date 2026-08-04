@@ -1261,6 +1261,65 @@ def test_flux_accepte_graph_et_json_nu(monkeypatch):
     assert [p.name for p in dt.fetch(load_sector("pont-de-salars"))] == ["Musée enveloppé"]
 
 
+def test_flux_paresseux_declenche_quand_meme_le_repli(monkeypatch):
+    """Le parcours du flux est paresseux, le TÉLÉCHARGEMENT doit rester immédiat.
+
+    Piège évité de justesse : dans un générateur pur, l'erreur HTTP ne survient
+    qu'à la première itération — donc après le `try` de `fetch()`, et le repli sur
+    l'API ne jouerait plus. Ce test laisse tourner le VRAI `_nodes_from_flux`,
+    contrairement au test suivant qui le remplace.
+    """
+    import requests
+
+    from quefaire import datatourisme as dt
+    from quefaire.cli import load_sector
+
+    monkeypatch.setenv(dt.FLUX_ENV, "https://flux.test/x")
+    monkeypatch.setenv(dt.API_KEY_ENV, "K")
+    monkeypatch.delenv(dt.API_PARAMS_ENV, raising=False)
+    monkeypatch.delenv(dt.API_FILTERS_ENV, raising=False)
+
+    def http(url, **k):
+        if "flux.test" in url:
+            raise requests.HTTPError("504 Gateway Timeout")
+        return _FakeResp({"objects": [{
+            "uri": "https://data.datatourisme.fr/11",
+            "@type": ["Museum"],
+            "rdfs:label": {"fr": ["Musée de repli"]},
+            "isLocatedAt": {"schema:geo": {"schema:latitude": "44.28", "schema:longitude": "2.74"}},
+        }], "meta": {"next": None}})
+
+    monkeypatch.setattr("quefaire.fetchers.base.http_get", http)
+    assert [p.name for p in dt.fetch(load_sector("pont-de-salars"))] == ["Musée de repli"]
+
+
+def test_flux_vide_declenche_le_repli(monkeypatch):
+    """Une archive qui ne rend aucune fiche doit basculer sur l'API, pas publier
+    un jeu vide. Le flot paresseux doit donc être testé AVANT d'être consommé."""
+    from quefaire import datatourisme as dt
+    from quefaire.cli import load_sector
+
+    monkeypatch.setenv(dt.FLUX_ENV, "https://flux.test/vide.zip")
+    monkeypatch.setenv(dt.API_KEY_ENV, "K")
+    monkeypatch.delenv(dt.API_PARAMS_ENV, raising=False)
+    monkeypatch.delenv(dt.API_FILTERS_ENV, raising=False)
+
+    vide = _zip_flux({"LISEZ-MOI.txt": "aucun json ici"})
+
+    def http(url, **k):
+        if "flux.test" in url:
+            return _FakeResp(None, content=vide)
+        return _FakeResp({"objects": [{
+            "uri": "https://data.datatourisme.fr/12",
+            "@type": ["Museum"],
+            "rdfs:label": {"fr": ["Musée de repli"]},
+            "isLocatedAt": {"schema:geo": {"schema:latitude": "44.28", "schema:longitude": "2.74"}},
+        }], "meta": {"next": None}})
+
+    monkeypatch.setattr("quefaire.fetchers.base.http_get", http)
+    assert [p.name for p in dt.fetch(load_sector("pont-de-salars"))] == ["Musée de repli"]
+
+
 def test_datatourisme_falls_back_to_api_when_flux_refused(monkeypatch):
     """Un flux dépublié rend 403 : la clé d'API doit prendre le relais.
 
