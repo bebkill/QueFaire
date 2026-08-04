@@ -10,10 +10,10 @@
    },
    "radius_minutes": 60.0,
    "event_count": 28,
-   "place_count": 1876,
-   "unusual_count": 193,
+   "place_count": 2231,
+   "unusual_count": 245,
    "notable_count": 113,
-   "photo_count": 1527,
+   "photo_count": 1869,
    "generated_at": "2026-08-03T21:58:32",
    "url": "pont-de-salars/"
   },
@@ -26,10 +26,10 @@
    },
    "radius_minutes": 60.0,
    "event_count": 48,
-   "place_count": 0,
-   "unusual_count": 0,
-   "notable_count": 0,
-   "photo_count": 0,
+   "place_count": 3756,
+   "unusual_count": 22,
+   "notable_count": 241,
+   "photo_count": 56,
    "generated_at": "2026-08-03T21:58:39",
    "url": "villemoirieu/"
   }
