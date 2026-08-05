@@ -45,6 +45,21 @@ log = logging.getLogger("quefaire")
 
 FLUX_ENV = "DATATOURISME_FLUX_URL"
 API_KEY_ENV = "DATATOURISME_API_KEY"
+
+# Inspecteur de source, à la demande : `QUEFAIRE_DUMP_TYPE=EntertainmentAndEvent`
+# fait recopier dans le log les premières fiches brutes portant ce type.
+#
+# Le flux n'est atteignable que depuis la CI (URL signée en secret, et le proxy de
+# l'environnement de développement bloque le domaine). Sans ça, toute question sur
+# la FORME d'un type non encore exploité se réglerait de mémoire ou par analogie —
+# et l'ontologie a déjà démenti trois suppositions de ce genre (`hasLabel`
+# inexistant, horaires sous `isLocatedAt`, flux livré en ZIP). Regarder coûte un
+# run ; deviner a coûté trois.
+#
+# Volontairement inerte hors demande explicite : aucun effet sur un run normal.
+DUMP_TYPE_ENV = "QUEFAIRE_DUMP_TYPE"
+DUMP_MAX = 2
+DUMP_CHARS = 3500
 # Échappatoire brute : tout paramètre d'URL non modélisé ici (`sort`…). À laisser
 # VIDE en temps normal — son contenu est collé tel quel à la requête, donc une
 # valeur mal formée part sur chaque appel. Ne pas y mettre `lang` : le code le
@@ -950,10 +965,21 @@ def fetch(sector, limit: int | None = None) -> list[Place]:
     # Compté à la volée : `nodes` peut être un flot paresseux (mode flux), dont on
     # ne connaît pas la longueur avant de l'avoir parcouru.
     recues = 0
+    a_montrer = os.environ.get(DUMP_TYPE_ENV, "").strip()
+    montrees = 0
     for node in nodes:
         recues += 1
         if not isinstance(node, dict):
             continue
+        if a_montrer and montrees < DUMP_MAX and a_montrer in _type_names(node):
+            import json as _json
+
+            montrees += 1
+            log.info(
+                "[datatourisme] fiche brute « %s » n°%d :\n%s",
+                a_montrer, montrees,
+                _json.dumps(node, ensure_ascii=False, indent=1)[:DUMP_CHARS],
+            )
         place = _to_place(node, sector.id, today)
         if place is None:
             for t in _type_names(node):
