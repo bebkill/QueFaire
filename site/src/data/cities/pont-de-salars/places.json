@@ -16313,8 +16313,8 @@
   "tldr": null,
   "commune": null,
   "address": null,
-  "lat": 44.6841534,
-  "lon": 2.8364887,
+  "lat": 44.6840957,
+  "lon": 2.8361762,
   "url": null,
   "phone": null,
   "opening_hours": null,
@@ -16779,8 +16779,8 @@
   "tldr": null,
   "commune": null,
   "address": null,
-  "lat": 44.2732513,
-  "lon": 2.6833757,
+  "lat": 44.2732605,
+  "lon": 2.6833796,
   "url": null,
   "phone": null,
   "opening_hours": null,
@@ -17907,7 +17907,7 @@
   "commune": null,
   "address": null,
   "lat": 44.430433,
-  "lon": 2.4246082,
+  "lon": 2.4246069,
   "url": null,
   "phone": null,
   "opening_hours": null,
@@ -19665,7 +19665,7 @@
   "id": "cineco-de-la-comedie-francaise-16dbfaf4"
  },
  {
-  "name": "Cinéma de Requista",
+  "name": "Cinéma de Réquista",
   "category": "cinema",
   "source_id": "osm",
   "sector": "pont-de-salars",
@@ -26201,7 +26201,7 @@
   "lon": 2.851607,
   "url": "http://www.jeune-montagne-aubrac.fr",
   "phone": "+33565443554",
-  "opening_hours": null,
+  "opening_hours": "Sep-Jun Mo-Sa 08:00-12:00,14:00-18:00; Sep-Jun Su,PH 09:00-12:00; Jul-Aug Mo-Sa 08:00-19:00; Jul-Aug Su,PH 09:00-13:00,14:00-18:00",
   "fee": null,
   "rating": null,
   "rating_count": null,
@@ -38698,6 +38698,45 @@
   "first_seen": "2026-08-02",
   "last_seen": "2026-08-05",
   "id": "espace-marcelle-cayron-7f19d853"
+ },
+ {
+  "name": "Espace Marionnettes",
+  "category": "musee",
+  "source_id": "osm",
+  "sector": "pont-de-salars",
+  "external_id": "node/6376346063",
+  "description": "",
+  "tldr": null,
+  "commune": null,
+  "address": null,
+  "lat": 43.9568088,
+  "lon": 2.8820778,
+  "url": "https://www.marionnettes.be",
+  "phone": "+33 4 73 72 74 59",
+  "opening_hours": null,
+  "fee": null,
+  "rating": null,
+  "rating_count": null,
+  "rating_source": null,
+  "rating_url": null,
+  "unusual": false,
+  "unusual_hint": true,
+  "quality": [],
+  "providers": [
+   "osm"
+  ],
+  "image_url": null,
+  "image_credit": null,
+  "image_page": null,
+  "tags": [
+   "osm:tourism=museum"
+  ],
+  "audience": [
+   "tous"
+  ],
+  "first_seen": "2026-08-05",
+  "last_seen": "2026-08-05",
+  "id": "espace-marionnettes-f0ede663"
  },
  {
   "name": "Espace ô Lévézou",
@@ -90667,6 +90706,45 @@
   "id": "saint-gregoire-83b17288"
  },
  {
+  "name": "Saint-Rome Plage",
+  "category": "bien-etre",
+  "source_id": "osm",
+  "sector": "pont-de-salars",
+  "external_id": "node/9850196247",
+  "description": "",
+  "tldr": null,
+  "commune": null,
+  "address": null,
+  "lat": 44.0473658,
+  "lon": 2.8866765,
+  "url": null,
+  "phone": null,
+  "opening_hours": "24/7",
+  "fee": false,
+  "rating": null,
+  "rating_count": null,
+  "rating_source": null,
+  "rating_url": null,
+  "unusual": false,
+  "unusual_hint": false,
+  "quality": [],
+  "providers": [
+   "osm"
+  ],
+  "image_url": null,
+  "image_credit": null,
+  "image_page": null,
+  "tags": [
+   "osm:amenity=public_bath"
+  ],
+  "audience": [
+   "tous"
+  ],
+  "first_seen": "2026-08-05",
+  "last_seen": "2026-08-05",
+  "id": "saint-rome-plage-ae7875a3"
+ },
+ {
   "name": "Saint-Rome-Plage",
   "category": "parc-aquatique",
   "source_id": "osm",
@@ -95005,8 +95083,8 @@
   "tldr": null,
   "commune": null,
   "address": null,
-  "lat": 44.4665697,
-  "lon": 2.9718788,
+  "lat": 44.4665489,
+  "lon": 2.9719064,
   "url": null,
   "phone": null,
   "opening_hours": null,
