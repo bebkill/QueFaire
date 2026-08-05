@@ -1728,6 +1728,41 @@ def test_dedupe_providers_merges_same_place():
     assert merged.source_id == "osm"
 
 
+def test_dedupe_providers_ne_depend_pas_de_l_ordre_d_arrivee():
+    """Le rapprochement ne doit pas dépendre de l'ordre dans lequel arrivent les
+    fiches — sinon un diff de données générées cesse de vouloir dire quelque chose.
+
+    Le cas qui l'a révélé : trois homonymes en CHAÎNE, A-B et B-C sous le seuil de
+    rapprochement, A-C au-dessus. Comme chaque fiche n'est comparée qu'à la TÊTE de
+    groupe, l'arrivée de B en premier absorbait A et C, alors que l'arrivée de A en
+    premier laissait C dehors — 1 fiche ou 2 selon Overpass, qui ne garantit pas
+    l'ordre de ses éléments. Mesuré sur les six permutations : 1 pour `bac`/`bca`,
+    2 pour les quatre autres. En production, deux runs à données identiques ont
+    publié 2747 puis 2745 activités.
+
+    Le rapprochement reste volontairement comparé à la tête et non à tous les
+    membres : la fermeture transitive collerait des lieux distincts de proche en
+    proche, ce que ce projet a déjà refusé pour l'URL partagée. Ce qui est corrigé
+    ici est l'ARBITRAIRE, pas le périmètre du rapprochement.
+    """
+    import itertools
+
+    from quefaire.models import Place
+    from quefaire.places import SAME_PLACE_KM, dedupe_providers
+
+    pas = SAME_PLACE_KM / 111.0 * 0.9   # 90 % du seuil, exprimé en degrés de latitude
+
+    def fiche(ident, rang):
+        return Place(name="Chapelle Saint-Roch", category="patrimoine", source_id="osm",
+                     sector="s", external_id=ident, lat=44.0 + rang * pas, lon=2.0,
+                     tags=["osm:historic=monument"], providers=["osm"])
+
+    comptes = set()
+    for ordre in itertools.permutations([("a", 0), ("b", 1), ("c", 2)]):
+        comptes.add(len(dedupe_providers([fiche(i, r) for i, r in ordre])))
+    assert len(comptes) == 1, f"résultat dépendant de l'ordre : {sorted(comptes)}"
+
+
 def test_dedupe_providers_keeps_distinct_places():
     from quefaire.models import Place
     from quefaire.places import dedupe_providers

@@ -414,6 +414,25 @@ def dedupe_providers(places: list[Place], phase: str = "sweep") -> list[Place]:
     groups: list[list[Place]] = []
     index: dict[str, list[list[Place]]] = {}
 
+    # Ordre d'entrée FIGÉ. Le rapprochement compare chaque fiche à la TÊTE de
+    # groupe, pas à tous ses membres : sur trois lieux voisins en chaîne (A-B et
+    # B-C sous le seuil, A-C au-dessus), le résultat dépend de qui arrive en
+    # premier. Overpass ne garantit pas l'ordre de ses éléments, d'où une dérive
+    # de ±2 fiches entre deux runs à données identiques (2747 puis 2745, un musée
+    # et un bain public), et des compteurs d'écartées qui bougeaient sans cause.
+    # Un diff de données générées doit signifier « la source a changé », jamais
+    # « le fournisseur a répondu dans un autre ordre ».
+    places = sorted(
+        places,
+        key=lambda p: (
+            _name_key(p.name),
+            p.category,
+            round(p.lat or 0, 5),
+            round(p.lon or 0, 5),
+            p.external_id or "",
+        ),
+    )
+
     for place in places:
         key = _name_key(place.name)
         target = None
