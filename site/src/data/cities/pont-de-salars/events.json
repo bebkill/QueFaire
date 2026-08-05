@@ -28,18 +28,18 @@
   "source_id": "html-levezou-pontsalars",
   "sector": "pont-de-salars",
   "end": null,
-  "description": "Tous les mercredis d'été à partir du 8 juillet, marché d'été de Pont-de-Salars place du 29 Juin 1944, devant la Salle des Fêtes.",
+  "description": "Marché d'été de Pont-de-Salars, place du 29 Juin 1944, devant la Salle des Fêtes. Il a lieu tous les mercredis d'été à partir du 8 juillet.",
   "tldr": null,
-  "category": "fete",
+  "category": "autre",
   "tags": [],
   "audience": [
    "tous"
   ],
   "commune": "Pont-de-Salars",
-  "address": "Place du 29 Juin 1944, devant la Salle des Fêtes",
+  "address": "Place du 29 Juin 1944 (devant la Salle des Fêtes)",
   "lat": 44.2771,
   "lon": 2.7171,
-  "free": true,
+  "free": null,
   "price_text": null,
   "url": "https://www.tourisme-aveyron.com/fr/diffusio/agenda/marche-d-ete-pont-de-salars_TFO12185-FMA-20260622102233597",
   "image": null,
@@ -255,12 +255,12 @@
   "id": "cluedo-urbain-theatralise-4172069e"
  },
  {
-  "title": "Beach Lévézou Tour - Les Moulinoches - Quilles Maillet",
+  "title": "\"BEACH LEVEZOU TOUR\" Les Moulinoches \"Quilles Maillet\"",
   "start": "2026-08-05T14:00:00",
   "source_id": "html-levezou-pontsalars",
   "sector": "pont-de-salars",
   "end": null,
-  "description": "Tournoi sportif dès 14h avec Fred sur les plages du Lévézou. Aujourd'hui : Quilles Maillet, inscription sur place.",
+  "description": "Tournoi sportif « Quilles Maillet » dès 14h sur les plages du Lévézou. Inscription sur place, informations au 06 30 26 62 64.",
   "tldr": null,
   "category": "sport",
   "tags": [],
@@ -268,14 +268,14 @@
    "tous"
   ],
   "commune": "Le Vibal",
-  "address": null,
+  "address": "Plages du Lévézou",
   "lat": 44.3166,
   "lon": 2.7286,
   "free": null,
   "price_text": null,
   "url": "https://www.tourisme-aveyron.com/fr/diffusio/agenda/beach-levezou-tour-les-moulinoches-quilles-maillet-le-vibal_TFO295368182298",
   "image": null,
-  "id": "beach-levezou-tour-les-moulinoches-quilles-maillet-8e4f0838"
+  "id": "beach-levezou-tour-les-moulinoches-quilles-maillet-9aecb8f4"
  },
  {
   "title": "Concert Jeunes Talents",
@@ -306,15 +306,16 @@
   "source_id": "html-levezou-pontsalars",
   "sector": "pont-de-salars",
   "end": null,
-  "description": "Concours en doublette au terrain de pétanque, organisé tous les mercredis à partir de 20h30. 3 parties, 6€ l'équipe, buvette toute la soirée.",
+  "description": "Concours de pétanque en doublette tous les mercredis à partir de 20h30, au terrain de pétanque à la sortie du village. 6€ l'équipe, buvette toute la soirée.",
   "tldr": null,
   "category": "sport",
   "tags": [],
   "audience": [
-   "tous"
+   "adultes",
+   "seniors"
   ],
   "commune": "Canet-de-Salars",
-  "address": "Terrain de pétanque à la sortie du village, direction Salles Curan",
+  "address": "Terrain de pétanque, sortie du village direction Salles-Curan",
   "lat": 44.2392,
   "lon": 2.7379,
   "free": false,
@@ -352,8 +353,8 @@
   "source_id": "html-levezou-pontsalars",
   "sector": "pont-de-salars",
   "end": null,
-  "description": "Le labyrinthe se referme et des créatures ont envahi les allées. Déconseillé aux moins de 16 ans, sur réservation obligatoire.",
-  "tldr": "Il s'agit d'un parcours dans le noir avec des acteurs déguisés en créatures effrayantes, inspiré des films d'horreur.",
+  "description": "Labyrinthe horreur en nocturne, déconseillé aux moins de 16 ans. Réservation obligatoire sur www.popcornlabyrinthe.fr.",
+  "tldr": "Il s'agit d'un parcours effrayant en labyrinthe avec des éléments horrifiques, interdit aux moins de 16 ans.",
   "category": "autre",
   "tags": [],
   "audience": [
@@ -371,17 +372,19 @@
   "id": "nuit-de-l-horreur-f1758973"
  },
  {
-  "title": "Randonnée nocturne vers Lescure-Fangel et bois de Saugane",
+  "title": "Randonnée nocturne Vers Lescure-fangel et bois de Saugane",
   "start": "2026-08-06T00:00:00",
   "source_id": "html-levezou-pontsalars",
   "sector": "pont-de-salars",
   "end": null,
-  "description": "Randonnée de 12 km, durée 3h, difficulté facile, dénivelé 200m. Organisée par l'association Découverte en Pays de Salars.",
+  "description": "Randonnée nocturne de 12 km, durée 3h, difficulté facile, organisée par l'association « Découverte en Pays de Salars ».",
   "tldr": null,
   "category": "marche",
   "tags": [],
   "audience": [
-   "adultes"
+   "ados",
+   "adultes",
+   "seniors"
   ],
   "commune": "Prades-Salars",
   "address": null,
@@ -537,7 +540,7 @@
   "source_id": "html-levezou-pontsalars",
   "sector": "pont-de-salars",
   "end": "2026-08-06T12:00:00",
-  "description": "Découverte des milieux aquatiques par une activité pêche pour les 5/18 ans, de 9h30 à 12h. 12€ par enfant de plus de 8 ans, sur inscription.",
+  "description": "Activité pêche pour les 5-18 ans de 9h30 à 12h au lac de la Gourde. Sur inscription, 12€ par enfant de plus de 8 ans ; les 5-8 ans accompagnés d'un adulte.",
   "tldr": null,
   "category": "nature",
   "tags": [],
@@ -546,7 +549,7 @@
    "ados"
   ],
   "commune": "Canet-de-Salars",
-  "address": "Lac de la Gourde, au bout du Chemin de Conquettes à Pareloup",
+  "address": "Lac de la Gourde, RDV au bout du Chemin de Conquettes à Pareloup",
   "lat": 44.2392,
   "lon": 2.7379,
   "free": false,
@@ -556,12 +559,12 @@
   "id": "animation-peche-et-nature-au-lac-de-la-gourde-pour-les-enfants-5addd5c4"
  },
  {
-  "title": "Animation Pêche et Nature au lac de Pont-de-Salars pour les enfants",
+  "title": "Animation Pêche et Nature au lac de Pont de Salars commune du Vibal pour les enfants",
   "start": "2026-08-06T14:00:00",
   "source_id": "html-levezou-pontsalars",
   "sector": "pont-de-salars",
   "end": "2026-08-06T16:30:00",
-  "description": "Découverte des milieux aquatiques par une activité pêche pour les 5/18 ans, de 14h à 16h30. Sur inscription, 12€ par enfant de plus de 8 ans.",
+  "description": "Activité pêche pour les 5-18 ans de 14h à 16h30, sur inscription. 12€ par enfant de plus de 8 ans ; les 5-8 ans doivent être accompagnés d'un adulte.",
   "tldr": null,
   "category": "nature",
   "tags": [],
@@ -570,14 +573,14 @@
    "ados"
   ],
   "commune": "Pont-de-Salars",
-  "address": "Lac de Pont-de-Salars",
+  "address": "Lac de Pont-de-Salars (commune du Vibal)",
   "lat": 44.2771,
   "lon": 2.7171,
   "free": false,
   "price_text": "12€ par enfant de plus de 8 ans",
   "url": "https://www.tourisme-aveyron.com/fr/diffusio/agenda/animation-peche-et-nature-au-lac-de-pont-de-salars-commune-du-vibal-pour-les-enfants-pont-de-salars_TFO425810739307",
   "image": null,
-  "id": "animation-peche-et-nature-au-lac-de-pont-de-salars-pour-les-enfants-c4874b46"
+  "id": "animation-peche-et-nature-au-lac-de-pont-de-salars-commune-du-vibal-pour-les-enf-7293fbb3"
  },
  {
   "title": "Visite de la ferme - Fromagerie du Griffoul",
@@ -585,13 +588,13 @@
   "source_id": "html-levezou-pontsalars",
   "sector": "pont-de-salars",
   "end": null,
-  "description": "Visite de la ferme à 16h30, sur réservation, en juillet et août.",
+  "description": "Visite de la ferme les jeudis et vendredis à 16h30 en juillet et août. Sur réservation au 06.70.97.02.76 ou 06.82.95.21.20.",
   "tldr": null,
   "category": "autre",
   "tags": [],
   "audience": [
-   "famille",
-   "tous"
+   "tous",
+   "famille"
   ],
   "commune": "Prades-Salars",
   "address": "Fromagerie du Griffoul",
@@ -609,13 +612,13 @@
   "source_id": "html-levezou-pontsalars",
   "sector": "pont-de-salars",
   "end": null,
-  "description": "À partir de 19h à la Ferme de l'Aulto : tour de magie et acrobaties avec la compagnie Tête d'Ampoule, suivi d'un repas local.",
+  "description": "Tour de magie et acrobaties avec la compagnie Tête d'Ampoule à partir de 19h, suivi d'un repas local à la Ferme de l'Aulto.",
   "tldr": null,
   "category": "spectacle",
   "tags": [],
   "audience": [
-   "famille",
-   "adultes"
+   "tous",
+   "famille"
   ],
   "commune": "Canet-de-Salars",
   "address": "Ferme de l'Aulto, au Puech Arnal",
@@ -633,8 +636,8 @@
   "source_id": "html-levezou-pontsalars",
   "sector": "pont-de-salars",
   "end": "2026-08-09",
-  "description": "La Festa Del Pont est de retour ! Rendez-vous le week-end du 7, 8 et 9 août à Pont-de-Salars.",
-  "tldr": "Fête locale avec animations, stands, concerts et activités pour tous, célébrant le pont et la culture occitane.",
+  "description": "La Festa del Pont est de retour le week-end du 7, 8 et 9 août à Pont-de-Salars.",
+  "tldr": "Fête locale avec animations, stands et concerts pour célébrer le pont du 7, 8 et 9 août à Pont-de-Salars.",
   "category": "fete",
   "tags": [],
   "audience": [
@@ -656,43 +659,41 @@
   "source_id": "html-levezou-pontsalars",
   "sector": "pont-de-salars",
   "end": null,
-  "description": "Soirée paella animée par Michel Bezelgues au restaurant l'Oustal.",
+  "description": "Soirée paella animée par Michel Bezelgues au restaurant l'Oustal, camping du lac.",
   "tldr": null,
   "category": "fete",
   "tags": [],
   "audience": [
-   "adultes",
    "tous"
   ],
   "commune": "Pont-de-Salars",
-  "address": "Restaurant l'Oustal, camping du lac",
+  "address": "Restaurant l'Oustal (camping du lac)",
   "lat": 44.2771,
   "lon": 2.7171,
-  "free": false,
+  "free": null,
   "price_text": null,
   "url": "https://www.tourisme-aveyron.com/fr/diffusio/agenda/soiree-paella-a-l-oustal-pont-de-salars_TFO12185-FMA-20260804171846466",
   "image": null,
   "id": "soiree-paella-a-l-oustal-c230209a"
  },
  {
-  "title": "Dîner Moules-frites & Concert",
+  "title": "DÎNER Moules-frites & CONCERT",
   "start": "2026-08-07T00:00:00",
   "source_id": "html-levezou-pontsalars",
   "sector": "pont-de-salars",
   "end": null,
-  "description": "Soirée moules-frites tous les vendredis soirs en juillet et août, sur la plage du lac de Pareloup. Réservation au 06.11.98.17.73.",
+  "description": "Soirée moules-frites et concert tous les vendredis soir en juillet et août, sur la plage du lac de Pareloup. Réservation au 06.11.98.17.73.",
   "tldr": null,
   "category": "concert",
   "tags": [],
   "audience": [
-   "adultes",
    "tous"
   ],
   "commune": "Arvieu",
-  "address": "Plage du lac de Pareloup, Restaurant Lou Carretou",
+  "address": "Plage du lac de Pareloup, restaurant Lou Carretou",
   "lat": 44.1908,
   "lon": 2.6704,
-  "free": false,
+  "free": null,
   "price_text": null,
   "url": "https://www.tourisme-aveyron.com/fr/diffusio/agenda/diner-moules-frites--concert-arvieu_TFO12011-FMA-20260629153809939",
   "image": null,
@@ -704,7 +705,7 @@
   "source_id": "html-levezou-pontsalars",
   "sector": "pont-de-salars",
   "end": null,
-  "description": "Détente avec des exercices dansés de relaxation dynamique et de visualisation en danse libre. 10€ dès 7 ans, sur réservation.",
+  "description": "Détente par des exercices dansés de relaxation dynamique et de visualisation en danse libre. 10€ dès 7 ans, sur réservation au 06 85 07 47 37.",
   "tldr": null,
   "category": "atelier",
   "tags": [],
@@ -714,7 +715,7 @@
    "adultes"
   ],
   "commune": "Arvieu",
-  "address": "Base nautique, plage ou salle",
+  "address": "Base nautique de Pareloup",
   "lat": 44.1908,
   "lon": 2.6704,
   "free": false,
@@ -729,7 +730,7 @@
   "source_id": "html-levezou-pontsalars",
   "sector": "pont-de-salars",
   "end": null,
-  "description": "Détente par des exercices de relaxation dynamique et de chant avec visualisation sonore. 10€ dès 7 ans, sur réservation.",
+  "description": "Détente par des exercices de relaxation dynamique et de chant avec visualisation sonore. 10€ dès 7 ans, sur réservation au 06 85 07 47 37.",
   "tldr": null,
   "category": "atelier",
   "tags": [],
@@ -749,12 +750,12 @@
   "id": "sophro-chant-9a2a3405"
  },
  {
-  "title": "Beach Lévézou Tour - Les Rousselleries - Beach Soccer",
+  "title": "\"BEACH LEVEZOU TOUR\" Les Rousselleries \"Beach Soccer\"",
   "start": "2026-08-07T14:00:00",
   "source_id": "html-levezou-pontsalars",
   "sector": "pont-de-salars",
   "end": null,
-  "description": "Tournoi sportif dès 14h avec Fred sur les plages du Lévézou. Inscriptions sur place.",
+  "description": "Tournoi de beach soccer dès 14h sur les plages du Lévézou. Inscription sur place, informations au 06 30 26 62 64.",
   "tldr": null,
   "category": "sport",
   "tags": [],
@@ -762,14 +763,14 @@
    "tous"
   ],
   "commune": "Pont-de-Salars",
-  "address": null,
+  "address": "Plages du Lévézou",
   "lat": 44.2771,
   "lon": 2.7171,
   "free": null,
   "price_text": null,
   "url": "https://www.tourisme-aveyron.com/fr/diffusio/agenda/beach-levezou-tour-les-rousselleries-beach-soccer-pont-de-salars_TFO12185-FMA-20250611150359177",
   "image": null,
-  "id": "beach-levezou-tour-les-rousselleries-beach-soccer-ad6479e9"
+  "id": "beach-levezou-tour-les-rousselleries-beach-soccer-c44a7886"
  },
  {
   "title": "Visite de la ferme - Fromagerie du Griffoul",
@@ -777,13 +778,13 @@
   "source_id": "html-levezou-pontsalars",
   "sector": "pont-de-salars",
   "end": null,
-  "description": "Visite de la ferme à 16h30, sur réservation, en juillet et août.",
+  "description": "Visite de la ferme les jeudis et vendredis à 16h30 en juillet et août. Sur réservation au 06.70.97.02.76 ou 06.82.95.21.20.",
   "tldr": null,
   "category": "autre",
   "tags": [],
   "audience": [
-   "famille",
-   "tous"
+   "tous",
+   "famille"
   ],
   "commune": "Prades-Salars",
   "address": "Fromagerie du Griffoul",
@@ -801,7 +802,7 @@
   "source_id": "html-levezou-pontsalars",
   "sector": "pont-de-salars",
   "end": null,
-  "description": "Tournois de belote amicaux tous les vendredis soirs à partir de 18h30. Sans lot à gagner.",
+  "description": "Tournois de belote amicaux tous les vendredis soirs à partir de 18h30.",
   "tldr": null,
   "category": "sport",
   "tags": [],
@@ -825,12 +826,13 @@
   "source_id": "html-levezou-pontsalars",
   "sector": "pont-de-salars",
   "end": null,
-  "description": "Tous les vendredis soirs à 21h, concours de pétanque en doublette : 3 parties, 8€ par équipe. Lots en nature.",
+  "description": "Concours de pétanque en doublette tous les vendredis soirs à 21h : 3 parties, 8€ par équipe. Lots en nature.",
   "tldr": null,
   "category": "sport",
   "tags": [],
   "audience": [
-   "tous"
+   "adultes",
+   "seniors"
   ],
   "commune": "Flavin",
   "address": null,
