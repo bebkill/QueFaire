@@ -630,6 +630,13 @@ def _fiches_du_corps(corps: bytes):
     documents = noeuds = 0
     vus: set[str] = set()
     sans_id = 0
+    # Types des nœuds SANS identifiant. Mesuré parce que la répartition observée
+    # est trop régulière pour être fortuite : 23 541 nœuds identifiés et 23 541
+    # anonymes pour 23 543 membres, soit exactement un de chaque par fiche. Savoir
+    # ce que sont ces seconds nœuds décide de deux choses : s'il faut les sauter
+    # (la conversion travaille pour rien) ou s'ils portent des champs qu'on perd —
+    # `avec_horaires: 3` sur 2437 activités est assez anormal pour le soupçonner.
+    anonymes: Counter = Counter()
     for doc in _documents_du_flux(corps):
         documents += 1
         for node in _nodes_du_document(doc):
@@ -639,6 +646,8 @@ def _fiches_du_corps(corps: bytes):
                 vus.add(ident)
             else:
                 sans_id += 1
+                for t in _type_names(node) or ["(sans @type)"]:
+                    anonymes[t] += 1
             yield node
     log.info(
         "[datatourisme] flux : %.1f Mo compressés, %d document(s), %d nœud(s), "
@@ -646,6 +655,11 @@ def _fiches_du_corps(corps: bytes):
         len(corps) / 1e6, documents, noeuds, len(vus),
         max(0, noeuds - sans_id - len(vus)), sans_id,
     )
+    if anonymes:
+        log.info(
+            "[datatourisme] nœuds sans identifiant, par type : %s",
+            ", ".join(f"{t}×{n}" for t, n in anonymes.most_common(8)),
+        )
 
 
 def _documents_du_flux(corps: bytes):
@@ -908,7 +922,10 @@ def fetch(sector, limit: int | None = None) -> list[Place]:
             seen.add(place.external_id)
         places.append(place)
 
-    log.info("[datatourisme] %d activités retenues sur %d fiches", len(places), recues)
+    # « nœuds » et non « fiches » : en mode flux, chaque fiche arrive accompagnée
+    # d'un second nœud anonyme, ce qui doublait le dénominateur — 2437 sur 47 082
+    # laissait croire à une sélectivité deux fois plus sévère qu'en réalité.
+    log.info("[datatourisme] %d activités retenues sur %d nœud(s)", len(places), recues)
     if ignores:
         # À lire à chaque changement de flux : c'est l'inventaire de ce que la
         # source propose et qu'on écarte. Un type qui monte haut ici est un
