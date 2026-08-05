@@ -292,10 +292,22 @@ def _overpass(query: str) -> list[dict]:
     from .fetchers.base import http_get
 
     last: Exception | None = None
-    for url in OVERPASS_URLS:
+    for rang, url in enumerate(OVERPASS_URLS):
         try:
             resp = http_get(url, params={"data": query}, timeout=OVERPASS_TIMEOUT + 30)
-            return resp.json().get("elements", [])
+            elements = resp.json().get("elements", [])
+            # QUI a répondu, et non seulement qui a échoué. Les miroirs n'ont pas
+            # la même latence de réplication OSM : ils ne rendent donc pas tout à
+            # fait les mêmes données, et le fournisseur qui a servi la sweep est
+            # une variable du résultat. Elle manquait au log — quatre runs de
+            # suite ont publié 2747, 2745, 2745, 2747 activités (un musée et un
+            # bain public qui vont et viennent) sans que rien ne permette de
+            # rattacher l'écart à son origine.
+            log.info(
+                "[places] Overpass : %s a répondu (%s), %d éléments",
+                url, "instance principale" if rang == 0 else f"miroir {rang}", len(elements),
+            )
+            return elements
         except requests.HTTPError as exc:
             status = getattr(exc.response, "status_code", None)
             last = exc
