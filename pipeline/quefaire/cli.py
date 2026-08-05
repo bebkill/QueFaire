@@ -244,7 +244,15 @@ def discover_places(
     # personne ne lit le log, le jeu dériverait jusqu'à ce que les fiches
     # conservées tombent d'un coup, au bout du sursis.
     if manquants:
-        conserve = sum(1 for p in merged if p.last_seen and p.last_seen != date.today().isoformat())
+        # Compté sur ce que la sweep A RAMENÉ, pas sur `last_seen`. La date n'a
+        # qu'une granularité au jour : après un premier passage, toute fiche
+        # conservée porte déjà la date du jour, et le compteur s'effondre. Vécu le
+        # 2026-08-05 — Overpass absent, l'avertissement annonçait « 5 fiches
+        # publiées depuis la rétention » là où il y en avait plus de 1500. Un
+        # avertissement qui sous-estime une panne de deux ordres de grandeur fait
+        # exactement le contraire de ce pour quoi il a été écrit.
+        vues = {p.external_id for p in found if p.external_id}
+        conserve = sum(1 for p in merged if p.external_id and p.external_id not in vues)
         log.warning(
             "[places] SWEEP INCOMPLÈTE — %s absent(s) de ce run : %d fiches publiées "
             "depuis la rétention, retrait automatique si l'absence dure plus de %d jours",
