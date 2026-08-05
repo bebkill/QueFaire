@@ -1,6 +1,6 @@
 [
  {
-  "title": "Musée : \"Au fil de l’eau\"",
+  "title": "Musée : \" Au fil de l’eau \"",
   "start": "2026-03-07T00:00:00",
   "source_id": "html-bourgoin",
   "sector": "villemoirieu",
@@ -20,7 +20,7 @@
   "price_text": null,
   "url": "https://www.bourgoinjallieu.fr/agenda/2645-musee-au-fil-de-l-eau",
   "image": null,
-  "id": "musee-au-fil-de-leau-adf958ec"
+  "id": "musee-au-fil-de-leau-e36e6d50"
  },
  {
   "title": "Exposition au musée archéologique : Corps parés, âmes révélées…",
@@ -51,7 +51,7 @@
   "source_id": "html-bourgoin",
   "sector": "villemoirieu",
   "end": "2026-09-30",
-  "description": "Exposition présentée à l’occasion du bicentenaire de la photographie, organisée par le musée de Bourgoin-Jallieu.",
+  "description": "À l’occasion du bicentenaire de la photographie, le musée de Bourgoin-Jallieu présente cette exposition au parc des Mûriers.",
   "tldr": null,
   "category": "expo",
   "tags": [],
@@ -59,7 +59,7 @@
    "tous"
   ],
   "commune": "Bourgoin-Jallieu",
-  "address": "Parc des Mûriers",
+  "address": "Parc des Mûriers, Bourgoin-Jallieu",
   "lat": 45.6025,
   "lon": 5.2747,
   "free": null,
@@ -74,8 +74,8 @@
   "source_id": "html-bourgoin",
   "sector": "villemoirieu",
   "end": "2026-09-26",
-  "description": "Animation estivale proposée par la Ville, du 1er mai au 26 septembre 2026.",
-  "tldr": null,
+  "description": "Du 1er mai au 26 septembre 2026.",
+  "tldr": "Une opération municipale incitant les habitants à aménager ou fréquenter des terrasses de cafés ou restaurants locaux pour l'été.",
   "category": "autre",
   "tags": [],
   "audience": [
@@ -143,7 +143,7 @@
   "source_id": "html-bourgoin",
   "sector": "villemoirieu",
   "end": "2026-09-13",
-  "description": "Du 16 juin au 13 septembre 2026, la Ville de Bourgoin-Jallieu propose un programme festif.",
+  "description": "Du 16 juin au 13 septembre 2026, la Ville de Bourgoin-Jallieu propose un programme d’animations estivales.",
   "tldr": null,
   "category": "festival",
   "tags": [],
@@ -236,11 +236,12 @@
   "source_id": "html-bourgoin",
   "sector": "villemoirieu",
   "end": "2026-09-13",
-  "description": "Pique-niques proposés par l'association « Vibrations Mystiques » et la Ville de Bourgoin-Jallieu.",
+  "description": "Des pique-niques proposés par l’association « Vibrations Mystiques » et la ville de Bourgoin-Jallieu.",
   "tldr": null,
   "category": "nature",
   "tags": [],
   "audience": [
+   "famille",
    "tous"
   ],
   "commune": "Bourgoin-Jallieu",
@@ -264,6 +265,7 @@
   "category": "cinema",
   "tags": [],
   "audience": [
+   "famille",
    "tous"
   ],
   "commune": "Bourgoin-Jallieu",
@@ -392,12 +394,12 @@
   "id": "l-arche-de-julie-visites-et-ateliers-du-mois-d-aout-660cc695"
  },
  {
-  "title": "Exposition Archives “Quand la ville arrive à la campagne”",
+  "title": "Exposition Archives « Quand la ville arrive à la campagne »",
   "start": "2026-08-04T00:00:00",
   "source_id": "html-capi",
   "sector": "villemoirieu",
   "end": "2026-08-14",
-  "description": "Le pôle Archives de la CAPI et son service mutualisé des archives proposent de remonter le temps et de redécouvrir « la ville nouvelle ». Plus d’infos sur monweekendalacapi.fr.",
+  "description": "Le pôle Archives de la CAPI et son service mutualisé des archives proposent de remonter le temps et de redécouvrir la « ville nouvelle ». L'exposition se tient à l'Espace Carnot du 4 au 14 août 2026.",
   "tldr": null,
   "category": "expo",
   "tags": [],
@@ -405,22 +407,22 @@
    "tous"
   ],
   "commune": "L'Isle-d'Abeau",
-  "address": null,
+  "address": "Office de Tourisme CAPI - Espace Carnot",
   "lat": 45.6153,
   "lon": 5.2234,
   "free": null,
   "price_text": null,
   "url": "https://capi-agglo.fr/agenda/exposition-archives-quand-la-ville-arrive-a-la-campagne/",
   "image": null,
-  "id": "exposition-archives-quand-la-ville-arrive-a-la-campagne-321c4d11"
+  "id": "exposition-archives-quand-la-ville-arrive-a-la-campagne-e9d51ded"
  },
  {
-  "title": "Exposition Archives \"Quand la ville arrive à la campagne\"",
+  "title": "Exposition : Archives \" Quand la ville arrive à la campagne \"",
   "start": "2026-08-04T00:00:00",
-  "source_id": "html-weekend-capi",
+  "source_id": "html-bourgoin",
   "sector": "villemoirieu",
   "end": "2026-08-14",
-  "description": "Le pôle Archives de la CAPI et son service mutualisé des archives proposent de remonter le temps et de redécouvrir « la ville nouvelle ». Une exposition à voir du 4 au 14 août 2026 à l'Office de Tourisme.",
+  "description": "Le pôle Archives de la CAPI et son service mutualisé des archives proposent une exposition.",
   "tldr": null,
   "category": "expo",
   "tags": [],
@@ -428,14 +430,14 @@
    "tous"
   ],
   "commune": "Bourgoin-Jallieu",
-  "address": "Office de Tourisme CAPI-Porte de l'Isère, 38300 Bourgoin-Jallieu, France",
+  "address": null,
   "lat": 45.6025,
   "lon": 5.2747,
   "free": null,
   "price_text": null,
-  "url": "https://www.monweekendalacapi.fr/agenda/evenements/exposition-archives-quand-la-ville-arrive-a-la-campagne",
+  "url": "https://www.bourgoinjallieu.fr/agenda/1818-exposition-archives-quand-la-ville-arrive-a-la-campagne",
   "image": null,
-  "id": "exposition-archives-quand-la-ville-arrive-a-la-campagne-b81865fa"
+  "id": "exposition-archives-quand-la-ville-arrive-a-la-campagne-f008ea6a"
  },
  {
   "title": "Stage pour cavaliers débutants / poney de bronze",
@@ -582,7 +584,7 @@
   "source_id": "html-cafe-crem",
   "sector": "villemoirieu",
   "end": "2026-08-06T20:30:00",
-  "description": "Animation jeux de société. Inscription recommandée auprès de Kojak au 07 77 91 14 53.",
+  "description": "Découverte des jeux de société de Kojak au Café Crèm'. Atelier convivial ouvert à tous.",
   "tldr": null,
   "category": "atelier",
   "tags": [],
@@ -590,12 +592,12 @@
    "tous"
   ],
   "commune": "Villemoirieu",
-  "address": "Le Buisson Partagé, zone d'activités de Buisson Rond, 38460 Villemoirieu",
+  "address": "1 Parc d'activités du Buisson Rond, 38460 Villemoirieu",
   "lat": 45.7138,
   "lon": 5.2348,
-  "free": true,
+  "free": null,
   "price_text": null,
-  "url": "https://cafe-crem.fr/#decouvrir-les-jeux-de-societe-de-kojak-1785999600000",
+  "url": "https://cafe-crem.fr/programme#decouvrir-les-jeux-de-societe-de-kojak-1785999600000",
   "image": null,
   "id": "decouvrir-les-jeux-de-societe-de-kojak-4e103bf0"
  },
@@ -628,7 +630,7 @@
   "source_id": "html-bourgoin",
   "sector": "villemoirieu",
   "end": "2026-09-22",
-  "description": "L'exposition photographique est présentée au sein du musée Clauorum de Bourgoin-Jallieu.",
+  "description": "L’exposition photographique est présentée au sein du musée Clauorum de Bourgoin-Jallieu.",
   "tldr": null,
   "category": "expo",
   "tags": [],
@@ -636,7 +638,7 @@
    "tous"
   ],
   "commune": "Bourgoin-Jallieu",
-  "address": "Musée Clauorum",
+  "address": "Musée Galerie Clauorum, Bourgoin-Jallieu",
   "lat": 45.6025,
   "lon": 5.2747,
   "free": null,
@@ -651,7 +653,7 @@
   "source_id": "html-weekend-capi",
   "sector": "villemoirieu",
   "end": null,
-  "description": "La municipalité de Saint-Savin propose des soirées cinéma de plein air les 24 juillet, 7 et 21 août 2026. Rendez-vous le 7 août pour une séance en plein air.",
+  "description": "Les 24 juillet, 7 et 21 août 2026, la municipalité de Saint-Savin vous propose des soirées cinéma de plein air !",
   "tldr": null,
   "category": "cinema",
   "tags": [],
@@ -669,12 +671,35 @@
   "id": "saint-sav-fait-son-cinema-be9263e9"
  },
  {
+  "title": "Match amical CSBJ / USBPA",
+  "start": "2026-08-07T00:00:00",
+  "source_id": "html-weekend-capi",
+  "sector": "villemoirieu",
+  "end": null,
+  "description": "Afin de poursuivre la préparation de sa future saison, le CSBJ rugby reçoit ses voisins de Bourg en Bresse pour ce premier match amical de l'été.",
+  "tldr": null,
+  "category": "sport",
+  "tags": [],
+  "audience": [
+   "tous"
+  ],
+  "commune": "Bourgoin-Jallieu",
+  "address": "73, Avenue Professeur Tixier 38300 Bourgoin-Jallieu, France",
+  "lat": 45.6025,
+  "lon": 5.2747,
+  "free": null,
+  "price_text": null,
+  "url": "https://www.monweekendalacapi.fr/agenda/evenements/match-amical-csbj-usbpa",
+  "image": null,
+  "id": "match-amical-csbj-usbpa-8b098209"
+ },
+ {
   "title": "Vide Greniers",
   "start": "2026-08-09T00:00:00",
   "source_id": "html-weekend-capi",
   "sector": "villemoirieu",
   "end": null,
-  "description": "Ne manquez pas le grand vide-greniers... en souvenir de Michel, qui se tiendra le dimanche 9 août à Ruy-Montceau. Venez faire de bonnes affaires !",
+  "description": "Ne manquez pas le grand vide-greniers...en souvenir de Michel qui se tiendra le Dimanche 9 Août à Ruy-Montceau. Venez faire de bonnes affaires.",
   "tldr": null,
   "category": "marche",
   "tags": [],
@@ -697,16 +722,17 @@
   "source_id": "html-bourgoin",
   "sector": "villemoirieu",
   "end": null,
-  "description": "À l'occasion des Festiv'été, les cinés-été reviennent en plein air dans les parcs.",
+  "description": "A l’occasion des Festiv’été, une séance de cinéma en plein air est proposée à Montbernier.",
   "tldr": null,
   "category": "cinema",
   "tags": [],
   "audience": [
+   "famille",
    "enfants",
-   "famille"
+   "tous"
   ],
   "commune": "Bourgoin-Jallieu",
-  "address": "Montbernier",
+  "address": "Montbernier, Bourgoin-Jallieu",
   "lat": 45.6025,
   "lon": 5.2747,
   "free": null,
@@ -721,8 +747,8 @@
   "source_id": "html-bourgoin",
   "sector": "villemoirieu",
   "end": null,
-  "description": "Un rendez-vous d'observation de l'éclipse organisé par la Société des Sciences Naturelles.",
-  "tldr": null,
+  "description": "Un rendez-vous d’observation de l’éclipse organisé par la Société des Sciences Naturelles.",
+  "tldr": "Une séance d'observation astronomique guidée par des membres de la Société des Sciences Naturelles, ouverte à tous les âges.",
   "category": "nature",
   "tags": [],
   "audience": [
@@ -744,22 +770,45 @@
   "source_id": "html-cafe-crem",
   "sector": "villemoirieu",
   "end": "2026-08-12T20:00:00",
-  "description": "Animation jeux de société. Inscription recommandée auprès de Kojak au 07 77 91 14 53.",
+  "description": "Découverte des jeux de société de Kojak au Café Crèm'. Atelier convivial ouvert à tous.",
   "tldr": null,
   "category": "atelier",
   "tags": [],
   "audience": [
    "tous"
   ],
-  "commune": "Crémieu",
-  "address": "Le Crémolan (11 place du monument, Crémieu)",
-  "lat": 45.7314,
-  "lon": 5.2635,
-  "free": true,
+  "commune": "Villemoirieu",
+  "address": "1 Parc d'activités du Buisson Rond, 38460 Villemoirieu",
+  "lat": 45.7138,
+  "lon": 5.2348,
+  "free": null,
   "price_text": null,
-  "url": "https://cafe-crem.fr/#decouvrir-les-jeux-de-societe-de-kojak-1786518000000",
+  "url": "https://cafe-crem.fr/programme#decouvrir-les-jeux-de-societe-de-kojak-1786518000000",
   "image": null,
-  "id": "decouvrir-les-jeux-de-societe-de-kojak-e34cb154"
+  "id": "decouvrir-les-jeux-de-societe-de-kojak-447d8e42"
+ },
+ {
+  "title": "Festiv'été : Bal Carnot",
+  "start": "2026-08-13T00:00:00",
+  "source_id": "html-bourgoin",
+  "sector": "villemoirieu",
+  "end": null,
+  "description": "Venez danser au cœur du centre-ville sur la place Carnot.",
+  "tldr": null,
+  "category": "fete",
+  "tags": [],
+  "audience": [
+   "tous"
+  ],
+  "commune": "Bourgoin-Jallieu",
+  "address": "Place Carnot, Bourgoin-Jallieu",
+  "lat": 45.6025,
+  "lon": 5.2747,
+  "free": null,
+  "price_text": null,
+  "url": "https://www.bourgoinjallieu.fr/agenda/2479-festivete-bal-carnot",
+  "image": null,
+  "id": "festiv-ete-bal-carnot-a6b00f5f"
  },
  {
   "title": "Exposition de peintures",
@@ -767,7 +816,7 @@
   "source_id": "html-capi",
   "sector": "villemoirieu",
   "end": "2026-08-29",
-  "description": "L’espace Carnot accueillera une exposition hommage à l’artiste-peintre berjalienne Jacqueline ANSELME, qui exposa pendant plus de 50 ans dans le Nord-Isère.",
+  "description": "L'espace Carnot accueille une exposition hommage à l'artiste-peintre berjalienne Jacqueline ANSELME, qui exposa pendant plus de 50 ans dans le Nord-Isère. Elle est visible du 17 au 29 août 2026.",
   "tldr": null,
   "category": "expo",
   "tags": [],
@@ -775,7 +824,7 @@
    "tous"
   ],
   "commune": "L'Isle-d'Abeau",
-  "address": null,
+  "address": "Office de Tourisme CAPI - Espace Carnot",
   "lat": 45.6153,
   "lon": 5.2234,
   "free": null,
@@ -790,7 +839,7 @@
   "source_id": "html-bourgoin",
   "sector": "villemoirieu",
   "end": "2026-08-29",
-  "description": "L'espace Carnot accueillera une exposition hommage à l'artiste.",
+  "description": "L’espace Carnot accueille une exposition hommage à l’artiste.",
   "tldr": null,
   "category": "expo",
   "tags": [],
@@ -798,7 +847,7 @@
    "tous"
   ],
   "commune": "Bourgoin-Jallieu",
-  "address": "Espace Carnot",
+  "address": "Espace Carnot, Bourgoin-Jallieu",
   "lat": 45.6025,
   "lon": 5.2747,
   "free": null,
@@ -813,17 +862,17 @@
   "source_id": "html-bourgoin",
   "sector": "villemoirieu",
   "end": null,
-  "description": "À l'occasion des Festiv'été, les cinés-été reviennent en plein air dans les parcs.",
+  "description": "A l’occasion des Festiv’été, une séance de cinéma en plein air est proposée au parc des Lilattes.",
   "tldr": null,
   "category": "cinema",
   "tags": [],
   "audience": [
+   "famille",
    "enfants",
-   "ados",
-   "famille"
+   "tous"
   ],
   "commune": "Bourgoin-Jallieu",
-  "address": "Parc des Lilattes",
+  "address": "Parc des Lilattes, Bourgoin-Jallieu",
   "lat": 45.6025,
   "lon": 5.2747,
   "free": null,
@@ -831,6 +880,29 @@
   "url": "https://www.bourgoinjallieu.fr/agenda/1744-cine-ete-parc-des-lilattes-les-enfants-de-la-resistance",
   "image": null,
   "id": "cine-ete-parc-des-lilattes-les-enfants-de-la-resistance-5cf4f6ac"
+ },
+ {
+  "title": "Festiv'été : dernier Bal Carnot de l'été",
+  "start": "2026-08-20T00:00:00",
+  "source_id": "html-bourgoin",
+  "sector": "villemoirieu",
+  "end": null,
+  "description": "Venez danser un dernier soir au cœur du centre-ville sur la place Carnot.",
+  "tldr": null,
+  "category": "fete",
+  "tags": [],
+  "audience": [
+   "tous"
+  ],
+  "commune": "Bourgoin-Jallieu",
+  "address": "Place Carnot, Bourgoin-Jallieu",
+  "lat": 45.6025,
+  "lon": 5.2747,
+  "free": null,
+  "price_text": null,
+  "url": "https://www.bourgoinjallieu.fr/agenda/2947-festivete-dernier-bal-carnot-de-lete",
+  "image": null,
+  "id": "festiv-ete-dernier-bal-carnot-de-l-ete-eeb28db5"
  },
  {
   "title": "Rugby : CSBJ / OL MARCQUOIS",
@@ -866,6 +938,7 @@
   "category": "fete",
   "tags": [],
   "audience": [
+   "famille",
    "tous"
   ],
   "commune": "Bourgoin-Jallieu",
@@ -884,8 +957,8 @@
   "source_id": "html-bourgoin",
   "sector": "villemoirieu",
   "end": null,
-  "description": "Un voyage haut en couleurs à travers les murs peints de la ville.",
-  "tldr": null,
+  "description": "Un voyage haut en couleurs à travers les murs peints de la ville !",
+  "tldr": "Une balade urbaine organisée pour découvrir les œuvres de street art de la ville, avec des commentaires sur leur histoire et leur signification.",
   "category": "marche",
   "tags": [],
   "audience": [
@@ -930,7 +1003,7 @@
   "source_id": "html-bourgoin",
   "sector": "villemoirieu",
   "end": null,
-  "description": "Rendez-vous incontournable de la vie berjallienne, le Forum des associations se tient fin août.",
+  "description": "Le Forum des associations est le rendez-vous incontournable de la vie berjallienne.",
   "tldr": null,
   "category": "autre",
   "tags": [],
@@ -953,23 +1026,22 @@
   "source_id": "html-cafe-crem",
   "sector": "villemoirieu",
   "end": "2026-08-29T15:00:00",
-  "description": "Organisé par la chorale BàO et Line Billard, cheffe de chœur. Participation aux frais de 8€, gratuit pour les moins de 18 ans.",
+  "description": "Stage de chants médiévaux au Café Crèm'. Deux sessions dans la journée : 9h30-12h et 13h30-15h.",
   "tldr": null,
   "category": "atelier",
   "tags": [],
   "audience": [
-   "ados",
-   "adultes"
+   "tous"
   ],
-  "commune": "Crémieu",
-  "address": "Maison des associations, rue de Lattre de Tassigny, Crémieu",
-  "lat": 45.7314,
-  "lon": 5.2635,
-  "free": false,
-  "price_text": "Participation aux frais de 8€ - gratuit pour les - 18 ans",
-  "url": "https://cafe-crem.fr/#stage-de-chants-medievaux-1787986800000",
+  "commune": "Villemoirieu",
+  "address": "1 Parc d'activités du Buisson Rond, 38460 Villemoirieu",
+  "lat": 45.7138,
+  "lon": 5.2348,
+  "free": null,
+  "price_text": null,
+  "url": "https://cafe-crem.fr/programme#stage-de-chants-medievaux-1787986800000",
   "image": null,
-  "id": "stage-de-chants-medievaux-444e6aad"
+  "id": "stage-de-chants-medievaux-867226e6"
  },
  {
   "title": "Dimanche 30 août, c'est la fête des familles",
@@ -983,7 +1055,8 @@
   "tags": [],
   "audience": [
    "famille",
-   "enfants"
+   "enfants",
+   "tous"
   ],
   "commune": "Bourgoin-Jallieu",
   "address": null,
@@ -1001,7 +1074,7 @@
   "source_id": "html-capi",
   "sector": "villemoirieu",
   "end": "2027-01-31",
-  "description": "« Photographies autour des rêves ». Le Club photo Les Donjons de Demptézieu expose ses créations autour des thèmes proposés par les médiathèques.",
+  "description": "Le Club photo Les Donjons de Demptézieu expose ses créations autour des thèmes proposés par les médiathèques. L'exposition « Photographies autour des rêves » est à voir à Saint-Savin du 1er septembre 2026 au 31 janvier 2027.",
   "tldr": null,
   "category": "expo",
   "tags": [],
@@ -1019,12 +1092,12 @@
   "id": "exposition-photos-87a2dbc3"
  },
  {
-  "title": "Exposition",
+  "title": "Exposition de peintures",
   "start": "2026-09-01T00:00:00",
   "source_id": "html-capi",
   "sector": "villemoirieu",
-  "end": "2026-11-30",
-  "description": "Rêver Alice : les illustrations d’Alice au pays des merveilles. Et si vous tombiez, vous aussi, dans le terrier du lapin ?",
+  "end": "2026-09-12",
+  "description": "Venez découvrir une exposition réunissant deux artistes peintres, Sylvia Bielsa Allagnat et Frédéric Bernard. L'exposition est visible du 1er au 12 septembre 2026.",
   "tldr": null,
   "category": "expo",
   "tags": [],
@@ -1032,37 +1105,37 @@
    "tous"
   ],
   "commune": "L'Isle-d'Abeau",
-  "address": null,
+  "address": "Office de Tourisme CAPI - Espace Carnot",
+  "lat": 45.6153,
+  "lon": 5.2234,
+  "free": null,
+  "price_text": null,
+  "url": "https://capi-agglo.fr/agenda/exposition-de-peintures-4/",
+  "image": null,
+  "id": "exposition-de-peintures-bb31db63"
+ },
+ {
+  "title": "Exposition « Rêver Alice : les illustrations d'Alice au pays des merveilles »",
+  "start": "2026-09-01T00:00:00",
+  "source_id": "html-capi",
+  "sector": "villemoirieu",
+  "end": "2026-11-30",
+  "description": "Depuis 1865, des dizaines d'artistes ont plongé dans l'univers d'Alice au pays des merveilles. L'exposition est proposée dans les médiathèques du 1er septembre au 30 novembre 2026.",
+  "tldr": null,
+  "category": "expo",
+  "tags": [],
+  "audience": [
+   "tous"
+  ],
+  "commune": "L'Isle-d'Abeau",
+  "address": "Médiathèques",
   "lat": 45.6153,
   "lon": 5.2234,
   "free": null,
   "price_text": null,
   "url": "https://capi-agglo.fr/agenda/exposition/",
   "image": null,
-  "id": "exposition-a0d05a45"
- },
- {
-  "title": "Soirée conte au jardin",
-  "start": "2026-09-04T00:00:00",
-  "source_id": "html-capi",
-  "sector": "villemoirieu",
-  "end": null,
-  "description": "Venez écouter François Ménager le vendredi 4 septembre à partir de 19h lors de la soirée conte au jardin de l’étang de Vaugelas à Villefontaine.",
-  "tldr": null,
-  "category": "spectacle",
-  "tags": [],
-  "audience": [
-   "tous"
-  ],
-  "commune": "Villefontaine",
-  "address": null,
-  "lat": 45.6161,
-  "lon": 5.1549,
-  "free": null,
-  "price_text": null,
-  "url": "https://capi-agglo.fr/agenda/soiree-conte-au-jardin/",
-  "image": null,
-  "id": "soiree-conte-au-jardin-c8e97f03"
+  "id": "exposition-rever-alice-les-illustrations-d-alice-au-pays-des-merveilles-e82260e1"
  },
  {
   "title": "Les Belles Journées # 12",
@@ -1070,7 +1143,7 @@
   "source_id": "html-bourgoin",
   "sector": "villemoirieu",
   "end": "2026-09-05",
-  "description": "C'est officiel : le Festival Les Belles Journées est COMPLET !",
+  "description": "C’est officiel : le Festival Les Belles Journées est complet !",
   "tldr": null,
   "category": "festival",
   "tags": [],
@@ -1111,6 +1184,29 @@
   "id": "4eme-biennale-de-sculptures-dart-contemporain-au-fil-du-bion-69c3ab61"
  },
  {
+  "title": "Soirée conte au jardin",
+  "start": "2026-09-04T19:00:00",
+  "source_id": "html-capi",
+  "sector": "villemoirieu",
+  "end": null,
+  "description": "Venez écouter Francois Ménager le vendredi 4 septembre à partir de 19h lors de la soirée conte au jardin de l'étang de Vaugelas à Villefontaine. Une solution de repli est prévue au Centre Simone Signoret.",
+  "tldr": "Une soirée où un conteur professionnel raconte des histoires adaptées à un public familial, en plein air ou en intérieur selon la météo.",
+  "category": "spectacle",
+  "tags": [],
+  "audience": [
+   "tous"
+  ],
+  "commune": "Villefontaine",
+  "address": "jardin de l'étang de Vaugelas",
+  "lat": 45.6161,
+  "lon": 5.1549,
+  "free": null,
+  "price_text": null,
+  "url": "https://capi-agglo.fr/agenda/soiree-conte-au-jardin/",
+  "image": null,
+  "id": "soiree-conte-au-jardin-c8e97f03"
+ },
+ {
   "title": "Rugby : CSBJ / SOC CHAMBÉRY",
   "start": "2026-09-05T00:00:00",
   "source_id": "html-bourgoin",
@@ -1134,39 +1230,17 @@
   "id": "rugby-csbj-soc-chambery-dcba0787"
  },
  {
-  "title": "Sortie nature au Vallon du Layet",
-  "start": "2026-09-16T00:00:00",
-  "source_id": "html-capi",
-  "sector": "villemoirieu",
-  "end": null,
-  "description": "Les feuilles tombent, les animaux se préparent à l’hiver et les températures baissent… L’automne est bien installé sur le territoire de la CAPI, avec le retour des sorties nature.",
-  "tldr": null,
-  "category": "nature",
-  "tags": [],
-  "audience": [
-   "tous"
-  ],
-  "commune": "Saint-Quentin-Fallavier",
-  "address": null,
-  "lat": 45.6392,
-  "lon": 5.1128,
-  "free": null,
-  "price_text": null,
-  "url": "https://capi-agglo.fr/agenda/sortie-nature-au-vallon-du-layet/",
-  "image": null,
-  "id": "sortie-nature-au-vallon-du-layet-d0dd3d4c"
- },
- {
   "title": "Une journée avec Michaël Cailloux",
   "start": "2026-09-30T00:00:00",
   "source_id": "html-bourgoin",
   "sector": "villemoirieu",
   "end": null,
-  "description": "À l'occasion de l'exposition « La Mare » visible au musée du 18 septembre au 18 octobre.",
+  "description": "Une journée consacrée à Michaël Cailloux à l’occasion de l’exposition « La Mare » au musée.",
   "tldr": null,
   "category": "conference",
   "tags": [],
   "audience": [
+   "adultes",
    "tous"
   ],
   "commune": "Bourgoin-Jallieu",
@@ -1180,7 +1254,7 @@
   "id": "une-journee-avec-michael-cailloux-7fc8fc8d"
  },
  {
-  "title": "TJV 26-27 : Lever de rideau avec \"Secret(s) médical\" | Michel Cymes",
+  "title": "TJV 26-27 : Lever de rideau avec \" Secret(s) médical \" | Michel Cymes",
   "start": "2026-10-10T00:00:00",
   "source_id": "html-bourgoin",
   "sector": "villemoirieu",
@@ -1191,7 +1265,7 @@
   "tags": [],
   "audience": [
    "adultes",
-   "ados"
+   "tous"
   ],
   "commune": "Bourgoin-Jallieu",
   "address": null,
@@ -1201,6 +1275,6 @@
   "price_text": null,
   "url": "https://www.bourgoinjallieu.fr/agenda/662-tjv-26-27-lever-de-rideau-avec-secret-s-medical-michel-cymes",
   "image": null,
-  "id": "tjv-26-27-lever-de-rideau-avec-secret-s-medical-michel-cymes-8ed6c004"
+  "id": "tjv-26-27-lever-de-rideau-avec-secret-s-medical-michel-cymes-cae55556"
  }
 ]
