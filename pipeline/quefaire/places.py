@@ -606,7 +606,12 @@ def _tag_still_mapped(tag: str) -> bool:
     return True
 
 
-def merge(previous: list[Place], found: list[Place], today: str | None = None) -> list[Place]:
+def merge(
+    previous: list[Place],
+    found: list[Place],
+    today: str | None = None,
+    refuses: set[str] | None = None,
+) -> list[Place]:
     """Réconcilie une nouvelle sweep avec l'existant.
 
     Règle : OSM fait autorité sur les faits (nom, horaires, site, position),
@@ -614,6 +619,19 @@ def merge(previous: list[Place], found: list[Place], today: str | None = None) -
     date de découverte). Une activité absente de la sweep n'est pas supprimée
     tout de suite — elle est conservée `RETENTION_DAYS` jours, le temps de
     distinguer une fermeture d'un aléa Overpass.
+
+    `refuses` porte les identifiants que la sweep a VUS et refusés. Un refus n'est
+    pas une absence, et la distinction n'est pas théorique : l'exclusion des
+    bibliothèques et des bars à vin n'a rien changé au catalogue de Villemoirieu
+    au run suivant — 3775 activités avant, 3775 après, `dt:SportsAndLeisurePlace`
+    toujours à 1440. Les fiches disparaissaient de la sweep, et la rétention les
+    reprenait aussitôt pour quatorze jours.
+
+    `_tag_still_mapped()` ne pouvait pas non plus les rattraper : il rejoue la
+    règle sur le SEUL tag de provenance, alors que la décision d'origine voyait
+    tous les types de la fiche. Un rejeu qui dispose de moins d'information que la
+    décision ne peut pas la reproduire — d'où ce chemin explicite pour toute
+    exclusion qui dépend de plusieurs types à la fois.
 
     LIMITE ASSUMÉE de « OSM fait autorité sur les faits » : la règle suppose que
     la sweep est toujours plus fraîche que ce qui est stocké. Un miroir en retard
@@ -673,7 +691,14 @@ def merge(previous: list[Place], found: list[Place], today: str | None = None) -
 
     # Les rescapées : vues avant, absentes aujourd'hui.
     excluded = 0
+    refusees = 0
     for old in prev_by_id.values():
+        # Refusée par la sweep du jour : ce n'est pas une absence, le sursis ne
+        # s'applique pas. Testé AVANT la provenance, parce que le tag de la fiche
+        # reste parfaitement valide — c'est un autre de ses types qui la disqualifie.
+        if refuses and old.external_id in refuses:
+            refusees += 1
+            continue
         # Absente parce qu'on l'exclut DÉLIBÉRÉMENT, ou parce que le fournisseur
         # a hoqueté ? La provenance du classement tranche. Le sursis de deux
         # sweeps existe pour encaisser une panne, pas pour maintenir en vie ce
@@ -689,6 +714,11 @@ def merge(previous: list[Place], found: list[Place], today: str | None = None) -
         merged.append(old)
     if excluded:
         log.info("[places] %d fiches retirées : leur type n'est plus retenu", excluded)
+    if refusees:
+        log.info(
+            "[places] %d fiches retirées : refusées par la sweep du jour "
+            "(présentes à la source, disqualifiées — pas de sursis)", refusees,
+        )
 
     merged.sort(key=lambda p: fold(p.name))
     return merged

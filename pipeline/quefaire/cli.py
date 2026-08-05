@@ -154,7 +154,11 @@ def discover_places(
     if not found:
         manquants.append("OpenStreetMap")
 
-    dt = datatourisme.fetch(sector, limit=limit)
+    # Identifiants que DATAtourisme a vus et refusés : ils doivent atteindre
+    # merge(), sinon la rétention les reprend pour quatorze jours et l'exclusion
+    # reste sans effet visible (vécu — catalogue inchangé au run suivant).
+    refuses: set[str] = set()
+    dt = datatourisme.fetch(sector, limit=limit, refuses=refuses)
     if not dt:
         manquants.append("DATAtourisme")
     if dt:
@@ -171,7 +175,7 @@ def discover_places(
         log.warning("[places] DATAtourisme configuré mais muet — résultat OSM seul, incomplet")
 
     previous = places_mod.load(sector_id, out_dir)
-    merged = places_mod.merge(previous, found)
+    merged = places_mod.merge(previous, found, refuses=refuses)
     # Dédoublonnage inter-fournisseurs REJOUÉ sur l'ensemble fusionné. Celui
     # d'avant la fusion ne voit que la sweep du jour : quand un fournisseur est
     # muet, ses fiches survivent par la rétention de merge() et échappent donc à

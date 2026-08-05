@@ -1920,6 +1920,44 @@ def test_datatourisme_type_mapping_uses_real_ontology_names():
     assert _category_of(["PointOfInterest", "PlaceOfInterest", "Museum"]) == "musee"
 
 
+def test_merge_un_refus_n_est_pas_une_absence():
+    """Une fiche refusée par la sweep ne bénéficie PAS du sursis d'absence.
+
+    L'exclusion des bibliothèques et des bars à vin n'avait rien changé au
+    catalogue de Villemoirieu : 3775 activités avant, 3775 après,
+    `dt:SportsAndLeisurePlace` toujours à 1440. Les fiches quittaient bien la
+    sweep, et la rétention les reprenait aussitôt pour quatorze jours.
+
+    `_tag_still_mapped()` ne pouvait pas les rattraper : il rejoue la règle sur le
+    seul tag de provenance — `dt:SportsAndLeisurePlace`, qui reste parfaitement
+    valide — alors que la décision d'origine voyait TOUS les types de la fiche. Un
+    rejeu moins informé que la décision ne peut pas la reproduire. D'où ce chemin
+    explicite, et ce test : quatrième variante du même défaut, il ne doit pas y en
+    avoir une cinquième.
+    """
+    from quefaire.models import Place
+    from quefaire.places import merge
+
+    def fiche(ident, nom):
+        return Place(name=nom, category="sport-loisir", source_id="datatourisme",
+                     sector="s", external_id=ident, lat=45.7, lon=5.2,
+                     tags=["dt:SportsAndLeisurePlace"], providers=["datatourisme"],
+                     first_seen="2026-07-01", last_seen="2026-08-04")
+
+    biblio = fiche("https://data.datatourisme.fr/biblio", "Bibliothèque de Crémieu")
+    accro = fiche("https://data.datatourisme.fr/accro", "Accrobranche de l'Isle")
+
+    # Les deux disparaissent de la sweep. L'une est REFUSÉE, l'autre simplement
+    # absente : la seconde garde son sursis, la première non.
+    garde = merge([biblio, accro], [], today="2026-08-05",
+                  refuses={"https://data.datatourisme.fr/biblio"})
+    assert [p.name for p in garde] == ["Accrobranche de l'Isle"]
+
+    # Sans l'ensemble des refus, la rétention garde tout — c'est le comportement
+    # d'origine, et c'est bien lui qui rendait l'exclusion inopérante.
+    assert len(merge([biblio, accro], [], today="2026-08-05")) == 2
+
+
 def test_datatourisme_type_disqualifiant_bat_toutes_les_regles():
     """« Non classé » et « exclu » ne sont PAS la même chose.
 

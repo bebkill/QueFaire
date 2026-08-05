@@ -992,7 +992,7 @@ def _nodes_from_api(key: str, sector, filters: str = "") -> list[dict]:
     return nodes
 
 
-def fetch(sector, limit: int | None = None) -> list[Place]:
+def fetch(sector, limit: int | None = None, refuses: set[str] | None = None) -> list[Place]:
     """Rend les activités DATAtourisme du rayon, par flux ou par API.
 
     Le **flux** est préféré quand il est configuré : une requête au lieu d'une
@@ -1006,6 +1006,12 @@ def fetch(sector, limit: int | None = None) -> list[Place]:
     Retourne [] (sans lever) si rien n'est configuré ou si les deux voies sont
     injoignables : c'est un complément d'OSM, son absence ne doit pas faire
     échouer la découverte.
+
+    `refuses`, s'il est fourni, se remplit des identifiants de source que la sweep
+    a vus et DISQUALIFIÉS (voir `_TYPES_EXCLUANTS`). Un refus n'est pas une
+    absence : sans cette distinction, la rétention de `merge()` garde la fiche
+    quatorze jours et l'exclusion n'a aucun effet visible — mesuré, le catalogue
+    de Villemoirieu n'a pas bougé d'une fiche au run suivant l'exclusion.
     """
     flux = os.environ.get(FLUX_ENV)
     key = os.environ.get(API_KEY_ENV)
@@ -1100,6 +1106,16 @@ def fetch(sector, limit: int | None = None) -> list[Place]:
                 if dans_rayon:
                     for t in exclue:
                         disqualifies[t] += 1
+                    # Le refus doit VOYAGER jusqu'à merge() : la fiche est présente
+                    # dans la source, donc « absente de la sweep » serait faux, et
+                    # la rétention la garderait quatorze jours de plus.
+                    if refuses is not None:
+                        ident = str(
+                            node.get("@id") or node.get("uri")
+                            or node.get("id") or node.get("uuid") or ""
+                        ).strip()
+                        if ident:
+                            refuses.add(ident)
                 continue
             for t in noms:
                 if t not in _RACINES_ONTOLOGIE:
