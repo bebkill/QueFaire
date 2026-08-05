@@ -15290,13 +15290,13 @@
   "source_id": "osm",
   "sector": "villemoirieu",
   "external_id": "node/9101948413",
-  "description": "https://data.datatourisme.fr/ba421ae6-7cb6-34b0-8b3c-b6af0646e2c0",
-  "tldr": null,
-  "commune": "Brignais",
-  "address": "Rue de l'Industrie",
-  "lat": 45.677101,
-  "lon": 4.771028,
-  "url": "http://www.bowlingdefrance.com/",
+  "description": "",
+  "tldr": "Défiez vos amis sur 6 pistes de bowling, ambiance conviviale et snacks maison à déguster.",
+  "commune": null,
+  "address": null,
+  "lat": 45.6788431,
+  "lon": 4.7743509,
+  "url": "https://www.bowlingdefrance.com/",
   "phone": "+33 4 78 05 69 44",
   "opening_hours": null,
   "fee": null,
@@ -15308,13 +15308,14 @@
   "unusual_hint": false,
   "quality": [],
   "providers": [
-   "datatourisme",
-   "osm"
+   "osm",
+   "datatourisme"
   ],
   "image_url": null,
   "image_credit": null,
   "image_page": null,
   "tags": [
+   "osm:leisure=bowling_alley",
    "dt:BowlingAlley"
   ],
   "audience": [
@@ -77231,14 +77232,14 @@
   "source_id": "osm",
   "sector": "villemoirieu",
   "external_id": "node/1798245104",
-  "description": "https://data.datatourisme.fr/dcec350b-289f-3748-b547-7f16a1c144b8",
+  "description": "",
   "tldr": "Cinéma associatif proposant des films indépendants et des rencontres à Décines-Charpieu.",
-  "commune": "Décines-Charpieu",
-  "address": "14 avenue Jean Macé",
-  "lat": 45.768331,
-  "lon": 4.956486,
-  "url": "http://www.letoboggan.com/",
-  "phone": "+33 4 72 93 30 00",
+  "commune": null,
+  "address": null,
+  "lat": 45.7688223,
+  "lon": 4.9557118,
+  "url": null,
+  "phone": null,
   "opening_hours": null,
   "fee": null,
   "rating": null,
@@ -77249,13 +77250,14 @@
   "unusual_hint": false,
   "quality": [],
   "providers": [
-   "datatourisme",
-   "osm"
+   "osm",
+   "datatourisme"
   ],
   "image_url": null,
   "image_credit": null,
   "image_page": null,
   "tags": [
+   "osm:amenity=cinema",
    "dt:Cinema"
   ],
   "audience": [
