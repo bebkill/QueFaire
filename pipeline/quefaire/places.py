@@ -756,18 +756,22 @@ BATCH_SIZE = 20
 # Sa valeur ne dit donc plus « combien de fiches méritent une phrase » mais
 # « au-delà de combien s'agit-il forcément d'une anomalie ». Au premier run réel,
 # un défaut de filtrage avait envoyé 7197 activités à la présentation : 21 minutes
-# de LLM sur des données à jeter. 3000 laisse passer un catalogue complet de rayon
-# horaire (2232 à Pont-de-Salars, le plus dense mesuré) tout en arrêtant net une
-# dérive de cet ordre.
+# de LLM sur des données à jeter.
 #
-# Volontairement PAS calé sur le compte du jour : 2232 exactement retomberait à
-# tronquer dès la première fiche de plus, sans que rien ne le signale — et
-# l'histoire de ce fichier est faite de plafonds devenus faux en silence.
+# 3000 était calé sur « 2232 à Pont-de-Salars, le plus dense mesuré » — et ce
+# « plus dense » n'a tenu que le temps de traiter l'autre épicentre : Villemoirieu
+# en compte 3775, dont 3373 à présenter, et le plafond a mordu pour de bon sur un
+# catalogue parfaitement légitime. Un secteur n'avait jamais été mesuré, et une
+# borne calée sur le seul territoire connu devient fausse dès qu'on en ajoute un.
+#
+# 8000 garde donc une marge sur le double du plus gros connu, sans rien perdre de
+# sa fonction : une dérive de filtrage se compte en dizaines de milliers de fiches,
+# pas en milliers.
 #
 # La file reste ordonnée par `display_order_key` : si le plafond mord malgré tout,
 # ce sont les fiches les mieux documentées qui passent d'abord, et le reste suit au
 # run suivant puisque le cache est persistant.
-PRESENT_MAX_PER_RUN = 3000
+PRESENT_MAX_PER_RUN = 8000
 
 
 def display_order_key(place: Place):
