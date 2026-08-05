@@ -612,16 +612,39 @@ def _nodes_from_flux(flux: str) -> list[dict]:
 
 
 def _fiches_du_corps(corps: bytes):
-    """Parcourt les documents du corps et rend les fiches, une à une."""
-    documents = fiches = 0
+    """Parcourt les documents du corps et rend les nœuds, un à un.
+
+    On compte les **nœuds**, pas les « fiches » : un document peut porter un
+    `@graph` de plusieurs entités, et l'archive complète en a livré 47 082 pour
+    23 543 membres — deux par membre en moyenne, alors que les 19 685 premiers en
+    rendaient exactement un. Appeler ça des fiches laissait croire que le flux
+    contenait deux fois plus d'activités qu'en réalité, et faussait le taux de
+    sélectivité affiché juste après (« N retenues sur M »).
+
+    D'où le comptage des identifiants DISTINCTS : il dit si l'archive répète les
+    mêmes POI dans plusieurs documents (auquel cas la conversion travaille pour
+    rien) ou si ces nœuds supplémentaires sont d'autres entités. Tant qu'on ne
+    l'a pas mesuré, on ne déduplique rien ici — un nœud répété peut porter des
+    champs complémentaires, et `dedupe_providers` sait déjà les rapprocher.
+    """
+    documents = noeuds = 0
+    vus: set[str] = set()
+    sans_id = 0
     for doc in _documents_du_flux(corps):
         documents += 1
         for node in _nodes_du_document(doc):
-            fiches += 1
+            noeuds += 1
+            ident = str(node.get("@id") or node.get("uri") or node.get("uuid") or "")
+            if ident:
+                vus.add(ident)
+            else:
+                sans_id += 1
             yield node
     log.info(
-        "[datatourisme] flux : %.1f Mo compressés, %d document(s), %d fiche(s) brutes",
-        len(corps) / 1e6, documents, fiches,
+        "[datatourisme] flux : %.1f Mo compressés, %d document(s), %d nœud(s), "
+        "%d identifiant(s) distinct(s), %d répétition(s), %d sans identifiant",
+        len(corps) / 1e6, documents, noeuds, len(vus),
+        max(0, noeuds - sans_id - len(vus)), sans_id,
     )
 
 
