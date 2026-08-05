@@ -59,7 +59,45 @@ API_KEY_ENV = "DATATOURISME_API_KEY"
 # Volontairement inerte hors demande explicite : aucun effet sur un run normal.
 DUMP_TYPE_ENV = "QUEFAIRE_DUMP_TYPE"
 DUMP_MAX = 2
-DUMP_CHARS = 3500
+DUMP_CHARS = 6000
+
+# Sous-arbres élidés dans l'aperçu : métadonnées d'édition et de traduction. Ce
+# n'est pas de la coquetterie — le premier essai tronquait le JSON brut à 3500
+# caractères, et comme les clés arrivent dans l'ordre de la source, la coupe est
+# tombée en plein `hasTranslatedProperty` sans avoir atteint `takesPlaceAt`. Une
+# troncature aveugle sur du JSON ne montre pas ce qu'on cherche, elle montre ce qui
+# vient en premier. On élide donc le bruit connu au lieu de couper au caractère.
+_APERCU_BRUIT = frozenset({
+    "hasTranslatedProperty", "hasBeenPublishedBy", "hasBeenCreatedBy",
+    "dc:contributor", "@context", "hasAudience",
+})
+_APERCU_TEXTE = 120
+_APERCU_LISTE = 3
+_APERCU_PROFONDEUR = 5
+
+
+def _apercu(valeur, profondeur: int = 0):
+    """Aperçu structurel d'un nœud : la FORME, pas le volume.
+
+    Textes tronqués, listes échantillonnées, bruit d'édition élidé. Ce qu'on veut
+    voir d'un type non exploité, c'est quels champs existent et comment ils sont
+    imbriqués — jamais les 2000 caractères d'une description.
+    """
+    if profondeur > _APERCU_PROFONDEUR:
+        return "…"
+    if isinstance(valeur, dict):
+        return {
+            cle: _apercu(sous, profondeur + 1)
+            for cle, sous in valeur.items()
+            if cle not in _APERCU_BRUIT
+        }
+    if isinstance(valeur, list):
+        tete = [_apercu(v, profondeur + 1) for v in valeur[:_APERCU_LISTE]]
+        reste = len(valeur) - _APERCU_LISTE
+        return tete + [f"(+{reste} autres)"] if reste > 0 else tete
+    if isinstance(valeur, str) and len(valeur) > _APERCU_TEXTE:
+        return valeur[:_APERCU_TEXTE] + "…"
+    return valeur
 # Échappatoire brute : tout paramètre d'URL non modélisé ici (`sort`…). À laisser
 # VIDE en temps normal — son contenu est collé tel quel à la requête, donc une
 # valeur mal formée part sur chaque appel. Ne pas y mettre `lang` : le code le
@@ -975,10 +1013,16 @@ def fetch(sector, limit: int | None = None) -> list[Place]:
             import json as _json
 
             montrees += 1
+            # Les clés d'abord, à plat : c'est la réponse à « ce type porte-t-il ce
+            # champ ? », et elle tient sur une ligne.
             log.info(
-                "[datatourisme] fiche brute « %s » n°%d :\n%s",
+                "[datatourisme] fiche « %s » n°%d — champs : %s",
+                a_montrer, montrees, ", ".join(sorted(node.keys())),
+            )
+            log.info(
+                "[datatourisme] fiche « %s » n°%d — aperçu :\n%s",
                 a_montrer, montrees,
-                _json.dumps(node, ensure_ascii=False, indent=1)[:DUMP_CHARS],
+                _json.dumps(_apercu(node), ensure_ascii=False, indent=1)[:DUMP_CHARS],
             )
         place = _to_place(node, sector.id, today)
         if place is None:
