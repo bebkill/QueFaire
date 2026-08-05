@@ -91,9 +91,19 @@ TIMEOUT = 120
 # 60 pages × 250 fiches = 15 000 activités, largement au-delà du réaliste.
 MAX_PAGES = 60
 
-# Garde-fou de décompression du flux : le disque du runner est une allocation
-# fixe, et une archive aberrante ne doit pas le remplir.
-MAX_FLUX_BYTES = 500_000_000
+# Garde-fous de décompression du flux.
+#
+# La version précédente bornait le CUMUL décompressé à 500 Mo. Elle a tronqué un
+# flux parfaitement légitime (19 685 fiches, 119,6 Mo compressés) : des centaines
+# de fiches n'ont survécu au run que par la rétention, et auraient disparu du
+# catalogue au bout de deux passages. Le cumul ne mesurait rien de réel — les
+# membres sont lus et libérés un par un, jamais tous présents en mémoire.
+#
+# Ce qui coûte vraiment, c'est le NOMBRE de fiches retenues (la liste qu'on
+# construit et qu'on garde) et la taille du plus GROS membre (seul pic possible).
+# On borne donc ces deux grandeurs-là, et rien d'autre.
+MAX_FLUX_RECORDS = 200_000
+MAX_MEMBER_BYTES = 50_000_000
 
 # --- Quotas DATAtourisme -----------------------------------------------------
 # La plateforme annonce : 20 à 30 requêtes concurrentes, ~10 req/s en régime
@@ -644,34 +654,43 @@ def _documents_du_flux(corps: bytes):
 
     if corps[:4] == b"PK\x03\x04":
         with zipfile.ZipFile(io.BytesIO(corps)) as zf:
-            lus = 0
-            for info in zf.infolist():
-                if info.is_dir() or not info.filename.lower().endswith((".json", ".jsonld")):
-                    continue
-                # Garde-fou : une archive aberrante ne doit ni remplir le disque
-                # du runner (allocation fixe) ni le faire tuer pour dépassement
-                # mémoire. La troncature est ANNONCÉE, jamais silencieuse — c'est
-                # la différence entre un jeu incomplet qu'on sait incomplet et un
-                # jeu incomplet qui passe pour entier.
-                lus += info.file_size
-                if lus > MAX_FLUX_BYTES:
+            membres = [
+                info for info in zf.infolist()
+                if not info.is_dir() and info.filename.lower().endswith((".json", ".jsonld"))
+            ]
+            # `file_size` vient de l'index de l'archive : le total décompressé est
+            # connu AVANT d'avoir décompressé quoi que ce soit. On l'annonce, et
+            # une troncature éventuelle se chiffre alors sur le total réel — au
+            # lieu de laisser deviner combien de fiches manquent.
+            log.info(
+                "[datatourisme] archive : %d membre(s), %.0f Mo décompressés",
+                len(membres), sum(info.file_size for info in membres) / 1e6,
+            )
+            if len(membres) > MAX_FLUX_RECORDS:
+                log.warning(
+                    "[datatourisme] archive TRONQUÉE à %d fiches sur %d (garde-fou) "
+                    "— des fiches sont perdues. Relever MAX_FLUX_RECORDS après avoir "
+                    "vérifié la mémoire du runner.",
+                    MAX_FLUX_RECORDS, len(membres),
+                )
+                membres = membres[:MAX_FLUX_RECORDS]
+            for info in membres:
+                if info.file_size > MAX_MEMBER_BYTES:
+                    # Seul pic mémoire possible : un membre lu d'un bloc. Le sauter
+                    # se DIT, sans quoi une fiche manquante passerait pour absente
+                    # du flux.
+                    # Taille en octets, pas en Mo : un « 0 Mo » dans un
+                    # avertissement de dépassement serait un instrument qui mentirait.
                     log.warning(
-                        "[datatourisme] archive TRONQUÉE à %d Mo décompressés (garde-fou) "
-                        "— le flux a dépassé la taille prévue, des fiches sont perdues. "
-                        "Relever MAX_FLUX_BYTES après avoir vérifié la mémoire du runner.",
-                        MAX_FLUX_BYTES // 1_000_000,
+                        "[datatourisme] membre %s ignoré : %d octets décompressés "
+                        "(garde-fou à %d)",
+                        info.filename, info.file_size, MAX_MEMBER_BYTES,
                     )
-                    return
+                    continue
                 try:
                     yield _json.loads(zf.read(info))
                 except (ValueError, OSError):
                     continue
-            # Taille décompressée réelle : c'est elle qui dit à quelle distance on
-            # est du garde-fou, et le log ne montrait que le compressé.
-            log.info(
-                "[datatourisme] archive : %.0f Mo décompressés (garde-fou à %d Mo)",
-                lus / 1e6, MAX_FLUX_BYTES // 1_000_000,
-            )
         return
 
     if corps[:2] == b"\x1f\x8b":

@@ -1233,6 +1233,50 @@ def test_flux_lit_une_archive_zip(monkeypatch):
     assert [p.name for p in found] == ["Musée du flux"]
 
 
+def test_flux_ne_tronque_pas_une_archive_volumineuse(monkeypatch, caplog):
+    """Le garde-fou d'archive borne le PIC, pas le cumul décompressé.
+
+    Le garde-fou d'origine coupait au-delà de 500 Mo **cumulés** : il a tronqué un
+    flux parfaitement légitime (19 685 fiches), dont des centaines n'ont survécu
+    au run que par la rétention. Le cumul ne mesurait rien de réel — les membres
+    sont lus et libérés un par un. Ici, trois fiches dont le cumul dépasse
+    largement la limite par membre doivent TOUTES passer, et seule celle qui
+    excède `MAX_MEMBER_BYTES` à elle seule doit être écartée, avec un log.
+    """
+    import logging
+
+    from quefaire import datatourisme as dt
+    from quefaire.cli import load_sector
+
+    def fiche(n, bourre=0):
+        return {
+            "@id": f"https://data.datatourisme.fr/{n}",
+            "@type": ["Museum"],
+            "rdfs:label": {"fr": [f"Musée {n}"]},
+            "isLocatedAt": {"schema:geo": {"schema:latitude": 44.28, "schema:longitude": 2.74}},
+            "rdfs:comment": {"fr": ["x" * bourre]} if bourre else {},
+        }
+
+    monkeypatch.setattr(dt, "MAX_MEMBER_BYTES", 20_000)
+    archive = _zip_flux({
+        "objects/1.json": fiche(1, 15_000),   # gros mais admissible
+        "objects/2.json": fiche(2, 15_000),   # le CUMUL dépasse : ne doit rien couper
+        "objects/3.json": fiche(3, 30_000),   # trop gros à lui seul : écarté
+    })
+
+    monkeypatch.setenv(dt.FLUX_ENV, "https://flux.test/export.zip")
+    monkeypatch.setattr(
+        "quefaire.fetchers.base.http_get", lambda *a, **k: _FakeResp(None, content=archive)
+    )
+    with caplog.at_level(logging.WARNING):
+        found = dt.fetch(load_sector("pont-de-salars"))
+
+    assert sorted(p.name for p in found) == ["Musée 1", "Musée 2"]
+    assert any("objects/3.json" in r.getMessage() for r in caplog.records), (
+        "un membre écarté doit se DIRE : sinon la fiche passe pour absente du flux"
+    )
+
+
 def test_flux_accepte_graph_et_json_nu(monkeypatch):
     """Les autres emballages restent acceptés : le mode flux ne doit pas casser
     si le diffuseur change de format."""

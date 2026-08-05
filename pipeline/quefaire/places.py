@@ -749,9 +749,17 @@ def display_score(place: Place) -> int:
 def present(places: list[Place]) -> list[Place]:
     """Remplit `tldr` (et affine `unusual`) pour les activités jamais présentées.
 
-    Mise en cache par contenu : une activité déjà présentée n'est jamais
-    repayée, même si le fichier de sortie est supprimé. Sans LLM disponible,
-    l'étape est sautée proprement — les fiches s'affichent sans phrase.
+    Mise en cache par contenu, avec une portée à connaître : le cache est élagué
+    aux clés VUES pendant le run (`cache.save`), et une fiche qui porte déjà sa
+    phrase n'est pas interrogée. Sa clé disparaît donc du cache au passage
+    suivant. Autrement dit c'est `places.json` qui mémorise les présentations ;
+    le cache ne sert qu'à ne pas repayer, d'un run à l'autre, les fiches restées
+    SANS phrase (LLM muet, plafond atteint, quota mort en cours de route) — 419
+    fiches dans ce cas au dernier run, mémorisées comme « rien d'exploitable ».
+    Supprimer `places.json` recoûte donc tout le catalogue en appels LLM.
+
+    Sans LLM disponible, l'étape est sautée proprement — les fiches s'affichent
+    sans phrase.
     """
     from .clarify import _extract_json
     from .llm import clarify_chain
