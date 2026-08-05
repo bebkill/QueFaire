@@ -535,6 +535,26 @@ def _opening_of(located) -> str | None:
     return " · ".join(slots[:4]) or None
 
 
+def _dans_le_rayon(node: dict, sector) -> bool:
+    """Une fiche non classée tombe-t-elle dans le rayon de l'épicentre ?
+
+    Sert à chiffrer honnêtement la matière écartée : le flux couvre le périmètre du
+    DIFFUSEUR, jamais le nôtre. Compter un type sur tout le flux revient à annoncer
+    un gisement dont la majeure partie est hors de portée.
+
+    Même critère que pour une fiche retenue — temps de trajet, pas distance à vol
+    d'oiseau — sinon le chiffre annoncé ne serait pas celui qu'on pourrait publier.
+    """
+    located = _get(node, "isLocatedAt", "location") or {}
+    if isinstance(located, list) and located:
+        located = located[0]
+    lat, lon = _coords(located)
+    if lat is None or lon is None:
+        return False
+    dist = haversine_km(sector.center_lat, sector.center_lon, lat, lon)
+    return travel_minutes(dist) <= sector.radius_minutes
+
+
 def _coords(located) -> tuple[float | None, float | None]:
     if not isinstance(located, dict):
         return None, None
@@ -1000,6 +1020,13 @@ def fetch(sector, limit: int | None = None) -> list[Place]:
     # ne permettait de décider d'ajouter une catégorie autrement qu'au jugé.
     # C'est ce compteur qui répond à « est-ce qu'on perd de la matière ? ».
     ignores: Counter = Counter()
+    # Le même inventaire, restreint au RAYON. Sans lui, la ligne « matière
+    # disponible » se lit comme une promesse qu'elle ne tient pas : le flux couvre
+    # le périmètre du diffuseur, pas le nôtre. Constaté sur le premier événement
+    # inspecté — Les Sarmentelles, en Beaujolais, à 250 km de l'épicentre. Annoncer
+    # 1542 événements exploitables sur cette base aurait été un chiffre faux, et
+    # c'est exactement ce que j'ai fait avant de regarder.
+    ignores_rayon: Counter = Counter()
     # Compté à la volée : `nodes` peut être un flot paresseux (mode flux), dont on
     # ne connaît pas la longueur avant de l'avoir parcouru.
     recues = 0
@@ -1026,9 +1053,12 @@ def fetch(sector, limit: int | None = None) -> list[Place]:
             )
         place = _to_place(node, sector.id, today)
         if place is None:
+            dans_rayon = _dans_le_rayon(node, sector)
             for t in _type_names(node):
                 if t not in _RACINES_ONTOLOGIE:
                     ignores[t] += 1
+                    if dans_rayon:
+                        ignores_rayon[t] += 1
         if place is None or (place.external_id and place.external_id in seen):
             continue
         dist = haversine_km(sector.center_lat, sector.center_lon, place.lat, place.lon)
@@ -1047,8 +1077,11 @@ def fetch(sector, limit: int | None = None) -> list[Place]:
         # source propose et qu'on écarte. Un type qui monte haut ici est un
         # candidat à ajouter dans _TYPE_RULES, pas une fatalité.
         log.info(
-            "[datatourisme] types reçus NON classés (matière disponible, écartée) : %s",
-            ", ".join(f"{t}×{n}" for t, n in ignores.most_common(12)),
+            "[datatourisme] types reçus NON classés (matière disponible, écartée) "
+            "— total flux, dont DANS LE RAYON : %s",
+            ", ".join(
+                f"{t}×{n} (dont {ignores_rayon.get(t, 0)})" for t, n in ignores.most_common(12)
+            ),
         )
     if recues and not places:
         # Des fiches reçues mais aucune reconnue : c'est le symptôme d'un
