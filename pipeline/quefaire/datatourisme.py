@@ -535,6 +535,10 @@ def _opening_of(located) -> str | None:
     return " · ".join(slots[:4]) or None
 
 
+def _compte_categorie(places: list[Place], categorie: str) -> int:
+    return sum(1 for p in places if p.category == categorie)
+
+
 def _dans_le_rayon(node: dict, sector) -> bool:
     """Une fiche non classée tombe-t-elle dans le rayon de l'épicentre ?
 
@@ -1027,6 +1031,7 @@ def fetch(sector, limit: int | None = None) -> list[Place]:
     # 1542 événements exploitables sur cette base aurait été un chiffre faux, et
     # c'est exactement ce que j'ai fait avant de regarder.
     ignores_rayon: Counter = Counter()
+    co_types: Counter = Counter()
     # Compté à la volée : `nodes` peut être un flot paresseux (mode flux), dont on
     # ne connaît pas la longueur avant de l'avoir parcouru.
     recues = 0
@@ -1067,6 +1072,16 @@ def fetch(sector, limit: int | None = None) -> list[Place]:
         if place.external_id:
             seen.add(place.external_id)
         places.append(place)
+        # Types CO-PORTÉS par une fiche retenue, en plus de celui qui l'a classée.
+        # C'est l'instrument qui manquait pour auditer une catégorie devenue
+        # suspecte : `sport-loisir` compte 1440 fiches `SportsAndLeisurePlace` à
+        # Villemoirieu, et l'examen des noms y trouve 252 bibliothèques, 118 bars
+        # et 68 galeries d'art. Le nom n'est pas un critère défendable ; le type
+        # co-porté, si — et il dira s'il existe de quoi écrire une exclusion sur des
+        # faits plutôt que sur des chaînes de caractères.
+        for t in _type_names(node):
+            if t not in _RACINES_ONTOLOGIE and t != place.tags[0].removeprefix("dt:"):
+                co_types[(place.category, t)] += 1
 
     # « nœuds » et non « fiches » : en mode flux, chaque fiche arrive accompagnée
     # d'un second nœud anonyme, ce qui doublait le dénominateur — 2437 sur 47 082
@@ -1083,6 +1098,21 @@ def fetch(sector, limit: int | None = None) -> list[Place]:
                 f"{t}×{n} (dont {ignores_rayon.get(t, 0)})" for t, n in ignores.most_common(12)
             ),
         )
+    if co_types:
+        # Une ligne par catégorie, et seulement les types co-portés qui pèsent au
+        # moins 5 % de ses fiches : au-delà de ce seuil, c'est une population qu'on
+        # a rangée sous une étiquette qui ne lui va pas, pas un cas isolé.
+        par_cat: Counter = Counter(cat for cat, _ in co_types)
+        for cat in sorted(par_cat, key=lambda c: -_compte_categorie(places, c)):
+            total = _compte_categorie(places, cat)
+            gros = [
+                (t, n) for (c, t), n in co_types.most_common() if c == cat and n >= 0.05 * total
+            ]
+            if gros:
+                log.info(
+                    "[datatourisme] %s (%d fiches) — types co-portés : %s",
+                    cat, total, ", ".join(f"{t}×{n}" for t, n in gros[:8]),
+                )
     if recues and not places:
         # Des fiches reçues mais aucune reconnue : c'est le symptôme d'un
         # mapping de champs à corriger (l'ontologie est riche et les
