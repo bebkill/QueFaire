@@ -47,10 +47,17 @@ OVERPASS_URLS = (
 )
 OVERPASS_TIMEOUT = 180
 
-# Nombre de sweeps consécutifs sans revoir une activité avant de la retirer.
-# Deux plutôt qu'un : une indisponibilité d'Overpass ou un contributeur OSM qui
-# retouche un objet ne doit pas faire disparaître un musée du site.
-MISSING_SWEEPS_BEFORE_DROP = 2
+# Sursis accordé à une activité qu'une sweep ne revoit plus, **en jours**. Une
+# indisponibilité d'Overpass ou un contributeur OSM qui retouche un objet ne doit
+# pas faire disparaître un musée du site.
+#
+# En jours et non en nombre de sweeps, et ça compte : le cycle nominal est
+# hebdomadaire, mais un `workflow_dispatch` peut relancer six fois dans l'heure
+# (vécu le 2026-08-05). Un compteur de sweeps aurait évincé en quelques minutes
+# les 172 fiches qu'Overpass, tombé ce matin-là, ne livrait plus. Le nom précédent
+# — MISSING_SWEEPS_BEFORE_DROP, multiplié par 7 à l'usage — le laissait justement
+# croire, au point de me tromper à la relecture.
+RETENTION_DAYS = 14
 
 # --- Correspondance tags OpenStreetMap → catégories QueFaire -----------------
 # Ordre significatif : la PREMIÈRE règle qui matche gagne. `historic=*` avant
@@ -560,8 +567,8 @@ def merge(previous: list[Place], found: list[Place], today: str | None = None) -
     Règle : OSM fait autorité sur les faits (nom, horaires, site, position),
     l'existant fait autorité sur l'enrichissement (présentation LLM, note,
     date de découverte). Une activité absente de la sweep n'est pas supprimée
-    tout de suite — elle est conservée `MISSING_SWEEPS_BEFORE_DROP` fois, le
-    temps de distinguer une fermeture d'un aléa Overpass.
+    tout de suite — elle est conservée `RETENTION_DAYS` jours, le temps de
+    distinguer une fermeture d'un aléa Overpass.
     """
     today = today or date.today().isoformat()
     prev_by_id = {p.external_id: p for p in previous if p.external_id}
@@ -618,7 +625,7 @@ def merge(previous: list[Place], found: list[Place], today: str | None = None) -
             excluded += 1
             continue
         missing_days = _days_since(old.last_seen, today)
-        if missing_days is not None and missing_days > 7 * MISSING_SWEEPS_BEFORE_DROP:
+        if missing_days is not None and missing_days > RETENTION_DAYS:
             log.info("[places] « %s » retirée : absente depuis %d jours", old.name, missing_days)
             continue
         merged.append(old)

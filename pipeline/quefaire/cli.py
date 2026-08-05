@@ -238,13 +238,13 @@ def discover_places(
     # alors qu'un fournisseur était absent : la rétention masque la panne
     # précisément parce qu'elle fait son travail. Sur un cycle hebdomadaire dont
     # personne ne lit le log, le jeu dériverait jusqu'à ce que les fiches
-    # conservées tombent d'un coup au bout des deux sweeps de sursis.
+    # conservées tombent d'un coup, au bout du sursis.
     if manquants:
         conserve = sum(1 for p in merged if p.last_seen and p.last_seen != date.today().isoformat())
         log.warning(
             "[places] SWEEP INCOMPLÈTE — %s absent(s) de ce run : %d fiches publiées "
             "depuis la rétention, retrait automatique si l'absence dure plus de %d jours",
-            " et ".join(manquants), conserve, 7 * places_mod.MISSING_SWEEPS_BEFORE_DROP,
+            " et ".join(manquants), conserve, places_mod.RETENTION_DAYS,
         )
     return 0
 
