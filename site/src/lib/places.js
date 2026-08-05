@@ -1,20 +1,13 @@
 /**
- * Classement et plafonnement des activités permanentes à l'affichage.
+ * Classement des activités permanentes : il définit l'ordre « pertinence ».
  *
- * Un rayon d'une heure autour d'un épicentre rural ramène ~2600 activités
- * (Pont-de-Salars, run réel). Toutes les rendre produit une page de 3,7 Mo,
- * inutilisable sur mobile — et noie les 36 événements du secteur sous les
- * activités, alors que le daté doit primer.
- *
- * On plafonne donc l'AFFICHAGE, pas la collecte : places.json reste complet
- * (c'est lui qui porte l'historique et l'enrichissement déjà payé), seules les
- * mieux classées sont rendues. Le compte des non affichées est indiqué au
- * visiteur — un plafond silencieux ferait passer une troncature pour une
- * exhaustivité.
+ * Il n'y a PLUS de plafond. Un rayon d'une heure autour d'un épicentre rural
+ * ramène ~2200 activités, et les pré-rendre toutes en HTML donnait une page de
+ * 3,7 Mo — d'où un plafond de 300 qui écartait 1900 fiches de la recherche pour
+ * une raison de poids de page. Le navigateur ne fabrique désormais que les tuiles
+ * de la page affichée (`lib/placecard.js`), donc tout le catalogue est cherchable
+ * et c'est au visiteur, non à un score de documentation, de décider ce qui compte.
  */
-
-/** Nombre d'activités rendues par ville. ~300 tuiles ≈ page de 500 Ko. */
-export const MAX_RENDERED = 300;
 
 const NOTABLE = new Set([
   'unesco', 'monument-historique', 'musee-de-france', 'jardin-remarquable',
@@ -48,17 +41,25 @@ export function placeScore(p) {
   );
 }
 
-/** Les `limit` activités les plus intéressantes, à score égal par ordre alphabétique. */
-export function rankPlaces(places, limit = MAX_RENDERED) {
-  return [...places]
-    .sort(
-      (a, b) =>
-        placeScore(b) - placeScore(a) ||
-        // À score égal seulement : l'enrichissement LLM départage, sans jamais
-        // pouvoir faire entrer ou sortir une fiche de l'ensemble affiché.
-        Number(Boolean(b.unusual)) - Number(Boolean(a.unusual)) ||
-        Number(Boolean(b.tldr)) - Number(Boolean(a.tldr)) ||
-        a.name.localeCompare(b.name, 'fr')
-    )
-    .slice(0, limit);
+/** TOUTES les activités, de la plus documentée à la moins, alphabétique à égalité.
+ *
+ *  Ne tronque plus. Le plafond de 300 tenait au pré-rendu HTML de chaque tuile ;
+ *  depuis que le navigateur ne fabrique que la page affichée
+ *  (`lib/placecard.js`), il n'a plus de raison d'être — et il en avait une
+ *  mauvaise : écarter 1900 activités de la RECHERCHE pour une contrainte de
+ *  poids de page, alors que ce qui doit trier ce sont les préférences du
+ *  visiteur.
+ *
+ *  Ce classement reste utile : il définit l'ordre « pertinence » par défaut.
+ */
+export function rankPlaces(places) {
+  return [...places].sort(
+    (a, b) =>
+      placeScore(b) - placeScore(a) ||
+      // À score égal seulement : l'enrichissement LLM départage, sans jamais
+      // pouvoir faire remonter une fiche au-dessus d'une mieux documentée.
+      Number(Boolean(b.unusual)) - Number(Boolean(a.unusual)) ||
+      Number(Boolean(b.tldr)) - Number(Boolean(a.tldr)) ||
+      a.name.localeCompare(b.name, 'fr')
+  );
 }

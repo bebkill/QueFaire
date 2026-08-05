@@ -32,6 +32,7 @@ volontairement défensive (plusieurs noms de clés essayés, absence tolérée) 
 
 from __future__ import annotations
 
+import itertools
 import logging
 import os
 from collections import Counter
@@ -44,6 +45,59 @@ log = logging.getLogger("quefaire")
 
 FLUX_ENV = "DATATOURISME_FLUX_URL"
 API_KEY_ENV = "DATATOURISME_API_KEY"
+
+# Inspecteur de source, à la demande : `QUEFAIRE_DUMP_TYPE=EntertainmentAndEvent`
+# fait recopier dans le log les premières fiches brutes portant ce type.
+#
+# Le flux n'est atteignable que depuis la CI (URL signée en secret, et le proxy de
+# l'environnement de développement bloque le domaine). Sans ça, toute question sur
+# la FORME d'un type non encore exploité se réglerait de mémoire ou par analogie —
+# et l'ontologie a déjà démenti trois suppositions de ce genre (`hasLabel`
+# inexistant, horaires sous `isLocatedAt`, flux livré en ZIP). Regarder coûte un
+# run ; deviner a coûté trois.
+#
+# Volontairement inerte hors demande explicite : aucun effet sur un run normal.
+DUMP_TYPE_ENV = "QUEFAIRE_DUMP_TYPE"
+DUMP_MAX = 2
+DUMP_CHARS = 6000
+
+# Sous-arbres élidés dans l'aperçu : métadonnées d'édition et de traduction. Ce
+# n'est pas de la coquetterie — le premier essai tronquait le JSON brut à 3500
+# caractères, et comme les clés arrivent dans l'ordre de la source, la coupe est
+# tombée en plein `hasTranslatedProperty` sans avoir atteint `takesPlaceAt`. Une
+# troncature aveugle sur du JSON ne montre pas ce qu'on cherche, elle montre ce qui
+# vient en premier. On élide donc le bruit connu au lieu de couper au caractère.
+_APERCU_BRUIT = frozenset({
+    "hasTranslatedProperty", "hasBeenPublishedBy", "hasBeenCreatedBy",
+    "dc:contributor", "@context", "hasAudience",
+})
+_APERCU_TEXTE = 120
+_APERCU_LISTE = 3
+_APERCU_PROFONDEUR = 5
+
+
+def _apercu(valeur, profondeur: int = 0):
+    """Aperçu structurel d'un nœud : la FORME, pas le volume.
+
+    Textes tronqués, listes échantillonnées, bruit d'édition élidé. Ce qu'on veut
+    voir d'un type non exploité, c'est quels champs existent et comment ils sont
+    imbriqués — jamais les 2000 caractères d'une description.
+    """
+    if profondeur > _APERCU_PROFONDEUR:
+        return "…"
+    if isinstance(valeur, dict):
+        return {
+            cle: _apercu(sous, profondeur + 1)
+            for cle, sous in valeur.items()
+            if cle not in _APERCU_BRUIT
+        }
+    if isinstance(valeur, list):
+        tete = [_apercu(v, profondeur + 1) for v in valeur[:_APERCU_LISTE]]
+        reste = len(valeur) - _APERCU_LISTE
+        return tete + [f"(+{reste} autres)"] if reste > 0 else tete
+    if isinstance(valeur, str) and len(valeur) > _APERCU_TEXTE:
+        return valeur[:_APERCU_TEXTE] + "…"
+    return valeur
 # Échappatoire brute : tout paramètre d'URL non modélisé ici (`sort`…). À laisser
 # VIDE en temps normal — son contenu est collé tel quel à la requête, donc une
 # valeur mal formée part sur chaque appel. Ne pas y mettre `lang` : le code le
@@ -90,9 +144,19 @@ TIMEOUT = 120
 # 60 pages × 250 fiches = 15 000 activités, largement au-delà du réaliste.
 MAX_PAGES = 60
 
-# Garde-fou de décompression du flux : le disque du runner est une allocation
-# fixe, et une archive aberrante ne doit pas le remplir.
-MAX_FLUX_BYTES = 500_000_000
+# Garde-fous de décompression du flux.
+#
+# La version précédente bornait le CUMUL décompressé à 500 Mo. Elle a tronqué un
+# flux parfaitement légitime (19 685 fiches, 119,6 Mo compressés) : des centaines
+# de fiches n'ont survécu au run que par la rétention, et auraient disparu du
+# catalogue au bout de deux passages. Le cumul ne mesurait rien de réel — les
+# membres sont lus et libérés un par un, jamais tous présents en mémoire.
+#
+# Ce qui coûte vraiment, c'est le NOMBRE de fiches retenues (la liste qu'on
+# construit et qu'on garde) et la taille du plus GROS membre (seul pic possible).
+# On borne donc ces deux grandeurs-là, et rien d'autre.
+MAX_FLUX_RECORDS = 200_000
+MAX_MEMBER_BYTES = 50_000_000
 
 # --- Quotas DATAtourisme -----------------------------------------------------
 # La plateforme annonce : 20 à 30 requêtes concurrentes, ~10 req/s en régime
@@ -237,6 +301,31 @@ _TYPE_RULES: list[tuple[tuple[str, ...], str]] = [
 # rapatrier (ni faire présenter par le LLM) ce qu'on jetterait ensuite.
 WANTED_TYPES = sorted({name for names, _ in _TYPE_RULES for name in names})
 
+# Types dont la présence DISQUALIFIE la fiche, quel que soit le reste.
+#
+# « Non classé » et « exclu » n'étaient pas la même chose, et le code ne
+# connaissait que le premier. Une fiche portant plusieurs types passe dès qu'UN
+# d'eux est classé : le retrait de `Library` des règles, décidé sur mesure
+# (23 fiches en Aveyron, aucune valeur de sortie), n'a donc rien empêché à
+# Villemoirieu — les 261 bibliothèques y entrent comme `SportsAndLeisurePlace`.
+# Même mécanisme pour 211 bars à vin, alors que `FoodEstablishment` est le type
+# le plus massivement rejeté du flux (4079 fiches). C'est le motif des 56
+# monuments aux morts : une exclusion qu'une seconde voie contourne.
+#
+# Volontairement ÉTROIT. `LocalBusiness` serait tentant — 268 fiches — mais 98
+# musées sur 98 le portent aussi : il ne sépare rien. `FoodEstablishment` et
+# `Winery` sont écartés de cette liste pour la même raison inverse : une cave
+# qui fait déguster est une visite légitime (`WineCellar` → ferme), et les trois
+# types arrivent ensemble sur les mêmes 211 fiches. `BistroOrWineBar` est le
+# terme précis qui désigne le débit de boisson, donc le seul retenu.
+#
+# Toute addition ici se chiffre AVANT d'être adoptée : le log compte ce que la
+# liste écarte, par type.
+_TYPES_EXCLUANTS = frozenset({
+    "Library", "schema:Library",
+    "BistroOrWineBar",
+})
+
 # Types RACINE et facettes transverses : les compter parmi les « non classés »
 # n'apprendrait rien, chaque fiche les porte. Le décompte des types ignorés ne
 # doit lister que des types PARLANTS, sinon il devient illisible et on cesse de
@@ -305,7 +394,15 @@ def _texts(node) -> list[str]:
         for key in ("fr", "fr-FR"):
             if key in node:
                 return _texts(node[key])
-        for value in node.values():
+        for cle, value in node.items():
+            # Les mots-clés JSON-LD ne sont JAMAIS du texte affichable. `@value`
+            # est traité au-dessus ; `@id`, `@type`, `@language` sont des
+            # métadonnées, et les laisser passer a coûté cher : sur un nœud
+            # :Description du flux, `@id` arrive avant `shortDescription`, donc
+            # `_first()` rendait l'URI. 4257 fiches ont été publiées avec une URL
+            # `data.datatourisme.fr` en guise de description.
+            if isinstance(cle, str) and cle.startswith("@"):
+                continue
             out.extend(_texts(value))
     return out
 
@@ -330,6 +427,35 @@ def _get(node: dict, *keys):
     return None
 
 
+def _description_of(node) -> str | None:
+    """Texte de présentation, depuis `hasDescription` (ontologie §8.3).
+
+    En mode FLUX, `hasDescription` est une **liste** de nœuds `:Description`,
+    chacun portant `@id`, `@type` et les textes (`shortDescription`,
+    `longDescription`). L'ancien code ne descendait dans `shortDescription` que
+    si `hasDescription` était un DICTIONNAIRE — la forme de l'API. En mode flux
+    il aplatissait donc le nœud entier et retenait la première chaîne trouvée,
+    c'est-à-dire `@id`.
+
+    Coût mesuré sur les données publiées : 1984 fiches à Villemoirieu et 2273 à
+    Pont-de-Salars affichaient une URL `data.datatourisme.fr` en guise de
+    description — 60 % et 83 % des catalogues. Et le défaut se propageait :
+    `has_signal` acceptait la fiche (elle « a une description »), `report()`
+    annonçait 99 % de descriptions, et le LLM de présentation recevait une URI
+    comme matière.
+
+    On accepte les deux formes, et le français d'abord (`_texts`).
+    """
+    bloc = _get(node, "hasDescription", "description")
+    if isinstance(bloc, list):
+        bloc = next((b for b in bloc if isinstance(b, dict)), bloc[0] if bloc else None)
+    if isinstance(bloc, dict):
+        return _first(_get(
+            bloc, "shortDescription", "dc:description", "longDescription", "description",
+        ))
+    return _first(bloc)
+
+
 def _type_names(node: dict) -> list[str]:
     raw = node.get("@type") or node.get("type") or []
     if isinstance(raw, str):
@@ -349,6 +475,11 @@ def _category_and_type(types: list[str]) -> tuple[str | None, str | None]:
     faits : sans lui, une catégorie anormalement grosse ne dit pas QUEL type la
     gonfle, et on ne peut qu'élaguer au jugé.
     """
+    # Un type disqualifiant l'emporte sur TOUTES les règles — sinon l'exclusion
+    # ne serait qu'une non-inclusion, contournable par n'importe quel autre type
+    # de la même fiche.
+    if any(t in _TYPES_EXCLUANTS for t in types):
+        return None, None
     for names, category in _TYPE_RULES:
         for t in types:
             if t in names:
@@ -471,6 +602,30 @@ def _opening_of(located) -> str | None:
     return " · ".join(slots[:4]) or None
 
 
+def _compte_categorie(places: list[Place], categorie: str) -> int:
+    return sum(1 for p in places if p.category == categorie)
+
+
+def _dans_le_rayon(node: dict, sector) -> bool:
+    """Une fiche non classée tombe-t-elle dans le rayon de l'épicentre ?
+
+    Sert à chiffrer honnêtement la matière écartée : le flux couvre le périmètre du
+    DIFFUSEUR, jamais le nôtre. Compter un type sur tout le flux revient à annoncer
+    un gisement dont la majeure partie est hors de portée.
+
+    Même critère que pour une fiche retenue — temps de trajet, pas distance à vol
+    d'oiseau — sinon le chiffre annoncé ne serait pas celui qu'on pourrait publier.
+    """
+    located = _get(node, "isLocatedAt", "location") or {}
+    if isinstance(located, list) and located:
+        located = located[0]
+    lat, lon = _coords(located)
+    if lat is None or lon is None:
+        return False
+    dist = haversine_km(sector.center_lat, sector.center_lon, lat, lon)
+    return travel_minutes(dist) <= sector.radius_minutes
+
+
 def _coords(located) -> tuple[float | None, float | None]:
     if not isinstance(located, dict):
         return None, None
@@ -523,11 +678,7 @@ def _to_place(node: dict, sector_id: str, today: str) -> Place | None:
     url = _first(_get(contact, "foaf:homepage", "homepage", "url")) if isinstance(contact, dict) else None
     phone = _first(_get(contact, "schema:telephone", "telephone")) if isinstance(contact, dict) else None
 
-    description = _first(
-        _get(node, "hasDescription", "description") if not isinstance(
-            _get(node, "hasDescription", "description"), dict
-        ) else _get(_get(node, "hasDescription", "description"), "shortDescription", "dc:description")
-    ) or ""
+    description = _description_of(node) or ""
 
     image_url, image_credit = _image_of(node)
     return Place(
@@ -573,24 +724,89 @@ def _nodes_from_flux(flux: str) -> list[dict]:
     # résultat s'explique d'abord par le mode, et il faut pouvoir le constater
     # au lieu de le déduire de l'absence de lignes de pagination.
     log.info("[datatourisme] mode FLUX (une requête, périmètre défini par le diffuseur)")
+    # Le TÉLÉCHARGEMENT reste immédiat : c'est lui qui échoue (403, 503, 504), et
+    # son exception doit remonter à l'appelant pour déclencher le repli sur l'API.
+    # Dans un générateur pur, elle ne surviendrait qu'à la première itération,
+    # bien après le `try` de `fetch()` — le repli ne jouerait plus.
     corps = _request(flux).content
-    documents = list(_documents_du_flux(corps))
-    if not documents:
+
+    # Le PARCOURS, lui, est paresseux. Un flux élargi peut dépasser le
+    # demi-gigaoctet décompressé, et matérialiser tous les documents parsés en même
+    # temps coûte plusieurs gigaoctets de dictionnaires Python. `fetch()` convertit
+    # chaque fiche au fil de l'eau et libère aussitôt celles qu'il n'exploite pas.
+    # Un dépassement mémoire ne serait PAS rattrapable : le noyau tue le processus,
+    # et le repli sur l'API ne jouerait pas davantage.
+    flot = _fiches_du_corps(corps)
+    try:
+        premiere = next(flot)
+    except StopIteration:
+        # Une liste vide (donc fausse) plutôt qu'un générateur épuisé : c'est ce
+        # que `fetch()` teste pour décider du repli.
         log.warning(
-            "[datatourisme] flux téléchargé (%.1f Mo) mais aucun document JSON exploitable "
+            "[datatourisme] flux téléchargé (%.1f Mo) mais aucune fiche exploitable "
             "— archive vide ou format inattendu",
             len(corps) / 1e6,
         )
         return []
+    return itertools.chain([premiere], flot)
 
-    nodes: list[dict] = []
-    for doc in documents:
-        nodes.extend(_nodes_du_document(doc))
+
+def _fiches_du_corps(corps: bytes):
+    """Parcourt les documents du corps et rend les nœuds, un à un.
+
+    On compte les **nœuds**, pas les « fiches » : un document peut porter un
+    `@graph` de plusieurs entités, et l'archive complète en a livré 47 082 pour
+    23 543 membres. Appeler ça des fiches laissait croire que le flux contenait
+    deux fois plus d'activités qu'en réalité, et faussait le taux de sélectivité
+    affiché juste après (« N retenues sur M »).
+
+    Ce que trois runs de mesure ont établi, et qui n'a plus à être redécouvert :
+
+    - **23 541 identifiants distincts, 0 répétition** — l'archive ne répète aucun
+      POI, la conversion ne travaille jamais deux fois.
+    - **la distribution des nœuds par document** (`1→23541, 23541→1`) a désigné le
+      coupable des 23 541 nœuds anonymes : un **manifeste**, pas des fragments de
+      fiche. D'où `_est_un_manifeste()`, et le témoin de complétude qui en découle.
+    - **le manifeste ne porte aucun horaire** : l'anomalie `avec_horaires: 3` reste
+      entière, et il faut la chercher ailleurs.
+
+    Le compteur de répétitions est conservé même si la réponse est connue : c'est
+    une propriété de la SOURCE, pas du code, et elle peut changer sans nous avertir.
+    """
+    documents = noeuds = sans_id = annoncees = 0
+    vus: set[str] = set()
+    for doc in _documents_du_flux(corps):
+        documents += 1
+        if _est_un_manifeste(doc):
+            # L'index de l'archive : on retient ce qu'il annonce et on ne tente pas
+            # d'en faire des activités.
+            annoncees += len(doc)
+            continue
+        for node in _nodes_du_document(doc):
+            noeuds += 1
+            ident = str(node.get("@id") or node.get("uri") or node.get("uuid") or "")
+            if ident:
+                vus.add(ident)
+            else:
+                sans_id += 1
+            yield node
     log.info(
-        "[datatourisme] flux : %.1f Mo, %d document(s), %d fiche(s) brutes",
-        len(corps) / 1e6, len(documents), len(nodes),
+        "[datatourisme] flux : %.1f Mo compressés, %d document(s), %d nœud(s), "
+        "%d identifiant(s) distinct(s), %d répétition(s), %d sans identifiant",
+        len(corps) / 1e6, documents, noeuds, len(vus),
+        max(0, noeuds - sans_id - len(vus)), sans_id,
     )
-    return nodes
+    if annoncees and annoncees != len(vus):
+        # Écart entre ce que la source déclare livrer et ce qu'on a lu. Jusqu'ici,
+        # seule une chute inexpliquée du catalogue le révélait — deux semaines plus
+        # tard, quand la rétention finissait par lâcher.
+        log.warning(
+            "[datatourisme] le manifeste annonce %d fiches, %d lues — écart de %d, "
+            "archive amputée ou membres illisibles",
+            annoncees, len(vus), annoncees - len(vus),
+        )
+    elif annoncees:
+        log.info("[datatourisme] manifeste : %d fiches annoncées, autant lues", annoncees)
 
 
 def _documents_du_flux(corps: bytes):
@@ -607,13 +823,14 @@ def _documents_du_flux(corps: bytes):
     de téléchargement signé. Le JSON nu et le gzip restent acceptés : le mode
     flux doit survivre à un changement d'emballage côté diffuseur.
 
-    La disposition interne de l'archive n'est PAS devinée (un seul gros JSON-LD,
-    un `index.json` plus un fichier par fiche, un sous-dossier `objects/`…) : on
-    tente chaque membre `.json`/`.jsonld` et on garde ce qui se lit. Un index
-    qui ne contient que des chemins ne produira aucune fiche et sera ignoré sans
-    bruit. C'est le même parti que pour les champs de l'ontologie — je ne peux
-    pas vérifier la forme depuis l'environnement de développement, donc je ne la
-    fige pas.
+    La disposition interne de l'archive n'est PAS devinée : on tente chaque membre
+    `.json`/`.jsonld` et on garde ce qui se lit. Celle du diffuseur, mesurée
+    depuis, tient en un fichier par fiche **plus un manifeste** — voir
+    `_est_un_manifeste()`. Ce parti d'ouverture reste le bon : le mode flux doit
+    survivre à une réorganisation côté source.
+
+    Un membre illisible n'est plus sauté en silence : c'est indiscernable d'une
+    fiche absente du flux, et le manifeste permet désormais de le chiffrer.
     """
     import gzip
     import io
@@ -622,24 +839,50 @@ def _documents_du_flux(corps: bytes):
 
     if corps[:4] == b"PK\x03\x04":
         with zipfile.ZipFile(io.BytesIO(corps)) as zf:
-            lus = 0
-            for info in zf.infolist():
-                if info.is_dir() or not info.filename.lower().endswith((".json", ".jsonld")):
-                    continue
-                # Garde-fou : une archive malveillante ou aberrante ne doit pas
-                # remplir le disque du runner (déjà limité).
-                lus += info.file_size
-                if lus > MAX_FLUX_BYTES:
+            membres = [
+                info for info in zf.infolist()
+                if not info.is_dir() and info.filename.lower().endswith((".json", ".jsonld"))
+            ]
+            # `file_size` vient de l'index de l'archive : le total décompressé est
+            # connu AVANT d'avoir décompressé quoi que ce soit. On l'annonce, et
+            # une troncature éventuelle se chiffre alors sur le total réel — au
+            # lieu de laisser deviner combien de fiches manquent.
+            log.info(
+                "[datatourisme] archive : %d membre(s), %.0f Mo décompressés",
+                len(membres), sum(info.file_size for info in membres) / 1e6,
+            )
+            if len(membres) > MAX_FLUX_RECORDS:
+                log.warning(
+                    "[datatourisme] archive TRONQUÉE à %d fiches sur %d (garde-fou) "
+                    "— des fiches sont perdues. Relever MAX_FLUX_RECORDS après avoir "
+                    "vérifié la mémoire du runner.",
+                    MAX_FLUX_RECORDS, len(membres),
+                )
+                membres = membres[:MAX_FLUX_RECORDS]
+            illisibles = 0
+            for info in membres:
+                if info.file_size > MAX_MEMBER_BYTES:
+                    # Seul pic mémoire possible : un membre lu d'un bloc. Le sauter
+                    # se DIT, sans quoi une fiche manquante passerait pour absente
+                    # du flux.
+                    # Taille en octets, pas en Mo : un « 0 Mo » dans un
+                    # avertissement de dépassement serait un instrument qui mentirait.
                     log.warning(
-                        "[datatourisme] archive tronquée à %d Mo décompressés — "
-                        "garde-fou, le flux est anormalement gros",
-                        MAX_FLUX_BYTES // 1_000_000,
+                        "[datatourisme] membre %s ignoré : %d octets décompressés "
+                        "(garde-fou à %d)",
+                        info.filename, info.file_size, MAX_MEMBER_BYTES,
                     )
-                    return
+                    continue
                 try:
                     yield _json.loads(zf.read(info))
                 except (ValueError, OSError):
-                    continue
+                    illisibles += 1
+            if illisibles:
+                log.warning(
+                    "[datatourisme] %d membre(s) illisible(s) sur %d — autant de "
+                    "fiches perdues, indiscernables d'une absence du flux",
+                    illisibles, len(membres),
+                )
         return
 
     if corps[:2] == b"\x1f\x8b":
@@ -668,6 +911,37 @@ def _nodes_du_document(doc) -> list[dict]:
     if isinstance(doc, list):
         return [n for n in doc if isinstance(n, dict)]
     return []
+
+
+def _est_un_manifeste(doc) -> bool:
+    """Vrai pour l'index de l'archive : une liste d'entrées `{label, file, …}`.
+
+    Mesuré, pas supposé. La distribution des nœuds par document a livré
+    `1→23541 doc(s), 23541→1 doc(s)` : 23 541 fichiers d'une fiche chacun, plus UN
+    document de 23 541 entrées, dont les champs sont `label`,
+    `lastUpdateDatatourisme` et `file`. C'est le manifeste de l'archive — la
+    déclaration, par la source, de ce qu'elle livre.
+
+    Deux conséquences. On cesse d'essayer d'en convertir les entrées en activités :
+    sans `@type`, les 23 541 échouaient d'avance. Et on s'en sert de **témoin de
+    complétude** : le nombre de fiches annoncées se compare à celui des fiches
+    lues, ce qui rend visible un membre illisible ou une archive amputée — ce que
+    seule une chute inexpliquée du catalogue signalait jusqu'ici.
+
+    Note : le manifeste ne porte AUCUN horaire. Il n'explique donc pas
+    `avec_horaires: 3` ; cette anomalie reste ouverte, et l'hypothèse d'un nœud
+    voisin porteur d'horaires est écartée.
+    """
+    return (
+        isinstance(doc, list)
+        and bool(doc)
+        and all(
+            isinstance(entree, dict)
+            and "file" in entree
+            and not (entree.get("@id") or entree.get("@type") or entree.get("uri"))
+            for entree in doc
+        )
+    )
 
 
 def _nodes_from_api(key: str, sector, filters: str = "") -> list[dict]:
@@ -751,7 +1025,7 @@ def _nodes_from_api(key: str, sector, filters: str = "") -> list[dict]:
     return nodes
 
 
-def fetch(sector, limit: int | None = None) -> list[Place]:
+def fetch(sector, limit: int | None = None, refuses: set[str] | None = None) -> list[Place]:
     """Rend les activités DATAtourisme du rayon, par flux ou par API.
 
     Le **flux** est préféré quand il est configuré : une requête au lieu d'une
@@ -765,6 +1039,12 @@ def fetch(sector, limit: int | None = None) -> list[Place]:
     Retourne [] (sans lever) si rien n'est configuré ou si les deux voies sont
     injoignables : c'est un complément d'OSM, son absence ne doit pas faire
     échouer la découverte.
+
+    `refuses`, s'il est fourni, se remplit des identifiants de source que la sweep
+    a vus et DISQUALIFIÉS (voir `_TYPES_EXCLUANTS`). Un refus n'est pas une
+    absence : sans cette distinction, la rétention de `merge()` garde la fiche
+    quatorze jours et l'exclusion n'a aucun effet visible — mesuré, le catalogue
+    de Villemoirieu n'a pas bougé d'une fiche au run suivant l'exclusion.
     """
     flux = os.environ.get(FLUX_ENV)
     key = os.environ.get(API_KEY_ENV)
@@ -813,14 +1093,68 @@ def fetch(sector, limit: int | None = None) -> list[Place]:
     # ne permettait de décider d'ajouter une catégorie autrement qu'au jugé.
     # C'est ce compteur qui répond à « est-ce qu'on perd de la matière ? ».
     ignores: Counter = Counter()
+    # Le même inventaire, restreint au RAYON. Sans lui, la ligne « matière
+    # disponible » se lit comme une promesse qu'elle ne tient pas : le flux couvre
+    # le périmètre du diffuseur, pas le nôtre. Constaté sur le premier événement
+    # inspecté — Les Sarmentelles, en Beaujolais, à 250 km de l'épicentre. Annoncer
+    # 1542 événements exploitables sur cette base aurait été un chiffre faux, et
+    # c'est exactement ce que j'ai fait avant de regarder.
+    ignores_rayon: Counter = Counter()
+    co_types: Counter = Counter()
+    disqualifies: Counter = Counter()
+    # Compté à la volée : `nodes` peut être un flot paresseux (mode flux), dont on
+    # ne connaît pas la longueur avant de l'avoir parcouru.
+    recues = 0
+    a_montrer = os.environ.get(DUMP_TYPE_ENV, "").strip()
+    montrees = 0
     for node in nodes:
+        recues += 1
         if not isinstance(node, dict):
             continue
+        if a_montrer and montrees < DUMP_MAX and a_montrer in _type_names(node):
+            import json as _json
+
+            montrees += 1
+            # Les clés d'abord, à plat : c'est la réponse à « ce type porte-t-il ce
+            # champ ? », et elle tient sur une ligne.
+            log.info(
+                "[datatourisme] fiche « %s » n°%d — champs : %s",
+                a_montrer, montrees, ", ".join(sorted(node.keys())),
+            )
+            log.info(
+                "[datatourisme] fiche « %s » n°%d — aperçu :\n%s",
+                a_montrer, montrees,
+                _json.dumps(_apercu(node), ensure_ascii=False, indent=1)[:DUMP_CHARS],
+            )
         place = _to_place(node, sector.id, today)
         if place is None:
-            for t in _type_names(node):
+            dans_rayon = _dans_le_rayon(node, sector)
+            noms = _type_names(node)
+            # Une fiche disqualifiée n'est pas « de la matière écartée qu'on
+            # pourrait ajouter » : c'est un refus assumé. La compter avec les types
+            # inconnus rendrait la ligne d'inventaire trompeuse — un type y monte
+            # comme candidat alors qu'il a déjà été jugé.
+            exclue = [t for t in noms if t in _TYPES_EXCLUANTS]
+            if exclue:
+                if dans_rayon:
+                    for t in exclue:
+                        disqualifies[t] += 1
+                    # Le refus doit VOYAGER jusqu'à merge() : la fiche est présente
+                    # dans la source, donc « absente de la sweep » serait faux, et
+                    # la rétention la garderait quatorze jours de plus.
+                    if refuses is not None:
+                        ident = str(
+                            node.get("@id") or node.get("uri")
+                            or node.get("id") or node.get("uuid") or ""
+                        ).strip()
+                        if ident:
+                            refuses.add(ident)
+                continue
+            for t in noms:
                 if t not in _RACINES_ONTOLOGIE:
                     ignores[t] += 1
+                    if dans_rayon:
+                        ignores_rayon[t] += 1
         if place is None or (place.external_id and place.external_id in seen):
             continue
         dist = haversine_km(sector.center_lat, sector.center_lon, place.lat, place.lon)
@@ -829,17 +1163,54 @@ def fetch(sector, limit: int | None = None) -> list[Place]:
         if place.external_id:
             seen.add(place.external_id)
         places.append(place)
+        # Types CO-PORTÉS par une fiche retenue, en plus de celui qui l'a classée.
+        # C'est l'instrument qui manquait pour auditer une catégorie devenue
+        # suspecte : `sport-loisir` compte 1440 fiches `SportsAndLeisurePlace` à
+        # Villemoirieu, et l'examen des noms y trouve 252 bibliothèques, 118 bars
+        # et 68 galeries d'art. Le nom n'est pas un critère défendable ; le type
+        # co-porté, si — et il dira s'il existe de quoi écrire une exclusion sur des
+        # faits plutôt que sur des chaînes de caractères.
+        for t in _type_names(node):
+            if t not in _RACINES_ONTOLOGIE and t != place.tags[0].removeprefix("dt:"):
+                co_types[(place.category, t)] += 1
 
-    log.info("[datatourisme] %d activités retenues sur %d fiches", len(places), len(nodes))
+    # « nœuds » et non « fiches » : en mode flux, chaque fiche arrive accompagnée
+    # d'un second nœud anonyme, ce qui doublait le dénominateur — 2437 sur 47 082
+    # laissait croire à une sélectivité deux fois plus sévère qu'en réalité.
+    log.info("[datatourisme] %d activités retenues sur %d nœud(s)", len(places), recues)
     if ignores:
         # À lire à chaque changement de flux : c'est l'inventaire de ce que la
         # source propose et qu'on écarte. Un type qui monte haut ici est un
         # candidat à ajouter dans _TYPE_RULES, pas une fatalité.
         log.info(
-            "[datatourisme] types reçus NON classés (matière disponible, écartée) : %s",
-            ", ".join(f"{t}×{n}" for t, n in ignores.most_common(12)),
+            "[datatourisme] types reçus NON classés (matière disponible, écartée) "
+            "— total flux, dont DANS LE RAYON : %s",
+            ", ".join(
+                f"{t}×{n} (dont {ignores_rayon.get(t, 0)})" for t, n in ignores.most_common(12)
+            ),
         )
-    if nodes and not places:
+    if disqualifies:
+        log.info(
+            "[datatourisme] fiches DISQUALIFIÉES dans le rayon (type déjà jugé, pas "
+            "un candidat) : %s",
+            ", ".join(f"{t}×{n}" for t, n in disqualifies.most_common(8)),
+        )
+    if co_types:
+        # Une ligne par catégorie, et seulement les types co-portés qui pèsent au
+        # moins 5 % de ses fiches : au-delà de ce seuil, c'est une population qu'on
+        # a rangée sous une étiquette qui ne lui va pas, pas un cas isolé.
+        par_cat: Counter = Counter(cat for cat, _ in co_types)
+        for cat in sorted(par_cat, key=lambda c: -_compte_categorie(places, c)):
+            total = _compte_categorie(places, cat)
+            gros = [
+                (t, n) for (c, t), n in co_types.most_common() if c == cat and n >= 0.05 * total
+            ]
+            if gros:
+                log.info(
+                    "[datatourisme] %s (%d fiches) — types co-portés : %s",
+                    cat, total, ", ".join(f"{t}×{n}" for t, n in gros[:8]),
+                )
+    if recues and not places:
         # Des fiches reçues mais aucune reconnue : c'est le symptôme d'un
         # mapping de champs à corriger (l'ontologie est riche et les
         # producteurs la remplissent inégalement), pas d'un territoire vide.
@@ -847,7 +1218,7 @@ def fetch(sector, limit: int | None = None) -> list[Place]:
             "[datatourisme] %d fiches reçues, AUCUNE exploitable — vérifier le mapping "
             "des types (@type) et des coordonnées (isLocatedAt/schema:geo) contre un "
             "échantillon réel du flux",
-            len(nodes),
+            recues,
         )
     return places[:limit] if limit else places
 

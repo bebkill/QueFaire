@@ -1233,6 +1233,98 @@ def test_flux_lit_une_archive_zip(monkeypatch):
     assert [p.name for p in found] == ["Musée du flux"]
 
 
+def test_flux_manifeste_ni_converti_ni_muet(monkeypatch, caplog):
+    """Le manifeste de l'archive sert de témoin de complétude, pas de fiche.
+
+    L'archive du diffuseur contient un fichier par fiche PLUS un index de
+    23 541 entrées `{label, lastUpdateDatatourisme, file}`. Ces entrées n'ont ni
+    `@type` ni `@id` : les convertir échouait d'avance, et le nombre qu'elles
+    annoncent est la seule chose qui permette de dire qu'une archive est amputée —
+    sans quoi une perte de fiches ne se voit que des semaines plus tard, quand la
+    rétention lâche.
+    """
+    import logging
+
+    from quefaire import datatourisme as dt
+    from quefaire.cli import load_sector
+
+    def fiche(n):
+        return {
+            "@id": f"https://data.datatourisme.fr/{n}",
+            "@type": ["Museum"],
+            "rdfs:label": {"fr": [f"Musée {n}"]},
+            "isLocatedAt": {"schema:geo": {"schema:latitude": 44.28, "schema:longitude": 2.74}},
+        }
+
+    # Le manifeste annonce TROIS fiches, l'archive n'en contient que deux.
+    archive = _zip_flux({
+        "index.json": [
+            {"label": "Musée 1", "lastUpdateDatatourisme": "2026-08-05", "file": "objects/1.json"},
+            {"label": "Musée 2", "lastUpdateDatatourisme": "2026-08-05", "file": "objects/2.json"},
+            {"label": "Musée 3", "lastUpdateDatatourisme": "2026-08-05", "file": "objects/3.json"},
+        ],
+        "objects/1.json": fiche(1),
+        "objects/2.json": fiche(2),
+    })
+
+    monkeypatch.setenv(dt.FLUX_ENV, "https://flux.test/export.zip")
+    monkeypatch.setattr(
+        "quefaire.fetchers.base.http_get", lambda *a, **k: _FakeResp(None, content=archive)
+    )
+    with caplog.at_level(logging.WARNING):
+        found = dt.fetch(load_sector("pont-de-salars"))
+
+    # Les entrées d'index ne deviennent pas des activités.
+    assert sorted(p.name for p in found) == ["Musée 1", "Musée 2"]
+    manque = [r.getMessage() for r in caplog.records if "manifeste annonce" in r.getMessage()]
+    assert manque, "un écart entre fiches annoncées et fiches lues doit être DIT"
+    assert "3 fiches, 2 lues" in manque[0]
+
+
+def test_flux_ne_tronque_pas_une_archive_volumineuse(monkeypatch, caplog):
+    """Le garde-fou d'archive borne le PIC, pas le cumul décompressé.
+
+    Le garde-fou d'origine coupait au-delà de 500 Mo **cumulés** : il a tronqué un
+    flux parfaitement légitime (19 685 fiches), dont des centaines n'ont survécu
+    au run que par la rétention. Le cumul ne mesurait rien de réel — les membres
+    sont lus et libérés un par un. Ici, trois fiches dont le cumul dépasse
+    largement la limite par membre doivent TOUTES passer, et seule celle qui
+    excède `MAX_MEMBER_BYTES` à elle seule doit être écartée, avec un log.
+    """
+    import logging
+
+    from quefaire import datatourisme as dt
+    from quefaire.cli import load_sector
+
+    def fiche(n, bourre=0):
+        return {
+            "@id": f"https://data.datatourisme.fr/{n}",
+            "@type": ["Museum"],
+            "rdfs:label": {"fr": [f"Musée {n}"]},
+            "isLocatedAt": {"schema:geo": {"schema:latitude": 44.28, "schema:longitude": 2.74}},
+            "rdfs:comment": {"fr": ["x" * bourre]} if bourre else {},
+        }
+
+    monkeypatch.setattr(dt, "MAX_MEMBER_BYTES", 20_000)
+    archive = _zip_flux({
+        "objects/1.json": fiche(1, 15_000),   # gros mais admissible
+        "objects/2.json": fiche(2, 15_000),   # le CUMUL dépasse : ne doit rien couper
+        "objects/3.json": fiche(3, 30_000),   # trop gros à lui seul : écarté
+    })
+
+    monkeypatch.setenv(dt.FLUX_ENV, "https://flux.test/export.zip")
+    monkeypatch.setattr(
+        "quefaire.fetchers.base.http_get", lambda *a, **k: _FakeResp(None, content=archive)
+    )
+    with caplog.at_level(logging.WARNING):
+        found = dt.fetch(load_sector("pont-de-salars"))
+
+    assert sorted(p.name for p in found) == ["Musée 1", "Musée 2"]
+    assert any("objects/3.json" in r.getMessage() for r in caplog.records), (
+        "un membre écarté doit se DIRE : sinon la fiche passe pour absente du flux"
+    )
+
+
 def test_flux_accepte_graph_et_json_nu(monkeypatch):
     """Les autres emballages restent acceptés : le mode flux ne doit pas casser
     si le diffuseur change de format."""
@@ -1259,6 +1351,65 @@ def test_flux_accepte_graph_et_json_nu(monkeypatch):
         "quefaire.fetchers.base.http_get", lambda *a, **k: _FakeResp({"@graph": [fiche]})
     )
     assert [p.name for p in dt.fetch(load_sector("pont-de-salars"))] == ["Musée enveloppé"]
+
+
+def test_flux_paresseux_declenche_quand_meme_le_repli(monkeypatch):
+    """Le parcours du flux est paresseux, le TÉLÉCHARGEMENT doit rester immédiat.
+
+    Piège évité de justesse : dans un générateur pur, l'erreur HTTP ne survient
+    qu'à la première itération — donc après le `try` de `fetch()`, et le repli sur
+    l'API ne jouerait plus. Ce test laisse tourner le VRAI `_nodes_from_flux`,
+    contrairement au test suivant qui le remplace.
+    """
+    import requests
+
+    from quefaire import datatourisme as dt
+    from quefaire.cli import load_sector
+
+    monkeypatch.setenv(dt.FLUX_ENV, "https://flux.test/x")
+    monkeypatch.setenv(dt.API_KEY_ENV, "K")
+    monkeypatch.delenv(dt.API_PARAMS_ENV, raising=False)
+    monkeypatch.delenv(dt.API_FILTERS_ENV, raising=False)
+
+    def http(url, **k):
+        if "flux.test" in url:
+            raise requests.HTTPError("504 Gateway Timeout")
+        return _FakeResp({"objects": [{
+            "uri": "https://data.datatourisme.fr/11",
+            "@type": ["Museum"],
+            "rdfs:label": {"fr": ["Musée de repli"]},
+            "isLocatedAt": {"schema:geo": {"schema:latitude": "44.28", "schema:longitude": "2.74"}},
+        }], "meta": {"next": None}})
+
+    monkeypatch.setattr("quefaire.fetchers.base.http_get", http)
+    assert [p.name for p in dt.fetch(load_sector("pont-de-salars"))] == ["Musée de repli"]
+
+
+def test_flux_vide_declenche_le_repli(monkeypatch):
+    """Une archive qui ne rend aucune fiche doit basculer sur l'API, pas publier
+    un jeu vide. Le flot paresseux doit donc être testé AVANT d'être consommé."""
+    from quefaire import datatourisme as dt
+    from quefaire.cli import load_sector
+
+    monkeypatch.setenv(dt.FLUX_ENV, "https://flux.test/vide.zip")
+    monkeypatch.setenv(dt.API_KEY_ENV, "K")
+    monkeypatch.delenv(dt.API_PARAMS_ENV, raising=False)
+    monkeypatch.delenv(dt.API_FILTERS_ENV, raising=False)
+
+    vide = _zip_flux({"LISEZ-MOI.txt": "aucun json ici"})
+
+    def http(url, **k):
+        if "flux.test" in url:
+            return _FakeResp(None, content=vide)
+        return _FakeResp({"objects": [{
+            "uri": "https://data.datatourisme.fr/12",
+            "@type": ["Museum"],
+            "rdfs:label": {"fr": ["Musée de repli"]},
+            "isLocatedAt": {"schema:geo": {"schema:latitude": "44.28", "schema:longitude": "2.74"}},
+        }], "meta": {"next": None}})
+
+    monkeypatch.setattr("quefaire.fetchers.base.http_get", http)
+    assert [p.name for p in dt.fetch(load_sector("pont-de-salars"))] == ["Musée de repli"]
 
 
 def test_datatourisme_falls_back_to_api_when_flux_refused(monkeypatch):
@@ -1577,6 +1728,41 @@ def test_dedupe_providers_merges_same_place():
     assert merged.source_id == "osm"
 
 
+def test_dedupe_providers_ne_depend_pas_de_l_ordre_d_arrivee():
+    """Le rapprochement ne doit pas dépendre de l'ordre dans lequel arrivent les
+    fiches — sinon un diff de données générées cesse de vouloir dire quelque chose.
+
+    Le cas qui l'a révélé : trois homonymes en CHAÎNE, A-B et B-C sous le seuil de
+    rapprochement, A-C au-dessus. Comme chaque fiche n'est comparée qu'à la TÊTE de
+    groupe, l'arrivée de B en premier absorbait A et C, alors que l'arrivée de A en
+    premier laissait C dehors — 1 fiche ou 2 selon Overpass, qui ne garantit pas
+    l'ordre de ses éléments. Mesuré sur les six permutations : 1 pour `bac`/`bca`,
+    2 pour les quatre autres. En production, deux runs à données identiques ont
+    publié 2747 puis 2745 activités.
+
+    Le rapprochement reste volontairement comparé à la tête et non à tous les
+    membres : la fermeture transitive collerait des lieux distincts de proche en
+    proche, ce que ce projet a déjà refusé pour l'URL partagée. Ce qui est corrigé
+    ici est l'ARBITRAIRE, pas le périmètre du rapprochement.
+    """
+    import itertools
+
+    from quefaire.models import Place
+    from quefaire.places import SAME_PLACE_KM, dedupe_providers
+
+    pas = SAME_PLACE_KM / 111.0 * 0.9   # 90 % du seuil, exprimé en degrés de latitude
+
+    def fiche(ident, rang):
+        return Place(name="Chapelle Saint-Roch", category="patrimoine", source_id="osm",
+                     sector="s", external_id=ident, lat=44.0 + rang * pas, lon=2.0,
+                     tags=["osm:historic=monument"], providers=["osm"])
+
+    comptes = set()
+    for ordre in itertools.permutations([("a", 0), ("b", 1), ("c", 2)]):
+        comptes.add(len(dedupe_providers([fiche(i, r) for i, r in ordre])))
+    assert len(comptes) == 1, f"résultat dépendant de l'ordre : {sorted(comptes)}"
+
+
 def test_dedupe_providers_keeps_distinct_places():
     from quefaire.models import Place
     from quefaire.places import dedupe_providers
@@ -1732,6 +1918,121 @@ def test_datatourisme_type_mapping_uses_real_ontology_names():
     assert _category_of(["PointOfInterest", "Restaurant"]) is None
     # …mais un type précis reste reconnu même accompagné du type racine.
     assert _category_of(["PointOfInterest", "PlaceOfInterest", "Museum"]) == "musee"
+
+
+def test_datatourisme_description_du_flux_n_est_pas_une_uri():
+    """La description doit être du TEXTE, jamais l'identifiant du nœud qui la porte.
+
+    Forme réelle du flux, relevée dans un run : `hasDescription` est une LISTE de
+    nœuds `:Description` portant `@id`, `@type` et les textes. L'extraction ne
+    descendait dans `shortDescription` que si `hasDescription` était un
+    dictionnaire — la forme de l'API — et aplatissait sinon le nœud entier, dont la
+    première chaîne est `@id`.
+
+    1984 fiches à Villemoirieu et 2273 à Pont-de-Salars ont été publiées avec une
+    URL `data.datatourisme.fr` en guise de description. Le défaut se propageait :
+    `has_signal` acceptait la fiche, `report()` annonçait 99 % de descriptions, et
+    le LLM de présentation recevait une URI comme matière.
+    """
+    from quefaire.datatourisme import _to_place
+
+    node = {
+        "@id": "https://data.datatourisme.fr/13/4187ca4f",
+        "@type": ["Museum", "PlaceOfInterest"],
+        "rdfs:label": {"fr": ["Musée de la Bachasse"]},
+        # Forme FLUX : une liste, et `@id` avant les textes.
+        "hasDescription": [{
+            "@id": "https://data.datatourisme.fr/61ff269d",
+            "@type": ["Description"],
+            "shortDescription": {"fr": ["Outils et costumes du siècle dernier."],
+                                 "en": ["Tools and costumes."]},
+        }],
+        "isLocatedAt": {"schema:geo": {"schema:latitude": 45.7, "schema:longitude": 5.2}},
+    }
+    place = _to_place(node, "villemoirieu", "2026-08-05")
+    assert place.description == "Outils et costumes du siècle dernier."
+
+    # Forme API : un dictionnaire. Les deux doivent marcher.
+    node_api = dict(node, hasDescription={
+        "shortDescription": {"fr": ["Outils et costumes du siècle dernier."]},
+    })
+    assert _to_place(node_api, "villemoirieu", "2026-08-05").description == (
+        "Outils et costumes du siècle dernier."
+    )
+
+    # Et une fiche dont la description ne contient QUE des métadonnées ne doit pas
+    # en fabriquer une : mieux vaut aucune description qu'une URI.
+    node_vide = dict(node, hasDescription=[{
+        "@id": "https://data.datatourisme.fr/61ff269d", "@type": ["Description"],
+    }])
+    assert _to_place(node_vide, "villemoirieu", "2026-08-05").description == ""
+
+
+def test_merge_un_refus_n_est_pas_une_absence():
+    """Une fiche refusée par la sweep ne bénéficie PAS du sursis d'absence.
+
+    L'exclusion des bibliothèques et des bars à vin n'avait rien changé au
+    catalogue de Villemoirieu : 3775 activités avant, 3775 après,
+    `dt:SportsAndLeisurePlace` toujours à 1440. Les fiches quittaient bien la
+    sweep, et la rétention les reprenait aussitôt pour quatorze jours.
+
+    `_tag_still_mapped()` ne pouvait pas les rattraper : il rejoue la règle sur le
+    seul tag de provenance — `dt:SportsAndLeisurePlace`, qui reste parfaitement
+    valide — alors que la décision d'origine voyait TOUS les types de la fiche. Un
+    rejeu moins informé que la décision ne peut pas la reproduire. D'où ce chemin
+    explicite, et ce test : quatrième variante du même défaut, il ne doit pas y en
+    avoir une cinquième.
+    """
+    from quefaire.models import Place
+    from quefaire.places import merge
+
+    def fiche(ident, nom):
+        return Place(name=nom, category="sport-loisir", source_id="datatourisme",
+                     sector="s", external_id=ident, lat=45.7, lon=5.2,
+                     tags=["dt:SportsAndLeisurePlace"], providers=["datatourisme"],
+                     first_seen="2026-07-01", last_seen="2026-08-04")
+
+    biblio = fiche("https://data.datatourisme.fr/biblio", "Bibliothèque de Crémieu")
+    accro = fiche("https://data.datatourisme.fr/accro", "Accrobranche de l'Isle")
+
+    # Les deux disparaissent de la sweep. L'une est REFUSÉE, l'autre simplement
+    # absente : la seconde garde son sursis, la première non.
+    garde = merge([biblio, accro], [], today="2026-08-05",
+                  refuses={"https://data.datatourisme.fr/biblio"})
+    assert [p.name for p in garde] == ["Accrobranche de l'Isle"]
+
+    # Sans l'ensemble des refus, la rétention garde tout — c'est le comportement
+    # d'origine, et c'est bien lui qui rendait l'exclusion inopérante.
+    assert len(merge([biblio, accro], [], today="2026-08-05")) == 2
+
+
+def test_datatourisme_type_disqualifiant_bat_toutes_les_regles():
+    """« Non classé » et « exclu » ne sont PAS la même chose.
+
+    Une fiche porte plusieurs types et passe dès qu'un seul est classé. Retirer
+    `Library` des règles n'a donc rien empêché : à Villemoirieu, 261 bibliothèques
+    entrent comme `SportsAndLeisurePlace`, et 211 bars à vin de même — alors que
+    `FoodEstablishment` est le type le plus massivement rejeté du flux. C'est le
+    motif des 56 monuments aux morts, transposé aux types : une exclusion qu'une
+    seconde voie contourne.
+
+    Un type disqualifiant doit donc battre TOUTES les règles, quel que soit le
+    reste de la fiche.
+    """
+    from quefaire.datatourisme import _category_of
+
+    # Le cas réel : la bibliothèque est aussi rangée en équipement de loisir.
+    assert _category_of(["PlaceOfInterest", "SportsAndLeisurePlace", "Library"]) is None
+    assert _category_of(["PointOfInterest", "SportsAndLeisurePlace", "BistroOrWineBar"]) is None
+    # L'ordre des types dans la fiche ne doit rien changer.
+    assert _category_of(["Library", "SportsAndLeisurePlace"]) is None
+    # Et l'exclusion reste ÉTROITE : ce qui n'est pas disqualifiant passe toujours.
+    assert _category_of(["PlaceOfInterest", "SportsAndLeisurePlace"]) == "sport-loisir"
+    # `Winery` n'est délibérément PAS disqualifiant : une cave qui fait déguster
+    # est une visite légitime, et le type arrive sur les mêmes fiches que le bar.
+    assert _category_of(["PlaceOfInterest", "WineCellar", "Winery"]) == "ferme"
+    # `LocalBusiness` non plus : 98 musées sur 98 le portent, il ne sépare rien.
+    assert _category_of(["PlaceOfInterest", "Museum", "schema:LocalBusiness"]) == "musee"
 
 
 def test_datatourisme_api_caps_pagination(monkeypatch, caplog):
@@ -1905,6 +2206,120 @@ def test_merge_keeps_llm_verdict_not_heuristic():
     assert out.unusual_hint is True
 
 
+def test_presentation_reecrit_une_phrase_dont_la_matiere_a_change(monkeypatch):
+    """Une phrase doit correspondre à la matière dont elle est tirée.
+
+    3357 phrases avaient été écrites alors que la description lue était une URI
+    (défaut `_description_of`). Comme `present()` ne regardait que les fiches SANS
+    phrase, elles étaient gelées à vie : aucune n'a été réécrite en quinze runs.
+    L'une affirmait qu'une « bachasse » est une embarcation traditionnelle des
+    Dombes, là où la description réelle parle d'une rivière.
+
+    `tldr_key` rend la provenance vérifiable, donc la péremption détectable.
+    """
+    from quefaire import places
+    from quefaire.models import Place
+
+    _reset_cache()
+    ecrites: list[str] = []
+
+    class _Chain:
+        def available(self): return True
+        def healthy(self): return True
+        def run(self, prompt):
+            ecrites.append(prompt)
+            raise RuntimeError("stop")
+
+    monkeypatch.setattr("quefaire.llm.clarify_chain", lambda: _Chain())
+
+    # Phrase écrite sur l'ANCIENNE matière : l'empreinte ne correspond plus.
+    perimee = Place(name="La Bachasse", category="nature", source_id="datatourisme",
+                    sector="s", external_id="dt/1",
+                    description="La rivière y coule paisiblement.",
+                    tldr="Explorez une bachasse, embarcation traditionnelle des Dombes.",
+                    tldr_key="place:empreinte-de-l-ancienne-description")
+    places.present([perimee])
+    assert perimee.tldr is None, "une phrase dont la matière a changé doit être retirée"
+    assert "La Bachasse" in ecrites[0], "…et la fiche doit repasser dans la file"
+
+    # Phrase dont l'empreinte correspond : on n'y touche pas, et on ne repaie pas.
+    ecrites.clear()
+    juste = Place(name="Musée du Rouergue", category="musee", source_id="datatourisme",
+                  sector="s", external_id="dt/2", description="Outils et costumes.")
+    juste.tldr = "Outils et costumes du siècle dernier, dans un ancien presbytère."
+    juste.tldr_key = places.cache.key(
+        "place", juste.name, juste.category, "", juste.description[:200],
+    )
+    places.present([juste])
+    assert juste.tldr and not ecrites, "une phrase à jour ne doit pas être réécrite"
+
+
+def test_merge_la_phrase_et_son_empreinte_voyagent_ensemble():
+    """Reprendre `tldr` sans `tldr_key` rend toute phrase perpétuellement périmée.
+
+    Vécu au run de confirmation : `merge()` recopiait la phrase de l'existant mais
+    pas son empreinte, donc la fiche fraîche arrivait avec une phrase sans
+    provenance et `present()` la remettait dans la file — les 1466 phrases de
+    Villemoirieu repassaient à CHAQUE run. Le cache masquait entièrement le coût en
+    les restituant à l'identique : run de 1 min 32, diff de 364 lignes, aucun signe
+    extérieur. Un cache perdu aurait coûté 4000 appels LLM par passage.
+
+    Deux champs qui doivent bouger ensemble ne se recopient pas séparément.
+    """
+    from quefaire.models import Place
+    from quefaire.places import merge
+
+    def fiche(**kw):
+        base = dict(name="Musée du Rouergue", category="musee", source_id="osm",
+                    sector="s", external_id="node/1", lat=44.28, lon=2.73,
+                    tags=["osm:tourism=museum"], providers=["osm"])
+        return Place(**{**base, **kw})
+
+    ancienne = fiche(description="Outils et costumes.", tldr="Une phrase juste.",
+                     tldr_key="place:empreinte-connue", first_seen="2026-07-01")
+    fraiche = fiche(description="Outils et costumes.")
+
+    [issue] = merge([ancienne], [fraiche], today="2026-08-05")
+    assert issue.tldr == "Une phrase juste."
+    assert issue.tldr_key == "place:empreinte-connue", (
+        "sans son empreinte, la phrase serait jugée périmée à chaque run"
+    )
+
+
+def test_presentation_refuse_d_ecrire_sans_matiere(monkeypatch):
+    """Pas de description, pas de phrase : le modèle ne devine pas, il affirme.
+
+    Avec le seul nom, la catégorie et la commune, il a produit « Explorez une
+    bachasse, embarcation traditionnelle des Dombes » pour une rivière. Une fiche
+    sans matière reste donc sans phrase — ce qui ne la déréférence pas, `tldr`
+    n'ayant jamais compté comme signe d'intérêt (voir `has_signal`).
+    """
+    from quefaire import places
+    from quefaire.models import Place
+
+    _reset_cache()
+    soumis: list[str] = []
+
+    class _Chain:
+        def available(self): return True
+        def healthy(self): return True
+        def run(self, prompt):
+            soumis.append(prompt)
+            raise RuntimeError("stop")
+
+    monkeypatch.setattr("quefaire.llm.clarify_chain", lambda: _Chain())
+
+    muette = Place(name="Aire de jeux", category="nature", source_id="osm",
+                   sector="s", external_id="node/9")
+    documentee = Place(name="Musée de la Chaussure", category="musee", source_id="osm",
+                       sector="s", external_id="node/10",
+                       description="Trois siècles de bottiers romanais.")
+    places.present([muette, documentee])
+    assert soumis, "la fiche documentée doit être soumise"
+    assert "Aire de jeux" not in soumis[0]
+    assert "Musée de la Chaussure" in soumis[0]
+
+
 def test_presentation_queue_follows_display_order(monkeypatch):
     """La file LLM suit l'ordre d'AFFICHAGE, pas les présomptions d'insolite.
 
@@ -1940,14 +2355,22 @@ def test_presentation_queue_follows_display_order(monkeypatch):
     assert "Aire de pique-nique" not in soumis[0]
 
 
-def test_display_score_mirrors_site_constants():
-    """Le plafond côté pipeline doit refléter celui du site (places.js)."""
+def test_le_site_ne_plafonne_plus_l_affichage():
+    """Le site doit afficher TOUT le catalogue, pas une présélection.
+
+    Ce test remplace un miroir devenu faux : il vérifiait que le budget de
+    présentation du pipeline valait `MAX_RENDERED` côté site. Ce plafond de 300
+    tuiles n'était pas un filtre de pertinence mais une limite de poids de page,
+    et il écartait 1900 activités de la RECHERCHE. Il a été supprimé — ce qui doit
+    trier, ce sont les préférences du visiteur.
+
+    On pin donc l'invariant qui reste : `rankPlaces` ordonne sans tronquer.
+    """
     from pathlib import Path
 
-    from quefaire.places import DISPLAY_LIMIT
-
     js = (Path(__file__).resolve().parents[2] / "site/src/lib/places.js").read_text(encoding="utf-8")
-    assert f"MAX_RENDERED = {DISPLAY_LIMIT}" in js
+    assert "MAX_RENDERED" not in js, "le plafond d'affichage est revenu"
+    assert ".slice(" not in js, "rankPlaces tronque à nouveau le catalogue"
 
 
 def test_display_score_is_intrinsic_not_circular():

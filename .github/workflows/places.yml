@@ -22,6 +22,10 @@ on:
         description: "Plafonner le nombre d'activités par ville (essais)"
         required: false
         default: ""
+      dump_type:
+        description: "Recopier dans le log les 2 premières fiches brutes de ce type DATAtourisme (ex. EntertainmentAndEvent)"
+        required: false
+        default: ""
 
 permissions:
   contents: write
@@ -78,6 +82,10 @@ jobs:
           TRIPADVISOR_API_KEY: ${{ secrets.TRIPADVISOR_API_KEY }}
           CITY: ${{ inputs.city }}
           LIMIT: ${{ inputs.limit }}
+          # Inspection de la source, à la demande : la seule façon de VOIR la forme
+          # d'un type DATAtourisme non encore exploité, le flux n'étant atteignable
+          # que d'ici. Vide en fonctionnement normal.
+          QUEFAIRE_DUMP_TYPE: ${{ inputs.dump_type }}
         run: |
           if [ -n "$QUEFAIRE_LLM" ] || [ -n "$QUEFAIRE_LLM2" ]; then pip install autoagent-core; fi
           cities="${CITY:-$(python -m quefaire sectors --active)}"

@@ -38,8 +38,15 @@ log = logging.getLogger("quefaire")
 
 # Instances Overpass, essayées dans l'ordre. L'instance principale est publique
 # et gratuite : elle sature régulièrement et répond alors 504 en quelques
-# secondes (vécu). Un miroir prend le relais plutôt que de perdre le run — la
-# requête est identique, ce sont les mêmes données OSM.
+# secondes (vécu). Un miroir prend le relais plutôt que de perdre le run.
+#
+# La requête est identique, mais ce ne sont PAS tout à fait les mêmes données :
+# les miroirs ont leur propre latence de réplication OSM. Mesuré le 2026-08-05 —
+# `overpass-api.de` 7080 éléments, `overpass.kumi.systems` 6972, soit 1,5 %
+# d'écart. Conséquence acceptée en connaissance de cause : le catalogue peut
+# varier de deux ou trois fiches d'un run à l'autre sans que la source ait bougé
+# (voir `merge`). Le repli vaut ce prix — il a déjà sauvé des runs entiers. Ce qui
+# n'était pas acceptable, c'était de ne pas savoir QUI avait répondu.
 OVERPASS_URLS = (
     "https://overpass-api.de/api/interpreter",
     "https://overpass.kumi.systems/api/interpreter",
@@ -47,10 +54,17 @@ OVERPASS_URLS = (
 )
 OVERPASS_TIMEOUT = 180
 
-# Nombre de sweeps consécutifs sans revoir une activité avant de la retirer.
-# Deux plutôt qu'un : une indisponibilité d'Overpass ou un contributeur OSM qui
-# retouche un objet ne doit pas faire disparaître un musée du site.
-MISSING_SWEEPS_BEFORE_DROP = 2
+# Sursis accordé à une activité qu'une sweep ne revoit plus, **en jours**. Une
+# indisponibilité d'Overpass ou un contributeur OSM qui retouche un objet ne doit
+# pas faire disparaître un musée du site.
+#
+# En jours et non en nombre de sweeps, et ça compte : le cycle nominal est
+# hebdomadaire, mais un `workflow_dispatch` peut relancer six fois dans l'heure
+# (vécu le 2026-08-05). Un compteur de sweeps aurait évincé en quelques minutes
+# les 172 fiches qu'Overpass, tombé ce matin-là, ne livrait plus. Le nom précédent
+# — MISSING_SWEEPS_BEFORE_DROP, multiplié par 7 à l'usage — le laissait justement
+# croire, au point de me tromper à la relecture.
+RETENTION_DAYS = 14
 
 # --- Correspondance tags OpenStreetMap → catégories QueFaire -----------------
 # Ordre significatif : la PREMIÈRE règle qui matche gagne. `historic=*` avant
@@ -285,10 +299,22 @@ def _overpass(query: str) -> list[dict]:
     from .fetchers.base import http_get
 
     last: Exception | None = None
-    for url in OVERPASS_URLS:
+    for rang, url in enumerate(OVERPASS_URLS):
         try:
             resp = http_get(url, params={"data": query}, timeout=OVERPASS_TIMEOUT + 30)
-            return resp.json().get("elements", [])
+            elements = resp.json().get("elements", [])
+            # QUI a répondu, et non seulement qui a échoué. Les miroirs n'ont pas
+            # la même latence de réplication OSM : ils ne rendent donc pas tout à
+            # fait les mêmes données, et le fournisseur qui a servi la sweep est
+            # une variable du résultat. Elle manquait au log — quatre runs de
+            # suite ont publié 2747, 2745, 2745, 2747 activités (un musée et un
+            # bain public qui vont et viennent) sans que rien ne permette de
+            # rattacher l'écart à son origine.
+            log.info(
+                "[places] Overpass : %s a répondu (%s), %d éléments",
+                url, "instance principale" if rang == 0 else f"miroir {rang}", len(elements),
+            )
+            return elements
         except requests.HTTPError as exc:
             status = getattr(exc.response, "status_code", None)
             last = exc
@@ -407,6 +433,25 @@ def dedupe_providers(places: list[Place], phase: str = "sweep") -> list[Place]:
     groups: list[list[Place]] = []
     index: dict[str, list[list[Place]]] = {}
 
+    # Ordre d'entrée FIGÉ. Le rapprochement compare chaque fiche à la TÊTE de
+    # groupe, pas à tous ses membres : sur trois lieux voisins en chaîne (A-B et
+    # B-C sous le seuil, A-C au-dessus), le résultat dépend de qui arrive en
+    # premier. Overpass ne garantit pas l'ordre de ses éléments, d'où une dérive
+    # de ±2 fiches entre deux runs à données identiques (2747 puis 2745, un musée
+    # et un bain public), et des compteurs d'écartées qui bougeaient sans cause.
+    # Un diff de données générées doit signifier « la source a changé », jamais
+    # « le fournisseur a répondu dans un autre ordre ».
+    places = sorted(
+        places,
+        key=lambda p: (
+            _name_key(p.name),
+            p.category,
+            round(p.lat or 0, 5),
+            round(p.lon or 0, 5),
+            p.external_id or "",
+        ),
+    )
+
     for place in places:
         key = _name_key(place.name)
         target = None
@@ -457,6 +502,13 @@ def dedupe_providers(places: list[Place], phase: str = "sweep") -> list[Place]:
     dropped = len(places) - len(merged)
     if dropped:
         log.info("[places] %d fiches fusionnées entre fournisseurs (%s)", dropped, phase)
+    # Ordre de SORTIE aligné sur celui de `merge` : `fold(name)`, et non l'ordre de
+    # travail interne (clé de rapprochement, mots vides retirés). Sans ça, figer
+    # l'ordre d'entrée a réécrit `places.json` en entier — 37 290 lignes changées
+    # pour +2 fiches — et un diff de cette taille ne se relit pas, donc ne se
+    # vérifie plus. L'ordre de sortie est un CONTRAT avec le lecteur du dépôt, il
+    # ne doit pas suivre les besoins de l'algorithme.
+    merged.sort(key=lambda p: fold(p.name))
     return merged
 
 
@@ -554,14 +606,45 @@ def _tag_still_mapped(tag: str) -> bool:
     return True
 
 
-def merge(previous: list[Place], found: list[Place], today: str | None = None) -> list[Place]:
+def merge(
+    previous: list[Place],
+    found: list[Place],
+    today: str | None = None,
+    refuses: set[str] | None = None,
+) -> list[Place]:
     """Réconcilie une nouvelle sweep avec l'existant.
 
     Règle : OSM fait autorité sur les faits (nom, horaires, site, position),
     l'existant fait autorité sur l'enrichissement (présentation LLM, note,
     date de découverte). Une activité absente de la sweep n'est pas supprimée
-    tout de suite — elle est conservée `MISSING_SWEEPS_BEFORE_DROP` fois, le
-    temps de distinguer une fermeture d'un aléa Overpass.
+    tout de suite — elle est conservée `RETENTION_DAYS` jours, le temps de
+    distinguer une fermeture d'un aléa Overpass.
+
+    `refuses` porte les identifiants que la sweep a VUS et refusés. Un refus n'est
+    pas une absence, et la distinction n'est pas théorique : l'exclusion des
+    bibliothèques et des bars à vin n'a rien changé au catalogue de Villemoirieu
+    au run suivant — 3775 activités avant, 3775 après, `dt:SportsAndLeisurePlace`
+    toujours à 1440. Les fiches disparaissaient de la sweep, et la rétention les
+    reprenait aussitôt pour quatorze jours.
+
+    `_tag_still_mapped()` ne pouvait pas non plus les rattraper : il rejoue la
+    règle sur le SEUL tag de provenance, alors que la décision d'origine voyait
+    tous les types de la fiche. Un rejeu qui dispose de moins d'information que la
+    décision ne peut pas la reproduire — d'où ce chemin explicite pour toute
+    exclusion qui dépend de plusieurs types à la fois.
+
+    LIMITE ASSUMÉE de « OSM fait autorité sur les faits » : la règle suppose que
+    la sweep est toujours plus fraîche que ce qui est stocké. Un miroir en retard
+    de réplication (voir `OVERPASS_URLS`) sert une révision plus ancienne, et les
+    faits qu'elle ne porte pas sont donc effacés — un musée qui perd son site web
+    perd son signal, donc sa publication. Mesuré le 2026-08-05 : deux fiches
+    sorties du catalogue (2747 → 2745) alors qu'elles étaient bien dans la sweep,
+    revenues au run suivant.
+
+    La rétention ne protège pas de ça : elle couvre l'ABSENCE d'une fiche, pas son
+    appauvrissement. Écart accepté (0,07 % du catalogue, autocorrigé), et rendu
+    ATTRIBUABLE par le log qui nomme l'instance ayant répondu. Le correctif de fond
+    demanderait `out center tags meta` et une comparaison de `version` par objet.
     """
     today = today or date.today().isoformat()
     prev_by_id = {p.external_id: p for p in previous if p.external_id}
@@ -572,7 +655,15 @@ def merge(previous: list[Place], found: list[Place], today: str | None = None) -
         if old:
             # Faits rafraîchis par OSM, enrichissement repris de l'existant.
             place.first_seen = old.first_seen or place.first_seen
+            # La phrase et son EMPREINTE voyagent ensemble, toujours. Séparées, la
+            # fiche fraîche arrive avec une phrase sans provenance : `present()` la
+            # déclare périmée et la remet dans la file — les 1466 phrases de
+            # Villemoirieu repassaient à CHAQUE run. Le cache masquait le coût (il
+            # les restituait à l'identique, d'où un run de 1 min 32 et un diff de
+            # 364 lignes), mais un cache perdu aurait signifié 4000 appels LLM par
+            # passage, sans que rien ne le signale.
             place.tldr = old.tldr
+            place.tldr_key = old.tldr_key
             place.rating = old.rating
             place.rating_count = old.rating_count
             place.rating_source = old.rating_source
@@ -608,7 +699,14 @@ def merge(previous: list[Place], found: list[Place], today: str | None = None) -
 
     # Les rescapées : vues avant, absentes aujourd'hui.
     excluded = 0
+    refusees = 0
     for old in prev_by_id.values():
+        # Refusée par la sweep du jour : ce n'est pas une absence, le sursis ne
+        # s'applique pas. Testé AVANT la provenance, parce que le tag de la fiche
+        # reste parfaitement valide — c'est un autre de ses types qui la disqualifie.
+        if refuses and old.external_id in refuses:
+            refusees += 1
+            continue
         # Absente parce qu'on l'exclut DÉLIBÉRÉMENT, ou parce que le fournisseur
         # a hoqueté ? La provenance du classement tranche. Le sursis de deux
         # sweeps existe pour encaisser une panne, pas pour maintenir en vie ce
@@ -618,12 +716,17 @@ def merge(previous: list[Place], found: list[Place], today: str | None = None) -
             excluded += 1
             continue
         missing_days = _days_since(old.last_seen, today)
-        if missing_days is not None and missing_days > 7 * MISSING_SWEEPS_BEFORE_DROP:
+        if missing_days is not None and missing_days > RETENTION_DAYS:
             log.info("[places] « %s » retirée : absente depuis %d jours", old.name, missing_days)
             continue
         merged.append(old)
     if excluded:
         log.info("[places] %d fiches retirées : leur type n'est plus retenu", excluded)
+    if refusees:
+        log.info(
+            "[places] %d fiches retirées : refusées par la sweep du jour "
+            "(présentes à la source, disqualifiées — pas de sursis)", refusees,
+        )
 
     merged.sort(key=lambda p: fold(p.name))
     return merged
@@ -684,17 +787,29 @@ ACTIVITÉS :
 
 BATCH_SIZE = 20
 
-# Plafond de présentations NOUVELLES par run. Garde-fou de coût : au premier run
-# réel, une anomalie de filtrage a envoyé 7197 activités à la présentation —
-# 21 minutes de LLM sur des données à jeter. Le cache étant persistant, ce qui
-# n'est pas présenté aujourd'hui le sera au passage suivant : on étale au lieu
-# de tout payer d'un coup.
-PRESENT_MAX_PER_RUN = 400
-
-# Nombre d'activités réellement rendues par le site — MIROIR de MAX_RENDERED
-# dans site/src/lib/places.js. Présenter au-delà, c'est payer un appel LLM pour
-# une fiche que personne ne verra.
-DISPLAY_LIMIT = 300
+# Plafond de présentations NOUVELLES par run. C'est le SEUL limiteur : il ne
+# reste plus de « budget total », le site affichant désormais tout le catalogue
+# (le plafond de 300 tuiles a disparu avec le rendu côté navigateur).
+#
+# Sa valeur ne dit donc plus « combien de fiches méritent une phrase » mais
+# « au-delà de combien s'agit-il forcément d'une anomalie ». Au premier run réel,
+# un défaut de filtrage avait envoyé 7197 activités à la présentation : 21 minutes
+# de LLM sur des données à jeter.
+#
+# 3000 était calé sur « 2232 à Pont-de-Salars, le plus dense mesuré » — et ce
+# « plus dense » n'a tenu que le temps de traiter l'autre épicentre : Villemoirieu
+# en compte 3775, dont 3373 à présenter, et le plafond a mordu pour de bon sur un
+# catalogue parfaitement légitime. Un secteur n'avait jamais été mesuré, et une
+# borne calée sur le seul territoire connu devient fausse dès qu'on en ajoute un.
+#
+# 8000 garde donc une marge sur le double du plus gros connu, sans rien perdre de
+# sa fonction : une dérive de filtrage se compte en dizaines de milliers de fiches,
+# pas en milliers.
+#
+# La file reste ordonnée par `display_order_key` : si le plafond mord malgré tout,
+# ce sont les fiches les mieux documentées qui passent d'abord, et le reste suit au
+# run suivant puisque le cache est persistant.
+PRESENT_MAX_PER_RUN = 8000
 
 
 def display_order_key(place: Place):
@@ -741,26 +856,73 @@ def display_score(place: Place) -> int:
 def present(places: list[Place]) -> list[Place]:
     """Remplit `tldr` (et affine `unusual`) pour les activités jamais présentées.
 
-    Mise en cache par contenu : une activité déjà présentée n'est jamais
-    repayée, même si le fichier de sortie est supprimé. Sans LLM disponible,
-    l'étape est sautée proprement — les fiches s'affichent sans phrase.
+    Mise en cache par contenu, avec une portée à connaître : le cache est élagué
+    aux clés VUES pendant le run (`cache.save`), et une fiche qui porte déjà sa
+    phrase n'est pas interrogée. Sa clé disparaît donc du cache au passage
+    suivant. Autrement dit c'est `places.json` qui mémorise les présentations ;
+    le cache ne sert qu'à ne pas repayer, d'un run à l'autre, les fiches restées
+    SANS phrase (LLM muet, plafond atteint, quota mort en cours de route) — 419
+    fiches dans ce cas au dernier run, mémorisées comme « rien d'exploitable ».
+    Supprimer `places.json` recoûte donc tout le catalogue en appels LLM.
+
+    Sans LLM disponible, l'étape est sautée proprement — les fiches s'affichent
+    sans phrase.
+
+    DEUX RÈGLES issues d'une mesure du 2026-08-05 :
+
+    1. **Une phrase dont la matière a changé est réécrite.** `tldr_key` mémorise
+       l'empreinte des entrées qui l'ont produite ; si elle ne correspond plus, la
+       fiche repasse dans la file. Sans ça, 3357 phrases écrites sur une URI (le
+       défaut `_description_of`) restaient gelées à vie, puisque cette fonction ne
+       regardait que les fiches SANS phrase. Une phrase sans provenance vérifiable
+       est un texte non sourcé publié sous notre nom : les fiches dont l'empreinte
+       est absente sont donc traitées comme suspectes, et repassent une fois.
+    2. **Pas de matière, pas de phrase.** Une fiche sans description n'est plus
+       soumise au modèle : il n'aurait que le nom, la catégorie et la commune, et
+       c'est précisément ce régime qui a produit « Explorez une bachasse,
+       embarcation traditionnelle des Dombes » pour un lieu dont la description
+       réelle parle d'une rivière. Le modèle ne devine pas, il affirme.
     """
     from .clarify import _extract_json
     from .llm import clarify_chain
 
-    todo = [p for p in places if not p.tldr]
+    def empreinte(p: Place) -> str:
+        return cache.key("place", p.name, p.category, p.commune or "", p.description[:200])
+
+    # Phrases dont la matière ne correspond plus (ou dont on ne peut rien prouver).
+    perimees = 0
+    for p in places:
+        if p.tldr and p.tldr_key != empreinte(p):
+            p.tldr = None
+            perimees += 1
+    if perimees:
+        log.info(
+            "[places] %d phrases à revoir : leur matière a changé depuis leur écriture",
+            perimees,
+        )
+
+    # « Pas de matière, pas de phrase » — et on le DIT, sinon l'écart entre fiches
+    # publiées et fiches présentées passerait pour un plafond ou un quota.
+    todo = [p for p in places if not p.tldr and p.description]
+    sans_matiere = sum(1 for p in places if not p.tldr and not p.description)
+    if sans_matiere:
+        log.info(
+            "[places] %d fiches laissées sans phrase : aucune description à résumer",
+            sans_matiere,
+        )
     if not todo:
         return places
 
     misses: list[tuple[Place, str]] = []
     for p in todo:
-        ckey = cache.key("place", p.name, p.category, p.commune or "", p.description[:200])
+        ckey = empreinte(p)
         val = cache.get(ckey)
         if val is None:
             misses.append((p, ckey))
         elif val:
             payload = json.loads(val) if val.startswith("{") else {"phrase": val}
             p.tldr = payload.get("phrase") or None
+            p.tldr_key = ckey if p.tldr else None
             if "insolite" in payload:
                 p.unusual = bool(payload["insolite"])
 
@@ -773,8 +935,8 @@ def present(places: list[Place]) -> list[Place]:
         misses.sort(key=lambda pair: display_order_key(pair[0]))
         log.warning(
             "[places] %d activités à présenter, plafonné à %d pour ce run "
-            "(priorité aux %d affichées ; le reste suivra, le cache est persistant)",
-            len(misses), PRESENT_MAX_PER_RUN, DISPLAY_LIMIT,
+            "(les mieux documentées d'abord ; le reste suivra, le cache est persistant)",
+            len(misses), PRESENT_MAX_PER_RUN,
         )
         misses = misses[:PRESENT_MAX_PER_RUN]
 
@@ -805,6 +967,7 @@ def present(places: list[Place]) -> list[Place]:
                 unusual = bool(entry.get("insolite")) if isinstance(entry, dict) else False
                 if phrase and 10 < len(phrase) < 300:
                     p.tldr = phrase
+                    p.tldr_key = ckey  # provenance : de quoi cette phrase est tirée
                     p.unusual = unusual
                     cache.put(ckey, json.dumps({"phrase": phrase, "insolite": unusual}, ensure_ascii=False))
                 else:
