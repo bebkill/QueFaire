@@ -301,6 +301,31 @@ _TYPE_RULES: list[tuple[tuple[str, ...], str]] = [
 # rapatrier (ni faire présenter par le LLM) ce qu'on jetterait ensuite.
 WANTED_TYPES = sorted({name for names, _ in _TYPE_RULES for name in names})
 
+# Types dont la présence DISQUALIFIE la fiche, quel que soit le reste.
+#
+# « Non classé » et « exclu » n'étaient pas la même chose, et le code ne
+# connaissait que le premier. Une fiche portant plusieurs types passe dès qu'UN
+# d'eux est classé : le retrait de `Library` des règles, décidé sur mesure
+# (23 fiches en Aveyron, aucune valeur de sortie), n'a donc rien empêché à
+# Villemoirieu — les 261 bibliothèques y entrent comme `SportsAndLeisurePlace`.
+# Même mécanisme pour 211 bars à vin, alors que `FoodEstablishment` est le type
+# le plus massivement rejeté du flux (4079 fiches). C'est le motif des 56
+# monuments aux morts : une exclusion qu'une seconde voie contourne.
+#
+# Volontairement ÉTROIT. `LocalBusiness` serait tentant — 268 fiches — mais 98
+# musées sur 98 le portent aussi : il ne sépare rien. `FoodEstablishment` et
+# `Winery` sont écartés de cette liste pour la même raison inverse : une cave
+# qui fait déguster est une visite légitime (`WineCellar` → ferme), et les trois
+# types arrivent ensemble sur les mêmes 211 fiches. `BistroOrWineBar` est le
+# terme précis qui désigne le débit de boisson, donc le seul retenu.
+#
+# Toute addition ici se chiffre AVANT d'être adoptée : le log compte ce que la
+# liste écarte, par type.
+_TYPES_EXCLUANTS = frozenset({
+    "Library", "schema:Library",
+    "BistroOrWineBar",
+})
+
 # Types RACINE et facettes transverses : les compter parmi les « non classés »
 # n'apprendrait rien, chaque fiche les porte. Le décompte des types ignorés ne
 # doit lister que des types PARLANTS, sinon il devient illisible et on cesse de
@@ -413,6 +438,11 @@ def _category_and_type(types: list[str]) -> tuple[str | None, str | None]:
     faits : sans lui, une catégorie anormalement grosse ne dit pas QUEL type la
     gonfle, et on ne peut qu'élaguer au jugé.
     """
+    # Un type disqualifiant l'emporte sur TOUTES les règles — sinon l'exclusion
+    # ne serait qu'une non-inclusion, contournable par n'importe quel autre type
+    # de la même fiche.
+    if any(t in _TYPES_EXCLUANTS for t in types):
+        return None, None
     for names, category in _TYPE_RULES:
         for t in types:
             if t in names:
@@ -1032,6 +1062,7 @@ def fetch(sector, limit: int | None = None) -> list[Place]:
     # c'est exactement ce que j'ai fait avant de regarder.
     ignores_rayon: Counter = Counter()
     co_types: Counter = Counter()
+    disqualifies: Counter = Counter()
     # Compté à la volée : `nodes` peut être un flot paresseux (mode flux), dont on
     # ne connaît pas la longueur avant de l'avoir parcouru.
     recues = 0
@@ -1059,7 +1090,18 @@ def fetch(sector, limit: int | None = None) -> list[Place]:
         place = _to_place(node, sector.id, today)
         if place is None:
             dans_rayon = _dans_le_rayon(node, sector)
-            for t in _type_names(node):
+            noms = _type_names(node)
+            # Une fiche disqualifiée n'est pas « de la matière écartée qu'on
+            # pourrait ajouter » : c'est un refus assumé. La compter avec les types
+            # inconnus rendrait la ligne d'inventaire trompeuse — un type y monte
+            # comme candidat alors qu'il a déjà été jugé.
+            exclue = [t for t in noms if t in _TYPES_EXCLUANTS]
+            if exclue:
+                if dans_rayon:
+                    for t in exclue:
+                        disqualifies[t] += 1
+                continue
+            for t in noms:
                 if t not in _RACINES_ONTOLOGIE:
                     ignores[t] += 1
                     if dans_rayon:
@@ -1097,6 +1139,12 @@ def fetch(sector, limit: int | None = None) -> list[Place]:
             ", ".join(
                 f"{t}×{n} (dont {ignores_rayon.get(t, 0)})" for t, n in ignores.most_common(12)
             ),
+        )
+    if disqualifies:
+        log.info(
+            "[datatourisme] fiches DISQUALIFIÉES dans le rayon (type déjà jugé, pas "
+            "un candidat) : %s",
+            ", ".join(f"{t}×{n}" for t, n in disqualifies.most_common(8)),
         )
     if co_types:
         # Une ligne par catégorie, et seulement les types co-portés qui pèsent au

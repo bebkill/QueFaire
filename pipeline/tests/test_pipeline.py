@@ -1920,6 +1920,35 @@ def test_datatourisme_type_mapping_uses_real_ontology_names():
     assert _category_of(["PointOfInterest", "PlaceOfInterest", "Museum"]) == "musee"
 
 
+def test_datatourisme_type_disqualifiant_bat_toutes_les_regles():
+    """« Non classé » et « exclu » ne sont PAS la même chose.
+
+    Une fiche porte plusieurs types et passe dès qu'un seul est classé. Retirer
+    `Library` des règles n'a donc rien empêché : à Villemoirieu, 261 bibliothèques
+    entrent comme `SportsAndLeisurePlace`, et 211 bars à vin de même — alors que
+    `FoodEstablishment` est le type le plus massivement rejeté du flux. C'est le
+    motif des 56 monuments aux morts, transposé aux types : une exclusion qu'une
+    seconde voie contourne.
+
+    Un type disqualifiant doit donc battre TOUTES les règles, quel que soit le
+    reste de la fiche.
+    """
+    from quefaire.datatourisme import _category_of
+
+    # Le cas réel : la bibliothèque est aussi rangée en équipement de loisir.
+    assert _category_of(["PlaceOfInterest", "SportsAndLeisurePlace", "Library"]) is None
+    assert _category_of(["PointOfInterest", "SportsAndLeisurePlace", "BistroOrWineBar"]) is None
+    # L'ordre des types dans la fiche ne doit rien changer.
+    assert _category_of(["Library", "SportsAndLeisurePlace"]) is None
+    # Et l'exclusion reste ÉTROITE : ce qui n'est pas disqualifiant passe toujours.
+    assert _category_of(["PlaceOfInterest", "SportsAndLeisurePlace"]) == "sport-loisir"
+    # `Winery` n'est délibérément PAS disqualifiant : une cave qui fait déguster
+    # est une visite légitime, et le type arrive sur les mêmes fiches que le bar.
+    assert _category_of(["PlaceOfInterest", "WineCellar", "Winery"]) == "ferme"
+    # `LocalBusiness` non plus : 98 musées sur 98 le portent, il ne sépare rien.
+    assert _category_of(["PlaceOfInterest", "Museum", "schema:LocalBusiness"]) == "musee"
+
+
 def test_datatourisme_api_caps_pagination(monkeypatch, caplog):
     """Un catalogue non filtré est tronqué — mais bruyamment, jamais en silence."""
     from quefaire import datatourisme as dt
