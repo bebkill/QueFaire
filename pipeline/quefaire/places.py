@@ -38,8 +38,15 @@ log = logging.getLogger("quefaire")
 
 # Instances Overpass, essayées dans l'ordre. L'instance principale est publique
 # et gratuite : elle sature régulièrement et répond alors 504 en quelques
-# secondes (vécu). Un miroir prend le relais plutôt que de perdre le run — la
-# requête est identique, ce sont les mêmes données OSM.
+# secondes (vécu). Un miroir prend le relais plutôt que de perdre le run.
+#
+# La requête est identique, mais ce ne sont PAS tout à fait les mêmes données :
+# les miroirs ont leur propre latence de réplication OSM. Mesuré le 2026-08-05 —
+# `overpass-api.de` 7080 éléments, `overpass.kumi.systems` 6972, soit 1,5 %
+# d'écart. Conséquence acceptée en connaissance de cause : le catalogue peut
+# varier de deux ou trois fiches d'un run à l'autre sans que la source ait bougé
+# (voir `merge`). Le repli vaut ce prix — il a déjà sauvé des runs entiers. Ce qui
+# n'était pas acceptable, c'était de ne pas savoir QUI avait répondu.
 OVERPASS_URLS = (
     "https://overpass-api.de/api/interpreter",
     "https://overpass.kumi.systems/api/interpreter",
@@ -607,6 +614,19 @@ def merge(previous: list[Place], found: list[Place], today: str | None = None) -
     date de découverte). Une activité absente de la sweep n'est pas supprimée
     tout de suite — elle est conservée `RETENTION_DAYS` jours, le temps de
     distinguer une fermeture d'un aléa Overpass.
+
+    LIMITE ASSUMÉE de « OSM fait autorité sur les faits » : la règle suppose que
+    la sweep est toujours plus fraîche que ce qui est stocké. Un miroir en retard
+    de réplication (voir `OVERPASS_URLS`) sert une révision plus ancienne, et les
+    faits qu'elle ne porte pas sont donc effacés — un musée qui perd son site web
+    perd son signal, donc sa publication. Mesuré le 2026-08-05 : deux fiches
+    sorties du catalogue (2747 → 2745) alors qu'elles étaient bien dans la sweep,
+    revenues au run suivant.
+
+    La rétention ne protège pas de ça : elle couvre l'ABSENCE d'une fiche, pas son
+    appauvrissement. Écart accepté (0,07 % du catalogue, autocorrigé), et rendu
+    ATTRIBUABLE par le log qui nomme l'instance ayant répondu. Le correctif de fond
+    demanderait `out center tags meta` et une comparaison de `version` par objet.
     """
     today = today or date.today().isoformat()
     prev_by_id = {p.external_id: p for p in previous if p.external_id}

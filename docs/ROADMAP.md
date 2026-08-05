@@ -139,9 +139,9 @@ Pont-de-Salars, contre 36 événements datés.
 
 On publie ce qu'OSM et DATAtourisme déclarent, sans rien savoir de leur
 existence réelle. Vécu : « Accrobranche » définitivement fermé, toujours en
-ligne. Aujourd'hui le seul signal est l'absence de deux sweeps consécutives
-(≈ 14 jours), et il ne se déclenche que si la source retire la fiche — ce que
-les offices de tourisme ne font pas toujours.
+ligne. Aujourd'hui le seul signal est une absence de 14 jours
+(`RETENTION_DAYS`), et il ne se déclenche que si la source retire la fiche — ce
+que les offices de tourisme ne font pas toujours.
 
 Le patron existe déjà dans le projet : `health.py` désactive une source qui ne
 produit plus, **sans jamais supprimer la ligne**, et un humain peut revenir en

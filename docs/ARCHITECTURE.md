@@ -140,8 +140,25 @@ cycle de vie entièrement distinct de celui du crawl :
    **OSM fait autorité sur les faits** (nom, horaires, position, site),
    **l'existant fait autorité sur l'enrichissement** (phrase LLM, note,
    `first_seen`). Une activité absente d'une sweep n'est pas supprimée
-   immédiatement — elle survit deux sweeps, le temps de distinguer une fermeture
-   d'un hoquet d'Overpass.
+   immédiatement — elle est conservée `RETENTION_DAYS` (14 jours), le temps de
+   distinguer une fermeture d'un hoquet d'Overpass. Le sursis se compte en
+   **jours** et non en nombre de sweeps : le cycle nominal est hebdomadaire, mais
+   un `workflow_dispatch` peut relancer plusieurs fois dans l'heure.
+
+   **Limite assumée : le catalogue peut varier de ±2 ou 3 fiches d'un run à
+   l'autre, à données de source inchangées.** Les trois instances Overpass
+   n'ont pas la même latence de réplication OSM — 7080 éléments contre 6972,
+   soit 1,5 % d'écart, mesuré le 2026-08-05. Une fiche servie dans une révision
+   plus ancienne peut avoir perdu son site web, donc son signal, donc sa
+   publication ; la rétention ne l'en protège pas, puisqu'elle couvre l'absence
+   et non l'appauvrissement. C'est le prix du repli de miroir en miroir, qui a
+   déjà sauvé des runs entiers, et l'écart s'annule dès que l'instance
+   principale répond. Le log **nomme l'instance qui a répondu et son nombre
+   d'éléments** : c'est ce qui permet de rattacher un écart à sa cause au lieu
+   de le confondre avec un vrai changement de source. Correctif de fond
+   possible si l'écart devenait gênant : `out center tags meta` fournit
+   `version`/`timestamp` par objet, de quoi refuser une révision plus ancienne
+   que celle déjà stockée.
 
    **Exception : une exclusion délibérée s'applique tout de suite.** Le sursis
    sert à encaisser une panne, pas à maintenir en vie ce qu'une règle vient
