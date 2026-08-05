@@ -394,7 +394,15 @@ def _texts(node) -> list[str]:
         for key in ("fr", "fr-FR"):
             if key in node:
                 return _texts(node[key])
-        for value in node.values():
+        for cle, value in node.items():
+            # Les mots-clés JSON-LD ne sont JAMAIS du texte affichable. `@value`
+            # est traité au-dessus ; `@id`, `@type`, `@language` sont des
+            # métadonnées, et les laisser passer a coûté cher : sur un nœud
+            # :Description du flux, `@id` arrive avant `shortDescription`, donc
+            # `_first()` rendait l'URI. 4257 fiches ont été publiées avec une URL
+            # `data.datatourisme.fr` en guise de description.
+            if isinstance(cle, str) and cle.startswith("@"):
+                continue
             out.extend(_texts(value))
     return out
 
@@ -417,6 +425,35 @@ def _get(node: dict, *keys):
             if actual.rsplit("#", 1)[-1].rsplit("/", 1)[-1] == key.rsplit(":", 1)[-1]:
                 return node[actual]
     return None
+
+
+def _description_of(node) -> str | None:
+    """Texte de présentation, depuis `hasDescription` (ontologie §8.3).
+
+    En mode FLUX, `hasDescription` est une **liste** de nœuds `:Description`,
+    chacun portant `@id`, `@type` et les textes (`shortDescription`,
+    `longDescription`). L'ancien code ne descendait dans `shortDescription` que
+    si `hasDescription` était un DICTIONNAIRE — la forme de l'API. En mode flux
+    il aplatissait donc le nœud entier et retenait la première chaîne trouvée,
+    c'est-à-dire `@id`.
+
+    Coût mesuré sur les données publiées : 1984 fiches à Villemoirieu et 2273 à
+    Pont-de-Salars affichaient une URL `data.datatourisme.fr` en guise de
+    description — 60 % et 83 % des catalogues. Et le défaut se propageait :
+    `has_signal` acceptait la fiche (elle « a une description »), `report()`
+    annonçait 99 % de descriptions, et le LLM de présentation recevait une URI
+    comme matière.
+
+    On accepte les deux formes, et le français d'abord (`_texts`).
+    """
+    bloc = _get(node, "hasDescription", "description")
+    if isinstance(bloc, list):
+        bloc = next((b for b in bloc if isinstance(b, dict)), bloc[0] if bloc else None)
+    if isinstance(bloc, dict):
+        return _first(_get(
+            bloc, "shortDescription", "dc:description", "longDescription", "description",
+        ))
+    return _first(bloc)
 
 
 def _type_names(node: dict) -> list[str]:
@@ -641,11 +678,7 @@ def _to_place(node: dict, sector_id: str, today: str) -> Place | None:
     url = _first(_get(contact, "foaf:homepage", "homepage", "url")) if isinstance(contact, dict) else None
     phone = _first(_get(contact, "schema:telephone", "telephone")) if isinstance(contact, dict) else None
 
-    description = _first(
-        _get(node, "hasDescription", "description") if not isinstance(
-            _get(node, "hasDescription", "description"), dict
-        ) else _get(_get(node, "hasDescription", "description"), "shortDescription", "dc:description")
-    ) or ""
+    description = _description_of(node) or ""
 
     image_url, image_credit = _image_of(node)
     return Place(

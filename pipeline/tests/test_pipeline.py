@@ -1920,6 +1920,54 @@ def test_datatourisme_type_mapping_uses_real_ontology_names():
     assert _category_of(["PointOfInterest", "PlaceOfInterest", "Museum"]) == "musee"
 
 
+def test_datatourisme_description_du_flux_n_est_pas_une_uri():
+    """La description doit être du TEXTE, jamais l'identifiant du nœud qui la porte.
+
+    Forme réelle du flux, relevée dans un run : `hasDescription` est une LISTE de
+    nœuds `:Description` portant `@id`, `@type` et les textes. L'extraction ne
+    descendait dans `shortDescription` que si `hasDescription` était un
+    dictionnaire — la forme de l'API — et aplatissait sinon le nœud entier, dont la
+    première chaîne est `@id`.
+
+    1984 fiches à Villemoirieu et 2273 à Pont-de-Salars ont été publiées avec une
+    URL `data.datatourisme.fr` en guise de description. Le défaut se propageait :
+    `has_signal` acceptait la fiche, `report()` annonçait 99 % de descriptions, et
+    le LLM de présentation recevait une URI comme matière.
+    """
+    from quefaire.datatourisme import _to_place
+
+    node = {
+        "@id": "https://data.datatourisme.fr/13/4187ca4f",
+        "@type": ["Museum", "PlaceOfInterest"],
+        "rdfs:label": {"fr": ["Musée de la Bachasse"]},
+        # Forme FLUX : une liste, et `@id` avant les textes.
+        "hasDescription": [{
+            "@id": "https://data.datatourisme.fr/61ff269d",
+            "@type": ["Description"],
+            "shortDescription": {"fr": ["Outils et costumes du siècle dernier."],
+                                 "en": ["Tools and costumes."]},
+        }],
+        "isLocatedAt": {"schema:geo": {"schema:latitude": 45.7, "schema:longitude": 5.2}},
+    }
+    place = _to_place(node, "villemoirieu", "2026-08-05")
+    assert place.description == "Outils et costumes du siècle dernier."
+
+    # Forme API : un dictionnaire. Les deux doivent marcher.
+    node_api = dict(node, hasDescription={
+        "shortDescription": {"fr": ["Outils et costumes du siècle dernier."]},
+    })
+    assert _to_place(node_api, "villemoirieu", "2026-08-05").description == (
+        "Outils et costumes du siècle dernier."
+    )
+
+    # Et une fiche dont la description ne contient QUE des métadonnées ne doit pas
+    # en fabriquer une : mieux vaut aucune description qu'une URI.
+    node_vide = dict(node, hasDescription=[{
+        "@id": "https://data.datatourisme.fr/61ff269d", "@type": ["Description"],
+    }])
+    assert _to_place(node_vide, "villemoirieu", "2026-08-05").description == ""
+
+
 def test_merge_un_refus_n_est_pas_une_absence():
     """Une fiche refusée par la sweep ne bénéficie PAS du sursis d'absence.
 
