@@ -616,49 +616,72 @@ def _fiches_du_corps(corps: bytes):
 
     On compte les **nœuds**, pas les « fiches » : un document peut porter un
     `@graph` de plusieurs entités, et l'archive complète en a livré 47 082 pour
-    23 543 membres — deux par membre en moyenne, alors que les 19 685 premiers en
-    rendaient exactement un. Appeler ça des fiches laissait croire que le flux
-    contenait deux fois plus d'activités qu'en réalité, et faussait le taux de
-    sélectivité affiché juste après (« N retenues sur M »).
+    23 543 membres. Appeler ça des fiches laissait croire que le flux contenait
+    deux fois plus d'activités qu'en réalité, et faussait le taux de sélectivité
+    affiché juste après (« N retenues sur M »).
 
-    D'où le comptage des identifiants DISTINCTS : il dit si l'archive répète les
-    mêmes POI dans plusieurs documents (auquel cas la conversion travaille pour
-    rien) ou si ces nœuds supplémentaires sont d'autres entités. Tant qu'on ne
-    l'a pas mesuré, on ne déduplique rien ici — un nœud répété peut porter des
-    champs complémentaires, et `dedupe_providers` sait déjà les rapprocher.
+    Ce qui est mesuré, et pourquoi :
+
+    - **identifiants distincts** — 23 541 pour 0 répétition : l'archive ne répète
+      aucun POI, la conversion ne travaille donc jamais deux fois. Question close.
+    - **types des nœuds anonymes** — ils n'ont ni `@id` ni `@type` : inclassables
+      par construction.
+    - **noms de leurs champs** — seule façon de savoir s'ils sont vides (à sauter)
+      ou s'ils portent de la matière qu'on perd.
+    - **nœuds par document** — le run tronqué en comptait 1 par document, le run
+      complet 2. Les deux ne peuvent pas décrire la même archive ; une moyenne ne
+      tranchera pas, la distribution si.
+
+    Aucune déduplication et aucun saut ici avant d'avoir ces réponses : un nœud
+    écarté à tort est une perte silencieuse, et `dedupe_providers` sait déjà
+    rapprocher ce qui se répète.
     """
     documents = noeuds = 0
     vus: set[str] = set()
     sans_id = 0
-    # Types des nœuds SANS identifiant. Mesuré parce que la répartition observée
-    # est trop régulière pour être fortuite : 23 541 nœuds identifiés et 23 541
-    # anonymes pour 23 543 membres, soit exactement un de chaque par fiche. Savoir
-    # ce que sont ces seconds nœuds décide de deux choses : s'il faut les sauter
-    # (la conversion travaille pour rien) ou s'ils portent des champs qu'on perd —
-    # `avec_horaires: 3` sur 2437 activités est assez anormal pour le soupçonner.
+    # Les nœuds SANS identifiant se sont révélés être aussi SANS `@type`, donc
+    # inclassables par construction : 23 541 conversions vouées à l'échec. Reste à
+    # savoir s'ils sont vides — et alors on les saute — ou s'ils portent des champs
+    # qu'on perd. Ce n'est pas une hypothèse gratuite : `avec_horaires: 3` sur 2437
+    # activités est anormal, et l'ontologie loge les horaires sous `isLocatedAt`.
+    # On inventorie donc leurs NOMS DE CHAMPS (pas leur contenu) : un `{}` ne
+    # produira aucune ligne, un fragment d'adresse ou d'horaires se nommera.
     anonymes: Counter = Counter()
+    # Nœuds par document. Départage deux lectures incompatibles du run précédent :
+    # « chaque document porte un POI + un compagnon anonyme » (2 partout) contre
+    # « la queue de l'archive contient des documents agrégés » (1 partout, puis
+    # beaucoup). Le run tronqué comptait 1 nœud par document, le run complet 2 :
+    # l'un des deux chiffres décrit mal l'archive, et une moyenne ne le dira pas.
+    par_document: Counter = Counter()
     for doc in _documents_du_flux(corps):
         documents += 1
+        ici = 0
         for node in _nodes_du_document(doc):
             noeuds += 1
+            ici += 1
             ident = str(node.get("@id") or node.get("uri") or node.get("uuid") or "")
             if ident:
                 vus.add(ident)
             else:
                 sans_id += 1
-                for t in _type_names(node) or ["(sans @type)"]:
-                    anonymes[t] += 1
+                for cle in list(node.keys())[:12] or ["(objet vide)"]:
+                    anonymes[str(cle)] += 1
             yield node
+        par_document[ici] += 1
     log.info(
         "[datatourisme] flux : %.1f Mo compressés, %d document(s), %d nœud(s), "
         "%d identifiant(s) distinct(s), %d répétition(s), %d sans identifiant",
         len(corps) / 1e6, documents, noeuds, len(vus),
         max(0, noeuds - sans_id - len(vus)), sans_id,
     )
+    log.info(
+        "[datatourisme] nœuds par document : %s",
+        ", ".join(f"{n}→{c} doc(s)" for n, c in sorted(par_document.items())),
+    )
     if anonymes:
         log.info(
-            "[datatourisme] nœuds sans identifiant, par type : %s",
-            ", ".join(f"{t}×{n}" for t, n in anonymes.most_common(8)),
+            "[datatourisme] champs des nœuds sans identifiant : %s",
+            ", ".join(f"{c}×{n}" for c, n in anonymes.most_common(10)),
         )
 
 
