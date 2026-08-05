@@ -655,7 +655,15 @@ def merge(
         if old:
             # Faits rafraîchis par OSM, enrichissement repris de l'existant.
             place.first_seen = old.first_seen or place.first_seen
+            # La phrase et son EMPREINTE voyagent ensemble, toujours. Séparées, la
+            # fiche fraîche arrive avec une phrase sans provenance : `present()` la
+            # déclare périmée et la remet dans la file — les 1466 phrases de
+            # Villemoirieu repassaient à CHAQUE run. Le cache masquait le coût (il
+            # les restituait à l'identique, d'où un run de 1 min 32 et un diff de
+            # 364 lignes), mais un cache perdu aurait signifié 4000 appels LLM par
+            # passage, sans que rien ne le signale.
             place.tldr = old.tldr
+            place.tldr_key = old.tldr_key
             place.rating = old.rating
             place.rating_count = old.rating_count
             place.rating_source = old.rating_source

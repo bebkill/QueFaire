@@ -2254,6 +2254,38 @@ def test_presentation_reecrit_une_phrase_dont_la_matiere_a_change(monkeypatch):
     assert juste.tldr and not ecrites, "une phrase à jour ne doit pas être réécrite"
 
 
+def test_merge_la_phrase_et_son_empreinte_voyagent_ensemble():
+    """Reprendre `tldr` sans `tldr_key` rend toute phrase perpétuellement périmée.
+
+    Vécu au run de confirmation : `merge()` recopiait la phrase de l'existant mais
+    pas son empreinte, donc la fiche fraîche arrivait avec une phrase sans
+    provenance et `present()` la remettait dans la file — les 1466 phrases de
+    Villemoirieu repassaient à CHAQUE run. Le cache masquait entièrement le coût en
+    les restituant à l'identique : run de 1 min 32, diff de 364 lignes, aucun signe
+    extérieur. Un cache perdu aurait coûté 4000 appels LLM par passage.
+
+    Deux champs qui doivent bouger ensemble ne se recopient pas séparément.
+    """
+    from quefaire.models import Place
+    from quefaire.places import merge
+
+    def fiche(**kw):
+        base = dict(name="Musée du Rouergue", category="musee", source_id="osm",
+                    sector="s", external_id="node/1", lat=44.28, lon=2.73,
+                    tags=["osm:tourism=museum"], providers=["osm"])
+        return Place(**{**base, **kw})
+
+    ancienne = fiche(description="Outils et costumes.", tldr="Une phrase juste.",
+                     tldr_key="place:empreinte-connue", first_seen="2026-07-01")
+    fraiche = fiche(description="Outils et costumes.")
+
+    [issue] = merge([ancienne], [fraiche], today="2026-08-05")
+    assert issue.tldr == "Une phrase juste."
+    assert issue.tldr_key == "place:empreinte-connue", (
+        "sans son empreinte, la phrase serait jugée périmée à chaque run"
+    )
+
+
 def test_presentation_refuse_d_ecrire_sans_matiere(monkeypatch):
     """Pas de description, pas de phrase : le modèle ne devine pas, il affirme.
 
