@@ -1607,7 +1607,7 @@
   "source_id": "datatourisme",
   "sector": "pont-de-salars",
   "external_id": "https://data.datatourisme.fr/31/3021512b-bbd0-3fc3-a318-c7b254ddb1bd",
-  "description": "Découvrez ces disciplines originales sur un parcours naturel dans la vallée du Lézert, proche de la bastide royale.\nVous pouvez contacter l'association Au fil du Lézert pour l'accueil, l'initiation, l'organisation de stages ou compétitions, si vous souhaitez venir en groupe ou tout simplement si vous souhaitez pratiquer régulièrement.\nLe concept :\nCe sont des sports multi-générationnels qui se pratiquent seul ou en confrontation à plusieurs. \n> Disc-golf :\nIl s'agit d'une variante du golf qui se joue avec un frisbee. Cela consiste à lancer en un minimum de coups pour atteindre une corbeille de",
+  "description": "https://data.datatourisme.fr/eeef1c54-5451-35ec-a230-70423d6e985c",
   "tldr": "Testez le disc-golf ou le footgolf sur un parcours naturel en pleine vallée du Lézert, original et convivial.",
   "commune": "Sauveterre-de-Rouergue",
   "address": "Lieu-dit La Gazonne",
@@ -1629,7 +1629,7 @@
   ],
   "image_url": "https://medias.hit.enaveyron.fr/fiches/19006/images/272534_3c444fa4-d9ae-4b28-bbe2-900d8e11841b/600.webp",
   "image_credit": "OFFICE DE TOURISME PAYS SEGALI",
-  "image_page": null,
+  "image_page": "https://data.datatourisme.fr/31/3021512b-bbd0-3fc3-a318-c7b254ddb1bd",
   "tags": [
    "dt:LeisureSportActivityProvider"
   ],
@@ -1637,7 +1637,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-08-03",
+  "last_seen": "2026-08-05",
   "id": "aire-de-loisirs-de-la-gazonne-disc-golf-et-footgolf-495ef188"
  },
  {
@@ -1646,7 +1646,7 @@
   "source_id": "datatourisme",
   "sector": "pont-de-salars",
   "external_id": "https://data.datatourisme.fr/31/b084b001-124a-3b9a-b291-994cc59e3f54",
-  "description": "En contrebas de la bastide royale, elle est située au coeur d'une aire de loisirs où vous pourrez profiter d'activités en pleine nature et en toute liberté, que vous soyez en famille, entre amis ou en solo : une aire de jeux, un terrain de pétanque, une aire de pique-nique avec barbecue, un parcours de foot-golf et disc-golf et un chemin de randonnée (pédestre, équestre et VTT).\nA la piscine, pendant que les plus jeunes pourront s'amuser dans la pataugeoire, les plus grands sauront profiter du grand bassin (20mx8m) pour se rafraichir ou faire des longueurs : avis aux amateurs d'activités déten",
+  "description": "https://data.datatourisme.fr/ed6c2edb-0c2d-3217-b1d2-9812d690670e",
   "tldr": "Baignade en plein air à Sauveterre-de-Rouergue, dans une piscine naturelle entourée de verdure.",
   "commune": "Sauveterre-de-Rouergue",
   "address": "La Gazonne",
@@ -1668,7 +1668,7 @@
   ],
   "image_url": "https://medias.hit.enaveyron.fr/fiches/13681/images/154491_92740af6-f5f4-4eb1-be2d-3a92c4f5878e/600.webp",
   "image_credit": "Laure Sadaka",
-  "image_page": null,
+  "image_page": "https://data.datatourisme.fr/31/b084b001-124a-3b9a-b291-994cc59e3f54",
   "tags": [
    "dt:SwimmingPool"
   ],
@@ -1676,7 +1676,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-08-03",
+  "last_seen": "2026-08-05",
   "id": "aire-de-loisirs-de-la-gazonne-piscine-02b5360d"
  },
  {
@@ -3007,6 +3007,45 @@
  },
  {
   "name": "Amphithéâtre de Rodez",
+  "category": "prestation",
+  "source_id": "datatourisme",
+  "sector": "pont-de-salars",
+  "external_id": "https://data.datatourisme.fr/31/56c915a5-eaf2-3b51-9061-3e42f5715ea6",
+  "description": "https://data.datatourisme.fr/fe15afbf-1a23-3eb2-afd8-9bbe10deed39",
+  "tldr": null,
+  "commune": "Rodez",
+  "address": "1 Bd du 122e Régiment d’Infanterie",
+  "lat": 44.35303814,
+  "lon": 2.56819513,
+  "url": "https://www.ville-rodez.fr/sports-loisirs/sports/equipements/gymnases-salles/",
+  "phone": "+33 5 65 77 87 70",
+  "opening_hours": null,
+  "fee": null,
+  "rating": null,
+  "rating_count": null,
+  "rating_source": null,
+  "rating_url": null,
+  "unusual": false,
+  "unusual_hint": false,
+  "quality": [],
+  "providers": [
+   "datatourisme"
+  ],
+  "image_url": "https://medias.hit.enaveyron.fr/fiches/43276/images/726091_a27f7805-5215-4f54-8a3d-83d3fa956cbe/600.webp",
+  "image_credit": "Ville de Rodez",
+  "image_page": "https://data.datatourisme.fr/31/56c915a5-eaf2-3b51-9061-3e42f5715ea6",
+  "tags": [
+   "dt:LeisureSportActivityProvider"
+  ],
+  "audience": [
+   "tous"
+  ],
+  "first_seen": "2026-08-02",
+  "last_seen": "2026-08-05",
+  "id": "amphitheatre-de-rodez-6e8f0449"
+ },
+ {
+  "name": "Amphithéâtre de Rodez",
   "category": "spectacle",
   "source_id": "osm",
   "sector": "pont-de-salars",
@@ -3045,45 +3084,6 @@
   "first_seen": "2026-08-02",
   "last_seen": "2026-08-05",
   "id": "amphitheatre-de-rodez-d1bc32bb"
- },
- {
-  "name": "Amphithéâtre de Rodez",
-  "category": "prestation",
-  "source_id": "datatourisme",
-  "sector": "pont-de-salars",
-  "external_id": "https://data.datatourisme.fr/31/56c915a5-eaf2-3b51-9061-3e42f5715ea6",
-  "description": "https://data.datatourisme.fr/fe15afbf-1a23-3eb2-afd8-9bbe10deed39",
-  "tldr": null,
-  "commune": "Rodez",
-  "address": "1 Bd du 122e Régiment d’Infanterie",
-  "lat": 44.35303814,
-  "lon": 2.56819513,
-  "url": "https://www.ville-rodez.fr/sports-loisirs/sports/equipements/gymnases-salles/",
-  "phone": "+33 5 65 77 87 70",
-  "opening_hours": null,
-  "fee": null,
-  "rating": null,
-  "rating_count": null,
-  "rating_source": null,
-  "rating_url": null,
-  "unusual": false,
-  "unusual_hint": false,
-  "quality": [],
-  "providers": [
-   "datatourisme"
-  ],
-  "image_url": "https://medias.hit.enaveyron.fr/fiches/43276/images/726091_a27f7805-5215-4f54-8a3d-83d3fa956cbe/600.webp",
-  "image_credit": "Ville de Rodez",
-  "image_page": "https://data.datatourisme.fr/31/56c915a5-eaf2-3b51-9061-3e42f5715ea6",
-  "tags": [
-   "dt:LeisureSportActivityProvider"
-  ],
-  "audience": [
-   "tous"
-  ],
-  "first_seen": "2026-08-02",
-  "last_seen": "2026-08-05",
-  "id": "amphitheatre-de-rodez-6e8f0449"
  },
  {
   "name": "Amuse - François Mobian",
@@ -5611,13 +5611,13 @@
   "source_id": "datatourisme",
   "sector": "pont-de-salars",
   "external_id": "https://data.datatourisme.fr/31/db3c1a12-5450-3d3b-96ad-1eed7a4481c8",
-  "description": "Situé au bord du Lot à St Geniez d'Olt, Avenga vous propose de découvrir de nombreux loisirs de plein air : Paddle géant, canoë, kayak, escalade sur tour mobile ou en falaise, via corda, hydrospeed, bivouac en hauteur, battle archery ... En famille ou entre amis, pratiquez en toute sécurité des activités ludiques ou sportives.\nSur place, vous trouverez un accueil, un vestiaire, des sanitaires, une zone de pique-nique, un mur d'escalade artificiel, ...",
+  "description": "https://data.datatourisme.fr/cc848114-7079-3720-a46d-ef21255d6d2a",
   "tldr": "Pratiquez paddle géant, canoë ou escalade au bord du Lot, avec des activités adaptées à tous les niveaux.",
   "commune": "Saint Geniez d'Olt et d'Aubrac",
   "address": "St-Geniez-d'Olt",
   "lat": 44.47115004,
   "lon": 2.98421387,
-  "url": "https://www.facebook.com/Avenga-1398833623663459/?fref=ts",
+  "url": "https://www.avenga.fr/",
   "phone": "+33 6 28 04 86 14",
   "opening_hours": null,
   "fee": null,
@@ -5633,7 +5633,7 @@
   ],
   "image_url": "https://medias.hit.enaveyron.fr/fiches/9383/images/107840_9e6a5817-816e-4bdb-aa4d-4a9cb6274d04/600.webp",
   "image_credit": "OFFICE DE TOURISME INTERCANTONAL SAINT GENIEZ  / CAMPAGNAC",
-  "image_page": null,
+  "image_page": "https://data.datatourisme.fr/31/db3c1a12-5450-3d3b-96ad-1eed7a4481c8",
   "tags": [
    "dt:LeisureSportActivityProvider"
   ],
@@ -5641,7 +5641,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-08-03",
+  "last_seen": "2026-08-05",
   "id": "avenga-base-multi-activites-82edabf8"
  },
  {
@@ -8732,13 +8732,13 @@
   "source_id": "datatourisme",
   "sector": "pont-de-salars",
   "external_id": "https://data.datatourisme.fr/31/6c5dc21e-0c1e-3983-be7a-187ff9179947",
-  "description": "La base de loisirs accueille les groupes (écoles, les centres de loisirs, les clubs sportifs, les comités d'entreprises...) avec des activités sportives et ludiques toute l'année pour tous publics : optimist (petit bateau d'initiation), planche à voile, canoë, kayak, VTT, pêche, tir à l'arc, SwinGolf, Kin-Ball, Tchoukball, Ultimate, Thèque, course d'orientation, Stand up Paddle, Mölkky, sports collectifs...\nElle propose aussi, durant la période estivale (juillet et août), des hébergements sous tentes pour les groupes de jeunes (6-18 ans).\nElle accueille aussi les particuliers.\n________________",
+  "description": "https://data.datatourisme.fr/ddff42a1-6833-326c-bbf4-620a4a9e7840",
   "tldr": "Activités sportives et ludiques toute l'année au lac du Val de Lenne : idéal pour groupes et familles.",
   "commune": "Baraqueville",
   "address": "Route de Vors",
   "lat": 44.28253588,
   "lon": 2.43978559,
-  "url": "https://www.payssegali.fr/les-services/sports-loisirs-et-tourisme/lac-du-val-de-lenne-de-baraqueville/",
+  "url": "https://www.facebook.com/maisondesjeunes.baraquadabra",
   "phone": "+33 6 01 74 31 51",
   "opening_hours": null,
   "fee": null,
@@ -8754,7 +8754,7 @@
   ],
   "image_url": "https://medias.hit.enaveyron.fr/fiches/18861/images/270681_4ca1eabc-01b7-48ff-84ff-0cbd6ff0fd79/600.webp",
   "image_credit": "OFFICE DE TOURISME PAYS SEGALI",
-  "image_page": null,
+  "image_page": "https://data.datatourisme.fr/31/6c5dc21e-0c1e-3983-be7a-187ff9179947",
   "tags": [
    "dt:Beach"
   ],
@@ -8762,7 +8762,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-08-03",
+  "last_seen": "2026-08-05",
   "id": "base-de-loisirs-du-lac-du-val-de-lenne-e1622677"
  },
  {
@@ -9118,18 +9118,18 @@
   "id": "bassins-de-natation-du-requistanais-9d65a811"
  },
  {
-  "name": "Bateau-promenade Le Papillon Jaune sur le lac de Pareloup (groupes)",
+  "name": "Bateau-promenade Le Papillon Jaune sur le lac de Pareloup",
   "category": "prestation",
   "source_id": "datatourisme",
   "sector": "pont-de-salars",
-  "external_id": "https://data.datatourisme.fr/31/91fdd91a-32e5-3dfa-afb9-3885a86b56e3",
-  "description": "Vous pouvez vous asseoir à l'intérieur (54 places adultes ou sur le pont arrière). L'embarquement se fait à la plage municipale des Vernhes, juste en face des restaurants et à proximité des sanitaires municipaux. \n\nDépart dès 14 personnes minimum. Tarif groupe dès 25 personnes\n\nPossibilité de privatiser le bateau pour vos réceptions, anniversaires, soirées entreprise, ou enterrements de jeunesse.",
+  "external_id": "https://data.datatourisme.fr/31/0ded82b4-2156-301b-a3c9-68ef94baae3b",
+  "description": "https://data.datatourisme.fr/66482273-2564-3644-9100-568897cdf40e",
   "tldr": "Embarquez sur le Papillon Jaune pour une croisière paisible sur le lac de Pareloup, vue imprenable.",
   "commune": "Salles-Curan",
-  "address": "Les Vernhes",
-  "lat": 44.20511206,
-  "lon": 2.77560343,
-  "url": "https://www.facebook.com/Papillon-Jaune-Bateau-Promenade-1382234442026128/?fref=ts",
+  "address": "Lac de Pareloup",
+  "lat": 44.20510437,
+  "lon": 2.77565187,
+  "url": "https://www.facebook.com/pages/Papillon-Jaune-Bateau-Promenade/1382234442026128?sk=timeline",
   "phone": "+33 6 76 26 36 96",
   "opening_hours": null,
   "fee": null,
@@ -9143,18 +9143,18 @@
   "providers": [
    "datatourisme"
   ],
-  "image_url": "https://medias.hit.enaveyron.fr/fiches/16774/images/198635_0ed9bd87-c644-422e-8bb4-f3bffedb3088/600.webp",
+  "image_url": "https://medias.hit.enaveyron.fr/fiches/16771/images/198626_c517edfb-011a-4cf1-9ac1-b374a06cce63/600.webp",
   "image_credit": "OFFICE DE TOURISME DE PARELOUP LEVEZOU",
-  "image_page": null,
+  "image_page": "https://data.datatourisme.fr/31/0ded82b4-2156-301b-a3c9-68ef94baae3b",
   "tags": [
    "dt:LeisureSportActivityProvider"
   ],
   "audience": [
    "tous"
   ],
-  "first_seen": "2026-08-02",
-  "last_seen": "2026-08-03",
-  "id": "bateau-promenade-le-papillon-jaune-sur-le-lac-de-pareloup-groupes-78d86a58"
+  "first_seen": "2026-08-05",
+  "last_seen": "2026-08-05",
+  "id": "bateau-promenade-le-papillon-jaune-sur-le-lac-de-pareloup-3aa1e814"
  },
  {
   "name": "Beffroi de Millau - Tour des Rois d'Aragon",
@@ -10211,6 +10211,45 @@
  },
  {
   "name": "Bowling de Millau",
+  "category": "prestation",
+  "source_id": "datatourisme",
+  "sector": "pont-de-salars",
+  "external_id": "https://data.datatourisme.fr/31/d933f336-88d0-3e83-bf24-c18638ea59e9",
+  "description": "https://data.datatourisme.fr/c2b070e4-e3e9-3261-9d0f-2297a16abe75",
+  "tldr": null,
+  "commune": "Millau",
+  "address": "33 Chemin de Salelles",
+  "lat": 44.118662,
+  "lon": 3.071897,
+  "url": "https://www.facebook.com/Bowling-By-Night-Millau-368215786928348",
+  "phone": "+33 5 65 60 05 55",
+  "opening_hours": null,
+  "fee": null,
+  "rating": null,
+  "rating_count": null,
+  "rating_source": null,
+  "rating_url": null,
+  "unusual": false,
+  "unusual_hint": false,
+  "quality": [],
+  "providers": [
+   "datatourisme"
+  ],
+  "image_url": "https://medias.hit.enaveyron.fr/fiches/20415/images/316857_19678ef8-d437-4091-9bb3-a6397f3fc995/600.webp",
+  "image_credit": "BOWLING HÔTEL",
+  "image_page": "https://data.datatourisme.fr/31/d933f336-88d0-3e83-bf24-c18638ea59e9",
+  "tags": [
+   "dt:LeisureSportActivityProvider"
+  ],
+  "audience": [
+   "tous"
+  ],
+  "first_seen": "2026-08-02",
+  "last_seen": "2026-08-05",
+  "id": "bowling-de-millau-302ad838"
+ },
+ {
+  "name": "Bowling de Millau",
   "category": "sport-loisir",
   "source_id": "osm",
   "sector": "pont-de-salars",
@@ -10249,45 +10288,6 @@
   "first_seen": "2026-08-02",
   "last_seen": "2026-08-05",
   "id": "bowling-de-millau-88a61256"
- },
- {
-  "name": "Bowling de Millau",
-  "category": "prestation",
-  "source_id": "datatourisme",
-  "sector": "pont-de-salars",
-  "external_id": "https://data.datatourisme.fr/31/d933f336-88d0-3e83-bf24-c18638ea59e9",
-  "description": "https://data.datatourisme.fr/c2b070e4-e3e9-3261-9d0f-2297a16abe75",
-  "tldr": null,
-  "commune": "Millau",
-  "address": "33 Chemin de Salelles",
-  "lat": 44.118662,
-  "lon": 3.071897,
-  "url": "https://www.facebook.com/Bowling-By-Night-Millau-368215786928348",
-  "phone": "+33 5 65 60 05 55",
-  "opening_hours": null,
-  "fee": null,
-  "rating": null,
-  "rating_count": null,
-  "rating_source": null,
-  "rating_url": null,
-  "unusual": false,
-  "unusual_hint": false,
-  "quality": [],
-  "providers": [
-   "datatourisme"
-  ],
-  "image_url": "https://medias.hit.enaveyron.fr/fiches/20415/images/316857_19678ef8-d437-4091-9bb3-a6397f3fc995/600.webp",
-  "image_credit": "BOWLING HÔTEL",
-  "image_page": "https://data.datatourisme.fr/31/d933f336-88d0-3e83-bf24-c18638ea59e9",
-  "tags": [
-   "dt:LeisureSportActivityProvider"
-  ],
-  "audience": [
-   "tous"
-  ],
-  "first_seen": "2026-08-02",
-  "last_seen": "2026-08-05",
-  "id": "bowling-de-millau-302ad838"
  },
  {
   "name": "Bowling du Rouergue",
@@ -10368,6 +10368,45 @@
   "id": "brameloup-geocach-en-foret-d-aubrac-b33639c7"
  },
  {
+  "name": "Brasserie La Beau Soleil (groupes)",
+  "category": "ferme",
+  "source_id": "datatourisme",
+  "sector": "pont-de-salars",
+  "external_id": "https://data.datatourisme.fr/31/21a7129f-80f8-31c8-a592-597324230a3f",
+  "description": "https://data.datatourisme.fr/9a188e9d-f072-302b-b035-7b5403e98223",
+  "tldr": "Savourez des bières bio aux saveurs douces et parfumées, comme une Blanche au miel ou une IPA houblonnée.",
+  "commune": "Saint Geniez d'Olt et d'Aubrac",
+  "address": "Beau Soleil",
+  "lat": 44.46171118,
+  "lon": 2.97970507,
+  "url": "https://www.facebook.com/labierebeausoleil/",
+  "phone": "+33 7 81 38 29 15",
+  "opening_hours": null,
+  "fee": null,
+  "rating": null,
+  "rating_count": null,
+  "rating_source": null,
+  "rating_url": null,
+  "unusual": false,
+  "unusual_hint": false,
+  "quality": [],
+  "providers": [
+   "datatourisme"
+  ],
+  "image_url": "https://medias.hit.enaveyron.fr/fiches/9814/images/113778_183ca59c-d488-442f-912f-6e1691bd14df/600.webp",
+  "image_credit": null,
+  "image_page": "https://data.datatourisme.fr/31/21a7129f-80f8-31c8-a592-597324230a3f",
+  "tags": [
+   "dt:Producer"
+  ],
+  "audience": [
+   "tous"
+  ],
+  "first_seen": "2026-08-02",
+  "last_seen": "2026-08-05",
+  "id": "brasserie-la-beau-soleil-groupes-aacef63e"
+ },
+ {
   "name": "Brasserie de la Muze",
   "category": "ferme",
   "source_id": "datatourisme",
@@ -10444,45 +10483,6 @@
   "first_seen": "2026-08-02",
   "last_seen": "2026-08-05",
   "id": "brasserie-l-astrolabe-1cfb548c"
- },
- {
-  "name": "Brasserie La Beau Soleil (groupes)",
-  "category": "ferme",
-  "source_id": "datatourisme",
-  "sector": "pont-de-salars",
-  "external_id": "https://data.datatourisme.fr/31/21a7129f-80f8-31c8-a592-597324230a3f",
-  "description": "https://data.datatourisme.fr/9a188e9d-f072-302b-b035-7b5403e98223",
-  "tldr": "Savourez des bières bio aux saveurs douces et parfumées, comme une Blanche au miel ou une IPA houblonnée.",
-  "commune": "Saint Geniez d'Olt et d'Aubrac",
-  "address": "Beau Soleil",
-  "lat": 44.46171118,
-  "lon": 2.97970507,
-  "url": "https://www.facebook.com/labierebeausoleil/",
-  "phone": "+33 7 81 38 29 15",
-  "opening_hours": null,
-  "fee": null,
-  "rating": null,
-  "rating_count": null,
-  "rating_source": null,
-  "rating_url": null,
-  "unusual": false,
-  "unusual_hint": false,
-  "quality": [],
-  "providers": [
-   "datatourisme"
-  ],
-  "image_url": "https://medias.hit.enaveyron.fr/fiches/9814/images/113778_183ca59c-d488-442f-912f-6e1691bd14df/600.webp",
-  "image_credit": null,
-  "image_page": "https://data.datatourisme.fr/31/21a7129f-80f8-31c8-a592-597324230a3f",
-  "tags": [
-   "dt:Producer"
-  ],
-  "audience": [
-   "tous"
-  ],
-  "first_seen": "2026-08-02",
-  "last_seen": "2026-08-05",
-  "id": "brasserie-la-beau-soleil-groupes-aacef63e"
  },
  {
   "name": "Brasserie la Calmettoise - Bière paysanne",
@@ -11699,7 +11699,7 @@
   "source_id": "datatourisme",
   "sector": "pont-de-salars",
   "external_id": "https://data.datatourisme.fr/31/eff5b9ff-c6a4-35f8-977a-3436aa848a45",
-  "description": "- Randonnée pédestre\n- Randonnée à thème : faune, flore, patrimoine, land art, cuisine sauvage, autour de l'oeuvre de l'écrivain occitan Jean Boudou.\n- Marche nordique : initiation, perfectionnement avec atelier de renforcement musculaire. Les séances se déroulent avec un échauffement, un corps de séance, et ses étirements. Tous les parcours sont en pleine nature.\nMerci de prendre contact avec nous pour des informations complémentaires.\nRéservation obligatoire.",
+  "description": "https://data.datatourisme.fr/b7df93af-aa9f-376f-8c88-723cdaca015f",
   "tldr": "Marchez ou pratiquez la marche nordique autour de Crespin, avec des thèmes nature ou patrimoine.",
   "commune": "Crespin",
   "address": "Lieu-dit Bois-Redon",
@@ -11721,7 +11721,7 @@
   ],
   "image_url": "https://medias.hit.enaveyron.fr/fiches/4888/images/42259_b3f98213-49a5-4343-a9a8-da18a133e006/600.webp",
   "image_credit": "Caminada",
-  "image_page": null,
+  "image_page": "https://data.datatourisme.fr/31/eff5b9ff-c6a4-35f8-977a-3436aa848a45",
   "tags": [
    "dt:LeisureSportActivityProvider"
   ],
@@ -11729,7 +11729,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-08-03",
+  "last_seen": "2026-08-05",
   "id": "caminada-randonnee-pedestre-accompagnee-et-marche-nordique-1c9c6e62"
  },
  {
@@ -12206,13 +12206,13 @@
   "source_id": "datatourisme",
   "sector": "pont-de-salars",
   "external_id": "https://data.datatourisme.fr/31/7b8fba01-d8e9-3c6f-b161-c179a2a31c5e",
-  "description": "Animations payantes. Renseignements auprès de Thierry Limoge. \n\nGrâce à un télescope de 203 mm, vous pourrez découvrir le Soleil en journée et les étoiles, planètes et galaxies de nuit. Un planétarium mobile vous permettra d'apporter les étoiles sur le lieu de votre choix pour des balades célestes sous les étoiles, de jour comme de nuit, tout au long de l'année et bien au chaud. \n\nDes conférences/débats vous permettront de découvrir les merveilles célestes et leurs mystères grâce aux dernières images des plus puissants télescopes et des sondes spatiales.\nAutres animations sur mesure : randonné",
+  "description": "https://data.datatourisme.fr/ab4f2919-abb9-3374-afe3-197a25189b76",
   "tldr": "Observez le Soleil de jour et les étoiles de nuit avec un télescope de 203 mm, ou explorez le ciel en planétarium mobile.",
   "commune": "Arvieu",
   "address": "Caplongue",
   "lat": 44.1802,
   "lon": 2.6248,
-  "url": "https://www.facebook.com/capetoiles/",
+  "url": "http://www.capetoiles.fr/",
   "phone": "+33 6 62 85 07 14",
   "opening_hours": null,
   "fee": null,
@@ -12228,7 +12228,7 @@
   ],
   "image_url": "https://medias.hit.enaveyron.fr/fiches/16809/images/198895_4f9df3b2-510d-43ab-a2d3-910f1ff9baf6/600.webp",
   "image_credit": "OFFICE DE TOURISME DE PARELOUP LEVEZOU",
-  "image_page": null,
+  "image_page": "https://data.datatourisme.fr/31/7b8fba01-d8e9-3c6f-b161-c179a2a31c5e",
   "tags": [
    "dt:LeisureSportActivityProvider"
   ],
@@ -12236,7 +12236,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-08-03",
+  "last_seen": "2026-08-05",
   "id": "capetoiles-0e60daae"
  },
  {
@@ -12831,6 +12831,45 @@
  },
  {
   "name": "Cathédrale Notre-Dame de Rodez",
+  "category": "patrimoine",
+  "source_id": "datatourisme",
+  "sector": "pont-de-salars",
+  "external_id": "https://data.datatourisme.fr/31/565e49cd-a030-3673-b427-a80f300fbbe2",
+  "description": "https://data.datatourisme.fr/74eea97f-92e5-3b8f-8087-698bde7fef82",
+  "tldr": null,
+  "commune": "Rodez",
+  "address": "10-12 place de la Cité",
+  "lat": 44.35087471,
+  "lon": 2.57362246,
+  "url": "https://www.rodez-tourisme.fr/",
+  "phone": "+33 5 65 68 78 15",
+  "opening_hours": null,
+  "fee": null,
+  "rating": null,
+  "rating_count": null,
+  "rating_source": null,
+  "rating_url": null,
+  "unusual": false,
+  "unusual_hint": false,
+  "quality": [],
+  "providers": [
+   "datatourisme"
+  ],
+  "image_url": "https://medias.hit.enaveyron.fr/fiches/15036/images/170054_b686166d-ef2c-4c37-8517-dc2d1380cbd8/600.webp",
+  "image_credit": "OFFICE DE TOURISME DU GRAND RODEZ",
+  "image_page": "https://data.datatourisme.fr/31/565e49cd-a030-3673-b427-a80f300fbbe2",
+  "tags": [
+   "dt:ReligiousSite"
+  ],
+  "audience": [
+   "tous"
+  ],
+  "first_seen": "2026-08-02",
+  "last_seen": "2026-08-05",
+  "id": "cathedrale-notre-dame-de-rodez-96fe5403"
+ },
+ {
+  "name": "Cathédrale Notre-Dame de Rodez",
   "category": "visite",
   "source_id": "osm",
   "sector": "pont-de-salars",
@@ -12870,45 +12909,6 @@
   "first_seen": "2026-08-02",
   "last_seen": "2026-08-05",
   "id": "cathedrale-notre-dame-de-rodez-dfe01794"
- },
- {
-  "name": "Cathédrale Notre-Dame de Rodez",
-  "category": "patrimoine",
-  "source_id": "datatourisme",
-  "sector": "pont-de-salars",
-  "external_id": "https://data.datatourisme.fr/31/565e49cd-a030-3673-b427-a80f300fbbe2",
-  "description": "https://data.datatourisme.fr/74eea97f-92e5-3b8f-8087-698bde7fef82",
-  "tldr": null,
-  "commune": "Rodez",
-  "address": "10-12 place de la Cité",
-  "lat": 44.35087471,
-  "lon": 2.57362246,
-  "url": "https://www.rodez-tourisme.fr/",
-  "phone": "+33 5 65 68 78 15",
-  "opening_hours": null,
-  "fee": null,
-  "rating": null,
-  "rating_count": null,
-  "rating_source": null,
-  "rating_url": null,
-  "unusual": false,
-  "unusual_hint": false,
-  "quality": [],
-  "providers": [
-   "datatourisme"
-  ],
-  "image_url": "https://medias.hit.enaveyron.fr/fiches/15036/images/170054_b686166d-ef2c-4c37-8517-dc2d1380cbd8/600.webp",
-  "image_credit": "OFFICE DE TOURISME DU GRAND RODEZ",
-  "image_page": "https://data.datatourisme.fr/31/565e49cd-a030-3673-b427-a80f300fbbe2",
-  "tags": [
-   "dt:ReligiousSite"
-  ],
-  "audience": [
-   "tous"
-  ],
-  "first_seen": "2026-08-02",
-  "last_seen": "2026-08-05",
-  "id": "cathedrale-notre-dame-de-rodez-96fe5403"
  },
  {
   "name": "Causse Comtal Spa",
@@ -13302,6 +13302,45 @@
  },
  {
   "name": "Caves Roquefort Société",
+  "category": "ferme",
+  "source_id": "datatourisme",
+  "sector": "pont-de-salars",
+  "external_id": "https://data.datatourisme.fr/31/88cd157f-335d-3083-8f3a-89eec91e3fc3",
+  "description": "https://data.datatourisme.fr/02439305-de24-3756-9fb3-2819d888dddc",
+  "tldr": "Plongez dans l'univers secret des caves naturelles de Roquefort et leurs maîtres-affineurs.",
+  "commune": "Roquefort-sur-Soulzon",
+  "address": "Avenue François Galtier",
+  "lat": 43.97457377,
+  "lon": 2.99291878,
+  "url": "https://www.roquefort-societe.com/",
+  "phone": "+33 5 65 58 54 38",
+  "opening_hours": null,
+  "fee": null,
+  "rating": null,
+  "rating_count": null,
+  "rating_source": null,
+  "rating_url": null,
+  "unusual": false,
+  "unusual_hint": false,
+  "quality": [],
+  "providers": [
+   "datatourisme"
+  ],
+  "image_url": "https://medias.hit.enaveyron.fr/fiches/19504/images/286322_a8d4420e-6bea-47fb-ba06-52689cda7267/600.webp",
+  "image_credit": "Greg Alric - Shoot'In Factory",
+  "image_page": "https://data.datatourisme.fr/31/88cd157f-335d-3083-8f3a-89eec91e3fc3",
+  "tags": [
+   "dt:Producer"
+  ],
+  "audience": [
+   "tous"
+  ],
+  "first_seen": "2026-08-02",
+  "last_seen": "2026-08-05",
+  "id": "caves-roquefort-societe-550cfa63"
+ },
+ {
+  "name": "Caves Roquefort Société",
   "category": "musee",
   "source_id": "osm",
   "sector": "pont-de-salars",
@@ -13341,45 +13380,6 @@
   "first_seen": "2026-08-02",
   "last_seen": "2026-08-05",
   "id": "caves-roquefort-societe-3e99ed16"
- },
- {
-  "name": "Caves Roquefort Société",
-  "category": "ferme",
-  "source_id": "datatourisme",
-  "sector": "pont-de-salars",
-  "external_id": "https://data.datatourisme.fr/31/88cd157f-335d-3083-8f3a-89eec91e3fc3",
-  "description": "Entrez dans la légende de ROQUEFORT SOCIETE ! Pendant 1 heure, accompagné d'une hôtesse, percez le mystère de ses caves naturelles et les secrets de ses Maîtres-Affineurs. Dans un cadre grandiose, empreint de solennité, découvrez successivement son animation numérique « Aux origines des caves de Roquefort SOCIETE®... », son film, la mise en lumière de la cave Reynès et le passage dans les différents niveaux de caves naturelles, sans oublier la dégustation.",
-  "tldr": "Plongez dans l'univers secret des caves naturelles de Roquefort et leurs maîtres-affineurs.",
-  "commune": "Roquefort-sur-Soulzon",
-  "address": "Avenue François Galtier",
-  "lat": 43.97457377,
-  "lon": 2.99291878,
-  "url": "https://www.roquefort-societe.com/",
-  "phone": "+33 5 65 58 54 38",
-  "opening_hours": null,
-  "fee": null,
-  "rating": null,
-  "rating_count": null,
-  "rating_source": null,
-  "rating_url": null,
-  "unusual": false,
-  "unusual_hint": false,
-  "quality": [],
-  "providers": [
-   "datatourisme"
-  ],
-  "image_url": "https://medias.hit.enaveyron.fr/fiches/19504/images/286322_a8d4420e-6bea-47fb-ba06-52689cda7267/600.webp",
-  "image_credit": "Greg Alric - Shoot'In Factory",
-  "image_page": null,
-  "tags": [
-   "dt:Producer"
-  ],
-  "audience": [
-   "tous"
-  ],
-  "first_seen": "2026-08-02",
-  "last_seen": "2026-08-03",
-  "id": "caves-roquefort-societe-550cfa63"
  },
  {
   "name": "Cazelle",
@@ -14126,6 +14126,45 @@
   "id": "centre-equestre-du-haut-segala-93776185"
  },
  {
+  "name": "Centre équestre du Moulinou",
+  "category": "prestation",
+  "source_id": "datatourisme",
+  "sector": "pont-de-salars",
+  "external_id": "https://data.datatourisme.fr/31/417903b1-4aa4-3416-b7e5-1d3624189570",
+  "description": "https://data.datatourisme.fr/492baa02-03e4-3ab9-a3ba-7f5c224a7a11",
+  "tldr": "Cours, stages ou animations équestres pour tous niveaux, avec compétitions locales.",
+  "commune": "Gramond",
+  "address": "Lieu-dit Le Moulinou",
+  "lat": 44.27421311,
+  "lon": 2.40222197,
+  "url": "https://ecuriesdumoulinou.ffe.com/",
+  "phone": "+33 6 59 35 32 92",
+  "opening_hours": null,
+  "fee": null,
+  "rating": null,
+  "rating_count": null,
+  "rating_source": null,
+  "rating_url": null,
+  "unusual": false,
+  "unusual_hint": false,
+  "quality": [],
+  "providers": [
+   "datatourisme"
+  ],
+  "image_url": "https://medias.hit.enaveyron.fr/fiches/2129/images/16305_9e5361ac-eb9f-4090-8ee2-53fb7c352cca/600.webp",
+  "image_credit": "Ecuries du Moulinou",
+  "image_page": "https://data.datatourisme.fr/31/417903b1-4aa4-3416-b7e5-1d3624189570",
+  "tags": [
+   "dt:LeisureSportActivityProvider"
+  ],
+  "audience": [
+   "tous"
+  ],
+  "first_seen": "2026-08-02",
+  "last_seen": "2026-08-05",
+  "id": "centre-equestre-du-moulinou-df59eae3"
+ },
+ {
   "name": "Centre Equestre du Moulinou",
   "category": "sport-loisir",
   "source_id": "osm",
@@ -14165,45 +14204,6 @@
   "first_seen": "2026-08-02",
   "last_seen": "2026-08-05",
   "id": "centre-equestre-du-moulinou-35cbb789"
- },
- {
-  "name": "Centre équestre du Moulinou",
-  "category": "prestation",
-  "source_id": "datatourisme",
-  "sector": "pont-de-salars",
-  "external_id": "https://data.datatourisme.fr/31/417903b1-4aa4-3416-b7e5-1d3624189570",
-  "description": "https://data.datatourisme.fr/492baa02-03e4-3ab9-a3ba-7f5c224a7a11",
-  "tldr": "Cours, stages ou animations équestres pour tous niveaux, avec compétitions locales.",
-  "commune": "Gramond",
-  "address": "Lieu-dit Le Moulinou",
-  "lat": 44.27421311,
-  "lon": 2.40222197,
-  "url": "https://ecuriesdumoulinou.ffe.com/",
-  "phone": "+33 6 59 35 32 92",
-  "opening_hours": null,
-  "fee": null,
-  "rating": null,
-  "rating_count": null,
-  "rating_source": null,
-  "rating_url": null,
-  "unusual": false,
-  "unusual_hint": false,
-  "quality": [],
-  "providers": [
-   "datatourisme"
-  ],
-  "image_url": "https://medias.hit.enaveyron.fr/fiches/2129/images/16305_9e5361ac-eb9f-4090-8ee2-53fb7c352cca/600.webp",
-  "image_credit": "Ecuries du Moulinou",
-  "image_page": "https://data.datatourisme.fr/31/417903b1-4aa4-3416-b7e5-1d3624189570",
-  "tags": [
-   "dt:LeisureSportActivityProvider"
-  ],
-  "audience": [
-   "tous"
-  ],
-  "first_seen": "2026-08-02",
-  "last_seen": "2026-08-05",
-  "id": "centre-equestre-du-moulinou-df59eae3"
  },
  {
   "name": "Centre Equestre Le Sonnac",
@@ -16427,6 +16427,45 @@
   "id": "chateau-de-beaucaire-c66b8258"
  },
  {
+  "name": "CHATEAU DE BELCASTEL",
+  "category": "musee",
+  "source_id": "datatourisme",
+  "sector": "pont-de-salars",
+  "external_id": "https://data.datatourisme.fr/31/4866cef1-1c38-33f9-99eb-586030801f76",
+  "description": "https://data.datatourisme.fr/10c413e3-c670-3ded-8ddf-520e1ad4f79b",
+  "tldr": "Admirez un château médiéval intact et son village classé parmi les plus beaux de France.",
+  "commune": "Belcastel",
+  "address": "Château de Belcastel",
+  "lat": 44.38884316,
+  "lon": 2.33596163,
+  "url": "https://www.chateaubelcastel.com/",
+  "phone": "+33 5 65 43 17 06",
+  "opening_hours": null,
+  "fee": null,
+  "rating": null,
+  "rating_count": null,
+  "rating_source": null,
+  "rating_url": null,
+  "unusual": false,
+  "unusual_hint": false,
+  "quality": [],
+  "providers": [
+   "datatourisme"
+  ],
+  "image_url": "https://medias.hit.enaveyron.fr/fiches/16394/images/823968_a8013ae3-b0e4-4b49-871d-00bf2f845440/600.webp",
+  "image_credit": "Château de Belcastel",
+  "image_page": "https://data.datatourisme.fr/31/4866cef1-1c38-33f9-99eb-586030801f76",
+  "tags": [
+   "dt:Museum"
+  ],
+  "audience": [
+   "tous"
+  ],
+  "first_seen": "2026-08-02",
+  "last_seen": "2026-08-05",
+  "id": "chateau-de-belcastel-19309f39"
+ },
+ {
   "name": "Château de Belcastel",
   "category": "patrimoine",
   "source_id": "osm",
@@ -16468,45 +16507,6 @@
   "first_seen": "2026-08-02",
   "last_seen": "2026-08-05",
   "id": "chateau-de-belcastel-bb74d66d"
- },
- {
-  "name": "CHATEAU DE BELCASTEL",
-  "category": "musee",
-  "source_id": "datatourisme",
-  "sector": "pont-de-salars",
-  "external_id": "https://data.datatourisme.fr/31/4866cef1-1c38-33f9-99eb-586030801f76",
-  "description": "https://data.datatourisme.fr/10c413e3-c670-3ded-8ddf-520e1ad4f79b",
-  "tldr": "Admirez un château médiéval intact et son village classé parmi les plus beaux de France.",
-  "commune": "Belcastel",
-  "address": "Château de Belcastel",
-  "lat": 44.38884316,
-  "lon": 2.33596163,
-  "url": "https://www.chateaubelcastel.com/",
-  "phone": "+33 5 65 43 17 06",
-  "opening_hours": null,
-  "fee": null,
-  "rating": null,
-  "rating_count": null,
-  "rating_source": null,
-  "rating_url": null,
-  "unusual": false,
-  "unusual_hint": false,
-  "quality": [],
-  "providers": [
-   "datatourisme"
-  ],
-  "image_url": "https://medias.hit.enaveyron.fr/fiches/16394/images/823968_a8013ae3-b0e4-4b49-871d-00bf2f845440/600.webp",
-  "image_credit": "Château de Belcastel",
-  "image_page": "https://data.datatourisme.fr/31/4866cef1-1c38-33f9-99eb-586030801f76",
-  "tags": [
-   "dt:Museum"
-  ],
-  "audience": [
-   "tous"
-  ],
-  "first_seen": "2026-08-02",
-  "last_seen": "2026-08-05",
-  "id": "chateau-de-belcastel-19309f39"
  },
  {
   "name": "Château de Bertholène",
@@ -17143,6 +17143,46 @@
  {
   "name": "Château de Galinières",
   "category": "patrimoine",
+  "source_id": "datatourisme",
+  "sector": "pont-de-salars",
+  "external_id": "https://data.datatourisme.fr/31/faa32cce-bb23-31a8-b69a-4b9440e1c071",
+  "description": "https://data.datatourisme.fr/29126c9a-3a92-3741-8768-ce863d3e1034",
+  "tldr": "Visitez ce château ouvert aux groupes, où une exposition sur les abbayes cisterciennes du Rouergue vous attend.",
+  "commune": "Pierrefiche",
+  "address": null,
+  "lat": 44.4438,
+  "lon": 2.94832917,
+  "url": null,
+  "phone": "+33 5 65 70 75 11",
+  "opening_hours": null,
+  "fee": null,
+  "rating": null,
+  "rating_count": null,
+  "rating_source": null,
+  "rating_url": null,
+  "unusual": false,
+  "unusual_hint": false,
+  "quality": [],
+  "providers": [
+   "datatourisme"
+  ],
+  "image_url": "https://medias.hit.enaveyron.fr/fiches/5567/images/54276_7143ece8-4e77-45ec-b645-09e1e246820c/600.webp",
+  "image_credit": "OFFICE DE TOURISME INTERCANTONAL SAINT GENIEZ  / CAMPAGNAC",
+  "image_page": "https://data.datatourisme.fr/31/faa32cce-bb23-31a8-b69a-4b9440e1c071",
+  "tags": [
+   "dt:Castle",
+   "dt:RemarkableBuilding"
+  ],
+  "audience": [
+   "tous"
+  ],
+  "first_seen": "2026-08-02",
+  "last_seen": "2026-08-05",
+  "id": "chateau-de-galinieres-9c7d7352"
+ },
+ {
+  "name": "Château de Galinières",
+  "category": "patrimoine",
   "source_id": "osm",
   "sector": "pont-de-salars",
   "external_id": "way/120160386",
@@ -17181,46 +17221,6 @@
   "first_seen": "2026-08-02",
   "last_seen": "2026-08-05",
   "id": "chateau-de-galinieres-8a4e6d32"
- },
- {
-  "name": "Château de Galinières",
-  "category": "patrimoine",
-  "source_id": "datatourisme",
-  "sector": "pont-de-salars",
-  "external_id": "https://data.datatourisme.fr/31/faa32cce-bb23-31a8-b69a-4b9440e1c071",
-  "description": "https://data.datatourisme.fr/29126c9a-3a92-3741-8768-ce863d3e1034",
-  "tldr": "Visitez ce château ouvert aux groupes, où une exposition sur les abbayes cisterciennes du Rouergue vous attend.",
-  "commune": "Pierrefiche",
-  "address": null,
-  "lat": 44.4438,
-  "lon": 2.94832917,
-  "url": null,
-  "phone": "+33 5 65 70 75 11",
-  "opening_hours": null,
-  "fee": null,
-  "rating": null,
-  "rating_count": null,
-  "rating_source": null,
-  "rating_url": null,
-  "unusual": false,
-  "unusual_hint": false,
-  "quality": [],
-  "providers": [
-   "datatourisme"
-  ],
-  "image_url": "https://medias.hit.enaveyron.fr/fiches/5567/images/54276_7143ece8-4e77-45ec-b645-09e1e246820c/600.webp",
-  "image_credit": "OFFICE DE TOURISME INTERCANTONAL SAINT GENIEZ  / CAMPAGNAC",
-  "image_page": "https://data.datatourisme.fr/31/faa32cce-bb23-31a8-b69a-4b9440e1c071",
-  "tags": [
-   "dt:Castle",
-   "dt:RemarkableBuilding"
-  ],
-  "audience": [
-   "tous"
-  ],
-  "first_seen": "2026-08-02",
-  "last_seen": "2026-08-05",
-  "id": "chateau-de-galinieres-9c7d7352"
  },
  {
   "name": "Château de La Boissonnade",
@@ -18726,6 +18726,46 @@
  {
   "name": "Château de Versols",
   "category": "patrimoine",
+  "source_id": "datatourisme",
+  "sector": "pont-de-salars",
+  "external_id": "https://data.datatourisme.fr/31/85b0c5bc-40fa-35a3-9adf-77f49b1283f1",
+  "description": "https://data.datatourisme.fr/dc34d010-98f2-3dfe-a455-37591c138e71",
+  "tldr": "Parcourez les vestiges de ce castrum fortifié, entre tours, remparts et histoire médiévale préservée.",
+  "commune": "Versols-et-Lapeyre",
+  "address": "Rue du Château",
+  "lat": 43.8941,
+  "lon": 2.93611111,
+  "url": null,
+  "phone": "+33 6 10 56 84 69",
+  "opening_hours": null,
+  "fee": null,
+  "rating": null,
+  "rating_count": null,
+  "rating_source": null,
+  "rating_url": null,
+  "unusual": false,
+  "unusual_hint": false,
+  "quality": [],
+  "providers": [
+   "datatourisme"
+  ],
+  "image_url": "https://medias.hit.enaveyron.fr/fiches/15222/images/172338_93b82df2-5a1e-4842-b0a6-70a68e68b5f4/600.webp",
+  "image_credit": "ROQUEFORT TOURISME",
+  "image_page": "https://data.datatourisme.fr/31/85b0c5bc-40fa-35a3-9adf-77f49b1283f1",
+  "tags": [
+   "dt:Castle",
+   "dt:RemarkableBuilding"
+  ],
+  "audience": [
+   "tous"
+  ],
+  "first_seen": "2026-08-02",
+  "last_seen": "2026-08-05",
+  "id": "chateau-de-versols-c4ef2cba"
+ },
+ {
+  "name": "Château de Versols",
+  "category": "patrimoine",
   "source_id": "osm",
   "sector": "pont-de-salars",
   "external_id": "way/71334334",
@@ -18764,46 +18804,6 @@
   "first_seen": "2026-08-02",
   "last_seen": "2026-08-05",
   "id": "chateau-de-versols-d708ec97"
- },
- {
-  "name": "Château de Versols",
-  "category": "patrimoine",
-  "source_id": "datatourisme",
-  "sector": "pont-de-salars",
-  "external_id": "https://data.datatourisme.fr/31/85b0c5bc-40fa-35a3-9adf-77f49b1283f1",
-  "description": "https://data.datatourisme.fr/dc34d010-98f2-3dfe-a455-37591c138e71",
-  "tldr": "Parcourez les vestiges de ce castrum fortifié, entre tours, remparts et histoire médiévale préservée.",
-  "commune": "Versols-et-Lapeyre",
-  "address": "Rue du Château",
-  "lat": 43.8941,
-  "lon": 2.93611111,
-  "url": null,
-  "phone": "+33 6 10 56 84 69",
-  "opening_hours": null,
-  "fee": null,
-  "rating": null,
-  "rating_count": null,
-  "rating_source": null,
-  "rating_url": null,
-  "unusual": false,
-  "unusual_hint": false,
-  "quality": [],
-  "providers": [
-   "datatourisme"
-  ],
-  "image_url": "https://medias.hit.enaveyron.fr/fiches/15222/images/172338_93b82df2-5a1e-4842-b0a6-70a68e68b5f4/600.webp",
-  "image_credit": "ROQUEFORT TOURISME",
-  "image_page": "https://data.datatourisme.fr/31/85b0c5bc-40fa-35a3-9adf-77f49b1283f1",
-  "tags": [
-   "dt:Castle",
-   "dt:RemarkableBuilding"
-  ],
-  "audience": [
-   "tous"
-  ],
-  "first_seen": "2026-08-02",
-  "last_seen": "2026-08-05",
-  "id": "chateau-de-versols-c4ef2cba"
  },
  {
   "name": "Château de Vézins-de-Lévézou",
@@ -25607,7 +25607,7 @@
   "source_id": "datatourisme",
   "sector": "pont-de-salars",
   "external_id": "https://data.datatourisme.fr/31/ec8e092e-b651-3aa5-a948-b879a815c119",
-  "description": "Mis en service en 1952, le barrage de Bage est un élément central du vaste complexe hydroélectrique du Pouget. Haut de 28 mètres et construit sur le ruisseau de Bage, il joue un rôle clé dans l’alimentation du lac de Pareloup grâce à son usine de pompage située au pied de l’ouvrage. Cette même usine de pompage est capable de remonter l'eau de presque une centaine de mètres d'altitude sur le plateau grâce à 2 \"pompes\".\nLa puissance nécessaire à cette prouesse technique consomme l'équivalent de ce que produit l'usine hydroélectrique d'Alrance située plus en aval.\nSon architecture typique des ann",
+  "description": "https://data.datatourisme.fr/48e2e3c3-cc80-3929-85d5-47a74f8e50ee",
   "tldr": "Visitez un barrage hydroélectrique emblématique, clé du complexe du Pouget depuis 1952.",
   "commune": "Pont-de-Salars",
   "address": "Agence \"Lévézou Attractivité Tourisme\" Place de la Rivière",
@@ -25629,7 +25629,7 @@
   ],
   "image_url": "https://medias.hit.enaveyron.fr/fiches/42519/images/926935_b32d5ca1-ed94-4c28-8cfd-2cd973ac5567/600.webp",
   "image_credit": "EDF - GU du Pouget",
-  "image_page": null,
+  "image_page": "https://data.datatourisme.fr/31/ec8e092e-b651-3aa5-a948-b879a815c119",
   "tags": [
    "dt:IndustrialSite"
   ],
@@ -25637,7 +25637,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-08-03",
+  "last_seen": "2026-08-05",
   "id": "complexe-hydroelectrique-du-pouget-usine-de-pompage-du-lac-de-bage-ac79a208"
  },
  {
@@ -26428,7 +26428,7 @@
   "source_id": "datatourisme",
   "sector": "pont-de-salars",
   "external_id": "https://data.datatourisme.fr/31/35842561-6086-3314-ac42-745bf970e8cc",
-  "description": "D'un naturel enthousiaste d'aventures en montagne et en nature, je serai ravi de vous accompagner à travers des sorties authentiques.\n\nDe formation universitaire sportive et tout jeune diplômé d'accompagnement en montagne, il est spécialisé dans le trail. Véritable passionné de l'outdoor et des grands espaces, je consacre maintenant le plus clair de mon temps aux activités de plein air, à travers lesquelles je s'épanouis pleinement. AeM ( Accompagnateur en Montagne )\n\nRandonnée montagne - Trail-Running - Encadrement Sportif",
+  "description": "https://data.datatourisme.fr/71abe96e-57e1-3332-b38a-c04f3f83f1b9",
   "tldr": "Partez en randonnée guidée dans les montagnes pour une immersion authentique en nature.",
   "commune": "Compeyre",
   "address": "618 Rte de la Coste",
@@ -26450,7 +26450,7 @@
   ],
   "image_url": "https://medias.hit.enaveyron.fr/fiches/17176/images/210657_d2072822-1c74-4cd7-a0f0-1b87cbbf6641/600.webp",
   "image_credit": "Cueilleur de Sommets",
-  "image_page": null,
+  "image_page": "https://data.datatourisme.fr/31/35842561-6086-3314-ac42-745bf970e8cc",
   "tags": [
    "dt:LeisureSportActivityProvider"
   ],
@@ -26458,7 +26458,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-08-03",
+  "last_seen": "2026-08-05",
   "id": "cueilleur-de-sommets-9d002d86"
  },
  {
@@ -28612,7 +28612,7 @@
   "source_id": "datatourisme",
   "sector": "pont-de-salars",
   "external_id": "https://data.datatourisme.fr/31/997deae6-f566-39ce-81a2-81180b463e3d",
-  "description": "L’esplanade du Foirail : ancien champ de foires aux bestiaux sur les berges du Lot ; le terrain de quilles 8 : jeu emblématique de l’Aveyron. Du foirail : la vue traditionnelle à couper le souffle sur le Vieux-Palais Renaissance, ancienne demeure des Gouverneurs d’Espalion, classé Monument Historique. Le Pont Vieux construit en grés rose au XIème siècle, classé Monument Historique et au patrimoine mondial de l’UNESCO. Les anciennes tanneries : maisons des tanneurs à galeries couvertes sur la rive droite du Lot. En remontant la Rue Droite, la plus ancienne rue de la ville d’Espalion, découverte",
+  "description": "https://data.datatourisme.fr/5e1ea7b4-dd22-3a99-850d-684829cdbc54",
   "tldr": "Flânez dans cette vieille ville aux vestiges médiévaux et admirez la vue sur le Lot.",
   "commune": "Espalion",
   "address": "2, boulevard Joseph Poulenc",
@@ -28634,7 +28634,7 @@
   ],
   "image_url": "https://medias.hit.enaveyron.fr/fiches/32675/images/622601_35bf9926-3112-4172-a289-bb481a04a5c3/600.webp",
   "image_credit": "OFFICE DE TOURISME DU CANTON D'ESPALION",
-  "image_page": null,
+  "image_page": "https://data.datatourisme.fr/31/997deae6-f566-39ce-81a2-81180b463e3d",
   "tags": [
    "dt:Museum"
   ],
@@ -28642,7 +28642,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-08-03",
+  "last_seen": "2026-08-05",
   "id": "decouverte-de-la-vieille-ville-d-espalion-87c3dd93"
  },
  {
@@ -28963,7 +28963,7 @@
   "source_id": "datatourisme",
   "sector": "pont-de-salars",
   "external_id": "https://data.datatourisme.fr/31/b30a0a58-04c4-3a7a-87ac-fbe97240d7b4",
-  "description": "Sur la Via Podensis des Chemins de Saint-Jacques-de-Compostelle, Estaing, l'un des Plus Beaux Villages de France en Aveyron, se livre au détour de cette visite découverte des principaux édifices du village : le pont gothique - Monument Historique classé au Patrimoine Mondial de l'UNESCO - le Collège - maison Renaissance arborant l'écusson aux armes d'Estaing - l'église Saint Fleuret aux retables et vitraux remarquables... Au coeur du Nord Aveyron, dans la Vallée du Lot, petite et grande histoire du fief des Comtes d'Estaing !\n\nEn juillet et août, découvrez le village autrement lors des visites",
+  "description": "https://data.datatourisme.fr/500e7b0d-3bde-38c6-806d-68d314283642",
   "tldr": "Visitez ce Plus Beau Village de France, étape emblématique des Chemins de Compostelle.",
   "commune": "Estaing",
   "address": "24, rue François d'Estaing",
@@ -28985,7 +28985,7 @@
   ],
   "image_url": "https://medias.hit.enaveyron.fr/fiches/20011/images/697031_2411fcd9-c32f-4a0b-b14f-14fadf5e5acf/600.webp",
   "image_credit": "OT Terres d'Aveyron",
-  "image_page": null,
+  "image_page": "https://data.datatourisme.fr/31/b30a0a58-04c4-3a7a-87ac-fbe97240d7b4",
   "tags": [
    "dt:Castle"
   ],
@@ -28993,7 +28993,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-08-03",
+  "last_seen": "2026-08-05",
   "id": "decouverte-du-village-d-estaing-f3907b4a"
  },
  {
@@ -29002,10 +29002,10 @@
   "source_id": "datatourisme",
   "sector": "pont-de-salars",
   "external_id": "https://data.datatourisme.fr/31/6c1f309d-9784-36d0-9d59-5a993a3d0401",
-  "description": "Situé sur le chemin de Saint-Jacques-de-Compostelle venant du Puy (via Podensis, actuellement GR65), le village de Saint-Côme d'Olt abrite de nombreuses anciennes demeures des XVe et XVIe siècles en bon état de conservation ou restaurées. On y remarque également plusieurs toits en carène de bateau dont la charpente est dite \" à la Philibert \" du nom de son concepteur Philibert Delhormes, architecte du Roi Henri II. Au gré d'une promenade dans son enceinte, on y rencontre quelques beaux vestiges du passé.\nL'Eglise\nConstruite au XVIe siècle par l'architecte Jean Salvanh, également auteur du cloc",
+  "description": "https://data.datatourisme.fr/6ea5b393-6f8f-351a-8e24-d2168579056e",
   "tldr": "Découvrez ce village médiéval sur la route de Saint-Jacques-de-Compostelle et ses maisons anciennes.",
   "commune": "Saint-Côme-d'Olt",
-  "address": "Tourelle de la mairie",
+  "address": "6, rue Saint Damien",
   "lat": 44.51540218,
   "lon": 2.8148073,
   "url": "https://www.facebook.com/terresdaveyron.tourisme",
@@ -29024,15 +29024,16 @@
   ],
   "image_url": "https://medias.hit.enaveyron.fr/fiches/20012/images/300312_190c96e9-5d46-4098-bc7e-55e603b48130/600.webp",
   "image_credit": "Comité Départemental du Tourisme de l'Aveyron",
-  "image_page": null,
+  "image_page": "https://data.datatourisme.fr/31/6c1f309d-9784-36d0-9d59-5a993a3d0401",
   "tags": [
+   "dt:ArcheologicalSite",
    "dt:Church"
   ],
   "audience": [
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-08-03",
+  "last_seen": "2026-08-05",
   "id": "decouverte-du-village-de-st-come-d-olt-96f9b049"
  },
  {
@@ -34890,7 +34891,7 @@
   "source_id": "datatourisme",
   "sector": "pont-de-salars",
   "external_id": "https://data.datatourisme.fr/31/5ffd66ef-416f-3362-a993-38e3dbfe17c5",
-  "description": "Classée aux Monuments Historiques, cette église ravit les amateurs d'art roman. En effet, même si dans son architecture le style gothique prédomine, elle séduit le visiteur par ses trésors romans : un christ en bois polychrome, un chapiteau historié, un autel, une cuve baptismale en plomb. Elle s'inscrit aussi dans le XXIème siècle avec un ensemble de vitraux contemporains, oeuvre du peintre Daniel Coulet et du maître verrier Dominique Fleury. Les douze vitraux, réalisés entre 1996 et 2004, illustrent des épisodes de la vie de deux personnages qui bénéficient d'une grande dévotion dans la régi",
+  "description": "https://data.datatourisme.fr/5726e8b0-1358-39c4-9bde-89613d10346d",
   "tldr": "Plongez dans l'art roman caché sous une façade gothique : chapiteaux sculptés et trésors méconnus à Aubin.",
   "commune": "Aubin",
   "address": null,
@@ -34912,7 +34913,7 @@
   ],
   "image_url": "https://medias.hit.enaveyron.fr/fiches/16453/images/188335_c555dab9-5995-49c6-b77f-e5cb7b401116/600.webp",
   "image_credit": "Syndicat d'initiative d'Aubin",
-  "image_page": null,
+  "image_page": "https://data.datatourisme.fr/31/5ffd66ef-416f-3362-a993-38e3dbfe17c5",
   "tags": [
    "dt:Church"
   ],
@@ -34920,7 +34921,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-08-03",
+  "last_seen": "2026-08-05",
   "id": "eglise-notre-dame-d-aubin-ac9b00db"
  },
  {
@@ -38149,6 +38150,45 @@
  },
  {
   "name": "Escape Occitanie",
+  "category": "prestation",
+  "source_id": "datatourisme",
+  "sector": "pont-de-salars",
+  "external_id": "https://data.datatourisme.fr/31/741aeb8b-a53d-3de5-8686-561ba354e256",
+  "description": "https://data.datatourisme.fr/bfc44a9e-c884-3cda-b0c3-bfdcead16aa2",
+  "tldr": "Plongez dans une enquête immersive en équipe, entre amis ou en famille, pour résoudre des énigmes captivantes.",
+  "commune": "Saint-Affrique",
+  "address": "23, bd de Verdun",
+  "lat": 43.95805126,
+  "lon": 2.88307367,
+  "url": "http://www.facebook.com/EscapeSaintAffrique/",
+  "phone": "+33 6 52 36 95 58",
+  "opening_hours": null,
+  "fee": null,
+  "rating": null,
+  "rating_count": null,
+  "rating_source": null,
+  "rating_url": null,
+  "unusual": false,
+  "unusual_hint": false,
+  "quality": [],
+  "providers": [
+   "datatourisme"
+  ],
+  "image_url": "https://medias.hit.enaveyron.fr/fiches/7344/images/84858_6dbcd1df-6e31-4579-b7f3-c7a7691a52c8/600.webp",
+  "image_credit": "Loriane LANGLADE",
+  "image_page": "https://data.datatourisme.fr/31/741aeb8b-a53d-3de5-8686-561ba354e256",
+  "tags": [
+   "dt:LeisureSportActivityProvider"
+  ],
+  "audience": [
+   "tous"
+  ],
+  "first_seen": "2026-08-02",
+  "last_seen": "2026-08-05",
+  "id": "escape-occitanie-549c68df"
+ },
+ {
+  "name": "Escape Occitanie",
   "category": "sport-loisir",
   "source_id": "osm",
   "sector": "pont-de-salars",
@@ -38189,58 +38229,19 @@
   "id": "escape-occitanie-a4ba773d"
  },
  {
-  "name": "Escape Occitanie",
-  "category": "prestation",
-  "source_id": "datatourisme",
-  "sector": "pont-de-salars",
-  "external_id": "https://data.datatourisme.fr/31/741aeb8b-a53d-3de5-8686-561ba354e256",
-  "description": "https://data.datatourisme.fr/bfc44a9e-c884-3cda-b0c3-bfdcead16aa2",
-  "tldr": "Plongez dans une enquête immersive en équipe, entre amis ou en famille, pour résoudre des énigmes captivantes.",
-  "commune": "Saint-Affrique",
-  "address": "23, bd de Verdun",
-  "lat": 43.95805126,
-  "lon": 2.88307367,
-  "url": "http://www.facebook.com/EscapeSaintAffrique/",
-  "phone": "+33 6 52 36 95 58",
-  "opening_hours": null,
-  "fee": null,
-  "rating": null,
-  "rating_count": null,
-  "rating_source": null,
-  "rating_url": null,
-  "unusual": false,
-  "unusual_hint": false,
-  "quality": [],
-  "providers": [
-   "datatourisme"
-  ],
-  "image_url": "https://medias.hit.enaveyron.fr/fiches/7344/images/84858_6dbcd1df-6e31-4579-b7f3-c7a7691a52c8/600.webp",
-  "image_credit": "Loriane LANGLADE",
-  "image_page": "https://data.datatourisme.fr/31/741aeb8b-a53d-3de5-8686-561ba354e256",
-  "tags": [
-   "dt:LeisureSportActivityProvider"
-  ],
-  "audience": [
-   "tous"
-  ],
-  "first_seen": "2026-08-02",
-  "last_seen": "2026-08-05",
-  "id": "escape-occitanie-549c68df"
- },
- {
   "name": "Espace aquatique de Naucelle",
   "category": "parc-aquatique",
   "source_id": "datatourisme",
   "sector": "pont-de-salars",
   "external_id": "https://data.datatourisme.fr/31/23ea73fc-5f50-32d8-8d37-caaeb29cc71f",
-  "description": "Au coeur de l'ancienne sauveté de Naucelle, ce sont 4 bassins, 1 plongeoir, 100 transats, 2 solariums & 1 snack-buvette qui vous attendent.\nBien plus que d'aller simplement à la piscine, cet espace aquatique vous offre des activités pour plaire à tout le monde!\nIl propose également un \"Cercle aquatique\" : perfectionnement natation sportive, water-polo, plongeon, natation synchronisée, sauvetage sportif, palmes... Pour plus d'informations, cliquez ici.\nGroupes, colonies, centres aérés : merci de prendre rendez-vous avec le directeur.\n_____________________________________________________________",
+  "description": "https://data.datatourisme.fr/fa7b16a5-e51f-333b-b128-86f1f17f343d",
   "tldr": "Profitez de bassins, plongeoir et snack dans un espace aquatique en pleine nature, idéal pour se détendre.",
   "commune": "Naucelle",
-  "address": "Vallon des sports",
+  "address": "Place F. Mistral",
   "lat": 44.1992,
   "lon": 2.3375,
   "url": "https://www.payssegali.fr/",
-  "phone": "+33 6 16 87 14 37",
+  "phone": "+33 5 65 67 82 91",
   "opening_hours": null,
   "fee": null,
   "rating": null,
@@ -38255,7 +38256,7 @@
   ],
   "image_url": "https://medias.hit.enaveyron.fr/fiches/9159/images/566728_ab69842e-dd5e-44ba-ba18-341f1d2112f1/600.webp",
   "image_credit": null,
-  "image_page": null,
+  "image_page": "https://data.datatourisme.fr/31/23ea73fc-5f50-32d8-8d37-caaeb29cc71f",
   "tags": [
    "dt:SwimmingPool"
   ],
@@ -38263,7 +38264,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-08-03",
+  "last_seen": "2026-08-05",
   "id": "espace-aquatique-de-naucelle-6cfc8727"
  },
  {
@@ -40455,18 +40456,18 @@
   "id": "ferme-d-alcas-eea358e0"
  },
  {
-  "name": "Ferme d’abeilles L’Arc en Miel  (groupes)",
+  "name": "Ferme d’abeilles L’Arc en Miel",
   "category": "ferme",
   "source_id": "datatourisme",
   "sector": "pont-de-salars",
-  "external_id": "https://data.datatourisme.fr/31/1922859b-9569-31f8-ac48-1c4c711b170c",
-  "description": "Un vrai miel de fleurs, est-ce encore possible ?\nChez Nadia et Bruno, apiculteurs professionnels passionnés, la question se pose chaque jour. Dans leur ferme bio du Pays du Roquefort, ils explorent une apiculture où les abeilles retrouvent plus d’autonomie grâce à des écosystèmes d'exception.\nFace aux défis actuels, L’Arc en Miel s'engage dans des pratiques d'apiculture exigeantes :\n- Moins de CO², grâce à des choix minutieux de terroirs locaux préservés\n- Des ruches au cœur d’écosystèmes riches, favorisant la résilience des abeilles\n- Une apiculture qui s’adapte au vivant, en phase avec les r",
+  "external_id": "https://data.datatourisme.fr/31/83d3aecb-f9a5-39f5-91bb-dbd5947bf666",
+  "description": "https://data.datatourisme.fr/f16de468-ae9d-3e5f-a7bb-d70c3e278553",
   "tldr": "Découvrez le miel bio de Nadia et Bruno, fabriqué avec passion dans leur ferme du Pays du Roquefort.",
   "commune": "Saint-Affrique",
-  "address": "Mas de Rouby haut",
-  "lat": 43.94470456,
-  "lon": 2.87448524,
-  "url": "http://www.facebook.com/Larcenmiel",
+  "address": "633 Chemin du Mas de Rouby",
+  "lat": 43.94454584,
+  "lon": 2.87419604,
+  "url": "https://www.facebook.com/Larcenmiel",
   "phone": "+33 6 29 78 03 00",
   "opening_hours": null,
   "fee": null,
@@ -40480,18 +40481,18 @@
   "providers": [
    "datatourisme"
   ],
-  "image_url": "https://medias.hit.enaveyron.fr/fiches/7493/images/88593_b988e976-67ef-4e7a-a737-4e0efd00b3ca/600.webp",
-  "image_credit": "David Caillou",
-  "image_page": null,
+  "image_url": "https://medias.hit.enaveyron.fr/fiches/20508/images/320505_e5c34cc3-5905-470b-9eca-92871e3463ec/600.webp",
+  "image_credit": "Arnaud Caillou",
+  "image_page": "https://data.datatourisme.fr/31/83d3aecb-f9a5-39f5-91bb-dbd5947bf666",
   "tags": [
-   "dt:Producer"
+   "dt:Farm"
   ],
   "audience": [
    "tous"
   ],
-  "first_seen": "2026-08-02",
-  "last_seen": "2026-08-03",
-  "id": "ferme-dabeilles-larc-en-miel-groupes-333863a7"
+  "first_seen": "2026-08-05",
+  "last_seen": "2026-08-05",
+  "id": "ferme-dabeilles-larc-en-miel-d45ea397"
  },
  {
   "name": "Ferme de Bouniols",
@@ -41398,45 +41399,6 @@
  {
   "name": "Ferme Moulini",
   "category": "ferme",
-  "source_id": "osm",
-  "sector": "pont-de-salars",
-  "external_id": "node/12517964965",
-  "description": "",
-  "tldr": null,
-  "commune": null,
-  "address": null,
-  "lat": 44.4370671,
-  "lon": 2.4329041,
-  "url": "https://www.moulini.fr/",
-  "phone": "+33649618673",
-  "opening_hours": "We 17:30-19:00; Fr 19:00-20:00",
-  "fee": null,
-  "rating": null,
-  "rating_count": null,
-  "rating_source": null,
-  "rating_url": null,
-  "unusual": false,
-  "unusual_hint": true,
-  "quality": [],
-  "providers": [
-   "osm"
-  ],
-  "image_url": null,
-  "image_credit": null,
-  "image_page": null,
-  "tags": [
-   "osm:shop=farm"
-  ],
-  "audience": [
-   "tous"
-  ],
-  "first_seen": "2026-08-02",
-  "last_seen": "2026-08-05",
-  "id": "ferme-moulini-28c45cfd"
- },
- {
-  "name": "Ferme Moulini",
-  "category": "ferme",
   "source_id": "datatourisme",
   "sector": "pont-de-salars",
   "external_id": "https://data.datatourisme.fr/31/d2acec11-afa3-3bea-8eaa-8489b0bed1a7",
@@ -41472,6 +41434,45 @@
   "first_seen": "2026-08-02",
   "last_seen": "2026-08-05",
   "id": "ferme-moulini-f061b65b"
+ },
+ {
+  "name": "Ferme Moulini",
+  "category": "ferme",
+  "source_id": "osm",
+  "sector": "pont-de-salars",
+  "external_id": "node/12517964965",
+  "description": "",
+  "tldr": null,
+  "commune": null,
+  "address": null,
+  "lat": 44.4370671,
+  "lon": 2.4329041,
+  "url": "https://www.moulini.fr/",
+  "phone": "+33649618673",
+  "opening_hours": "We 17:30-19:00; Fr 19:00-20:00",
+  "fee": null,
+  "rating": null,
+  "rating_count": null,
+  "rating_source": null,
+  "rating_url": null,
+  "unusual": false,
+  "unusual_hint": true,
+  "quality": [],
+  "providers": [
+   "osm"
+  ],
+  "image_url": null,
+  "image_credit": null,
+  "image_page": null,
+  "tags": [
+   "osm:shop=farm"
+  ],
+  "audience": [
+   "tous"
+  ],
+  "first_seen": "2026-08-02",
+  "last_seen": "2026-08-05",
+  "id": "ferme-moulini-28c45cfd"
  },
  {
   "name": "Ferme pédagogique l'Arche du Rougier",
@@ -41558,14 +41559,14 @@
   "source_id": "datatourisme",
   "sector": "pont-de-salars",
   "external_id": "https://data.datatourisme.fr/31/8460ec95-16db-3cfb-8cf4-26d17e2c383f",
-  "description": "Visite de l'élevage de brebis laitières et des agneaux (en fonction de la saison, soit juillet-août-septembre et mars) et traite des brebis en manège. Visite de la fromagerie : présentation vidéo de 10 mn de la fabrication de fromages à la ferme.  Dégustation, rafraichissement et vente de fromages et produits du  terroir.",
+  "description": "https://data.datatourisme.fr/14659c87-d7e1-38b3-a2de-d942fbb19b8d",
   "tldr": "Visitez un élevage de brebis laitières et une fromagerie artisanale, avec traite en manège et présentation vidéo.",
   "commune": "Sévérac d'Aveyron",
   "address": "Blayac, Sévérac-le-Château",
   "lat": 44.328,
   "lon": 3.1181,
   "url": "https://www.ferme-seguin.com/",
-  "phone": "+33 6 30 05 26 08",
+  "phone": "+33 5 65 47 62 91",
   "opening_hours": null,
   "fee": null,
   "rating": null,
@@ -41580,7 +41581,7 @@
   ],
   "image_url": "https://medias.hit.enaveyron.fr/fiches/15709/images/177944_12342dc4-0bb8-4759-a4af-69de76dbd962/600.webp",
   "image_credit": "Imag'drin",
-  "image_page": null,
+  "image_page": "https://data.datatourisme.fr/31/8460ec95-16db-3cfb-8cf4-26d17e2c383f",
   "tags": [
    "dt:Farm"
   ],
@@ -41588,7 +41589,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-08-03",
+  "last_seen": "2026-08-05",
   "id": "ferme-seguin-gaec-des-grands-causses-ed63886e"
  },
  {
@@ -47946,13 +47947,13 @@
   "source_id": "datatourisme",
   "sector": "pont-de-salars",
   "external_id": "https://data.datatourisme.fr/31/75f29eda-ad9b-3117-afa6-7a67747e274b",
-  "description": "L'ESPRIT ITINEYRON\n\nRouler au plus près de la nature\n\nITINEYRON, c'est le fruit d'une longue réflexion sur notre monde et son fonctionnement. C'est le mélange savant d'une passion pour le vélo et de l'amour pour un territoire atypique, le Sud Aveyron. C'est aussi une expérience sportive à vivre à travers une nature préservée, des savoir-faire uniques et une gastronomie authentique.\nExplorez les pistes les plus folles !\n\nL‘aventure à vélo en itinérance pour toutes et tous de 7 à 77 ans. Initié ou non au vélo, les parcours sont imaginés et adaptés pour tous les niveaux. C'est pourquoi, chaque gr",
+  "description": "https://data.datatourisme.fr/4c018f8e-f43d-3979-97a8-5bc5b6c71f8a",
   "tldr": "Explorez l'Aveyron à vélo, au plus près de la nature, avec des séjours adaptés à votre rythme.",
   "commune": "Saint-Affrique",
   "address": null,
   "lat": 43.9587,
   "lon": 2.88712917,
-  "url": "https://www.facebook.com/profile.php?id=100090204945658",
+  "url": "https://itineyron.fr/",
   "phone": "+33 6 71 33 05 02",
   "opening_hours": null,
   "fee": null,
@@ -47968,7 +47969,7 @@
   ],
   "image_url": "https://medias.hit.enaveyron.fr/fiches/18020/images/239160_3aec470d-4397-4887-84ee-8031f0f006a6/600.webp",
   "image_credit": "Itineyron",
-  "image_page": null,
+  "image_page": "https://data.datatourisme.fr/31/75f29eda-ad9b-3117-afa6-7a67747e274b",
   "tags": [
    "dt:LeisureSportActivityProvider"
   ],
@@ -47976,7 +47977,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-08-03",
+  "last_seen": "2026-08-05",
   "id": "itineyron-sejour-a-velo-en-aveyron-83d0fd67"
  },
  {
@@ -51659,45 +51660,6 @@
  },
  {
   "name": "La Cité de Pierres",
-  "category": "visite",
-  "source_id": "osm",
-  "sector": "pont-de-salars",
-  "external_id": "node/10777814505",
-  "description": "",
-  "tldr": null,
-  "commune": null,
-  "address": null,
-  "lat": 44.1378453,
-  "lon": 3.2031347,
-  "url": "https://lacitedepierres.com/en/",
-  "phone": null,
-  "opening_hours": null,
-  "fee": null,
-  "rating": null,
-  "rating_count": null,
-  "rating_source": null,
-  "rating_url": null,
-  "unusual": false,
-  "unusual_hint": true,
-  "quality": [],
-  "providers": [
-   "osm"
-  ],
-  "image_url": null,
-  "image_credit": null,
-  "image_page": null,
-  "tags": [
-   "osm:tourism=attraction"
-  ],
-  "audience": [
-   "tous"
-  ],
-  "first_seen": "2026-08-02",
-  "last_seen": "2026-08-05",
-  "id": "la-cite-de-pierres-24151db8"
- },
- {
-  "name": "La Cité de Pierres",
   "category": "sport-loisir",
   "source_id": "datatourisme",
   "sector": "pont-de-salars",
@@ -51734,6 +51696,45 @@
   "first_seen": "2026-08-02",
   "last_seen": "2026-08-05",
   "id": "la-cite-de-pierres-0872f029"
+ },
+ {
+  "name": "La Cité de Pierres",
+  "category": "visite",
+  "source_id": "osm",
+  "sector": "pont-de-salars",
+  "external_id": "node/10777814505",
+  "description": "",
+  "tldr": null,
+  "commune": null,
+  "address": null,
+  "lat": 44.1378453,
+  "lon": 3.2031347,
+  "url": "https://lacitedepierres.com/en/",
+  "phone": null,
+  "opening_hours": null,
+  "fee": null,
+  "rating": null,
+  "rating_count": null,
+  "rating_source": null,
+  "rating_url": null,
+  "unusual": false,
+  "unusual_hint": true,
+  "quality": [],
+  "providers": [
+   "osm"
+  ],
+  "image_url": null,
+  "image_credit": null,
+  "image_page": null,
+  "tags": [
+   "osm:tourism=attraction"
+  ],
+  "audience": [
+   "tous"
+  ],
+  "first_seen": "2026-08-02",
+  "last_seen": "2026-08-05",
+  "id": "la-cite-de-pierres-24151db8"
  },
  {
   "name": "La Cité de Pierres à Montpellier-Le-Vieux",
@@ -53191,14 +53192,14 @@
   "source_id": "datatourisme",
   "sector": "pont-de-salars",
   "external_id": "https://data.datatourisme.fr/31/399206d2-d4b0-326b-8e18-657569719959",
-  "description": "Visite guidée pédagogique de l'élevage de Chèvres Angora et découverte de la transformation de la laine, de la toison brute jusqu’à la pelote et à la confection de vêtements.\nLa visite débute dans la chèvrerie pour comprendre les différentes étapes du tri de la laine et sa transformation, puis observer et caresser les chèvres angora, que l'on accompagne au pré distant de 50 mètres de la chèvrerie.\nLa visite se poursuit dans une jolie salle d'accueil en pierres où l'on visionne la vidéo de transformation de la laine, de la toison brute jusqu'à la pelote et la confection de vêtements.\nAprès avoi",
+  "description": "https://data.datatourisme.fr/0bc1a73f-5091-34e9-b348-702b30afc6c3",
   "tldr": "Visitez une ferme pédagogique dédiée aux chèvres Angora et à la transformation de leur laine en pelotes.",
   "commune": "Ségur",
   "address": null,
   "lat": 44.330793,
   "lon": 2.851663,
-  "url": "https://www.lafermedupuechfevrier.com/",
-  "phone": "+33 6 82 49 62 24",
+  "url": null,
+  "phone": null,
   "opening_hours": null,
   "fee": null,
   "rating": null,
@@ -53213,7 +53214,7 @@
   ],
   "image_url": "https://medias.hit.enaveyron.fr/fiches/46890/images/806028_db9a3bdb-00ea-41ba-81a4-20fc5cf8a0c8/600.webp",
   "image_credit": "La Ferme du Puech Février",
-  "image_page": null,
+  "image_page": "https://data.datatourisme.fr/31/399206d2-d4b0-326b-8e18-657569719959",
   "tags": [
    "dt:Farm"
   ],
@@ -53221,7 +53222,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-08-03",
+  "last_seen": "2026-08-05",
   "id": "la-ferme-de-puech-fevrier-8271782b"
  },
  {
@@ -53427,8 +53428,8 @@
   "source_id": "datatourisme",
   "sector": "pont-de-salars",
   "external_id": "https://data.datatourisme.fr/31/8f86d15d-120d-322e-920e-93fc84dcc3bc",
-  "description": "A l'origine du Roquefort, il y a le lait de brebis. Vous découvrirez la vie des brebis sur la ferme, les diverses installations et matériel d'élevage mis en place pour leur bien-être, ainsi que l'exigence de qualité que nous poursuivons (Agriculture Biologique). Dégustation de Roquefort ou fromages réalisés avec le lait de nos brebis et visite guidée de l'exploitation sur réservation (2h environ). Réalisé et utilisé à chaque visite, la salle d'accueil avec projection d'un film sur la vie de la ferme au rythme des 4 saisons est terminée.",
-  "tldr": null,
+  "description": "https://data.datatourisme.fr/995db2b4-00a4-339a-ac92-d5f462551297",
+  "tldr": "Découvrez des animaux de la ferme, des ateliers d'artisanat local et des produits du terroir à Salles-la-Source.",
   "commune": "Salles-la-Source",
   "address": "Les Vézinies",
   "lat": 44.4359,
@@ -53449,15 +53450,16 @@
   ],
   "image_url": "https://medias.hit.enaveyron.fr/fiches/20583/images/323600_f6d5dce0-a2fa-4748-b7a4-7dd12a48705f/600.webp",
   "image_credit": "OFFICE DE TOURISME de CONQUES-MARCILLAC",
-  "image_page": null,
+  "image_page": "https://data.datatourisme.fr/31/8f86d15d-120d-322e-920e-93fc84dcc3bc",
   "tags": [
+   "dt:Farm",
    "dt:Producer"
   ],
   "audience": [
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-08-03",
+  "last_seen": "2026-08-05",
   "id": "la-ferme-des-vezinies-29d3a828"
  },
  {
@@ -53506,7 +53508,7 @@
   "source_id": "datatourisme",
   "sector": "pont-de-salars",
   "external_id": "https://data.datatourisme.fr/31/ddd7f0aa-6f1a-3569-90f9-d99f4a066f1e",
-  "description": "Accompagné d'un paysan, la visite de la ferme du Bousquet vous plongera au coeur de notre passion !\nVous découvrirez notre métier, nos animaux, notre terre et ce qu'elle offre.\nFaites de cette aventure un véritable moment de partage et d'émotion...\nLes visites sont possibles les mercredis, toute l'année, sur rendez-vous avec Virginie",
+  "description": "https://data.datatourisme.fr/20c2a5ac-522a-38b7-a35d-0d731513f5c0",
   "tldr": "Plongez dans le quotidien d'une ferme avec ses animaux et ses terres, guidé par un paysan passionné.",
   "commune": "Calmels-et-le-Viala",
   "address": "Le Bousquet",
@@ -53528,7 +53530,7 @@
   ],
   "image_url": "https://medias.hit.enaveyron.fr/fiches/15209/images/380596_879fea03-7d3e-4063-8020-04c8b0827d8c/600.webp",
   "image_credit": "La ferme du Bousquet",
-  "image_page": null,
+  "image_page": "https://data.datatourisme.fr/31/ddd7f0aa-6f1a-3569-90f9-d99f4a066f1e",
   "tags": [
    "dt:Farm"
   ],
@@ -53536,7 +53538,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-08-03",
+  "last_seen": "2026-08-05",
   "id": "la-ferme-du-bousquet-136d67e0"
  },
  {
@@ -54646,14 +54648,14 @@
   "source_id": "datatourisme",
   "sector": "pont-de-salars",
   "external_id": "https://data.datatourisme.fr/31/ba44a292-af73-3f32-835f-3dcc8f03b8ea",
-  "description": "Visite d'une entreprise agro-alimentaire : vidéo sur l'histoire et la fabrication d'une spécialité aveyronnaise : les tripous.  Vues sur la fabrication. Musée avec matériel utilisé en conserverie. Maquette. A voir sans détour !!\n Il y a des visites qui ne laissent pas indifférente. Celle de notre conserverie vous révèlera la tradition de notre savoir-faire savamment conservé depuis 1966 par trois générations. Découvrez nos ateliers. Le geste appliqué de nos \"rouleuses\", la cadence harmonieuse des mises en boite, la magie des autoclaves qui transpirent d'impatience ! poursuivez par la visite de",
+  "description": "https://data.datatourisme.fr/ede26aeb-b3b6-3bbe-81fc-5c302be0dbce",
   "tldr": "Visitez une conserverie de tripous et plongez dans l'histoire d'une spécialité aveyronnaise à Naucelle.",
   "commune": "Naucelle",
   "address": "Naucelle Gare",
   "lat": 44.1792,
   "lon": 2.36027778,
   "url": "https://www.lanaucelloise.fr/",
-  "phone": "+33 5 65 69 26 66",
+  "phone": "+33 5 65 69 20 20",
   "opening_hours": null,
   "fee": null,
   "rating": null,
@@ -54668,7 +54670,7 @@
   ],
   "image_url": "https://medias.hit.enaveyron.fr/fiches/7598/images/89713_19808a4c-d623-421b-ab32-f11ade99bdf2/600.webp",
   "image_credit": "La Naucelloise",
-  "image_page": null,
+  "image_page": "https://data.datatourisme.fr/31/ba44a292-af73-3f32-835f-3dcc8f03b8ea",
   "tags": [
    "dt:IndustrialSite"
   ],
@@ -54676,7 +54678,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-08-03",
+  "last_seen": "2026-08-05",
   "id": "la-naucelloise-0c9b94af"
  },
  {
@@ -54685,7 +54687,7 @@
   "source_id": "datatourisme",
   "sector": "pont-de-salars",
   "external_id": "https://data.datatourisme.fr/31/5d8fc614-13b9-36a6-930e-82ca3f700d0f",
-  "description": "L'objectif pédagogique de la ferme est  la découverte des animaux domestiques  lors de moments de partage  entre l'animal et l'humain comme la  caresse, le pansage ou encore le nourrissage ; l'occasion aussi d'introduire les notions de bien être animal, de physiologie, de besoins. Les publics concernés par ces activités sont les particuliers, les écoles , les centres de loisirs...\nLa ferme accueille également les structures accueillant des personnes en situation de handicap (EHPAD, MAS, IME, IEM...) pour des activités à visée thérapeutique.",
+  "description": "https://data.datatourisme.fr/b7bd9b30-fff5-34be-b8fd-714c578f34bd",
   "tldr": "Rencontrez des animaux de la ferme et partagez des moments de complicité avec eux à Flavin.",
   "commune": "Flavin",
   "address": "405, Chemin de la Trémolade",
@@ -54707,15 +54709,16 @@
   ],
   "image_url": "https://medias.hit.enaveyron.fr/fiches/20538/images/320740_a0d945c4-796f-458a-999b-fa10bae2019c/600.webp",
   "image_credit": "OFFICE DE TOURISME DE PARELOUP LEVEZOU",
-  "image_page": null,
+  "image_page": "https://data.datatourisme.fr/31/5d8fc614-13b9-36a6-930e-82ca3f700d0f",
   "tags": [
+   "dt:Farm",
    "dt:Producer"
   ],
   "audience": [
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-08-03",
+  "last_seen": "2026-08-05",
   "id": "la-petite-ferme-natur-ailes-9e828c09"
  },
  {
@@ -57654,7 +57657,7 @@
   "source_id": "datatourisme",
   "sector": "pont-de-salars",
   "external_id": "https://data.datatourisme.fr/31/f3083fc3-8e76-3537-9ad4-a6edbe5eea70",
-  "description": "Faites 2 équipes de plusieurs joueurs/joueuses et défiez-vous en DUEL ! Vous aurez 1H pour tester 5 jeux choisis par un Animateur du jeu qui sera également arbitre pour s'assurer de la réussite de la séance. Organisez plusieurs séances pour découvrir le plus de jeux possible parmi les 40 proposés.",
+  "description": "https://data.datatourisme.fr/29d48e43-f582-3d62-a775-35d1d0f48cf5",
   "tldr": "Participez à des défis ludiques en équipe avec des jeux variés animés par un professionnel.",
   "commune": "Rodez",
   "address": "9/11 avenue Durand de Gros",
@@ -57676,7 +57679,7 @@
   ],
   "image_url": "https://medias.hit.enaveyron.fr/fiches/46419/images/790771_f1957846-b26f-42ad-8067-1b2068dbe4fe/600.webp",
   "image_credit": "OFFICE DE TOURISME DE RODEZ AGGLOMERATION",
-  "image_page": null,
+  "image_page": "https://data.datatourisme.fr/31/f3083fc3-8e76-3537-9ad4-a6edbe5eea70",
   "tags": [
    "dt:LeisureSportActivityProvider"
   ],
@@ -57684,7 +57687,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-08-03",
+  "last_seen": "2026-08-05",
   "id": "le-duel-10af3b71"
  },
  {
@@ -58517,7 +58520,7 @@
   "source_id": "datatourisme",
   "sector": "pont-de-salars",
   "external_id": "https://data.datatourisme.fr/31/e2d0ea4a-95a6-3288-ae8a-146283b140e4",
-  "description": "1h30 de visite c''est ce que vous proposent Marie-José Desblats dans son jardin privé  \"On peut parler d'addiction. On aime, puis on se passionne pour son propre plaisir mais surtout pour partager avec tout le monde\". \nÀ chaque mois sa fleuraison. Marie-José choisit ses plantations selon la rusticité et la floraison : Mai pour les tulipes, géraniums, pivoines; Juin pour les rosiers anciens, pavots, campanules; Juillet pour les clématites, hémérocalles, géraniums; Août pour les hibiscus, dahlias, hortensia et Septembre pour les sauges, bégonias, asters. Un jardin à l'anglaise où les senteurs et",
+  "description": "https://data.datatourisme.fr/73224109-686f-3fe9-9bb3-d9612188448d",
   "tldr": "Plongez dans un jardin privé de 1h30, où plantes rares et passion se mêlent pour émerveiller les sens.",
   "commune": "Cassagnes-Bégonhès",
   "address": "Lieu-dit Mourot",
@@ -58539,7 +58542,7 @@
   ],
   "image_url": "https://medias.hit.enaveyron.fr/fiches/5131/images/696152_6995d960-aede-421a-9331-aca97d315826/600.webp",
   "image_credit": null,
-  "image_page": null,
+  "image_page": "https://data.datatourisme.fr/31/e2d0ea4a-95a6-3288-ae8a-146283b140e4",
   "tags": [
    "dt:NaturalHeritage"
   ],
@@ -58547,7 +58550,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-08-03",
+  "last_seen": "2026-08-05",
   "id": "le-jardin-des-plantes-de-mourot-932fd316"
  },
  {
@@ -60748,13 +60751,13 @@
   "source_id": "datatourisme",
   "sector": "pont-de-salars",
   "external_id": "https://data.datatourisme.fr/31/76ade20b-ff61-3295-a9c9-2c07aa32493d",
-  "description": "Parcours \"La route enchantée\" - tout public : \n1h : 20€/pers  - accessible aux fauteuils roulants et poussettes\n\nParcours VIP (1 alpaga pour 2 personnes) \"La boucle des feuilles\" - enfants à partir de 8 ans et non accessible aux personnes à mobilité réduite : \n1h30 : 40€/pers (+8ans)\nSur réservation uniquement et suivant les conditions météorologiques",
+  "description": "https://data.datatourisme.fr/42c592e5-dfb3-3efb-8bf0-f8508152086f",
   "tldr": "Promenez-vous avec des alpagas sur la 'route enchantée' à Saint Geniez d’Olt, accessible à tous et en fauteuil.",
   "commune": "Saint Geniez d'Olt et d'Aubrac",
   "address": "Le Cayzac",
   "lat": 44.4744,
   "lon": 3.0129,
-  "url": "https://www.facebook.com/profile.php?id=61555722301542",
+  "url": null,
   "phone": "+33 6 77 47 04 37",
   "opening_hours": null,
   "fee": null,
@@ -60770,7 +60773,7 @@
   ],
   "image_url": "https://medias.hit.enaveyron.fr/fiches/46024/images/866834_23214613-fd25-4af4-9810-9b47d3b5f9a3/600.webp",
   "image_credit": "OT Causses Aubrac",
-  "image_page": null,
+  "image_page": "https://data.datatourisme.fr/31/76ade20b-ff61-3295-a9c9-2c07aa32493d",
   "tags": [
    "dt:LeisureSportActivityProvider"
   ],
@@ -60778,7 +60781,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-08-03",
+  "last_seen": "2026-08-05",
   "id": "les-alpagouilles-elevage-d-alpagas-groupes-73593032"
  },
  {
@@ -61289,6 +61292,45 @@
   "id": "les-chevaux-de-julie-9905c4bc"
  },
  {
+  "name": "Les chevaux du rajal",
+  "category": "prestation",
+  "source_id": "datatourisme",
+  "sector": "pont-de-salars",
+  "external_id": "https://data.datatourisme.fr/31/1ea28c28-b0e5-35ea-8276-ea41277dae0f",
+  "description": "https://data.datatourisme.fr/7f58294b-c154-3aa8-9b95-5dd6c8af4cde",
+  "tldr": "Apprenez l’équitation de l’initiation au perfectionnement dans un centre équestre à La Bastide-Pradines.",
+  "commune": "La Bastide-Pradines",
+  "address": "2465 route des Prades",
+  "lat": 44.0073,
+  "lon": 3.0754,
+  "url": "https://www.facebook.com/leschevauxdurajal",
+  "phone": "+33 6 61 18 92 56",
+  "opening_hours": null,
+  "fee": null,
+  "rating": null,
+  "rating_count": null,
+  "rating_source": null,
+  "rating_url": null,
+  "unusual": false,
+  "unusual_hint": false,
+  "quality": [],
+  "providers": [
+   "datatourisme"
+  ],
+  "image_url": "https://medias.hit.enaveyron.fr/fiches/18060/images/241938_696bd347-996d-4940-8906-f5c991a2b7fe/600.webp",
+  "image_credit": "Virginie Govignon - OT Larzac Vallées",
+  "image_page": "https://data.datatourisme.fr/31/1ea28c28-b0e5-35ea-8276-ea41277dae0f",
+  "tags": [
+   "dt:LeisureSportActivityProvider"
+  ],
+  "audience": [
+   "tous"
+  ],
+  "first_seen": "2026-08-02",
+  "last_seen": "2026-08-05",
+  "id": "les-chevaux-du-rajal-3cc0a7b5"
+ },
+ {
   "name": "Les Chevaux du Rajal",
   "category": "sport-loisir",
   "source_id": "osm",
@@ -61328,45 +61370,6 @@
   "first_seen": "2026-08-02",
   "last_seen": "2026-08-05",
   "id": "les-chevaux-du-rajal-6c135862"
- },
- {
-  "name": "Les chevaux du rajal",
-  "category": "prestation",
-  "source_id": "datatourisme",
-  "sector": "pont-de-salars",
-  "external_id": "https://data.datatourisme.fr/31/1ea28c28-b0e5-35ea-8276-ea41277dae0f",
-  "description": "https://data.datatourisme.fr/7f58294b-c154-3aa8-9b95-5dd6c8af4cde",
-  "tldr": "Apprenez l’équitation de l’initiation au perfectionnement dans un centre équestre à La Bastide-Pradines.",
-  "commune": "La Bastide-Pradines",
-  "address": "2465 route des Prades",
-  "lat": 44.0073,
-  "lon": 3.0754,
-  "url": "https://www.facebook.com/leschevauxdurajal",
-  "phone": "+33 6 61 18 92 56",
-  "opening_hours": null,
-  "fee": null,
-  "rating": null,
-  "rating_count": null,
-  "rating_source": null,
-  "rating_url": null,
-  "unusual": false,
-  "unusual_hint": false,
-  "quality": [],
-  "providers": [
-   "datatourisme"
-  ],
-  "image_url": "https://medias.hit.enaveyron.fr/fiches/18060/images/241938_696bd347-996d-4940-8906-f5c991a2b7fe/600.webp",
-  "image_credit": "Virginie Govignon - OT Larzac Vallées",
-  "image_page": "https://data.datatourisme.fr/31/1ea28c28-b0e5-35ea-8276-ea41277dae0f",
-  "tags": [
-   "dt:LeisureSportActivityProvider"
-  ],
-  "audience": [
-   "tous"
-  ],
-  "first_seen": "2026-08-02",
-  "last_seen": "2026-08-05",
-  "id": "les-chevaux-du-rajal-3cc0a7b5"
  },
  {
   "name": "Les Chèvres de Coubisou",
@@ -62585,7 +62588,7 @@
   "source_id": "datatourisme",
   "sector": "pont-de-salars",
   "external_id": "https://data.datatourisme.fr/31/c84015fe-d5a3-3445-8b13-adbc797405bb",
-  "description": "Durant les vacances scolaires, réservez votre créneau horaire pour profiter de 1h ou 2h de châteaux gonflables sur un terrain privé à Saint Just Sur Viaur.\n\n> 2 structures sont à votre disposition : \n\n-\tLe château bulles pour les tout-petits \n\n-\tLe bouncer jungle avec obstacles\n\n> Les + :\nUn chalet cosy est à votre disposition ainsi que quelques jeux pour varier les activités : molkky, table de ping-pong, boules de pétanques (plastiques), jeu de 7 familles, cricket…\n\nVous pouvez aussi, ne rien faire, assis sur des rocking-chair sur la terrasse du chalet, et regarder les enfants s'amuser. \n\n> P",
+  "description": "https://data.datatourisme.fr/45d7104e-262d-3f4f-8725-6e1f506cc347",
   "tldr": "Amusez-vous sur des châteaux gonflables géants dans un cadre privé, idéal pour les enfants pendant les vacances.",
   "commune": "Saint-Just-sur-Viaur",
   "address": "Lieu-dit La Florencie",
@@ -62607,7 +62610,7 @@
   ],
   "image_url": "https://medias.hit.enaveyron.fr/fiches/4897/images/42291_dc5e2e1e-361f-49d7-a63f-c1e57499e0a5/600.webp",
   "image_credit": "Les Jeux de Sach",
-  "image_page": null,
+  "image_page": "https://data.datatourisme.fr/31/c84015fe-d5a3-3445-8b13-adbc797405bb",
   "tags": [
    "dt:LeisureSportActivityProvider"
   ],
@@ -62615,7 +62618,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-08-03",
+  "last_seen": "2026-08-05",
   "id": "les-jeux-de-sach-94100aa4"
  },
  {
@@ -64806,18 +64809,18 @@
   "id": "locavor-pont-de-salars-a91c9c09"
  },
  {
-  "name": "Loisirs Loc VTT",
+  "name": "Loisirs Loc VTT (groupes)",
   "category": "prestation",
   "source_id": "datatourisme",
   "sector": "pont-de-salars",
-  "external_id": "https://data.datatourisme.fr/31/ba66041b-43ba-348a-ad2e-b6e414a78095",
-  "description": "Loisirs loc vtt  vous propose : l'organisation, l'encadrement de randonnées, l'apprentissage de techniques essentielles à la pratique du vtt, la location et la vente de vtt, de vélos à assistance électrique, la reconnaissance d'itinéraires, le montage de produits, séjours, week-ends multi-activités...",
+  "external_id": "https://data.datatourisme.fr/31/889c377a-aac8-3a41-bf97-81a77171a1bb",
+  "description": "https://data.datatourisme.fr/d2997b18-08b3-326f-9a06-5071c1cab5a6",
   "tldr": "Explorez les chemins de Druelle Balsac à VTT, encadré par des passionnés pour maîtriser les techniques essentielles.",
   "commune": "Druelle Balsac",
-  "address": "Ampiac,Druelle",
-  "lat": 44.3599,
-  "lon": 2.5054,
-  "url": "https://www.loisirs-loc-vtt.com/",
+  "address": "Ampiac",
+  "lat": 44.3600368,
+  "lon": 2.50524605,
+  "url": "http://www.loisirs-loc-vtt.com/",
   "phone": "+33 6 86 43 24 90",
   "opening_hours": null,
   "fee": null,
@@ -64831,18 +64834,18 @@
   "providers": [
    "datatourisme"
   ],
-  "image_url": "https://medias.hit.enaveyron.fr/fiches/5168/images/46276_b7392376-683f-4eb3-900f-89067a7cc58d/600.webp",
-  "image_credit": "OFFICE DE TOURISME DU GRAND RODEZ",
-  "image_page": null,
+  "image_url": "https://medias.hit.enaveyron.fr/fiches/4968/images/42571_9c2104f0-eda9-46b8-914c-c6b33c87bad1/600.webp",
+  "image_credit": "Comité Départemental du Tourisme de l'Aveyron",
+  "image_page": "https://data.datatourisme.fr/31/889c377a-aac8-3a41-bf97-81a77171a1bb",
   "tags": [
    "dt:LeisureSportActivityProvider"
   ],
   "audience": [
    "tous"
   ],
-  "first_seen": "2026-08-02",
-  "last_seen": "2026-08-03",
-  "id": "loisirs-loc-vtt-170c78b5"
+  "first_seen": "2026-08-05",
+  "last_seen": "2026-08-05",
+  "id": "loisirs-loc-vtt-groupes-f63cfe43"
  },
  {
   "name": "Lors de la fête votive de Saint Léons, dans le cadre d'un été avec Monsieur Fabre, 3eme édition",
@@ -65201,7 +65204,7 @@
   "source_id": "datatourisme",
   "sector": "pont-de-salars",
   "external_id": "https://data.datatourisme.fr/31/9f5f9217-9d44-3ab0-b1c9-598f330609dd",
-  "description": "Parcours de Mini Golf (9 Trous)",
+  "description": "https://data.datatourisme.fr/6c87f529-51ef-326d-8f96-2581f068de7e",
   "tldr": "Testez votre adresse sur ce parcours de Mini Golf de 9 trous, idéal pour une pause ludique.",
   "commune": "Saint-Rome-de-Cernon",
   "address": "Route de St-Rome-de-Tarn - D993 - KM 455",
@@ -65223,7 +65226,7 @@
   ],
   "image_url": "https://medias.hit.enaveyron.fr/fiches/19621/images/288072_079575ea-7f35-45c7-8c8d-2882b18897a2/600.webp",
   "image_credit": "ROQUEFORT TOURISME",
-  "image_page": null,
+  "image_page": "https://data.datatourisme.fr/31/9f5f9217-9d44-3ab0-b1c9-598f330609dd",
   "tags": [
    "dt:LeisureSportActivityProvider"
   ],
@@ -65231,47 +65234,8 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-08-03",
-  "id": "ludi-golf-parc-mini-golf-ae9dd9ff"
- },
- {
-  "name": "Ludothèque",
-  "category": "ludotheque",
-  "source_id": "osm",
-  "sector": "pont-de-salars",
-  "external_id": "node/2068045674",
-  "description": "",
-  "tldr": null,
-  "commune": null,
-  "address": null,
-  "lat": 44.3660896,
-  "lon": 2.59544,
-  "url": "http://www.onet-le-chateau.fr/Ma-ville-au-quotidien/Enfance-Petite-enfance/Ludotheque",
-  "phone": "+33565771142",
-  "opening_hours": null,
-  "fee": null,
-  "rating": null,
-  "rating_count": null,
-  "rating_source": null,
-  "rating_url": null,
-  "unusual": false,
-  "unusual_hint": true,
-  "quality": [],
-  "providers": [
-   "osm"
-  ],
-  "image_url": null,
-  "image_credit": null,
-  "image_page": null,
-  "tags": [
-   "osm:amenity=toy_library"
-  ],
-  "audience": [
-   "tous"
-  ],
-  "first_seen": "2026-08-02",
   "last_seen": "2026-08-05",
-  "id": "ludotheque-b54a7707"
+  "id": "ludi-golf-parc-mini-golf-ae9dd9ff"
  },
  {
   "name": "Ludothèque",
@@ -65311,6 +65275,45 @@
   "first_seen": "2026-08-02",
   "last_seen": "2026-08-05",
   "id": "ludotheque-53bebaa2"
+ },
+ {
+  "name": "Ludothèque",
+  "category": "ludotheque",
+  "source_id": "osm",
+  "sector": "pont-de-salars",
+  "external_id": "node/2068045674",
+  "description": "",
+  "tldr": null,
+  "commune": null,
+  "address": null,
+  "lat": 44.3660896,
+  "lon": 2.59544,
+  "url": "http://www.onet-le-chateau.fr/Ma-ville-au-quotidien/Enfance-Petite-enfance/Ludotheque",
+  "phone": "+33565771142",
+  "opening_hours": null,
+  "fee": null,
+  "rating": null,
+  "rating_count": null,
+  "rating_source": null,
+  "rating_url": null,
+  "unusual": false,
+  "unusual_hint": true,
+  "quality": [],
+  "providers": [
+   "osm"
+  ],
+  "image_url": null,
+  "image_credit": null,
+  "image_page": null,
+  "tags": [
+   "osm:amenity=toy_library"
+  ],
+  "audience": [
+   "tous"
+  ],
+  "first_seen": "2026-08-02",
+  "last_seen": "2026-08-05",
+  "id": "ludotheque-b54a7707"
  },
  {
   "name": "Lycée agricole La Cazotte",
@@ -66024,7 +66027,7 @@
   "source_id": "datatourisme",
   "sector": "pont-de-salars",
   "external_id": "https://data.datatourisme.fr/31/9d683b25-10fd-3618-96c5-ad1aedde6e5b",
-  "description": "Sur 3 niveaux, la maison de la Mémoire présente histoires, récits, témoignages et photos... sur ces années noires en Aveyron et en France",
+  "description": "https://data.datatourisme.fr/1ee53ff3-f44e-36a5-9023-010fbdb5bcc1",
   "tldr": "Plongez dans l’histoire de la Résistance et de la Déportation à travers récits, témoignages et photos à Aubin.",
   "commune": "Aubin",
   "address": "Allée du Musée",
@@ -66046,7 +66049,7 @@
   ],
   "image_url": "https://medias.hit.enaveyron.fr/fiches/16733/images/195588_e99998f5-005b-403b-8205-ddc770fb9f58/600.webp",
   "image_credit": "Syndicat d'initiative d'Aubin",
-  "image_page": null,
+  "image_page": "https://data.datatourisme.fr/31/9d683b25-10fd-3618-96c5-ad1aedde6e5b",
   "tags": [
    "dt:Museum"
   ],
@@ -66054,7 +66057,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-08-03",
+  "last_seen": "2026-08-05",
   "id": "maison-departementale-de-la-memoire-resistance-deportation-et-citoyennete-8043600a"
  },
  {
@@ -70515,6 +70518,45 @@
  },
  {
   "name": "Monument Talabot",
+  "category": "patrimoine",
+  "source_id": "datatourisme",
+  "sector": "pont-de-salars",
+  "external_id": "https://data.datatourisme.fr/31/81577144-71be-3476-9ecf-4d305f13cd6b",
+  "description": "https://data.datatourisme.fr/c9d99dcf-f501-3981-a520-a392d4ead3de",
+  "tldr": "Découvrez un monument industriel du XIXe siècle, symbole de l'ingénierie et de l'histoire locale.",
+  "commune": "Saint Geniez d'Olt et d'Aubrac",
+  "address": null,
+  "lat": 44.4676,
+  "lon": 2.9715,
+  "url": null,
+  "phone": null,
+  "opening_hours": null,
+  "fee": null,
+  "rating": null,
+  "rating_count": null,
+  "rating_source": null,
+  "rating_url": null,
+  "unusual": false,
+  "unusual_hint": false,
+  "quality": [],
+  "providers": [
+   "datatourisme"
+  ],
+  "image_url": "https://medias.hit.enaveyron.fr/fiches/6085/images/67392_24818181-d994-4ced-bf67-503d8c317d73/600.webp",
+  "image_credit": null,
+  "image_page": "https://data.datatourisme.fr/31/81577144-71be-3476-9ecf-4d305f13cd6b",
+  "tags": [
+   "dt:RemarkableBuilding"
+  ],
+  "audience": [
+   "tous"
+  ],
+  "first_seen": "2026-08-02",
+  "last_seen": "2026-08-05",
+  "id": "monument-talabot-f54bb988"
+ },
+ {
+  "name": "Monument Talabot",
   "category": "visite",
   "source_id": "osm",
   "sector": "pont-de-salars",
@@ -70555,45 +70597,6 @@
   "first_seen": "2026-08-02",
   "last_seen": "2026-08-05",
   "id": "monument-talabot-ddb86929"
- },
- {
-  "name": "Monument Talabot",
-  "category": "patrimoine",
-  "source_id": "datatourisme",
-  "sector": "pont-de-salars",
-  "external_id": "https://data.datatourisme.fr/31/81577144-71be-3476-9ecf-4d305f13cd6b",
-  "description": "https://data.datatourisme.fr/c9d99dcf-f501-3981-a520-a392d4ead3de",
-  "tldr": "Découvrez un monument industriel du XIXe siècle, symbole de l'ingénierie et de l'histoire locale.",
-  "commune": "Saint Geniez d'Olt et d'Aubrac",
-  "address": null,
-  "lat": 44.4676,
-  "lon": 2.9715,
-  "url": null,
-  "phone": null,
-  "opening_hours": null,
-  "fee": null,
-  "rating": null,
-  "rating_count": null,
-  "rating_source": null,
-  "rating_url": null,
-  "unusual": false,
-  "unusual_hint": false,
-  "quality": [],
-  "providers": [
-   "datatourisme"
-  ],
-  "image_url": "https://medias.hit.enaveyron.fr/fiches/6085/images/67392_24818181-d994-4ced-bf67-503d8c317d73/600.webp",
-  "image_credit": null,
-  "image_page": "https://data.datatourisme.fr/31/81577144-71be-3476-9ecf-4d305f13cd6b",
-  "tags": [
-   "dt:RemarkableBuilding"
-  ],
-  "audience": [
-   "tous"
-  ],
-  "first_seen": "2026-08-02",
-  "last_seen": "2026-08-05",
-  "id": "monument-talabot-f54bb988"
  },
  {
   "name": "Motte Castrale (IXième siècle)",
@@ -70642,14 +70645,14 @@
   "source_id": "datatourisme",
   "sector": "pont-de-salars",
   "external_id": "https://data.datatourisme.fr/31/cd6f8304-7de0-3bdd-81a5-f558a0c51cc8",
-  "description": "Pour s'y rendre : aller à Couesques (D 904) se garer sur le parking à côté du pont et suivre le fléchage (petite promenade de 400m à pied sur un chemin de terre ombragé).\nCe moulin à eau, qui existe depuis la fin du XVIè siècle, était destiné à la production d'huile de noix et de farine. Après avoir contribué à l'économie locale pendant des siècles, il a cessé de fonctionner en 1970.\nTous ses équipements d'origine sont restés en place et remis en partie en état de marche.\nLe propriétaire, descendant de meuniers, vous expliquera le fonctionnement. Vous verrez tourner la meule à huile entraînée ",
+  "description": "https://data.datatourisme.fr/eb365f61-4d1f-3c69-8ac0-f85df3dcbee9",
   "tldr": "Visitez un moulin à eau du XVIe siècle à Entraygues-sur-Truyère, transformé en musée pour découvrir son histoire et son mécanisme.",
   "commune": "Entraygues-sur-Truyère",
   "address": "Couffinhal",
   "lat": 44.69398,
   "lon": 2.56864,
   "url": null,
-  "phone": "+33 6 89 20 49 87",
+  "phone": "+33 5 65 44 87 56",
   "opening_hours": null,
   "fee": null,
   "rating": null,
@@ -70664,7 +70667,7 @@
   ],
   "image_url": "https://medias.hit.enaveyron.fr/fiches/17201/images/210870_837c9244-2ce4-4fa9-8b6a-95a53447eb2b/600.webp",
   "image_credit": "OFFICE DE TOURISME DU CANTON D'ENTRAYGUES SUR TRUYERE",
-  "image_page": null,
+  "image_page": "https://data.datatourisme.fr/31/cd6f8304-7de0-3bdd-81a5-f558a0c51cc8",
   "tags": [
    "dt:Museum"
   ],
@@ -70672,7 +70675,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-08-03",
+  "last_seen": "2026-08-05",
   "id": "moulin-de-couffinhal-a-couesques-259b01d0"
  },
  {
@@ -70841,7 +70844,7 @@
   "source_id": "datatourisme",
   "sector": "pont-de-salars",
   "external_id": "https://data.datatourisme.fr/31/2bc0d7ed-602b-3b7e-94af-9b7116b1721a",
-  "description": "Visite commentée d'1h. Son et Lumière et animation diverses.\nAu fil du rail met en scène la passion de son créateur, des trains qui circulent en traversant plusieurs décors. Ça circule, fait du bruit, des effets spéciaux... tout un monde qui enchantera les enfants et aussi certainement leurs parents.\nIci une maquette représentant un village parcouru par le chemin de fer, on voit le bûcheron qui abat un arbre au son de la tronçonneuse, la fumée s'échappe de la locomotive à vapeur.\nLà, ce sont les gyrophares des camions de pompiers qui clignotent, le chant du coq qui se mêle aux beuglements des ",
+  "description": "https://data.datatourisme.fr/16511c88-cf47-307d-81af-d3c4a265477e",
   "tldr": "Admirez un spectacle de trains miniatures avec sons et lumières dans un décor animé.",
   "commune": "Agen-d'Aveyron",
   "address": "6  CHEMIN  DES  GARRIGUES",
@@ -70863,7 +70866,7 @@
   ],
   "image_url": "https://medias.hit.enaveyron.fr/fiches/16658/images/195071_5cd8c7cb-d4e6-4c3c-9836-d67f62926d8b/600.webp",
   "image_credit": "Musée Au fil du Rail",
-  "image_page": null,
+  "image_page": "https://data.datatourisme.fr/31/2bc0d7ed-602b-3b7e-94af-9b7116b1721a",
   "tags": [
    "dt:Museum"
   ],
@@ -70871,7 +70874,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-08-03",
+  "last_seen": "2026-08-05",
   "id": "musee-au-fil-du-rail-ec786d3f"
  },
  {
@@ -71521,14 +71524,14 @@
   "source_id": "datatourisme",
   "sector": "pont-de-salars",
   "external_id": "https://data.datatourisme.fr/31/f7df2edc-7ffb-3c5d-9d9b-20185743b5f8",
-  "description": "A 12km de Sauveterre-de-Rouergue, au sein du Parc animalier du Ségala, ce musée retrace l'histoire agricole du Ségala à travers un parcours qui illustre les pratiques agricoles et d'élevages d'hier à aujourd'hui.\nVous y découvrez, grâce à différentes mises en scène, le travail du seigle, de la châtaigne et de la pomme de terre, et la reconstitution d'un cantou.\nPour faire revivre la mémoire des anciens!\nLe musée est accessible uniquement en visitant le parc animalier.",
+  "description": "https://data.datatourisme.fr/602bd0c4-d38f-3d4b-863e-f5ab1d19cdf5",
   "tldr": "Retracez l'histoire agricole du Ségala au sein d'un parc animalier, avec des outils et pratiques d'autrefois.",
   "commune": "Pradinas",
   "address": "La Riale",
   "lat": 44.2595926,
   "lon": 2.26129536,
   "url": null,
-  "phone": "+33 5 65 69 98 51",
+  "phone": "+33 5 65 69 92 84",
   "opening_hours": null,
   "fee": null,
   "rating": null,
@@ -71543,7 +71546,7 @@
   ],
   "image_url": "https://medias.hit.enaveyron.fr/fiches/2505/images/19654_def54bd2-fd01-4671-81a6-d7905740706f/600.webp",
   "image_credit": "OT Pays Ségali ISSALIS Edith",
-  "image_page": null,
+  "image_page": "https://data.datatourisme.fr/31/f7df2edc-7ffb-3c5d-9d9b-20185743b5f8",
   "tags": [
    "dt:Museum"
   ],
@@ -71551,7 +71554,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-08-03",
+  "last_seen": "2026-08-05",
   "id": "musee-des-traditions-agricoles-du-segala-73e3f863"
  },
  {
@@ -72045,14 +72048,14 @@
   "source_id": "datatourisme",
   "sector": "pont-de-salars",
   "external_id": "https://data.datatourisme.fr/31/968fad2d-e7c9-38c7-8b3a-f9f799f15118",
-  "description": "Histoire locale (mine et thermalisme), histoire sociale, transformation des paysages, mémoires individuelle et collective, constitution des archives d'une collection, création contemporaine, autant de facettes qui dont abordées dans ce musée à travers maquettes, plans, photos, films, témoignages...\nDécouvrez aussi la Triangulaire de Cransac, oeuvre d'art contemporain en hommage à l'histoire de la ville.",
+  "description": "https://data.datatourisme.fr/7971269e-8e5b-380b-9738-58fb76cf8db2",
   "tldr": "Explorez l'histoire minière et thermale de Cransac à travers archives, objets et créations contemporaines.",
   "commune": "Cransac-les-Thermes",
   "address": "l'Envol - 35 place de l'Hôtel de Ville",
   "lat": 44.52616006,
   "lon": 2.28239372,
-  "url": "https://memoires-de-cransac.wixsite.com/musee",
-  "phone": "+33 5 65 63 06 80",
+  "url": null,
+  "phone": null,
   "opening_hours": null,
   "fee": null,
   "rating": null,
@@ -72067,7 +72070,7 @@
   ],
   "image_url": "https://medias.hit.enaveyron.fr/fiches/16401/images/185313_52b4f059-ca45-47aa-b789-7feec798bd0a/600.webp",
   "image_credit": "OFFICE DE TOURISME DE CRANSAC",
-  "image_page": null,
+  "image_page": "https://data.datatourisme.fr/31/968fad2d-e7c9-38c7-8b3a-f9f799f15118",
   "tags": [
    "dt:Museum"
   ],
@@ -72075,7 +72078,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-08-03",
+  "last_seen": "2026-08-05",
   "id": "musee-les-memoires-de-cransac-groupe-e78657b1"
  },
  {
@@ -80263,14 +80266,14 @@
   "source_id": "datatourisme",
   "sector": "pont-de-salars",
   "external_id": "https://data.datatourisme.fr/31/d4e96f7e-bf3f-3fec-9079-0935a4f75d54",
-  "description": "Le quartier du Gua est né de l'installation des forges et l'exploitation des mines de charbon. Sur les plateaux où se dressaient les anciennes forges nous sont parvenues les cheminées à têtes ouvragées (inscrites aux Monuments Historiques), le plan d'eau, les Arcades (ancien siège de l'administration des forges) et un patrimoine religieux et civil : l'église Notre Dame du Gua et sa charpente métallique (inscrite aux Monuments Historiques), l'école Jules Ferry, véritable palais scolaire (inscrite aux Monuments Historiques). Un mémorial, inauguré en 2009, rend hommage aux victimes de la fusillad",
+  "description": "https://data.datatourisme.fr/e951da44-fc5d-3f5c-bdca-e16764225aca",
   "tldr": "Explorer les vestiges des anciennes forges du Gua, avec leurs cheminées ouvragées, témoins d'une histoire industrielle oubliée.",
   "commune": "Aubin",
   "address": null,
   "lat": 44.52624559,
   "lon": 2.26428153,
-  "url": "https://www.facebook.com/OTTDecazevilleCommunaute/",
-  "phone": "+33 5 65 63 06 80",
+  "url": null,
+  "phone": null,
   "opening_hours": null,
   "fee": null,
   "rating": null,
@@ -80285,15 +80288,16 @@
   ],
   "image_url": "https://medias.hit.enaveyron.fr/fiches/16466/images/437412_74273b15-aea5-48ea-a573-699d99ec1e3e/600.webp",
   "image_credit": null,
-  "image_page": null,
+  "image_page": "https://data.datatourisme.fr/31/d4e96f7e-bf3f-3fec-9079-0935a4f75d54",
   "tags": [
+   "dt:Church",
    "dt:IndustrialSite"
   ],
   "audience": [
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-08-03",
+  "last_seen": "2026-08-05",
   "id": "plateau-des-forges-du-gua-groupes-9e90650b"
  },
  {
@@ -81314,45 +81318,6 @@
   "id": "pont-vieux-fbfcf6a9"
  },
  {
-  "name": "Pop Corn Labyrinthe",
-  "category": "parc-attraction",
-  "source_id": "osm",
-  "sector": "pont-de-salars",
-  "external_id": "node/10734447605",
-  "description": "",
-  "tldr": null,
-  "commune": null,
-  "address": null,
-  "lat": 44.2715737,
-  "lon": 2.7535425,
-  "url": "https://www.popcornlabyrinthe.fr/prades",
-  "phone": "+33 6 29 70 69 99",
-  "opening_hours": "Fr 21:00-22:00; Sa-Su 14:00-17:30",
-  "fee": null,
-  "rating": null,
-  "rating_count": null,
-  "rating_source": null,
-  "rating_url": null,
-  "unusual": false,
-  "unusual_hint": false,
-  "quality": [],
-  "providers": [
-   "osm"
-  ],
-  "image_url": null,
-  "image_credit": null,
-  "image_page": null,
-  "tags": [
-   "osm:tourism=theme_park"
-  ],
-  "audience": [
-   "tous"
-  ],
-  "first_seen": "2026-08-02",
-  "last_seen": "2026-08-05",
-  "id": "pop-corn-labyrinthe-dd7fbae5"
- },
- {
   "name": "Pop Corn labyrinthe",
   "category": "prestation",
   "source_id": "datatourisme",
@@ -81390,6 +81355,45 @@
   "first_seen": "2026-08-02",
   "last_seen": "2026-08-05",
   "id": "pop-corn-labyrinthe-350c0201"
+ },
+ {
+  "name": "Pop Corn Labyrinthe",
+  "category": "parc-attraction",
+  "source_id": "osm",
+  "sector": "pont-de-salars",
+  "external_id": "node/10734447605",
+  "description": "",
+  "tldr": null,
+  "commune": null,
+  "address": null,
+  "lat": 44.2715737,
+  "lon": 2.7535425,
+  "url": "https://www.popcornlabyrinthe.fr/prades",
+  "phone": "+33 6 29 70 69 99",
+  "opening_hours": "Fr 21:00-22:00; Sa-Su 14:00-17:30",
+  "fee": null,
+  "rating": null,
+  "rating_count": null,
+  "rating_source": null,
+  "rating_url": null,
+  "unusual": false,
+  "unusual_hint": false,
+  "quality": [],
+  "providers": [
+   "osm"
+  ],
+  "image_url": null,
+  "image_credit": null,
+  "image_page": null,
+  "tags": [
+   "osm:tourism=theme_park"
+  ],
+  "audience": [
+   "tous"
+  ],
+  "first_seen": "2026-08-02",
+  "last_seen": "2026-08-05",
+  "id": "pop-corn-labyrinthe-dd7fbae5"
  },
  {
   "name": "Portal del Riou",
@@ -89329,7 +89333,7 @@
   "source_id": "datatourisme",
   "sector": "pont-de-salars",
   "external_id": "https://data.datatourisme.fr/31/84a72f06-98ab-37c5-bbe8-e8d35cc6a254",
-  "description": "A l'origine du Roquefort, avant l'affinage du fromage en caves, il y a le lait de brebis et tout un métier : celui d'éleveur. Six éleveurs du pays de Roquefort vous proposent une rencontre à l'occasion de la visite de leur ferme. Vous pourrez ainsi visiter leurs bergeries, voir leurs agneaux, peut-être assister à la traite et en tout cas goûter au Roquefort dans leur beau cadre caussenard. Ce sera aussi l'occasion de partager leur quotidien au rythme de la vie des brebis, entre tradition et modernité. Voici trois façons différentes de découvrir leur exploitation, leur activité, leur vie... et ",
+  "description": "https://data.datatourisme.fr/a4af2698-2595-3c27-93ab-f144cfdf9389",
   "tldr": "Rencontrez des éleveurs de brebis et découvrez les secrets de la fabrication du Roquefort avant affinage.",
   "commune": "Versols-et-Lapeyre",
   "address": "Hermilix",
@@ -89351,15 +89355,16 @@
   ],
   "image_url": "https://medias.hit.enaveyron.fr/fiches/11157/images/128772_7bf7de8a-6379-4c35-a895-8b797772a59b/600.webp",
   "image_credit": "Delphine Atché, OTPRSA",
-  "image_page": null,
+  "image_page": "https://data.datatourisme.fr/31/84a72f06-98ab-37c5-bbe8-e8d35cc6a254",
   "tags": [
+   "dt:Farm",
    "dt:Producer"
   ],
   "audience": [
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-08-03",
+  "last_seen": "2026-08-05",
   "id": "ricard-alice-ferme-d-hermilix-c24642c1"
  },
  {
@@ -92471,7 +92476,7 @@
   "source_id": "datatourisme",
   "sector": "pont-de-salars",
   "external_id": "https://data.datatourisme.fr/31/775e5def-8f1c-3f14-9669-b28e964f1866",
-  "description": "Présentation historique. Circuit sur le site. Visite d'une partie du village de potiers gallo-romains avec vue de sanctuaires, des fours de cuisson, des ateliers et des maisons d'habitation. La visite dure en moyenne une heure.\n\n\nDu 1er octobre au 2 mai, le site archéologique est fermé - mais ouvert aux groupes sur réservation",
+  "description": "https://data.datatourisme.fr/f2ea767f-4b0f-3ee0-8222-3ff44f1c4ca2",
   "tldr": "Visitez un village de potiers gallo-romains avec fours, ateliers et sanctuaires, témoin de l’artisanat antique.",
   "commune": "Millau",
   "address": "La Graufesenque",
@@ -92493,7 +92498,7 @@
   ],
   "image_url": "https://medias.hit.enaveyron.fr/fiches/17849/images/235675_56158d60-c536-487b-a5f2-8f49c3b88e9f/600.webp",
   "image_credit": "OFFICE DE TOURISME DE MILLAU",
-  "image_page": null,
+  "image_page": "https://data.datatourisme.fr/31/775e5def-8f1c-3f14-9669-b28e964f1866",
   "tags": [
    "dt:Museum"
   ],
@@ -92501,7 +92506,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-08-03",
+  "last_seen": "2026-08-05",
   "id": "site-archeologique-de-la-graufesenque-mumig-70364c89"
  },
  {
@@ -93312,7 +93317,7 @@
   "source_id": "datatourisme",
   "sector": "pont-de-salars",
   "external_id": "https://data.datatourisme.fr/31/f6d8d26e-40ea-3f04-bed6-330a969a7a6f",
-  "description": "Ce site unique en Ségala est un lieu de recherches et de travail pour redonner vie au château et au village de Jalenques.\nCe promontoire verdoyant sur lequel trône les ruines du château et de quelques maisons, four et autres traces du passé, regorge en réalité de nombreux trésors. Richesses que l'association «Les Amis de Jalenques» s'efforce de trouver, déchiffrer et conserver.\nDurée de la visite : 1h-1h30 environ. Groupe de 10 à 30 personnes, modulable sur demande.\nUne visite passionnée qui éveillera votre curiosité.\n3 accès possibles :\nStationnez sur la petite aire prévue à cet effet sur la ",
+  "description": "https://data.datatourisme.fr/24026fff-82ac-3506-88fa-9ecbea9e97b0",
   "tldr": "Explorez les ruines d'un château médiéval et revivez l'histoire du village de Jalenques.",
   "commune": "Quins",
   "address": "Jalenques",
@@ -93334,7 +93339,7 @@
   ],
   "image_url": "https://medias.hit.enaveyron.fr/fiches/7640/images/89859_5ab138a5-8ce4-44bf-8a03-f999c69b68a0/600.webp",
   "image_credit": "©OT Pays Ségali-Gilhodes Emeline",
-  "image_page": null,
+  "image_page": "https://data.datatourisme.fr/31/f6d8d26e-40ea-3f04-bed6-330a969a7a6f",
   "tags": [
    "dt:ArcheologicalSite"
   ],
@@ -93342,7 +93347,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-08-03",
+  "last_seen": "2026-08-05",
   "id": "site-historique-et-archeologique-de-jalenques-81a461f8"
  },
  {
@@ -98991,7 +98996,7 @@
   "source_id": "datatourisme",
   "sector": "pont-de-salars",
   "external_id": "https://data.datatourisme.fr/31/ce9a56ba-6769-329d-a85b-9b07b206d933",
-  "description": "Située au cœur de l'Aveyron, votre salle d'escalade offre une expérience unique sur plus de 450 m². Que vous cherchiez une séance sport, une sortie famille ou une pause gourmande, notre structure est pensée pour tous.\nVenez découvrir 7/7 et sans réservation un espace unique dédié à la grimpe. Que vous soyez débutant ou grimpeur confirmé, nos murs de blocs renouvelés chaque semaine vous offrent des défis adaptés à tous les niveaux.\nPlus qu'une salle de sport, UPZONE est un véritable lieu de vie avec des cours d'escalade pour enfants et adultes, des soirées DJ et un espace détente chaleureux pou",
+  "description": "https://data.datatourisme.fr/565a80ed-cde0-3797-9e9e-dee97a72b2df",
   "tldr": "Grimpez dans cette salle d’escalade de 450 m² pour une session sportive ou familiale, avec vue sur Rodez.",
   "commune": "Rodez",
   "address": "19 Avenue Amans Rodat",
@@ -99013,7 +99018,7 @@
   ],
   "image_url": "https://medias.hit.enaveyron.fr/fiches/88967/images/1298250_19868799-1762-42c4-8b88-b0f8c9cc7570/600.webp",
   "image_credit": "Upzone360 Rodez",
-  "image_page": null,
+  "image_page": "https://data.datatourisme.fr/31/ce9a56ba-6769-329d-a85b-9b07b206d933",
   "tags": [
    "dt:LeisureSportActivityProvider"
   ],
@@ -99021,7 +99026,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-08-03",
+  "last_seen": "2026-08-05",
   "id": "upzone-360-a08d3abe"
  },
  {
@@ -99539,13 +99544,13 @@
   "source_id": "datatourisme",
   "sector": "pont-de-salars",
   "external_id": "https://data.datatourisme.fr/31/76e96311-faed-3405-b2df-337e49ebe33f",
-  "description": "Nous vous proposons un voyage insolite !\n\n\n\nVenez découvrir en vélorail et/ou en train touristique, une ancienne voie ferrée qui offre des paysages grandioses et un riche patrimoine d'ouvrage d'art ferroviaire avec 12 tunnels et 6 viaducs.  Une excursion ludique, en territoire inscrit au patrimoine de l'Unesco, sur le plateau du Larzac. Vous profiterez d'une vue panoramique sur la vallée du Cernon et la capitale Templière : Ste Eulalie de Cernon.\nNotre activité offre plusieurs parcours sans effort.\n\nINFOS PRATIQUES\nParcours les Papillons : 4 Km en montée, en vélorail pour rejoindre le Rouquet,",
+  "description": "https://data.datatourisme.fr/ec493173-9c79-3eb7-abc3-6e937dc04b4a",
   "tldr": "Vivez une aventure insolite en vélorail ou en train touristique sur une ancienne voie ferrée du Larzac.",
   "commune": "Sainte-Eulalie-de-Cernon",
   "address": "La Gare",
   "lat": 43.9743,
   "lon": 3.1347,
-  "url": "https://www.surlesrailsdularzac.com/",
+  "url": "https://resa.euresto.com/7e08fdd7-1442-407a-9808-8298ba9457de/eb6856d1-bab8-11ee-9ee2-00505639ca82",
   "phone": "+33 5 65 58 72 10",
   "opening_hours": null,
   "fee": null,
@@ -99561,7 +99566,7 @@
   ],
   "image_url": "https://medias.hit.enaveyron.fr/fiches/20322/images/312572_121ef755-f0ce-420c-b9f5-53aebbfe1aff/600.webp",
   "image_credit": "OFFICE DE TOURISME LARZAC VALLEES",
-  "image_page": null,
+  "image_page": "https://data.datatourisme.fr/31/76e96311-faed-3405-b2df-337e49ebe33f",
   "tags": [
    "dt:LeisureSportActivityProvider"
   ],
@@ -99569,7 +99574,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-08-03",
+  "last_seen": "2026-08-05",
   "id": "velorail-et-train-touristique-du-larzac-6c39d2f9"
  },
  {
@@ -100479,7 +100484,7 @@
   "source_id": "datatourisme",
   "sector": "pont-de-salars",
   "external_id": "https://data.datatourisme.fr/31/7770a0dc-4def-316f-858f-8b1ad116af03",
-  "description": "Au départ de l'aire du viaduc de Millau, vous cheminerez sur le Sentier des Explorateurs jusqu'au belvédère. À l'ombre du tablier, vous entendrez passer les véhicules juste au-dessus de votre tête. Face à vous, le viaduc de Millau et ses 7 piles en enfilade : vous découvrirez même une des particularités de ce géant… impossible à voir depuis tous les autres points de vue autour de l'ouvrage !\n\n\nAprès une petite pause au Viaduc Expo, où certains profiteront du spectacle immersif pendant que d'autres flâneront à la Boutique, vous regagnerez vos véhicules. Vous allez maintenant emprunter une route",
+  "description": "https://data.datatourisme.fr/4cd0f76b-ae59-3996-a734-e0c782fa65d7",
   "tldr": "Marchez sous le viaduc de Millau et écoutez les véhicules passer au-dessus de vous.",
   "commune": "Millau",
   "address": "Aire du viaduc de Millau",
@@ -100501,7 +100506,7 @@
   ],
   "image_url": "https://medias.hit.enaveyron.fr/fiches/17234/images/211054_10f2d26e-2b6c-4ae4-862b-bf289244b5fb/600.webp",
   "image_credit": "Viaduc de Millau",
-  "image_page": null,
+  "image_page": "https://data.datatourisme.fr/31/7770a0dc-4def-316f-858f-8b1ad116af03",
   "tags": [
    "dt:InterpretationCentre"
   ],
@@ -100509,7 +100514,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-08-03",
+  "last_seen": "2026-08-05",
   "id": "viaduc-de-millau-sur-les-anciennes-pistes-de-chantier-b6cda8a7"
  },
  {
@@ -102208,12 +102213,12 @@
   "id": "visite-de-fermes-de-veaux-d-aveyron-et-du-segala-a79b7a8d"
  },
  {
-  "name": "Visite de fermes et Escapades - Jeune Montagne",
+  "name": "Visite de fermes et Escapades - Jeune Montagne (Groupe)",
   "category": "ferme",
   "source_id": "datatourisme",
   "sector": "pont-de-salars",
-  "external_id": "https://data.datatourisme.fr/31/e8b85f88-30ed-394f-9585-93464703f0ae",
-  "description": "À LA FROMAGERIE : visite gratuite, environ 30 minutes.\nLe matin, les fromagers de Jeune Montagne fabriquent la Tome fraîche de l'Aubrac IGP et le Laguiole AOP au lait cru et entier. Salle de projection, galerie vitrée, dégustation et boutique sur place.\nNotre magasin vous permettra d'emporter chez vous toutes les spécialités fromagères de la Coopérative fabriquées sur place avec le lait cru et entier de nos vaches, de race Simmental et Aubrac.\n\nVISITE A LA FERME : Vacances scolaires : mardi, jeudi et samedi, visite payante sur réservation.\nA la rencontre des producteurs de lait de Jeune Montag",
+  "external_id": "https://data.datatourisme.fr/31/52581c99-ff83-30f0-abbf-43d9e60a8c55",
+  "description": "https://data.datatourisme.fr/eb5f5d2a-da9c-3056-9f6f-f1dd778217d9",
   "tldr": "Observez la fabrication du Laguiole AOP et de la Tome fraîche à la fromagerie Jeune Montagne, visite gratuite le matin.",
   "commune": "Laguiole",
   "address": "La Borie Neuve",
@@ -102233,18 +102238,18 @@
   "providers": [
    "datatourisme"
   ],
-  "image_url": "https://medias.hit.enaveyron.fr/fiches/11155/images/128761_921646e0-b5ce-42de-9d73-efa803a95bdd/600.webp",
+  "image_url": "https://medias.hit.enaveyron.fr/fiches/11155/images/128767_80c6506a-4e09-4ba7-9465-b63fb245366d/600.webp",
   "image_credit": "Emilie Peigne - Jeune Montage",
-  "image_page": null,
+  "image_page": "https://data.datatourisme.fr/31/52581c99-ff83-30f0-abbf-43d9e60a8c55",
   "tags": [
    "dt:Farm"
   ],
   "audience": [
    "tous"
   ],
-  "first_seen": "2026-08-02",
-  "last_seen": "2026-08-03",
-  "id": "visite-de-fermes-et-escapades-jeune-montagne-fb25da48"
+  "first_seen": "2026-08-05",
+  "last_seen": "2026-08-05",
+  "id": "visite-de-fermes-et-escapades-jeune-montagne-groupe-a6b53fbb"
  },
  {
   "name": "Visite de l'Atelier de fabrication de gâteaux à la broche chez Gigi",
@@ -102409,7 +102414,7 @@
   "source_id": "datatourisme",
   "sector": "pont-de-salars",
   "external_id": "https://data.datatourisme.fr/31/701eab74-6c45-3ea6-9f25-1c0bc15a4dae",
-  "description": "Organisé par l'association Musique et Orgue en Aubrac.",
+  "description": "https://data.datatourisme.fr/cbe97e6a-0fdc-3a5f-a574-87a7673e6498",
   "tldr": "Écoutez l'orgue de l'église du Fort à Laguiole, instrument rare dans ce village emblématique de l'Aubrac.",
   "commune": "Laguiole",
   "address": null,
@@ -102439,7 +102444,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-08-03",
+  "last_seen": "2026-08-05",
   "id": "visite-de-l-orgue-de-l-eglise-du-fort-303e515e"
  },
  {
@@ -103620,14 +103625,14 @@
   "source_id": "datatourisme",
   "sector": "pont-de-salars",
   "external_id": "https://data.datatourisme.fr/31/c6c50dd0-4ad8-36a7-a2c9-67d947d668bc",
-  "description": "Dans un terrain fait de couches plus ou moins épaisses et plus ou moins dures suivant leur richesse en silex ou en gravier, l'eau et les agents atmosphériques ont creusé un sillon qui s'est agrandi au cours du temps. Ce sillon qui est appelé une igue, a environ 20 mètres de profondeur pour 40 à 70 mètres de large. La curiosité de ce phénomène géologique, unique dans la Région, réside dans la décoration des parois de l'igue qui semblent sculptées de la main de l'homme. L'érosion a laissé comme des tours, des piliers, des colonnes isolées ou rassemblées, sur lesquelles l'eau a ciselé des creux e",
+  "description": "https://data.datatourisme.fr/e2e89d63-add0-3152-81ac-aac88e04e23c",
   "tldr": "Découvrez des gouffres naturels sculptés par l'érosion dans un paysage unique de roches et de graviers.",
   "commune": "Compolibat",
   "address": null,
   "lat": 44.37728435,
   "lon": 2.19730246,
   "url": "https://www.plateau-de-montbazens.com/",
-  "phone": "+33 5 65 80 44 77",
+  "phone": "+33 5 65 63 77 94",
   "opening_hours": null,
   "fee": null,
   "rating": null,
@@ -103650,7 +103655,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-08-03",
+  "last_seen": "2026-08-05",
   "id": "visite-du-site-des-igues-du-py-et-de-rouffies-3d13702e"
  },
  {
@@ -105030,10 +105035,10 @@
   "source_id": "datatourisme",
   "sector": "pont-de-salars",
   "external_id": "https://data.datatourisme.fr/31/69f936d2-05ca-3146-9ec1-8baa5d9c9edf",
-  "description": "Il s'agit cette année du tout dernier rendez vous de la méthode de vente ancestrale qui est “la Pache” : transaction de gré à gré en se tapant dans la main pour conclure le contrat.\nRéservation obligatoire au 05 65 70 71 30, nombre de places limité \nRDV directement au Centre Administratif (derrière Intermarché)\nVisite guidée de 1h20. Déroulé de la visite : film de présentation (17 min), visite du marché bovin depuis la passerelle surplombant les animaux, visite du marché ovin au plus près des animaux. \nLes photos sont interdites sous le foirail.\nToute l'année sur demande pour les groupes.\nA 20",
+  "description": "https://data.datatourisme.fr/6e8be9ef-3277-3675-98cb-c5961f0916bd",
   "tldr": "Assistez à une vente de bestiaux à l'ancienne, où la poignée de main scelle encore les transactions.",
   "commune": "Laissac-Sévérac l'Église",
-  "address": "Le foirail",
+  "address": "Laissac",
   "lat": 44.38275048,
   "lon": 2.82086356,
   "url": "https://www.causses-aubrac-tourisme.com/",
@@ -105052,7 +105057,7 @@
   ],
   "image_url": "https://medias.hit.enaveyron.fr/fiches/22458/images/360182_a8ded457-641b-4d6c-9f96-f9584f5593eb/600.webp",
   "image_credit": "Office de Tourisme Des Causses à l'Aubrac",
-  "image_page": null,
+  "image_page": "https://data.datatourisme.fr/31/69f936d2-05ca-3146-9ec1-8baa5d9c9edf",
   "tags": [
    "dt:Producer"
   ],
@@ -105060,7 +105065,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-08-03",
+  "last_seen": "2026-08-05",
   "id": "visite-guidee-du-marche-aux-bestiaux-de-laissac-eed8dc22"
  },
  {
