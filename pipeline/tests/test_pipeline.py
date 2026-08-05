@@ -1233,6 +1233,54 @@ def test_flux_lit_une_archive_zip(monkeypatch):
     assert [p.name for p in found] == ["Musée du flux"]
 
 
+def test_flux_manifeste_ni_converti_ni_muet(monkeypatch, caplog):
+    """Le manifeste de l'archive sert de témoin de complétude, pas de fiche.
+
+    L'archive du diffuseur contient un fichier par fiche PLUS un index de
+    23 541 entrées `{label, lastUpdateDatatourisme, file}`. Ces entrées n'ont ni
+    `@type` ni `@id` : les convertir échouait d'avance, et le nombre qu'elles
+    annoncent est la seule chose qui permette de dire qu'une archive est amputée —
+    sans quoi une perte de fiches ne se voit que des semaines plus tard, quand la
+    rétention lâche.
+    """
+    import logging
+
+    from quefaire import datatourisme as dt
+    from quefaire.cli import load_sector
+
+    def fiche(n):
+        return {
+            "@id": f"https://data.datatourisme.fr/{n}",
+            "@type": ["Museum"],
+            "rdfs:label": {"fr": [f"Musée {n}"]},
+            "isLocatedAt": {"schema:geo": {"schema:latitude": 44.28, "schema:longitude": 2.74}},
+        }
+
+    # Le manifeste annonce TROIS fiches, l'archive n'en contient que deux.
+    archive = _zip_flux({
+        "index.json": [
+            {"label": "Musée 1", "lastUpdateDatatourisme": "2026-08-05", "file": "objects/1.json"},
+            {"label": "Musée 2", "lastUpdateDatatourisme": "2026-08-05", "file": "objects/2.json"},
+            {"label": "Musée 3", "lastUpdateDatatourisme": "2026-08-05", "file": "objects/3.json"},
+        ],
+        "objects/1.json": fiche(1),
+        "objects/2.json": fiche(2),
+    })
+
+    monkeypatch.setenv(dt.FLUX_ENV, "https://flux.test/export.zip")
+    monkeypatch.setattr(
+        "quefaire.fetchers.base.http_get", lambda *a, **k: _FakeResp(None, content=archive)
+    )
+    with caplog.at_level(logging.WARNING):
+        found = dt.fetch(load_sector("pont-de-salars"))
+
+    # Les entrées d'index ne deviennent pas des activités.
+    assert sorted(p.name for p in found) == ["Musée 1", "Musée 2"]
+    manque = [r.getMessage() for r in caplog.records if "manifeste annonce" in r.getMessage()]
+    assert manque, "un écart entre fiches annoncées et fiches lues doit être DIT"
+    assert "3 fiches, 2 lues" in manque[0]
+
+
 def test_flux_ne_tronque_pas_une_archive_volumineuse(monkeypatch, caplog):
     """Le garde-fou d'archive borne le PIC, pas le cumul décompressé.
 

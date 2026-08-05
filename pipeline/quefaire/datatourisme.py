@@ -620,69 +620,53 @@ def _fiches_du_corps(corps: bytes):
     deux fois plus d'activités qu'en réalité, et faussait le taux de sélectivité
     affiché juste après (« N retenues sur M »).
 
-    Ce qui est mesuré, et pourquoi :
+    Ce que trois runs de mesure ont établi, et qui n'a plus à être redécouvert :
 
-    - **identifiants distincts** — 23 541 pour 0 répétition : l'archive ne répète
-      aucun POI, la conversion ne travaille donc jamais deux fois. Question close.
-    - **types des nœuds anonymes** — ils n'ont ni `@id` ni `@type` : inclassables
-      par construction.
-    - **noms de leurs champs** — seule façon de savoir s'ils sont vides (à sauter)
-      ou s'ils portent de la matière qu'on perd.
-    - **nœuds par document** — le run tronqué en comptait 1 par document, le run
-      complet 2. Les deux ne peuvent pas décrire la même archive ; une moyenne ne
-      tranchera pas, la distribution si.
+    - **23 541 identifiants distincts, 0 répétition** — l'archive ne répète aucun
+      POI, la conversion ne travaille jamais deux fois.
+    - **la distribution des nœuds par document** (`1→23541, 23541→1`) a désigné le
+      coupable des 23 541 nœuds anonymes : un **manifeste**, pas des fragments de
+      fiche. D'où `_est_un_manifeste()`, et le témoin de complétude qui en découle.
+    - **le manifeste ne porte aucun horaire** : l'anomalie `avec_horaires: 3` reste
+      entière, et il faut la chercher ailleurs.
 
-    Aucune déduplication et aucun saut ici avant d'avoir ces réponses : un nœud
-    écarté à tort est une perte silencieuse, et `dedupe_providers` sait déjà
-    rapprocher ce qui se répète.
+    Le compteur de répétitions est conservé même si la réponse est connue : c'est
+    une propriété de la SOURCE, pas du code, et elle peut changer sans nous avertir.
     """
-    documents = noeuds = 0
+    documents = noeuds = sans_id = annoncees = 0
     vus: set[str] = set()
-    sans_id = 0
-    # Les nœuds SANS identifiant se sont révélés être aussi SANS `@type`, donc
-    # inclassables par construction : 23 541 conversions vouées à l'échec. Reste à
-    # savoir s'ils sont vides — et alors on les saute — ou s'ils portent des champs
-    # qu'on perd. Ce n'est pas une hypothèse gratuite : `avec_horaires: 3` sur 2437
-    # activités est anormal, et l'ontologie loge les horaires sous `isLocatedAt`.
-    # On inventorie donc leurs NOMS DE CHAMPS (pas leur contenu) : un `{}` ne
-    # produira aucune ligne, un fragment d'adresse ou d'horaires se nommera.
-    anonymes: Counter = Counter()
-    # Nœuds par document. Départage deux lectures incompatibles du run précédent :
-    # « chaque document porte un POI + un compagnon anonyme » (2 partout) contre
-    # « la queue de l'archive contient des documents agrégés » (1 partout, puis
-    # beaucoup). Le run tronqué comptait 1 nœud par document, le run complet 2 :
-    # l'un des deux chiffres décrit mal l'archive, et une moyenne ne le dira pas.
-    par_document: Counter = Counter()
     for doc in _documents_du_flux(corps):
         documents += 1
-        ici = 0
+        if _est_un_manifeste(doc):
+            # L'index de l'archive : on retient ce qu'il annonce et on ne tente pas
+            # d'en faire des activités.
+            annoncees += len(doc)
+            continue
         for node in _nodes_du_document(doc):
             noeuds += 1
-            ici += 1
             ident = str(node.get("@id") or node.get("uri") or node.get("uuid") or "")
             if ident:
                 vus.add(ident)
             else:
                 sans_id += 1
-                for cle in list(node.keys())[:12] or ["(objet vide)"]:
-                    anonymes[str(cle)] += 1
             yield node
-        par_document[ici] += 1
     log.info(
         "[datatourisme] flux : %.1f Mo compressés, %d document(s), %d nœud(s), "
         "%d identifiant(s) distinct(s), %d répétition(s), %d sans identifiant",
         len(corps) / 1e6, documents, noeuds, len(vus),
         max(0, noeuds - sans_id - len(vus)), sans_id,
     )
-    log.info(
-        "[datatourisme] nœuds par document : %s",
-        ", ".join(f"{n}→{c} doc(s)" for n, c in sorted(par_document.items())),
-    )
-    if anonymes:
-        log.info(
-            "[datatourisme] champs des nœuds sans identifiant : %s",
-            ", ".join(f"{c}×{n}" for c, n in anonymes.most_common(10)),
+    if annoncees and annoncees != len(vus):
+        # Écart entre ce que la source déclare livrer et ce qu'on a lu. Jusqu'ici,
+        # seule une chute inexpliquée du catalogue le révélait — deux semaines plus
+        # tard, quand la rétention finissait par lâcher.
+        log.warning(
+            "[datatourisme] le manifeste annonce %d fiches, %d lues — écart de %d, "
+            "archive amputée ou membres illisibles",
+            annoncees, len(vus), annoncees - len(vus),
         )
+    elif annoncees:
+        log.info("[datatourisme] manifeste : %d fiches annoncées, autant lues", annoncees)
 
 
 def _documents_du_flux(corps: bytes):
@@ -699,13 +683,14 @@ def _documents_du_flux(corps: bytes):
     de téléchargement signé. Le JSON nu et le gzip restent acceptés : le mode
     flux doit survivre à un changement d'emballage côté diffuseur.
 
-    La disposition interne de l'archive n'est PAS devinée (un seul gros JSON-LD,
-    un `index.json` plus un fichier par fiche, un sous-dossier `objects/`…) : on
-    tente chaque membre `.json`/`.jsonld` et on garde ce qui se lit. Un index
-    qui ne contient que des chemins ne produira aucune fiche et sera ignoré sans
-    bruit. C'est le même parti que pour les champs de l'ontologie — je ne peux
-    pas vérifier la forme depuis l'environnement de développement, donc je ne la
-    fige pas.
+    La disposition interne de l'archive n'est PAS devinée : on tente chaque membre
+    `.json`/`.jsonld` et on garde ce qui se lit. Celle du diffuseur, mesurée
+    depuis, tient en un fichier par fiche **plus un manifeste** — voir
+    `_est_un_manifeste()`. Ce parti d'ouverture reste le bon : le mode flux doit
+    survivre à une réorganisation côté source.
+
+    Un membre illisible n'est plus sauté en silence : c'est indiscernable d'une
+    fiche absente du flux, et le manifeste permet désormais de le chiffrer.
     """
     import gzip
     import io
@@ -734,6 +719,7 @@ def _documents_du_flux(corps: bytes):
                     MAX_FLUX_RECORDS, len(membres),
                 )
                 membres = membres[:MAX_FLUX_RECORDS]
+            illisibles = 0
             for info in membres:
                 if info.file_size > MAX_MEMBER_BYTES:
                     # Seul pic mémoire possible : un membre lu d'un bloc. Le sauter
@@ -750,7 +736,13 @@ def _documents_du_flux(corps: bytes):
                 try:
                     yield _json.loads(zf.read(info))
                 except (ValueError, OSError):
-                    continue
+                    illisibles += 1
+            if illisibles:
+                log.warning(
+                    "[datatourisme] %d membre(s) illisible(s) sur %d — autant de "
+                    "fiches perdues, indiscernables d'une absence du flux",
+                    illisibles, len(membres),
+                )
         return
 
     if corps[:2] == b"\x1f\x8b":
@@ -779,6 +771,37 @@ def _nodes_du_document(doc) -> list[dict]:
     if isinstance(doc, list):
         return [n for n in doc if isinstance(n, dict)]
     return []
+
+
+def _est_un_manifeste(doc) -> bool:
+    """Vrai pour l'index de l'archive : une liste d'entrées `{label, file, …}`.
+
+    Mesuré, pas supposé. La distribution des nœuds par document a livré
+    `1→23541 doc(s), 23541→1 doc(s)` : 23 541 fichiers d'une fiche chacun, plus UN
+    document de 23 541 entrées, dont les champs sont `label`,
+    `lastUpdateDatatourisme` et `file`. C'est le manifeste de l'archive — la
+    déclaration, par la source, de ce qu'elle livre.
+
+    Deux conséquences. On cesse d'essayer d'en convertir les entrées en activités :
+    sans `@type`, les 23 541 échouaient d'avance. Et on s'en sert de **témoin de
+    complétude** : le nombre de fiches annoncées se compare à celui des fiches
+    lues, ce qui rend visible un membre illisible ou une archive amputée — ce que
+    seule une chute inexpliquée du catalogue signalait jusqu'ici.
+
+    Note : le manifeste ne porte AUCUN horaire. Il n'explique donc pas
+    `avec_horaires: 3` ; cette anomalie reste ouverte, et l'hypothèse d'un nœud
+    voisin porteur d'horaires est écartée.
+    """
+    return (
+        isinstance(doc, list)
+        and bool(doc)
+        and all(
+            isinstance(entree, dict)
+            and "file" in entree
+            and not (entree.get("@id") or entree.get("@type") or entree.get("uri"))
+            for entree in doc
+        )
+    )
 
 
 def _nodes_from_api(key: str, sector, filters: str = "") -> list[dict]:
