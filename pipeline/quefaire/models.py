@@ -189,6 +189,21 @@ class Place:
     description: str = ""
     # Phrase « donne envie » générée une seule fois à la découverte (places.py).
     tldr: Optional[str] = None
+    # Empreinte des ENTRÉES qui ont produit `tldr` (clé de cache de `present()`).
+    #
+    # Sans elle, une phrase est un texte sans provenance vérifiable : on ne peut
+    # pas dire de quoi elle a été tirée, donc pas savoir qu'elle ne correspond
+    # plus. Mesuré le 2026-08-05 — 3357 phrases avaient été écrites alors que la
+    # description lue était une URI (voir `datatourisme._description_of`), et
+    # comme `present()` ne travaille que sur les fiches SANS phrase, elles étaient
+    # gelées à vie. L'une affirmait qu'une « bachasse » est une embarcation là où
+    # la vraie description parle d'une rivière.
+    #
+    # Avec l'empreinte, une phrase dont la matière a changé se détecte et se
+    # réécrit — y compris pour tout futur correctif d'extraction. Non exportée
+    # vers le navigateur (voir la liste `CHAMPS` du site) : c'est de la traçabilité
+    # de production, pas une donnée d'affichage.
+    tldr_key: Optional[str] = None
     commune: Optional[str] = None
     address: Optional[str] = None
     lat: Optional[float] = None

@@ -859,23 +859,62 @@ def present(places: list[Place]) -> list[Place]:
 
     Sans LLM disponible, l'étape est sautée proprement — les fiches s'affichent
     sans phrase.
+
+    DEUX RÈGLES issues d'une mesure du 2026-08-05 :
+
+    1. **Une phrase dont la matière a changé est réécrite.** `tldr_key` mémorise
+       l'empreinte des entrées qui l'ont produite ; si elle ne correspond plus, la
+       fiche repasse dans la file. Sans ça, 3357 phrases écrites sur une URI (le
+       défaut `_description_of`) restaient gelées à vie, puisque cette fonction ne
+       regardait que les fiches SANS phrase. Une phrase sans provenance vérifiable
+       est un texte non sourcé publié sous notre nom : les fiches dont l'empreinte
+       est absente sont donc traitées comme suspectes, et repassent une fois.
+    2. **Pas de matière, pas de phrase.** Une fiche sans description n'est plus
+       soumise au modèle : il n'aurait que le nom, la catégorie et la commune, et
+       c'est précisément ce régime qui a produit « Explorez une bachasse,
+       embarcation traditionnelle des Dombes » pour un lieu dont la description
+       réelle parle d'une rivière. Le modèle ne devine pas, il affirme.
     """
     from .clarify import _extract_json
     from .llm import clarify_chain
 
-    todo = [p for p in places if not p.tldr]
+    def empreinte(p: Place) -> str:
+        return cache.key("place", p.name, p.category, p.commune or "", p.description[:200])
+
+    # Phrases dont la matière ne correspond plus (ou dont on ne peut rien prouver).
+    perimees = 0
+    for p in places:
+        if p.tldr and p.tldr_key != empreinte(p):
+            p.tldr = None
+            perimees += 1
+    if perimees:
+        log.info(
+            "[places] %d phrases à revoir : leur matière a changé depuis leur écriture",
+            perimees,
+        )
+
+    # « Pas de matière, pas de phrase » — et on le DIT, sinon l'écart entre fiches
+    # publiées et fiches présentées passerait pour un plafond ou un quota.
+    todo = [p for p in places if not p.tldr and p.description]
+    sans_matiere = sum(1 for p in places if not p.tldr and not p.description)
+    if sans_matiere:
+        log.info(
+            "[places] %d fiches laissées sans phrase : aucune description à résumer",
+            sans_matiere,
+        )
     if not todo:
         return places
 
     misses: list[tuple[Place, str]] = []
     for p in todo:
-        ckey = cache.key("place", p.name, p.category, p.commune or "", p.description[:200])
+        ckey = empreinte(p)
         val = cache.get(ckey)
         if val is None:
             misses.append((p, ckey))
         elif val:
             payload = json.loads(val) if val.startswith("{") else {"phrase": val}
             p.tldr = payload.get("phrase") or None
+            p.tldr_key = ckey if p.tldr else None
             if "insolite" in payload:
                 p.unusual = bool(payload["insolite"])
 
@@ -920,6 +959,7 @@ def present(places: list[Place]) -> list[Place]:
                 unusual = bool(entry.get("insolite")) if isinstance(entry, dict) else False
                 if phrase and 10 < len(phrase) < 300:
                     p.tldr = phrase
+                    p.tldr_key = ckey  # provenance : de quoi cette phrase est tirée
                     p.unusual = unusual
                     cache.put(ckey, json.dumps({"phrase": phrase, "insolite": unusual}, ensure_ascii=False))
                 else:

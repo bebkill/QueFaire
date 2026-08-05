@@ -2206,6 +2206,88 @@ def test_merge_keeps_llm_verdict_not_heuristic():
     assert out.unusual_hint is True
 
 
+def test_presentation_reecrit_une_phrase_dont_la_matiere_a_change(monkeypatch):
+    """Une phrase doit correspondre à la matière dont elle est tirée.
+
+    3357 phrases avaient été écrites alors que la description lue était une URI
+    (défaut `_description_of`). Comme `present()` ne regardait que les fiches SANS
+    phrase, elles étaient gelées à vie : aucune n'a été réécrite en quinze runs.
+    L'une affirmait qu'une « bachasse » est une embarcation traditionnelle des
+    Dombes, là où la description réelle parle d'une rivière.
+
+    `tldr_key` rend la provenance vérifiable, donc la péremption détectable.
+    """
+    from quefaire import places
+    from quefaire.models import Place
+
+    _reset_cache()
+    ecrites: list[str] = []
+
+    class _Chain:
+        def available(self): return True
+        def healthy(self): return True
+        def run(self, prompt):
+            ecrites.append(prompt)
+            raise RuntimeError("stop")
+
+    monkeypatch.setattr("quefaire.llm.clarify_chain", lambda: _Chain())
+
+    # Phrase écrite sur l'ANCIENNE matière : l'empreinte ne correspond plus.
+    perimee = Place(name="La Bachasse", category="nature", source_id="datatourisme",
+                    sector="s", external_id="dt/1",
+                    description="La rivière y coule paisiblement.",
+                    tldr="Explorez une bachasse, embarcation traditionnelle des Dombes.",
+                    tldr_key="place:empreinte-de-l-ancienne-description")
+    places.present([perimee])
+    assert perimee.tldr is None, "une phrase dont la matière a changé doit être retirée"
+    assert "La Bachasse" in ecrites[0], "…et la fiche doit repasser dans la file"
+
+    # Phrase dont l'empreinte correspond : on n'y touche pas, et on ne repaie pas.
+    ecrites.clear()
+    juste = Place(name="Musée du Rouergue", category="musee", source_id="datatourisme",
+                  sector="s", external_id="dt/2", description="Outils et costumes.")
+    juste.tldr = "Outils et costumes du siècle dernier, dans un ancien presbytère."
+    juste.tldr_key = places.cache.key(
+        "place", juste.name, juste.category, "", juste.description[:200],
+    )
+    places.present([juste])
+    assert juste.tldr and not ecrites, "une phrase à jour ne doit pas être réécrite"
+
+
+def test_presentation_refuse_d_ecrire_sans_matiere(monkeypatch):
+    """Pas de description, pas de phrase : le modèle ne devine pas, il affirme.
+
+    Avec le seul nom, la catégorie et la commune, il a produit « Explorez une
+    bachasse, embarcation traditionnelle des Dombes » pour une rivière. Une fiche
+    sans matière reste donc sans phrase — ce qui ne la déréférence pas, `tldr`
+    n'ayant jamais compté comme signe d'intérêt (voir `has_signal`).
+    """
+    from quefaire import places
+    from quefaire.models import Place
+
+    _reset_cache()
+    soumis: list[str] = []
+
+    class _Chain:
+        def available(self): return True
+        def healthy(self): return True
+        def run(self, prompt):
+            soumis.append(prompt)
+            raise RuntimeError("stop")
+
+    monkeypatch.setattr("quefaire.llm.clarify_chain", lambda: _Chain())
+
+    muette = Place(name="Aire de jeux", category="nature", source_id="osm",
+                   sector="s", external_id="node/9")
+    documentee = Place(name="Musée de la Chaussure", category="musee", source_id="osm",
+                       sector="s", external_id="node/10",
+                       description="Trois siècles de bottiers romanais.")
+    places.present([muette, documentee])
+    assert soumis, "la fiche documentée doit être soumise"
+    assert "Aire de jeux" not in soumis[0]
+    assert "Musée de la Chaussure" in soumis[0]
+
+
 def test_presentation_queue_follows_display_order(monkeypatch):
     """La file LLM suit l'ordre d'AFFICHAGE, pas les présomptions d'insolite.
 
