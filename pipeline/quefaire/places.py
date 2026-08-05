@@ -684,28 +684,25 @@ ACTIVITÉS :
 
 BATCH_SIZE = 20
 
-# Plafond de présentations NOUVELLES par run. Garde-fou de coût : au premier run
-# réel, une anomalie de filtrage a envoyé 7197 activités à la présentation —
-# 21 minutes de LLM sur des données à jeter. Le cache étant persistant, ce qui
-# n'est pas présenté aujourd'hui le sera au passage suivant : on étale au lieu
-# de tout payer d'un coup.
-PRESENT_MAX_PER_RUN = 400
-
-# Budget de présentations : combien d'activités, au total, méritent une phrase
-# « donne envie » payée au LLM.
+# Plafond de présentations NOUVELLES par run. C'est le SEUL limiteur : il ne
+# reste plus de « budget total », le site affichant désormais tout le catalogue
+# (le plafond de 300 tuiles a disparu avec le rendu côté navigateur).
 #
-# Ce nombre a longtemps été le MIROIR de `MAX_RENDERED` côté site — le plafond
-# d'affichage — parce que présenter au-delà, c'était payer pour une fiche que
-# personne ne verrait. Ce plafond a disparu : le site affiche désormais TOUT le
-# catalogue, page par page. Le nombre reste, mais il ne veut plus dire la même
-# chose et le nom aurait menti : ce n'est plus une limite d'affichage, c'est un
-# budget. Les fiches au-delà s'affichent sans phrase, avec leur description de
-# source — c'est le comportement normal quand aucun LLM n'est configuré.
+# Sa valeur ne dit donc plus « combien de fiches méritent une phrase » mais
+# « au-delà de combien s'agit-il forcément d'une anomalie ». Au premier run réel,
+# un défaut de filtrage avait envoyé 7197 activités à la présentation : 21 minutes
+# de LLM sur des données à jeter. 3000 laisse passer un catalogue complet de rayon
+# horaire (2232 à Pont-de-Salars, le plus dense mesuré) tout en arrêtant net une
+# dérive de cet ordre.
 #
-# La file est ordonnée par `display_order_key`, donc le budget va aux fiches les
-# mieux documentées d'abord. À relever quand le coût sera arbitré : 2232 fiches
-# présentées, c'est ~2232 appels une seule fois, le cache étant persistant.
-PRESENTATION_BUDGET = 300
+# Volontairement PAS calé sur le compte du jour : 2232 exactement retomberait à
+# tronquer dès la première fiche de plus, sans que rien ne le signale — et
+# l'histoire de ce fichier est faite de plafonds devenus faux en silence.
+#
+# La file reste ordonnée par `display_order_key` : si le plafond mord malgré tout,
+# ce sont les fiches les mieux documentées qui passent d'abord, et le reste suit au
+# run suivant puisque le cache est persistant.
+PRESENT_MAX_PER_RUN = 3000
 
 
 def display_order_key(place: Place):
