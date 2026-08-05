@@ -483,6 +483,13 @@ def dedupe_providers(places: list[Place], phase: str = "sweep") -> list[Place]:
     dropped = len(places) - len(merged)
     if dropped:
         log.info("[places] %d fiches fusionnées entre fournisseurs (%s)", dropped, phase)
+    # Ordre de SORTIE aligné sur celui de `merge` : `fold(name)`, et non l'ordre de
+    # travail interne (clé de rapprochement, mots vides retirés). Sans ça, figer
+    # l'ordre d'entrée a réécrit `places.json` en entier — 37 290 lignes changées
+    # pour +2 fiches — et un diff de cette taille ne se relit pas, donc ne se
+    # vérifie plus. L'ordre de sortie est un CONTRAT avec le lecteur du dépôt, il
+    # ne doit pas suivre les besoins de l'algorithme.
+    merged.sort(key=lambda p: fold(p.name))
     return merged
 
 
