@@ -70,16 +70,39 @@ const communePoints = sector.commune_points || [];
       La colonne de gauche est collante et défile indépendamment ; la barre de
       recherche l'est aussi, dans la colonne de droite, parce que c'est le seul
       réglage qu'on modifie EN LISANT les résultats. */}
-  <div class="app-shell">
-    {/* Rideau des réglages sur mobile : sur petit écran, une colonne permanente
-        mangerait la moitié de l'écran. Le bouton « Affiner » l'ouvre, Échap et le
-        voile la referment. */}
+  {/* `data-side` porte l'état de la colonne : ANCRÉE (elle occupe une colonne de
+      la grille, donc l'exploration se redimensionne autour d'elle) ou FERMÉE
+      (l'exploration récupère toute la largeur — quatre tuiles par rangée au lieu
+      de trois). Sur petit écran la même colonne devient un rideau : il n'y a pas
+      de largeur à partager. */}
+  <div class="app-shell" id="shell" data-side="ancree">
+    {/* Restaure l'état avant le premier rendu. Le script de module est différé :
+        laissé à lui seul, une colonne mémorisée comme fermée s'affichait puis
+        disparaissait, en refaisant la mise en page des 24 tuiles au passage. */}
+    <script is:inline>
+      try {
+        if (window.matchMedia('(min-width: 1041px)').matches &&
+            localStorage.getItem('quefaire:reglages') === 'fermee') {
+          document.getElementById('shell').dataset.side = 'fermee';
+        }
+      } catch (e) { /* localStorage refusé : la colonne reste ancrée */ }
+    </script>
+
+    {/* Voile du rideau : seulement sous 1040 px, où la colonne recouvre la page
+        au lieu de la partager. Échap et le voile la referment. */}
     <div class="side-veil" id="side-veil" hidden></div>
 
     <aside class="side" id="side" aria-label="Filtres et préférences">
       <div class="side-head">
-        <h2>Affiner</h2>
-        <button type="button" class="side-close" id="side-close" aria-label="Fermer les réglages">✕</button>
+        <h2>Réglages</h2>
+        {/* La colonne offre sa propre fermeture, ancrée comme en rideau : sans
+            elle, le seul moyen de récupérer la largeur était de retrouver le
+            bouton du bandeau de recherche.
+
+            Un chevron et non une croix : à 60 px sous celle du panneau de goûts,
+            deux ✕ se lisent comme deux fermetures du même objet. Le chevron dit
+            ce qui se passe vraiment — la colonne se range sur le côté. */}
+        <button type="button" class="side-close" id="side-close" aria-label="Ranger la colonne de réglages" title="Ranger la colonne">«</button>
       </div>
 
       <div class="side-scroll">
@@ -215,9 +238,6 @@ const communePoints = sector.commune_points || [];
               </select>
             </label>
           </div>
-          <div class="fchips">
-            <button class="chip" id="mapchip" aria-pressed="false">🗺️ Voir sur la carte</button>
-          </div>
         </section>
 
 
@@ -245,12 +265,18 @@ const communePoints = sector.commune_points || [];
         </p>
       </header>
 
-      {/* Collante : c'est le réglage qu'on modifie en lisant les résultats, donc
-          le seul qui doit rester sous la main pendant le défilement. Le bouton
-          « Affiner » l'accompagne sur mobile, où la colonne est un rideau. */}
+      {/* Collant : ce bandeau ne porte que ce qu'on modifie EN LISANT les
+          résultats — la recherche, l'accès aux réglages, et le passage en carte.
+          Les trois restent sous la main pendant le défilement.
+
+          La carte était une chip perdue au fond de la colonne « Affichage » :
+          pour y basculer il fallait remonter, ouvrir la colonne, la faire défiler.
+          À sa place ici, c'est ce qu'elle est vraiment — un mode de vue, pas un
+          filtre — et elle s'active depuis n'importe quel point de la liste. */}
       <div class="explore-top">
-        <button type="button" class="side-toggle" id="side-open" aria-expanded="false" aria-controls="side">
-          <span aria-hidden="true">☰</span> Affiner<span class="filter-badge" id="filter-badge" hidden></span>
+        <button type="button" class="side-toggle" id="side-open" aria-expanded="true" aria-controls="side">
+          <span aria-hidden="true">☰</span>
+          <span class="st-label">Réglages</span><span class="filter-badge" id="filter-badge" hidden></span>
         </button>
         <form class="searchbar" id="searchform" role="search">
           <input
@@ -268,6 +294,11 @@ const communePoints = sector.commune_points || [];
             <span class="sb-icon" aria-hidden="true">🔍</span>
           </button>
         </form>
+        {/* `aria-pressed` et non `aria-expanded` : c'est une vue qu'on active, pas
+            un panneau qu'on déplie. Le libellé tombe sous 640 px, l'émoji reste. */}
+        <button type="button" class="chip map-toggle" id="mapchip" aria-pressed="false">
+          <span aria-hidden="true">🗺️</span> <span class="mt-label">Carte</span>
+        </button>
       </div>
 
       <p class="hints">
@@ -1128,31 +1159,67 @@ const communePoints = sector.commune_points || [];
     });
   }
 
-  // ---------------- Colonne de réglages : rideau sur mobile ----------------
-  // Sur grand écran la colonne est toujours là et ces poignées ne servent à rien
-  // (CSS). Sur petit écran elle devient un rideau : sans ça, une colonne
-  // permanente prendrait la moitié d'un téléphone pour des réglages qu'on ouvre
-  // trois secondes.
+  // ---------------- Colonne de réglages : ancrée, ou en rideau -------------
+  // DEUX régimes pour un seul panneau, choisis par la largeur disponible :
+  //
+  //  · au-delà de 1040 px la colonne est ANCRÉE — elle tient une vraie colonne de
+  //    la grille. La fermer redimensionne l'exploration au lieu de la découvrir :
+  //    les tuiles repassent de trois à quatre par rangée. C'est le point : on
+  //    range ses réglages pour gagner de la place, pas pour les cacher.
+  //  · en dessous, il n'y a pas de largeur à partager, donc c'est un rideau qui
+  //    recouvre, avec voile et Échap.
+  //
+  // L'état ancré/fermé se mémorise, celui du rideau non : un rideau se referme à
+  // chaque usage, s'en souvenir n'apprendrait rien.
+  const shell = document.getElementById('shell');
   const side = document.getElementById('side');
   const sideVeil = document.getElementById('side-veil');
   const sideOpen = document.getElementById('side-open');
   const sideClose = document.getElementById('side-close');
   const filterBadge = document.getElementById('filter-badge');
+  const MEMOIRE_SIDE = 'quefaire:reglages';
+  const enRideau = window.matchMedia('(max-width: 1040px)');
 
-  function ouvrirReglages(ouvert) {
+  function ouvrirReglages(ouvert, { rendreLeFocus = true } = {}) {
+    shell.dataset.side = ouvert ? 'ancree' : 'fermee';
     side.classList.toggle('open', ouvert);
-    sideVeil.hidden = !ouvert;
+    // Le voile n'a de sens qu'en rideau : ancrée, la colonne ne recouvre rien et
+    // le reste de la page doit rester cliquable.
+    sideVeil.hidden = !(ouvert && enRideau.matches);
     sideOpen.setAttribute('aria-expanded', String(ouvert));
-    // Le focus suit le rideau : à l'ouverture dans le panneau, au retour sur le
-    // bouton — sinon la navigation au clavier reste derrière le voile.
-    if (ouvert) sideClose.focus();
-    else sideOpen.focus();
+    if (!enRideau.matches) {
+      try { localStorage.setItem(MEMOIRE_SIDE, ouvert ? 'ancree' : 'fermee'); } catch (e) { /* refusé */ }
+    }
+    // Le focus suit le panneau : à l'ouverture dedans, au retour sur le bouton —
+    // sinon la navigation au clavier reste derrière le voile.
+    if (rendreLeFocus) (ouvert ? sideClose : sideOpen).focus();
+    // La carte affichée change de largeur avec la colonne ; Leaflet ne le voit
+    // pas tout seul et laisse des tuiles grises sur la bande découverte.
+    if (leaflet && !mapWrap.hidden) requestAnimationFrame(() => leaflet.map.invalidateSize());
   }
-  sideOpen.addEventListener('click', () => ouvrirReglages(!side.classList.contains('open')));
+
+  function memoireSide() {
+    try { return localStorage.getItem(MEMOIRE_SIDE); } catch (e) { return null; }
+  }
+
+  // Le script en ligne du gabarit a déjà posé l'état pour éviter un saut de mise
+  // en page ; on s'aligne dessus, et en rideau on part fermé.
+  ouvrirReglages(!enRideau.matches && memoireSide() !== 'fermee', { rendreLeFocus: false });
+
+  // Franchir le seuil change le régime, pas le choix du visiteur : on repart de
+  // l'état mémorisé côté ancré, et fermé côté rideau. Sans ça, un rideau ouvert
+  // puis élargi laissait un voile en travers d'une page redevenue à deux colonnes.
+  enRideau.addEventListener('change', () => {
+    ouvrirReglages(!enRideau.matches && memoireSide() !== 'fermee', { rendreLeFocus: false });
+  });
+
+  sideOpen.addEventListener('click', () => ouvrirReglages(shell.dataset.side === 'fermee'));
   sideClose.addEventListener('click', () => ouvrirReglages(false));
   sideVeil.addEventListener('click', () => ouvrirReglages(false));
   document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && side.classList.contains('open')) ouvrirReglages(false);
+    // Échap ne referme que le rideau : ancrée, la colonne fait partie de la page
+    // et une touche d'annulation n'a pas à la faire disparaître.
+    if (e.key === 'Escape' && enRideau.matches && side.classList.contains('open')) ouvrirReglages(false);
   });
 
   // ---------------- Filtres actifs, lisibles depuis les résultats ----------

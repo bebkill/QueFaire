@@ -150,6 +150,19 @@ a { color: inherit; }
   align-items: start;
 }
 
+/* La colonne est ANCRABLE : au-delà de 1040 px elle tient une colonne de la
+   grille, et la refermer REDIMENSIONNE l'exploration au lieu de la découvrir —
+   les tuiles repassent de trois à quatre par rangée. Un panneau qui recouvrirait
+   la liste ferait perdre la place qu'on cherche justement à gagner.
+
+   Pas de transition sur `grid-template-columns` : animer la largeur ferait
+   recalculer la grille de tuiles à chaque image. Le redimensionnement est net. */
+@media (min-width: 1041px) {
+  .app-shell[data-side="fermee"] { grid-template-columns: minmax(0, 1fr); gap: 0; }
+  .app-shell[data-side="fermee"] > .side { display: none; }
+  .app-shell[data-side="fermee"] > .side-veil { display: none; }
+}
+
 /* ---------------- Colonne de réglages ---------------- */
 
 .side {
@@ -166,15 +179,17 @@ a { color: inherit; }
   box-shadow: var(--shadow);
   overflow: hidden;
 }
+/* En-tête de la colonne : visible dans LES DEUX régimes. Ancrée, elle porte le
+   seul moyen de refermer la colonne depuis la colonne elle-même. */
 .side-head {
-  display: none; /* seulement en mode rideau — voir la requête média */
+  display: flex;
   align-items: center; justify-content: space-between;
   padding: 14px 16px; border-bottom: 1px solid var(--line);
 }
 .side-head h2 { margin: 0; font-size: 1rem; }
 .side-close {
   border: 0; background: none; cursor: pointer; color: var(--ink-soft);
-  font-size: 1.1rem; line-height: 1; padding: 4px 6px; border-radius: 8px;
+  font-size: 1.35rem; font-weight: 700; line-height: 1; padding: 2px 8px; border-radius: 8px;
 }
 .side-close:hover { background: var(--bg-soft); color: var(--ink); }
 .side-scroll {
@@ -288,6 +303,37 @@ a { color: inherit; }
 .searchbar button:hover { filter: brightness(1.08); }
 .searchbar .sb-icon { display: none; }
 
+/* Passage en carte : un MODE DE VUE, pas un filtre. Sa place est donc dans le
+   bandeau collant, à côté de la recherche, et non au fond d'un groupe de réglages
+   qu'il fallait ouvrir et faire défiler pour l'atteindre. */
+.map-toggle {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 9px 15px; box-shadow: var(--shadow); white-space: nowrap;
+}
+
+/* Poignée des réglages : présente dans les deux régimes — ancrée elle range la
+   colonne, en rideau elle l'ouvre. L'état pressé dit lequel des deux vaut.
+   Déclarée AVANT les requêtes média : à spécificité égale, c'est la dernière
+   règle qui gagne, et une base placée après aurait annulé leurs ajustements. */
+.side-toggle {
+  display: inline-flex; align-items: center; gap: 6px;
+  font: inherit; font-size: 0.88rem; font-weight: 700; cursor: pointer;
+  border: 1.5px solid var(--line); border-radius: 999px;
+  background: var(--card); color: var(--ink); padding: 9px 14px;
+  white-space: nowrap; box-shadow: var(--shadow);
+}
+.side-toggle:hover { border-color: var(--ink-soft); }
+.side-toggle[aria-expanded="true"] {
+  background: var(--chip-on); color: var(--chip-on-ink); border-color: var(--chip-on);
+}
+
+@media (max-width: 640px) {
+  /* Trois contrôles pour une seule ligne : les libellés tombent, les émojis
+     restent. Le nom accessible, lui, reste le mot dans les deux cas. */
+  .map-toggle .mt-label, .side-toggle .st-label { display: none; }
+  .map-toggle { padding: 9px 12px; }
+}
+
 @media (max-width: 560px) {
   .searchbar { padding-left: 14px; }
   .searchbar .sb-label { display: none; }
@@ -296,8 +342,6 @@ a { color: inherit; }
   .side-toggle { padding: 9px 12px; }
 }
 
-/* Poignée du rideau : inutile tant que la colonne est visible. */
-.side-toggle { display: none; }
 /* `[hidden]` d'abord : une règle `display` explicite BAT l'attribut hidden (le
    style de l'agent utilisateur a la priorité la plus faible). Sans cette ligne, le
    badge restait affiché en pastille vide alors qu'aucun filtre n'était actif. */
@@ -350,13 +394,10 @@ a { color: inherit; }
     transition: transform .22s ease;
   }
   .side.open { transform: none; }
-  .side-head { display: flex; }
-  .side-toggle {
-    display: inline-flex; align-items: center; gap: 6px;
-    font: inherit; font-size: 0.88rem; font-weight: 700; cursor: pointer;
-    border: 1.5px solid var(--line); border-radius: 999px;
-    background: var(--card); color: var(--ink); padding: 9px 14px;
-    white-space: nowrap; box-shadow: var(--shadow);
+  /* En rideau, la poignée ne doit PAS se peindre comme active pendant que le
+     panneau est ouvert : il est par-dessus, on ne le compare pas au reste. */
+  .side-toggle[aria-expanded="true"] {
+    background: var(--card); color: var(--ink); border-color: var(--line);
   }
   .explore-intro { padding: 22px 0 14px; text-align: center; }
   .explore-intro .sub { margin: 0 auto; }
