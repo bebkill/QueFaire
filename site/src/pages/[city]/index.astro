@@ -61,28 +61,245 @@ const communePoints = sector.commune_points || [];
 ---
 
 <Base title={title} sector={sector}>
-  <section class="hero">
-    <div class="wrap">
-      <h1>QueFaire —&nbsp;<em>{sector.name}</em></h1>
-      <p class="sub">
-        Concerts, randos, marchés, spectacles… {sector.event_count} idées de sorties
-        collectées automatiquement auprès des communes et offices de tourisme
-        {places.length > 0 && (
-          <> — plus <strong>{sortedPlaces.length} activités ouvertes toute l'année</strong>
-          {unusualCount > 0 && <>, dont {unusualCount} insolites</>}</>
-        )}.
-      </p>
+  {/* Deux colonnes : à GAUCHE tout ce qui se règle, à DROITE tout ce qui se
+      parcourt. L'ancienne page empilait un héros centré, une rangée de chips et
+      une barre d'outils de sept sélecteurs avant la première tuile : le visiteur
+      devait traverser ses réglages pour atteindre les résultats, et les perdait
+      de vue dès qu'il faisait défiler.
 
-      <form class="searchbar" id="searchform" role="search">
-        <input
-          id="searchinput"
-          type="search"
-          placeholder="Ex : une sortie en famille ce week-end…"
-          aria-label="Rechercher une activité"
-          autocomplete="off"
-        />
-        <button type="submit">Chercher</button>
-      </form>
+      La colonne de gauche est collante et défile indépendamment ; la barre de
+      recherche l'est aussi, dans la colonne de droite, parce que c'est le seul
+      réglage qu'on modifie EN LISANT les résultats. */}
+  {/* `data-side` porte l'état de la colonne : ANCRÉE (elle occupe une colonne de
+      la grille, donc l'exploration se redimensionne autour d'elle) ou FERMÉE
+      (l'exploration récupère toute la largeur — quatre tuiles par rangée au lieu
+      de trois). Sur petit écran la même colonne devient un rideau : il n'y a pas
+      de largeur à partager. */}
+  <div class="app-shell" id="shell" data-side="ancree">
+    {/* Restaure l'état avant le premier rendu. Le script de module est différé :
+        laissé à lui seul, une colonne mémorisée comme fermée s'affichait puis
+        disparaissait, en refaisant la mise en page des 24 tuiles au passage. */}
+    <script is:inline>
+      try {
+        if (window.matchMedia('(min-width: 1041px)').matches &&
+            localStorage.getItem('quefaire:reglages') === 'fermee') {
+          document.getElementById('shell').dataset.side = 'fermee';
+        }
+      } catch (e) { /* localStorage refusé : la colonne reste ancrée */ }
+    </script>
+
+    {/* Voile du rideau : seulement sous 1040 px, où la colonne recouvre la page
+        au lieu de la partager. Échap et le voile la referment. */}
+    <div class="side-veil" id="side-veil" hidden></div>
+
+    <aside class="side" id="side" aria-label="Filtres et préférences">
+      <div class="side-head">
+        <h2>Réglages</h2>
+        {/* La colonne offre sa propre fermeture, ancrée comme en rideau : sans
+            elle, le seul moyen de récupérer la largeur était de retrouver le
+            bouton du bandeau de recherche.
+
+            Un chevron et non une croix : à 60 px sous celle du panneau de goûts,
+            deux ✕ se lisent comme deux fermetures du même objet. Le chevron dit
+            ce qui se passe vraiment — la colonne se range sur le côté. */}
+        <button type="button" class="side-close" id="side-close" aria-label="Ranger la colonne de réglages" title="Ranger la colonne">«</button>
+      </div>
+
+      <div class="side-scroll">
+        {/* Personnalisation par l'exemple. Un questionnaire d'accueil est un
+            péage : quatre questions avant d'avoir rien vu. Deux avis sur des
+            activités concrètes en apprennent davantage et se donnent en passant.
+
+            EN TÊTE de la colonne, et pas en pied : c'est une invitation, pas un
+            filtre. Placé en dernier, il tombait sous la ligne de flottaison de la
+            colonne — un premier visiteur ne le voyait jamais, alors que c'est le
+            seul endroit où la liste apprend à lui ressembler. Il disparaît de
+            lui-même quand il n'a plus rien à proposer, et le pied de colonne le
+            rouvre. */}
+        <section class="fgroup tuner" id="tuner" hidden>
+          <div class="tuner-head">
+            <h3>👋 Ce qui vous plaît</h3>
+            <button type="button" class="tuner-close" id="tuner-close" aria-label="Masquer">✕</button>
+          </div>
+          <p class="tuner-lead">
+            <strong>Deux ou trois avis</strong> suffisent pour que la liste vous
+            ressemble. Rien ne quitte ce navigateur.
+          </p>
+          <div class="tuner-cards" id="tuner-cards"></div>
+          <p class="tuner-state" id="tuner-state"></p>
+        </section>
+
+        <section class="fgroup" role="group" aria-labelledby="fg-quand">
+          <h3 id="fg-quand">Quand</h3>
+          <div class="fchips">
+            <button class="chip" data-chip="today" aria-pressed="false">☀️ Aujourd'hui</button>
+            <button class="chip" data-chip="weekend" aria-pressed="false">📅 Ce week-end</button>
+          </div>
+        </section>
+
+        <section class="fgroup" role="group" aria-labelledby="fg-qui">
+          <h3 id="fg-qui">Pour qui, à quel prix</h3>
+          <div class="fchips">
+            <button class="chip" data-chip="famille" aria-pressed="false">👨‍👩‍👧 En famille</button>
+            <button class="chip" data-chip="gratuit" aria-pressed="false">🆓 Gratuit</button>
+          </div>
+        </section>
+
+        {places.length > 0 && (
+          <section class="fgroup" role="group" aria-labelledby="fg-nature">
+            <h3 id="fg-nature">Nature de la sortie</h3>
+            <div class="fchips">
+              {/* Pendant symétrique de « Activités permanentes » : l'actualité,
+                  c'est-à-dire ce qui a une date et ne repassera pas. Sans lui, les
+                  activités permanentes noyaient les événements et il n'y avait
+                  aucun moyen de ne voir que ces derniers. */}
+              <button class="chip" data-chip="evenements" aria-pressed="false">🎪 Événements datés</button>
+              <button class="chip" data-chip="permanent" aria-pressed="false">🏛️ Toute l'année</button>
+              {unusualCount > 0 && (
+                <button class="chip" data-chip="insolite" aria-pressed="false">✨ Insolite</button>
+              )}
+              {notableCount > 0 && (
+                <button class="chip" data-chip="valeur-sure" aria-pressed="false">🏅 Valeurs sûres</button>
+              )}
+            </div>
+          </section>
+        )}
+
+        <section class="fgroup" role="group" aria-labelledby="fg-ou">
+          <h3 id="fg-ou">Où, et à quelle distance</h3>
+          <div class="fchips">
+            <button class="chip" data-chip="nearme" aria-pressed="false">📍 Près de moi</button>
+          </div>
+          <label class="field">
+            <span class="field-label">🏠 Point de départ</span>
+            <input
+              id="origin"
+              list="communes-list"
+              type="text"
+              placeholder={`ex. ${sector.name}`}
+              autocomplete="off"
+              aria-label="Commune de départ pour le calcul des temps de trajet"
+            />
+          </label>
+          <datalist id="communes-list">
+            {communePoints.map((c) => <option value={c.nom}>{c.nom}</option>)}
+          </datalist>
+          <div class="field-row">
+            <label class="field">
+              <span class="field-label">⏱ Trajet max.</span>
+              <select id="timelimit">
+                <option value="">sans limite</option>
+                <option value="10">10 min</option>
+                <option value="15">15 min</option>
+                <option value="30">30 min</option>
+                <option value="45">45 min</option>
+                <option value="60">1 h</option>
+              </select>
+            </label>
+            <label class="field">
+              <span class="field-label">🚗 Moyen</span>
+              <select id="timemode">
+                <option value="car">voiture</option>
+                <option value="bike">vélo</option>
+                <option value="walk">à pied</option>
+              </select>
+            </label>
+          </div>
+          <p class="field-note" id="geostate"></p>
+        </section>
+
+        <section class="fgroup" role="group" aria-labelledby="fg-vue">
+          <h3 id="fg-vue">Affichage</h3>
+          <div class="field-row">
+            <label class="field">
+              <span class="field-label">↕ Trier par</span>
+              <select id="sortby">
+                {/* « Pour vous » n'apparaît qu'une fois qu'il y a de quoi le
+                    nourrir : une option qui ne changerait rien serait une promesse
+                    creuse. Le script l'ajoute et la sélectionne au premier vote. */}
+                <option value="pertinence">pertinence</option>
+                <option value="distance">distance</option>
+                <option value="date">date</option>
+                {/* « Gratuit d'abord » et non « prix croissant » : on ne dispose
+                    que d'un booléen de gratuité et d'un texte de tarif libre, pas
+                    d'un montant comparable. Annoncer un tri par prix serait
+                    mentir. */}
+                <option value="gratuit">gratuit d'abord</option>
+                <option value="nom">nom</option>
+              </select>
+            </label>
+            <label class="field">
+              <span class="field-label">▦ Par page</span>
+              <select id="pagesize">
+                <option value="12">12</option>
+                <option value="24" selected>24</option>
+                <option value="48">48</option>
+                <option value="0">tout</option>
+              </select>
+            </label>
+          </div>
+        </section>
+
+
+      </div>
+
+      {/* HORS de la zone défilante : ces deux actions doivent rester sous la main
+          quel que soit l'état du panneau de goûts. Dans le flux, elles passaient
+          sous la ligne de flottaison de la colonne dès que le panneau s'ouvrait. */}
+      <div class="side-actions">
+        <button class="side-link" id="tuner-open" type="button">👍 Personnaliser la liste</button>
+        <button class="side-reset" id="reset" type="button">Tout réafficher</button>
+      </div>
+    </aside>
+
+    <main class="explore">
+      <header class="explore-intro">
+        <h1>QueFaire —&nbsp;<em>{sector.name}</em></h1>
+        <p class="sub">
+          Concerts, randos, marchés, spectacles… {sector.event_count} idées de sorties
+          collectées automatiquement auprès des communes et offices de tourisme
+          {places.length > 0 && (
+            <> — plus <strong>{sortedPlaces.length} activités ouvertes toute l'année</strong>
+            {unusualCount > 0 && <>, dont {unusualCount} insolites</>}</>
+          )}.
+        </p>
+      </header>
+
+      {/* Collant : ce bandeau ne porte que ce qu'on modifie EN LISANT les
+          résultats — la recherche, l'accès aux réglages, et le passage en carte.
+          Les trois restent sous la main pendant le défilement.
+
+          La carte était une chip perdue au fond de la colonne « Affichage » :
+          pour y basculer il fallait remonter, ouvrir la colonne, la faire défiler.
+          À sa place ici, c'est ce qu'elle est vraiment — un mode de vue, pas un
+          filtre — et elle s'active depuis n'importe quel point de la liste. */}
+      <div class="explore-top">
+        <button type="button" class="side-toggle" id="side-open" aria-expanded="true" aria-controls="side">
+          <span aria-hidden="true">☰</span>
+          <span class="st-label">Réglages</span><span class="filter-badge" id="filter-badge" hidden></span>
+        </button>
+        <form class="searchbar" id="searchform" role="search">
+          <input
+            id="searchinput"
+            type="search"
+            placeholder="Ex : une sortie en famille ce week-end…"
+            aria-label="Rechercher une activité"
+            autocomplete="off"
+          />
+          {/* Libellé sur grand écran, loupe sur téléphone : à 390 px, « Chercher »
+              et « Affiner » ne laissaient que 90 px au champ de saisie. Le nom
+              accessible reste le mot, pas l'émoji. */}
+          <button type="submit" aria-label="Chercher">
+            <span class="sb-label">Chercher</span>
+            <span class="sb-icon" aria-hidden="true">🔍</span>
+          </button>
+        </form>
+        {/* `aria-pressed` et non `aria-expanded` : c'est une vue qu'on active, pas
+            un panneau qu'on déplie. Le libellé tombe sous 640 px, l'émoji reste. */}
+        <button type="button" class="chip map-toggle" id="mapchip" aria-pressed="false">
+          <span aria-hidden="true">🗺️</span> <span class="mt-label">Carte</span>
+        </button>
+      </div>
 
       <p class="hints">
         Essayez :
@@ -91,167 +308,68 @@ const communePoints = sector.commune_points || [];
         <button type="button" data-example>marché près de moi</button>
       </p>
 
-      <div class="chips" id="chips">
-        <button class="chip" data-chip="weekend" aria-pressed="false">📅 Ce week-end</button>
-        <button class="chip" data-chip="today" aria-pressed="false">☀️ Aujourd'hui</button>
-        <button class="chip" data-chip="famille" aria-pressed="false">👨‍👩‍👧 En famille</button>
-        <button class="chip" data-chip="gratuit" aria-pressed="false">🆓 Gratuit</button>
-        <button class="chip" data-chip="nearme" aria-pressed="false">📍 Près de moi</button>
-        {places.length > 0 && (
-          <>
-            {/* Pendant symétrique de « Activités permanentes » : l'actualité,
-                c'est-à-dire ce qui a une date et ne repassera pas. Sans lui, les
-                2206 activités permanentes noyaient les 36 événements et il n'y
-                avait aucun moyen de ne voir que ces derniers. */}
-            <button class="chip" data-chip="evenements" aria-pressed="false">🎪 Événements datés</button>
-            <button class="chip" data-chip="permanent" aria-pressed="false">🏛️ Activités permanentes</button>
-            {unusualCount > 0 && (
-              <button class="chip" data-chip="insolite" aria-pressed="false">✨ Insolite</button>
-            )}
-            {notableCount > 0 && (
-              <button class="chip" data-chip="valeur-sure" aria-pressed="false">🏅 Valeurs sûres</button>
-            )}
-          </>
-        )}
-        <button class="chip" id="mapchip" aria-pressed="false">🗺️ Carte</button>
+      {/* Ce qui contraint la liste doit rester LISIBLE depuis les résultats : la
+          colonne de gauche peut être défilée ou fermée, et un filtre qu'on a
+          oublié d'avoir posé se lit comme un catalogue vide. Chaque pastille se
+          retire d'un clic. */}
+      <div class="resultbar">
+        {/* Valeur de repli pour un rendu sans JavaScript ; `apply()` la recalcule
+            dès le chargement et à chaque filtre. */}
+        <span class="count" id="count">
+          {events.length} événements · {sortedPlaces.length} activités permanentes
+        </span>
+        <div class="activefilters" id="activefilters"></div>
       </div>
-    </div>
-  </section>
 
-  <main class="wrap">
-    <div class="toolbar">
-      {/* Valeur de repli pour un rendu sans JavaScript ; `apply()` la recalcule
-          dès le chargement et à chaque filtre. */}
-      <span class="count" id="count">
-        {events.length} événements · {sortedPlaces.length} activités permanentes
-      </span>
-      <label class="timefilter origin-field">
-        🏠 depuis
-        <input
-          id="origin"
-          list="communes-list"
-          type="text"
-          placeholder={`ex. ${sector.name}`}
-          autocomplete="off"
-          aria-label="Commune de départ pour le calcul des temps de trajet"
-        />
-      </label>
-      <datalist id="communes-list">
-        {communePoints.map((c) => <option value={c.nom}>{c.nom}</option>)}
-      </datalist>
-      <label class="timefilter">
-        ⏱ à moins de
-        <select id="timelimit">
-          <option value="">— (sans limite)</option>
-          <option value="10">10 min</option>
-          <option value="15">15 min</option>
-          <option value="30">30 min</option>
-          <option value="45">45 min</option>
-          <option value="60">1 h</option>
-        </select>
-        <select id="timemode">
-          <option value="car">en voiture</option>
-          <option value="bike">en vélo</option>
-          <option value="walk">à pied</option>
-        </select>
-      </label>
-      <label class="timefilter">
-        ↕ trier par
-        <select id="sortby">
-          {/* « Pour vous » n'apparaît qu'une fois qu'il y a de quoi le nourrir :
-              une option qui ne changerait rien serait une promesse creuse. Le
-              script l'ajoute et la sélectionne au premier vote. */}
-          <option value="pertinence">pertinence</option>
-          <option value="distance">distance</option>
-          <option value="date">date</option>
-          {/* « Gratuit d'abord » et non « prix croissant » : on ne dispose que
-              d'un booléen de gratuité et d'un texte de tarif libre, pas d'un
-              montant comparable. Annoncer un tri par prix serait mentir. */}
-          <option value="gratuit">gratuit d'abord</option>
-          <option value="nom">nom</option>
-        </select>
-      </label>
-      <label class="timefilter">
-        ▦ par page
-        <select id="pagesize">
-          <option value="12">12</option>
-          <option value="24" selected>24</option>
-          <option value="48">48</option>
-          <option value="0">tout</option>
-        </select>
-      </label>
-      <span class="geostate" id="geostate"></span>
-      <button class="reset" id="tuner-open" type="button">👍 Personnaliser</button>
-      <button class="reset" id="reset" type="button">Tout réafficher</button>
-    </div>
-
-    <div id="mapwrap" hidden>
-      <div id="map"></div>
-      <p class="map-note">Temps de trajet estimés à vol d'oiseau corrigé — un calcul d'itinéraire précis arrive en roadmap.</p>
-    </div>
-
-    {/* Personnalisation par l'exemple. Un questionnaire d'accueil est un péage :
-        quatre questions avant d'avoir rien vu. Deux avis sur des activités
-        concrètes en apprennent davantage et se donnent en passant. Le panneau est
-        masqué par défaut et c'est le script qui l'ouvre — sans JavaScript il n'y
-        aurait rien à voter. */}
-    <section class="tuner" id="tuner" hidden>
-      <div class="tuner-head">
-        <h2>👋 Dites-nous ce qui vous plaît</h2>
-        <button type="button" class="tuner-close" id="tuner-close" aria-label="Masquer">✕</button>
+      <div id="mapwrap" hidden>
+        <div id="map"></div>
+        <p class="map-note">Temps de trajet estimés à vol d'oiseau corrigé — un calcul d'itinéraire précis arrive en roadmap.</p>
       </div>
-      <p class="tuner-lead">
-        <strong>Deux ou trois avis suffisent</strong> pour que la liste vous
-        ressemble. Rien n'est envoyé nulle part&nbsp;: vos goûts restent dans ce
-        navigateur, et vous pouvez les effacer d'un clic.
-      </p>
-      <div class="tuner-cards" id="tuner-cards"></div>
-      <p class="tuner-state" id="tuner-state"></p>
-    </section>
 
-    {/* Deux sections plutôt qu'une grille mêlée : un concert du 12 avril et un
-        musée ouvert toute l'année ne se comparent pas, et les trier ensemble
-        obligeait à un ordre arbitraire (« les datés d'abord »). Séparés, chacun
-        garde son ordre naturel. Les filtres, eux, s'appliquent aux deux. */}
-    <section class="section" id="sec-events">
-      <div class="section-head">
-        <h2>🎪 À l'affiche</h2>
-        <span class="section-count" id="count-events"></span>
-      </div>
-      <p class="section-hint">Événements datés — ils ne repasseront pas.</p>
-      <div class="grid" id="grid-events">
-        {events.map((event) => <EventCard event={event} cityBase={cityBase} categories={sector.categories} />)}
-      </div>
-      <nav class="pager" id="pager-events" aria-label="Pages des événements"></nav>
-    </section>
+      {/* Deux sections plutôt qu'une grille mêlée : un concert du 12 avril et un
+          musée ouvert toute l'année ne se comparent pas, et les trier ensemble
+          obligeait à un ordre arbitraire (« les datés d'abord »). Séparés, chacun
+          garde son ordre naturel. Les filtres, eux, s'appliquent aux deux. */}
+      <section class="section" id="sec-events">
+        <div class="section-head">
+          <h2>🎪 À l'affiche</h2>
+          <span class="section-count" id="count-events"></span>
+        </div>
+        <p class="section-hint">Événements datés — ils ne repasseront pas.</p>
+        <div class="grid" id="grid-events">
+          {events.map((event) => <EventCard event={event} cityBase={cityBase} categories={sector.categories} />)}
+        </div>
+        <nav class="pager" id="pager-events" aria-label="Pages des événements"></nav>
+      </section>
 
-    <section class="section" id="sec-places">
-      <div class="section-head">
-        <h2>🏛️ Toute l'année</h2>
-        <span class="section-count" id="count-places"></span>
-      </div>
-      <p class="section-hint">Activités permanentes — à faire quand vous voulez.</p>
-      {/* Grille vide au départ : les tuiles sont fabriquées par le navigateur,
-          page par page, depuis `places-data`. C'est ce qui supprime le plafond. */}
-      <div class="grid" id="grid-places"></div>
-      <noscript>
-        <p class="section-hint">
-          Les {sortedPlaces.length} activités permanentes de ce secteur nécessitent
-          JavaScript pour être parcourues et filtrées. Les événements datés
-          ci-dessus s'affichent sans.
+      <section class="section" id="sec-places">
+        <div class="section-head">
+          <h2>🏛️ Toute l'année</h2>
+          <span class="section-count" id="count-places"></span>
+        </div>
+        <p class="section-hint">Activités permanentes — à faire quand vous voulez.</p>
+        {/* Grille vide au départ : les tuiles sont fabriquées par le navigateur,
+            page par page, depuis `places-data`. C'est ce qui supprime le plafond. */}
+        <div class="grid" id="grid-places"></div>
+        <noscript>
+          <p class="section-hint">
+            Les {sortedPlaces.length} activités permanentes de ce secteur nécessitent
+            JavaScript pour être parcourues et filtrées. Les événements datés
+            ci-dessus s'affichent sans.
+          </p>
+        </noscript>
+        <nav class="pager" id="pager-places" aria-label="Pages des activités"></nav>
+      </section>
+
+      <div class="empty" id="empty">
+        <div class="big">🔍</div>
+        <p>
+          Rien ne correspond à cette recherche pour l'instant.<br />
+          Élargissez les dates ou <button type="button" class="chip" id="empty-reset">réaffichez tout</button>.
         </p>
-      </noscript>
-      <nav class="pager" id="pager-places" aria-label="Pages des activités"></nav>
-    </section>
-
-    <div class="empty" id="empty">
-      <div class="big">🔍</div>
-      <p>
-        Rien ne correspond à cette recherche pour l'instant.<br />
-        Élargissez les dates ou <button type="button" class="chip" id="empty-reset">réaffichez tout</button>.
-      </p>
-    </div>
-  </main>
+      </div>
+    </main>
+  </div>
 
   <script id="sector-data" type="application/json" is:inline set:html={JSON.stringify(sector)}></script>
   {/* Catalogue complet en données maigres. Inline plutôt qu'en fichier séparé :
@@ -269,6 +387,19 @@ const communePoints = sector.commune_points || [];
   // Le secteur de la page (multi-villes) est injecté en JSON dans le DOM plutôt
   // qu'importé statiquement — le script est partagé par toutes les routes [city].
   const sector = JSON.parse(document.getElementById('sector-data').textContent);
+
+  // La hauteur de l'en-tête collant est MESURÉE, pas supposée. Elle décale tous
+  // les `position: sticky` de la page, et elle change avec la largeur — sur
+  // téléphone le menu passe à la ligne et l'en-tête triple de hauteur. La valeur
+  // de 57 px codée en CSS cachait alors la barre de recherche DERRIÈRE l'en-tête :
+  // le réglage censé rester sous la main était le seul invisible.
+  const entete = document.querySelector('.site-header');
+  if (entete) {
+    const majHauteurEntete = () => document.documentElement.style.setProperty(
+      '--header-h', `${Math.round(entete.getBoundingClientRect().height)}px`);
+    majHauteurEntete();
+    new ResizeObserver(majHauteurEntete).observe(entete);
+  }
 
   // Deux sections, deux grilles, deux paginations indépendantes : filtrer les
   // événements ne doit pas renvoyer les activités à leur première page.
@@ -548,6 +679,7 @@ const communePoints = sector.commune_points || [];
         ? ` (+ ${unlocated} sans lieu précis, masqué${unlocated > 1 ? 's' : ''} par le filtre temps)`
         : '');
     emptyEl.classList.toggle('visible', shown === 0);
+    majFiltresActifs();
     const isFiltered =
       state.query.trim() !== '' || state.chips.size > 0 || timeLimitEl.value !== '' ||
       sortEl.value !== 'pertinence';
@@ -1027,6 +1159,130 @@ const communePoints = sector.commune_points || [];
     });
   }
 
+  // ---------------- Colonne de réglages : ancrée, ou en rideau -------------
+  // DEUX régimes pour un seul panneau, choisis par la largeur disponible :
+  //
+  //  · au-delà de 1040 px la colonne est ANCRÉE — elle tient une vraie colonne de
+  //    la grille. La fermer redimensionne l'exploration au lieu de la découvrir :
+  //    les tuiles repassent de trois à quatre par rangée. C'est le point : on
+  //    range ses réglages pour gagner de la place, pas pour les cacher.
+  //  · en dessous, il n'y a pas de largeur à partager, donc c'est un rideau qui
+  //    recouvre, avec voile et Échap.
+  //
+  // L'état ancré/fermé se mémorise, celui du rideau non : un rideau se referme à
+  // chaque usage, s'en souvenir n'apprendrait rien.
+  const shell = document.getElementById('shell');
+  const side = document.getElementById('side');
+  const sideVeil = document.getElementById('side-veil');
+  const sideOpen = document.getElementById('side-open');
+  const sideClose = document.getElementById('side-close');
+  const filterBadge = document.getElementById('filter-badge');
+  const MEMOIRE_SIDE = 'quefaire:reglages';
+  const enRideau = window.matchMedia('(max-width: 1040px)');
+
+  function ouvrirReglages(ouvert, { rendreLeFocus = true } = {}) {
+    shell.dataset.side = ouvert ? 'ancree' : 'fermee';
+    side.classList.toggle('open', ouvert);
+    // Le voile n'a de sens qu'en rideau : ancrée, la colonne ne recouvre rien et
+    // le reste de la page doit rester cliquable.
+    sideVeil.hidden = !(ouvert && enRideau.matches);
+    sideOpen.setAttribute('aria-expanded', String(ouvert));
+    if (!enRideau.matches) {
+      try { localStorage.setItem(MEMOIRE_SIDE, ouvert ? 'ancree' : 'fermee'); } catch (e) { /* refusé */ }
+    }
+    // Le focus suit le panneau : à l'ouverture dedans, au retour sur le bouton —
+    // sinon la navigation au clavier reste derrière le voile.
+    if (rendreLeFocus) (ouvert ? sideClose : sideOpen).focus();
+    // La carte affichée change de largeur avec la colonne ; Leaflet ne le voit
+    // pas tout seul et laisse des tuiles grises sur la bande découverte.
+    if (leaflet && !mapWrap.hidden) requestAnimationFrame(() => leaflet.map.invalidateSize());
+  }
+
+  function memoireSide() {
+    try { return localStorage.getItem(MEMOIRE_SIDE); } catch (e) { return null; }
+  }
+
+  // Le script en ligne du gabarit a déjà posé l'état pour éviter un saut de mise
+  // en page ; on s'aligne dessus, et en rideau on part fermé.
+  ouvrirReglages(!enRideau.matches && memoireSide() !== 'fermee', { rendreLeFocus: false });
+
+  // Franchir le seuil change le régime, pas le choix du visiteur : on repart de
+  // l'état mémorisé côté ancré, et fermé côté rideau. Sans ça, un rideau ouvert
+  // puis élargi laissait un voile en travers d'une page redevenue à deux colonnes.
+  enRideau.addEventListener('change', () => {
+    ouvrirReglages(!enRideau.matches && memoireSide() !== 'fermee', { rendreLeFocus: false });
+  });
+
+  sideOpen.addEventListener('click', () => ouvrirReglages(shell.dataset.side === 'fermee'));
+  sideClose.addEventListener('click', () => ouvrirReglages(false));
+  sideVeil.addEventListener('click', () => ouvrirReglages(false));
+  document.addEventListener('keydown', (e) => {
+    // Échap ne referme que le rideau : ancrée, la colonne fait partie de la page
+    // et une touche d'annulation n'a pas à la faire disparaître.
+    if (e.key === 'Escape' && enRideau.matches && side.classList.contains('open')) ouvrirReglages(false);
+  });
+
+  // ---------------- Filtres actifs, lisibles depuis les résultats ----------
+  // La colonne de gauche peut être défilée, ou fermée sur mobile : un filtre
+  // qu'on a oublié d'avoir posé se lit alors comme un catalogue vide. Chaque
+  // contrainte est donc rappelée près du compteur, et se retire d'un clic.
+  const activeEl = document.getElementById('activefilters');
+  const LIBELLE_TRI = {
+    gouts: 'pour vous', distance: 'par distance', date: 'par date',
+    gratuit: 'gratuit d\'abord', nom: 'par nom',
+  };
+
+  function majFiltresActifs() {
+    const pastilles = [];
+    if (state.query.trim()) pastilles.push([`« ${state.query.trim()} »`, () => { state.query = ''; input.value = ''; }]);
+    for (const chip of chips) {
+      if (!state.chips.has(chip.dataset.chip)) continue;
+      pastilles.push([chip.textContent.trim(), () => {
+        state.chips.delete(chip.dataset.chip);
+        chip.setAttribute('aria-pressed', 'false');
+      }]);
+    }
+    if (originEl && originEl.value.trim()) {
+      pastilles.push([`🏠 ${originEl.value.trim()}`, () => {
+        originEl.value = '';
+        userPos = null;
+        geostate.textContent = '';
+      }]);
+    }
+    if (timeLimitEl.value) {
+      const t = timeLimitEl.options[timeLimitEl.selectedIndex].textContent.trim();
+      pastilles.push([`⏱ ${t} ${MODE_LABELS[timeModeEl.value]}`, () => { timeLimitEl.value = ''; }]);
+    }
+    if (sortEl.value !== 'pertinence') {
+      pastilles.push([`↕ ${LIBELLE_TRI[sortEl.value] || sortEl.value}`, () => { sortEl.value = 'pertinence'; }]);
+    }
+
+    activeEl.replaceChildren(...pastilles.map(([libelle, retirer]) => {
+      const b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'afilter';
+      b.innerHTML = '';
+      b.append(document.createTextNode(libelle));
+      const croix = document.createElement('span');
+      croix.className = 'afilter-x';
+      croix.setAttribute('aria-hidden', 'true');
+      croix.textContent = '✕';
+      b.appendChild(croix);
+      b.setAttribute('aria-label', `Retirer le filtre : ${libelle}`);
+      b.addEventListener('click', () => {
+        retirer();
+        for (const sec of Object.values(SECTIONS)) sec.page = 1;
+        apply();
+      });
+      return b;
+    }));
+    // Compteur sur le bouton « Affiner » : sur mobile la colonne est fermée, et
+    // rien ne dirait combien de réglages sont en vigueur.
+    const n = pastilles.length;
+    filterBadge.textContent = n ? String(n) : '';
+    filterBadge.hidden = n === 0;
+  }
+
   // ---------------- Personnalisation par 👍/👎 ----------------
   const tuner = document.getElementById('tuner');
   const tunerCards = document.getElementById('tuner-cards');
@@ -1082,7 +1338,12 @@ const communePoints = sector.commune_points || [];
 
   function majTuner() {
     const n = nbVotes(prefs);
-    const propositions = aProposer(prefs, placesData, 3);
+    // UNE proposition à la fois, et non trois. Trois cartes remplissaient la
+    // colonne entière et repoussaient tous les filtres sous la ligne de
+    // flottaison — l'invitation chassait les réglages. Une seule carte garde la
+    // colonne navigable, et la boucle est plus serrée : chaque avis fait
+    // apparaître le suivant, dans une catégorie encore non jugée.
+    const propositions = aProposer(prefs, placesData, 1);
     tunerCards.replaceChildren(...propositions.map(ligneVote));
 
     const dit = resume(prefs, ctxTuile.categories);
