@@ -1,6 +1,7 @@
 {
 "clarify:0167b3cc4a2da963a2443cf25e8857f0443838442d25ad4cdb3e8a7a1cd17606": "",
 "clarify:07e16ecc5eb494ac88163e4498be76783623ff33eb459d7322708c58fed08155": "",
+"clarify:09fb3bab761809cd24c8edf411eb902c86d46ddc9b517453c810ee3cfa7df930": "Match de rugby opposant le CSBJ à l'USBPA, deux clubs locaux, dans le cadre de leur préparation estivale.",
 "clarify:14e8c5d0feaa55e9c2369f30420b84855f65e06eb72e3caa9b324286ae1f0b9b": "",
 "clarify:1b1bbbdae4c44b952e654d009610fc6bf8035ecd093aec6f3dbf6fd8ed2260a8": "",
 "clarify:1f1f95d11e9ccfcb431fe8ef604c75d3ade0fb6e97ea005dddd839e74e3996f5": "",
@@ -43,8 +44,6 @@
 "clarify:c8dd71b7a2043ee07220d846e9c50a50ec3c4f5d63f5a8e9c2c8f7c1973e53e0": "Visites guidées et ateliers créatifs pour tous publics à l'Arche de Julie, un lieu dédié à l'artisanat et aux métiers d'art.",
 "clarify:c96c4daf0708a86ac06624c61791c6f7feef50d58e5d936f9511cb48c9f36a1f": "",
 "clarify:cbd921c5b041c8dae0e718058edc7b0f8cf9d2e0a3154072e897bfc92956aec3": "",
-"clarify:cd8b839c1c9560edee3c36162851ac8e83af78824888909039a7741676949404": "",
-"clarify:ce4693ca19c6bcc369f430deb17f929cd3ab44c771995c22ac23d4ea1c76858b": "",
 "clarify:d63aa2b60c673f8ab88736d10f190f04f4cd19c23f052a692722be99b3888f2b": "",
 "clarify:e1022ee8f6cd55c8899b5ae8b86b190ded1af43f12e7fb74400357fb1f909237": "",
 "clarify:e2b0b7e0716a86070be1ccd78fcf7315919629a60761a5ec0c3f5875505e6f6e": "Une soirée où un conteur professionnel raconte des histoires adaptées à un public familial, en plein air ou en intérieur selon la météo.",
@@ -55,6 +54,7 @@
 "clarify:ef24ff058e1338f9cc9fe35411610ef4d2ecad4d26faf164c0461e41fd2cef4b": "",
 "clarify:f23f2956fe07a5292ff7c2cde365c0b34422363ff7b748c3263912132eda46ee": "",
 "clarify:f49346620e11489f39d6893e31574dd8262369a4179dcbc13bc9b6f9e3d5c8b7": "",
+"clarify:f9f612e61a82e66e2efd7112e865382e4647686b046ff7bc6186c4614bbeee91": "",
 "clarify:fadfcce6400754d49361fb9157770c949e9ede6bc60f086670e963963735c1a6": "",
 "clarify:fb7fe7da0e80cde8f8e2da2dafaf84d60889151e845d9bc5d28f4342665925d9": "",
 "clarify:fea56fc3ec12f3559e30d93bcd5d1e9888a4652ea8764d06476d88eed04123d8": "",
@@ -480,7 +480,7 @@
 "url": "https://www.balconsdudauphine-tourisme.com/manifestation/summer-bbq-au-cask-house/"
 }
 ],
-"extract:57665de6c361f44a81f36770d1f348fe6bb7f8011eb7d2184f8e1a01a5558724": [
+"extract:598ec340d4389f7e0ec8883eea7696013cc3dbf3bbfbe28052ac0283b9157cab": [
 {
 "address": "A proximité de la caserne des Pompiers 38300 Ruy-Montceau, France",
 "audience": [
@@ -511,7 +511,7 @@
 ],
 "category": "cinema",
 "commune": "Saint-Savin",
-"description": "Les 24 juillet, 7 et 21 août 2026, la municipalité de Saint-Savin propose des soirées cinéma de plein air. Le 7 août 2026, rendez-vous à Saint-Savin.",
+"description": "La municipalité de Saint-Savin propose des soirées cinéma de plein air les 24 juillet, 7 et 21 août 2026.",
 "end": null,
 "free": null,
 "id": "saint-sav-fait-son-cinema-be9263e9",
@@ -534,7 +534,7 @@
 ],
 "category": "sport",
 "commune": "Bourgoin-Jallieu",
-"description": "Afin de poursuivre la préparation de sa future saison, le CSBJ rugby reçoit ses voisins de Bourg-en-Bresse pour ce premier match amical de l'été. La rencontre a lieu le 7 août à Bourgoin-Jallieu.",
+"description": "Le CSBJ rugby reçoit ses voisins de Bourg en Bresse pour ce premier match amical de l'été. Afin de poursuivre la préparation de sa future saison.",
 "end": null,
 "free": null,
 "id": "match-amical-csbj-usbpa-8b098209",
