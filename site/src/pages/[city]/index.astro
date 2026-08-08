@@ -380,6 +380,7 @@ const communePoints = sector.commune_points || [];
 
 <script>
   import { parseQuery, matches, distanceKm, travelMinutes, roundMinutes, fold } from '../../lib/nlsearch.js';
+  import { creerCarte } from '../../lib/carte.js';
   import { CATEGORY_EMOJI, PLACE_EMOJI, formatWhen, openingLabel } from '../../lib/format.js';
   import { carteActivite, donneesActivite } from '../../lib/placecard.js';
   import { aProposer, charger, nbVotes, oublier, resume, scorePrefs, voter } from '../../lib/prefs.js';
@@ -688,7 +689,6 @@ const communePoints = sector.commune_points || [];
     // La carte suit le FILTRE, pas la pagination : elle sert de vue d'ensemble
     // spatiale, la pagination n'est qu'un confort de lecture. Cliquer une bulle
     // dont la fiche est sur une autre page change de page — voir `allerA`.
-    lastVisible = visible;
     updateMap(visible, true);
   }
 
@@ -814,16 +814,16 @@ const communePoints = sector.commune_points || [];
   }
 
   // ---------------- Carte (Leaflet, chargé à la demande) ----------------
-  let leaflet = null; // { map, layer, L, userMarker }
-  let lastVisible = [];
+  // Le pilotage de Leaflet vit dans `lib/carte.js` ; la page ne garde que ce qui
+  // demande de connaître le catalogue — le vocabulaire des infobulles et le lien
+  // retour vers les tuiles.
+  let carte = null;
   let selectedCards = [];
-  let popupCloseTimer = null;
 
-  /** Met en évidence les fiches liées à la bulle cliquée sur la carte —
-   *  une seule pour un marqueur isolé, toutes celles d'un cluster qui ne
-   *  peut pas s'éclater (événements au même point). */
+  /** Met en évidence les fiches liées à la bulle cliquée sur la carte — une
+   *  seule pour un marqueur isolé, toutes celles d'un groupe qui ne peut pas
+   *  s'éclater (fiches au même point). */
   function selectCards(entrees) {
-    clearTimeout(popupCloseTimer); // le popup précédent se ferme : ne pas désélectionner
     for (const c of selectedCards) c.classList.remove('map-selected');
     selectedCards = [];
     if (!entrees.length) return;
@@ -853,89 +853,6 @@ const communePoints = sector.commune_points || [];
   function clearMapSelection() {
     for (const c of selectedCards) c.classList.remove('map-selected');
     selectedCards = [];
-  }
-
-  async function initMap() {
-    const L = (await import('leaflet')).default;
-    await import('leaflet/dist/leaflet.css');
-    const map = L.map('map', { scrollWheelZoom: false }).setView(
-      [sector.center.lat, sector.center.lon], 9
-    );
-    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      maxZoom: 18,
-      attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
-    }).addTo(map);
-    leaflet = { L, map, layer: L.layerGroup().addTo(map), userMarker: null };
-    // Le zoom change la granularité des clusters — sans recadrer la vue.
-    map.on('zoomend', () => updateMap(lastVisible, false));
-    // Popup fermé = plus rien de sélectionné. Le délai laisse le clic sur une
-    // autre bulle (qui ferme ce popup pour ouvrir le sien) annuler l'effacement.
-    map.on('popupclose', () => {
-      clearTimeout(popupCloseTimer);
-      popupCloseTimer = setTimeout(clearMapSelection, 80);
-    });
-  }
-
-  /** Regroupe les points par proximité à l'écran (~70 px au zoom courant). */
-  function buildClusters(items, map) {
-    const RADIUS = 70;
-    const zoom = map.getZoom();
-    const clusters = [];
-    for (const it of items) {
-      const pt = map.project([it.lat, it.lon], zoom);
-      let best = null;
-      let bestD = Infinity;
-      for (const cl of clusters) {
-        const d = pt.distanceTo(cl.pt);
-        if (d < RADIUS && d < bestD) { best = cl; bestD = d; }
-      }
-      if (best) {
-        best.items.push(it);
-        best.lat += (it.lat - best.lat) / best.items.length; // centroïde glissant
-        best.lon += (it.lon - best.lon) / best.items.length;
-        best.pt = map.project([best.lat, best.lon], zoom);
-      } else {
-        clusters.push({ lat: it.lat, lon: it.lon, pt, items: [it] });
-      }
-    }
-    return clusters;
-  }
-
-  function zoomInto(cluster) {
-    const { L, map } = leaflet;
-    const bounds = L.latLngBounds(cluster.items.map((i) => [i.lat, i.lon]));
-    const spread = bounds.getNorthEast().distanceTo(bounds.getSouthWest());
-    if (spread < 100 || map.getZoom() >= 15) {
-      // Tout au même endroit (géocodage à la commune) : liste plutôt que zoom,
-      // et mise en évidence de toutes les fiches du cluster dans la grille.
-      const links = cluster.items
-        .slice(0, 12)
-        .map((i) => `<a href="${i.href}">${i.title}</a>`)
-        .join('<br>');
-      const more = cluster.items.length > 12 ? `<br>… et ${cluster.items.length - 12} autres` : '';
-      L.popup({ maxHeight: 220 }).setLatLng([cluster.lat, cluster.lon]).setContent(links + more).openOn(map);
-      selectCards(cluster.items.map((i) => i.entree));
-    } else {
-      map.fitBounds(bounds, { padding: [50, 50] });
-    }
-  }
-
-  /** Cluster simple : pastille avec le nombre de fiches, clic → zoom. */
-  function addCluster(cluster) {
-    const { L, layer } = leaflet;
-    const total = cluster.items.length;
-    const size = Math.max(38, Math.min(64, 32 + total * 1.2));
-    const onlyPlaces = cluster.items.every((i) => i.isPlace);
-    const what = onlyPlaces ? 'activités' : 'fiches';
-    const icon = L.divIcon({
-      className: `cluster-icon${onlyPlaces ? ' cluster-places' : ''}`,
-      html: `<div class="cluster-dot" style="width:${size}px;height:${size}px" title="${total} ${what} — cliquer pour zoomer">${total}</div>`,
-      iconSize: [size, size],
-      iconAnchor: [size / 2, size / 2],
-    });
-    L.marker([cluster.lat, cluster.lon], { icon })
-      .on('click', () => zoomInto(cluster))
-      .addTo(layer);
   }
 
   /** Contenu de l'infobulle affichée au survol d'un point : titre, catégorie,
@@ -969,21 +886,18 @@ const communePoints = sector.commune_points || [];
     return lines.join('');
   }
 
-  function updateMap(visible, fitView) {
-    if (!leaflet || mapWrap.hidden) return;
-    const { L, map, layer } = leaflet;
-    layer.clearLayers();
-
-    // Les bulles se construisent depuis les DONNÉES de l'entrée, plus depuis son
-    // élément : une activité peut n'avoir aucune tuile fabriquée (elle est sur une
-    // autre page), et la carte doit malgré tout la montrer — elle suit le filtre,
-    // pas la pagination.
+  /** Traduit les entrées retenues par le filtre en points de carte. Les points
+   *  se construisent depuis les DONNÉES de l'entrée, jamais depuis son élément :
+   *  une activité peut n'avoir aucune tuile fabriquée (elle est sur une autre
+   *  page), et la carte doit malgré tout la montrer — elle suit le filtre, pas
+   *  la pagination. */
+  function itemsDe(visible) {
     const racine = getComputedStyle(document.documentElement);
     const items = [];
     for (const v of visible) {
       const { data, isPlace, notable } = v;
       if (Number.isNaN(data.lat)) continue;
-      items.push({
+      const it = {
         entree: v,
         lat: data.lat, lon: data.lon, cat: data.cat, commune: data.commune,
         date: data.date, end: data.end,
@@ -994,58 +908,30 @@ const communePoints = sector.commune_points || [];
         title: (v.nom || '').replace(/\s*↗$/, ''),
         href: v.href,
         color: racine.getPropertyValue(`--${isPlace ? 'p' : 'c'}-${data.cat}`).trim() || 'currentColor',
-      });
+      };
+      it.tooltip = markerTooltip(it);
+      items.push(it);
     }
+    return items;
+  }
 
-    const points = [];
-    for (const cluster of buildClusters(items, map)) {
-      if (cluster.items.length >= 2) {
-        addCluster(cluster);
-        points.push([cluster.lat, cluster.lon]);
-      } else {
-        const it = cluster.items[0];
-        // Activité permanente : pastille à icône, nettement distincte du point
-        // coloré d'un événement — c'est le repère demandé « sur la carte ».
-        const marker = it.isPlace
-          ? L.marker([it.lat, it.lon], {
-              icon: L.divIcon({
-                className: 'place-icon',
-                html: `<div class="place-dot${it.unusual ? ' is-unusual' : ''}">${it.emoji}</div>`,
-                iconSize: [30, 30],
-                iconAnchor: [15, 15],
-              }),
-            })
-          : L.circleMarker([it.lat, it.lon], {
-              radius: 8, color: it.color, fillColor: it.color, fillOpacity: 0.75, weight: 2,
-            });
-        marker
-          // Survol : aperçu de la fiche. Clic : on remonte jusqu'à sa tuile
-          // dans la liste (mise en évidence + défilement), sans popup.
-          .bindTooltip(markerTooltip(it), {
-            direction: 'top', offset: [0, -6], opacity: 1, className: 'event-tip',
-          })
-          .on('click', () => selectCards([it.entree]))
-          .addTo(layer);
-        points.push([it.lat, it.lon]);
-      }
-    }
-
-    if (userPos) {
-      if (leaflet.userMarker) leaflet.userMarker.remove();
-      leaflet.userMarker = L.circleMarker([userPos.lat, userPos.lon], {
-        radius: 7, color: '#1c7ed6', fillColor: '#1c7ed6', fillOpacity: 1, weight: 3,
-      }).bindPopup('Vous êtes ici').addTo(map);
-      points.push([userPos.lat, userPos.lon]);
-    }
-    if (fitView && points.length) map.fitBounds(points, { padding: [40, 40], maxZoom: 13 });
+  function updateMap(visible, recadrer) {
+    if (!carte || mapWrap.hidden) return;
+    carte.afficher(itemsDe(visible), { recadrer });
   }
 
   mapChip.addEventListener('click', async () => {
     mapWrap.hidden = !mapWrap.hidden;
     mapChip.setAttribute('aria-pressed', String(!mapWrap.hidden));
     if (!mapWrap.hidden) {
-      if (!leaflet) await initMap();
-      leaflet.map.invalidateSize();
+      if (!carte) {
+        carte = await creerCarte({
+          el: document.getElementById('map'),
+          centre: sector.center,
+          onSelection: selectCards,
+        });
+      }
+      carte.redimensionner();
       apply();
     }
   });
@@ -1195,7 +1081,7 @@ const communePoints = sector.commune_points || [];
     if (rendreLeFocus) (ouvert ? sideClose : sideOpen).focus();
     // La carte affichée change de largeur avec la colonne ; Leaflet ne le voit
     // pas tout seul et laisse des tuiles grises sur la bande découverte.
-    if (leaflet && !mapWrap.hidden) requestAnimationFrame(() => leaflet.map.invalidateSize());
+    if (carte && !mapWrap.hidden) requestAnimationFrame(() => carte.redimensionner());
   }
 
   function memoireSide() {
