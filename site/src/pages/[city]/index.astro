@@ -389,18 +389,36 @@ const communePoints = sector.commune_points || [];
   // qu'importé statiquement — le script est partagé par toutes les routes [city].
   const sector = JSON.parse(document.getElementById('sector-data').textContent);
 
-  // La hauteur de l'en-tête collant est MESURÉE, pas supposée. Elle décale tous
-  // les `position: sticky` de la page, et elle change avec la largeur — sur
-  // téléphone le menu passe à la ligne et l'en-tête triple de hauteur. La valeur
-  // de 57 px codée en CSS cachait alors la barre de recherche DERRIÈRE l'en-tête :
-  // le réglage censé rester sous la main était le seul invisible.
+  const mapChip = document.getElementById('mapchip');
+  const mapWrap = document.getElementById('mapwrap');
+
+  // Les hauteurs de ce qui COLLE sont MESURÉES, pas supposées. Elles décalent
+  // tous les `position: sticky` de la page, et elles changent avec la largeur —
+  // sur téléphone le menu passe à la ligne et l'en-tête triple de hauteur. La
+  // valeur de 57 px codée en CSS cachait alors la barre de recherche DERRIÈRE
+  // l'en-tête : le réglage censé rester sous la main était le seul invisible.
+  //
+  // `--sticky-h` est la somme : c'est ce que recouvre le haut de l'écran, donc
+  // la marge de défilement dont une tuile ou un titre de section a besoin pour
+  // ne pas arriver CACHÉ sous la carte.
   const entete = document.querySelector('.site-header');
-  if (entete) {
-    const majHauteurEntete = () => document.documentElement.style.setProperty(
-      '--header-h', `${Math.round(entete.getBoundingClientRect().height)}px`);
-    majHauteurEntete();
-    new ResizeObserver(majHauteurEntete).observe(entete);
+  const barreHaute = document.querySelector('.explore-top');
+  const racineCss = document.documentElement;
+
+  function majHauteursCollantes() {
+    const h = entete ? Math.round(entete.getBoundingClientRect().height) : 0;
+    const t = barreHaute ? Math.round(barreHaute.getBoundingClientRect().height) : 0;
+    const c = mapWrap.hidden ? 0 : Math.round(mapWrap.getBoundingClientRect().height);
+    racineCss.style.setProperty('--header-h', `${h}px`);
+    racineCss.style.setProperty('--top-h', `${t}px`);
+    racineCss.style.setProperty('--sticky-h', `${h + t + c}px`);
   }
+
+  const observateurCollant = new ResizeObserver(majHauteursCollantes);
+  for (const el of [entete, barreHaute, mapWrap]) {
+    if (el) observateurCollant.observe(el);
+  }
+  majHauteursCollantes();
 
   // Deux sections, deux grilles, deux paginations indépendantes : filtrer les
   // événements ne doit pas renvoyer les activités à leur première page.
@@ -455,8 +473,6 @@ const communePoints = sector.commune_points || [];
   const chips = Array.from(document.querySelectorAll('[data-chip]'));
   const timeLimitEl = document.getElementById('timelimit');
   const timeModeEl = document.getElementById('timemode');
-  const mapChip = document.getElementById('mapchip');
-  const mapWrap = document.getElementById('mapwrap');
 
   let userPos = null; // {lat, lon}
   let prefs = charger();          // goûts appris par 👍/👎, dans ce navigateur seul
@@ -923,6 +939,10 @@ const communePoints = sector.commune_points || [];
   mapChip.addEventListener('click', async () => {
     mapWrap.hidden = !mapWrap.hidden;
     mapChip.setAttribute('aria-pressed', String(!mapWrap.hidden));
+    // Fermer la carte doit RENDRE au défilement les 300 px qu'elle réservait :
+    // sans ce rappel, `--sticky-h` garderait la hauteur d'une carte absente et
+    // toutes les cibles de défilement s'arrêteraient trop tôt.
+    majHauteursCollantes();
     if (!mapWrap.hidden) {
       if (!carte) {
         carte = await creerCarte({
