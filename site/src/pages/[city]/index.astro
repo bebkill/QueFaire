@@ -812,6 +812,10 @@ const communePoints = sector.commune_points || [];
    *  d'activité fabriquée à la demande. */
   function elementDe(v) {
     const card = v.card ?? tuileDe(v.index);
+    // Le chemin RETOUR, tuile → entrée : c'est ce qui permet au survol d'une
+    // tuile de désigner son point sur la carte. Passage obligé des deux sortes
+    // de tuiles, donc le seul endroit où l'inscrire.
+    entreeDe.set(card, v);
     // Le temps de trajet s'écrit ici : pour une activité, la tuile peut n'exister
     // qu'au moment de son affichage, donc après le calcul de la distance.
     const distEl = card.querySelector('[data-role="distance"]');
@@ -993,6 +997,43 @@ const communePoints = sector.commune_points || [];
   function updateMap(visible, recadrer) {
     if (!carte || mapWrap.hidden) return;
     carte.afficher(itemsDe(visible), { recadrer });
+  }
+
+  // ---------------- Survol d'une tuile → son point sur la carte ------------
+  // Le lien carte → liste existait déjà (cliquer un point remonte à sa tuile).
+  // C'est le chemin INVERSE qui manquait, et c'est le plus fréquent : on parcourt
+  // la liste, et on veut savoir où se trouve ce qu'on lit.
+  const entreeDe = new WeakMap();
+  let survolTimer = null;
+
+  function survolerDepuis(el) {
+    clearTimeout(survolTimer);
+    // Anti-rebond : sans lui, un passage de souris sur une rangée déclenche six
+    // recadrages, et la carte part en tous sens.
+    survolTimer = setTimeout(() => {
+      if (!carte || mapWrap.hidden) return;
+      carte.survoler(el ? entreeDe.get(el) || null : null);
+    }, 80);
+  }
+
+  for (const sec of Object.values(SECTIONS)) {
+    // `pointer*` plutôt que `mouse*` : le survol n'existe pas au doigt, et une
+    // tape navigue déjà vers la fiche — mettre un point en évidence au passage
+    // ferait bouger la carte sous un doigt qui essaie de faire défiler.
+    sec.grid.addEventListener('pointerover', (e) => {
+      if (e.pointerType === 'touch') return;
+      survolerDepuis(e.target.closest('.card'));
+    });
+    sec.grid.addEventListener('pointerout', (e) => {
+      if (e.pointerType === 'touch') return;
+      if (!e.relatedTarget || !sec.grid.contains(e.relatedTarget)) survolerDepuis(null);
+    });
+    // Le clavier a droit au même repère que la souris : les tuiles sont des
+    // liens, donc elles reçoivent le focus à la tabulation.
+    sec.grid.addEventListener('focusin', (e) => survolerDepuis(e.target.closest('.card')));
+    sec.grid.addEventListener('focusout', (e) => {
+      if (!e.relatedTarget || !sec.grid.contains(e.relatedTarget)) survolerDepuis(null);
+    });
   }
 
   mapChip.addEventListener('click', async () => {
