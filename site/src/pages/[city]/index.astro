@@ -666,6 +666,11 @@ const communePoints = sector.commune_points || [];
       return;
     }
 
+    // On MESURE dès qu'on sait d'où : cliquer 📍 doit suffire à faire apparaître
+    // « ≈ 12 min en voiture » sur les tuiles, sans obliger à poser un filtre dont
+    // on n'a que faire. `needsGeo` ne décide plus que de RÉCLAMER une position.
+    const mesurer = origine != null;
+
     let shown = 0;
     let unlocated = 0;
     const visible = [];
@@ -677,7 +682,7 @@ const communePoints = sector.commune_points || [];
       let ok = matches(data, filter);
       let dist = null;
       let minutes = null;
-      if (ok && needsGeo && origine) {
+      if (ok && mesurer) {
         if (Number.isNaN(data.lat)) {
           // Sans coordonnées, impossible de garantir la limite de temps : on
           // exclut (la carte les ignore déjà — liste et carte restent cohérentes).
