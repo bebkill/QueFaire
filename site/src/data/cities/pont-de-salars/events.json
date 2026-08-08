@@ -30,7 +30,7 @@
   "source_id": "html-levezou-pontsalars",
   "sector": "pont-de-salars",
   "end": "2026-08-09",
-  "description": "Un événement incontournable qui vous invite à voyager à travers les danses, musiques et traditions venues des quatre coins du globe du 3 au 9 août 2026 en Aveyron.",
+  "description": "Un festival invitant à voyager à travers les danses, musiques et traditions du monde entier. Il se tient du 3 au 9 août 2026 en Aveyron.",
   "tldr": null,
   "category": "festival",
   "tags": [],
@@ -145,7 +145,7 @@
   "source_id": "html-levezou-pontsalars",
   "sector": "pont-de-salars",
   "end": null,
-  "description": "La Festa Del Pont est de retour ! On se donne rendez-vous le week-end du 7, 8 et 9 août à Pont-de-Salars.",
+  "description": "La Festa Del Pont est de retour ! Rendez-vous le week-end du 7, 8 et 9 août à Pont-de-Salars.",
   "tldr": null,
   "category": "fete",
   "tags": [],
@@ -237,7 +237,7 @@
   "source_id": "html-levezou-pontsalars",
   "sector": "pont-de-salars",
   "end": null,
-  "description": "21h30, sous la Halle de la Salle des Fêtes de Camboulas. Projection présentée par la Mairie de Pont-de-Salars, Lévézou Attractivité & Tourisme, l'Association Sauvegarde et Vie du Poujol Camboulas et Mondes et Multitudes.",
+  "description": "Cinéma en plein air à 21h30 sous la Halle de la Salle des Fêtes de Camboulas. Projection de La Bataille de Gaulle : l'âge de fer.",
   "tldr": null,
   "category": "cinema",
   "tags": [],
@@ -245,7 +245,7 @@
    "tous"
   ],
   "commune": "Pont-de-Salars",
-  "address": "Halle de la Salle des Fêtes de Camboulas, Pont-de-Salars",
+  "address": "Halle de la Salle des Fêtes de Camboulas",
   "lat": 44.2771,
   "lon": 2.7171,
   "free": null,
@@ -260,7 +260,7 @@
   "source_id": "html-levezou-pontsalars",
   "sector": "pont-de-salars",
   "end": null,
-  "description": "La Festa Del Pont est de retour ! On se donne rendez-vous le week-end du 7, 8 et 9 août à Pont-de-Salars.",
+  "description": "La Festa Del Pont est de retour ! Rendez-vous le week-end du 7, 8 et 9 août à Pont-de-Salars.",
   "tldr": null,
   "category": "fete",
   "tags": [],
@@ -468,7 +468,7 @@
   "source_id": "html-levezou-pontsalars",
   "sector": "pont-de-salars",
   "end": null,
-  "description": "Concours de pétanque en doublette en 3 parties, ouvert à tous, organisé par la Boule Joyeuse. Inscriptions sur place.",
+  "description": "Concours de pétanque en doublette en 3 parties, ouvert à tous. Inscriptions sur place, organisé par la Boule Joyeuse.",
   "tldr": null,
   "category": "sport",
   "tags": [],
@@ -476,7 +476,7 @@
    "tous"
   ],
   "commune": "Pont-de-Salars",
-  "address": "Terrain de pétanque, place de la Rivière, Pont-de-Salars",
+  "address": "Terrain de pétanque, place de la Rivière",
   "lat": 44.2771,
   "lon": 2.7171,
   "free": null,
@@ -496,10 +496,10 @@
   "category": "concert",
   "tags": [],
   "audience": [
-   "adultes"
+   "tous"
   ],
   "commune": "Pont-de-Salars",
-  "address": "Chez Balou Balou x les Rousselleries, Pont-de-Salars",
+  "address": null,
   "lat": 44.2771,
   "lon": 2.7171,
   "free": null,
@@ -514,7 +514,7 @@
   "source_id": "html-levezou-pontsalars",
   "sector": "pont-de-salars",
   "end": null,
-  "description": "Visite de la ferme dédiée aux enfants de moins de 6 ans, tous les mardis à 9h. Réservation auprès de Lévézou Attractivité & Tourisme au 05 65 46 89 90.",
+  "description": "Visite de la ferme spécialement dédiée aux enfants de moins de 6 ans. Réservation auprès de Lévézou Attractivité & Tourisme.",
   "tldr": null,
   "category": "jeunesse",
   "tags": [],
@@ -537,15 +537,15 @@
   "source_id": "html-levezou-pontsalars",
   "sector": "pont-de-salars",
   "end": "2026-08-11T12:00:00",
-  "description": "De 10h à 12h, tous les mardis de juillet et août, chez Potions d'Oc. Visite et dégustation gratuite.",
+  "description": "Visite et dégustation gratuite à la distillerie Potions d'Oc.",
   "tldr": null,
-  "category": "atelier",
+  "category": "patrimoine",
   "tags": [],
   "audience": [
-   "adultes"
+   "tous"
   ],
   "commune": "Pont-de-Salars",
-  "address": "Chez Potions d'Oc, Pont-de-Salars",
+  "address": "Chez Potions d'Oc",
   "lat": 44.2771,
   "lon": 2.7171,
   "free": true,
@@ -560,7 +560,7 @@
   "source_id": "html-levezou-pontsalars",
   "sector": "pont-de-salars",
   "end": null,
-  "description": "Visite de la ferme tout public, tous les mardis à 15h. Réservation auprès de Lévézou Attractivité & Tourisme au 05 65 46 89 90.",
+  "description": "Visite de la ferme du Gazenas tout public. Réservation auprès de Lévézou Attractivité & Tourisme.",
   "tldr": null,
   "category": "nature",
   "tags": [],
@@ -583,12 +583,12 @@
   "source_id": "html-levezou-pontsalars",
   "sector": "pont-de-salars",
   "end": null,
-  "description": "Le bistrot Le Bar y Cou à Prades-Salars propose tous les mardis soir à partir de 19h des soirées musicales avec un musicien différent (piano, accordéon, guitare...).",
+  "description": "Soirée musicale au bistrot Le Bar y Cou avec un musicien différent (piano, accordéon, guitare...).",
   "tldr": null,
   "category": "concert",
   "tags": [],
   "audience": [
-   "adultes"
+   "tous"
   ],
   "commune": "Prades-Salars",
   "address": "Le Bar y Cou, Prades-Salars",
@@ -606,7 +606,7 @@
   "source_id": "html-levezou-pontsalars",
   "sector": "pont-de-salars",
   "end": null,
-  "description": "Marché d'été de Pont-de-Salars, place du 29 Juin 1944, devant la Salle des Fêtes. Tous les mercredis d'été à partir du 8 juillet.",
+  "description": "Marché d'été tous les mercredis sur la place du 29 Juin 1944.",
   "tldr": null,
   "category": "fete",
   "tags": [],
@@ -614,7 +614,7 @@
    "tous"
   ],
   "commune": "Pont-de-Salars",
-  "address": "Place du 29 Juin 1944, Pont-de-Salars",
+  "address": "Place du 29 Juin 1944, devant la Salle des Fêtes",
   "lat": 44.2771,
   "lon": 2.7171,
   "free": null,
@@ -652,19 +652,19 @@
   "source_id": "html-levezou-pontsalars",
   "sector": "pont-de-salars",
   "end": null,
-  "description": "Concours de pétanque en doublette au terrain situé à la sortie du village, direction Salles Curan. Organisé par la Pétanque Canetole tous les mercredis à partir de 20h30, 3 parties, 6€ l'équipe (pas de CB), buvette toute la soirée.",
+  "description": "Concours de pétanque en doublette, 3 parties, 6€ l'équipe. Organisé par la Pétanque Canetole, buvette toute la soirée.",
   "tldr": null,
   "category": "sport",
   "tags": [],
   "audience": [
-   "adultes"
+   "tous"
   ],
   "commune": "Canet-de-Salars",
-  "address": "Terrain de pétanque, sortie du village direction Salles Curan, Canet-de-Salars",
+  "address": "Terrain de pétanque à la sortie du village, direction Salles Curan",
   "lat": 44.2392,
   "lon": 2.7379,
   "free": false,
-  "price_text": "6€ l'équipe (pas de CB)",
+  "price_text": "6€ l'équipe",
   "url": "https://www.tourisme-aveyron.com/fr/diffusio/agenda/concours-de-petanque-en-ete-canet-de-salars_TFO513694608854",
   "image": null,
   "id": "concours-de-petanque-en-ete-2452c11c"
@@ -680,10 +680,10 @@
   "category": "spectacle",
   "tags": [],
   "audience": [
-   "adultes"
+   "tous"
   ],
   "commune": "Pont-de-Salars",
-  "address": "Balou Balou x les Rousselleries, Pont-de-Salars",
+  "address": null,
   "lat": 44.2771,
   "lon": 2.7171,
   "free": null,
@@ -698,12 +698,12 @@
   "source_id": "html-levezou-pontsalars",
   "sector": "pont-de-salars",
   "end": null,
-  "description": "Séance de sophrologie animée par Coralie. Tarif 15€ par personne, inscription au 06 50 54 63 88.",
-  "tldr": "Séance de sophrologie guidée en plein air ou en intérieur, adaptée à tous les publics pour une détente profonde.",
+  "description": "Séance de sophrologie animée par Coralie. Tarif : 15€ par personne, inscription au 06 50 54 63 88.",
+  "tldr": null,
   "category": "atelier",
   "tags": [],
   "audience": [
-   "adultes"
+   "tous"
   ],
   "commune": "Le Vibal",
   "address": null,
@@ -721,7 +721,7 @@
   "source_id": "html-levezou-pontsalars",
   "sector": "pont-de-salars",
   "end": "2026-08-13T12:00:00",
-  "description": "Découverte des milieux aquatiques par une activité pêche, pour les 5/18 ans, de 9h30 à 12h au lac de la Gourde. 12€ par enfant de plus de 8 ans (de 5 à 8 ans accompagnés d'un adulte).",
+  "description": "Découverte des milieux aquatiques par une activité pêche pour les 5-18 ans au lac de la Gourde. Sur inscription, 12€ par enfant de plus de 8 ans.",
   "tldr": null,
   "category": "nature",
   "tags": [],
@@ -730,11 +730,11 @@
    "ados"
   ],
   "commune": "Canet-de-Salars",
-  "address": "Lac de la Gourde, chemin de Conquettes, Pareloup, Canet-de-Salars",
+  "address": "Lac de la Gourde, au bout du Chemin de Conquettes à Pareloup",
   "lat": 44.2392,
   "lon": 2.7379,
   "free": false,
-  "price_text": "12€ par enfant de plus de 8 ans (de 5 à 8 ans accompagnés d'un adulte)",
+  "price_text": "12€ par enfant de plus de 8 ans",
   "url": "https://www.tourisme-aveyron.com/fr/diffusio/agenda/animation-peche-et-nature-au-lac-de-la-gourde-pour-les-enfants-canet-de-salars_TFO12050-FMA-20250620095654807",
   "image": null,
   "id": "animation-peche-et-nature-au-lac-de-la-gourde-pour-les-enfants-3c914b6e"
@@ -745,7 +745,7 @@
   "source_id": "html-levezou-pontsalars",
   "sector": "pont-de-salars",
   "end": "2026-08-13T16:30:00",
-  "description": "Découverte des milieux aquatiques par une activité pêche, pour les 5/18 ans, de 14h à 16h30. Sur inscription, 12€ par enfant de plus de 8 ans (de 5 à 8 ans accompagnés d'un adulte).",
+  "description": "Découverte des milieux aquatiques par une activité pêche pour les 5-18 ans. Sur inscription, 12€ par enfant de plus de 8 ans.",
   "tldr": null,
   "category": "nature",
   "tags": [],
@@ -753,15 +753,15 @@
    "enfants",
    "ados"
   ],
-  "commune": "Le Vibal",
-  "address": "Lac de Pont-de-Salars, Le Vibal",
-  "lat": 44.3166,
-  "lon": 2.7286,
+  "commune": "Pont-de-Salars",
+  "address": "Lac de Pont-de-Salars, commune du Vibal",
+  "lat": 44.2771,
+  "lon": 2.7171,
   "free": false,
-  "price_text": "12€ par enfant de plus de 8 ans (de 5 à 8 ans accompagnés d'un adulte)",
+  "price_text": "12€ par enfant de plus de 8 ans",
   "url": "https://www.tourisme-aveyron.com/fr/diffusio/agenda/animation-peche-et-nature-au-lac-de-pont-de-salars-commune-du-vibal-pour-les-enfants-pont-de-salars_TFO425810739307",
   "image": null,
-  "id": "animation-peche-et-nature-au-lac-de-pont-de-salars-commune-du-vibal-pour-les-enf-f3234a27"
+  "id": "animation-peche-et-nature-au-lac-de-pont-de-salars-commune-du-vibal-pour-les-enf-70aeec7d"
  },
  {
   "title": "Visite de la ferme - Fromagerie du Griffoul",
@@ -769,9 +769,9 @@
   "source_id": "html-levezou-pontsalars",
   "sector": "pont-de-salars",
   "end": null,
-  "description": "Visite de la ferme sur réservation, les jeudis et vendredis à 16h30 en juillet et août. Réservation au 06.70.97.02.76 ou 06.82.95.21.20.",
+  "description": "Visite de la ferme et de la fromagerie du Griffoul sur réservation.",
   "tldr": null,
-  "category": "patrimoine",
+  "category": "nature",
   "tags": [],
   "audience": [
    "tous"
@@ -792,13 +792,12 @@
   "source_id": "html-levezou-pontsalars",
   "sector": "pont-de-salars",
   "end": null,
-  "description": "À 18h, départ de la ferme Le Peyssi pour une rando de 6,5 km accompagnée par Mathias, avec pause dégustation de produits locaux. À partir de 19h, marché gourmand animé par le duo Secret Garden.",
+  "description": "Randonnée gourmande de 6,5 km accompagnée par Mathias avec dégustation de produits locaux. À partir de 19h, marché gourmand animé par le duo Secret Garden.",
   "tldr": null,
   "category": "marche",
   "tags": [],
   "audience": [
-   "adultes",
-   "famille"
+   "tous"
   ],
   "commune": "Prades-Salars",
   "address": "Ferme Le Peyssi, Prades-Salars",
@@ -816,9 +815,9 @@
   "source_id": "html-levezou-pontsalars",
   "sector": "pont-de-salars",
   "end": null,
-  "description": "Visite de la ferme sur réservation, les jeudis et vendredis à 16h30 en juillet et août. Réservation au 06.70.97.02.76 ou 06.82.95.21.20.",
+  "description": "Visite de la ferme et de la fromagerie du Griffoul sur réservation.",
   "tldr": null,
-  "category": "patrimoine",
+  "category": "nature",
   "tags": [],
   "audience": [
    "tous"
