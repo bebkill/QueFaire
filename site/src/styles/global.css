@@ -441,6 +441,43 @@ a { color: inherit; }
 /* Un bandeau permanent ne peut pas prendre la moitié d'un petit écran. */
 @media (max-width: 720px) { :root { --map-h: clamp(150px, 28vh, 220px); } }
 @media (max-height: 560px) { :root { --map-h: 150px; } }
+
+.map-frame { position: relative; }
+
+/* Au-dessus de la carte : `#map` a son propre contexte d'empilement (z-index: 1)
+   et contient les couches de Leaflet, donc un simple 2 suffit ici. */
+.map-locate {
+  position: absolute; top: 10px; right: 10px; z-index: 2;
+  display: flex; align-items: center; gap: 6px;
+  font: inherit; font-size: 0.84rem; font-weight: 700;
+  padding: 7px 12px; border-radius: 999px; cursor: pointer;
+  background: var(--card); color: var(--ink);
+  border: 1.5px solid var(--line); box-shadow: var(--shadow-lift);
+}
+.map-locate:hover { border-color: var(--accent); }
+.map-locate.is-on { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
+.map-locate[disabled] { opacity: 0.7; cursor: progress; }
+.map-geo { font-size: 0.8rem; color: var(--accent); font-weight: 600; margin: 6px 2px 0; min-height: 1.1em; }
+
+/* Deux repères VISUELLEMENT DISTINCTS : 15 m de GPS et 2 km de centre-bourg ne
+   se lisent pas pareil sur une carte, et les confondre tromperait sur ce que
+   valent les temps de trajet affichés. */
+.origine-icon { background: none; border: none; }
+.origine-maison {
+  display: flex; align-items: center; justify-content: center;
+  width: 30px; height: 30px; border-radius: 50%; font-size: 1rem;
+  background: var(--card); border: 2.5px solid var(--accent);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+.origine-point { filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.4)); }
+
+/* Sous 720 px le libellé tombe : à 390 px, « 📍 Ma position » et les commandes
+   de zoom se disputaient la largeur de la carte. */
+@media (max-width: 720px) {
+  .map-locate .ml-label { display: none; }
+  .map-locate { padding: 8px 10px; }
+}
+
 .cluster-icon { background: none; border: none; }
 .cluster-dot {
   display: flex; align-items: center; justify-content: center;

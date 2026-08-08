@@ -322,8 +322,24 @@ const communePoints = sector.commune_points || [];
       </div>
 
       <div id="mapwrap" hidden>
-        <div id="map"></div>
+        {/* Le cadre porte le positionnement : `#map` crée son propre contexte
+            d'empilement (z-index: 1), donc un bouton posé DEDANS passerait sous
+            les couches de Leaflet. */}
+        <div class="map-frame">
+          <div id="map"></div>
+          {/* Un bouton HTML plutôt qu'un contrôle Leaflet : il doit se styler
+              avec le reste de la page et rester dans l'ordre de tabulation du
+              document. */}
+          <button type="button" class="map-locate" id="map-locate" aria-pressed="false">
+            <span class="ml-icon" aria-hidden="true">📍</span>
+            <span class="ml-label">Ma position</span>
+          </button>
+        </div>
         <p class="map-note">Temps de trajet estimés à vol d'oiseau corrigé — un calcul d'itinéraire précis arrive en roadmap.</p>
+        {/* Le même message qu'en colonne de réglages, répété ici : la colonne
+            peut être fermée, et un échec de localisation doit se lire à l'endroit
+            où on vient de cliquer. */}
+        <p class="map-geo" id="map-geo" role="status"></p>
       </div>
 
       {/* Deux sections plutôt qu'une grille mêlée : un concert du 12 avril et un
@@ -381,6 +397,7 @@ const communePoints = sector.commune_points || [];
 <script>
   import { parseQuery, matches, distanceKm, travelMinutes, roundMinutes, fold } from '../../lib/nlsearch.js';
   import { creerCarte } from '../../lib/carte.js';
+  import { chercherCommune, geolocaliser, memoriser, oublier as oublierOrigine, restaurer } from '../../lib/origine.js';
   import { CATEGORY_EMOJI, PLACE_EMOJI, formatWhen, openingLabel } from '../../lib/format.js';
   import { carteActivite, donneesActivite } from '../../lib/placecard.js';
   import { aProposer, charger, nbVotes, oublier, resume, scorePrefs, voter } from '../../lib/prefs.js';
@@ -473,8 +490,10 @@ const communePoints = sector.commune_points || [];
   const chips = Array.from(document.querySelectorAll('[data-chip]'));
   const timeLimitEl = document.getElementById('timelimit');
   const timeModeEl = document.getElementById('timemode');
+  const locateBtn = document.getElementById('map-locate');
+  const mapGeo = document.getElementById('map-geo');
 
-  let userPos = null; // {lat, lon}
+  let origine = null;  // { lat, lon, source: 'geoloc'|'commune'|'defaut', libelle, precision }
   let prefs = charger();          // goûts appris par 👍/👎, dans ce navigateur seul
   const state = { query: '', chips: new Set() };
   const MODE_LABELS = { walk: 'à pied', bike: 'en vélo', car: 'en voiture' };
@@ -539,54 +558,85 @@ const communePoints = sector.commune_points || [];
   // de coordonnées est embarquée dans sector.json (géocodage hors-ligne, quelques
   // Ko) : aucun appel réseau, aucune donnée envoyée nulle part — et la précision
   // au centre de la commune est exactement celle de nos temps de trajet.
+  //
+  // Une origine DIT D'OÙ ELLE VIENT, et le marqueur en dépend : `defaut` (centre
+  // du secteur) sert à calculer, jamais à afficher. Un point « Vous êtes ici »
+  // posé sur une valeur de repli serait un mensonge.
   const originEl = document.getElementById('origin');
   const communePoints = sector.commune_points || [];
-  const parCle = new Map(communePoints.map((c) => [fold(c.nom), c]));
+
+  function messageOrigine(texte) {
+    geostate.textContent = texte;
+    mapGeo.textContent = texte;
+  }
+
+  function appliquerOrigine(o, { message = '' } = {}) {
+    origine = o;
+    if (carte) carte.poserOrigine(o && o.source !== 'defaut' ? o : null);
+    majBoutonPosition();
+    messageOrigine(message);
+  }
+
+  function majBoutonPosition(occupe = false) {
+    if (!locateBtn) return;
+    const src = origine?.source;
+    locateBtn.disabled = occupe;
+    locateBtn.setAttribute('aria-busy', String(occupe));
+    locateBtn.setAttribute('aria-pressed', String(src === 'geoloc'));
+    locateBtn.classList.toggle('is-on', src === 'geoloc' || src === 'commune');
+    locateBtn.querySelector('.ml-label').textContent = occupe ? 'Localisation…' : 'Ma position';
+    locateBtn.title = occupe ? ''
+      : src === 'geoloc' ? 'Recentrer la carte sur votre position'
+        : src === 'commune' ? `Utiliser votre position réelle plutôt que ${origine.libelle}`
+          : 'Afficher votre position sur la carte';
+  }
 
   /** Applique la commune saisie comme point de départ. Rend true si reconnue. */
   function setOrigin(saisie) {
-    const cle = fold((saisie || '').trim());
-    if (!cle) {
-      userPos = null;
-      geostate.textContent = '';
+    const brut = (saisie || '').trim();
+    if (!brut) {
+      appliquerOrigine(null);
+      oublierOrigine();
       return true;
     }
-    const trouve = parCle.get(cle) || communePoints.find((c) => fold(c.nom).startsWith(cle));
+    const trouve = chercherCommune(communePoints, brut);
     if (!trouve) {
-      geostate.textContent = `« ${saisie} » n'est pas dans le rayon — essayez une commune voisine.`;
+      messageOrigine(`« ${brut} » n'est pas dans le rayon — essayez une commune voisine.`);
       return false;
     }
-    userPos = { lat: trouve.lat, lon: trouve.lon };
-    geostate.textContent = `Départ : ${trouve.nom}`;
     if (originEl) originEl.value = trouve.nom;
+    memoriser(sector.id, trouve.nom);
+    appliquerOrigine(
+      { lat: trouve.lat, lon: trouve.lon, source: 'commune', libelle: trouve.nom, precision: null },
+      { message: `Départ : ${trouve.nom}` },
+    );
     return true;
   }
 
-  function requestGeoloc(cb) {
-    if (userPos) return cb();
-    if (!navigator.geolocation) {
-      geostate.textContent = 'Géolocalisation non disponible — indiquez votre commune ci-dessus.';
-      return cb();
+  const MESSAGES_GEO = {
+    indisponible: 'Géolocalisation non disponible — indiquez votre commune ci-dessus.',
+    imprecise: 'Position trop imprécise (localisation par le réseau) — indiquez votre commune ci-dessus.',
+    refusee: 'Position refusée — indiquez votre commune ci-dessus.',
+  };
+
+  /** Garantit une origine pour les FILTRES qui en exigent une. À la différence du
+   *  bouton 📍, cette voie se rabat sur le centre du secteur en cas d'échec :
+   *  mieux vaut un temps de trajet approximatif et annoncé comme tel que pas de
+   *  filtre du tout. Le marqueur, lui, n'est pas dessiné — `defaut` n'est pas
+   *  une position. */
+  async function assurerOrigine() {
+    if (origine) return origine;
+    try {
+      const p = await geolocaliser();
+      appliquerOrigine({ ...p, source: 'geoloc', libelle: 'Vous êtes ici' });
+    } catch (err) {
+      appliquerOrigine(
+        { lat: sector.center.lat, lon: sector.center.lon, source: 'defaut', libelle: sector.name, precision: null },
+        { message: `${MESSAGES_GEO[err.code] || MESSAGES_GEO.refusee} Calcul depuis ${sector.name} en attendant.` },
+      );
+      if (originEl) originEl.focus();
     }
-    geostate.textContent = 'Localisation en cours…';
-    navigator.geolocation.getCurrentPosition(
-      (pos) => {
-        userPos = { lat: pos.coords.latitude, lon: pos.coords.longitude };
-        geostate.textContent = '';
-        cb();
-      },
-      () => {
-        // Position refusée : on N'INVENTE PAS un point de départ. On le demande,
-        // et on se rabat sur le centre du secteur en le disant.
-        geostate.textContent = `Position refusée — indiquez votre commune pour des temps justes (calcul depuis ${sector.name} en attendant).`;
-        userPos = { lat: sector.center.lat, lon: sector.center.lon };
-        if (originEl) originEl.focus();
-        cb();
-      },
-      // Haute précision : privilégie le wifi/GPS à la géoloc par IP (peu fiable
-      // sur ordinateur — souvent le nœud régional du fournisseur d'accès).
-      { enableHighAccuracy: true, timeout: 10000, maximumAge: 60000 }
-    );
+    return origine;
   }
 
   function currentFilter() {
@@ -607,8 +657,8 @@ const communePoints = sector.commune_points || [];
     // invitation à nommer sa commune si elle est refusée).
     const needsGeo = filter.nearMe || filter.maxMinutes != null || sortEl.value === 'distance';
 
-    if (needsGeo && !userPos) {
-      requestGeoloc(apply);
+    if (needsGeo && !origine) {
+      assurerOrigine().then(apply);
       return;
     }
 
@@ -623,7 +673,7 @@ const communePoints = sector.commune_points || [];
       let ok = matches(data, filter);
       let dist = null;
       let minutes = null;
-      if (ok && needsGeo && userPos) {
+      if (ok && needsGeo && origine) {
         if (Number.isNaN(data.lat)) {
           // Sans coordonnées, impossible de garantir la limite de temps : on
           // exclut (la carte les ignore déjà — liste et carte restent cohérentes).
@@ -632,7 +682,7 @@ const communePoints = sector.commune_points || [];
             unlocated += 1;
           }
         } else {
-          dist = distanceKm(userPos.lat, userPos.lon, data.lat, data.lon);
+          dist = distanceKm(origine.lat, origine.lon, data.lat, data.lon);
           minutes = travelMinutes(dist, filter.mode);
           if (filter.maxMinutes != null && minutes > filter.maxMinutes) ok = false;
         }
@@ -952,7 +1002,38 @@ const communePoints = sector.commune_points || [];
         });
       }
       carte.redimensionner();
+      carte.poserOrigine(origine && origine.source !== 'defaut' ? origine : null);
       apply();
+    }
+  });
+
+  // Un geste EXPLICITE, jamais une demande automatique à l'ouverture de la
+  // carte : une boîte de dialogue du navigateur que personne n'a réclamée est le
+  // contraire de la ligne du projet — rien ne se déclenche dans le dos du
+  // visiteur, et rien ne quitte son navigateur.
+  locateBtn.addEventListener('click', async () => {
+    if (origine?.source === 'geoloc') {
+      carte.centrerSurOrigine();
+      return;
+    }
+    majBoutonPosition(true);
+    try {
+      const p = await geolocaliser();
+      // La position précise remplace la commune : le champ se vide, sa pastille
+      // disparaît, et la mémoire suit. La règle est que LA MÉMOIRE EST LE REFLET
+      // DU CHAMP — une seule règle, donc rien à deviner.
+      if (originEl) originEl.value = '';
+      oublierOrigine();
+      appliquerOrigine({ ...p, source: 'geoloc', libelle: 'Vous êtes ici' });
+      carte.centrerSurOrigine();
+      apply();
+    } catch (err) {
+      // Un échec ne fait JAMAIS perdre une commune déjà posée : `origine` reste
+      // en place, seul le message change.
+      majBoutonPosition(false);
+      messageOrigine(`${MESSAGES_GEO[err.code] || MESSAGES_GEO.refusee} (☰ Réglages)`);
+      ouvrirReglages(true, { rendreLeFocus: false });
+      if (originEl) originEl.focus();
     }
   });
 
@@ -1050,8 +1131,8 @@ const communePoints = sector.commune_points || [];
     // Le point de départ retombe à « inconnu », pas au centre du secteur : mieux
     // vaut ne pas afficher de temps que d'en afficher un depuis un point que le
     // visiteur n'a pas choisi.
-    userPos = null;
-    geostate.textContent = '';
+    appliquerOrigine(null);
+    oublierOrigine();
     for (const chip of chips) chip.setAttribute('aria-pressed', 'false');
     apply();
   }
@@ -1151,8 +1232,8 @@ const communePoints = sector.commune_points || [];
     if (originEl && originEl.value.trim()) {
       pastilles.push([`🏠 ${originEl.value.trim()}`, () => {
         originEl.value = '';
-        userPos = null;
-        geostate.textContent = '';
+        appliquerOrigine(null);
+        oublierOrigine();
       }]);
     }
     if (timeLimitEl.value) {
