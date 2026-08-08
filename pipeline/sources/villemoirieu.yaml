@@ -58,6 +58,13 @@ sources:
     commune: Crémieu
     enabled: true
 
+  - id: html-cremieu
+    name: Ville de Crémieu — événements et agenda
+    type: html
+    url: https://ville-cremieu.fr/evenements/
+    commune: Crémieu
+    enabled: true
+
   - id: html-cafe-crem
     name: OT Café-Crém'
     type: html
