@@ -69,6 +69,14 @@ export async function creerCarte({ el, centre, onSelection }) {
 
   const couche = L.layerGroup().addTo(map);
   const coucheOrigine = L.layerGroup().addTo(map);
+  // Panneau DÉDIÉ, au-dessus du `markerPane` (600) : sans lui, le point GPS
+  // (un `circleMarker`, rendu dans l'`overlayPane` à 400) et l'épingle 🏠 se
+  // dessinent SOUS les amas et les pastilles d'activité, qui vivent dans le
+  // `markerPane`. Une position qu'on ne voit pas ne situe plus rien. Choisi
+  // sous le `tooltipPane` (650) : une infobulle de fiche doit rester lisible
+  // même si elle survole le repère.
+  const paneOrigine = map.createPane('origine');
+  paneOrigine.style.zIndex = 620;
 
   let marqueurs = new Map();   // entrée → marqueur (les groupés pointent le leur)
   let derniers = [];           // items du dernier `afficher`, pour redessiner au zoom
@@ -212,15 +220,20 @@ export async function creerCarte({ el, centre, onSelection }) {
       coucheOrigine.clearLayers();
       if (!o) return;
       if (o.source === 'geoloc') {
+        // Le halo est ajouté AVANT le point, dans le MÊME panneau : entre deux
+        // formes d'un panneau, l'ordre d'ajout au DOM fait l'ordre d'empilement,
+        // donc le point se peint après lui, par-dessus — jamais l'inverse.
         // Le cercle de précision dit lui-même ce que le point vaut. En deçà de
         // 50 m il serait plus petit que la pastille : inutile de le dessiner.
         if (o.precision && o.precision > 50) {
           L.circle([o.lat, o.lon], {
+            pane: 'origine',
             radius: o.precision, color: '#1c7ed6', weight: 1,
             fillColor: '#1c7ed6', fillOpacity: 0.1, className: 'origine-halo',
           }).addTo(coucheOrigine);
         }
         L.circleMarker([o.lat, o.lon], {
+          pane: 'origine',
           radius: 7, color: '#ffffff', weight: 3,
           fillColor: '#1c7ed6', fillOpacity: 1, className: 'origine-point',
         }).bindPopup('Vous êtes ici').addTo(coucheOrigine);
@@ -228,6 +241,7 @@ export async function creerCarte({ el, centre, onSelection }) {
         // Repère VISUELLEMENT DISTINCT du point GPS : 15 m de précision et
         // 2 km de centre-bourg ne se lisent pas pareil sur une carte.
         L.marker([o.lat, o.lon], {
+          pane: 'origine',
           icon: L.divIcon({
             className: 'origine-icon',
             html: '<div class="origine-maison">🏠</div>',

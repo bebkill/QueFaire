@@ -634,6 +634,10 @@ const communePoints = sector.commune_points || [];
         { lat: sector.center.lat, lon: sector.center.lon, source: 'defaut', libelle: sector.name, precision: null },
         { message: `${MESSAGES_GEO[err.code] || MESSAGES_GEO.refusee} Calcul depuis ${sector.name} en attendant.` },
       );
+      // Même geste que le bouton 📍 : sous 1040 px la colonne est un rideau
+      // FERMÉ, et y poser le focus sans l'ouvrir l'enverrait hors écran — un
+      // champ que personne ne voit n'aide personne à corriger le refus.
+      ouvrirReglages(true, { rendreLeFocus: false });
       if (originEl) originEl.focus();
     }
     return origine;
@@ -1012,21 +1016,24 @@ const communePoints = sector.commune_points || [];
   // contraire de la ligne du projet — rien ne se déclenche dans le dos du
   // visiteur, et rien ne quitte son navigateur.
   locateBtn.addEventListener('click', async () => {
+    // `mapWrap` se découvre AVANT que `creerCarte()` (import dynamique de
+    // Leaflet) ait fini de résoudre : le bouton est cliquable pendant cette
+    // fenêtre, avec `carte` encore à `null`. Sans ce garde, un clic pendant le
+    // chargement lève un TypeError qu'un `catch` mal ciblé attribuerait à tort
+    // à un refus de géolocalisation (voir plus bas).
     if (origine?.source === 'geoloc') {
-      carte.centrerSurOrigine();
+      if (carte) carte.centrerSurOrigine();
       return;
     }
     majBoutonPosition(true);
+    let p;
     try {
-      const p = await geolocaliser();
-      // La position précise remplace la commune : le champ se vide, sa pastille
-      // disparaît, et la mémoire suit. La règle est que LA MÉMOIRE EST LE REFLET
-      // DU CHAMP — une seule règle, donc rien à deviner.
-      if (originEl) originEl.value = '';
-      oublierOrigine();
-      appliquerOrigine({ ...p, source: 'geoloc', libelle: 'Vous êtes ici' });
-      carte.centrerSurOrigine();
-      apply();
+      // Le `try` ne couvre QUE cet appel : `err.code` ne veut dire quelque
+      // chose que pour une erreur de `geolocaliser()`. L'y engloutir avec
+      // `apply()` ferait retomber toute exception (un `carte` encore `null`,
+      // par exemple) sur `MESSAGES_GEO.refusee` — soit affirmer un refus qui
+      // n'a pas eu lieu, exactement le mensonge que cette tâche corrige.
+      p = await geolocaliser();
     } catch (err) {
       // Un échec ne fait JAMAIS perdre une commune déjà posée : `origine` reste
       // en place, seul le message change.
@@ -1034,7 +1041,23 @@ const communePoints = sector.commune_points || [];
       messageOrigine(`${MESSAGES_GEO[err.code] || MESSAGES_GEO.refusee} (☰ Réglages)`);
       ouvrirReglages(true, { rendreLeFocus: false });
       if (originEl) originEl.focus();
+      return;
     }
+    // La position précise remplace la commune : le champ se vide, sa pastille
+    // disparaît, et la mémoire suit. La règle est que LA MÉMOIRE EST LE REFLET
+    // DU CHAMP — une seule règle, donc rien à deviner.
+    if (originEl) originEl.value = '';
+    oublierOrigine();
+    appliquerOrigine({ ...p, source: 'geoloc', libelle: 'Vous êtes ici' });
+    // `apply()` D'ABORD, le recentrage ENSUITE : deux animations Leaflet
+    // lancées dans le même tick ne s'additionnent pas, la DERNIÈRE écrase la
+    // cible de la première (`_animateZoom` réécrit `_animateToCenter` /
+    // `_animateToZoom` à chaque appel, y compris pendant qu'une première
+    // anime déjà). Si `centrerSurOrigine()` parlait en premier, le `fitBounds`
+    // régional d'`apply()` gagnerait la course et la carte resterait cadrée
+    // sur le secteur — le point ne serait alors centré que par accident.
+    apply();
+    if (carte) carte.centrerSurOrigine();
   });
 
   timeLimitEl.addEventListener('change', apply);
