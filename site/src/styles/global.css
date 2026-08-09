@@ -19,6 +19,9 @@
   --shadow-lift: 0 2px 4px rgba(35, 33, 28, 0.08), 0 16px 32px -12px rgba(35, 33, 28, 0.26);
   --radius: 16px;
   --header-h: 57px;   /* hauteur de l'en-tête collant : décale tous les `sticky` */
+  --top-h: 64px;      /* barre de recherche collante — mesurée par le script */
+  --sticky-h: 121px;  /* en-tête + barre + carte : ce qui recouvre le haut */
+  --map-h: clamp(180px, 34vh, 300px);
   --side-w: 304px;
 
   /* Couleurs de catégorie */
@@ -410,12 +413,71 @@ a { color: inherit; }
 
 /* ---------------- Carte ---------------- */
 
-#mapwrap { margin-bottom: 20px; }
+/* La carte est un BANDEAU COLLANT, pas un bloc qu'on dépasse. Tout l'intérêt
+   est de situer une activité PENDANT qu'on lit sa tuile : une carte qu'on perd
+   de vue au premier défilement ne sert qu'à l'instant où on l'ouvre.
+
+   Elle colle sous la barre de recherche, qui colle elle-même sous l'en-tête —
+   d'où le `top` composé, avec des hauteurs mesurées et non devinées. */
+#mapwrap {
+  position: sticky;
+  top: calc(var(--header-h) + var(--top-h));
+  z-index: 14;            /* sous la barre de recherche (15), sur les tuiles */
+  margin-bottom: 20px;
+  padding-bottom: 8px;
+  background: var(--bg);
+  /* Même artifice que `.explore-top` : sans ces ombres latérales, les tuiles se
+     voient en transparence sur les bords pendant le défilement, la colonne
+     n'ayant pas de marge intérieure. */
+  box-shadow: -14px 0 0 var(--bg), 14px 0 0 var(--bg);
+}
 #map {
-  height: 420px; border-radius: var(--radius); border: 1px solid var(--line);
+  height: var(--map-h);
+  border-radius: var(--radius); border: 1px solid var(--line);
   box-shadow: var(--shadow); z-index: 1;
 }
 .map-note { font-size: 0.78rem; color: var(--ink-soft); margin: 6px 2px 0; }
+
+/* Un bandeau permanent ne peut pas prendre la moitié d'un petit écran. */
+@media (max-width: 720px) { :root { --map-h: clamp(150px, 28vh, 220px); } }
+@media (max-height: 560px) { :root { --map-h: 150px; } }
+
+.map-frame { position: relative; }
+
+/* Au-dessus de la carte : `#map` a son propre contexte d'empilement (z-index: 1)
+   et contient les couches de Leaflet, donc un simple 2 suffit ici. */
+.map-locate {
+  position: absolute; top: 10px; right: 10px; z-index: 2;
+  display: flex; align-items: center; gap: 6px;
+  font: inherit; font-size: 0.84rem; font-weight: 700;
+  padding: 7px 12px; border-radius: 999px; cursor: pointer;
+  background: var(--card); color: var(--ink);
+  border: 1.5px solid var(--line); box-shadow: var(--shadow-lift);
+}
+.map-locate:hover { border-color: var(--accent); }
+.map-locate.is-on { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
+.map-locate[disabled] { opacity: 0.7; cursor: progress; }
+.map-geo { font-size: 0.8rem; color: var(--accent); font-weight: 600; margin: 6px 2px 0; min-height: 1.1em; }
+
+/* Deux repères VISUELLEMENT DISTINCTS : 15 m de GPS et 2 km de centre-bourg ne
+   se lisent pas pareil sur une carte, et les confondre tromperait sur ce que
+   valent les temps de trajet affichés. */
+.origine-icon { background: none; border: none; }
+.origine-maison {
+  display: flex; align-items: center; justify-content: center;
+  width: 30px; height: 30px; border-radius: 50%; font-size: 1rem;
+  background: var(--card); border: 2.5px solid var(--accent);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+.origine-point { filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.4)); }
+
+/* Sous 720 px le libellé tombe : à 390 px, « 📍 Ma position » et les commandes
+   de zoom se disputaient la largeur de la carte. */
+@media (max-width: 720px) {
+  .map-locate .ml-label { display: none; }
+  .map-locate { padding: 8px 10px; }
+}
+
 .cluster-icon { background: none; border: none; }
 .cluster-dot {
   display: flex; align-items: center; justify-content: center;
@@ -426,6 +488,19 @@ a { color: inherit; }
   transition: transform 0.12s;
 }
 .cluster-dot:hover { transform: scale(1.08); }
+
+/* Point mis en évidence parce qu'on survole sa tuile. Les points d'événement
+   sont des `circleMarker` — c'est Leaflet qui les grossit, pas le CSS. */
+.place-icon.is-hover .place-dot,
+.cluster-icon.is-hover .cluster-dot {
+  transform: scale(1.22);
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.4);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .place-icon .place-dot, .cluster-icon .cluster-dot { transition: none; }
+}
+
 .leaflet-popup-content { font-family: inherit; font-size: 0.88rem; line-height: 1.4; }
 .leaflet-popup-content a { color: var(--accent); font-weight: 600; }
 
@@ -471,6 +546,11 @@ a { color: inherit; }
   display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   gap: 18px; padding-bottom: 60px;
 }
+
+/* Sans cette marge, « aller à la page 3 » ou un clic sur un point de la carte
+   feraient défiler leur cible DERRIÈRE la carte collante : le visiteur verrait
+   une tuile surlignée qu'il n'a pas sous les yeux. */
+.section, .card { scroll-margin-top: calc(var(--sticky-h) + 16px); }
 
 .card {
   --cat: var(--c-autre);

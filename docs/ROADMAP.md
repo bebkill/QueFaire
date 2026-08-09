@@ -69,6 +69,12 @@ Pont-de-Salars, contre 36 événements datés.
       réapparaît d'elle-même.
 - [x] **Commune de départ** saisissable, pour qui refuse la géolocalisation —
       coordonnées embarquées, aucun appel réseau
+- [x] **Carte collante et position du visiteur** : la carte reste à l'écran
+      pendant qu'on parcourt les tuiles, un bouton 📍 y pose la position
+      (géolocalisée ou commune saisie), et survoler une tuile met son point en
+      évidence. Le temps de trajet s'affiche dès qu'une origine est connue, sans
+      qu'il faille poser un filtre. Seul le nom de la commune est mémorisé —
+      jamais les coordonnées.
 - [x] Note d'avis Google ou TripAdvisor **collectée mais non affichée** : les CGU
       des deux fournisseurs l'interdisent hors de leurs composants (voir
       `ARCHITECTURE.md`). Remplacée par les distinctions officielles en données

@@ -322,8 +322,24 @@ const communePoints = sector.commune_points || [];
       </div>
 
       <div id="mapwrap" hidden>
-        <div id="map"></div>
+        {/* Le cadre porte le positionnement : `#map` crée son propre contexte
+            d'empilement (z-index: 1), donc un bouton posé DEDANS passerait sous
+            les couches de Leaflet. */}
+        <div class="map-frame">
+          <div id="map"></div>
+          {/* Un bouton HTML plutôt qu'un contrôle Leaflet : il doit se styler
+              avec le reste de la page et rester dans l'ordre de tabulation du
+              document. */}
+          <button type="button" class="map-locate" id="map-locate" aria-pressed="false">
+            <span class="ml-icon" aria-hidden="true">📍</span>
+            <span class="ml-label">Ma position</span>
+          </button>
+        </div>
         <p class="map-note">Temps de trajet estimés à vol d'oiseau corrigé — un calcul d'itinéraire précis arrive en roadmap.</p>
+        {/* Le même message qu'en colonne de réglages, répété ici : la colonne
+            peut être fermée, et un échec de localisation doit se lire à l'endroit
+            où on vient de cliquer. */}
+        <p class="map-geo" id="map-geo" role="status"></p>
       </div>
 
       {/* Deux sections plutôt qu'une grille mêlée : un concert du 12 avril et un
@@ -380,6 +396,8 @@ const communePoints = sector.commune_points || [];
 
 <script>
   import { parseQuery, matches, distanceKm, travelMinutes, roundMinutes, fold } from '../../lib/nlsearch.js';
+  import { creerCarte } from '../../lib/carte.js';
+  import { chercherCommune, geolocaliser, memoriser, oublier as oublierOrigine, restaurer } from '../../lib/origine.js';
   import { CATEGORY_EMOJI, PLACE_EMOJI, formatWhen, openingLabel } from '../../lib/format.js';
   import { carteActivite, donneesActivite } from '../../lib/placecard.js';
   import { aProposer, charger, nbVotes, oublier, resume, scorePrefs, voter } from '../../lib/prefs.js';
@@ -388,18 +406,36 @@ const communePoints = sector.commune_points || [];
   // qu'importé statiquement — le script est partagé par toutes les routes [city].
   const sector = JSON.parse(document.getElementById('sector-data').textContent);
 
-  // La hauteur de l'en-tête collant est MESURÉE, pas supposée. Elle décale tous
-  // les `position: sticky` de la page, et elle change avec la largeur — sur
-  // téléphone le menu passe à la ligne et l'en-tête triple de hauteur. La valeur
-  // de 57 px codée en CSS cachait alors la barre de recherche DERRIÈRE l'en-tête :
-  // le réglage censé rester sous la main était le seul invisible.
+  const mapChip = document.getElementById('mapchip');
+  const mapWrap = document.getElementById('mapwrap');
+
+  // Les hauteurs de ce qui COLLE sont MESURÉES, pas supposées. Elles décalent
+  // tous les `position: sticky` de la page, et elles changent avec la largeur —
+  // sur téléphone le menu passe à la ligne et l'en-tête triple de hauteur. La
+  // valeur de 57 px codée en CSS cachait alors la barre de recherche DERRIÈRE
+  // l'en-tête : le réglage censé rester sous la main était le seul invisible.
+  //
+  // `--sticky-h` est la somme : c'est ce que recouvre le haut de l'écran, donc
+  // la marge de défilement dont une tuile ou un titre de section a besoin pour
+  // ne pas arriver CACHÉ sous la carte.
   const entete = document.querySelector('.site-header');
-  if (entete) {
-    const majHauteurEntete = () => document.documentElement.style.setProperty(
-      '--header-h', `${Math.round(entete.getBoundingClientRect().height)}px`);
-    majHauteurEntete();
-    new ResizeObserver(majHauteurEntete).observe(entete);
+  const barreHaute = document.querySelector('.explore-top');
+  const racineCss = document.documentElement;
+
+  function majHauteursCollantes() {
+    const h = entete ? Math.round(entete.getBoundingClientRect().height) : 0;
+    const t = barreHaute ? Math.round(barreHaute.getBoundingClientRect().height) : 0;
+    const c = mapWrap.hidden ? 0 : Math.round(mapWrap.getBoundingClientRect().height);
+    racineCss.style.setProperty('--header-h', `${h}px`);
+    racineCss.style.setProperty('--top-h', `${t}px`);
+    racineCss.style.setProperty('--sticky-h', `${h + t + c}px`);
   }
+
+  const observateurCollant = new ResizeObserver(majHauteursCollantes);
+  for (const el of [entete, barreHaute, mapWrap]) {
+    if (el) observateurCollant.observe(el);
+  }
+  majHauteursCollantes();
 
   // Deux sections, deux grilles, deux paginations indépendantes : filtrer les
   // événements ne doit pas renvoyer les activités à leur première page.
@@ -454,10 +490,10 @@ const communePoints = sector.commune_points || [];
   const chips = Array.from(document.querySelectorAll('[data-chip]'));
   const timeLimitEl = document.getElementById('timelimit');
   const timeModeEl = document.getElementById('timemode');
-  const mapChip = document.getElementById('mapchip');
-  const mapWrap = document.getElementById('mapwrap');
+  const locateBtn = document.getElementById('map-locate');
+  const mapGeo = document.getElementById('map-geo');
 
-  let userPos = null; // {lat, lon}
+  let origine = null;  // { lat, lon, source: 'geoloc'|'commune'|'defaut', libelle, precision }
   let prefs = charger();          // goûts appris par 👍/👎, dans ce navigateur seul
   const state = { query: '', chips: new Set() };
   const MODE_LABELS = { walk: 'à pied', bike: 'en vélo', car: 'en voiture' };
@@ -522,54 +558,89 @@ const communePoints = sector.commune_points || [];
   // de coordonnées est embarquée dans sector.json (géocodage hors-ligne, quelques
   // Ko) : aucun appel réseau, aucune donnée envoyée nulle part — et la précision
   // au centre de la commune est exactement celle de nos temps de trajet.
+  //
+  // Une origine DIT D'OÙ ELLE VIENT, et le marqueur en dépend : `defaut` (centre
+  // du secteur) sert à calculer, jamais à afficher. Un point « Vous êtes ici »
+  // posé sur une valeur de repli serait un mensonge.
   const originEl = document.getElementById('origin');
   const communePoints = sector.commune_points || [];
-  const parCle = new Map(communePoints.map((c) => [fold(c.nom), c]));
+
+  function messageOrigine(texte) {
+    geostate.textContent = texte;
+    mapGeo.textContent = texte;
+  }
+
+  function appliquerOrigine(o, { message = '' } = {}) {
+    origine = o;
+    if (carte) carte.poserOrigine(o && o.source !== 'defaut' ? o : null);
+    majBoutonPosition();
+    messageOrigine(message);
+  }
+
+  function majBoutonPosition(occupe = false) {
+    if (!locateBtn) return;
+    const src = origine?.source;
+    locateBtn.disabled = occupe;
+    locateBtn.setAttribute('aria-busy', String(occupe));
+    locateBtn.setAttribute('aria-pressed', String(src === 'geoloc'));
+    locateBtn.classList.toggle('is-on', src === 'geoloc' || src === 'commune');
+    locateBtn.querySelector('.ml-label').textContent = occupe ? 'Localisation…' : 'Ma position';
+    locateBtn.title = occupe ? ''
+      : src === 'geoloc' ? 'Recentrer la carte sur votre position'
+        : src === 'commune' ? `Utiliser votre position réelle plutôt que ${origine.libelle}`
+          : 'Afficher votre position sur la carte';
+  }
 
   /** Applique la commune saisie comme point de départ. Rend true si reconnue. */
   function setOrigin(saisie) {
-    const cle = fold((saisie || '').trim());
-    if (!cle) {
-      userPos = null;
-      geostate.textContent = '';
+    const brut = (saisie || '').trim();
+    if (!brut) {
+      appliquerOrigine(null);
+      oublierOrigine();
       return true;
     }
-    const trouve = parCle.get(cle) || communePoints.find((c) => fold(c.nom).startsWith(cle));
+    const trouve = chercherCommune(communePoints, brut);
     if (!trouve) {
-      geostate.textContent = `« ${saisie} » n'est pas dans le rayon — essayez une commune voisine.`;
+      messageOrigine(`« ${brut} » n'est pas dans le rayon — essayez une commune voisine.`);
       return false;
     }
-    userPos = { lat: trouve.lat, lon: trouve.lon };
-    geostate.textContent = `Départ : ${trouve.nom}`;
     if (originEl) originEl.value = trouve.nom;
+    memoriser(sector.id, trouve.nom);
+    appliquerOrigine(
+      { lat: trouve.lat, lon: trouve.lon, source: 'commune', libelle: trouve.nom, precision: null },
+      { message: `Départ : ${trouve.nom}` },
+    );
     return true;
   }
 
-  function requestGeoloc(cb) {
-    if (userPos) return cb();
-    if (!navigator.geolocation) {
-      geostate.textContent = 'Géolocalisation non disponible — indiquez votre commune ci-dessus.';
-      return cb();
+  const MESSAGES_GEO = {
+    indisponible: 'Géolocalisation non disponible — indiquez votre commune ci-dessus.',
+    imprecise: 'Position trop imprécise (localisation par le réseau) — indiquez votre commune ci-dessus.',
+    refusee: 'Position refusée — indiquez votre commune ci-dessus.',
+  };
+
+  /** Garantit une origine pour les FILTRES qui en exigent une. À la différence du
+   *  bouton 📍, cette voie se rabat sur le centre du secteur en cas d'échec :
+   *  mieux vaut un temps de trajet approximatif et annoncé comme tel que pas de
+   *  filtre du tout. Le marqueur, lui, n'est pas dessiné — `defaut` n'est pas
+   *  une position. */
+  async function assurerOrigine() {
+    if (origine) return origine;
+    try {
+      const p = await geolocaliser();
+      appliquerOrigine({ ...p, source: 'geoloc', libelle: 'Vous êtes ici' });
+    } catch (err) {
+      appliquerOrigine(
+        { lat: sector.center.lat, lon: sector.center.lon, source: 'defaut', libelle: sector.name, precision: null },
+        { message: `${MESSAGES_GEO[err.code] || MESSAGES_GEO.refusee} Calcul depuis ${sector.name} en attendant.` },
+      );
+      // Même geste que le bouton 📍 : sous 1040 px la colonne est un rideau
+      // FERMÉ, et y poser le focus sans l'ouvrir l'enverrait hors écran — un
+      // champ que personne ne voit n'aide personne à corriger le refus.
+      ouvrirReglages(true, { rendreLeFocus: false });
+      if (originEl) originEl.focus();
     }
-    geostate.textContent = 'Localisation en cours…';
-    navigator.geolocation.getCurrentPosition(
-      (pos) => {
-        userPos = { lat: pos.coords.latitude, lon: pos.coords.longitude };
-        geostate.textContent = '';
-        cb();
-      },
-      () => {
-        // Position refusée : on N'INVENTE PAS un point de départ. On le demande,
-        // et on se rabat sur le centre du secteur en le disant.
-        geostate.textContent = `Position refusée — indiquez votre commune pour des temps justes (calcul depuis ${sector.name} en attendant).`;
-        userPos = { lat: sector.center.lat, lon: sector.center.lon };
-        if (originEl) originEl.focus();
-        cb();
-      },
-      // Haute précision : privilégie le wifi/GPS à la géoloc par IP (peu fiable
-      // sur ordinateur — souvent le nœud régional du fournisseur d'accès).
-      { enableHighAccuracy: true, timeout: 10000, maximumAge: 60000 }
-    );
+    return origine;
   }
 
   function currentFilter() {
@@ -582,6 +653,15 @@ const communePoints = sector.commune_points || [];
     return filter;
   }
 
+  // Leaflet ne compose PAS deux ordres de vue dans un même tick : `setView`
+  // n'annule pas le `requestAnimationFrame` déjà posé par un `fitBounds` en
+  // cours, et `_tryAnimatedZoom` ignore purement le second appel si un zoom
+  // anime déjà (voir `leaflet-src.js` — `_stop`, l. 4370, et
+  // `_tryAnimatedZoom`, l. 4774). On n'en émet donc jamais deux : ce drapeau
+  // dit au recadrage régional d'`apply()` de s'effacer une fois, pour laisser
+  // la main à un recentrage plus précis qui va suivre (le bouton 📍).
+  let recadrerCarte = true;
+
   function apply() {
     clearMapSelection(); // les fiches changent : la sélection carte n'a plus de sens
     const filter = currentFilter();
@@ -590,10 +670,15 @@ const communePoints = sector.commune_points || [];
     // invitation à nommer sa commune si elle est refusée).
     const needsGeo = filter.nearMe || filter.maxMinutes != null || sortEl.value === 'distance';
 
-    if (needsGeo && !userPos) {
-      requestGeoloc(apply);
+    if (needsGeo && !origine) {
+      assurerOrigine().then(apply);
       return;
     }
+
+    // On MESURE dès qu'on sait d'où : cliquer 📍 doit suffire à faire apparaître
+    // « ≈ 12 min en voiture » sur les tuiles, sans obliger à poser un filtre dont
+    // on n'a que faire. `needsGeo` ne décide plus que de RÉCLAMER une position.
+    const mesurer = origine != null;
 
     let shown = 0;
     let unlocated = 0;
@@ -606,7 +691,7 @@ const communePoints = sector.commune_points || [];
       let ok = matches(data, filter);
       let dist = null;
       let minutes = null;
-      if (ok && needsGeo && userPos) {
+      if (ok && mesurer) {
         if (Number.isNaN(data.lat)) {
           // Sans coordonnées, impossible de garantir la limite de temps : on
           // exclut (la carte les ignore déjà — liste et carte restent cohérentes).
@@ -615,7 +700,7 @@ const communePoints = sector.commune_points || [];
             unlocated += 1;
           }
         } else {
-          dist = distanceKm(userPos.lat, userPos.lon, data.lat, data.lon);
+          dist = distanceKm(origine.lat, origine.lon, data.lat, data.lon);
           minutes = travelMinutes(dist, filter.mode);
           if (filter.maxMinutes != null && minutes > filter.maxMinutes) ok = false;
         }
@@ -688,8 +773,16 @@ const communePoints = sector.commune_points || [];
     // La carte suit le FILTRE, pas la pagination : elle sert de vue d'ensemble
     // spatiale, la pagination n'est qu'un confort de lecture. Cliquer une bulle
     // dont la fiche est sur une autre page change de page — voir `allerA`.
-    lastVisible = visible;
-    updateMap(visible, true);
+    //
+    // Le drapeau se lit ICI, au point d'usage — pas en tête de fonction. `apply()`
+    // a une sortie anticipée plus haut (`assurerOrigine().then(apply)`) qui ne
+    // passe jamais par `updateMap` : le lire plus tôt le consommerait sur un
+    // passage qui ne recadre rien, et le rappel réentrant qui atteint vraiment
+    // `updateMap` hériterait à tort d'un `true` — perdant la demande de
+    // suppression au profit du passage qui ne s'en sert pas.
+    const recadrer = recadrerCarte;
+    recadrerCarte = true; // lu et remis à neuf tout de suite : usage unique
+    updateMap(visible, recadrer);
   }
 
   /** Comparateur pour un type donné. */
@@ -737,6 +830,10 @@ const communePoints = sector.commune_points || [];
    *  d'activité fabriquée à la demande. */
   function elementDe(v) {
     const card = v.card ?? tuileDe(v.index);
+    // Le chemin RETOUR, tuile → entrée : c'est ce qui permet au survol d'une
+    // tuile de désigner son point sur la carte. Passage obligé des deux sortes
+    // de tuiles, donc le seul endroit où l'inscrire.
+    entreeDe.set(card, v);
     // Le temps de trajet s'écrit ici : pour une activité, la tuile peut n'exister
     // qu'au moment de son affichage, donc après le calcul de la distance.
     const distEl = card.querySelector('[data-role="distance"]');
@@ -814,16 +911,16 @@ const communePoints = sector.commune_points || [];
   }
 
   // ---------------- Carte (Leaflet, chargé à la demande) ----------------
-  let leaflet = null; // { map, layer, L, userMarker }
-  let lastVisible = [];
+  // Le pilotage de Leaflet vit dans `lib/carte.js` ; la page ne garde que ce qui
+  // demande de connaître le catalogue — le vocabulaire des infobulles et le lien
+  // retour vers les tuiles.
+  let carte = null;
   let selectedCards = [];
-  let popupCloseTimer = null;
 
-  /** Met en évidence les fiches liées à la bulle cliquée sur la carte —
-   *  une seule pour un marqueur isolé, toutes celles d'un cluster qui ne
-   *  peut pas s'éclater (événements au même point). */
+  /** Met en évidence les fiches liées à la bulle cliquée sur la carte — une
+   *  seule pour un marqueur isolé, toutes celles d'un groupe qui ne peut pas
+   *  s'éclater (fiches au même point). */
   function selectCards(entrees) {
-    clearTimeout(popupCloseTimer); // le popup précédent se ferme : ne pas désélectionner
     for (const c of selectedCards) c.classList.remove('map-selected');
     selectedCards = [];
     if (!entrees.length) return;
@@ -853,89 +950,6 @@ const communePoints = sector.commune_points || [];
   function clearMapSelection() {
     for (const c of selectedCards) c.classList.remove('map-selected');
     selectedCards = [];
-  }
-
-  async function initMap() {
-    const L = (await import('leaflet')).default;
-    await import('leaflet/dist/leaflet.css');
-    const map = L.map('map', { scrollWheelZoom: false }).setView(
-      [sector.center.lat, sector.center.lon], 9
-    );
-    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      maxZoom: 18,
-      attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
-    }).addTo(map);
-    leaflet = { L, map, layer: L.layerGroup().addTo(map), userMarker: null };
-    // Le zoom change la granularité des clusters — sans recadrer la vue.
-    map.on('zoomend', () => updateMap(lastVisible, false));
-    // Popup fermé = plus rien de sélectionné. Le délai laisse le clic sur une
-    // autre bulle (qui ferme ce popup pour ouvrir le sien) annuler l'effacement.
-    map.on('popupclose', () => {
-      clearTimeout(popupCloseTimer);
-      popupCloseTimer = setTimeout(clearMapSelection, 80);
-    });
-  }
-
-  /** Regroupe les points par proximité à l'écran (~70 px au zoom courant). */
-  function buildClusters(items, map) {
-    const RADIUS = 70;
-    const zoom = map.getZoom();
-    const clusters = [];
-    for (const it of items) {
-      const pt = map.project([it.lat, it.lon], zoom);
-      let best = null;
-      let bestD = Infinity;
-      for (const cl of clusters) {
-        const d = pt.distanceTo(cl.pt);
-        if (d < RADIUS && d < bestD) { best = cl; bestD = d; }
-      }
-      if (best) {
-        best.items.push(it);
-        best.lat += (it.lat - best.lat) / best.items.length; // centroïde glissant
-        best.lon += (it.lon - best.lon) / best.items.length;
-        best.pt = map.project([best.lat, best.lon], zoom);
-      } else {
-        clusters.push({ lat: it.lat, lon: it.lon, pt, items: [it] });
-      }
-    }
-    return clusters;
-  }
-
-  function zoomInto(cluster) {
-    const { L, map } = leaflet;
-    const bounds = L.latLngBounds(cluster.items.map((i) => [i.lat, i.lon]));
-    const spread = bounds.getNorthEast().distanceTo(bounds.getSouthWest());
-    if (spread < 100 || map.getZoom() >= 15) {
-      // Tout au même endroit (géocodage à la commune) : liste plutôt que zoom,
-      // et mise en évidence de toutes les fiches du cluster dans la grille.
-      const links = cluster.items
-        .slice(0, 12)
-        .map((i) => `<a href="${i.href}">${i.title}</a>`)
-        .join('<br>');
-      const more = cluster.items.length > 12 ? `<br>… et ${cluster.items.length - 12} autres` : '';
-      L.popup({ maxHeight: 220 }).setLatLng([cluster.lat, cluster.lon]).setContent(links + more).openOn(map);
-      selectCards(cluster.items.map((i) => i.entree));
-    } else {
-      map.fitBounds(bounds, { padding: [50, 50] });
-    }
-  }
-
-  /** Cluster simple : pastille avec le nombre de fiches, clic → zoom. */
-  function addCluster(cluster) {
-    const { L, layer } = leaflet;
-    const total = cluster.items.length;
-    const size = Math.max(38, Math.min(64, 32 + total * 1.2));
-    const onlyPlaces = cluster.items.every((i) => i.isPlace);
-    const what = onlyPlaces ? 'activités' : 'fiches';
-    const icon = L.divIcon({
-      className: `cluster-icon${onlyPlaces ? ' cluster-places' : ''}`,
-      html: `<div class="cluster-dot" style="width:${size}px;height:${size}px" title="${total} ${what} — cliquer pour zoomer">${total}</div>`,
-      iconSize: [size, size],
-      iconAnchor: [size / 2, size / 2],
-    });
-    L.marker([cluster.lat, cluster.lon], { icon })
-      .on('click', () => zoomInto(cluster))
-      .addTo(layer);
   }
 
   /** Contenu de l'infobulle affichée au survol d'un point : titre, catégorie,
@@ -969,21 +983,18 @@ const communePoints = sector.commune_points || [];
     return lines.join('');
   }
 
-  function updateMap(visible, fitView) {
-    if (!leaflet || mapWrap.hidden) return;
-    const { L, map, layer } = leaflet;
-    layer.clearLayers();
-
-    // Les bulles se construisent depuis les DONNÉES de l'entrée, plus depuis son
-    // élément : une activité peut n'avoir aucune tuile fabriquée (elle est sur une
-    // autre page), et la carte doit malgré tout la montrer — elle suit le filtre,
-    // pas la pagination.
+  /** Traduit les entrées retenues par le filtre en points de carte. Les points
+   *  se construisent depuis les DONNÉES de l'entrée, jamais depuis son élément :
+   *  une activité peut n'avoir aucune tuile fabriquée (elle est sur une autre
+   *  page), et la carte doit malgré tout la montrer — elle suit le filtre, pas
+   *  la pagination. */
+  function itemsDe(visible) {
     const racine = getComputedStyle(document.documentElement);
     const items = [];
     for (const v of visible) {
       const { data, isPlace, notable } = v;
       if (Number.isNaN(data.lat)) continue;
-      items.push({
+      const it = {
         entree: v,
         lat: data.lat, lon: data.lon, cat: data.cat, commune: data.commune,
         date: data.date, end: data.end,
@@ -994,60 +1005,127 @@ const communePoints = sector.commune_points || [];
         title: (v.nom || '').replace(/\s*↗$/, ''),
         href: v.href,
         color: racine.getPropertyValue(`--${isPlace ? 'p' : 'c'}-${data.cat}`).trim() || 'currentColor',
-      });
+      };
+      it.tooltip = markerTooltip(it);
+      items.push(it);
     }
+    return items;
+  }
 
-    const points = [];
-    for (const cluster of buildClusters(items, map)) {
-      if (cluster.items.length >= 2) {
-        addCluster(cluster);
-        points.push([cluster.lat, cluster.lon]);
-      } else {
-        const it = cluster.items[0];
-        // Activité permanente : pastille à icône, nettement distincte du point
-        // coloré d'un événement — c'est le repère demandé « sur la carte ».
-        const marker = it.isPlace
-          ? L.marker([it.lat, it.lon], {
-              icon: L.divIcon({
-                className: 'place-icon',
-                html: `<div class="place-dot${it.unusual ? ' is-unusual' : ''}">${it.emoji}</div>`,
-                iconSize: [30, 30],
-                iconAnchor: [15, 15],
-              }),
-            })
-          : L.circleMarker([it.lat, it.lon], {
-              radius: 8, color: it.color, fillColor: it.color, fillOpacity: 0.75, weight: 2,
-            });
-        marker
-          // Survol : aperçu de la fiche. Clic : on remonte jusqu'à sa tuile
-          // dans la liste (mise en évidence + défilement), sans popup.
-          .bindTooltip(markerTooltip(it), {
-            direction: 'top', offset: [0, -6], opacity: 1, className: 'event-tip',
-          })
-          .on('click', () => selectCards([it.entree]))
-          .addTo(layer);
-        points.push([it.lat, it.lon]);
-      }
-    }
+  function updateMap(visible, recadrer) {
+    if (!carte || mapWrap.hidden) return;
+    carte.afficher(itemsDe(visible), { recadrer });
+  }
 
-    if (userPos) {
-      if (leaflet.userMarker) leaflet.userMarker.remove();
-      leaflet.userMarker = L.circleMarker([userPos.lat, userPos.lon], {
-        radius: 7, color: '#1c7ed6', fillColor: '#1c7ed6', fillOpacity: 1, weight: 3,
-      }).bindPopup('Vous êtes ici').addTo(map);
-      points.push([userPos.lat, userPos.lon]);
-    }
-    if (fitView && points.length) map.fitBounds(points, { padding: [40, 40], maxZoom: 13 });
+  // ---------------- Survol d'une tuile → son point sur la carte ------------
+  // Le lien carte → liste existait déjà (cliquer un point remonte à sa tuile).
+  // C'est le chemin INVERSE qui manquait, et c'est le plus fréquent : on parcourt
+  // la liste, et on veut savoir où se trouve ce qu'on lit.
+  const entreeDe = new WeakMap();
+  let survolTimer = null;
+
+  function survolerDepuis(el) {
+    clearTimeout(survolTimer);
+    // Anti-rebond : sans lui, un passage de souris sur une rangée déclenche six
+    // recadrages, et la carte part en tous sens.
+    survolTimer = setTimeout(() => {
+      if (!carte || mapWrap.hidden) return;
+      carte.survoler(el ? entreeDe.get(el) || null : null);
+    }, 80);
+  }
+
+  for (const sec of Object.values(SECTIONS)) {
+    // `pointer*` plutôt que `mouse*` : le survol n'existe pas au doigt, et une
+    // tape navigue déjà vers la fiche — mettre un point en évidence au passage
+    // ferait bouger la carte sous un doigt qui essaie de faire défiler.
+    sec.grid.addEventListener('pointerover', (e) => {
+      if (e.pointerType === 'touch') return;
+      survolerDepuis(e.target.closest('.card'));
+    });
+    sec.grid.addEventListener('pointerout', (e) => {
+      if (e.pointerType === 'touch') return;
+      if (!e.relatedTarget || !sec.grid.contains(e.relatedTarget)) survolerDepuis(null);
+    });
+    // Le clavier a droit au même repère que la souris : les tuiles sont des
+    // liens, donc elles reçoivent le focus à la tabulation.
+    sec.grid.addEventListener('focusin', (e) => survolerDepuis(e.target.closest('.card')));
+    sec.grid.addEventListener('focusout', (e) => {
+      if (!e.relatedTarget || !sec.grid.contains(e.relatedTarget)) survolerDepuis(null);
+    });
   }
 
   mapChip.addEventListener('click', async () => {
     mapWrap.hidden = !mapWrap.hidden;
     mapChip.setAttribute('aria-pressed', String(!mapWrap.hidden));
+    // Fermer la carte doit RENDRE au défilement les 300 px qu'elle réservait :
+    // sans ce rappel, `--sticky-h` garderait la hauteur d'une carte absente et
+    // toutes les cibles de défilement s'arrêteraient trop tôt.
+    majHauteursCollantes();
     if (!mapWrap.hidden) {
-      if (!leaflet) await initMap();
-      leaflet.map.invalidateSize();
+      if (!carte) {
+        carte = await creerCarte({
+          el: document.getElementById('map'),
+          centre: sector.center,
+          onSelection: selectCards,
+        });
+      }
+      carte.redimensionner();
+      carte.poserOrigine(origine && origine.source !== 'defaut' ? origine : null);
       apply();
     }
+  });
+
+  // Un geste EXPLICITE, jamais une demande automatique à l'ouverture de la
+  // carte : une boîte de dialogue du navigateur que personne n'a réclamée est le
+  // contraire de la ligne du projet — rien ne se déclenche dans le dos du
+  // visiteur, et rien ne quitte son navigateur.
+  locateBtn.addEventListener('click', async () => {
+    // `mapWrap` se découvre AVANT que `creerCarte()` (import dynamique de
+    // Leaflet) ait fini de résoudre : le bouton est cliquable pendant cette
+    // fenêtre, avec `carte` encore à `null`. Sans ce garde, un clic pendant le
+    // chargement lève un TypeError qu'un `catch` mal ciblé attribuerait à tort
+    // à un refus de géolocalisation (voir plus bas).
+    if (origine?.source === 'geoloc') {
+      if (carte) carte.centrerSurOrigine();
+      return;
+    }
+    majBoutonPosition(true);
+    // Un bouton `disabled` n'est annoncé par AUCUN lecteur d'écran : sans cette
+    // ligne, l'attente de la boîte de permission est un silence total pour qui
+    // n'y voit pas le libellé « Localisation… », et `#map-geo` (role="status")
+    // resterait vide.
+    messageOrigine('Localisation en cours…');
+    let p;
+    try {
+      // Le `try` ne couvre QUE cet appel : `err.code` ne veut dire quelque
+      // chose que pour une erreur de `geolocaliser()`. L'y engloutir avec
+      // `apply()` ferait retomber toute exception (un `carte` encore `null`,
+      // par exemple) sur `MESSAGES_GEO.refusee` — soit affirmer un refus qui
+      // n'a pas eu lieu, exactement le mensonge que cette tâche corrige.
+      p = await geolocaliser();
+    } catch (err) {
+      // Un échec ne fait JAMAIS perdre une commune déjà posée : `origine` reste
+      // en place, seul le message change.
+      majBoutonPosition(false);
+      messageOrigine(`${MESSAGES_GEO[err.code] || MESSAGES_GEO.refusee} (☰ Réglages)`);
+      ouvrirReglages(true, { rendreLeFocus: false });
+      if (originEl) originEl.focus();
+      return;
+    }
+    // La position précise remplace la commune : le champ se vide, sa pastille
+    // disparaît, et la mémoire suit. La règle est que LA MÉMOIRE EST LE REFLET
+    // DU CHAMP — une seule règle, donc rien à deviner.
+    if (originEl) originEl.value = '';
+    oublierOrigine();
+    appliquerOrigine({ ...p, source: 'geoloc', libelle: 'Vous êtes ici' });
+    // Un seul ordre de vue, jamais deux : Leaflet ne les compose pas dans le
+    // même tick (voir le drapeau `recadrerCarte` plus haut). Le filtre ne
+    // change pas ici, donc le recadrage régional d'`apply()` n'apporterait
+    // rien — on le fait taire pour cette passe et on laisse `centrerSurOrigine()`
+    // faire tout le travail, lui seul utile.
+    recadrerCarte = false;
+    apply();
+    if (carte) carte.centrerSurOrigine();
   });
 
   timeLimitEl.addEventListener('change', apply);
@@ -1144,8 +1222,8 @@ const communePoints = sector.commune_points || [];
     // Le point de départ retombe à « inconnu », pas au centre du secteur : mieux
     // vaut ne pas afficher de temps que d'en afficher un depuis un point que le
     // visiteur n'a pas choisi.
-    userPos = null;
-    geostate.textContent = '';
+    appliquerOrigine(null);
+    oublierOrigine();
     for (const chip of chips) chip.setAttribute('aria-pressed', 'false');
     apply();
   }
@@ -1195,7 +1273,7 @@ const communePoints = sector.commune_points || [];
     if (rendreLeFocus) (ouvert ? sideClose : sideOpen).focus();
     // La carte affichée change de largeur avec la colonne ; Leaflet ne le voit
     // pas tout seul et laisse des tuiles grises sur la bande découverte.
-    if (leaflet && !mapWrap.hidden) requestAnimationFrame(() => leaflet.map.invalidateSize());
+    if (carte && !mapWrap.hidden) requestAnimationFrame(() => carte.redimensionner());
   }
 
   function memoireSide() {
@@ -1245,8 +1323,8 @@ const communePoints = sector.commune_points || [];
     if (originEl && originEl.value.trim()) {
       pastilles.push([`🏠 ${originEl.value.trim()}`, () => {
         originEl.value = '';
-        userPos = null;
-        geostate.textContent = '';
+        appliquerOrigine(null);
+        oublierOrigine();
       }]);
     }
     if (timeLimitEl.value) {
@@ -1387,6 +1465,13 @@ const communePoints = sector.commune_points || [];
 
   if (nbVotes(prefs)) activerTriGouts(true);
   majTuner();
+
+  // Point de départ mémorisé — le NOM d'une commune, jamais des coordonnées. Il
+  // pose l'origine et fait apparaître les temps de trajet, mais AUCUN FILTRE :
+  // on restaure d'où l'on part, pas une recherche. Restaurer un filtre à
+  // l'ouverture donnerait une liste amputée sans que rien ne l'explique.
+  const communeMemorisee = originEl ? restaurer(sector.id) : null;
+  if (communeMemorisee) setOrigin(communeMemorisee);
 
   // Premier calcul au chargement. Sans lui, le compteur gardait la valeur rendue
   // par le serveur — « 36 événements » — alors que la grille affichait déjà les
