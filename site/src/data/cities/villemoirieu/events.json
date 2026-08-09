@@ -23,29 +23,6 @@
   "id": "musee-au-fil-de-leau-77b18253"
  },
  {
-  "title": "Exposition au musée archéologique : Corps parés, âmes révélées…",
-  "start": "2026-04-01T14:00:00",
-  "source_id": "html-balcons-dauphine",
-  "sector": "villemoirieu",
-  "end": "2026-09-30",
-  "description": "Exposition au musée archéologique de Hières-sur-Amby sur les corps parés et les âmes révélées. Entrée à partir de 2 €.",
-  "tldr": null,
-  "category": "expo",
-  "tags": [],
-  "audience": [
-   "tous"
-  ],
-  "commune": "Hières-sur-Amby",
-  "address": null,
-  "lat": 45.8009,
-  "lon": 5.2914,
-  "free": false,
-  "price_text": "À partir de 2 €",
-  "url": "https://www.balconsdudauphine-tourisme.com/manifestation/exposition-au-musee-archeologique-corps-pares-ames-revelees/",
-  "image": null,
-  "id": "exposition-au-musee-archeologique-corps-pares-ames-revelees-2d61413f"
- },
- {
   "title": "Faune berjalienne au parc des mûriers",
   "start": "2026-04-04T00:00:00",
   "source_id": "html-bourgoin",
@@ -92,12 +69,12 @@
   "id": "cet-ete-faites-vous-une-terrasse-0d26212e"
  },
  {
-  "title": "Exposition temporaire à Brangues : Sèves, de l’ombre à la lumière, le chant des fleurs",
-  "start": "2026-05-09T10:00:00",
+  "title": "Exposition temporaire à Brangues : Sèves, de l'ombre à la lumière, le chant des fleurs",
+  "start": "2026-05-09T00:00:00",
   "source_id": "html-balcons-dauphine",
   "sector": "villemoirieu",
   "end": "2026-09-20",
-  "description": "Exposition temporaire à Brangues autour des fleurs, de l’ombre à la lumière. Entrée gratuite, visible jusqu’au 20 septembre.",
+  "description": "Exposition temporaire à Brangues : Sèves, de l'ombre à la lumière, le chant des fleurs. Visible du 9 mai au 20 septembre 2026.",
   "tldr": null,
   "category": "expo",
   "tags": [],
@@ -112,15 +89,15 @@
   "price_text": null,
   "url": "https://www.balconsdudauphine-tourisme.com/manifestation/exposition-temporaire-a-brangues-seves-de-lombre-a-la-lumiere-le-chant-des-fleurs/",
   "image": null,
-  "id": "exposition-temporaire-a-brangues-seves-de-lombre-a-la-lumiere-le-chant-des-fleur-ce26962c"
+  "id": "exposition-temporaire-a-brangues-seves-de-l-ombre-a-la-lumiere-le-chant-des-fleu-0755124a"
  },
  {
-  "title": "Exposition temporaire : Racines, de l’origine de la vie aux traces humaines de Brangues, une visite de nos racines",
-  "start": "2026-05-09T10:00:00",
+  "title": "Exposition temporaire : Racines, de l'origine de la vie aux traces humaines de Brangues, une visite de nos racines",
+  "start": "2026-05-09T00:00:00",
   "source_id": "html-balcons-dauphine",
   "sector": "villemoirieu",
   "end": "2026-09-20",
-  "description": "Exposition temporaire à Brangues sur l’origine de la vie et les traces humaines. Entrée gratuite, visible jusqu’au 20 septembre.",
+  "description": "Exposition temporaire : Racines, de l'origine de la vie aux traces humaines de Brangues, une visite de nos racines. Visible du 9 mai au 20 septembre 2026.",
   "tldr": null,
   "category": "expo",
   "tags": [],
@@ -135,7 +112,7 @@
   "price_text": null,
   "url": "https://www.balconsdudauphine-tourisme.com/manifestation/exposition-temporaire-racines-de-lorigine-de-la-vie-aux-traces-humaines-de-brangues-une-visite-de-nos-racines/",
   "image": null,
-  "id": "exposition-temporaire-racines-de-lorigine-de-la-vie-aux-traces-humaines-de-brang-2542bf65"
+  "id": "exposition-temporaire-racines-de-l-origine-de-la-vie-aux-traces-humaines-de-bran-20140687"
  },
  {
   "title": "Festiv’été : nouvelle édition",
@@ -162,11 +139,11 @@
  },
  {
   "title": "Exposition temporaire : Vitis Vinifera, de la vigne au vin, au musée de Saint-Chef",
-  "start": "2026-07-03T09:30:00",
+  "start": "2026-07-03T00:00:00",
   "source_id": "html-balcons-dauphine",
   "sector": "villemoirieu",
   "end": "2026-10-25",
-  "description": "Exposition temporaire du musée de Saint-Chef consacrée à la vigne et au vin. Visible du 3 juillet au 25 octobre, entrée gratuite.",
+  "description": "Exposition temporaire : Vitis Vinifera, de la vigne au vin, au musée de Saint-Chef. Visible du 3 juillet au 25 octobre 2026.",
   "tldr": null,
   "category": "expo",
   "tags": [],
@@ -184,13 +161,13 @@
   "id": "exposition-temporaire-vitis-vinifera-de-la-vigne-au-vin-au-musee-de-saint-chef-a0af4f00"
  },
  {
-  "title": "L’enquête d’Archibalme : le détective c’est toi !",
-  "start": "2026-07-04T10:30:00",
+  "title": "L'enquête d'Archibalme : le détective c'est toi !",
+  "start": "2026-07-04T00:00:00",
   "source_id": "html-balcons-dauphine",
   "sector": "villemoirieu",
   "end": "2026-08-31",
-  "description": "Jeu de piste et chasse au trésor aux Grottes de la Balme. Réservable en ligne, à partir de 1 €.",
-  "tldr": "Un jeu de piste et une chasse au trésor où les participants doivent résoudre des énigmes dans les Grottes de la Balme pour trouver un trésor.",
+  "description": "Jeu de piste et chasse au trésor aux Grottes de la Balme. Du 4 juillet au 31 août 2026.",
+  "tldr": null,
   "category": "jeunesse",
   "tags": [],
   "audience": [
@@ -205,7 +182,7 @@
   "price_text": "À partir de 1 €",
   "url": "https://www.balconsdudauphine-tourisme.com/manifestation/lenquete-darchibalme-le-detective-cest-toi/",
   "image": null,
-  "id": "lenquete-darchibalme-le-detective-cest-toi-9a795fc5"
+  "id": "l-enquete-d-archibalme-le-detective-c-est-toi-4dd8fa76"
  },
  {
   "title": "Les dimanches, c'est pique-nique !",
@@ -256,12 +233,12 @@
   "id": "festivete-2026-cine-ete-en-plein-air-11f07716"
  },
  {
-  "title": "Exposition à la Maison Ravier : Héroïnes d’opéra, costumes de scènes",
-  "start": "2026-07-15T14:00:00",
+  "title": "Exposition à la Maison Ravier : Héroïnes d'opéra, costumes de scènes",
+  "start": "2026-07-15T00:00:00",
   "source_id": "html-balcons-dauphine",
   "sector": "villemoirieu",
   "end": "2026-10-31",
-  "description": "Exposition à la Maison Ravier consacrée aux héroïnes d’opéra et aux costumes de scène. Entrée à partir de 6 €.",
+  "description": "Exposition à la Maison Ravier : Héroïnes d'opéra, costumes de scènes. Visible du 15 juillet au 31 octobre 2026.",
   "tldr": null,
   "category": "expo",
   "tags": [],
@@ -276,15 +253,15 @@
   "price_text": "À partir de 6 €",
   "url": "https://www.balconsdudauphine-tourisme.com/manifestation/exposition-a-la-maison-ravier-heroines-dopera-costumes-de-scenes/",
   "image": null,
-  "id": "exposition-a-la-maison-ravier-heroines-dopera-costumes-de-scenes-6c1912f3"
+  "id": "exposition-a-la-maison-ravier-heroines-d-opera-costumes-de-scenes-16c273f7"
  },
  {
-  "title": "Exposition à la Maison Ravier : Mélanie Dunand, en résidence d’artiste",
-  "start": "2026-07-15T14:00:00",
+  "title": "Exposition à la Maison Ravier : Mélanie Dunand, en résidence d'artiste",
+  "start": "2026-07-15T00:00:00",
   "source_id": "html-balcons-dauphine",
   "sector": "villemoirieu",
   "end": "2026-10-31",
-  "description": "Exposition de Mélanie Dunand, artiste en résidence à la Maison Ravier. Entrée à partir de 6 €.",
+  "description": "Exposition à la Maison Ravier : Mélanie Dunand, en résidence d'artiste. Visible du 15 juillet au 31 octobre 2026.",
   "tldr": null,
   "category": "expo",
   "tags": [],
@@ -299,15 +276,15 @@
   "price_text": "À partir de 6 €",
   "url": "https://www.balconsdudauphine-tourisme.com/manifestation/exposition-a-la-maison-ravier-melanie-dunand-en-residence-dartiste/",
   "image": null,
-  "id": "exposition-a-la-maison-ravier-melanie-dunand-en-residence-dartiste-91713d39"
+  "id": "exposition-a-la-maison-ravier-melanie-dunand-en-residence-d-artiste-a6831778"
  },
  {
-  "title": "Exposition à l’Espace Pictur’Halles : Les Estivales 2",
-  "start": "2026-07-24T14:30:00",
+  "title": "Exposition à l'Espace Pictur'Halles : Les Estivales 2",
+  "start": "2026-07-24T00:00:00",
   "source_id": "html-balcons-dauphine",
   "sector": "villemoirieu",
   "end": "2026-09-06",
-  "description": "Exposition collective Les Estivales 2 à l’Espace Pictur’Halles de Morestel. Entrée gratuite.",
+  "description": "Exposition à l'Espace Pictur'Halles : Les Estivales 2. Visible du 24 juillet au 6 septembre 2026.",
   "tldr": null,
   "category": "expo",
   "tags": [],
@@ -322,15 +299,15 @@
   "price_text": null,
   "url": "https://www.balconsdudauphine-tourisme.com/manifestation/exposition-a-lespace-picturhalles-les-estivales-2/",
   "image": null,
-  "id": "exposition-a-lespace-picturhalles-les-estivales-2-a037762e"
+  "id": "exposition-a-l-espace-pictur-halles-les-estivales-2-fe0486e0"
  },
  {
   "title": "Exposition à la Tour Médiévale : Les Estivales 2",
-  "start": "2026-07-24T14:30:00",
+  "start": "2026-07-24T00:00:00",
   "source_id": "html-balcons-dauphine",
   "sector": "villemoirieu",
   "end": "2026-09-06",
-  "description": "Exposition collective Les Estivales 2 à la Tour Médiévale de Morestel. Entrée gratuite.",
+  "description": "Exposition à la Tour Médiévale : Les Estivales 2. Visible du 24 juillet au 6 septembre 2026.",
   "tldr": null,
   "category": "expo",
   "tags": [],
@@ -371,41 +348,17 @@
   "id": "cinema-hors-pistes-e4f8c6dd"
  },
  {
-  "title": "Happy time : la pause gourmande au Elles Lunch Café",
-  "start": "2026-08-01T15:30:00",
-  "source_id": "html-balcons-dauphine",
-  "sector": "villemoirieu",
-  "end": "2026-08-30",
-  "description": "Pause gourmande et conviviale au Elles Lunch Café de Morestel. Un moment de détente autour d’un goûter.",
-  "tldr": null,
-  "category": "fete",
-  "tags": [],
-  "audience": [
-   "tous"
-  ],
-  "commune": "Morestel",
-  "address": null,
-  "lat": 45.6812,
-  "lon": 5.4716,
-  "free": null,
-  "price_text": null,
-  "url": "https://www.balconsdudauphine-tourisme.com/manifestation/happy-time-la-pause-gourmande-au-elles-lunch-cafe/",
-  "image": null,
-  "id": "happy-time-la-pause-gourmande-au-elles-lunch-cafe-e79d3ec6"
- },
- {
-  "title": "L’Arche de Julie : visites et ateliers du mois d’août",
-  "start": "2026-08-03T09:00:00",
+  "title": "L'Arche de Julie : visites et ateliers du mois d'août",
+  "start": "2026-08-03T00:00:00",
   "source_id": "html-balcons-dauphine",
   "sector": "villemoirieu",
   "end": "2026-08-09",
-  "description": "Visites et ateliers à l’Arche de Julie du 3 au 9 août. Rendez-vous à 9h à Vézeronce-Curtin.",
+  "description": "Visites et ateliers du mois d'août à l'Arche de Julie. Du 3 au 9 août 2026.",
   "tldr": null,
-  "category": "atelier",
+  "category": "patrimoine",
   "tags": [],
   "audience": [
-   "famille",
-   "enfants"
+   "tous"
   ],
   "commune": "Vézeronce-Curtin",
   "address": null,
@@ -415,15 +368,15 @@
   "price_text": null,
   "url": "https://www.balconsdudauphine-tourisme.com/manifestation/larche-de-julie-visites-et-ateliers-du-mois-d-aout/",
   "image": null,
-  "id": "larche-de-julie-visites-et-ateliers-du-mois-daout-47088863"
+  "id": "l-arche-de-julie-visites-et-ateliers-du-mois-d-aout-660cc695"
  },
  {
-  "title": "Exposition Archives « Quand la ville arrive à la campagne »",
+  "title": "Exposition Archives “Quand la ville arrive à la campagne”",
   "start": "2026-08-04T00:00:00",
   "source_id": "html-capi",
   "sector": "villemoirieu",
   "end": "2026-08-14",
-  "description": "Le pôle Archives de la CAPI et son service mutualisé des archives proposent de remonter le temps et de redécouvrir la « ville nouvelle ». L'exposition se tient à l'Espace Carnot du 4 au 14 août 2026.",
+  "description": "Le pôle Archives de la CAPI propose de remonter le temps et de redécouvrir « la ville nouvelle ». Plus d’infos sur monweekendalacapi.fr.",
   "tldr": null,
   "category": "expo",
   "tags": [],
@@ -438,7 +391,7 @@
   "price_text": null,
   "url": "https://capi-agglo.fr/agenda/exposition-archives-quand-la-ville-arrive-a-la-campagne/",
   "image": null,
-  "id": "exposition-archives-quand-la-ville-arrive-a-la-campagne-e9d51ded"
+  "id": "exposition-archives-quand-la-ville-arrive-a-la-campagne-321c4d11"
  },
  {
   "title": "Exposition Archives \"Quand la ville arrive à la campagne\"",
@@ -487,121 +440,6 @@
   "id": "musee-galerie-clauorum-christian-chevallier-photographies-6afeb7c3"
  },
  {
-  "title": "Atelier parfum à la Maison Poloni",
-  "start": "2026-08-08T10:00:00",
-  "source_id": "html-balcons-dauphine",
-  "sector": "villemoirieu",
-  "end": null,
-  "description": "Atelier de création de parfum à la Maison Poloni. Réservable en ligne, à partir de 139 €.",
-  "tldr": null,
-  "category": "atelier",
-  "tags": [],
-  "audience": [
-   "adultes"
-  ],
-  "commune": "Crémieu",
-  "address": null,
-  "lat": 45.7314,
-  "lon": 5.2635,
-  "free": false,
-  "price_text": "À partir de 139 €",
-  "url": "https://www.balconsdudauphine-tourisme.com/activite/atelier-parfum-a-la-maison-poloni/",
-  "image": null,
-  "id": "atelier-parfum-a-la-maison-poloni-6612c8ef"
- },
- {
-  "title": "Marché artisanal et cinéma en plein air à la Vallée Bleue",
-  "start": "2026-08-08T14:00:00",
-  "source_id": "html-balcons-dauphine",
-  "sector": "villemoirieu",
-  "end": null,
-  "description": "Marché artisanal suivi d’une séance de cinéma en plein air à la Vallée Bleue. Animation gratuite.",
-  "tldr": null,
-  "category": "fete",
-  "tags": [],
-  "audience": [
-   "tous"
-  ],
-  "commune": "Montalieu-Vercieu",
-  "address": null,
-  "lat": 45.8143,
-  "lon": 5.4036,
-  "free": true,
-  "price_text": null,
-  "url": "https://www.balconsdudauphine-tourisme.com/manifestation/marche-artisanal-et-cinema-en-plein-air-a-la-vallee-bleue/",
-  "image": null,
-  "id": "marche-artisanal-et-cinema-en-plein-air-a-la-vallee-bleue-b4a0b652"
- },
- {
-  "title": "Visite commentée de la Brasserie des Balcons et dégustations",
-  "start": "2026-08-08T17:00:00",
-  "source_id": "html-balcons-dauphine",
-  "sector": "villemoirieu",
-  "end": null,
-  "description": "Visite commentée de la Brasserie des Balcons avec dégustation. Animation gratuite sur réservation.",
-  "tldr": null,
-  "category": "marche",
-  "tags": [],
-  "audience": [
-   "adultes"
-  ],
-  "commune": "Morestel",
-  "address": null,
-  "lat": 45.6812,
-  "lon": 5.4716,
-  "free": true,
-  "price_text": null,
-  "url": "https://www.balconsdudauphine-tourisme.com/manifestation/visite-commentee-de-la-brasserie-des-balcons-et-degustations/",
-  "image": null,
-  "id": "visite-commentee-de-la-brasserie-des-balcons-et-degustations-fbfb113d"
- },
- {
-  "title": "Concert : Laure Amandine Hellay, au restaurant The Lake",
-  "start": "2026-08-08T19:00:00",
-  "source_id": "html-balcons-dauphine",
-  "sector": "villemoirieu",
-  "end": null,
-  "description": "Concert de Laure Amandine Hellay au restaurant The Lake à Trept. Réservable en ligne.",
-  "tldr": "Un concert de la chanteuse Laure Amandine Hellay dans un cadre intimiste au restaurant The Lake.",
-  "category": "concert",
-  "tags": [],
-  "audience": [
-   "adultes"
-  ],
-  "commune": "Trept",
-  "address": null,
-  "lat": 45.6864,
-  "lon": 5.3239,
-  "free": null,
-  "price_text": null,
-  "url": "https://www.balconsdudauphine-tourisme.com/manifestation/concert-laure-amandine-hellay-au-restaurant-the-lake/",
-  "image": null,
-  "id": "concert-laure-amandine-hellay-au-restaurant-the-lake-f55f8415"
- },
- {
-  "title": "Soirée Time’s Up à Morestel",
-  "start": "2026-08-08T19:00:00",
-  "source_id": "html-balcons-dauphine",
-  "sector": "villemoirieu",
-  "end": null,
-  "description": "Soirée jeu Time’s Up organisée à Morestel. Un moment ludique à partager entre amis.",
-  "tldr": null,
-  "category": "fete",
-  "tags": [],
-  "audience": [
-   "adultes"
-  ],
-  "commune": "Morestel",
-  "address": null,
-  "lat": 45.6812,
-  "lon": 5.4716,
-  "free": null,
-  "price_text": null,
-  "url": "https://www.balconsdudauphine-tourisme.com/manifestation/soiree-times-up-a-morestel/",
-  "image": null,
-  "id": "soiree-times-up-a-morestel-dde868a7"
- },
- {
   "title": "Vide Greniers",
   "start": "2026-08-09T00:00:00",
   "source_id": "html-weekend-capi",
@@ -623,6 +461,167 @@
   "url": "https://www.monweekendalacapi.fr/agenda/evenements/vide-greniers",
   "image": null,
   "id": "vide-greniers-5a5ee097"
+ },
+ {
+  "title": "Rassemblement mensuel de véhicules anciens",
+  "start": "2026-08-09T09:00:00",
+  "source_id": "html-balcons-dauphine",
+  "sector": "villemoirieu",
+  "end": null,
+  "description": "Rassemblement mensuel de véhicules anciens à Tignieu-Jameyzieu.",
+  "tldr": null,
+  "category": "autre",
+  "tags": [],
+  "audience": [
+   "tous"
+  ],
+  "commune": "Tignieu-Jameyzieu",
+  "address": null,
+  "lat": 45.7321,
+  "lon": 5.183,
+  "free": true,
+  "price_text": null,
+  "url": "https://www.balconsdudauphine-tourisme.com/manifestation/rassemblement-mensuel-de-vehicules-anciens/",
+  "image": null,
+  "id": "rassemblement-mensuel-de-vehicules-anciens-ca2f12e0"
+ },
+ {
+  "title": "18e festival des vieilles mécaniques à Soleymieu",
+  "start": "2026-08-09T09:00:00",
+  "source_id": "html-balcons-dauphine",
+  "sector": "villemoirieu",
+  "end": null,
+  "description": "18e festival des vieilles mécaniques à Soleymieu.",
+  "tldr": null,
+  "category": "festival",
+  "tags": [],
+  "audience": [
+   "tous"
+  ],
+  "commune": "Soleymieu",
+  "address": null,
+  "lat": 45.7031,
+  "lon": 5.3622,
+  "free": true,
+  "price_text": null,
+  "url": "https://www.balconsdudauphine-tourisme.com/manifestation/18e-festival-des-vieilles-mecaniques-a-soleymieu/",
+  "image": null,
+  "id": "18e-festival-des-vieilles-mecaniques-a-soleymieu-6b3d87bf"
+ },
+ {
+  "title": "Animation nature sur les ENS : croquis nature",
+  "start": "2026-08-09T10:00:00",
+  "source_id": "html-balcons-dauphine",
+  "sector": "villemoirieu",
+  "end": null,
+  "description": "Animation nature sur les ENS : croquis nature à Optevoz.",
+  "tldr": null,
+  "category": "nature",
+  "tags": [],
+  "audience": [
+   "tous"
+  ],
+  "commune": "Optevoz",
+  "address": null,
+  "lat": 45.752,
+  "lon": 5.3406,
+  "free": true,
+  "price_text": null,
+  "url": "https://www.balconsdudauphine-tourisme.com/manifestation/animation-nature-sur-les-ens-croquis-nature/",
+  "image": null,
+  "id": "animation-nature-sur-les-ens-croquis-nature-2fb79c3a"
+ },
+ {
+  "title": "Visite guidée découverte de la cité médiévale de Crémieu",
+  "start": "2026-08-09T10:00:00",
+  "source_id": "html-balcons-dauphine",
+  "sector": "villemoirieu",
+  "end": null,
+  "description": "Visite guidée découverte de la cité médiévale de Crémieu.",
+  "tldr": null,
+  "category": "patrimoine",
+  "tags": [],
+  "audience": [
+   "tous"
+  ],
+  "commune": "Crémieu",
+  "address": null,
+  "lat": 45.7314,
+  "lon": 5.2635,
+  "free": false,
+  "price_text": "À partir de 5 €",
+  "url": "https://www.balconsdudauphine-tourisme.com/manifestation/visite-guidee-decouverte-de-la-cite-medievale-de-cremieu/",
+  "image": null,
+  "id": "visite-guidee-decouverte-de-la-cite-medievale-de-cremieu-ec7c122d"
+ },
+ {
+  "title": "Sunday Brunch au restaurant The Lake",
+  "start": "2026-08-09T11:00:00",
+  "source_id": "html-balcons-dauphine",
+  "sector": "villemoirieu",
+  "end": null,
+  "description": "Sunday brunch au restaurant The Lake, à Trept. Tous les dimanches du 14 juin au 30 août 2026.",
+  "tldr": null,
+  "category": "autre",
+  "tags": [],
+  "audience": [
+   "tous"
+  ],
+  "commune": "Trept",
+  "address": null,
+  "lat": 45.6864,
+  "lon": 5.3239,
+  "free": null,
+  "price_text": null,
+  "url": "https://www.balconsdudauphine-tourisme.com/manifestation/sunday-brunch-au-restaurant-the-lake/",
+  "image": null,
+  "id": "sunday-brunch-au-restaurant-the-lake-0564e628"
+ },
+ {
+  "title": "Brunch irlandais au Cask House",
+  "start": "2026-08-09T11:00:00",
+  "source_id": "html-balcons-dauphine",
+  "sector": "villemoirieu",
+  "end": null,
+  "description": "Brunch irlandais au Cask House, à Saint-Chef.",
+  "tldr": null,
+  "category": "autre",
+  "tags": [],
+  "audience": [
+   "tous"
+  ],
+  "commune": "Saint-Chef",
+  "address": null,
+  "lat": 45.6401,
+  "lon": 5.3619,
+  "free": null,
+  "price_text": null,
+  "url": "https://www.balconsdudauphine-tourisme.com/manifestation/brunch-irlandais-au-cask-house/",
+  "image": null,
+  "id": "brunch-irlandais-au-cask-house-e3223b9c"
+ },
+ {
+  "title": "Visite guidée de l'église abbatiale bénédictine et des fresques romanes de la Chapelle des Anges de Saint-Chef",
+  "start": "2026-08-09T15:00:00",
+  "source_id": "html-balcons-dauphine",
+  "sector": "villemoirieu",
+  "end": null,
+  "description": "Visite guidée de l'église abbatiale bénédictine et des fresques romanes de la Chapelle des Anges de Saint-Chef.",
+  "tldr": null,
+  "category": "patrimoine",
+  "tags": [],
+  "audience": [
+   "tous"
+  ],
+  "commune": "Saint-Chef",
+  "address": null,
+  "lat": 45.6401,
+  "lon": 5.3619,
+  "free": false,
+  "price_text": "À partir de 5 €",
+  "url": "https://www.balconsdudauphine-tourisme.com/manifestation/visite-guidee-de-leglise-abbatiale-benedictine-et-des-fresques-romanes-de-la-chapelle-des-anges-de-saint-chef/",
+  "image": null,
+  "id": "visite-guidee-de-l-eglise-abbatiale-benedictine-et-des-fresques-romanes-de-la-ch-991d6f6a"
  },
  {
   "title": "Ciné-été à Montbernier : Marsupilami",
@@ -723,7 +722,7 @@
   "source_id": "html-capi",
   "sector": "villemoirieu",
   "end": "2026-08-29",
-  "description": "L'espace Carnot accueille une exposition hommage à l'artiste-peintre berjalienne Jacqueline ANSELME, qui exposa pendant plus de 50 ans dans le Nord-Isère. Elle est visible du 17 au 29 août 2026.",
+  "description": "L’espace Carnot accueille une exposition hommage à l’artiste-peintre berjalienne Jacqueline ANSELME. Elle a exposé pendant plus de 50 ans dans le Nord-Isère.",
   "tldr": null,
   "category": "expo",
   "tags": [],
@@ -998,12 +997,35 @@
   "id": "dimanche-30-aout-c-est-la-fete-des-familles-9beedb41"
  },
  {
+  "title": "Exposition",
+  "start": "2026-09-01T00:00:00",
+  "source_id": "html-capi",
+  "sector": "villemoirieu",
+  "end": "2026-11-30",
+  "description": "Rêver Alice : les illustrations d’Alice au pays des merveilles. Depuis 1865, des dizaines d’artistes ont plongé dans l’univers de Lewis Carroll.",
+  "tldr": null,
+  "category": "expo",
+  "tags": [],
+  "audience": [
+   "tous"
+  ],
+  "commune": "L'Isle-d'Abeau",
+  "address": "Médiathèques",
+  "lat": 45.6153,
+  "lon": 5.2234,
+  "free": null,
+  "price_text": null,
+  "url": "https://capi-agglo.fr/agenda/exposition/",
+  "image": null,
+  "id": "exposition-a0d05a45"
+ },
+ {
   "title": "Exposition photos",
   "start": "2026-09-01T00:00:00",
   "source_id": "html-capi",
   "sector": "villemoirieu",
   "end": "2027-01-31",
-  "description": "Le Club photo Les Donjons de Demptézieu expose ses créations autour des thèmes proposés par les médiathèques. L'exposition « Photographies autour des rêves » est à voir à Saint-Savin du 1er septembre 2026 au 31 janvier 2027.",
+  "description": "« Photographies autour des rêves » : le Club photo Les Donjons de Demptézieu expose ses créations. Une source d’inspiration toujours renouvelée.",
   "tldr": null,
   "category": "expo",
   "tags": [],
@@ -1026,7 +1048,7 @@
   "source_id": "html-capi",
   "sector": "villemoirieu",
   "end": "2026-09-12",
-  "description": "Venez découvrir une exposition réunissant deux artistes peintres, Sylvia Bielsa Allagnat et Frédéric Bernard. L'exposition est visible du 1er au 12 septembre 2026.",
+  "description": "Venez découvrir une exposition réunissant deux artistes peintres, Sylvia Bielsa Allagnat et Frédéric Bernard. L’exposition sera ouverte durant la période indiquée.",
   "tldr": null,
   "category": "expo",
   "tags": [],
@@ -1042,29 +1064,6 @@
   "url": "https://capi-agglo.fr/agenda/exposition-de-peintures-4/",
   "image": null,
   "id": "exposition-de-peintures-bb31db63"
- },
- {
-  "title": "Exposition « Rêver Alice : les illustrations d'Alice au pays des merveilles »",
-  "start": "2026-09-01T00:00:00",
-  "source_id": "html-capi",
-  "sector": "villemoirieu",
-  "end": "2026-11-30",
-  "description": "Depuis 1865, des dizaines d'artistes ont plongé dans l'univers d'Alice au pays des merveilles. L'exposition est proposée dans les médiathèques du 1er septembre au 30 novembre 2026.",
-  "tldr": null,
-  "category": "expo",
-  "tags": [],
-  "audience": [
-   "tous"
-  ],
-  "commune": "L'Isle-d'Abeau",
-  "address": "Médiathèques",
-  "lat": 45.6153,
-  "lon": 5.2234,
-  "free": null,
-  "price_text": null,
-  "url": "https://capi-agglo.fr/agenda/exposition/",
-  "image": null,
-  "id": "exposition-rever-alice-les-illustrations-d-alice-au-pays-des-merveilles-e82260e1"
  },
  {
   "title": "Exposition peintures",
@@ -1141,15 +1140,16 @@
   "source_id": "html-capi",
   "sector": "villemoirieu",
   "end": null,
-  "description": "Venez écouter Francois Ménager le vendredi 4 septembre à partir de 19h lors de la soirée conte au jardin de l'étang de Vaugelas à Villefontaine. Une solution de repli est prévue au Centre Simone Signoret.",
-  "tldr": "Une soirée où un conteur professionnel raconte des histoires adaptées à un public familial, en plein air ou en intérieur selon la météo.",
+  "description": "Venez écouter François Ménager le vendredi 4 septembre à partir de 19h. La soirée conte aura lieu au jardin de l’étang de Vaugelas à Villefontaine.",
+  "tldr": null,
   "category": "spectacle",
   "tags": [],
   "audience": [
+   "famille",
    "tous"
   ],
   "commune": "Villefontaine",
-  "address": "jardin de l'étang de Vaugelas",
+  "address": "Jardin de l'étang de Vaugelas, Villefontaine",
   "lat": 45.6161,
   "lon": 5.1549,
   "free": null,
