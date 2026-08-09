@@ -3592,12 +3592,18 @@
    "url": "https://www.balconsdudauphine-tourisme.com/agenda/tout-lagenda/"
   },
   {
+   "id": "html-cremieu",
+   "name": "Ville de Crémieu — événements et agenda",
+   "type": "html",
+   "url": "https://ville-cremieu.fr/evenements/"
+  },
+  {
    "id": "html-cafe-crem",
    "name": "OT Café-Crém'",
    "type": "html",
    "url": "https://cafe-crem.fr/"
   }
  ],
- "generated_at": "2026-08-09T05:02:25",
+ "generated_at": "2026-08-09T10:05:53",
  "event_count": 56
 }
