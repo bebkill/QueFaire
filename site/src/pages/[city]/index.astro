@@ -1444,6 +1444,13 @@ const communePoints = sector.commune_points || [];
   if (nbVotes(prefs)) activerTriGouts(true);
   majTuner();
 
+  // Point de départ mémorisé — le NOM d'une commune, jamais des coordonnées. Il
+  // pose l'origine et fait apparaître les temps de trajet, mais AUCUN FILTRE :
+  // on restaure d'où l'on part, pas une recherche. Restaurer un filtre à
+  // l'ouverture donnerait une liste amputée sans que rien ne l'explique.
+  const communeMemorisee = originEl ? restaurer(sector.id) : null;
+  if (communeMemorisee) setOrigin(communeMemorisee);
+
   // Premier calcul au chargement. Sans lui, le compteur gardait la valeur rendue
   // par le serveur — « 36 événements » — alors que la grille affichait déjà les
   // 336 tuiles, événements ET activités permanentes : le chiffre annonçait un
