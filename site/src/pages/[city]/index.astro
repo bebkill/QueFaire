@@ -653,6 +653,15 @@ const communePoints = sector.commune_points || [];
     return filter;
   }
 
+  // Leaflet ne compose PAS deux ordres de vue dans un même tick : `setView`
+  // n'annule pas le `requestAnimationFrame` déjà posé par un `fitBounds` en
+  // cours, et `_tryAnimatedZoom` ignore purement le second appel si un zoom
+  // anime déjà (voir `leaflet-src.js` — `_stop`, l. 4370, et
+  // `_tryAnimatedZoom`, l. 4774). On n'en émet donc jamais deux : ce drapeau
+  // dit au recadrage régional d'`apply()` de s'effacer une fois, pour laisser
+  // la main à un recentrage plus précis qui va suivre (le bouton 📍).
+  let recadrerCarte = true;
+
   function apply() {
     clearMapSelection(); // les fiches changent : la sélection carte n'a plus de sens
     const filter = currentFilter();
@@ -764,7 +773,16 @@ const communePoints = sector.commune_points || [];
     // La carte suit le FILTRE, pas la pagination : elle sert de vue d'ensemble
     // spatiale, la pagination n'est qu'un confort de lecture. Cliquer une bulle
     // dont la fiche est sur une autre page change de page — voir `allerA`.
-    updateMap(visible, true);
+    //
+    // Le drapeau se lit ICI, au point d'usage — pas en tête de fonction. `apply()`
+    // a une sortie anticipée plus haut (`assurerOrigine().then(apply)`) qui ne
+    // passe jamais par `updateMap` : le lire plus tôt le consommerait sur un
+    // passage qui ne recadre rien, et le rappel réentrant qui atteint vraiment
+    // `updateMap` hériterait à tort d'un `true` — perdant la demande de
+    // suppression au profit du passage qui ne s'en sert pas.
+    const recadrer = recadrerCarte;
+    recadrerCarte = true; // lu et remis à neuf tout de suite : usage unique
+    updateMap(visible, recadrer);
   }
 
   /** Comparateur pour un type donné. */
@@ -1072,6 +1090,11 @@ const communePoints = sector.commune_points || [];
       return;
     }
     majBoutonPosition(true);
+    // Un bouton `disabled` n'est annoncé par AUCUN lecteur d'écran : sans cette
+    // ligne, l'attente de la boîte de permission est un silence total pour qui
+    // n'y voit pas le libellé « Localisation… », et `#map-geo` (role="status")
+    // resterait vide.
+    messageOrigine('Localisation en cours…');
     let p;
     try {
       // Le `try` ne couvre QUE cet appel : `err.code` ne veut dire quelque
@@ -1095,13 +1118,12 @@ const communePoints = sector.commune_points || [];
     if (originEl) originEl.value = '';
     oublierOrigine();
     appliquerOrigine({ ...p, source: 'geoloc', libelle: 'Vous êtes ici' });
-    // `apply()` D'ABORD, le recentrage ENSUITE : deux animations Leaflet
-    // lancées dans le même tick ne s'additionnent pas, la DERNIÈRE écrase la
-    // cible de la première (`_animateZoom` réécrit `_animateToCenter` /
-    // `_animateToZoom` à chaque appel, y compris pendant qu'une première
-    // anime déjà). Si `centrerSurOrigine()` parlait en premier, le `fitBounds`
-    // régional d'`apply()` gagnerait la course et la carte resterait cadrée
-    // sur le secteur — le point ne serait alors centré que par accident.
+    // Un seul ordre de vue, jamais deux : Leaflet ne les compose pas dans le
+    // même tick (voir le drapeau `recadrerCarte` plus haut). Le filtre ne
+    // change pas ici, donc le recadrage régional d'`apply()` n'apporterait
+    // rien — on le fait taire pour cette passe et on laisse `centrerSurOrigine()`
+    // faire tout le travail, lui seul utile.
+    recadrerCarte = false;
     apply();
     if (carte) carte.centrerSurOrigine();
   });

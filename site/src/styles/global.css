@@ -496,7 +496,6 @@ a { color: inherit; }
   transform: scale(1.22);
   box-shadow: 0 3px 12px rgba(0, 0, 0, 0.4);
 }
-.place-icon .place-dot, .cluster-icon .cluster-dot { transition: transform 0.12s; }
 
 @media (prefers-reduced-motion: reduce) {
   .place-icon .place-dot, .cluster-icon .cluster-dot { transition: none; }
