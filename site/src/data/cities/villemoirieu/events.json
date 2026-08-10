@@ -23,7 +23,7 @@
   "id": "concours-photo-de-lo-parvi-les-paysages-de-lisle-cremieu-67211fdd"
  },
  {
-  "title": "Musée : Au fil de l’eau",
+  "title": "Musée : \" Au fil de l’eau \"",
   "start": "2026-03-07T00:00:00",
   "source_id": "html-bourgoin",
   "sector": "villemoirieu",
@@ -43,7 +43,7 @@
   "price_text": null,
   "url": "https://www.bourgoinjallieu.fr/agenda/2645-musee-au-fil-de-l-eau",
   "image": null,
-  "id": "musee-au-fil-de-leau-77b18253"
+  "id": "musee-au-fil-de-leau-e36e6d50"
  },
  {
   "title": "Exposition au musée archéologique : Corps parés, âmes révélées…",
@@ -74,8 +74,8 @@
   "source_id": "html-bourgoin",
   "sector": "villemoirieu",
   "end": "2026-09-30",
-  "description": "À l’occasion du bicentenaire de la photographie, le musée de Bourgoin-Jallieu…",
-  "tldr": "Une exposition sur la faune locale de la région berjalienne, présentée au parc des mûriers à l'occasion du bicentenaire de la photographie.",
+  "description": "À l’occasion du bicentenaire de la photographie, le musée de Bourgoin-Jallieu propose cette exposition.",
+  "tldr": null,
   "category": "expo",
   "tags": [],
   "audience": [
@@ -120,7 +120,7 @@
   "source_id": "html-bourgoin",
   "sector": "villemoirieu",
   "end": "2026-09-13",
-  "description": "Du 16 juin au 13 septembre 2026, la Ville de Bourgoin-Jallieu vous propose plus…",
+  "description": "Du 16 juin au 13 septembre 2026, la Ville de Bourgoin-Jallieu vous propose plus de 80 animations.",
   "tldr": null,
   "category": "festival",
   "tags": [],
@@ -259,8 +259,8 @@
   "source_id": "html-bourgoin",
   "sector": "villemoirieu",
   "end": "2026-09-13",
-  "description": "Proposés par l'association \"Vibrations Mystiques\" et la ville de Bourgoin-Jallieu…",
-  "tldr": null,
+  "description": "Proposés par l'association \"Vibrations Mystiques\" et la ville de Bourgoin-Jallieu.",
+  "tldr": "Un événement spirituel et musical organisé par l'association 'Vibrations Mystiques' où les participants partagent un repas en plein air suivi de performances artistiques.",
   "category": "nature",
   "tags": [],
   "audience": [
@@ -313,7 +313,7 @@
    "tous"
   ],
   "commune": "Bourgoin-Jallieu",
-  "address": "Parcs et jardins municipaux",
+  "address": null,
   "lat": 45.6025,
   "lon": 5.2747,
   "free": null,
@@ -328,8 +328,8 @@
   "source_id": "html-bourgoin",
   "sector": "villemoirieu",
   "end": "2026-08-11",
-  "description": "Cinéma Hors Pistes.",
-  "tldr": "Un festival de cinéma proposant des projections de films d'auteur et expérimentaux, souvent en lien avec des thèmes sociaux ou culturels.",
+  "description": "",
+  "tldr": "Un festival de cinéma proposant des projections de films expérimentaux ou de films en marge des circuits traditionnels.",
   "category": "cinema",
   "tags": [],
   "audience": [
@@ -397,7 +397,7 @@
   "source_id": "html-weekend-capi",
   "sector": "villemoirieu",
   "end": "2026-08-14",
-  "description": "Le pôle Archives de la CAPI et son service mutualisé des archives proposent de remonter le temps et de redécouvrir « la ville nouvelle ». Une exposition visible du 4 au 14 août 2026.",
+  "description": "Le pôle Archives de la CAPI et son service mutualisé des archives proposent de remonter le temps et de redécouvrir « la ville nouvelle ». L'exposition est visible du 4 au 14 août 2026 à l'Office de Tourisme.",
   "tldr": null,
   "category": "expo",
   "tags": [],
@@ -428,7 +428,7 @@
    "tous"
   ],
   "commune": "Bourgoin-Jallieu",
-  "address": "Musée Galerie Clauorum",
+  "address": "Musée Clauorum",
   "lat": 45.6025,
   "lon": 5.2747,
   "free": null,
@@ -489,7 +489,7 @@
   "source_id": "html-bourgoin",
   "sector": "villemoirieu",
   "end": null,
-  "description": "A l'occasion des Festiv'été, les Cinés-été reviennent en plein air dans les parcs.",
+  "description": "À l'occasion des Festiv'été, les Cinés-été reviennent en plein air, dans les parcs.",
   "tldr": null,
   "category": "cinema",
   "tags": [],
@@ -498,7 +498,7 @@
    "enfants"
   ],
   "commune": "Bourgoin-Jallieu",
-  "address": "Montbernier",
+  "address": null,
   "lat": 45.6025,
   "lon": 5.2747,
   "free": null,
@@ -513,8 +513,8 @@
   "source_id": "html-bourgoin",
   "sector": "villemoirieu",
   "end": null,
-  "description": "Un rendez-vous d'observation de l'éclipse organisé par la Société des Sciences N…",
-  "tldr": "Une séance d'observation astronomique encadrée par des membres de la Société des Sciences pour admirer une éclipse solaire en toute sécurité.",
+  "description": "Un rendez-vous d'observation de l'éclipse organisé par la Société des Sciences Naturelles.",
+  "tldr": "Une séance d'observation astronomique encadrée par des membres de la Société des Sciences Naturelles pour admirer une éclipse solaire ou lunaire.",
   "category": "nature",
   "tags": [],
   "audience": [
@@ -559,7 +559,7 @@
   "source_id": "html-bourgoin",
   "sector": "villemoirieu",
   "end": null,
-  "description": "Venez danser 2 jeudis soirs d'août au cœur du centre-ville.",
+  "description": "Venez danser 2 jeudis soirs d'août au cœur du centre-ville sur la place Carnot.",
   "tldr": null,
   "category": "fete",
   "tags": [],
@@ -628,13 +628,12 @@
   "source_id": "html-bourgoin",
   "sector": "villemoirieu",
   "end": null,
-  "description": "A l'occasion des Festiv'été, les Cinés-été reviennent en plein air dans les parcs.",
+  "description": "À l'occasion des Festiv'été, les Cinés-été reviennent en plein air, dans les parcs.",
   "tldr": null,
   "category": "cinema",
   "tags": [],
   "audience": [
-   "famille",
-   "enfants"
+   "tous"
   ],
   "commune": "Bourgoin-Jallieu",
   "address": "Parc des Lilattes",
@@ -647,12 +646,12 @@
   "id": "cine-ete-parc-des-lilattes-les-enfants-de-la-resistance-5cf4f6ac"
  },
  {
-  "title": "Ciné-été à Champfleuri : Super Mario Galaxy",
+  "title": "Ciné-été à Champfleuri : \" Super Mario Galaxy \"",
   "start": "2026-08-20T00:00:00",
   "source_id": "html-bourgoin",
   "sector": "villemoirieu",
   "end": null,
-  "description": "A l'occasion des Festiv'été, les Cinés-été reviennent en plein air.",
+  "description": "À l'occasion des Festiv'été, les Cinés-été reviennent en plein air, dans les parcs.",
   "tldr": null,
   "category": "cinema",
   "tags": [],
@@ -668,7 +667,7 @@
   "price_text": null,
   "url": "https://www.bourgoinjallieu.fr/agenda/1746-cine-ete-a-champfleuri-super-mario-galaxy",
   "image": null,
-  "id": "cine-ete-a-champfleuri-super-mario-galaxy-df5a354d"
+  "id": "cine-ete-a-champfleuri-super-mario-galaxy-e79369fd"
  },
  {
   "title": "Festiv'été : dernier Bal Carnot de l'été",
@@ -791,7 +790,7 @@
   "source_id": "html-bourgoin",
   "sector": "villemoirieu",
   "end": null,
-  "description": "Rendez-vous incontournable de la vie berjallienne, le Forum des associations se…",
+  "description": "Rendez-vous incontournable de la vie berjallienne, le Forum des associations se tient à Bourgoin-Jallieu.",
   "tldr": null,
   "category": "autre",
   "tags": [],
@@ -930,7 +929,7 @@
   "source_id": "html-bourgoin",
   "sector": "villemoirieu",
   "end": "2026-09-12",
-  "description": "L'espace Carnot accueillera 2 artistes peintres, Sylvia Bielsa Allagnat et…",
+  "description": "L'espace Carnot accueillera 2 artistes peintres, Sylvia Bielsa Allagnat et une autre artiste.",
   "tldr": null,
   "category": "expo",
   "tags": [],
@@ -953,7 +952,7 @@
   "source_id": "html-bourgoin",
   "sector": "villemoirieu",
   "end": "2026-09-05",
-  "description": "C'est officiel : le Festival Les Belles Journées est complet !",
+  "description": "C'est officiel : le Festival Les Belles Journées est COMPLET !",
   "tldr": null,
   "category": "festival",
   "tags": [],
@@ -1040,6 +1039,29 @@
   "id": "rugby-csbj-soc-chambery-dcba0787"
  },
  {
+  "title": "Bourse d’échanges trains, autos, jouets",
+  "start": "2026-09-06T00:00:00",
+  "source_id": "html-bourgoin",
+  "sector": "villemoirieu",
+  "end": null,
+  "description": "Organisée par l'association de modélisme ferroviaire \" Omnibus \".",
+  "tldr": "Un marché où des collectionneurs échangent des modèles réduits de trains, voitures anciennes et jouets vintage.",
+  "category": "autre",
+  "tags": [],
+  "audience": [
+   "tous"
+  ],
+  "commune": "Bourgoin-Jallieu",
+  "address": null,
+  "lat": 45.6025,
+  "lon": 5.2747,
+  "free": null,
+  "price_text": null,
+  "url": "https://www.bourgoinjallieu.fr/agenda/1299-bourse-d-echanges-trains-autos-jouets",
+  "image": null,
+  "id": "bourse-dechanges-trains-autos-jouets-177a8d14"
+ },
+ {
   "title": "Musée : visite en famille",
   "start": "2026-09-06T00:00:00",
   "source_id": "html-bourgoin",
@@ -1097,7 +1119,7 @@
   "category": "conference",
   "tags": [],
   "audience": [
-   "tous"
+   "adultes"
   ],
   "commune": "Bourgoin-Jallieu",
   "address": null,
@@ -1138,8 +1160,8 @@
   "source_id": "html-bourgoin",
   "sector": "villemoirieu",
   "end": null,
-  "description": "A l'occasion de l'exposition \"La Mare\" visible au musée.",
-  "tldr": "Rencontre avec l'artiste Michaël Cailloux autour de son exposition 'La Mare' au musée.",
+  "description": "À l'occasion de l'exposition \"La Mare\" visible au musée du 18 septembre au 18 octobre.",
+  "tldr": "Une rencontre avec l'artiste Michaël Cailloux autour de son exposition 'La Mare', incluant des discussions et des ateliers.",
   "category": "conference",
   "tags": [],
   "audience": [
@@ -1156,17 +1178,17 @@
   "id": "une-journee-avec-michael-cailloux-7fc8fc8d"
  },
  {
-  "title": "TJV 26-27 : Lever de rideau avec \"Secret(s) médical\" | Michel Cymes",
+  "title": "TJV 26-27 : Lever de rideau avec \" Secret(s) médical \" | Michel Cymes",
   "start": "2026-10-10T00:00:00",
   "source_id": "html-bourgoin",
   "sector": "villemoirieu",
   "end": null,
   "description": "Théâtre.",
-  "tldr": null,
+  "tldr": "Une pièce de théâtre humoristique et médical, animée par Michel Cymes, sur les secrets du monde médical.",
   "category": "spectacle",
   "tags": [],
   "audience": [
-   "tous"
+   "adultes"
   ],
   "commune": "Bourgoin-Jallieu",
   "address": null,
@@ -1176,6 +1198,6 @@
   "price_text": null,
   "url": "https://www.bourgoinjallieu.fr/agenda/662-tjv-26-27-lever-de-rideau-avec-secret-s-medical-michel-cymes",
   "image": null,
-  "id": "tjv-26-27-lever-de-rideau-avec-secret-s-medical-michel-cymes-8ed6c004"
+  "id": "tjv-26-27-lever-de-rideau-avec-secret-s-medical-michel-cymes-cae55556"
  }
 ]
