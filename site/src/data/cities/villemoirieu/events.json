@@ -1,11 +1,11 @@
 [
  {
-  "title": "Concours photo de Lo Parvi : les paysages de l’Isle Crémieu",
+  "title": "Concours photo de Lo Parvi : les paysages de l'Isle Crémieu",
   "start": "2026-01-01T00:00:00",
   "source_id": "html-balcons-dauphine",
   "sector": "villemoirieu",
   "end": "2027-08-31",
-  "description": "Concours photo de Lo Parvi sur les paysages de l’Isle Crémieu, à Trept. Participation gratuite.",
+  "description": "Concours photo sur le thème des paysages de l'Isle Crémieu, organisé par Lo Parvi. Participation gratuite.",
   "tldr": null,
   "category": "autre",
   "tags": [],
@@ -20,7 +20,7 @@
   "price_text": "Gratuit",
   "url": "https://www.balconsdudauphine-tourisme.com/manifestation/concours-photo-de-lo-parvi-les-paysages-de-lisle-cremieu/",
   "image": null,
-  "id": "concours-photo-de-lo-parvi-les-paysages-de-lisle-cremieu-67211fdd"
+  "id": "concours-photo-de-lo-parvi-les-paysages-de-l-isle-cremieu-34eed55c"
  },
  {
   "title": "Musée : \" Au fil de l’eau \"",
@@ -51,7 +51,7 @@
   "source_id": "html-balcons-dauphine",
   "sector": "villemoirieu",
   "end": "2026-09-30",
-  "description": "Exposition au musée archéologique de Hières-sur-Amby. Corps parés, âmes révélées, à partir de 2 €.",
+  "description": "Exposition au musée archéologique sur les corps parés et les âmes révélées. Présentée à Hières-sur-Amby.",
   "tldr": null,
   "category": "expo",
   "tags": [],
@@ -138,12 +138,12 @@
   "id": "festiv-ete-nouvelle-edition-16c36fcc"
  },
  {
-  "title": "Visites flash des vacances à la Maison d’Izieu",
+  "title": "Visites flash des vacances à la Maison d'Izieu",
   "start": "2026-07-01T00:00:00",
   "source_id": "html-balcons-dauphine",
   "sector": "villemoirieu",
   "end": "2026-08-31",
-  "description": "Visites flash des vacances à la Maison d’Izieu. Réservable en ligne.",
+  "description": "Visites flash proposées pendant l'été à la Maison d'Izieu. Une découverte rapide du lieu et de son histoire.",
   "tldr": null,
   "category": "patrimoine",
   "tags": [],
@@ -158,7 +158,7 @@
   "price_text": null,
   "url": "https://www.balconsdudauphine-tourisme.com/activite/visites-flash-des-vacances-a-la-maison-dizieu/",
   "image": null,
-  "id": "visites-flash-des-vacances-a-la-maison-dizieu-9ae38960"
+  "id": "visites-flash-des-vacances-a-la-maison-d-izieu-f4cc1dee"
  },
  {
   "title": "Visite libre des jardins et de la chapelle du château Teyssier de Savy, à Saint-Chef",
@@ -166,7 +166,7 @@
   "source_id": "html-balcons-dauphine",
   "sector": "villemoirieu",
   "end": "2026-08-28",
-  "description": "Visite libre des jardins et de la chapelle du château Teyssier de Savy, à Saint-Chef. Accès payant à partir de 5 €.",
+  "description": "Visite libre des jardins et de la chapelle du château Teyssier de Savy. Découverte du patrimoine de Saint-Chef.",
   "tldr": null,
   "category": "patrimoine",
   "tags": [],
@@ -184,12 +184,12 @@
   "id": "visite-libre-des-jardins-et-de-la-chapelle-du-chateau-teyssier-de-savy-a-saint-c-f8e62515"
  },
  {
-  "title": "Exposition : Papivores ! Soif de s’exprimer à la Maison d’Izieu",
+  "title": "Exposition : Papivores ! Soif de s'exprimer à la Maison d'Izieu",
   "start": "2026-07-02T00:00:00",
   "source_id": "html-balcons-dauphine",
   "sector": "villemoirieu",
   "end": "2026-11-02",
-  "description": "Exposition Papivores ! Soif de s’exprimer à la Maison d’Izieu. À partir de 7 €.",
+  "description": "Exposition à la Maison d'Izieu consacrée à l'expression. Réservation en ligne possible.",
   "tldr": null,
   "category": "expo",
   "tags": [],
@@ -204,7 +204,7 @@
   "price_text": "À partir de 7 €",
   "url": "https://www.balconsdudauphine-tourisme.com/manifestation/exposition-papivores-soif-de-sexprimer-a-la-maison-dizieu/",
   "image": null,
-  "id": "exposition-papivores-soif-de-sexprimer-a-la-maison-dizieu-fafe5d9f"
+  "id": "exposition-papivores-soif-de-s-exprimer-a-la-maison-d-izieu-deaf1c1a"
  },
  {
   "title": "Exposition temporaire : Vitis Vinifera, de la vigne au vin, au musée de Saint-Chef",
@@ -212,7 +212,7 @@
   "source_id": "html-balcons-dauphine",
   "sector": "villemoirieu",
   "end": "2026-10-25",
-  "description": "Exposition temporaire Vitis Vinifera, de la vigne au vin, au musée de Saint-Chef. Gratuit.",
+  "description": "Exposition temporaire consacrée à la vigne et au vin au musée de Saint-Chef. Entrée gratuite.",
   "tldr": null,
   "category": "expo",
   "tags": [],
@@ -230,13 +230,37 @@
   "id": "exposition-temporaire-vitis-vinifera-de-la-vigne-au-vin-au-musee-de-saint-chef-a0af4f00"
  },
  {
-  "title": "L’enquête d’Archibalme : le détective c’est toi !",
+  "title": "Visite de la ferme pédagogique du Père Louis",
+  "start": "2026-07-04T00:00:00",
+  "source_id": "html-balcons-dauphine",
+  "sector": "villemoirieu",
+  "end": "2026-08-31",
+  "description": "Visite de la ferme pédagogique du Père Louis à Vézeronce-Curtin. Une animation de type visite guidée et/ou commentée, adaptée aux familles.",
+  "tldr": null,
+  "category": "patrimoine",
+  "tags": [],
+  "audience": [
+   "famille",
+   "enfants"
+  ],
+  "commune": "Vézeronce-Curtin",
+  "address": null,
+  "lat": 45.6534,
+  "lon": 5.469,
+  "free": null,
+  "price_text": null,
+  "url": "https://www.balconsdudauphine-tourisme.com/manifestation/visite-de-la-ferme-pedagogique-du-pere-louis/",
+  "image": null,
+  "id": "visite-de-la-ferme-pedagogique-du-pere-louis-a4d80160"
+ },
+ {
+  "title": "L'enquête d'Archibalme : le détective c'est toi !",
   "start": "2026-07-04T10:30:00",
   "source_id": "html-balcons-dauphine",
   "sector": "villemoirieu",
   "end": "2026-08-31",
-  "description": "Jeu de piste / chasse au trésor à La Balme-les-Grottes. L’enquête d’Archibalme : le détective, c’est toi !",
-  "tldr": "Jeu de piste où les participants incarnent un détective pour résoudre une enquête à La Balme-les-Grottes.",
+  "description": "Jeu de piste / chasse au trésor dans le site des Grottes de la Balme. Les visiteurs mènent l'enquête en famille.",
+  "tldr": "Les participants, en famille, résolvent des énigmes dans les Grottes de la Balme pour trouver un trésor caché.",
   "category": "jeunesse",
   "tags": [],
   "audience": [
@@ -251,7 +275,7 @@
   "price_text": "À partir de 1 €",
   "url": "https://www.balconsdudauphine-tourisme.com/manifestation/lenquete-darchibalme-le-detective-cest-toi/",
   "image": null,
-  "id": "lenquete-darchibalme-le-detective-cest-toi-9a795fc5"
+  "id": "l-enquete-d-archibalme-le-detective-c-est-toi-4dd8fa76"
  },
  {
   "title": "Les dimanches, c'est pique-nique !",
@@ -277,12 +301,12 @@
   "id": "les-dimanches-c-est-pique-nique-b4e2435b"
  },
  {
-  "title": "Exposition : l’école lyonnaise au féminin, dans la cité de Quirieu",
+  "title": "Exposition : l'école lyonnaise au féminin, dans la cité de Quirieu",
   "start": "2026-07-05T00:00:00",
   "source_id": "html-balcons-dauphine",
   "sector": "villemoirieu",
   "end": "2027-06-30",
-  "description": "Exposition l’école lyonnaise au féminin dans la cité de Quirieu, à Bouvesse-Quirieu. Gratuit.",
+  "description": "Exposition consacrée à l'école lyonnaise au féminin dans la cité de Quirieu. Présentée à Bouvesse-Quirieu, en accès gratuit.",
   "tldr": null,
   "category": "expo",
   "tags": [],
@@ -297,7 +321,7 @@
   "price_text": "Gratuit",
   "url": "https://www.balconsdudauphine-tourisme.com/manifestation/exposition-lecole-lyonnaise-au-feminin-dans-la-cite-de-quirieu/",
   "image": null,
-  "id": "exposition-lecole-lyonnaise-au-feminin-dans-la-cite-de-quirieu-16cdffbc"
+  "id": "exposition-l-ecole-lyonnaise-au-feminin-dans-la-cite-de-quirieu-b2e2c0b2"
  },
  {
   "title": "Festiv'été 2026 : ciné-été en plein-air !",
@@ -351,7 +375,7 @@
   "source_id": "html-balcons-dauphine",
   "sector": "villemoirieu",
   "end": "2026-08-30",
-  "description": "Happy time : la pause gourmande au Elles Lunch Café, à Morestel. Un goûter gourmand à savourer.",
+  "description": "Pause gourmande au Elles Lunch Café à Morestel. Un moment convivial autour d'une gourmandise.",
   "tldr": null,
   "category": "autre",
   "tags": [],
@@ -438,14 +462,14 @@
   "id": "musee-galerie-clauorum-christian-chevallier-photographies-6afeb7c3"
  },
  {
-  "title": "L’Arche de Julie : visites et ateliers du mois d’août",
+  "title": "L'Arche de Julie : visites et ateliers du mois d'août",
   "start": "2026-08-10T09:00:00",
   "source_id": "html-balcons-dauphine",
   "sector": "villemoirieu",
   "end": "2026-08-16",
-  "description": "Visite guidée et/ou commentée à Vézeronce-Curtin. L’Arche de Julie propose des visites et ateliers du mois d’août.",
+  "description": "Visites et ateliers proposés à l'Arche de Julie. Animation de type visite guidée et/ou commentée à Vézeronce-Curtin.",
   "tldr": null,
-  "category": "patrimoine",
+  "category": "atelier",
   "tags": [],
   "audience": [
    "tous"
@@ -458,7 +482,7 @@
   "price_text": null,
   "url": "https://www.balconsdudauphine-tourisme.com/manifestation/larche-de-julie-visites-et-ateliers-du-mois-d-aout/",
   "image": null,
-  "id": "larche-de-julie-visites-et-ateliers-du-mois-daout-22d2b46d"
+  "id": "l-arche-de-julie-visites-et-ateliers-du-mois-d-aout-0f3c2694"
  },
  {
   "title": "Stage pour cavaliers débutants / poney de bronze",
@@ -466,12 +490,13 @@
   "source_id": "html-balcons-dauphine",
   "sector": "villemoirieu",
   "end": "2026-08-11",
-  "description": "Stage pour cavaliers débutants / poney de bronze à Vénérieu. À partir de 55 €.",
+  "description": "Stage pour cavaliers débutants en vue de l'obtention du poney de bronze. Proposé à Vénérieu du 10 au 11 août 2026.",
   "tldr": null,
   "category": "sport",
   "tags": [],
   "audience": [
-   "tous"
+   "enfants",
+   "ados"
   ],
   "commune": "Vénérieu",
   "address": null,
@@ -506,6 +531,99 @@
   "url": "https://www.bourgoinjallieu.fr/agenda/1760-cine-ete-a-montbernier-marsupilami",
   "image": null,
   "id": "cine-ete-a-montbernier-marsupilami-08a5b011"
+ },
+ {
+  "title": "Séance cinéma : La Pat'Patrouille Mission Dino",
+  "start": "2026-08-11T00:00:00",
+  "source_id": "html-balcons-dauphine",
+  "sector": "villemoirieu",
+  "end": null,
+  "description": "Séance de cinéma avec le film La Pat'Patrouille Mission Dino au cinéma Le Dauphin à Morestel. Un film d'animation à voir en famille.",
+  "tldr": null,
+  "category": "cinema",
+  "tags": [],
+  "audience": [
+   "enfants",
+   "famille"
+  ],
+  "commune": "Morestel",
+  "address": null,
+  "lat": 45.6812,
+  "lon": 5.4716,
+  "free": null,
+  "price_text": null,
+  "url": "https://www.balconsdudauphine-tourisme.com/manifestation/seance-cinema-la-patpatrouille-mission-dino/",
+  "image": null,
+  "id": "seance-cinema-la-pat-patrouille-mission-dino-94b957be"
+ },
+ {
+  "title": "Séance cinéma : Le Héros de Berlin VF/VO",
+  "start": "2026-08-11T00:00:00",
+  "source_id": "html-balcons-dauphine",
+  "sector": "villemoirieu",
+  "end": null,
+  "description": "Séance de cinéma avec le film Le Héros de Berlin, en version française et version originale. Projection au cinéma Le Dauphin à Morestel.",
+  "tldr": null,
+  "category": "cinema",
+  "tags": [],
+  "audience": [
+   "tous"
+  ],
+  "commune": "Morestel",
+  "address": null,
+  "lat": 45.6812,
+  "lon": 5.4716,
+  "free": null,
+  "price_text": null,
+  "url": "https://www.balconsdudauphine-tourisme.com/manifestation/seance-cinema-le-heros-de-berlin-vf-vo/",
+  "image": null,
+  "id": "seance-cinema-le-heros-de-berlin-vf-vo-622b0590"
+ },
+ {
+  "title": "Tournois de padel au complexe sportif Fytarena à Arandon-Passins",
+  "start": "2026-08-11T18:00:00",
+  "source_id": "html-balcons-dauphine",
+  "sector": "villemoirieu",
+  "end": null,
+  "description": "Tournois de padel organisés au complexe sportif Fytarena. Compétition sportive à Arandon-Passins.",
+  "tldr": null,
+  "category": "sport",
+  "tags": [],
+  "audience": [
+   "tous"
+  ],
+  "commune": "Arandon-Passins",
+  "address": null,
+  "lat": 45.7064,
+  "lon": 5.4373,
+  "free": false,
+  "price_text": "À partir de 20 €",
+  "url": "https://www.balconsdudauphine-tourisme.com/manifestation/tournois-de-padel-au-complexe-sportif-fytarena-a-arandon-passins/",
+  "image": null,
+  "id": "tournois-de-padel-au-complexe-sportif-fytarena-a-arandon-passins-2fc51f25"
+ },
+ {
+  "title": "Concert Camerata de Monte-Carlo, avec l'Orchestre Philharmonique de Monte-Carlo",
+  "start": "2026-08-11T19:30:00",
+  "source_id": "html-balcons-dauphine",
+  "sector": "villemoirieu",
+  "end": null,
+  "description": "Concert de la Camerata de Monte-Carlo avec l'Orchestre Philharmonique de Monte-Carlo. Rendez-vous à Morestel.",
+  "tldr": null,
+  "category": "concert",
+  "tags": [],
+  "audience": [
+   "tous"
+  ],
+  "commune": "Morestel",
+  "address": null,
+  "lat": 45.6812,
+  "lon": 5.4716,
+  "free": null,
+  "price_text": null,
+  "url": "https://www.balconsdudauphine-tourisme.com/manifestation/concert-camerata-de-monte-carlo-avec-lorchestre-philharmonique-de-monte-carlo/",
+  "image": null,
+  "id": "concert-camerata-de-monte-carlo-avec-l-orchestre-philharmonique-de-monte-carlo-58bc88c5"
  },
  {
   "title": "Venez observer l’éclipse en bonne compagnie !",

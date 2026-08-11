@@ -1,72 +1,398 @@
 {
-"clarify:0dbc4073b44e37c475d30c6835f65d950452a63919f1e915c24b618e473b38e5": "",
-"clarify:0e9885ae1dd018e9d9325a4b501c2da9275c6d906ba6029b943aea0ad0cee329": "",
-"clarify:0ec142ee1e55d3c3c1700c8152756bd9cac7189dab8d994f3419d3804d4fa520": "",
-"clarify:15085375ed77f6e11c30dab517fdf662b29cb4e17b254b134843cc1706a48626": "Une visite guidée pour découvrir l'histoire et l'architecture de l'ancienne Chartreuse de Rodez, un monument historique.",
-"clarify:19964fce4d452da61c29bab8876fa17631396a5e04013832c8892681191ac244": "",
-"clarify:1af218ec57c8883debdf967f6e339cbff6c09e8f6deb44a98ba6b7ef4603506d": "",
-"clarify:1d90975537933ee4bc048d99af26b2d279e2da165911e0f0fe767fbb489a3526": "",
-"clarify:26ce1ee3acf9038392b4d7a13baff83c9f0e004280e460b1110b1a239ad5763d": "Tournoi de pétanque en doublette organisé dans le cadre d'une compétition locale au lieu-dit 'Le Monastère'.",
-"clarify:28f1307da5748917ead629c9c2862d2d35e5c2af7d3acc3124c061b3648ecdd9": "",
-"clarify:2cbc9aafdecc44c064b899991358bf7bb712d083f465fecc8e8eb151efdfa0f5": "",
-"clarify:2efdea5cd3f164a4d0008779cfaa4a3e2c35910d821f1abd4fd4f34bd2932cb9": "",
-"clarify:31d051b2ad6713d8b7e3307443ff15a58a300b93ed30e9ac2d15fca569555dda": "",
-"clarify:3699dbb00503c2a516b3eca9485ada53dd0440953864778e95a6b57bb13535da": "",
-"clarify:41d76f06c2f8e6aea0faaa01829b99ff617bb3a8d8fa1f48e0d56d0f54b699db": "Une visite commentée par un guide-conférencier pour découvrir une exposition temporaire sur la sculpture médiévale en Rouergue.",
-"clarify:4b1fadf494afadd78e5f792991b9da8712d38c0a383306f6c3010c1cd693cc5a": "",
-"clarify:72b774fa078c69ae84db138b42c8e90b78c56df5049d2f6bc47d37a14876e982": "",
-"clarify:72dfa2ddb2d8be43106027a79bb949dfc8f4600b2cae207dcf065dce29f7d6d5": "",
+"clarify:0b887e5118226b0133ee4e8aa963c4625c6e60b1c653ade44cd34ed943e51539": "",
+"clarify:0c167a37b06ab3ad341249fedc13e4fa87e7bc9c9a4e364dfd18b325ed30198d": "",
+"clarify:0ee8911b18b78c24aacca07df391ac4351c7543914e55e489eb54847918628a2": "",
+"clarify:10071f5a080b5f273c49a3b33bdd1d1501202b7835962191f85f1aa7dd5f0489": "",
+"clarify:185281873ffee0d409bdc59e834e1b9c4fbcad181c5b9d9f42021b90f781174d": "",
+"clarify:413d12e66aba9afc219438d5672428cfc24fde7f5dc3db21b2df9b079233d970": "",
+"clarify:442b2c63e53461d500d55ea96f30a6afc79cb8a6d72fe72cef5e66b704b254f8": "",
+"clarify:446237413bdf4e463dbdc71b3ed4a68158ceff9e0d1b1b92bf8026ad3f230825": "",
+"clarify:450c178f3c5c9526100a62de1be77c765de7018c5ee7c964dd51804dfad71faf": "",
+"clarify:471bdf226816ab17e72740828c712ef86eab7c9626ee09cdc893e7f44f9790ac": "",
+"clarify:4a5b2a031ecae0830c0cb9d5d3ddcf1772a48b1b07bb8148689a34cad5aa9813": "",
+"clarify:54c4667f71e2a14e5848dfbd85b8d4cd384c01f6a3698ace29e817b68a664f3d": "",
+"clarify:55334722201dce1ec325a5f03b8d390d4a6d081ae36d1eb146516c3c10087913": "",
+"clarify:5c862e23f415246413f1a9fced22dd90590efaa0eea219062747e7bd1ad9ca40": "",
+"clarify:5e1325196822dad0da3f7116ac930a44698173d6639e763b2ee5acee09fa55d9": "",
+"clarify:669fd1e7812945d47e407b1a66bd6f19fd45717031bb8bfa6c57b9b9ee74da9a": "",
+"clarify:6d575af8eafba6c0ab0243207ce5458635fa2af1419f0d347618bdc16c4d505d": "",
+"clarify:710b15d43913fffceb6f9aba7e866f8af98056dea368d7cfe8fe25d7223e99c2": "",
+"clarify:73db9f933b9a2f5352a5d01f7ea5011c44601218f37a891043a73aecb06c381a": "",
 "clarify:74cbe3418a64afae9fbb28430c925fcadb20522c616ef75c218ff527e3dea70f": "",
-"clarify:79f0177720e2aecb58173ae4ce303398db44e4b59993161336eff1131038dad8": "",
-"clarify:81b5751553e322ff1251692bcdc2edf8373feb82a8210e81e0f4c2d223379657": "",
-"clarify:983cbe16162c3784383503ae3f4097bcea8fa66e1455267f9b5a7de2b8c9a654": "",
-"clarify:9ef0fde3139a882df37e50d3861dcdd9843828a10a2ac85c412c532682bf8533": "Un escape game artistique où les participants doivent résoudre des énigmes liées aux œuvres de Pierre Soulages pour s'échapper de salles thématiques.",
-"clarify:9fbc4c1e16c4ebd451026534aa6a5774594ff6f819d990fc60a8a6e0d31303b6": "",
-"clarify:a42d0bce089a21283500fdc743b5aaf623e449148d9c9e10c3a88205aabef1cd": "",
-"clarify:bcc39b264acb91407d72b9f7a341f828b90e34885d9a2e57b651947a231a704c": "",
-"clarify:c12a3d1cd07acc1820f6483ede49a11070f8e4bde16e012a83b6fa4503a02e28": "",
-"clarify:c36a22761aa6f02351f18f3d93847e9266cb23e0cab0ed1dbb839eabb41233e2": "",
-"clarify:c6edf33f467962d45c10761e667f39fbda53f15e9665ec0602f4177fadc77831": "",
-"clarify:d2571a25ed749688c8e4dcae7e70862effde9a49f5a9bc96be350277ec4c9004": "Il s'agit d'un jeu de piste familial où les participants doivent résoudre des énigmes pour élucider une intrigue menée par le personnage 'Miss Grumpy'.",
-"clarify:d938ca068c314d3862a01ab8883bcab509d33a718d9a87f5d82e25cf9082bf9c": "",
-"clarify:db2823baae0d01a8febdd081ae44a9771d879017925681a02b8879d35d9a618c": "Un concert de musique classique interprété par des chanteurs lyriques professionnels, avec des œuvres centrées sur des thèmes spirituels ou émotionnels.",
-"clarify:e01d7363512ea9241557a2eacd8f965d2c07357288e73d2b1d00412806d27657": "",
-"clarify:e7d44fe79ab18392aaba4b174319a5967439b2fce0d245d0bdaff2934645ff8e": "",
-"clarify:f0b69c3f0cd00692af41928ed6a10c376889452fd5fa6e9742099966c2647d81": "",
-"clarify:fe4b6c93d30cdcc51b0ba741c8757a78ee5b82462ef586bcba788890c98eacd2": "Une scène musicale ouverte où Gabriel Dumas anime une soirée permettant à des artistes amateurs ou confirmés de se produire devant un public.",
+"clarify:74ebc28606432df3c68b9700f59eca5fd352f3e4c58668300743f7146a3dc322": "",
+"clarify:84fe0a2f7169c98bea0737a82bc75ddfc536fb4b51e2158767eaa567e78ec168": "",
+"clarify:9d0eaec5b6107f6895f5d64650d232fe975590afa106cd58a7fac1ea0d79e187": "",
+"clarify:a16bfaf0afa26eb95f2b7e30e9bc0627bbd30aec2650a99502b36e341ed9e0ba": "",
+"clarify:a84a496b2ba69d10adbbb8fb05a141593e17bb15c83c5969de28b2e12fc26c51": "",
+"clarify:bb8cb6f885b00639c5825ed56f43d6aa027769bb7e86c152911ec103c5cac378": "",
+"clarify:c4c8fc93279a7fb9f3c6e23213b15f0f40a61e36c7bfa149f3d318ea89a3cc70": "",
+"clarify:c7aeacb0eb115e6faa05574502f60054f06f322e7841df8cde00fa5fef395f9a": "",
+"clarify:ca18a1f0f1a0b41519812500c5660ddca83bb6f3137dc539011c34e6817c7127": "",
+"clarify:cd93c7c494a3e0ca80f70698f8c061d86826a1ee00587e66c71983dcd8415f4b": "",
+"clarify:d8e5fdbcf7e18daeab8e9ea63d4398ff1d85d18ae9bda6c7188ef0520946d90d": "",
+"clarify:e5a79227ce4b284aadea4eb167fade69b8cdde8b7b15895e3373fe29f2994af3": "",
+"clarify:e5ea700b5083e7e18bc7d21edb3c6c188a01b30e5f7f3680c59927cfd1f87ed4": "",
+"clarify:f69c33ca6e5731795ecfad965a29bfda981d24e61eb2be7a8a93bee344d18b6e": "",
+"clarify:fbeb965521a82319875bb0ea45bb464ca54fb5821feff9393badd06082bd3452": "",
 "extract:00066ddb8546f99d895f01f214f99c32eb8c998bce41fb597fecc174ec3692c8": [],
-"extract:43a272293940bbd1876828ed3bacc5e7789cb03a95301793582c013db63d49e1": [
+"extract:b9cbcc9f23715fe0f272601d7f38b42cd5811ed91a85faf291fea234212f70d9": [
 {
-"address": "Terrain de pétanque, place de la Rivière, Pont-de-Salars",
+"address": null,
 "audience": [
 "tous"
 ],
-"category": "sport",
-"commune": "Pont-de-Salars",
-"description": "Concours de pétanque en doublette en 3 parties, ouvert à tous, sur le terrain de pétanque place de la Rivière, les lundis à 20h30. Inscriptions sur place, organisé par la Boule Joyeuse.",
+"category": "concert",
+"commune": "Le Monastère",
+"description": "Le 11 août 2026 au Monastère. Concert avec scène ouverte et Gabriel Dumas.",
 "end": null,
 "free": null,
-"id": "concours-de-petanque-6fa2cb0c",
+"id": "boeufs-musicaux-scene-ouverte-avec-gabriel-dumas-f75aa2ca",
 "image": null,
 "lat": null,
 "lon": null,
 "price_text": null,
 "sector": "pont-de-salars",
-"source_id": "html-levezou-pontsalars",
-"start": "2026-08-10T20:30:00",
+"source_id": "html-rodezagglo",
+"start": "2026-08-11T00:00:00",
 "tags": [],
-"title": "Concours de pétanque",
+"title": "Boeufs musicaux (scène ouverte) avec Gabriel Dumas",
 "tldr": null,
-"url": "https://www.tourisme-aveyron.com/fr/diffusio/agenda/concours-de-petanque-pont-de-salars_TFO12185-FMA-20260407115804148"
+"url": "https://www.rodezagglo.fr/fiche/agenda/boeufs-musicaux-scene-ouverte-avec-gabriel-dumas-le-monastere_TFO12146-FMA-20250604103727032"
 },
 {
-"address": "Chez Potions d'Oc, Pont-de-Salars",
+"address": null,
 "audience": [
 "tous"
 ],
-"category": "autre",
+"category": "sport",
+"commune": "Le Monastère",
+"description": "Le 11 août 2026 au Monastère. Concours de pétanque organisé au Combero.",
+"end": null,
+"free": null,
+"id": "concours-de-petanque-au-combero-e8750f11",
+"image": null,
+"lat": null,
+"lon": null,
+"price_text": null,
+"sector": "pont-de-salars",
+"source_id": "html-rodezagglo",
+"start": "2026-08-11T00:00:00",
+"tags": [],
+"title": "Concours de pétanque au Combero",
+"tldr": null,
+"url": "https://www.rodezagglo.fr/fiche/agenda/concours-de-petanque-au-combero-le-monastere_TFO12146-FMA-20260608142708061"
+},
+{
+"address": null,
+"audience": [
+"tous"
+],
+"category": "expo",
+"commune": "Rodez",
+"description": "Le 11 août 2026 à Rodez. Visite guidée de l'exposition temporaire consacrée à la sculpture en Rouergue.",
+"end": null,
+"free": null,
+"id": "visite-guidee-de-l-exposition-temporaire-le-temps-des-images-la-sculpture-en-rou-4392ddef",
+"image": null,
+"lat": null,
+"lon": null,
+"price_text": null,
+"sector": "pont-de-salars",
+"source_id": "html-rodezagglo",
+"start": "2026-08-11T00:00:00",
+"tags": [],
+"title": "Visite guidée de l'exposition temporaire - \"Le temps des images. La sculpture en Rouergue à la fin du Moyen Age\"",
+"tldr": null,
+"url": "https://www.rodezagglo.fr/fiche/agenda/visite-guidee-de-l-exposition-temporaire-le-temps-des-images-la-sculpture-en-rouergue-a-la-fin-du-moyen-age-rodez_TFO12202-FMA-20260320112606366"
+},
+{
+"address": null,
+"audience": [
+"tous"
+],
+"category": "concert",
+"commune": "Rodez",
+"description": "Le 11 août 2026 à Rodez. Concert lyrique intitulé Chants de l'âme.",
+"end": null,
+"free": null,
+"id": "concert-lyrique-chants-de-l-ame-267cbd69",
+"image": null,
+"lat": null,
+"lon": null,
+"price_text": null,
+"sector": "pont-de-salars",
+"source_id": "html-rodezagglo",
+"start": "2026-08-11T00:00:00",
+"tags": [],
+"title": "Concert lyrique : Chants de l'âme",
+"tldr": null,
+"url": "https://www.rodezagglo.fr/fiche/agenda/concert-lyrique-chants-de-l-ame-rodez_TFO12202-FMA-20260727114732900"
+},
+{
+"address": null,
+"audience": [
+"tous"
+],
+"category": "patrimoine",
+"commune": "Rodez",
+"description": "Le 11 août 2026 à Rodez. Visite guidée de l'ancienne Chartreuse.",
+"end": null,
+"free": null,
+"id": "visite-guidee-de-l-ancienne-chartreuse-05112890",
+"image": null,
+"lat": null,
+"lon": null,
+"price_text": null,
+"sector": "pont-de-salars",
+"source_id": "html-rodezagglo",
+"start": "2026-08-11T00:00:00",
+"tags": [],
+"title": "Visite guidée de l'ancienne Chartreuse",
+"tldr": null,
+"url": "https://www.rodezagglo.fr/fiche/agenda/visite-guidee-de-l-ancienne-chartreuse-rodez_TFO518090066486"
+},
+{
+"address": null,
+"audience": [
+"tous"
+],
+"category": "atelier",
+"commune": "Druelle Balsac",
+"description": "Le 12 août 2026 à Druelle Balsac. Atelier de calligraphie.",
+"end": null,
+"free": null,
+"id": "atelier-calligraphie-53c16186",
+"image": null,
+"lat": null,
+"lon": null,
+"price_text": null,
+"sector": "pont-de-salars",
+"source_id": "html-rodezagglo",
+"start": "2026-08-12T00:00:00",
+"tags": [],
+"title": "Atelier calligraphie",
+"tldr": null,
+"url": "https://www.rodezagglo.fr/fiche/agenda/atelier-calligraphie-druelle-balsac_TFO12090-FMA-20260608141819409"
+},
+{
+"address": null,
+"audience": [
+"tous"
+],
+"category": "spectacle",
+"commune": "Le Monastère",
+"description": "Le 12 août 2026 au Monastère. Spectacle équestre présenté au Domaine de Combelles.",
+"end": null,
+"free": null,
+"id": "spectacle-equestre-en-aparte-au-domaine-de-combelles-a112c987",
+"image": null,
+"lat": null,
+"lon": null,
+"price_text": null,
+"sector": "pont-de-salars",
+"source_id": "html-rodezagglo",
+"start": "2026-08-12T00:00:00",
+"tags": [],
+"title": "Spectacle équestre \" En aparté\" au Domaine de Combelles",
+"tldr": null,
+"url": "https://www.rodezagglo.fr/fiche/agenda/spectacle-equestre-en-aparte-au-domaine-de-combelles-le-monastere_TFO12146-FMA-20260627120107929"
+},
+{
+"address": null,
+"audience": [
+"tous"
+],
+"category": "atelier",
+"commune": "Rodez",
+"description": "Le 12 août 2026 à Rodez. Cours de calligraphie latine.",
+"end": null,
+"free": null,
+"id": "cours-de-calligraphie-latine-d9efd028",
+"image": null,
+"lat": null,
+"lon": null,
+"price_text": null,
+"sector": "pont-de-salars",
+"source_id": "html-rodezagglo",
+"start": "2026-08-12T00:00:00",
+"tags": [],
+"title": "Cours de calligraphie latine",
+"tldr": null,
+"url": "https://www.rodezagglo.fr/fiche/agenda/cours-de-calligraphie-latine-rodez_TFO12202-FMA-20251202144421632"
+},
+{
+"address": null,
+"audience": [
+"tous"
+],
+"category": "expo",
+"commune": "Rodez",
+"description": "Le 12 août 2026 à Rodez. Visite accompagnée de l'exposition temporaire Xie Lei. Double.",
+"end": null,
+"free": null,
+"id": "visite-accompagnee-de-l-exposition-temporaire-xie-lei-double-29070835",
+"image": null,
+"lat": null,
+"lon": null,
+"price_text": null,
+"sector": "pont-de-salars",
+"source_id": "html-rodezagglo",
+"start": "2026-08-12T00:00:00",
+"tags": [],
+"title": "Visite accompagnée de l'exposition temporaire \"Xie Lei. Double\"",
+"tldr": null,
+"url": "https://www.rodezagglo.fr/fiche/agenda/visite-accompagnee-de-l-exposition-temporaire-xie-lei-double-rodez_TFO12202-FMA-20260415170059759"
+},
+{
+"address": null,
+"audience": [
+"enfants",
+"famille"
+],
+"category": "atelier",
+"commune": "Rodez",
+"description": "Le 12 août 2026 à Rodez. Visite-atelier à quatre mains sur la sculpture contemporaine, pour les 4-6 ans.",
+"end": null,
+"free": null,
+"id": "visite-atelier-a-4-mains-sculpture-contemporaine-4-6-ans-648e6c0e",
+"image": null,
+"lat": null,
+"lon": null,
+"price_text": null,
+"sector": "pont-de-salars",
+"source_id": "html-rodezagglo",
+"start": "2026-08-12T00:00:00",
+"tags": [],
+"title": "Visite/atelier à 4 mains : \"Sculpture contemporaine\" (4-6 ans)",
+"tldr": null,
+"url": "https://www.rodezagglo.fr/fiche/agenda/visiteatelier-a-4-mains-sculpture-contemporaine-4-6-ans-rodez_TFO12202-FMA-20260610105517363"
+},
+{
+"address": null,
+"audience": [
+"tous"
+],
+"category": "atelier",
+"commune": "Rodez",
+"description": "Le 12 août 2026 à Rodez. Visite-atelier sur la sculpture contemporaine, ouverte à tous.",
+"end": null,
+"free": null,
+"id": "visite-atelier-pour-tous-sculpture-contemporaine-18107e00",
+"image": null,
+"lat": null,
+"lon": null,
+"price_text": null,
+"sector": "pont-de-salars",
+"source_id": "html-rodezagglo",
+"start": "2026-08-12T00:00:00",
+"tags": [],
+"title": "Visite/atelier pour tous : \"Sculpture contemporaine\"",
+"tldr": null,
+"url": "https://www.rodezagglo.fr/fiche/agenda/visiteatelier-pour-tous-sculpture-contemporaine-rodez_TFO12202-FMA-20260610110508669"
+},
+{
+"address": null,
+"audience": [
+"enfants",
+"famille"
+],
+"category": "jeunesse",
+"commune": "Rodez",
+"description": "Le 12 août 2026 à Rodez. Activités à partager entre parents et enfants de 6 à 11 ans.",
+"end": null,
+"free": null,
+"id": "activites-parents-enfants-6-11-ans-04626486",
+"image": null,
+"lat": null,
+"lon": null,
+"price_text": null,
+"sector": "pont-de-salars",
+"source_id": "html-rodezagglo",
+"start": "2026-08-12T00:00:00",
+"tags": [],
+"title": "Activités parents & enfants (6-11 ans)",
+"tldr": null,
+"url": "https://www.rodezagglo.fr/fiche/agenda/activites-parents--enfants-6-11-ans-rodez_TFO12202-FMA-20260702155702541"
+},
+{
+"address": null,
+"audience": [
+"tous"
+],
+"category": "atelier",
+"commune": "Le Monastère",
+"description": "Du 10 au 12 août 2026 au Monastère. Ateliers équestres.",
+"end": "2026-08-12",
+"free": null,
+"id": "ateliers-equestres-724fd79f",
+"image": null,
+"lat": null,
+"lon": null,
+"price_text": null,
+"sector": "pont-de-salars",
+"source_id": "html-rodezagglo",
+"start": "2026-08-10T00:00:00",
+"tags": [],
+"title": "Ateliers équestres",
+"tldr": null,
+"url": "https://www.rodezagglo.fr/fiche/agenda/ateliers-equestres-le-monastere_TFO12146-FMA-20260709121203250"
+},
+{
+"address": null,
+"audience": [
+"tous"
+],
+"category": "nature",
+"commune": "Druelle Balsac",
+"description": "Le 13 août 2026 à Druelle Balsac. Balade nature à la découverte de la faune des bords de l'Aveyron.",
+"end": null,
+"free": null,
+"id": "balade-nature-la-faune-des-bords-de-l-aveyron-3f009983",
+"image": null,
+"lat": null,
+"lon": null,
+"price_text": null,
+"sector": "pont-de-salars",
+"source_id": "html-rodezagglo",
+"start": "2026-08-13T00:00:00",
+"tags": [],
+"title": "Balade Nature - La Faune des bords de l'Aveyron",
+"tldr": null,
+"url": "https://www.rodezagglo.fr/fiche/agenda/balade-nature-la-faune-des-bords-de-l-aveyron-druelle-balsac_TFO12090-FMA-20260808172943661"
+},
+{
+"address": null,
+"audience": [
+"tous"
+],
+"category": "concert",
+"commune": "Le Monastère",
+"description": "Le 13 août 2026 au Monastère. Concert dans le cadre des marchés de l'été des Audacieuses.",
+"end": null,
+"free": null,
+"id": "les-marches-de-l-ete-des-audacieuses-bbaaf973",
+"image": null,
+"lat": null,
+"lon": null,
+"price_text": null,
+"sector": "pont-de-salars",
+"source_id": "html-rodezagglo",
+"start": "2026-08-13T00:00:00",
+"tags": [],
+"title": "Les marchés de l'été des Audacieuses",
+"tldr": null,
+"url": "https://www.rodezagglo.fr/fiche/agenda/les-marches-de-l-ete-des-audacieuses-le-monastere_TFO12146-FMA-20260605112838154"
+}
+],
+"extract:d4ed90d3f6c12480b87f0ca19fe5a1ae6839764ed1654195dd9b3b692a095119": [
+{
+"address": "Chez Potions d'Oc",
+"audience": [
+"tous"
+],
+"category": "patrimoine",
 "commune": "Pont-de-Salars",
-"description": "De 10h à 12h, visite et dégustation gratuite de la distillerie. Tous les mardis de juillet et août, chez Potions d'Oc.",
+"description": "De 10h à 12h, tous les mardis de juillet et août, chez Potions d'Oc. Visite et dégustation gratuite.",
 "end": "2026-08-11T12:00:00",
 "free": true,
 "id": "visite-de-la-distillerie-potions-d-oc-45d4f49a",
@@ -83,13 +409,13 @@
 "url": "https://www.tourisme-aveyron.com/fr/diffusio/agenda/visite-de-la-distillerie-potions-d-oc-pont-de-salars_TFO12185-FMA-20250605135513817"
 },
 {
-"address": "Balou Balou x les Rousselleries, Pont-de-Salars",
+"address": null,
 "audience": [
 "tous"
 ],
 "category": "concert",
 "commune": "Pont-de-Salars",
-"description": "Soirée moules-frites animée par le groupe l'Avant Garde. Concert chez Balou Balou x les Rousselleries.",
+"description": "Soirée moules-frites animée par le groupe l'Avant Garde.",
 "end": null,
 "free": null,
 "id": "l-avant-garde-concert-chez-balou-balou-x-les-rousselleries-07609bca",
@@ -106,13 +432,13 @@
 "url": "https://www.tourisme-aveyron.com/fr/diffusio/agenda/l-avant-garde-concert-chez-balou-balou-x-les-rousselleries-pont-de-salars_TFO12185-FMA-20260724153849622"
 },
 {
-"address": "LE BAR Y COU, Prades-Salars",
+"address": "Le Bar Y Cou",
 "audience": [
 "tous"
 ],
 "category": "concert",
 "commune": "Prades-Salars",
-"description": "Soirées musicales tous les mardis à partir de 19h au bistrot Le Bar y Cou. Un musicien différent à chaque fois (piano, accordéon, guitare...).",
+"description": "Le bistrot Le Bar Y Cou à Prades-Salars propose tous les mardis soir des soirées musicales avec un musicien différent (piano, accordéon, guitare...).",
 "end": null,
 "free": null,
 "id": "concert-au-bar-y-cou-9c4eb8a0",
@@ -129,14 +455,13 @@
 "url": "https://www.tourisme-aveyron.com/fr/diffusio/agenda/concert-au-bar-y-cou-prades-salars_TFO12188-FMA-20260804161105923"
 },
 {
-"address": "Ferme du Gazenas, Flavin",
+"address": null,
 "audience": [
-"enfants",
-"famille"
+"enfants"
 ],
 "category": "jeunesse",
 "commune": "Flavin",
-"description": "Visite de la ferme dédiée aux enfants de moins de 6 ans, tous les mardis à 9h. Réservation auprès de Lévézou Attractivité & Tourisme au 05 65 46 89 90.",
+"description": "Visite de la ferme dédiée aux enfants de moins de 6 ans, tous les mardis à 9h. Réservation auprès de Lévézou Attractivité & Tourisme.",
 "end": null,
 "free": null,
 "id": "visite-de-la-ferme-du-gazenas-enfants-3cf8bacb",
@@ -153,13 +478,13 @@
 "url": "https://www.tourisme-aveyron.com/fr/diffusio/agenda/visite-de-la-ferme-du-gazenas-enfants-flavin_TFO12102-FMA-20260630141729542"
 },
 {
-"address": "Ferme du Gazenas, Flavin",
+"address": null,
 "audience": [
 "tous"
 ],
 "category": "nature",
 "commune": "Flavin",
-"description": "Visite de la ferme tout public, tous les mardis à 15h. Réservation auprès de Lévézou Attractivité & Tourisme au 05 65 46 89 90.",
+"description": "Visite de la ferme tout public, tous les mardis à 15h. Réservation auprès de Lévézou Attractivité & Tourisme.",
 "end": null,
 "free": null,
 "id": "visite-de-la-ferme-du-gazenas-tout-public-46b0bb27",
@@ -176,13 +501,13 @@
 "url": "https://www.tourisme-aveyron.com/fr/diffusio/agenda/visite-de-la-ferme-du-gazenas-tout-public-flavin_TFO12102-FMA-20260630143612298"
 },
 {
-"address": "Place du 29 Juin 1944, Pont-de-Salars",
+"address": "place du 29 Juin 1944 (devant la salle des fêtes)",
 "audience": [
 "tous"
 ],
 "category": "fete",
 "commune": "Pont-de-Salars",
-"description": "Marché d'été de Pont-de-Salars, tous les mercredis d'été à partir du 8 juillet. Place du 29 Juin 1944, devant la Salle des Fêtes.",
+"description": "Tous les mercredis d'été, marché d'été de Pont-de-Salars place du 29 Juin 1944, devant la salle des fêtes.",
 "end": null,
 "free": null,
 "id": "marche-d-ete-73104b2b",
@@ -199,13 +524,13 @@
 "url": "https://www.tourisme-aveyron.com/fr/diffusio/agenda/marche-d-ete-pont-de-salars_TFO12185-FMA-20260622102233597"
 },
 {
-"address": "Terrain de pétanque, sortie du village direction Salles Curan, Canet-de-Salars",
+"address": "terrain de pétanque à la sortie du village direction Salles Curan",
 "audience": [
-"tous"
+"adultes"
 ],
 "category": "sport",
 "commune": "Canet-de-Salars",
-"description": "Concours de pétanque en doublette, 3 parties, tous les mercredis à partir de 20h30. Organisé par la Pétanque Canetole au terrain de pétanque à la sortie du village direction Salles Curan, 6€ l'équipe.",
+"description": "Concours de pétanque en doublette au terrain de pétanque à la sortie du village. Organisé par la Pétanque Canetole tous les mercredis à partir de 20h30, buvette toute la soirée.",
 "end": null,
 "free": false,
 "id": "concours-de-petanque-en-ete-2452c11c",
@@ -228,7 +553,7 @@
 ],
 "category": "atelier",
 "commune": "Arvieu",
-"description": "Démonstration et présentation pour découvrir l'univers de l'impression 3D. Atelier proposé à Arvieu.",
+"description": "Démonstration et présentation pour découvrir l'univers de l'impression 3D.",
 "end": null,
 "free": null,
 "id": "decouverte-de-l-impression-3d-032287fc",
@@ -245,13 +570,13 @@
 "url": "https://www.tourisme-aveyron.com/fr/diffusio/agenda/decouverte-de-l-impression-3d-arvieu_TFO12011-FMA-20260617150318891"
 },
 {
-"address": "Balou Balou x les Rousselleries, Pont-de-Salars",
+"address": null,
 "audience": [
 "tous"
 ],
 "category": "spectacle",
 "commune": "Pont-de-Salars",
-"description": "Soirée flamenco proposée par Balou Balou x les Rousselleries. Animation musicale et dansée.",
+"description": "Soirée flamenco.",
 "end": null,
 "free": null,
 "id": "soiree-flamenco-balou-balou-x-les-rousselleries-398358a6",
@@ -268,21 +593,21 @@
 "url": "https://www.tourisme-aveyron.com/fr/diffusio/agenda/soiree-flamenco-balou-balou-x-les-rousselleries-pont-de-salars_TFO12185-FMA-20260724154039800"
 },
 {
-"address": "Lac de Pont-de-Salars, Le Vibal",
+"address": "Lac de Pont de Salars",
 "audience": [
 "enfants",
 "ados"
 ],
 "category": "nature",
-"commune": "Le Vibal",
-"description": "Activité pêche pour les 5-18 ans, de 14h à 16h30, pour découvrir les milieux aquatiques. Sur inscription, 12€ par enfant de plus de 8 ans (les 5-8 ans doivent être accompagnés d'un adulte).",
+"commune": "Pont-de-Salars",
+"description": "De 14h à 16h30, découverte des milieux aquatiques par une activité pêche pour les 5/18 ans. Sur inscription, 12€ par enfant de plus de 8 ans (de 5 à 8 ans accompagnés d'un adulte).",
 "end": "2026-08-13T16:30:00",
 "free": false,
-"id": "animation-peche-et-nature-au-lac-de-pont-de-salars-commune-du-vibal-pour-les-enf-f3234a27",
+"id": "animation-peche-et-nature-au-lac-de-pont-de-salars-commune-du-vibal-pour-les-enf-70aeec7d",
 "image": null,
 "lat": null,
 "lon": null,
-"price_text": "12€ par enfant de plus de 8 ans",
+"price_text": "12€ par enfant de plus de 8 ans (de 5 à 8 ans accompagnés d'un adulte)",
 "sector": "pont-de-salars",
 "source_id": "html-levezou-pontsalars",
 "start": "2026-08-13T14:00:00",
@@ -315,13 +640,13 @@
 "url": "https://www.tourisme-aveyron.com/fr/diffusio/agenda/sophro-etoilee-le-vibal_TFO12297-FMA-20260706164842529"
 },
 {
-"address": "Fromagerie du Griffoul, Prades-Salars",
+"address": "Fromagerie du Griffoul",
 "audience": [
 "tous"
 ],
-"category": "nature",
+"category": "patrimoine",
 "commune": "Prades-Salars",
-"description": "Visite de la ferme et de la fromagerie, tous les jeudis et vendredis à 16h30 en juillet et août. Sur réservation au 06.70.97.02.76 ou 06.82.95.21.20.",
+"description": "Les jeudis et vendredis à 16h30, visite de la ferme sur réservation en juillet et août.",
 "end": null,
 "free": null,
 "id": "visite-de-la-ferme-fromagerie-du-griffoul-2ad29a67",
@@ -338,21 +663,21 @@
 "url": "https://www.tourisme-aveyron.com/fr/diffusio/agenda/visite-de-la-ferme-fromagerie-du-griffoul-prades-salars_TFO12188-FMA-20250919143309872"
 },
 {
-"address": "Lac de la Gourde, Canet-de-Salars",
+"address": "Lac de la Gourde",
 "audience": [
 "enfants",
 "ados"
 ],
 "category": "nature",
 "commune": "Canet-de-Salars",
-"description": "Activité pêche pour les 5-18 ans au lac de la Gourde, de 9h30 à 12h. Sur inscription, 12€ par enfant de plus de 8 ans (les 5-8 ans accompagnés d'un adulte).",
+"description": "De 9h30 à 12h, découverte des milieux aquatiques par une activité pêche pour les 5/18 ans. 12€ par enfant de plus de 8 ans (de 5 à 8 ans accompagnés d'un adulte), RDV au bout du Chemin de Conquettes à Pareloup.",
 "end": "2026-08-13T12:00:00",
 "free": false,
 "id": "animation-peche-et-nature-au-lac-de-la-gourde-pour-les-enfants-3c914b6e",
 "image": null,
 "lat": null,
 "lon": null,
-"price_text": "12€ par enfant de plus de 8 ans",
+"price_text": "12€ par enfant de plus de 8 ans (de 5 à 8 ans accompagnés d'un adulte)",
 "sector": "pont-de-salars",
 "source_id": "html-levezou-pontsalars",
 "start": "2026-08-13T09:30:00",
@@ -362,13 +687,13 @@
 "url": "https://www.tourisme-aveyron.com/fr/diffusio/agenda/animation-peche-et-nature-au-lac-de-la-gourde-pour-les-enfants-canet-de-salars_TFO12050-FMA-20250620095654807"
 },
 {
-"address": "Ferme Le Peyssi, Prades-Salars",
+"address": "Ferme Le Peyssi",
 "audience": [
 "tous"
 ],
 "category": "marche",
 "commune": "Prades-Salars",
-"description": "Randonnée gourmande de 6,5 km accompagnée par Mathias, avec dégustation de produits locaux, départ à 18h de la ferme Le Peyssi. À partir de 19h, marché gourmand animé par le duo Secret Garden.",
+"description": "À 18h, randonnée de 6,5 km accompagnée par Mathias, avec pause dégustation de produits locaux. À partir de 19h, marché gourmand animé par le duo Secret Garden.",
 "end": null,
 "free": null,
 "id": "randonnee-gourmande-et-marche-gourmand-avec-nos-producteurs-locaux-9d07e1ae",
@@ -385,13 +710,13 @@
 "url": "https://www.tourisme-aveyron.com/fr/diffusio/agenda/randonnee-gourmande-et-marche-gourmand-avec-nos-producteurs-locaux-prades-salars_TFO12188-FMA-20260630161743618"
 },
 {
-"address": "Fromagerie du Griffoul, Prades-Salars",
+"address": "Fromagerie du Griffoul",
 "audience": [
 "tous"
 ],
-"category": "nature",
+"category": "patrimoine",
 "commune": "Prades-Salars",
-"description": "Visite de la ferme et de la fromagerie, tous les jeudis et vendredis à 16h30 en juillet et août. Sur réservation au 06.70.97.02.76 ou 06.82.95.21.20.",
+"description": "Les jeudis et vendredis à 16h30, visite de la ferme sur réservation en juillet et août.",
 "end": null,
 "free": null,
 "id": "visite-de-la-ferme-fromagerie-du-griffoul-9cd8ef45",
@@ -410,11 +735,11 @@
 {
 "address": null,
 "audience": [
-"tous"
+"adultes"
 ],
 "category": "sport",
 "commune": "Flavin",
-"description": "Concours de pétanque en doublette, 3 parties, tous les vendredis soirs à 21h. 8€ par équipe, lots en nature.",
+"description": "Concours de pétanque en doublette tous les vendredis soirs à 21h, du 5 juin à mi-octobre. 3 parties, 8€ par équipe, lots en nature.",
 "end": null,
 "free": false,
 "id": "concours-de-petanque-653016d3",
@@ -431,13 +756,13 @@
 "url": "https://www.tourisme-aveyron.com/fr/diffusio/agenda/concours-de-petanque-flavin_TFO12102-FMA-20260522093058081"
 },
 {
-"address": "Place de la Rivière, Pont-de-Salars",
+"address": "Place de la Rivière",
 "audience": [
 "tous"
 ],
 "category": "patrimoine",
 "commune": "Pont-de-Salars",
-"description": "Visite guidée de l'usine de Bage et de la centrale de Pinet, avec repas au restaurant, départ à 10h place de la Rivière. 30€ adulte, 20€ pour les moins de 12 ans, inscription obligatoire au 05 65 46 89 90.",
+"description": "Visite guidée de l'usine de Bage et de la centrale de Pinet, avec repas au restaurant. 30€ adulte, 20€ - de 12 ans, inscription obligatoire.",
 "end": null,
 "free": false,
 "id": "journee-decouverte-visite-guidee-bage-et-centrale-de-pinet-ddd3557b",
@@ -454,14 +779,14 @@
 "url": "https://www.tourisme-aveyron.com/fr/diffusio/agenda/journee-decouverte-visite-guidee-bage-et-centrale-de-pinet-pont-de-salars_TFO12185-FMA-20260630111529293"
 },
 {
-"address": "Bar Y Cou, Prades-Salars",
+"address": "Le Bar Y Cou",
 "audience": [
 "adultes",
 "seniors"
 ],
 "category": "autre",
 "commune": "Prades-Salars",
-"description": "Tournois de belote amical tous les vendredis soirs à partir de 18h30. Sans lot à gagner, au Bar Y Cou.",
+"description": "Tournois de belote amicaux tous les vendredis soirs à partir de 18h30, sans lot à gagner.",
 "end": null,
 "free": null,
 "id": "concours-de-belote-au-bar-y-cou-30f39ad5",
@@ -478,15 +803,15 @@
 "url": "https://www.tourisme-aveyron.com/fr/diffusio/agenda/concours-de-belote-au-bar-y-cou-prades-salars_TFO12188-FMA-20260804161312814"
 },
 {
-"address": "Restaurant Lou Carretou, plage du lac de Pareloup, Arvieu",
+"address": "Plage du lac de Pareloup, Restaurant Lou Carretou Pareloup",
 "audience": [
 "tous"
 ],
 "category": "concert",
 "commune": "Arvieu",
-"description": "Soirée moules-frites tous les vendredis soirs en juillet et août, avec concert. Au restaurant Lou Carretou, sur la plage du lac de Pareloup, réservation au 06.11.98.17.73.",
+"description": "Soirée moules-frites tous les vendredis soirs en juillet et août, sur la plage du lac de Pareloup. Réservation au restaurant Lou Carretou Pareloup.",
 "end": null,
-"free": null,
+"free": false,
 "id": "diner-moules-frites-concert-410d79e7",
 "image": null,
 "lat": null,
@@ -501,13 +826,13 @@
 "url": "https://www.tourisme-aveyron.com/fr/diffusio/agenda/diner-moules-frites--concert-arvieu_TFO12011-FMA-20260629153809939"
 },
 {
-"address": "Eglise St Georges de Camboulas, Pont-de-Salars",
+"address": "Eglise St Georges de Camboulas",
 "audience": [
 "tous"
 ],
 "category": "concert",
 "commune": "Pont-de-Salars",
-"description": "Concert du duo Darcourt et d'un ensemble de musiciens à l'église Saint-Georges de Camboulas à 20h30. Entrée libre, fouace et pot de l'amitié, organisé par les Amis de Saint-Georges.",
+"description": "Concert avec le duo Darcourt et un ensemble de musiciens à l'église St Georges de Camboulas. Entrée libre, fouace et pot de l'amitié.",
 "end": null,
 "free": true,
 "id": "rencontres-musicales-de-saint-georges-1d9a96bd",
@@ -522,357 +847,30 @@
 "title": "Rencontres musicales de Saint Georges",
 "tldr": null,
 "url": "https://www.tourisme-aveyron.com/fr/diffusio/agenda/rencontres-musicales-de-saint-georges-pont-de-salars_TFO12185-FMA-20260415140349145"
-}
-],
-"extract:5566f8908dc01ac2422a9c2e877a3e2b77692ecc36f70e9119ab4e4867333eb7": [],
-"extract:5bc51bfe14682f08b4bcc6bdd35b6444963fc4db72382d0834cc269009cba6d0": [
+},
 {
-"address": null,
+"address": "Salle des fêtes de Frayssinhes",
 "audience": [
 "tous"
 ],
 "category": "fete",
-"commune": "Le Monastère",
-"description": "Rendez-vous au Monastère le 10 août 2026. Les informations pratiques sont disponibles sur la fiche de l'événement.",
-"end": null,
-"free": null,
-"id": "brunch-champetre-f242507a",
+"commune": "Le Vibal",
+"description": "Déjeuner aux tripoux de 8h à 13h à la salle des fêtes. 16€, menu enfant 8€.",
+"end": "2026-08-15T13:00:00",
+"free": false,
+"id": "fete-a-frayssinhes-f3b64004",
 "image": null,
 "lat": null,
 "lon": null,
-"price_text": null,
+"price_text": "16€ (menu enfant 8€)",
 "sector": "pont-de-salars",
-"source_id": "html-rodezagglo",
-"start": "2026-08-10T00:00:00",
+"source_id": "html-levezou-pontsalars",
+"start": "2026-08-15T08:00:00",
 "tags": [],
-"title": "Brunch Champêtre",
+"title": "Fête à Frayssinhes",
 "tldr": null,
-"url": "https://www.rodezagglo.fr/fiche/agenda/brunch-champetre-le-monastere_TFO12146-FMA-20260610173110992"
-},
-{
-"address": null,
-"audience": [
-"enfants",
-"famille"
-],
-"category": "jeunesse",
-"commune": "Rodez",
-"description": "Jeu de piste au musée Fenaille à Rodez le 10 août 2026. Les informations pratiques sont disponibles sur la fiche de l'événement.",
-"end": null,
-"free": null,
-"id": "miss-grumpy-mene-l-enquete-au-musee-fenaille-37c7c14b",
-"image": null,
-"lat": null,
-"lon": null,
-"price_text": null,
-"sector": "pont-de-salars",
-"source_id": "html-rodezagglo",
-"start": "2026-08-10T00:00:00",
-"tags": [],
-"title": "Miss Grumpy mène l'enquête au musée Fenaille",
-"tldr": null,
-"url": "https://www.rodezagglo.fr/fiche/agenda/miss-grumpy-mene-l-enquete-au-musee-fenaille-rodez_TFO12202-FMA-20260320153225570"
-},
-{
-"address": null,
-"audience": [
-"tous"
-],
-"category": "atelier",
-"commune": "Rodez",
-"description": "Escape game au musée Soulages à Rodez, du 25 juillet au 10 août 2026. Les informations pratiques sont disponibles sur la fiche de l'événement.",
-"end": "2026-08-10",
-"free": null,
-"id": "escape-game-au-musee-soulages-4cc7b00c",
-"image": null,
-"lat": null,
-"lon": null,
-"price_text": null,
-"sector": "pont-de-salars",
-"source_id": "html-rodezagglo",
-"start": "2026-07-25T00:00:00",
-"tags": [],
-"title": "ESCAPE GAME AU MUSÉE SOULAGES !",
-"tldr": null,
-"url": "https://www.rodezagglo.fr/fiche/agenda/escape-game-au-musee-soulages-rodez_TFO12202-FMA-20260130112137031"
-},
-{
-"address": null,
-"audience": [
-"tous"
-],
-"category": "concert",
-"commune": "Le Monastère",
-"description": "Scène ouverte musicale au Monastère le 11 août 2026. Les informations pratiques sont disponibles sur la fiche de l'événement.",
-"end": null,
-"free": null,
-"id": "boeufs-musicaux-scene-ouverte-avec-gabriel-dumas-f75aa2ca",
-"image": null,
-"lat": null,
-"lon": null,
-"price_text": null,
-"sector": "pont-de-salars",
-"source_id": "html-rodezagglo",
-"start": "2026-08-11T00:00:00",
-"tags": [],
-"title": "Boeufs musicaux (scène ouverte) avec Gabriel Dumas",
-"tldr": null,
-"url": "https://www.rodezagglo.fr/fiche/agenda/boeufs-musicaux-scene-ouverte-avec-gabriel-dumas-le-monastere_TFO12146-FMA-20250604103727032"
-},
-{
-"address": null,
-"audience": [
-"tous"
-],
-"category": "sport",
-"commune": "Le Monastère",
-"description": "Compétition de pétanque au Monastère le 11 août 2026. Les informations pratiques sont disponibles sur la fiche de l'événement.",
-"end": null,
-"free": null,
-"id": "concours-de-petanque-au-combero-e8750f11",
-"image": null,
-"lat": null,
-"lon": null,
-"price_text": null,
-"sector": "pont-de-salars",
-"source_id": "html-rodezagglo",
-"start": "2026-08-11T00:00:00",
-"tags": [],
-"title": "Concours de pétanque au Combero",
-"tldr": null,
-"url": "https://www.rodezagglo.fr/fiche/agenda/concours-de-petanque-au-combero-le-monastere_TFO12146-FMA-20260608142708061"
-},
-{
-"address": null,
-"audience": [
-"tous"
-],
-"category": "expo",
-"commune": "Rodez",
-"description": "Visite guidée de l'exposition temporaire à Rodez le 11 août 2026. Les informations pratiques sont disponibles sur la fiche de l'événement.",
-"end": null,
-"free": null,
-"id": "visite-guidee-de-l-exposition-temporaire-le-temps-des-images-la-sculpture-en-rou-4392ddef",
-"image": null,
-"lat": null,
-"lon": null,
-"price_text": null,
-"sector": "pont-de-salars",
-"source_id": "html-rodezagglo",
-"start": "2026-08-11T00:00:00",
-"tags": [],
-"title": "Visite guidée de l'exposition temporaire - \"Le temps des images. La sculpture en Rouergue à la fin du Moyen Age\"",
-"tldr": null,
-"url": "https://www.rodezagglo.fr/fiche/agenda/visite-guidee-de-l-exposition-temporaire-le-temps-des-images-la-sculpture-en-rouergue-a-la-fin-du-moyen-age-rodez_TFO12202-FMA-20260320112606366"
-},
-{
-"address": null,
-"audience": [
-"tous"
-],
-"category": "concert",
-"commune": "Rodez",
-"description": "Concert lyrique à Rodez le 11 août 2026. Les informations pratiques sont disponibles sur la fiche de l'événement.",
-"end": null,
-"free": null,
-"id": "concert-lyrique-chants-de-l-ame-267cbd69",
-"image": null,
-"lat": null,
-"lon": null,
-"price_text": null,
-"sector": "pont-de-salars",
-"source_id": "html-rodezagglo",
-"start": "2026-08-11T00:00:00",
-"tags": [],
-"title": "Concert lyrique : Chants de l'âme",
-"tldr": null,
-"url": "https://www.rodezagglo.fr/fiche/agenda/concert-lyrique-chants-de-l-ame-rodez_TFO12202-FMA-20260727114732900"
-},
-{
-"address": null,
-"audience": [
-"tous"
-],
-"category": "patrimoine",
-"commune": "Rodez",
-"description": "Visite guidée de l'ancienne Chartreuse à Rodez le 11 août 2026. Les informations pratiques sont disponibles sur la fiche de l'événement.",
-"end": null,
-"free": null,
-"id": "visite-guidee-de-l-ancienne-chartreuse-05112890",
-"image": null,
-"lat": null,
-"lon": null,
-"price_text": null,
-"sector": "pont-de-salars",
-"source_id": "html-rodezagglo",
-"start": "2026-08-11T00:00:00",
-"tags": [],
-"title": "Visite guidée de l'ancienne Chartreuse",
-"tldr": null,
-"url": "https://www.rodezagglo.fr/fiche/agenda/visite-guidee-de-l-ancienne-chartreuse-rodez_TFO518090066486"
-},
-{
-"address": null,
-"audience": [
-"tous"
-],
-"category": "atelier",
-"commune": "Druelle Balsac",
-"description": "Atelier de calligraphie à Druelle Balsac le 12 août 2026. Les informations pratiques sont disponibles sur la fiche de l'événement.",
-"end": null,
-"free": null,
-"id": "atelier-calligraphie-53c16186",
-"image": null,
-"lat": null,
-"lon": null,
-"price_text": null,
-"sector": "pont-de-salars",
-"source_id": "html-rodezagglo",
-"start": "2026-08-12T00:00:00",
-"tags": [],
-"title": "Atelier calligraphie",
-"tldr": null,
-"url": "https://www.rodezagglo.fr/fiche/agenda/atelier-calligraphie-druelle-balsac_TFO12090-FMA-20260608141819409"
-},
-{
-"address": null,
-"audience": [
-"tous"
-],
-"category": "spectacle",
-"commune": "Le Monastère",
-"description": "Spectacle équestre au Domaine de Combelles, au Monastère, le 12 août 2026. Les informations pratiques sont disponibles sur la fiche de l'événement.",
-"end": null,
-"free": null,
-"id": "spectacle-equestre-en-aparte-au-domaine-de-combelles-a112c987",
-"image": null,
-"lat": null,
-"lon": null,
-"price_text": null,
-"sector": "pont-de-salars",
-"source_id": "html-rodezagglo",
-"start": "2026-08-12T00:00:00",
-"tags": [],
-"title": "Spectacle équestre \" En aparté\" au Domaine de Combelles",
-"tldr": null,
-"url": "https://www.rodezagglo.fr/fiche/agenda/spectacle-equestre-en-aparte-au-domaine-de-combelles-le-monastere_TFO12146-FMA-20260627120107929"
-},
-{
-"address": null,
-"audience": [
-"tous"
-],
-"category": "atelier",
-"commune": "Rodez",
-"description": "Cours de calligraphie latine à Rodez le 12 août 2026. Les informations pratiques sont disponibles sur la fiche de l'événement.",
-"end": null,
-"free": null,
-"id": "cours-de-calligraphie-latine-d9efd028",
-"image": null,
-"lat": null,
-"lon": null,
-"price_text": null,
-"sector": "pont-de-salars",
-"source_id": "html-rodezagglo",
-"start": "2026-08-12T00:00:00",
-"tags": [],
-"title": "Cours de calligraphie latine",
-"tldr": null,
-"url": "https://www.rodezagglo.fr/fiche/agenda/cours-de-calligraphie-latine-rodez_TFO12202-FMA-20251202144421632"
-},
-{
-"address": null,
-"audience": [
-"tous"
-],
-"category": "expo",
-"commune": "Rodez",
-"description": "Visite accompagnée de l'exposition temporaire Xie Lei. Double à Rodez le 12 août 2026. Les informations pratiques sont disponibles sur la fiche de l'événement.",
-"end": null,
-"free": null,
-"id": "visite-accompagnee-de-l-exposition-temporaire-xie-lei-double-29070835",
-"image": null,
-"lat": null,
-"lon": null,
-"price_text": null,
-"sector": "pont-de-salars",
-"source_id": "html-rodezagglo",
-"start": "2026-08-12T00:00:00",
-"tags": [],
-"title": "Visite accompagnée de l'exposition temporaire \"Xie Lei. Double\"",
-"tldr": null,
-"url": "https://www.rodezagglo.fr/fiche/agenda/visite-accompagnee-de-l-exposition-temporaire-xie-lei-double-rodez_TFO12202-FMA-20260415170059759"
-},
-{
-"address": null,
-"audience": [
-"enfants",
-"adultes"
-],
-"category": "atelier",
-"commune": "Rodez",
-"description": "Visite-atelier pour les 4-6 ans à Rodez le 12 août 2026. Les informations pratiques sont disponibles sur la fiche de l'événement.",
-"end": null,
-"free": null,
-"id": "visite-atelier-a-4-mains-sculpture-contemporaine-4-6-ans-648e6c0e",
-"image": null,
-"lat": null,
-"lon": null,
-"price_text": null,
-"sector": "pont-de-salars",
-"source_id": "html-rodezagglo",
-"start": "2026-08-12T00:00:00",
-"tags": [],
-"title": "Visite/atelier à 4 mains : \"Sculpture contemporaine\" (4-6 ans)",
-"tldr": null,
-"url": "https://www.rodezagglo.fr/fiche/agenda/visiteatelier-a-4-mains-sculpture-contemporaine-4-6-ans-rodez_TFO12202-FMA-20260610105517363"
-},
-{
-"address": null,
-"audience": [
-"tous"
-],
-"category": "atelier",
-"commune": "Rodez",
-"description": "Visite-atelier de sculpture contemporaine à Rodez le 12 août 2026. Les informations pratiques sont disponibles sur la fiche de l'événement.",
-"end": null,
-"free": null,
-"id": "visite-atelier-pour-tous-sculpture-contemporaine-18107e00",
-"image": null,
-"lat": null,
-"lon": null,
-"price_text": null,
-"sector": "pont-de-salars",
-"source_id": "html-rodezagglo",
-"start": "2026-08-12T00:00:00",
-"tags": [],
-"title": "Visite/atelier pour tous : \"Sculpture contemporaine\"",
-"tldr": null,
-"url": "https://www.rodezagglo.fr/fiche/agenda/visiteatelier-pour-tous-sculpture-contemporaine-rodez_TFO12202-FMA-20260610110508669"
-},
-{
-"address": null,
-"audience": [
-"enfants",
-"adultes"
-],
-"category": "jeunesse",
-"commune": "Rodez",
-"description": "Activités destinées aux parents et aux enfants de 6 à 11 ans à Rodez le 12 août 2026. Les informations pratiques sont disponibles sur la fiche de l'événement.",
-"end": null,
-"free": null,
-"id": "activites-parents-enfants-6-11-ans-04626486",
-"image": null,
-"lat": null,
-"lon": null,
-"price_text": null,
-"sector": "pont-de-salars",
-"source_id": "html-rodezagglo",
-"start": "2026-08-12T00:00:00",
-"tags": [],
-"title": "Activités parents & enfants (6-11 ans)",
-"tldr": null,
-"url": "https://www.rodezagglo.fr/fiche/agenda/activites-parents--enfants-6-11-ans-rodez_TFO12202-FMA-20260702155702541"
+"url": "https://www.tourisme-aveyron.com/fr/diffusio/agenda/fete-a-frayssinhes-le-vibal_TFO12297-FMA-20260805094031539"
 }
-]
+],
+"extract:f6bf3bb055f5b83583f950c1ce78039140c2138af142e6052b4d7bf80df97bf4": []
 }
