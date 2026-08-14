@@ -1,6 +1,6 @@
 [
  {
-  "title": "Musée : \"Au fil de l’eau\"",
+  "title": "Musée : Au fil de l’eau",
   "start": "2026-03-07T00:00:00",
   "source_id": "html-bourgoin",
   "sector": "villemoirieu",
@@ -20,7 +20,30 @@
   "price_text": null,
   "url": "https://www.bourgoinjallieu.fr/agenda/2645-musee-au-fil-de-l-eau",
   "image": null,
-  "id": "musee-au-fil-de-leau-adf958ec"
+  "id": "musee-au-fil-de-leau-77b18253"
+ },
+ {
+  "title": "Exposition \"Au fil de l'eau\"",
+  "start": "2026-03-07T00:00:00",
+  "source_id": "html-weekend-capi",
+  "sector": "villemoirieu",
+  "end": "2026-08-31",
+  "description": "Le Musée de Bourgoin-Jallieu vous invite à sa nouvelle exposition \"Au Fil De L'eau\". Une immersion dans les paysages d'eau des XIXe et XXe siècles.",
+  "tldr": null,
+  "category": "expo",
+  "tags": [],
+  "audience": [
+   "tous"
+  ],
+  "commune": "Bourgoin-Jallieu",
+  "address": "17, Rue Victor Hugo 38300 Bourgoin-Jallieu, France",
+  "lat": 45.6025,
+  "lon": 5.2747,
+  "free": null,
+  "price_text": null,
+  "url": "https://www.monweekendalacapi.fr/agenda/evenements/exposition-au-fil-de-l-eau",
+  "image": null,
+  "id": "exposition-au-fil-de-l-eau-20649509"
  },
  {
   "title": "Exposition au musée archéologique : Corps parés, âmes révélées…",
@@ -51,7 +74,7 @@
   "source_id": "html-bourgoin",
   "sector": "villemoirieu",
   "end": "2026-09-30",
-  "description": "À l’occasion du bicentenaire de la photographie, le musée de Bourgoin-Jallieu présente cette exposition.",
+  "description": "À l’occasion du bicentenaire de la photographie, le musée présente cette exposition.",
   "tldr": null,
   "category": "expo",
   "tags": [],
@@ -74,9 +97,9 @@
   "source_id": "html-bourgoin",
   "sector": "villemoirieu",
   "end": "2026-09-26",
-  "description": "Du 1er mai au 26 septembre 2026.",
-  "tldr": "Un événement proposant des ateliers ou conseils pour aménager ou décorer une terrasse en extérieur.",
-  "category": "autre",
+  "description": "Opération de la Ville de Bourgoin-Jallieu.",
+  "tldr": null,
+  "category": "spectacle",
   "tags": [],
   "audience": [
    "tous"
@@ -97,7 +120,7 @@
   "source_id": "html-bourgoin",
   "sector": "villemoirieu",
   "end": "2026-09-13",
-  "description": "Du 16 juin au 13 septembre 2026, la Ville de Bourgoin-Jallieu vous propose de nombreuses animations.",
+  "description": "Du 16 juin au 13 septembre 2026, la Ville de Bourgoin-Jallieu propose une programmation estivale.",
   "tldr": null,
   "category": "festival",
   "tags": [],
@@ -190,7 +213,7 @@
   "source_id": "html-bourgoin",
   "sector": "villemoirieu",
   "end": "2026-09-13",
-  "description": "Proposés par l'association « Vibrations Mystiques » et la ville de Bourgoin-Jallieu.",
+  "description": "Proposés par l'association Vibrations Mystiques et la ville de Bourgoin-Jallieu.",
   "tldr": null,
   "category": "nature",
   "tags": [],
@@ -394,12 +417,12 @@
   "id": "happy-time-la-pause-gourmande-au-elles-lunch-cafe-e79d3ec6"
  },
  {
-  "title": "Exposition Archives “Quand la ville arrive à la campagne”",
+  "title": "Exposition Archives \"Quand la ville arrive à la campagne\"",
   "start": "2026-08-04T00:00:00",
   "source_id": "html-capi",
   "sector": "villemoirieu",
   "end": "2026-08-14",
-  "description": "Le pôle Archives de la CAPI et son service mutualisé des archives vous proposent de remonter le temps et de redécouvrir « la ville nouvelle ».",
+  "description": "Le pôle Archives de la CAPI et son service mutualisé des archives proposent de remonter le temps et de redécouvrir « la ville nouvelle ». Plus d’infos sur monweekendalacapi.fr.",
   "tldr": null,
   "category": "expo",
   "tags": [],
@@ -414,15 +437,15 @@
   "price_text": null,
   "url": "https://capi-agglo.fr/agenda/exposition-archives-quand-la-ville-arrive-a-la-campagne/",
   "image": null,
-  "id": "exposition-archives-quand-la-ville-arrive-a-la-campagne-321c4d11"
+  "id": "exposition-archives-quand-la-ville-arrive-a-la-campagne-91020608"
  },
  {
-  "title": "Exposition Archives \"Quand la ville arrive à la campagne\"",
+  "title": "Exposition : Archives Quand la ville arrive à la campagne",
   "start": "2026-08-04T00:00:00",
-  "source_id": "html-weekend-capi",
+  "source_id": "html-bourgoin",
   "sector": "villemoirieu",
   "end": "2026-08-14",
-  "description": "Le pôle Archives de la CAPI et son service mutualisé des archives proposent de remonter le temps et de redécouvrir « la ville nouvelle ». L'exposition est visible du 4 au 14 août 2026.",
+  "description": "Le pôle Archives de la CAPI et son service mutualisé des archives proposent une exposition.",
   "tldr": null,
   "category": "expo",
   "tags": [],
@@ -430,14 +453,14 @@
    "tous"
   ],
   "commune": "Bourgoin-Jallieu",
-  "address": "Office de Tourisme CAPI-PORTE DE L'ISERE 38300 Bourgoin-Jallieu, France",
+  "address": null,
   "lat": 45.6025,
   "lon": 5.2747,
   "free": null,
   "price_text": null,
-  "url": "https://www.monweekendalacapi.fr/agenda/evenements/exposition-archives-quand-la-ville-arrive-a-la-campagne",
+  "url": "https://www.bourgoinjallieu.fr/agenda/1818-exposition-archives-quand-la-ville-arrive-a-la-campagne",
   "image": null,
-  "id": "exposition-archives-quand-la-ville-arrive-a-la-campagne-b81865fa"
+  "id": "exposition-archives-quand-la-ville-arrive-a-la-campagne-9b0d29f1"
  },
  {
   "title": "Musée Galerie Clauorum : Christian Chevallier photographies",
@@ -445,7 +468,7 @@
   "source_id": "html-bourgoin",
   "sector": "villemoirieu",
   "end": "2026-09-22",
-  "description": "L'exposition photographique est présentée au sein du musée Clauorum de Bourgoin-Jallieu.",
+  "description": "L'exposition photographique est présentée au sein du musée Clauorum.",
   "tldr": null,
   "category": "expo",
   "tags": [],
@@ -491,8 +514,8 @@
   "source_id": "html-bourgoin",
   "sector": "villemoirieu",
   "end": "2026-08-26",
-  "description": "Cinéma Hors Pistes.",
-  "tldr": "Projection de films d'auteur et documentaires en plein air, souvent axés sur des thèmes sociaux ou culturels.",
+  "description": "Séances de cinéma organisées à Bourgoin-Jallieu.",
+  "tldr": null,
   "category": "cinema",
   "tags": [],
   "audience": [
@@ -514,7 +537,7 @@
   "source_id": "html-weekend-capi",
   "sector": "villemoirieu",
   "end": "2026-08-15",
-  "description": "Le comité des fêtes organise la traditionnelle fête du village les 14 et 15 août. Animations et ambiance festive à Chèzeneuve.",
+  "description": "Le comité des fêtes organise la traditionnelle fête du village les 14 et 15 août. L'événement se déroule sur deux jours.",
   "tldr": null,
   "category": "fete",
   "tags": [],
@@ -629,7 +652,7 @@
   "source_id": "html-bourgoin",
   "sector": "villemoirieu",
   "end": "2026-08-29",
-  "description": "L'espace Carnot accueillera une exposition hommage à l'artiste Jacqueline Anselme.",
+  "description": "L'espace Carnot accueillera une exposition hommage à l'artiste.",
   "tldr": null,
   "category": "expo",
   "tags": [],
@@ -652,12 +675,13 @@
   "source_id": "html-bourgoin",
   "sector": "villemoirieu",
   "end": null,
-  "description": "A l'occasion des Festiv'été, les cinés-été reviennent en plein air.",
+  "description": "A l'occasion des Festiv'été, les cinés-été reviennent en plein air dans les parcs.",
   "tldr": null,
   "category": "cinema",
   "tags": [],
   "audience": [
-   "tous"
+   "famille",
+   "enfants"
   ],
   "commune": "Bourgoin-Jallieu",
   "address": null,
@@ -670,20 +694,18 @@
   "id": "cine-ete-parc-des-lilattes-les-enfants-de-la-resistance-5cf4f6ac"
  },
  {
-  "title": "Ciné-été à Champfleuri : \"Super Mario Galaxy\"",
+  "title": "Ciné-été à Champfleuri : Super Mario Galaxy",
   "start": "2026-08-20T00:00:00",
   "source_id": "html-bourgoin",
   "sector": "villemoirieu",
   "end": null,
-  "description": "A l'occasion des Festiv'été, les cinés-été reviennent en plein air.",
+  "description": "A l'occasion des Festiv'été, les cinés-été reviennent en plein air à Champfleuri.",
   "tldr": null,
   "category": "cinema",
   "tags": [],
   "audience": [
-   "famille",
    "enfants",
-   "ados",
-   "tous"
+   "famille"
   ],
   "commune": "Bourgoin-Jallieu",
   "address": null,
@@ -693,7 +715,7 @@
   "price_text": null,
   "url": "https://www.bourgoinjallieu.fr/agenda/1746-cine-ete-a-champfleuri-super-mario-galaxy",
   "image": null,
-  "id": "cine-ete-a-champfleuri-super-mario-galaxy-419af3e1"
+  "id": "cine-ete-a-champfleuri-super-mario-galaxy-df5a354d"
  },
  {
   "title": "Festiv'été : dernier Bal Carnot de l'été",
@@ -724,7 +746,7 @@
   "source_id": "html-bourgoin",
   "sector": "villemoirieu",
   "end": null,
-  "description": "Nationale - Championnat 2026/27 : 1ère journée.",
+  "description": "Nationale, championnat 2026/27 : 1ère journée.",
   "tldr": null,
   "category": "sport",
   "tags": [],
@@ -793,7 +815,7 @@
   "source_id": "html-bourgoin",
   "sector": "villemoirieu",
   "end": null,
-  "description": "Dernière séance !",
+  "description": "Dernière séance de la saison.",
   "tldr": null,
   "category": "cinema",
   "tags": [],
@@ -816,8 +838,8 @@
   "source_id": "html-capi",
   "sector": "villemoirieu",
   "end": null,
-  "description": "Terminez les vacances en beauté avec une soirée sportive : l’Aquaday ! Les maîtres nageurs sauveteurs de la Piscine CAPI Bellevue à Saint-Quentin-Fallavier organisent un nouvel Aquaday.",
-  "tldr": "Une soirée sportive avec des animations aquatiques encadrées par des maîtres nageurs sauveteurs.",
+  "description": "Terminez les vacances en beauté avec une soirée sportive. Les maîtres nageurs sauveteurs de la Piscine CAPI Bellevue organisent un nouvel Aquaday.",
+  "tldr": null,
   "category": "sport",
   "tags": [],
   "audience": [
@@ -839,7 +861,7 @@
   "source_id": "html-bourgoin",
   "sector": "villemoirieu",
   "end": null,
-  "description": "Rendez-vous incontournable de la vie berjallienne, le Forum des associations se tiendra en ville.",
+  "description": "Rendez-vous incontournable de la vie berjallienne.",
   "tldr": null,
   "category": "autre",
   "tags": [],
@@ -862,9 +884,9 @@
   "source_id": "html-bourgoin",
   "sector": "villemoirieu",
   "end": null,
-  "description": "Amateurs de glisse, curieux et passionnés : venez découvrir l’univers du skatepark.",
+  "description": "Venez découvrir l’univers du skatepark.",
   "tldr": null,
-  "category": "fete",
+  "category": "sport",
   "tags": [],
   "audience": [
    "ados",
@@ -882,11 +904,11 @@
  },
  {
   "title": "Stage de chants médiévaux",
-  "start": "2026-08-29T09:30:00+02:00",
+  "start": "2026-08-29T09:30:00",
   "source_id": "html-cafe-crem",
   "sector": "villemoirieu",
-  "end": "2026-08-29T15:00:00+02:00",
-  "description": "Stage de chants médiévaux le samedi 29 août, de 9h30 à 12h puis de 13h30 à 15h. L'événement a lieu au Café Crèm' à Villemoirieu et le détail est disponible dans le programme.",
+  "end": "2026-08-29T15:00:00",
+  "description": "Stage de chants médiévaux proposé par l'association Café Crèm'. Deux séances le samedi 29 août : 9h30-12h et 13h30-15h.",
   "tldr": null,
   "category": "atelier",
   "tags": [],
@@ -909,14 +931,13 @@
   "source_id": "html-bourgoin",
   "sector": "villemoirieu",
   "end": null,
-  "description": "Offrez-vous un dernier moment de détente avant la rentrée scolaire : la Ville organise la fête des familles.",
+  "description": "Offrez-vous un dernier moment de détente avant la rentrée scolaire.",
   "tldr": null,
   "category": "fete",
   "tags": [],
   "audience": [
    "famille",
-   "enfants",
-   "tous"
+   "enfants"
   ],
   "commune": "Bourgoin-Jallieu",
   "address": null,
@@ -929,30 +950,7 @@
   "id": "dimanche-30-aout-c-est-la-fete-des-familles-9beedb41"
  },
  {
-  "title": "Exposition de peintures",
-  "start": "2026-09-01T00:00:00",
-  "source_id": "html-capi",
-  "sector": "villemoirieu",
-  "end": "2026-09-12",
-  "description": "Venez découvrir une exposition réunissant 2 artistes peintres, Sylvia Bielsa Allagnat et Frédéric Bernard.",
-  "tldr": null,
-  "category": "expo",
-  "tags": [],
-  "audience": [
-   "tous"
-  ],
-  "commune": "L'Isle-d'Abeau",
-  "address": "Office de Tourisme CAPI - Espace Carnot",
-  "lat": 45.6153,
-  "lon": 5.2234,
-  "free": null,
-  "price_text": null,
-  "url": "https://capi-agglo.fr/agenda/exposition-de-peintures-4/",
-  "image": null,
-  "id": "exposition-de-peintures-bb31db63"
- },
- {
-  "title": "Exposition “Rêver Alice”",
+  "title": "Exposition \"Rêver Alice\"",
   "start": "2026-09-01T00:00:00",
   "source_id": "html-capi",
   "sector": "villemoirieu",
@@ -972,7 +970,30 @@
   "price_text": null,
   "url": "https://capi-agglo.fr/agenda/exposition/",
   "image": null,
-  "id": "exposition-rever-alice-86807452"
+  "id": "exposition-rever-alice-decba5f5"
+ },
+ {
+  "title": "Exposition de peintures",
+  "start": "2026-09-01T00:00:00",
+  "source_id": "html-capi",
+  "sector": "villemoirieu",
+  "end": "2026-09-12",
+  "description": "Venez découvrir une exposition réunissant 2 artistes peintres, Sylvia Bielsa Allagnat et Frédéric Bernard. L’exposition sera ouverte durant le mois de septembre.",
+  "tldr": null,
+  "category": "expo",
+  "tags": [],
+  "audience": [
+   "tous"
+  ],
+  "commune": "L'Isle-d'Abeau",
+  "address": "Office de Tourisme CAPI - Espace Carnot",
+  "lat": 45.6153,
+  "lon": 5.2234,
+  "free": null,
+  "price_text": null,
+  "url": "https://capi-agglo.fr/agenda/exposition-de-peintures-4/",
+  "image": null,
+  "id": "exposition-de-peintures-bb31db63"
  },
  {
   "title": "Exposition peintures",
@@ -980,7 +1001,7 @@
   "source_id": "html-bourgoin",
   "sector": "villemoirieu",
   "end": "2026-09-12",
-  "description": "L'espace Carnot accueillera deux artistes peintres, dont Sylvia Bielsa Allagnat.",
+  "description": "L'espace Carnot accueille deux artistes peintres.",
   "tldr": null,
   "category": "expo",
   "tags": [],
@@ -998,12 +1019,35 @@
   "id": "exposition-peintures-544943a5"
  },
  {
+  "title": "Festival Belles Journées",
+  "start": "2026-09-04T00:00:00",
+  "source_id": "html-capi",
+  "sector": "villemoirieu",
+  "end": "2026-09-05",
+  "description": "Extrait du site internet de la commune de Bourgoin-Jallieu, rendez-vous ici pour plus d’informations. C’est officiel : le Festival Les Belles Journées est COMPLET !",
+  "tldr": null,
+  "category": "festival",
+  "tags": [],
+  "audience": [
+   "tous"
+  ],
+  "commune": "Bourgoin-Jallieu",
+  "address": null,
+  "lat": 45.6025,
+  "lon": 5.2747,
+  "free": null,
+  "price_text": null,
+  "url": "https://capi-agglo.fr/agenda/festival-belles-journees/",
+  "image": null,
+  "id": "festival-belles-journees-e8f229f5"
+ },
+ {
   "title": "Les Belles Journées # 12",
   "start": "2026-09-04T00:00:00",
   "source_id": "html-bourgoin",
   "sector": "villemoirieu",
   "end": "2026-09-05",
-  "description": "C'est officiel : le Festival Les Belles Journées est COMPLET !",
+  "description": "Le festival Les Belles Journées est complet.",
   "tldr": null,
   "category": "festival",
   "tags": [],
@@ -1049,12 +1093,13 @@
   "source_id": "html-capi",
   "sector": "villemoirieu",
   "end": null,
-  "description": "Venez écouter François Ménager le vendredi 4 septembre à partir de 19h lors de la soirée conte au jardin de l’étang de Vaugelas à Villefontaine.",
+  "description": "Venez écouter Francois Ménager le vendredi 4 septembre à partir de 19h lors de la soirée conte au jardin de l’étang de Vaugelas à Villefontaine. En cas de pluie, report au Centre Simone Signoret.",
   "tldr": null,
   "category": "spectacle",
   "tags": [],
   "audience": [
-   "tous"
+   "famille",
+   "adultes"
   ],
   "commune": "Villefontaine",
   "address": "Jardin de l’étang de Vaugelas, Villefontaine",
@@ -1072,7 +1117,7 @@
   "source_id": "html-bourgoin",
   "sector": "villemoirieu",
   "end": null,
-  "description": "Nationale - Championnat 2026/27.",
+  "description": "Nationale, championnat 2026/27.",
   "tldr": null,
   "category": "sport",
   "tags": [],
@@ -1090,12 +1135,35 @@
   "id": "rugby-csbj-soc-chambery-dcba0787"
  },
  {
+  "title": "Rencontre autour du livre",
+  "start": "2026-09-05T16:30:00",
+  "source_id": "html-cafe-crem",
+  "sector": "villemoirieu",
+  "end": "2026-09-05T18:30:00",
+  "description": "Rencontre conviviale autour du livre organisée par l'association. Elle se déroule le samedi 5 septembre de 16h30 à 18h30.",
+  "tldr": null,
+  "category": "conference",
+  "tags": [],
+  "audience": [
+   "tous"
+  ],
+  "commune": "Villemoirieu",
+  "address": "1 Parc d'activités du Buisson Rond, 38460 Villemoirieu",
+  "lat": 45.7138,
+  "lon": 5.2348,
+  "free": null,
+  "price_text": null,
+  "url": "https://cafe-crem.fr/programme#rencontre-autour-du-livre-1788591600000",
+  "image": null,
+  "id": "rencontre-autour-du-livre-15bba864"
+ },
+ {
   "title": "Bourse d’échanges trains, autos, jouets",
   "start": "2026-09-06T00:00:00",
   "source_id": "html-bourgoin",
   "sector": "villemoirieu",
   "end": null,
-  "description": "Organisée par l'association de modélisme ferroviaire « Omnibus ».",
+  "description": "Organisée par l'association de modélisme ferroviaire Omnibus.",
   "tldr": null,
   "category": "autre",
   "tags": [],
@@ -1118,14 +1186,13 @@
   "source_id": "html-bourgoin",
   "sector": "villemoirieu",
   "end": null,
-  "description": "Les textiles se racontent - Visite contée.",
+  "description": "Les textiles se racontent, visite contée.",
   "tldr": null,
   "category": "patrimoine",
   "tags": [],
   "audience": [
    "famille",
-   "enfants",
-   "tous"
+   "enfants"
   ],
   "commune": "Bourgoin-Jallieu",
   "address": null,
@@ -1148,7 +1215,6 @@
   "category": "patrimoine",
   "tags": [],
   "audience": [
-   "adultes",
    "tous"
   ],
   "commune": "Bourgoin-Jallieu",
@@ -1162,18 +1228,40 @@
   "id": "visite-commentee-au-fil-de-l-histoire-823a3b5b"
  },
  {
+  "title": "Repair Café & Repair Linux",
+  "start": "2026-09-06T09:00:00",
+  "source_id": "html-cafe-crem",
+  "sector": "villemoirieu",
+  "end": "2026-09-06T12:00:00",
+  "description": "Atelier de réparation pour donner une seconde vie aux objets et aider sur Linux. Rendez-vous le dimanche 6 septembre de 9h00 à 12h00.",
+  "tldr": null,
+  "category": "atelier",
+  "tags": [],
+  "audience": [
+   "tous"
+  ],
+  "commune": "Villemoirieu",
+  "address": "1 Parc d'activités du Buisson Rond, 38460 Villemoirieu",
+  "lat": 45.7138,
+  "lon": 5.2348,
+  "free": null,
+  "price_text": null,
+  "url": "https://cafe-crem.fr/programme#repair-cafe-repair-linux-1788678000000",
+  "image": null,
+  "id": "repair-cafe-repair-linux-a98817bd"
+ },
+ {
   "title": "Réunion publique : Rendez-vous le 10 septembre pour parler des conseils de quartier",
   "start": "2026-09-10T00:00:00",
   "source_id": "html-bourgoin",
   "sector": "villemoirieu",
   "end": null,
-  "description": "Pour tout savoir de la nouvelle organisation de la démocratie participative, une réunion publique est organisée.",
+  "description": "Pour tout savoir de la nouvelle organisation de la démocratie participative.",
   "tldr": null,
   "category": "conference",
   "tags": [],
   "audience": [
-   "adultes",
-   "tous"
+   "adultes"
   ],
   "commune": "Bourgoin-Jallieu",
   "address": null,
@@ -1191,8 +1279,8 @@
   "source_id": "html-bourgoin",
   "sector": "villemoirieu",
   "end": null,
-  "description": "Une adaptation de la comédie musicale « Notre Dame de Paris ».",
-  "tldr": "Spectacle musical adapté de la comédie musicale 'Notre-Dame de Paris', interprété par la Compagnie Vocale.",
+  "description": "Une adaptation de la comédie musicale Notre Dame de Paris.",
+  "tldr": null,
   "category": "spectacle",
   "tags": [],
   "audience": [
@@ -1232,30 +1320,7 @@
   "id": "exposition-d-ali-benhamel-f9ec28ef"
  },
  {
-  "title": "Exposition d’Ali Benhamel",
-  "start": "2026-09-15T00:00:00",
-  "source_id": "html-capi",
-  "sector": "villemoirieu",
-  "end": "2026-09-26",
-  "description": "Venez découvrir l’exposition de peintures d’Ali Benhamel qui exposera pour la première fois à l’Espace Carnot.",
-  "tldr": null,
-  "category": "expo",
-  "tags": [],
-  "audience": [
-   "tous"
-  ],
-  "commune": "L'Isle-d'Abeau",
-  "address": "Office de Tourisme CAPI - Espace Carnot",
-  "lat": 45.6153,
-  "lon": 5.2234,
-  "free": null,
-  "price_text": null,
-  "url": "https://capi-agglo.fr/agenda/exposition-dali-benhamel/",
-  "image": null,
-  "id": "exposition-dali-benhamel-b5c5a67b"
- },
- {
-  "title": "TJV 26-27 : Lever de rideau avec \"Secret(s) médical\" | Michel Cymes",
+  "title": "TJV 26-27 : Lever de rideau avec Secret(s) médical | Michel Cymes",
   "start": "2026-10-10T00:00:00",
   "source_id": "html-bourgoin",
   "sector": "villemoirieu",
@@ -1265,8 +1330,7 @@
   "category": "spectacle",
   "tags": [],
   "audience": [
-   "adultes",
-   "tous"
+   "adultes"
   ],
   "commune": "Bourgoin-Jallieu",
   "address": null,
@@ -1276,6 +1340,6 @@
   "price_text": null,
   "url": "https://www.bourgoinjallieu.fr/agenda/662-tjv-26-27-lever-de-rideau-avec-secret-s-medical-michel-cymes",
   "image": null,
-  "id": "tjv-26-27-lever-de-rideau-avec-secret-s-medical-michel-cymes-8ed6c004"
+  "id": "tjv-26-27-lever-de-rideau-avec-secret-s-medical-michel-cymes-4626e35d"
  }
 ]
