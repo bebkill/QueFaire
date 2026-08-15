@@ -18,7 +18,6 @@
 "clarify:3bb203917ce0147f5bbe7a93c09421d9268498f379d815b2019e555c87fad45f": "",
 "clarify:3f4e862a8cda6077f2c4ef6e9339e3546f160212c816875d23c21deb02ee3129": "",
 "clarify:41919b741d3ccf4f7930a00d51329ad29ba9eb54ef0b1beaab09819fba915055": "",
-"clarify:422370e23d9642c610845bad5170de2d3c067ad6b35835c202abeda515f0ca8e": "",
 "clarify:48a0be4331855f0f3a0121dc881eda6aefbf476fc244ef8f9a77d6f542f4cd2f": "",
 "clarify:4b6d61c5b19fdc8f4fc7e9bd11c5a048cb056c6d3533ca6eee01deb236089514": "",
 "clarify:4c7d7143f6c469ef6657f4fe1bae6244b19c405308825b55bb0432e2fb74b595": "",
@@ -34,6 +33,7 @@
 "clarify:829d5ad247c5a76ae74aeaf689afe85167369fc5612cb3cb5a771eb64b481cb6": "",
 "clarify:8367f62db4df02306f4b73ed699853a229f5c55cd4a717d66c7f6c755dcb1b1b": "",
 "clarify:840d0528130e822f6fcb2c9e544cf22e8693a82ba3eddd43ceaa63a49e4a692b": "",
+"clarify:8b7f8f94b19cc7f32804f5a2f3fa78a4283f56d3fc06f5dab6358c9692e11269": "",
 "clarify:8cab65b8664fdd264a487c73cce7a07b2fae753a0fc79ab565875084e551d7f5": "",
 "clarify:8cb3c01dacf65dd9da44b422c72ad5202f235fb33f615e2561f7fa1e6531c867": "",
 "clarify:8e158536049a09f76ce89c6f1d3f31df942c36edeb12874cd7348aeaea2838f1": "",
@@ -52,11 +52,59 @@
 "clarify:d1e18ce1870184348fe70d78514687f725eaac7a7e08e5094e362d9f3d071b4b": "",
 "clarify:d55b8d2e3e852064ea1631622d77b8d78edad1d3107a981f54b1594b71193ef9": "",
 "clarify:e4b0fcd1f4a6d6211aa755fe1371245420c8a1175202e6c57528662032202cac": "",
-"clarify:e6bbfab8df645b57942ae15adaed26a80052da7e1627797c63c427d1e319187e": "",
 "clarify:ed73aaccc251a78cd22df8a532e52bcc54af60e3c553dd21911c91a9d6c86099": "",
 "clarify:ee4921c26fc3b3ed18b9f8d7acb1f07d1871d1db37b43307db6f5d17c25ae913": "",
 "clarify:eea16d1aa7a3035e2b5873e3ef7fbff5f0a948bb16c6a449457b89a07fc8cc8d": "",
 "clarify:f0de6d4fe3565a2037241ac30637f267b190744a36a63d675c7ddf618a77a488": "",
+"clarify:fb97f67e52500753bedba6e38eed371c94aded1533fddc1ff0a27c162bce1021": "",
+"extract:116b1c7583863956429f14ca919212c725ac7de1306c5b1b340fed2df3c2f089": [
+{
+"address": "17, Rue Victor Hugo 38300 Bourgoin-Jallieu, France",
+"audience": [
+"tous"
+],
+"category": "expo",
+"commune": "Bourgoin-Jallieu",
+"description": "Le Musée de Bourgoin-Jallieu invite à sa nouvelle exposition \"Au Fil De L'Eau\". Une immersion dans les paysages d'eau des XIXe et XXe siècles.",
+"end": "2026-08-31",
+"free": null,
+"id": "exposition-au-fil-de-l-eau-20649509",
+"image": null,
+"lat": null,
+"lon": null,
+"price_text": null,
+"sector": "villemoirieu",
+"source_id": "html-weekend-capi",
+"start": "2026-03-07T00:00:00",
+"tags": [],
+"title": "Exposition \"Au fil de l'eau\"",
+"tldr": null,
+"url": "https://www.monweekendalacapi.fr/agenda/evenements/exposition-au-fil-de-l-eau"
+},
+{
+"address": "Chemin de Chavagnant 38300 Chèzeneuve, France",
+"audience": [
+"tous"
+],
+"category": "fete",
+"commune": "Chèzeneuve",
+"description": "Le comité des fêtes organise la traditionnelle fête du village les 14 et 15 août. Retrouvez les animations festives au cœur de Chèzeneuve.",
+"end": "2026-08-15",
+"free": null,
+"id": "chezeneuve-en-fete-313ce8eb",
+"image": null,
+"lat": null,
+"lon": null,
+"price_text": null,
+"sector": "villemoirieu",
+"source_id": "html-weekend-capi",
+"start": "2026-08-14T00:00:00",
+"tags": [],
+"title": "CHEZENEUVE EN FETE",
+"tldr": null,
+"url": "https://www.monweekendalacapi.fr/agenda/evenements/chezeneuve-en-fete"
+}
+],
 "extract:12231cf751516f2e8e3e4b6f1c34f3c389be5c70a1995cb129929e325227b713": [
 {
 "address": "Piscine CAPI Bellevue",
@@ -1359,54 +1407,6 @@
 "title": "Spectacle équestre Haras Del Lobo :  » Z «",
 "tldr": null,
 "url": "https://www.balconsdudauphine-tourisme.com/manifestation/spectacle-equestre-haras-del-lobo-z/"
-}
-],
-"extract:d12a624ba5d56216c9e0c4cee504c6c697706b2e382dffc9cdb0309c19830d6e": [
-{
-"address": "17, Rue Victor Hugo 38300 Bourgoin-Jallieu, France",
-"audience": [
-"tous"
-],
-"category": "expo",
-"commune": "Bourgoin-Jallieu",
-"description": "Le Musée de Bourgoin-Jallieu vous invite à sa nouvelle exposition \"Au Fil De L'eau\". Une immersion dans les paysages d'eau des XIXe et XXe siècles.",
-"end": "2026-08-31",
-"free": null,
-"id": "exposition-au-fil-de-l-eau-20649509",
-"image": null,
-"lat": null,
-"lon": null,
-"price_text": null,
-"sector": "villemoirieu",
-"source_id": "html-weekend-capi",
-"start": "2026-03-07T00:00:00",
-"tags": [],
-"title": "Exposition \"Au fil de l'eau\"",
-"tldr": null,
-"url": "https://www.monweekendalacapi.fr/agenda/evenements/exposition-au-fil-de-l-eau"
-},
-{
-"address": "Chemin de Chavagnant 38300 Chèzeneuve, France",
-"audience": [
-"tous"
-],
-"category": "fete",
-"commune": "Chèzeneuve",
-"description": "Le comité des fêtes organise la traditionnelle fête du village les 14 et 15 août. L'événement se déroule sur deux jours.",
-"end": "2026-08-15",
-"free": null,
-"id": "chezeneuve-en-fete-313ce8eb",
-"image": null,
-"lat": null,
-"lon": null,
-"price_text": null,
-"sector": "villemoirieu",
-"source_id": "html-weekend-capi",
-"start": "2026-08-14T00:00:00",
-"tags": [],
-"title": "CHEZENEUVE EN FETE",
-"tldr": null,
-"url": "https://www.monweekendalacapi.fr/agenda/evenements/chezeneuve-en-fete"
 }
 ]
 }
