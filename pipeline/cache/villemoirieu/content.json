@@ -4,7 +4,7 @@
 "clarify:050a8a2e7aee063aa48ac447a91da2a4bb2e44ba321cf96c1588e3dafcc72fa9": "",
 "clarify:0a2ca6125721c156889e1265927b8567c027dce29b957393ec5ba906967600fa": "",
 "clarify:11f4caee0ef8d2032e82585ef3274b8eba298b114802362d52f6c6dacc1051e8": "",
-"clarify:1362d77b1abd019919698ddbe94c700ba05026dd2b44847022ccaeeb3481aefc": "",
+"clarify:191a6ce4c3e5f8388c37b7dd32f3cc1791f881e80e7cc965a09ff9758b71d807": "",
 "clarify:1d41f9fdec5f25e532547923f5227f9663692c29f78e5e017d8c8a7bba783e30": "",
 "clarify:26141efe3514d19226418cb1cf60085d6ddac9ee86a8a7a3b32ee76ea590686a": "",
 "clarify:2ad035d9d836439b0138ce3757d52d3e84bda9dedc3aa79e4fbdd3102e27983d": "",
@@ -14,13 +14,13 @@
 "clarify:2de72232622eca6311594ec5fa0b9b5bdc8971f530f3391f89e10e307aa24ca6": "",
 "clarify:2ea4229f86402a8f1993b14711fc57b245fc1ccd9f5172152444b9b4bf3fa86d": "",
 "clarify:2f1fe497118b7ba0f8da55940cdc096fd22e79f80a1ffdc06d95dc5983ad819c": "",
-"clarify:33cd49bc28c7d6bc81b93ee123734d8de5cc1727070bc9adae52c218164f924a": "",
+"clarify:31675aa148ce472da9f713499fb7356735b33fbfda084c77b67cbf90b86e22b4": "",
 "clarify:38e6975c591ab41d1044f79cdae09af9244e0d565e7e165b1008f10c06d5579d": "",
 "clarify:3ddec2290e206e35c1c00045c7f2f9e5aa09aac7c822f6cc31a0cc941e29c0ca": "",
 "clarify:3ebc9fe121b457c441310d57e744a8b8a4f1d8039f42f83eb12d3d247fd2c5d1": "",
 "clarify:3f4e862a8cda6077f2c4ef6e9339e3546f160212c816875d23c21deb02ee3129": "",
-"clarify:41919b741d3ccf4f7930a00d51329ad29ba9eb54ef0b1beaab09819fba915055": "",
-"clarify:48a0be4331855f0f3a0121dc881eda6aefbf476fc244ef8f9a77d6f542f4cd2f": "",
+"clarify:44ce5613f0df90764effbac4d71ae279791cbc4f48becbe1449fcb7328ee3cb8": "",
+"clarify:4aedb20e88e1ad15bef5615c2224d7c524527269a226aa3c9af3b2b0d16a145c": "",
 "clarify:4b6d61c5b19fdc8f4fc7e9bd11c5a048cb056c6d3533ca6eee01deb236089514": "",
 "clarify:4e41b4f684ae850d7220c49fca0e28b63e088ee96eefd1a5bb1ba0499b5e2c0e": "",
 "clarify:59f9eec7a83c1a5c5eb8bdcfcdb51c0ef56558f76ad2506c50561a2638d9d16e": "",
@@ -29,12 +29,12 @@
 "clarify:61b0d07c20c1971b38049dad9d4b7d4ca8bdd8fde14946add298293bf6898612": "",
 "clarify:69be46f2895225cedb4e0709e99410ae5f62b8c8360d5353bdee5b0906a77627": "",
 "clarify:6a7f3bace0cbcce89ee66349754153972c685507ddcad8c3d795fe23e61ee144": "",
-"clarify:73aa103d5951afe3a617dce4e876ae16402d99eb36432c4ac264b41f0d2862e2": "",
 "clarify:76cb0b8f74d4f5585b513b860bd83de5c3d3d8a42d8dd3ad913fbb33dc58f1de": "",
 "clarify:7c15d69964e5a3023a649b1c89947a11ff83b867dc80a0d1049dff6aba422acb": "",
 "clarify:829d5ad247c5a76ae74aeaf689afe85167369fc5612cb3cb5a771eb64b481cb6": "",
 "clarify:8367f62db4df02306f4b73ed699853a229f5c55cd4a717d66c7f6c755dcb1b1b": "",
 "clarify:840d0528130e822f6fcb2c9e544cf22e8693a82ba3eddd43ceaa63a49e4a692b": "",
+"clarify:84b67eb7982dcffbb3bbd3a5b89f259ec3a5702ab75e0d54ea9bac83f2cc927b": "",
 "clarify:8cab65b8664fdd264a487c73cce7a07b2fae753a0fc79ab565875084e551d7f5": "",
 "clarify:8cb3c01dacf65dd9da44b422c72ad5202f235fb33f615e2561f7fa1e6531c867": "",
 "clarify:8e158536049a09f76ce89c6f1d3f31df942c36edeb12874cd7348aeaea2838f1": "",
@@ -43,44 +43,19 @@
 "clarify:9880fe010a7d66996989aabdad0ce7bc3e958d846b88c230444a5a9d588cb419": "",
 "clarify:9bfe689198bfdee36401b56bc4f52baedf3db467db58d43c3f5413c11480a884": "",
 "clarify:a0403dd58b67a35f41baef0932ba4a238789b9bdcf4c0568c94ca448af63a287": "",
-"clarify:b11486717ba2cad2489db199499e49bdf9759ad2b9f112a093a992b687b44c62": "",
 "clarify:c35441558e995e651bdf8f52e13de00059ca7673d2818cc2407fea95b12bbad1": "",
 "clarify:c5360fc266fa815e25bd9f0a53572705bf40178bd6521982aaf965ece658812e": "",
 "clarify:d1e18ce1870184348fe70d78514687f725eaac7a7e08e5094e362d9f3d071b4b": "",
 "clarify:d415a925cf5572e7ac7a3a2d6d8b7c792dbb65889bdbf893e6add5e8e9380e3d": "",
 "clarify:d55b8d2e3e852064ea1631622d77b8d78edad1d3107a981f54b1594b71193ef9": "",
-"clarify:e6bbfab8df645b57942ae15adaed26a80052da7e1627797c63c427d1e319187e": "",
 "clarify:ee4921c26fc3b3ed18b9f8d7acb1f07d1871d1db37b43307db6f5d17c25ae913": "",
 "clarify:eea16d1aa7a3035e2b5873e3ef7fbff5f0a948bb16c6a449457b89a07fc8cc8d": "",
 "clarify:f0107dda7ae4efff1f4f6e7929324ecf0462930a03aef22085e2cd710e51c9bd": "",
 "clarify:f0de6d4fe3565a2037241ac30637f267b190744a36a63d675c7ddf618a77a488": "",
+"clarify:f9e05ba43beacb39642bcf5a69fbe790eb97252c04d5238b796096dab58dc9c8": "",
 "clarify:fb0bcf70da217605164725d0c1663160e17780d4ef4c211ed50af8b4fd00dee0": "",
+"clarify:fd266996b2bd5725742283fc2c7c9f12f8ff5c84c0f02e4d328de8e7f45b1f04": "",
 "clarify:fea78ba5d1c22b813bbc09640f99b630cc0d7c950dbe3e84e9a12a864d7bfee4": "",
-"extract:0554a7c17a370bd3decdb2989fa708cf00893018055be8a13f732e1cf2dcc0e0": [
-{
-"address": "17, Rue Victor Hugo 38300 Bourgoin-Jallieu, France",
-"audience": [
-"tous"
-],
-"category": "expo",
-"commune": "Bourgoin-Jallieu",
-"description": "Le Musée de Bourgoin-Jallieu vous invite à sa nouvelle exposition \"Au Fil De L'eau\". Une immersion dans les paysages d'eau des XIXe et XXe siècles.",
-"end": "2026-08-31",
-"free": null,
-"id": "exposition-au-fil-de-l-eau-20649509",
-"image": null,
-"lat": null,
-"lon": null,
-"price_text": null,
-"sector": "villemoirieu",
-"source_id": "html-weekend-capi",
-"start": "2026-03-07T00:00:00",
-"tags": [],
-"title": "Exposition \"Au fil de l'eau\"",
-"tldr": null,
-"url": "https://www.monweekendalacapi.fr/agenda/evenements/exposition-au-fil-de-l-eau"
-}
-],
 "extract:07f21702364fc8dc56687b24a2f4fff60b9eceac701a031bb5e287666ee1f935": [
 {
 "address": null,
@@ -452,7 +427,32 @@
 "url": "https://www.balconsdudauphine-tourisme.com/manifestation/concerts-et-contes-les-hippolytaines-du-cloitre-a-cremieu/"
 }
 ],
-"extract:12231cf751516f2e8e3e4b6f1c34f3c389be5c70a1995cb129929e325227b713": [
+"extract:11322f66f6e7023cfacd8459ad543bf5511039cc3f268d522eea6c660d418fdc": [
+{
+"address": "17, Rue Victor Hugo 38300 Bourgoin-Jallieu, France",
+"audience": [
+"tous"
+],
+"category": "expo",
+"commune": "Bourgoin-Jallieu",
+"description": "Le Musée de Bourgoin-Jallieu vous invite à sa nouvelle exposition \"Au Fil De L'Eau\". Une immersion dans les paysages d'eau des XIXe et XXe siècles.",
+"end": "2026-08-31",
+"free": null,
+"id": "exposition-au-fil-de-l-eau-20649509",
+"image": null,
+"lat": null,
+"lon": null,
+"price_text": null,
+"sector": "villemoirieu",
+"source_id": "html-weekend-capi",
+"start": "2026-03-07T00:00:00",
+"tags": [],
+"title": "Exposition \"Au fil de l'eau\"",
+"tldr": null,
+"url": "https://www.monweekendalacapi.fr/agenda/evenements/exposition-au-fil-de-l-eau"
+}
+],
+"extract:26a70050c7d99efe5d678dc5db1b67be30e8686af647c914b5685e3acf6f0867": [
 {
 "address": "Piscine CAPI Bellevue",
 "audience": [
@@ -460,7 +460,7 @@
 ],
 "category": "sport",
 "commune": "Saint-Quentin-Fallavier",
-"description": "Terminez les vacances en beauté avec une soirée sportive : l'Aquaday ! Les maîtres nageurs sauveteurs de la Piscine CAPI Bellevue à Saint-Quentin-Fallavier organisent un nouvel Aquaday.",
+"description": "Terminez les vacances en beauté avec une soirée sportive. Les maîtres nageurs sauveteurs de la Piscine CAPI Bellevue à Saint-Quentin-Fallavier organisent un nouvel Aquaday.",
 "end": null,
 "free": null,
 "id": "aquaday-0549ab84",
@@ -477,13 +477,36 @@
 "url": "https://capi-agglo.fr/agenda/aquaday/"
 },
 {
-"address": null,
+"address": "Médiathèques",
 "audience": [
 "tous"
 ],
 "category": "expo",
 "commune": "L'Isle-d'Abeau",
-"description": "Venez découvrir une exposition réunissant 2 artistes peintres, Sylvia Bielsa Allagnat et Frédéric Bernard. L'exposition sera ouverte durant le mois de septembre.",
+"description": "Rêver Alice : les illustrations d’Alice au pays des merveilles. Depuis 1865, des dizaines d’artistes ont plongé dans l’univers de Lewis Carroll.",
+"end": "2026-11-30",
+"free": null,
+"id": "exposition-rever-alice-86807452",
+"image": null,
+"lat": null,
+"lon": null,
+"price_text": null,
+"sector": "villemoirieu",
+"source_id": "html-capi",
+"start": "2026-09-01T00:00:00",
+"tags": [],
+"title": "Exposition “Rêver Alice”",
+"tldr": null,
+"url": "https://capi-agglo.fr/agenda/exposition/"
+},
+{
+"address": "Office de Tourisme CAPI - Espace Carnot",
+"audience": [
+"tous"
+],
+"category": "expo",
+"commune": "L'Isle-d'Abeau",
+"description": "Venez découvrir une exposition réunissant 2 artistes peintres, Sylvia Bielsa Allagnat et Frédéric Bernard. L’exposition sera ouverte durant la période indiquée.",
 "end": "2026-09-12",
 "free": null,
 "id": "exposition-de-peintures-bb31db63",
@@ -502,35 +525,11 @@
 {
 "address": null,
 "audience": [
-"famille",
-"tous"
-],
-"category": "expo",
-"commune": "L'Isle-d'Abeau",
-"description": "Rêver Alice : les illustrations d'Alice au pays des merveilles. Depuis 1865, des dizaines d'artistes ont plongé dans l'univers de Lewis Carroll.",
-"end": "2026-11-30",
-"free": null,
-"id": "exposition-rever-alice-86807452",
-"image": null,
-"lat": null,
-"lon": null,
-"price_text": null,
-"sector": "villemoirieu",
-"source_id": "html-capi",
-"start": "2026-09-01T00:00:00",
-"tags": [],
-"title": "Exposition “Rêver Alice”",
-"tldr": null,
-"url": "https://capi-agglo.fr/agenda/exposition/"
-},
-{
-"address": null,
-"audience": [
 "tous"
 ],
 "category": "festival",
 "commune": "Bourgoin-Jallieu",
-"description": "Extrait du site internet de la commune de Bourgoin-Jallieu. C'est officiel : le Festival Les Belles Journées est COMPLET !",
+"description": "C’est officiel : le Festival Les Belles Journées est COMPLET. Rendez-vous sur le site de la commune de Bourgoin-Jallieu pour plus d’informations.",
 "end": "2026-09-05",
 "free": null,
 "id": "festival-belles-journees-e8f229f5",
@@ -547,14 +546,13 @@
 "url": "https://capi-agglo.fr/agenda/festival-belles-journees/"
 },
 {
-"address": "jardin de l'étang de Vaugelas",
+"address": "jardin de l’étang de Vaugelas",
 "audience": [
-"famille",
 "tous"
 ],
 "category": "spectacle",
 "commune": "Villefontaine",
-"description": "Venez écouter François Ménager le vendredi 4 septembre à partir de 19h lors de la soirée conte au jardin de l'étang de Vaugelas à Villefontaine.",
+"description": "Venez écouter François Ménager le vendredi 4 septembre à partir de 19h lors de la soirée conte au jardin de l’étang de Vaugelas à Villefontaine. Report au Centre Simone Signoret.",
 "end": null,
 "free": null,
 "id": "soiree-conte-au-jardin-c8e97f03",
@@ -571,16 +569,16 @@
 "url": "https://capi-agglo.fr/agenda/soiree-conte-au-jardin/"
 },
 {
-"address": null,
+"address": "Office de Tourisme CAPI - Espace Carnot",
 "audience": [
 "tous"
 ],
 "category": "expo",
 "commune": "L'Isle-d'Abeau",
-"description": "Venez découvrir l'exposition de peintures d'Ali Benhamel qui exposera pour la première fois à l'espace Carnot. L'exposition sera ouverte en septembre.",
+"description": "Venez découvrir l’exposition de peintures d’Ali Benhamel, qui expose pour la première fois à l’Espace Carnot. L’exposition sera ouverte durant la période indiquée.",
 "end": "2026-09-26",
 "free": null,
-"id": "exposition-d-ali-benhamel-6b6edaca",
+"id": "exposition-dali-benhamel-b5c5a67b",
 "image": null,
 "lat": null,
 "lon": null,
@@ -589,7 +587,7 @@
 "source_id": "html-capi",
 "start": "2026-09-15T00:00:00",
 "tags": [],
-"title": "Exposition d'Ali Benhamel",
+"title": "Exposition d’Ali Benhamel",
 "tldr": null,
 "url": "https://capi-agglo.fr/agenda/exposition-dali-benhamel/"
 }
