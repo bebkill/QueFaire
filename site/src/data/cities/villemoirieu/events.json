@@ -23,7 +23,7 @@
   "id": "concours-photo-de-lo-parvi-les-paysages-de-l-isle-cremieu-34eed55c"
  },
  {
-  "title": "Musée : « Au fil de l’eau »",
+  "title": "Musée : \" Au fil de l’eau \"",
   "start": "2026-03-07T00:00:00",
   "source_id": "html-bourgoin",
   "sector": "villemoirieu",
@@ -36,14 +36,14 @@
    "tous"
   ],
   "commune": "Bourgoin-Jallieu",
-  "address": null,
+  "address": "Musée de Bourgoin-Jallieu",
   "lat": 45.6025,
   "lon": 5.2747,
   "free": null,
   "price_text": null,
   "url": "https://www.bourgoinjallieu.fr/agenda/2645-musee-au-fil-de-l-eau",
   "image": null,
-  "id": "musee-au-fil-de-leau-b110af0e"
+  "id": "musee-au-fil-de-leau-e36e6d50"
  },
  {
   "title": "Exposition \"Au fil de l'eau\"",
@@ -51,7 +51,7 @@
   "source_id": "html-weekend-capi",
   "sector": "villemoirieu",
   "end": "2026-08-31",
-  "description": "Le Musée de Bourgoin-Jallieu invite à sa nouvelle exposition \"Au fil de l'eau\". Une immersion dans les paysages d'eau des XIXe et XXe siècles.",
+  "description": "Le Musée de Bourgoin-Jallieu vous invite à sa nouvelle exposition « Au Fil De L'eau ». Une immersion dans les paysages d'eau des XIXe et XXe siècles.",
   "tldr": null,
   "category": "expo",
   "tags": [],
@@ -143,7 +143,7 @@
   "source_id": "html-bourgoin",
   "sector": "villemoirieu",
   "end": "2026-09-13",
-  "description": "Du 16 juin au 13 septembre 2026, la Ville de Bourgoin-Jallieu vous propose plus …",
+  "description": "Du 16 juin au 13 septembre 2026, la Ville de Bourgoin-Jallieu propose une nouvelle édition de Festiv'été.",
   "tldr": null,
   "category": "festival",
   "tags": [],
@@ -282,11 +282,12 @@
   "source_id": "html-bourgoin",
   "sector": "villemoirieu",
   "end": "2026-09-13",
-  "description": "Proposés par l'association « Vibrations Mystiques » et la ville de Bourgoin-Jallieu.",
+  "description": "Proposés par l'association Vibrations Mystiques et la ville de Bourgoin-Jallieu. Pique-niques dominicals dans le cadre de Festiv'été.",
   "tldr": null,
-  "category": "fete",
+  "category": "nature",
   "tags": [],
   "audience": [
+   "famille",
    "tous"
   ],
   "commune": "Bourgoin-Jallieu",
@@ -328,15 +329,16 @@
   "source_id": "html-bourgoin",
   "sector": "villemoirieu",
   "end": "2026-08-25",
-  "description": "7 séances au programme dans les parcs et jardins municipaux de la ville du …",
+  "description": "Sept séances sont programmées dans les parcs et jardins municipaux de la ville.",
   "tldr": null,
   "category": "cinema",
   "tags": [],
   "audience": [
+   "famille",
    "tous"
   ],
   "commune": "Bourgoin-Jallieu",
-  "address": "Parcs et jardins municipaux",
+  "address": null,
   "lat": 45.6025,
   "lon": 5.2747,
   "free": null,
@@ -420,7 +422,7 @@
   "source_id": "html-bourgoin",
   "sector": "villemoirieu",
   "end": "2026-08-26",
-  "description": "",
+  "description": "Programmation cinématographique Hors Pistes du 12 au 26 août.",
   "tldr": null,
   "category": "cinema",
   "tags": [],
@@ -489,12 +491,13 @@
   "source_id": "html-bourgoin",
   "sector": "villemoirieu",
   "end": null,
-  "description": "À l'occasion des Festiv'été, les cinés-été reviennent en plein air, dans les parcs …",
+  "description": "À l'occasion des Festiv'été, les cinés-été reviennent en plein air dans les parcs.",
   "tldr": null,
   "category": "cinema",
   "tags": [],
   "audience": [
-   "tous"
+   "famille",
+   "enfants"
   ],
   "commune": "Bourgoin-Jallieu",
   "address": "Parc des Lilattes",
@@ -507,7 +510,7 @@
   "id": "cine-ete-parc-des-lilattes-les-enfants-de-la-resistance-5cf4f6ac"
  },
  {
-  "title": "Ciné-été à Champfleuri : « Super Mario Galaxy »",
+  "title": "Ciné-été à Champfleuri : \" Super Mario Galaxy \"",
   "start": "2026-08-20T00:00:00",
   "source_id": "html-bourgoin",
   "sector": "villemoirieu",
@@ -528,7 +531,7 @@
   "price_text": null,
   "url": "https://www.bourgoinjallieu.fr/agenda/1746-cine-ete-a-champfleuri-super-mario-galaxy",
   "image": null,
-  "id": "cine-ete-a-champfleuri-super-mario-galaxy-d0e211b0"
+  "id": "cine-ete-a-champfleuri-super-mario-galaxy-e79369fd"
  },
  {
   "title": "Festiv'été : dernier Bal Carnot de l'été",
@@ -605,7 +608,7 @@
   "source_id": "html-bourgoin",
   "sector": "villemoirieu",
   "end": null,
-  "description": "Un voyage haut en couleurs à travers les murs peints de la ville !",
+  "description": "Un voyage haut en couleurs à travers les murs peints de la ville.",
   "tldr": null,
   "category": "marche",
   "tags": [],
@@ -674,9 +677,9 @@
   "source_id": "html-bourgoin",
   "sector": "villemoirieu",
   "end": null,
-  "description": "Rendez-vous incontournable de la vie berjallienne, le Forum des associations se …",
+  "description": "Rendez-vous incontournable de la vie berjallienne, le Forum des associations se tient le 29 août.",
   "tldr": null,
-  "category": "autre",
+  "category": "fete",
   "tags": [],
   "audience": [
    "tous"
@@ -702,6 +705,7 @@
   "category": "sport",
   "tags": [],
   "audience": [
+   "ados",
    "tous"
   ],
   "commune": "Bourgoin-Jallieu",
@@ -813,7 +817,7 @@
   "source_id": "html-bourgoin",
   "sector": "villemoirieu",
   "end": "2026-09-12",
-  "description": "L'espace Carnot accueillera 2 artistes peintres, Sylvia Bielsa Allagnat et …",
+  "description": "L'espace Carnot accueille deux artistes peintres, Sylvia Bielsa Allagnat et un second invité.",
   "tldr": null,
   "category": "expo",
   "tags": [],
@@ -859,7 +863,7 @@
   "source_id": "html-bourgoin",
   "sector": "villemoirieu",
   "end": "2026-09-05",
-  "description": "C'est officiel : le Festival Les Belles Journées est COMPLET ! Merci à toute …",
+  "description": "C'est officiel : le Festival Les Belles Journées est complet.",
   "tldr": null,
   "category": "festival",
   "tags": [],
@@ -974,7 +978,7 @@
   "source_id": "html-bourgoin",
   "sector": "villemoirieu",
   "end": null,
-  "description": "Organisée par l'association de modélisme ferroviaire « Omnibus ».",
+  "description": "Organisée par l'association de modélisme ferroviaire Omnibus.",
   "tldr": null,
   "category": "autre",
   "tags": [],
@@ -1067,7 +1071,7 @@
   "source_id": "html-bourgoin",
   "sector": "villemoirieu",
   "end": null,
-  "description": "Pour tout savoir de la nouvelle organisation de la démocratie participative.",
+  "description": "Rendez-vous le 10 septembre pour parler des conseils de quartier.",
   "tldr": null,
   "category": "conference",
   "tags": [],
@@ -1090,7 +1094,7 @@
   "source_id": "html-bourgoin",
   "sector": "villemoirieu",
   "end": null,
-  "description": "Une adaptation de la comédie musicale « Notre Dame de Paris ».",
+  "description": "Une adaptation de la comédie musicale Notre Dame de Paris.",
   "tldr": null,
   "category": "spectacle",
   "tags": [],
@@ -1159,7 +1163,7 @@
   "source_id": "html-bourgoin",
   "sector": "villemoirieu",
   "end": null,
-  "description": "Et si vous preniez le temps d’une pause culturelle ? Un mardi par mois.",
+  "description": "Une pause culturelle mensuelle autour d’une œuvre.",
   "tldr": null,
   "category": "conference",
   "tags": [],
@@ -1182,9 +1186,9 @@
   "source_id": "html-bourgoin",
   "sector": "villemoirieu",
   "end": null,
-  "description": "",
+  "description": "Séance du conseil municipal de Bourgoin-Jallieu.",
   "tldr": null,
-  "category": "conference",
+  "category": "autre",
   "tags": [],
   "audience": [
    "tous"
@@ -1200,7 +1204,7 @@
   "id": "conseil-municipal-a7fdeeec"
  },
  {
-  "title": "TJV 26-27 : Lever de rideau avec « Secret(s) médical » | Michel Cymes",
+  "title": "TJV 26-27 : Lever de rideau avec \" Secret(s) médical \" | Michel Cymes",
   "start": "2026-10-10T00:00:00",
   "source_id": "html-bourgoin",
   "sector": "villemoirieu",
@@ -1210,6 +1214,7 @@
   "category": "spectacle",
   "tags": [],
   "audience": [
+   "adultes",
    "tous"
   ],
   "commune": "Bourgoin-Jallieu",
@@ -1220,6 +1225,6 @@
   "price_text": null,
   "url": "https://www.bourgoinjallieu.fr/agenda/662-tjv-26-27-lever-de-rideau-avec-secret-s-medical-michel-cymes",
   "image": null,
-  "id": "tjv-26-27-lever-de-rideau-avec-secret-s-medical-michel-cymes-dd2b5d70"
+  "id": "tjv-26-27-lever-de-rideau-avec-secret-s-medical-michel-cymes-cae55556"
  }
 ]

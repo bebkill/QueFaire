@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-08-17T04:39:13",
+ "generated_at": "2026-08-17T15:18:13",
  "cities": [
   {
    "id": "pont-de-salars",
@@ -14,7 +14,7 @@
    "unusual_count": 273,
    "notable_count": 113,
    "photo_count": 2367,
-   "generated_at": "2026-08-17T04:35:39",
+   "generated_at": "2026-08-17T15:16:12",
    "url": "pont-de-salars/"
   },
   {
@@ -30,7 +30,7 @@
    "unusual_count": 209,
    "notable_count": 245,
    "photo_count": 56,
-   "generated_at": "2026-08-17T04:39:13",
+   "generated_at": "2026-08-17T15:18:13",
    "url": "villemoirieu/"
   }
  ]
