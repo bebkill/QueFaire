@@ -23,7 +23,7 @@
   "id": "concours-photo-de-lo-parvi-les-paysages-de-l-isle-cremieu-34eed55c"
  },
  {
-  "title": "Musée : \" Au fil de l’eau \"",
+  "title": "Musée : « Au fil de l’eau »",
   "start": "2026-03-07T00:00:00",
   "source_id": "html-bourgoin",
   "sector": "villemoirieu",
@@ -36,37 +36,14 @@
    "tous"
   ],
   "commune": "Bourgoin-Jallieu",
-  "address": "Musée de Bourgoin-Jallieu",
+  "address": null,
   "lat": 45.6025,
   "lon": 5.2747,
   "free": null,
   "price_text": null,
   "url": "https://www.bourgoinjallieu.fr/agenda/2645-musee-au-fil-de-l-eau",
   "image": null,
-  "id": "musee-au-fil-de-leau-e36e6d50"
- },
- {
-  "title": "Exposition \"Au fil de l'eau\"",
-  "start": "2026-03-07T00:00:00",
-  "source_id": "html-weekend-capi",
-  "sector": "villemoirieu",
-  "end": "2026-08-31",
-  "description": "Le Musée de Bourgoin-Jallieu vous invite à sa nouvelle exposition « Au Fil De L'eau ». Une immersion dans les paysages d'eau des XIXe et XXe siècles.",
-  "tldr": null,
-  "category": "expo",
-  "tags": [],
-  "audience": [
-   "tous"
-  ],
-  "commune": "Bourgoin-Jallieu",
-  "address": "17, Rue Victor Hugo 38300 Bourgoin-Jallieu, France",
-  "lat": 45.6025,
-  "lon": 5.2747,
-  "free": null,
-  "price_text": null,
-  "url": "https://www.monweekendalacapi.fr/agenda/evenements/exposition-au-fil-de-l-eau",
-  "image": null,
-  "id": "exposition-au-fil-de-l-eau-20649509"
+  "id": "musee-au-fil-de-leau-b110af0e"
  },
  {
   "title": "Exposition au musée archéologique : Corps parés, âmes révélées…",
@@ -105,7 +82,7 @@
    "tous"
   ],
   "commune": "Bourgoin-Jallieu",
-  "address": "Parc des Mûriers",
+  "address": "Parc des mûriers",
   "lat": 45.6025,
   "lon": 5.2747,
   "free": null,
@@ -120,9 +97,9 @@
   "source_id": "html-bourgoin",
   "sector": "villemoirieu",
   "end": "2026-09-26",
-  "description": "Du 1er mai au 26 septembre 2026.",
+  "description": "Du 1er mai au 26 septembre 2026. Opération estivale proposée par la Ville.",
   "tldr": null,
-  "category": "autre",
+  "category": "spectacle",
   "tags": [],
   "audience": [
    "tous"
@@ -143,7 +120,7 @@
   "source_id": "html-bourgoin",
   "sector": "villemoirieu",
   "end": "2026-09-13",
-  "description": "Du 16 juin au 13 septembre 2026, la Ville de Bourgoin-Jallieu propose une programmation estivale.",
+  "description": "Du 16 juin au 13 septembre 2026, la Ville de Bourgoin-Jallieu propose une riche programmation estivale.",
   "tldr": null,
   "category": "festival",
   "tags": [],
@@ -306,12 +283,11 @@
   "source_id": "html-bourgoin",
   "sector": "villemoirieu",
   "end": "2026-09-13",
-  "description": "Proposés par l'association « Vibrations Mystiques » et la Ville de Bourgoin-Jallieu.",
-  "tldr": "Pique-niques organisés pour le grand public dans les parcs de Bourgoin-Jallieu, animés par l'association « Vibrations Mystiques ».",
+  "description": "Proposés par l'association « Vibrations Mystiques » et la ville de Bourgoin-Jallieu.",
+  "tldr": null,
   "category": "nature",
   "tags": [],
   "audience": [
-   "famille",
    "tous"
   ],
   "commune": "Bourgoin-Jallieu",
@@ -361,7 +337,7 @@
    "tous"
   ],
   "commune": "Bourgoin-Jallieu",
-  "address": "Parcs et jardins municipaux",
+  "address": null,
   "lat": 45.6025,
   "lon": 5.2747,
   "free": null,
@@ -407,7 +383,7 @@
    "tous"
   ],
   "commune": "Bourgoin-Jallieu",
-  "address": "Musée Clauorum",
+  "address": null,
   "lat": 45.6025,
   "lon": 5.2747,
   "free": null,
@@ -445,8 +421,8 @@
   "source_id": "html-bourgoin",
   "sector": "villemoirieu",
   "end": "2026-08-26",
-  "description": "",
-  "tldr": "Séances de cinéma en plein air ou en salle proposant des films d'auteur ou des projections thématiques.",
+  "description": "Projections dans le cadre de l'événement Cinéma Hors Pistes.",
+  "tldr": null,
   "category": "cinema",
   "tags": [],
   "audience": [
@@ -463,12 +439,35 @@
   "id": "cinema-hors-pistes-f96a6ce7"
  },
  {
-  "title": "Exposition : Hommage à Jacqueline Anselme",
+  "title": "Exposition Hommage à Jacqueline Anselme",
   "start": "2026-08-17T00:00:00",
-  "source_id": "html-bourgoin",
+  "source_id": "html-capi",
   "sector": "villemoirieu",
   "end": "2026-08-29",
-  "description": "L'espace Carnot accueillera une exposition hommage à l'artiste.",
+  "description": "L'Espace Carnot accueille une exposition hommage à l'artiste-peintre berjalienne Jacqueline Anselme, qui a exposé pendant plus de 50 ans dans le Nord-Isère.",
+  "tldr": null,
+  "category": "expo",
+  "tags": [],
+  "audience": [
+   "tous"
+  ],
+  "commune": "L'Isle-d'Abeau",
+  "address": "Office de Tourisme CAPI - Espace Carnot",
+  "lat": 45.6153,
+  "lon": 5.2234,
+  "free": null,
+  "price_text": null,
+  "url": "https://capi-agglo.fr/agenda/exposition-hommage-a-jacqueline-anselme/",
+  "image": null,
+  "id": "exposition-hommage-a-jacqueline-anselme-c45c8d50"
+ },
+ {
+  "title": "Exposition Hommage à Jacqueline Anselme",
+  "start": "2026-08-17T00:00:00",
+  "source_id": "html-weekend-capi",
+  "sector": "villemoirieu",
+  "end": "2026-08-29",
+  "description": "L’espace Carnot accueillera une exposition hommage à l’artiste-peintre berjalienne Jacqueline Anselme. Elle a exposé pendant plus de 50 ans dans le Nord.",
   "tldr": null,
   "category": "expo",
   "tags": [],
@@ -476,14 +475,14 @@
    "tous"
   ],
   "commune": "Bourgoin-Jallieu",
-  "address": "Espace Carnot",
+  "address": "Office de Tourisme CAPI-PORTE DE L'ISERE 38300 Bourgoin-Jallieu, France",
   "lat": 45.6025,
   "lon": 5.2747,
   "free": null,
   "price_text": null,
-  "url": "https://www.bourgoinjallieu.fr/agenda/781-exposition-hommage-a-jacqueline-anselme",
+  "url": "https://www.monweekendalacapi.fr/agenda/evenements/exposition-hommage-a-jacqueline-anselme",
   "image": null,
-  "id": "exposition-hommage-a-jacqueline-anselme-a30a4069"
+  "id": "exposition-hommage-a-jacqueline-anselme-5d5c887b"
  },
  {
   "title": "L'Arche de Julie : visites et ateliers du mois d'août",
@@ -515,15 +514,13 @@
   "source_id": "html-bourgoin",
   "sector": "villemoirieu",
   "end": null,
-  "description": "A l'occasion des Festiv'été, les Cinés-été reviennent en plein air dans les parcs.",
+  "description": "À l'occasion des Festiv'été, les cinés-été reviennent en plein air dans les parcs.",
   "tldr": null,
   "category": "cinema",
   "tags": [],
   "audience": [
    "famille",
-   "enfants",
-   "ados",
-   "tous"
+   "ados"
   ],
   "commune": "Bourgoin-Jallieu",
   "address": "Parc des Lilattes",
@@ -589,14 +586,13 @@
   "source_id": "html-bourgoin",
   "sector": "villemoirieu",
   "end": null,
-  "description": "A l'occasion des Festiv'été, les Cinés-été reviennent en plein air.",
+  "description": "À l'occasion des Festiv'été, les cinés-été reviennent en plein air.",
   "tldr": null,
   "category": "cinema",
   "tags": [],
   "audience": [
-   "enfants",
    "famille",
-   "tous"
+   "enfants"
   ],
   "commune": "Bourgoin-Jallieu",
   "address": "Champfleuri",
@@ -637,7 +633,7 @@
   "source_id": "html-bourgoin",
   "sector": "villemoirieu",
   "end": null,
-  "description": "Nationale - Championnat 2026/27 : 1ère journée.",
+  "description": "Nationale – Championnat 2026/27 : 1ère journée.",
   "tldr": null,
   "category": "sport",
   "tags": [],
@@ -655,12 +651,35 @@
   "id": "rugby-csbj-ol-marcquois-3b48f74c"
  },
  {
-  "title": "Fête du pays berjallien",
-  "start": "2026-08-23T00:00:00",
-  "source_id": "html-bourgoin",
+  "title": "Match de rugby CSBJ vs OMR - J1 Nationale",
+  "start": "2026-08-22T00:00:00",
+  "source_id": "html-weekend-capi",
   "sector": "villemoirieu",
   "end": null,
-  "description": "Participez à la traditionnelle Fête du Pays Berjallien, organisée par la Ville.",
+  "description": "C’est reparti pour une nouvelle saison de Nationale. Les Ciel et Grenat reçoivent Marcq-en-Baroeul pour cette première journée à Pierre Raj.",
+  "tldr": null,
+  "category": "sport",
+  "tags": [],
+  "audience": [
+   "tous"
+  ],
+  "commune": "Bourgoin-Jallieu",
+  "address": "Avenue du Professeur Tixier 38300 Bourgoin-Jallieu, France",
+  "lat": 45.6025,
+  "lon": 5.2747,
+  "free": null,
+  "price_text": null,
+  "url": "https://www.monweekendalacapi.fr/agenda/evenements/match-de-rugby-csbj-vs-omr-j1-nationale",
+  "image": null,
+  "id": "match-de-rugby-csbj-vs-omr-j1-nationale-5f7bc03e"
+ },
+ {
+  "title": "Fête du Pays Berjallien",
+  "start": "2026-08-23T00:00:00",
+  "source_id": "html-weekend-capi",
+  "sector": "villemoirieu",
+  "end": null,
+  "description": "Participez à la traditionnelle Fête du Pays Berjallien, organisée par la Ville de Bourgoin-Jallieu. Profitez d’un moment festif et convivial.",
   "tldr": null,
   "category": "fete",
   "tags": [],
@@ -668,12 +687,12 @@
    "tous"
   ],
   "commune": "Bourgoin-Jallieu",
-  "address": null,
+  "address": "38300 Bourgoin-Jallieu, France",
   "lat": 45.6025,
   "lon": 5.2747,
   "free": null,
   "price_text": null,
-  "url": "https://www.bourgoinjallieu.fr/agenda/2508-fete-du-pays-berjallien",
+  "url": "https://www.monweekendalacapi.fr/agenda/evenements/fete-du-pays-berjallien",
   "image": null,
   "id": "fete-du-pays-berjallien-47106db5"
  },
@@ -711,7 +730,6 @@
   "category": "cinema",
   "tags": [],
   "audience": [
-   "adultes",
    "tous"
   ],
   "commune": "Bourgoin-Jallieu",
@@ -726,11 +744,11 @@
  },
  {
   "title": "Aquaday",
-  "start": "2026-08-28T00:00:00",
+  "start": "2026-08-26T00:00:00",
   "source_id": "html-capi",
   "sector": "villemoirieu",
   "end": null,
-  "description": "Terminez les vacances en beauté avec une soirée sportive : l’Aquaday ! Les maîtres nageurs sauveteurs de la Piscine CAPI Bellevue à Saint-Quentin-Fallavier organisent un nouvel Aquaday.",
+  "description": "Terminez les vacances en beauté avec une soirée sportive : l'Aquaday. Les maîtres nageurs sauveteurs de la Piscine CAPI Bellevue organisent ce nouvel événement.",
   "tldr": null,
   "category": "sport",
   "tags": [],
@@ -738,14 +756,14 @@
    "tous"
   ],
   "commune": "Saint-Quentin-Fallavier",
-  "address": "Piscine CAPI Bellevue, Saint-Quentin-Fallavier",
+  "address": "Piscine CAPI Bellevue",
   "lat": 45.6392,
   "lon": 5.1128,
   "free": null,
   "price_text": null,
   "url": "https://capi-agglo.fr/agenda/aquaday/",
   "image": null,
-  "id": "aquaday-0549ab84"
+  "id": "aquaday-b2514b2f"
  },
  {
   "title": "Forum des associations : édition 2026",
@@ -753,9 +771,9 @@
   "source_id": "html-bourgoin",
   "sector": "villemoirieu",
   "end": null,
-  "description": "Rendez-vous incontournable de la vie berjallienne.",
+  "description": "Rendez-vous incontournable de la vie berjallienne, le Forum des associations se tient cette année encore.",
   "tldr": null,
-  "category": "fete",
+  "category": "autre",
   "tags": [],
   "audience": [
    "tous"
@@ -823,13 +841,12 @@
   "source_id": "html-bourgoin",
   "sector": "villemoirieu",
   "end": null,
-  "description": "Offrez-vous un dernier moment de détente avant la rentrée scolaire.",
+  "description": "Offrez-vous un dernier moment de détente avant la rentrée scolaire : la Ville propose une fête pour les familles.",
   "tldr": null,
   "category": "fete",
   "tags": [],
   "audience": [
    "famille",
-   "enfants",
    "tous"
   ],
   "commune": "Bourgoin-Jallieu",
@@ -848,7 +865,7 @@
   "source_id": "html-capi",
   "sector": "villemoirieu",
   "end": "2026-09-12",
-  "description": "Venez découvrir une exposition réunissant 2 artistes peintres, Sylvia Bielsa Allagnat et Frédéric Bernard. Plus d’infos sur monweekendalacapi.fr.",
+  "description": "Venez découvrir une exposition réunissant deux artistes peintres, Sylvia Bielsa Allagnat et Frédéric Bernard. L'exposition sera ouverte durant la période indiquée.",
   "tldr": null,
   "category": "expo",
   "tags": [],
@@ -866,17 +883,18 @@
   "id": "exposition-de-peintures-bb31db63"
  },
  {
-  "title": "Exposition “Rêver Alice”",
+  "title": "Exposition \"Rêver Alice\"",
   "start": "2026-09-01T00:00:00",
   "source_id": "html-capi",
   "sector": "villemoirieu",
   "end": "2026-11-30",
-  "description": "Rêver Alice : les illustrations d’Alice au pays des merveilles. Et si vous tombiez, vous aussi, dans le terrier du lapin ?",
+  "description": "Rêver Alice : les illustrations d'Alice au pays des merveilles. Depuis 1865, des dizaines d'artistes ont plongé dans l'univers de Lewis Carroll.",
   "tldr": null,
   "category": "expo",
   "tags": [],
   "audience": [
-   "tous"
+   "famille",
+   "enfants"
   ],
   "commune": "L'Isle-d'Abeau",
   "address": "Médiathèques",
@@ -886,7 +904,7 @@
   "price_text": null,
   "url": "https://capi-agglo.fr/agenda/exposition/",
   "image": null,
-  "id": "exposition-rever-alice-86807452"
+  "id": "exposition-rever-alice-decba5f5"
  },
  {
   "title": "Exposition peintures",
@@ -894,7 +912,7 @@
   "source_id": "html-bourgoin",
   "sector": "villemoirieu",
   "end": "2026-09-12",
-  "description": "L'espace Carnot accueille deux artistes peintres.",
+  "description": "L'espace Carnot accueille deux artistes peintres, dont Sylvia Bielsa Allagnat.",
   "tldr": null,
   "category": "expo",
   "tags": [],
@@ -917,7 +935,7 @@
   "source_id": "html-capi",
   "sector": "villemoirieu",
   "end": "2026-09-05",
-  "description": "Extrait du site internet de la commune de Bourgoin-Jallieu, rendez-vous ici pour plus d’informations ! C’est officiel : le Festival Les Belles Journées est COMPLET !",
+  "description": "Le Festival Les Belles Journées est complet. Rendez-vous sur le site de la commune de Bourgoin-Jallieu pour plus d'informations.",
   "tldr": null,
   "category": "festival",
   "tags": [],
@@ -940,7 +958,7 @@
   "source_id": "html-bourgoin",
   "sector": "villemoirieu",
   "end": "2026-09-05",
-  "description": "C'est officiel : le Festival Les Belles Journées est COMPLET !",
+  "description": "Le Festival Les Belles Journées est complet ! Merci à tous.",
   "tldr": null,
   "category": "festival",
   "tags": [],
@@ -963,7 +981,7 @@
   "source_id": "html-bourgoin",
   "sector": "villemoirieu",
   "end": "2026-09-27",
-  "description": "Organisée par le Collectif aRt’c.",
+  "description": "Organisée par le collectif aRt’c.",
   "tldr": null,
   "category": "expo",
   "tags": [],
@@ -986,15 +1004,16 @@
   "source_id": "html-capi",
   "sector": "villemoirieu",
   "end": null,
-  "description": "Venez écouter Francois Ménager le vendredi 4 septembre à partir 19h lors de la soirée conte qui aura lieu au jardin de l’étang de Vaugelas à Villefontaine.",
+  "description": "Venez écouter François Ménager lors de la soirée conte au jardin de l'étang de Vaugelas à Villefontaine. Rendez-vous le vendredi 4 septembre à partir de 19h.",
   "tldr": null,
   "category": "spectacle",
   "tags": [],
   "audience": [
-   "tous"
+   "famille",
+   "enfants"
   ],
   "commune": "Villefontaine",
-  "address": "Jardin de l’étang de Vaugelas, Villefontaine",
+  "address": "Jardin de l'étang de Vaugelas",
   "lat": 45.6161,
   "lon": 5.1549,
   "free": null,
@@ -1009,7 +1028,7 @@
   "source_id": "html-bourgoin",
   "sector": "villemoirieu",
   "end": null,
-  "description": "Nationale - Championnat 2026/27.",
+  "description": "Nationale – Championnat 2026/27.",
   "tldr": null,
   "category": "sport",
   "tags": [],
@@ -1078,7 +1097,7 @@
   "source_id": "html-bourgoin",
   "sector": "villemoirieu",
   "end": null,
-  "description": "Les textiles se racontent - Visite contée.",
+  "description": "Les textiles se racontent – Visite contée.",
   "tldr": null,
   "category": "patrimoine",
   "tags": [],
@@ -1087,7 +1106,7 @@
    "enfants"
   ],
   "commune": "Bourgoin-Jallieu",
-  "address": "Musée de Bourgoin-Jallieu",
+  "address": null,
   "lat": 45.6025,
   "lon": 5.2747,
   "free": null,
@@ -1108,11 +1127,10 @@
   "tags": [],
   "audience": [
    "adultes",
-   "seniors",
-   "tous"
+   "seniors"
   ],
   "commune": "Bourgoin-Jallieu",
-  "address": "Musée de Bourgoin-Jallieu",
+  "address": null,
   "lat": 45.6025,
   "lon": 5.2747,
   "free": null,
@@ -1145,18 +1163,17 @@
   "id": "repair-cafe-repair-linux-a98817bd"
  },
  {
-  "title": "Réunion publique : Rendez-vous le 10 septembre pour parler des conseils de quartier",
+  "title": "Rentrée des conseils de quartier",
   "start": "2026-09-10T00:00:00",
   "source_id": "html-bourgoin",
   "sector": "villemoirieu",
   "end": null,
-  "description": "Réunion publique sur les conseils de quartier.",
+  "description": "Pour tout savoir de la nouvelle organisation de la démocratie participative.",
   "tldr": null,
   "category": "conference",
   "tags": [],
   "audience": [
-   "adultes",
-   "tous"
+   "adultes"
   ],
   "commune": "Bourgoin-Jallieu",
   "address": null,
@@ -1164,9 +1181,9 @@
   "lon": 5.2747,
   "free": null,
   "price_text": null,
-  "url": "https://www.bourgoinjallieu.fr/agenda/2910-reunion-publique-rendez-vous-le-10-septembre-pour-parler-des-conseils-de-quartier",
+  "url": "https://www.bourgoinjallieu.fr/agenda/2910-rentree-des-conseils-de-quartier",
   "image": null,
-  "id": "reunion-publique-rendez-vous-le-10-septembre-pour-parler-des-conseils-de-quartie-3ad1d401"
+  "id": "rentree-des-conseils-de-quartier-361c9d08"
  },
  {
   "title": "Esmeralda : le nouveau spectacle de la Compagnie Vocale",
@@ -1215,42 +1232,17 @@
   "id": "exposition-d-ali-benhamel-f9ec28ef"
  },
  {
-  "title": "Exposition d’Ali Benhamel",
-  "start": "2026-09-15T00:00:00",
-  "source_id": "html-capi",
-  "sector": "villemoirieu",
-  "end": "2026-09-26",
-  "description": "Venez découvrir l’exposition de peintures d’Ali Benhamel qui exposera pour la première fois à l’espace Carnot. Plus d’infos sur monweekendalacapi.fr.",
-  "tldr": null,
-  "category": "expo",
-  "tags": [],
-  "audience": [
-   "tous"
-  ],
-  "commune": "L'Isle-d'Abeau",
-  "address": "Office de Tourisme CAPI - Espace Carnot",
-  "lat": 45.6153,
-  "lon": 5.2234,
-  "free": null,
-  "price_text": null,
-  "url": "https://capi-agglo.fr/agenda/exposition-dali-benhamel/",
-  "image": null,
-  "id": "exposition-dali-benhamel-b5c5a67b"
- },
- {
   "title": "Un mois une oeuvre : Les films Les héros de l’étoffe",
   "start": "2026-09-15T00:00:00",
   "source_id": "html-bourgoin",
   "sector": "villemoirieu",
   "end": null,
-  "description": "Et si vous preniez le temps d’une pause culturelle ? Un mardi par mois.",
-  "tldr": "Projection mensuelle de films sur le thème des héros, suivie d'un débat ou d'une discussion culturelle.",
+  "description": "Et si vous preniez le temps d’une pause culturelle ? Un mardi par mois, une pause autour d’une œuvre.",
+  "tldr": null,
   "category": "conference",
   "tags": [],
   "audience": [
-   "adultes",
-   "seniors",
-   "tous"
+   "adultes"
   ],
   "commune": "Bourgoin-Jallieu",
   "address": null,
@@ -1268,13 +1260,12 @@
   "source_id": "html-bourgoin",
   "sector": "villemoirieu",
   "end": null,
-  "description": "",
+  "description": "Séance du conseil municipal de la Ville de Bourgoin-Jallieu.",
   "tldr": null,
   "category": "conference",
   "tags": [],
   "audience": [
-   "adultes",
-   "tous"
+   "adultes"
   ],
   "commune": "Bourgoin-Jallieu",
   "address": null,
@@ -1292,7 +1283,7 @@
   "source_id": "html-bourgoin",
   "sector": "villemoirieu",
   "end": "2026-10-18",
-  "description": "Présentée du 18 septembre au 18 octobre 2026 dans le cadre de la programmation.",
+  "description": "Présentée du 18 septembre au 18 octobre 2026, dans le cadre de la programmation.",
   "tldr": null,
   "category": "expo",
   "tags": [],
@@ -1320,8 +1311,7 @@
   "category": "spectacle",
   "tags": [],
   "audience": [
-   "adultes",
-   "tous"
+   "adultes"
   ],
   "commune": "Bourgoin-Jallieu",
   "address": null,
