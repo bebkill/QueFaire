@@ -23,12 +23,12 @@
   "id": "musee-au-fil-de-leau-b110af0e"
  },
  {
-  "title": "Exposition au musée archéologique : Corps parés, âmes révélées…",
+  "title": "Exposition : Corps parés, âmes révélées, au musée archéologique de Hières-sur-Amby",
   "start": "2026-04-01T14:00:00",
   "source_id": "html-balcons-dauphine",
   "sector": "villemoirieu",
   "end": "2026-09-30",
-  "description": "Exposition au musée archéologique de Hières-sur-Amby. Elle interroge les corps parés et les âmes révélées.",
+  "description": "Exposition au musée archéologique de Hières-sur-Amby. Visible du 1er avril au 30 septembre 2026.",
   "tldr": null,
   "category": "expo",
   "tags": [],
@@ -41,9 +41,9 @@
   "lon": 5.2914,
   "free": false,
   "price_text": "À partir de 2 €",
-  "url": "https://www.balconsdudauphine-tourisme.com/manifestation/exposition-au-musee-archeologique-corps-pares-ames-revelees/",
+  "url": "https://www.balconsdudauphine-tourisme.com/manifestation/exposition-corps-pares-ames-revelees-au-musee-archeologique-de-hieres-sur-amby/",
   "image": null,
-  "id": "exposition-au-musee-archeologique-corps-pares-ames-revelees-2d61413f"
+  "id": "exposition-corps-pares-ames-revelees-au-musee-archeologique-de-hieres-sur-amby-d894b716"
  },
  {
   "title": "Faune berjalienne au parc des mûriers",
@@ -92,12 +92,12 @@
   "id": "cet-ete-faites-vous-une-terrasse-0d26212e"
  },
  {
-  "title": "Exposition temporaire à Brangues : Sèves, de l’ombre à la lumière, le chant des fleurs",
+  "title": "Exposition temporaire à Brangues : Sèves, de l'ombre à la lumière, le chant des fleurs",
   "start": "2026-05-09T10:00:00",
   "source_id": "html-balcons-dauphine",
   "sector": "villemoirieu",
   "end": "2026-09-20",
-  "description": "Exposition temporaire autour du chant des fleurs. À voir à Brangues jusqu’au 20 septembre 2026.",
+  "description": "Exposition temporaire à Brangues sur le thème des fleurs. Visible du 9 mai au 20 septembre 2026.",
   "tldr": null,
   "category": "expo",
   "tags": [],
@@ -109,18 +109,18 @@
   "lat": 45.6952,
   "lon": 5.5422,
   "free": true,
-  "price_text": "Gratuit",
+  "price_text": null,
   "url": "https://www.balconsdudauphine-tourisme.com/manifestation/exposition-temporaire-a-brangues-seves-de-lombre-a-la-lumiere-le-chant-des-fleurs/",
   "image": null,
-  "id": "exposition-temporaire-a-brangues-seves-de-lombre-a-la-lumiere-le-chant-des-fleur-ce26962c"
+  "id": "exposition-temporaire-a-brangues-seves-de-l-ombre-a-la-lumiere-le-chant-des-fleu-0755124a"
  },
  {
-  "title": "Exposition temporaire : Racines, de l’origine de la vie aux traces humaines de Brangues, une visite de nos racines",
+  "title": "Exposition temporaire : Racines, de l'origine de la vie aux traces humaines de Brangues, une visite de nos racines",
   "start": "2026-05-09T10:00:00",
   "source_id": "html-balcons-dauphine",
   "sector": "villemoirieu",
   "end": "2026-09-20",
-  "description": "Exposition temporaire sur les racines et l’origine de la vie. À découvrir à Brangues jusqu’au 20 septembre 2026.",
+  "description": "Exposition temporaire sur les racines et les traces humaines à Brangues. Visible du 9 mai au 20 septembre 2026.",
   "tldr": null,
   "category": "expo",
   "tags": [],
@@ -132,10 +132,10 @@
   "lat": 45.6952,
   "lon": 5.5422,
   "free": true,
-  "price_text": "Gratuit",
+  "price_text": null,
   "url": "https://www.balconsdudauphine-tourisme.com/manifestation/exposition-temporaire-racines-de-lorigine-de-la-vie-aux-traces-humaines-de-brangues-une-visite-de-nos-racines/",
   "image": null,
-  "id": "exposition-temporaire-racines-de-lorigine-de-la-vie-aux-traces-humaines-de-brang-2542bf65"
+  "id": "exposition-temporaire-racines-de-l-origine-de-la-vie-aux-traces-humaines-de-bran-20140687"
  },
  {
   "title": "Festiv’été : nouvelle édition",
@@ -166,7 +166,7 @@
   "source_id": "html-balcons-dauphine",
   "sector": "villemoirieu",
   "end": "2026-10-25",
-  "description": "Exposition temporaire consacrée à la vigne et au vin. À découvrir au musée de Saint-Chef jusqu’au 25 octobre 2026.",
+  "description": "Exposition temporaire sur la vigne et le vin au musée de Saint-Chef. Visible du 3 juillet au 25 octobre 2026.",
   "tldr": null,
   "category": "expo",
   "tags": [],
@@ -178,19 +178,19 @@
   "lat": 45.6401,
   "lon": 5.3619,
   "free": true,
-  "price_text": "Gratuit",
+  "price_text": null,
   "url": "https://www.balconsdudauphine-tourisme.com/manifestation/exposition-temporaire-vitis-vinifera-de-la-vigne-au-vin-au-musee-de-saint-chef/",
   "image": null,
   "id": "exposition-temporaire-vitis-vinifera-de-la-vigne-au-vin-au-musee-de-saint-chef-a0af4f00"
  },
  {
-  "title": "L’enquête d’Archibalme : le détective c’est toi !",
+  "title": "L'enquête d'Archibalme : le détective c'est toi !",
   "start": "2026-07-04T10:30:00",
   "source_id": "html-balcons-dauphine",
   "sector": "villemoirieu",
   "end": "2026-08-31",
-  "description": "Jeu de piste et chasse au trésor aux Grottes de la Balme. Les visiteurs mènent l’enquête du 4 juillet au 31 août 2026.",
-  "tldr": null,
+  "description": "Jeu de piste et chasse au trésor aux Grottes de la Balme. Une enquête à résoudre en famille.",
+  "tldr": "Les familles résolvent des énigmes et suivent un parcours dans les grottes pour trouver des indices et percer un mystère.",
   "category": "jeunesse",
   "tags": [],
   "audience": [
@@ -205,7 +205,7 @@
   "price_text": "À partir de 1 €",
   "url": "https://www.balconsdudauphine-tourisme.com/manifestation/lenquete-darchibalme-le-detective-cest-toi/",
   "image": null,
-  "id": "lenquete-darchibalme-le-detective-cest-toi-9a795fc5"
+  "id": "l-enquete-d-archibalme-le-detective-c-est-toi-4dd8fa76"
  },
  {
   "title": "Les dimanches, c’est pique-nique !",
@@ -254,12 +254,12 @@
   "id": "festivete-2026-cine-ete-en-plein-air-11f07716"
  },
  {
-  "title": "Exposition à la Maison Ravier : Héroïnes d’opéra, costumes de scènes",
+  "title": "Exposition : Héroïnes d'opéra, costumes de scènes, à la Maison Ravier",
   "start": "2026-07-15T14:00:00",
   "source_id": "html-balcons-dauphine",
   "sector": "villemoirieu",
   "end": "2026-10-31",
-  "description": "Exposition de costumes de scène à la Maison Ravier. Elle met à l’honneur les héroïnes d’opéra.",
+  "description": "Exposition de costumes de scène à la Maison Ravier. Visible du 15 juillet au 31 octobre 2026.",
   "tldr": null,
   "category": "expo",
   "tags": [],
@@ -272,17 +272,17 @@
   "lon": 5.4716,
   "free": false,
   "price_text": "À partir de 6 €",
-  "url": "https://www.balconsdudauphine-tourisme.com/manifestation/exposition-a-la-maison-ravier-heroines-dopera-costumes-de-scenes/",
+  "url": "https://www.balconsdudauphine-tourisme.com/manifestation/exposition-heroines-dopera-costumes-de-scenes-a-la-maison-ravier/",
   "image": null,
-  "id": "exposition-a-la-maison-ravier-heroines-dopera-costumes-de-scenes-6c1912f3"
+  "id": "exposition-heroines-d-opera-costumes-de-scenes-a-la-maison-ravier-7d5d4541"
  },
  {
-  "title": "Exposition à la Maison Ravier : Mélanie Dunand, en résidence d’artiste",
+  "title": "Exposition : Mélanie Dunand, en résidence d'artiste, à la Maison Ravier",
   "start": "2026-07-15T14:00:00",
   "source_id": "html-balcons-dauphine",
   "sector": "villemoirieu",
   "end": "2026-10-31",
-  "description": "Exposition de l’artiste Mélanie Dunand en résidence à la Maison Ravier. Ses œuvres sont présentées à Morestel.",
+  "description": "Exposition de Mélanie Dunand en résidence d'artiste à la Maison Ravier. Visible du 15 juillet au 31 octobre 2026.",
   "tldr": null,
   "category": "expo",
   "tags": [],
@@ -295,17 +295,17 @@
   "lon": 5.4716,
   "free": false,
   "price_text": "À partir de 6 €",
-  "url": "https://www.balconsdudauphine-tourisme.com/manifestation/exposition-a-la-maison-ravier-melanie-dunand-en-residence-dartiste/",
+  "url": "https://www.balconsdudauphine-tourisme.com/manifestation/exposition-melanie-dunand-en-residence-dartiste-a-la-maison-ravier/",
   "image": null,
-  "id": "exposition-a-la-maison-ravier-melanie-dunand-en-residence-dartiste-91713d39"
+  "id": "exposition-melanie-dunand-en-residence-d-artiste-a-la-maison-ravier-26019aab"
  },
  {
-  "title": "Exposition à l’Espace Pictur’Halles : Les Estivales 2",
+  "title": "Exposition à l'Espace Pictur'Halles : Les Estivales 2",
   "start": "2026-07-24T14:30:00",
   "source_id": "html-balcons-dauphine",
   "sector": "villemoirieu",
   "end": "2026-09-06",
-  "description": "Exposition Les Estivales 2 à l’Espace Pictur’Halles. Présentation des œuvres de Manon Corneille.",
+  "description": "Exposition collective Les Estivales 2 à l'Espace Pictur'Halles. Visible du 24 juillet au 6 septembre 2026.",
   "tldr": null,
   "category": "expo",
   "tags": [],
@@ -317,10 +317,10 @@
   "lat": 45.6812,
   "lon": 5.4716,
   "free": true,
-  "price_text": "Gratuit",
+  "price_text": null,
   "url": "https://www.balconsdudauphine-tourisme.com/manifestation/exposition-a-lespace-picturhalles-les-estivales-2/",
   "image": null,
-  "id": "exposition-a-lespace-picturhalles-les-estivales-2-a037762e"
+  "id": "exposition-a-l-espace-pictur-halles-les-estivales-2-fe0486e0"
  },
  {
   "title": "Exposition à la Tour Médiévale : Les Estivales 2",
@@ -328,7 +328,7 @@
   "source_id": "html-balcons-dauphine",
   "sector": "villemoirieu",
   "end": "2026-09-06",
-  "description": "Exposition Les Estivales 2 à la Tour Médiévale. Présentation des œuvres de Manon Corneille.",
+  "description": "Exposition collective Les Estivales 2 à la Tour Médiévale. Visible du 24 juillet au 6 septembre 2026.",
   "tldr": null,
   "category": "expo",
   "tags": [],
@@ -340,7 +340,7 @@
   "lat": 45.6812,
   "lon": 5.4716,
   "free": true,
-  "price_text": "Gratuit",
+  "price_text": null,
   "url": "https://www.balconsdudauphine-tourisme.com/manifestation/exposition-a-la-tour-medievale-les-estivales-2/",
   "image": null,
   "id": "exposition-a-la-tour-medievale-les-estivales-2-088f6c66"
@@ -369,12 +369,12 @@
   "id": "musee-galerie-clauorum-christian-chevallier-photographies-6afeb7c3"
  },
  {
-  "title": "Concours photo : Crémieu dans l’objectif, et dans les pas du passé !",
+  "title": "Concours photo : Crémieu dans l'objectif, et dans les pas du passé !",
   "start": "2026-08-10T08:00:00",
   "source_id": "html-balcons-dauphine",
   "sector": "villemoirieu",
   "end": "2026-09-13",
-  "description": "Concours photo sur le thème de Crémieu, entre objectif et mémoire. L’événement se déroule du 10 août au 13 septembre 2026.",
+  "description": "Concours photo sur la commune de Crémieu. Du 10 août au 13 septembre 2026.",
   "tldr": null,
   "category": "autre",
   "tags": [],
@@ -386,10 +386,10 @@
   "lat": 45.7314,
   "lon": 5.2635,
   "free": true,
-  "price_text": "Gratuit",
+  "price_text": null,
   "url": "https://www.balconsdudauphine-tourisme.com/manifestation/concours-photo-cremieu-dans-lobjectif-et-dans-les-pas-du-passe/",
   "image": null,
-  "id": "concours-photo-cremieu-dans-lobjectif-et-dans-les-pas-du-passe-8e1d63cf"
+  "id": "concours-photo-cremieu-dans-l-objectif-et-dans-les-pas-du-passe-9fe9f369"
  },
  {
   "title": "Cinéma Hors Pistes",
@@ -443,7 +443,7 @@
   "source_id": "html-weekend-capi",
   "sector": "villemoirieu",
   "end": "2026-08-29",
-  "description": "L’espace Carnot accueillera une exposition hommage à l’artiste-peintre berjalienne Jacqueline Anselme. Elle a exposé pendant plus de 50 ans.",
+  "description": "L'espace Carnot accueillera une exposition hommage à l'artiste-peintre berjalienne, Jacqueline ANSELME qui exposa pendant plus de 50 ans dans le No...",
   "tldr": null,
   "category": "expo",
   "tags": [],
@@ -461,14 +461,14 @@
   "id": "exposition-hommage-a-jacqueline-anselme-5d5c887b"
  },
  {
-  "title": "L’Arche de Julie : visites et ateliers du mois d’août",
+  "title": "L'Arche de Julie : visites et ateliers du mois d'août",
   "start": "2026-08-17T09:00:00",
   "source_id": "html-balcons-dauphine",
   "sector": "villemoirieu",
   "end": "2026-08-23",
-  "description": "Visites et ateliers proposés à L’Arche de Julie. L’animation se déroule du 17 au 23 août 2026.",
+  "description": "Visites et ateliers à l'Arche de Julie. Du 17 au 23 août 2026 à 09h00.",
   "tldr": null,
-  "category": "atelier",
+  "category": "patrimoine",
   "tags": [],
   "audience": [
    "tous"
@@ -481,7 +481,7 @@
   "price_text": null,
   "url": "https://www.balconsdudauphine-tourisme.com/manifestation/larche-de-julie-visites-et-ateliers-du-mois-d-aout/",
   "image": null,
-  "id": "larche-de-julie-visites-et-ateliers-du-mois-daout-5697b80a"
+  "id": "l-arche-de-julie-visites-et-ateliers-du-mois-d-aout-46c2c934"
  },
  {
   "title": "Rugby : CSBJ / OL MARCQUOIS",
@@ -512,7 +512,7 @@
   "source_id": "html-weekend-capi",
   "sector": "villemoirieu",
   "end": null,
-  "description": "C’est reparti pour une nouvelle saison de Nationale ! Les Ciel et Grenat reçoivent Marcq-en-Baroeul pour cette première journée.",
+  "description": "C'est reparti pour une nouvelle saison de Nationale ! Nos Ciel et Grenat reçoivent Marcq-en-Baroeul pour cette première journée à Pierre Raj...",
   "tldr": null,
   "category": "sport",
   "tags": [],
@@ -530,13 +530,13 @@
   "id": "match-de-rugby-csbj-vs-omr-j1-nationale-5f7bc03e"
  },
  {
-  "title": "Open de France d’hobby horse à Saint-Chef",
+  "title": "Open de France d'hobby horse à Saint-Chef",
   "start": "2026-08-22T07:45:00",
   "source_id": "html-balcons-dauphine",
   "sector": "villemoirieu",
   "end": null,
-  "description": "Compétition sportive de hobby horse. Rendez-vous à Saint-Chef dès 07h45.",
-  "tldr": null,
+  "description": "Compétition sportive de hobby horse à Saint-Chef. Rendez-vous le 22 août 2026 à 07h45.",
+  "tldr": "Il s'agit d'une compétition sportive où les participants montent à califourchon sur un cheval en peluche pour s'affronter dans des épreuves inspirées de l'équitation.",
   "category": "sport",
   "tags": [],
   "audience": [
@@ -547,10 +547,10 @@
   "lat": 45.6401,
   "lon": 5.3619,
   "free": true,
-  "price_text": "Gratuit",
+  "price_text": null,
   "url": "https://www.balconsdudauphine-tourisme.com/manifestation/open-de-france-dhobby-horse-a-saint-chef/",
   "image": null,
-  "id": "open-de-france-dhobby-horse-a-saint-chef-5cc4770a"
+  "id": "open-de-france-d-hobby-horse-a-saint-chef-ae9adec9"
  },
  {
   "title": "Animation nature sur les ENS : éveil à la nature pour les tout-petits (0-3 ans)",
@@ -558,8 +558,8 @@
   "source_id": "html-balcons-dauphine",
   "sector": "villemoirieu",
   "end": null,
-  "description": "Animation nature sur les Espaces Naturels Sensibles. Éveil à la nature pour les tout-petits de 0 à 3 ans.",
-  "tldr": null,
+  "description": "Animation nature pour les tout-petits (0-3 ans) sur les Espaces Naturels Sensibles. Gratuit, le 22 août à 09h30.",
+  "tldr": "Les enfants de 0 à 3 ans découvrent la nature avec des activités adaptées (observation, jeux sensoriels) encadrées par des animateurs.",
   "category": "nature",
   "tags": [],
   "audience": [
@@ -571,7 +571,7 @@
   "lat": 45.752,
   "lon": 5.3406,
   "free": true,
-  "price_text": "Gratuit",
+  "price_text": null,
   "url": "https://www.balconsdudauphine-tourisme.com/manifestation/animation-nature-sur-les-ens-eveil-a-la-nature-pour-les-tout-petits-0-3-ans/",
   "image": null,
   "id": "animation-nature-sur-les-ens-eveil-a-la-nature-pour-les-tout-petits-0-3-ans-3be0ab49"
@@ -582,12 +582,12 @@
   "source_id": "html-balcons-dauphine",
   "sector": "villemoirieu",
   "end": null,
-  "description": "Atelier de création de parfum à la Maison Poloni. Réservation en ligne possible, à partir de 139 €.",
+  "description": "Atelier de création de parfum à la Maison Poloni. Réservable en ligne, à partir de 139 €.",
   "tldr": null,
   "category": "atelier",
   "tags": [],
   "audience": [
-   "adultes"
+   "tous"
   ],
   "commune": "Crémieu",
   "address": null,
@@ -605,7 +605,7 @@
   "source_id": "html-balcons-dauphine",
   "sector": "villemoirieu",
   "end": null,
-  "description": "Concours de pétanque organisé à Vézeronce-Curtin. Compétition ouverte à partir de 10h00.",
+  "description": "Concours de pétanque organisé à Vézeronce-Curtin. Rendez-vous le 22 août à 10h00.",
   "tldr": null,
   "category": "sport",
   "tags": [],
@@ -623,18 +623,17 @@
   "id": "concours-de-petanque-a-vezeronce-curtin-b9a4753e"
  },
  {
-  "title": "Challenge enfant de l’open de France d’hobby horse à Saint-Chef",
+  "title": "Challenge enfant de l'open de France d'hobby horse à Saint-Chef",
   "start": "2026-08-22T14:00:00",
   "source_id": "html-balcons-dauphine",
   "sector": "villemoirieu",
   "end": null,
-  "description": "Challenge enfant dans le cadre de l’Open de France de hobby horse. Compétition réservée aux jeunes à Saint-Chef.",
+  "description": "Challenge enfant de la discipline hobby horse. Rendez-vous le 22 août à 14h00 à Saint-Chef.",
   "tldr": null,
   "category": "sport",
   "tags": [],
   "audience": [
-   "enfants",
-   "famille"
+   "enfants"
   ],
   "commune": "Saint-Chef",
   "address": null,
@@ -644,7 +643,7 @@
   "price_text": null,
   "url": "https://www.balconsdudauphine-tourisme.com/manifestation/challenge-enfant-de-lopen-de-france-dhobby-horse-a-saint-chef/",
   "image": null,
-  "id": "challenge-enfant-de-lopen-de-france-dhobby-horse-a-saint-chef-354d9deb"
+  "id": "challenge-enfant-de-l-open-de-france-d-hobby-horse-a-saint-chef-4c7b60ed"
  },
  {
   "title": "Fête du Pays Berjallien",
@@ -652,7 +651,7 @@
   "source_id": "html-weekend-capi",
   "sector": "villemoirieu",
   "end": null,
-  "description": "Participez à la traditionnelle Fête du Pays Berjallien, organisée par la Ville de Bourgoin-Jallieu. Profitez d’un moment festif et convivial.",
+  "description": "Participez à la traditionnelle Fête du Pays Berjallien, organisée par la Ville de Bourgoin-Jallieu, et profitez d’un moment festif et convivial en...",
   "tldr": null,
   "category": "fete",
   "tags": [],
