@@ -1,7 +1,7 @@
 {
 "clarify:0fa8e09a1dbb51e8b046bc1cf2b084bab4024ebac9c71a65c2e9b84ff3522e5f": "",
 "clarify:16a4ec8623aceb94ee3aca1dcf0f0219d4deb75985b00aba4cb25dda57721968": "",
-"clarify:24f7d9a5407cc96e6376033f05f21f4e8da5958b4fa05eb8c2cf17ce7ede04c0": "",
+"clarify:27c639bfce6d4b9ffed15553b6e8979e3910537e976c0fed2a64123dfbfb32b5": "",
 "clarify:27ea2796132656a35753c6d1a35363a3034c02b1b8eddbc32abdf36ff290d2fb": "",
 "clarify:335bccfec1ec521f76d9043434ce4c011a54ebf3a585bb8c38ea512bd73148c1": "",
 "clarify:35ffc19451f8c48c5b851287a76e4d052624037ea75089692f63696e7a03b8a7": "",
@@ -16,8 +16,8 @@
 "clarify:64fe3d7d3508b740ad2b289e331e2bb924aca8f5d3c183d529e5edb96784ca79": "",
 "clarify:65604bd1f1e090bebc99a5c4c7aba6b42b327b319862e1048012a2818404f8fc": "Un festival de cinéma proposant des films d'auteur et des courts-métrages en compétition.",
 "clarify:6702d42587418451bd500e71acb4767aef0ca81d70ed1908e9a8a42b0f926e9f": "Il s'agit d'une exposition d'illustrations inspirées du conte 'Alice au pays des merveilles', à destination des enfants et des familles.",
-"clarify:6a9afe6d11dccd8519dd9e687742281c09d0170b1f693c2130e6ceaa889e172c": "",
 "clarify:6bcabefc8ecaee9f2a09d99fbe489b08cd455d4d7b0b6039475290f28ca1992e": "",
+"clarify:707171d1b911ac2dc870def387525e6258fc5c210af92299a468ef6e4ff3d456": "",
 "clarify:76cb0b8f74d4f5585b513b860bd83de5c3d3d8a42d8dd3ad913fbb33dc58f1de": "",
 "clarify:7819d43687e8b6c2daafe4095ebf02fbf8f8901c8e69e1dfb47a218c4e6f8ef1": "",
 "clarify:79a55eb73030d827571610ab4b6e7456c70ba7fc3768295d95b3fb495b4b48b5": "",
@@ -58,54 +58,6 @@
 "clarify:f3fc1ff9220d8e987addf28b7349f9a1f6549847f913d5c429b32f87e6a2f904": "",
 "clarify:f49346620e11489f39d6893e31574dd8262369a4179dcbc13bc9b6f9e3d5c8b7": "",
 "clarify:fadfcce6400754d49361fb9157770c949e9ede6bc60f086670e963963735c1a6": "",
-"extract:6ffa4b0920186a379eb5cbe33810b247e22813f3ec057b20ed517ea6eb14bbed": [
-{
-"address": "38300 Bourgoin-Jallieu, France",
-"audience": [
-"tous"
-],
-"category": "fete",
-"commune": "Bourgoin-Jallieu",
-"description": "Participez à la traditionnelle Fête du Pays Berjallien, organisée par la Ville de Bourgoin-Jallieu. Profitez d’un moment festif et convivial.",
-"end": null,
-"free": null,
-"id": "fete-du-pays-berjallien-47106db5",
-"image": null,
-"lat": null,
-"lon": null,
-"price_text": null,
-"sector": "villemoirieu",
-"source_id": "html-weekend-capi",
-"start": "2026-08-23T00:00:00",
-"tags": [],
-"title": "Fête du Pays Berjallien",
-"tldr": null,
-"url": "https://www.monweekendalacapi.fr/agenda/evenements/fete-du-pays-berjallien"
-},
-{
-"address": "Office de Tourisme CAPI-PORTE DE L'ISERE 38300 Bourgoin-Jallieu, France",
-"audience": [
-"tous"
-],
-"category": "expo",
-"commune": "Bourgoin-Jallieu",
-"description": "L’espace Carnot accueille une exposition hommage à l’artiste-peintre berjalienne Jacqueline Anselme. Elle a exposé pendant plus de 50 ans dans le Nord-Isère.",
-"end": "2026-08-29",
-"free": null,
-"id": "exposition-hommage-a-jacqueline-anselme-5d5c887b",
-"image": null,
-"lat": null,
-"lon": null,
-"price_text": null,
-"sector": "villemoirieu",
-"source_id": "html-weekend-capi",
-"start": "2026-08-17T00:00:00",
-"tags": [],
-"title": "Exposition Hommage à Jacqueline Anselme",
-"tldr": null,
-"url": "https://www.monweekendalacapi.fr/agenda/evenements/exposition-hommage-a-jacqueline-anselme"
-}
-],
 "extract:900f1962dbd746f5023d83c32a4b43cafd1ac2bead2b64461f15b9342d148491": [
 {
 "address": "1 Parc d'activités du Buisson Rond, 38460 Villemoirieu",
@@ -687,6 +639,54 @@
 "title": "Soirée conte au jardin",
 "tldr": null,
 "url": "https://capi-agglo.fr/agenda/soiree-conte-au-jardin/"
+}
+],
+"extract:b6e41a1eca426bfe7d24d08492633813cecaffdf0c8cc307c62ae775f8e01aba": [
+{
+"address": "38300 Bourgoin-Jallieu, France",
+"audience": [
+"tous"
+],
+"category": "fete",
+"commune": "Bourgoin-Jallieu",
+"description": "Participez à la traditionnelle Fête du Pays Berjallien, organisée par la Ville de Bourgoin-Jallieu. Profitez d’un moment festif et convivial en plein air.",
+"end": null,
+"free": null,
+"id": "fete-du-pays-berjallien-47106db5",
+"image": null,
+"lat": null,
+"lon": null,
+"price_text": null,
+"sector": "villemoirieu",
+"source_id": "html-weekend-capi",
+"start": "2026-08-23T00:00:00",
+"tags": [],
+"title": "Fête du Pays Berjallien",
+"tldr": null,
+"url": "https://www.monweekendalacapi.fr/agenda/evenements/fete-du-pays-berjallien"
+},
+{
+"address": "Office de Tourisme CAPI-PORTE DE L'ISERE 38300 Bourgoin-Jallieu, France",
+"audience": [
+"tous"
+],
+"category": "expo",
+"commune": "Bourgoin-Jallieu",
+"description": "L'espace Carnot accueillera une exposition hommage à l'artiste-peintre berjalienne Jacqueline Anselme. Elle exposa pendant plus de 50 ans dans le Nord.",
+"end": "2026-08-29",
+"free": null,
+"id": "exposition-hommage-a-jacqueline-anselme-5d5c887b",
+"image": null,
+"lat": null,
+"lon": null,
+"price_text": null,
+"sector": "villemoirieu",
+"source_id": "html-weekend-capi",
+"start": "2026-08-17T00:00:00",
+"tags": [],
+"title": "Exposition Hommage à Jacqueline Anselme",
+"tldr": null,
+"url": "https://www.monweekendalacapi.fr/agenda/evenements/exposition-hommage-a-jacqueline-anselme"
 }
 ],
 "extract:fd6b354129f38d1604c9bc8bace60ba1b27701bdc0ce674841bee4443dae090f": [
