@@ -4,7 +4,6 @@
 "clarify:1133e7ae6cce3919940fec36cef3835ce682841906e2bb16ae3d3b5ceb39e0c1": "",
 "clarify:126ae014ed17e026b971e8f71c7da28d389acf6b4b7eefb4221882710649990c": "",
 "clarify:27ea2796132656a35753c6d1a35363a3034c02b1b8eddbc32abdf36ff290d2fb": "",
-"clarify:29b6eebe784dc56c23182952cd6a09ff43f299568cc3e1671a027136935351d5": "",
 "clarify:2d2926101dc3ac9b8916f5c8f455235663e0a67d36a13f90238f3617842759ac": "",
 "clarify:2e0088c91c00f9641a1efc28c8ebb5baf6c00739bea6603833e5528fe9c12191": "",
 "clarify:35d13cf6d80eac190d134d45d28642ecb4e37b101b884397d48945fa65aeb356": "",
@@ -25,6 +24,7 @@
 "clarify:5fa542e2b7ab742137eb2f75f074259e5572096a9da60826bf9e0e15b9b8ccf6": "",
 "clarify:64fe3d7d3508b740ad2b289e331e2bb924aca8f5d3c183d529e5edb96784ca79": "",
 "clarify:6702d42587418451bd500e71acb4767aef0ca81d70ed1908e9a8a42b0f926e9f": "Il s'agit d'une exposition d'illustrations inspirées du conte 'Alice au pays des merveilles', à destination des enfants et des familles.",
+"clarify:6e3054566fdbf265264acefcd38e52cce5cefc60b0de2e3a5eaf208db71af05b": "",
 "clarify:76cb0b8f74d4f5585b513b860bd83de5c3d3d8a42d8dd3ad913fbb33dc58f1de": "",
 "clarify:7d766a36ba19d8c631b17dd82c38329d45fd355c8548790b4bb8ede92b47257b": "",
 "clarify:7f6a8656b8a0f2fe880c9df648c06eaf10f26f804ea5c8ade74e9c15c3886066": "",
@@ -1331,5 +1331,29 @@
 "url": "https://capi-agglo.fr/agenda/soiree-conte-au-jardin/"
 }
 ],
-"extract:c313632eaee15c9617f9df8430629970f72772cd20c46c47053393496c3d8fa9": []
+"extract:b6abe7779f876083579cbe81aef90a90d9643348e92ec2ea9d564b3838537581": [
+{
+"address": "Office de Tourisme CAPI-PORTE DE L'ISERE 38300 Bourgoin-Jallieu, France",
+"audience": [
+"tous"
+],
+"category": "expo",
+"commune": "Bourgoin-Jallieu",
+"description": "L'espace Carnot accueillera une exposition hommage à l'artiste-peintre berjalienne Jacqueline Anselme. Elle a exposé pendant plus de 50 ans dans le Nord-Isère.",
+"end": "2026-08-29",
+"free": null,
+"id": "exposition-hommage-a-jacqueline-anselme-5d5c887b",
+"image": null,
+"lat": null,
+"lon": null,
+"price_text": null,
+"sector": "villemoirieu",
+"source_id": "html-weekend-capi",
+"start": "2026-08-17T00:00:00",
+"tags": [],
+"title": "Exposition Hommage à Jacqueline Anselme",
+"tldr": null,
+"url": "https://www.monweekendalacapi.fr/agenda/evenements/exposition-hommage-a-jacqueline-anselme"
+}
+]
 }

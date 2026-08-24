@@ -415,12 +415,12 @@
   "id": "exposition-hommage-a-jacqueline-anselme-c45c8d50"
  },
  {
-  "title": "Exposition : Hommage à Jacqueline Anselme",
+  "title": "Exposition Hommage à Jacqueline Anselme",
   "start": "2026-08-17T00:00:00",
-  "source_id": "html-bourgoin",
+  "source_id": "html-weekend-capi",
   "sector": "villemoirieu",
   "end": "2026-08-29",
-  "description": "L’espace Carnot accueille une exposition hommage à l’artiste.",
+  "description": "L'espace Carnot accueillera une exposition hommage à l'artiste-peintre berjalienne Jacqueline Anselme. Elle a exposé pendant plus de 50 ans dans le Nord-Isère.",
   "tldr": null,
   "category": "expo",
   "tags": [],
@@ -428,14 +428,14 @@
    "tous"
   ],
   "commune": "Bourgoin-Jallieu",
-  "address": "Espace Carnot",
+  "address": "Office de Tourisme CAPI-PORTE DE L'ISERE 38300 Bourgoin-Jallieu, France",
   "lat": 45.6025,
   "lon": 5.2747,
   "free": null,
   "price_text": null,
-  "url": "https://www.bourgoinjallieu.fr/agenda/781-exposition-hommage-a-jacqueline-anselme",
+  "url": "https://www.monweekendalacapi.fr/agenda/evenements/exposition-hommage-a-jacqueline-anselme",
   "image": null,
-  "id": "exposition-hommage-a-jacqueline-anselme-a30a4069"
+  "id": "exposition-hommage-a-jacqueline-anselme-5d5c887b"
  },
  {
   "title": "Vogue à Salagnon",
