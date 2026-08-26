@@ -1,6 +1,6 @@
 [
  {
-  "title": "Musée : “ Au fil de l’eau ”",
+  "title": "Musée : \"Au fil de l’eau\"",
   "start": "2026-03-07T00:00:00",
   "source_id": "html-bourgoin",
   "sector": "villemoirieu",
@@ -13,14 +13,14 @@
    "tous"
   ],
   "commune": "Bourgoin-Jallieu",
-  "address": null,
+  "address": "Musée de Bourgoin-Jallieu",
   "lat": 45.6025,
   "lon": 5.2747,
   "free": null,
   "price_text": null,
   "url": "https://www.bourgoinjallieu.fr/agenda/2645-musee-au-fil-de-l-eau",
   "image": null,
-  "id": "musee-au-fil-de-leau-931d8f4a"
+  "id": "musee-au-fil-de-leau-adf958ec"
  },
  {
   "title": "Exposition : Corps parés, âmes révélées, au musée archéologique de Hières-sur-Amby",
@@ -59,7 +59,7 @@
    "tous"
   ],
   "commune": "Bourgoin-Jallieu",
-  "address": null,
+  "address": "Parc des Mûriers",
   "lat": 45.6025,
   "lon": 5.2747,
   "free": null,
@@ -74,8 +74,8 @@
   "source_id": "html-bourgoin",
   "sector": "villemoirieu",
   "end": "2026-09-26",
-  "description": "Animation estivale proposée du 1er mai au 26 septembre 2026.",
-  "tldr": null,
+  "description": "Du 1er mai au 26 septembre 2026.",
+  "tldr": "Une opération permettant de bénéficier de réductions ou d'installations temporaires pour aménager une terrasse.",
   "category": "autre",
   "tags": [],
   "audience": [
@@ -138,12 +138,12 @@
   "id": "exposition-temporaire-racines-de-l-origine-de-la-vie-aux-traces-humaines-de-bran-20140687"
  },
  {
-  "title": "Festiv’été : nouvelle édition",
+  "title": "Festiv'été : nouvelle édition",
   "start": "2026-06-16T00:00:00",
   "source_id": "html-bourgoin",
   "sector": "villemoirieu",
   "end": "2026-09-13",
-  "description": "Du 16 juin au 13 septembre 2026, la Ville de Bourgoin-Jallieu propose une programmation estivale.",
+  "description": "Du 16 juin au 13 septembre 2026, la Ville de Bourgoin-Jallieu vous propose une nouvelle édition.",
   "tldr": null,
   "category": "festival",
   "tags": [],
@@ -158,7 +158,7 @@
   "price_text": null,
   "url": "https://www.bourgoinjallieu.fr/agenda/1733-festiv-ete-nouvelle-edition",
   "image": null,
-  "id": "festivete-nouvelle-edition-41c507ce"
+  "id": "festiv-ete-nouvelle-edition-16c36fcc"
  },
  {
   "title": "Visite libre des jardins et de la chapelle du château Teyssier de Savy, à Saint-Chef",
@@ -236,9 +236,9 @@
   "source_id": "html-bourgoin",
   "sector": "villemoirieu",
   "end": "2026-09-13",
-  "description": "Pique-niques proposés par l’association Vibrations Mystiques et la ville de Bourgoin-Jallieu.",
-  "tldr": null,
-  "category": "fete",
+  "description": "Proposés par l’association « Vibrations Mystiques » et la ville de Bourgoin-Jallieu.",
+  "tldr": "Des pique-niques organisés chaque dimanche dans un cadre convivial, animés par une association locale.",
+  "category": "nature",
   "tags": [],
   "audience": [
    "famille",
@@ -361,7 +361,7 @@
    "tous"
   ],
   "commune": "Bourgoin-Jallieu",
-  "address": null,
+  "address": "Musée Clauorum",
   "lat": 45.6025,
   "lon": 5.2747,
   "free": null,
@@ -399,7 +399,7 @@
   "source_id": "html-capi",
   "sector": "villemoirieu",
   "end": "2026-08-29",
-  "description": "L’espace Carnot accueillera une exposition hommage à l’artiste-peintre berjalienne, Jacqueline ANSELME qui exposa pendant plus de 50 ans dans le Nord-Isère. Plus d’infos sur monweekendalacapi.fr.",
+  "description": "L'espace Carnot accueille une exposition hommage à l'artiste-peintre berjalienne Jacqueline Anselme, qui a exposé pendant plus de 50 ans dans le Nord-Isère.",
   "tldr": null,
   "category": "expo",
   "tags": [],
@@ -407,7 +407,7 @@
    "tous"
   ],
   "commune": "L'Isle-d'Abeau",
-  "address": null,
+  "address": "Office de Tourisme CAPI - Espace Carnot",
   "lat": 45.6153,
   "lon": 5.2234,
   "free": null,
@@ -422,7 +422,7 @@
   "source_id": "html-bourgoin",
   "sector": "villemoirieu",
   "end": "2026-08-29",
-  "description": "L’espace Carnot accueille une exposition hommage à l’artiste.",
+  "description": "L’espace Carnot accueillera une exposition hommage à l’artiste.",
   "tldr": null,
   "category": "expo",
   "tags": [],
@@ -430,7 +430,7 @@
    "tous"
   ],
   "commune": "Bourgoin-Jallieu",
-  "address": null,
+  "address": "Espace Carnot",
   "lat": 45.6025,
   "lon": 5.2747,
   "free": null,
@@ -492,15 +492,15 @@
   "source_id": "html-capi",
   "sector": "villemoirieu",
   "end": null,
-  "description": "Terminez les vacances en beauté avec une soirée sportive : l’Aquaday ! Les maîtres nageurs sauveteurs de la Piscine CAPI Bellevue à Saint-Quentin-Fallavier organisent un nouvel Aquaday.",
-  "tldr": null,
+  "description": "Terminez les vacances en beauté avec une soirée sportive à la piscine CAPI Bellevue. Les maîtres nageurs sauveteurs organisent un nouvel Aquaday.",
+  "tldr": "Une soirée sportive avec des animations aquatiques encadrées par des maîtres nageurs sauveteurs.",
   "category": "sport",
   "tags": [],
   "audience": [
    "tous"
   ],
   "commune": "Saint-Quentin-Fallavier",
-  "address": null,
+  "address": "Piscine CAPI Bellevue, Saint-Quentin-Fallavier",
   "lat": 45.6392,
   "lon": 5.1128,
   "free": null,
@@ -607,9 +607,9 @@
   "source_id": "html-bourgoin",
   "sector": "villemoirieu",
   "end": null,
-  "description": "Rendez-vous incontournable de la vie berjallienne, le Forum des associations se tient cette année.",
+  "description": "Rendez-vous incontournable de la vie berjallienne.",
   "tldr": null,
-  "category": "fete",
+  "category": "autre",
   "tags": [],
   "audience": [
    "tous"
@@ -653,17 +653,16 @@
   "source_id": "html-bourgoin",
   "sector": "villemoirieu",
   "end": null,
-  "description": "Amateurs de glisse, curieux et passionnés viennent découvrir l’univers du skatepark.",
-  "tldr": null,
+  "description": "Amateurs de glisse, curieux et passionnés : venez découvrir l’univers du skatepark.",
+  "tldr": "Une journée dédiée à la découverte et à la pratique du skate, avec démonstrations et initiations.",
   "category": "sport",
   "tags": [],
   "audience": [
    "ados",
-   "famille",
    "tous"
   ],
   "commune": "Bourgoin-Jallieu",
-  "address": null,
+  "address": "Parc des Lilattes",
   "lat": 45.6025,
   "lon": 5.2747,
   "free": null,
@@ -678,11 +677,13 @@
   "source_id": "html-weekend-capi",
   "sector": "villemoirieu",
   "end": null,
-  "description": "Partez à la découverte des rues et ruelles du village de Saint Alban de Roche. Venez découvrir les lieux et personnages qui ont marqué son histoire.",
+  "description": "Partez à la découverte des rues et ruelles du Village de Saint Alban de Roche. Venez découvrir les lieux et personnages qui ont marqué son histoire.",
   "tldr": null,
   "category": "patrimoine",
   "tags": [],
   "audience": [
+   "adultes",
+   "seniors",
    "tous"
   ],
   "commune": "Saint-Alban-de-Roche",
@@ -730,7 +731,7 @@
   "tags": [],
   "audience": [
    "famille",
-   "enfants"
+   "tous"
   ],
   "commune": "Bourgoin-Jallieu",
   "address": null,
@@ -748,7 +749,7 @@
   "source_id": "html-weekend-capi",
   "sector": "villemoirieu",
   "end": null,
-  "description": "L'association Hugin et Munin présente de façon ludique la civilisation des Vikings à travers leurs costumes, armes, techniques de combat. Découvrez leur univers le 30 août 2026.",
+  "description": "L'association Hugin et Munin présente de façon ludique la civilisation des Vikings à travers leurs costumes, armes, techniques de combat, ou encore...",
   "tldr": null,
   "category": "spectacle",
   "tags": [],
@@ -767,11 +768,11 @@
  },
  {
   "title": "Fête des familles",
-  "start": "2026-08-30T12:00:00",
+  "start": "2026-08-30T00:00:00",
   "source_id": "html-weekend-capi",
   "sector": "villemoirieu",
-  "end": "2026-08-30T18:00:00",
-  "description": "Embarquez pour un voyage festif autour du monde ! De 12h à 18h, les aires de jeux des Lilattes, de la Grive, de Champaret et de Champfleuri accueillent les familles.",
+  "end": null,
+  "description": "Embarquez pour un voyage festif autour du monde ! De 12h à 18h, les aires de jeux des Lilattes, de la Grive, de Champaret et de Champfleuri accueillent petits et grands.",
   "tldr": null,
   "category": "fete",
   "tags": [],
@@ -795,7 +796,7 @@
   "source_id": "html-capi",
   "sector": "villemoirieu",
   "end": "2026-09-12",
-  "description": "Venez découvrir une exposition réunissant 2 artistes peintres, Sylvia Bielsa Allagnat et Frédéric Bernard. Plus d’infos sur monweekendalacapi.fr.",
+  "description": "Venez découvrir une exposition réunissant deux artistes peintres, Sylvia Bielsa Allagnat et Frédéric Bernard. L'exposition sera ouverte à l'Espace Carnot.",
   "tldr": null,
   "category": "expo",
   "tags": [],
@@ -803,7 +804,7 @@
    "tous"
   ],
   "commune": "L'Isle-d'Abeau",
-  "address": null,
+  "address": "Office de Tourisme CAPI - Espace Carnot",
   "lat": 45.6153,
   "lon": 5.2234,
   "free": null,
@@ -818,15 +819,17 @@
   "source_id": "html-capi",
   "sector": "villemoirieu",
   "end": "2026-11-30",
-  "description": "Rêver Alice : les illustrations d’Alice au pays des merveilles. Et si vous tombiez, vous aussi, dans le terrier du lapin ?",
+  "description": "Rêver Alice présente les illustrations d'Alice au pays des merveilles. Depuis 1865, des dizaines d'artistes ont plongé dans l'univers de Lewis Carroll.",
   "tldr": null,
   "category": "expo",
   "tags": [],
   "audience": [
+   "famille",
+   "enfants",
    "tous"
   ],
   "commune": "L'Isle-d'Abeau",
-  "address": null,
+  "address": "Médiathèques",
   "lat": 45.6153,
   "lon": 5.2234,
   "free": null,
@@ -841,7 +844,7 @@
   "source_id": "html-bourgoin",
   "sector": "villemoirieu",
   "end": "2026-09-12",
-  "description": "L’espace Carnot accueille deux artistes peintres, Sylvia Bielsa Allagnat et une seconde artiste.",
+  "description": "L’espace Carnot accueillera deux artistes peintres, dont Sylvia Bielsa Allagnat.",
   "tldr": null,
   "category": "expo",
   "tags": [],
@@ -849,7 +852,7 @@
    "tous"
   ],
   "commune": "Bourgoin-Jallieu",
-  "address": null,
+  "address": "Espace Carnot",
   "lat": 45.6025,
   "lon": 5.2747,
   "free": null,
@@ -859,28 +862,29 @@
   "id": "exposition-peintures-544943a5"
  },
  {
-  "title": "Ciné-été à Champfleuri : “ Super Mario Galaxy ”",
+  "title": "Ciné-été à Champfleuri : \"Super Mario Galaxy\"",
   "start": "2026-09-01T00:00:00",
   "source_id": "html-bourgoin",
   "sector": "villemoirieu",
   "end": null,
   "description": "Dernière séance.",
-  "tldr": null,
+  "tldr": "Une séance de cinéma en plein air projetant un film d'animation pour enfants.",
   "category": "cinema",
   "tags": [],
   "audience": [
    "famille",
-   "enfants"
+   "enfants",
+   "tous"
   ],
   "commune": "Bourgoin-Jallieu",
-  "address": null,
+  "address": "Champfleuri",
   "lat": 45.6025,
   "lon": 5.2747,
   "free": null,
   "price_text": null,
   "url": "https://www.bourgoinjallieu.fr/agenda/1746-cine-ete-a-champfleuri-super-mario-galaxy",
   "image": null,
-  "id": "cine-ete-a-champfleuri-super-mario-galaxy-f4b2ac39"
+  "id": "cine-ete-a-champfleuri-super-mario-galaxy-84dffdbc"
  },
  {
   "title": "Festival Belles Journées",
@@ -888,8 +892,8 @@
   "source_id": "html-capi",
   "sector": "villemoirieu",
   "end": "2026-09-05",
-  "description": "Extrait du site internet de la commune de Bourgoin-Jallieu, rendez-vous ici pour plus d’informations ! C’est officiel : le Festival Les Belles Journées est COMPLET !",
-  "tldr": null,
+  "description": "Le Festival Les Belles Journées est organisé à Bourgoin-Jallieu. Rendez-vous sur le site de la commune pour plus d'informations.",
+  "tldr": "Un festival proposant des spectacles, concerts et animations variées sur plusieurs jours.",
   "category": "festival",
   "tags": [],
   "audience": [
@@ -957,16 +961,16 @@
   "source_id": "html-capi",
   "sector": "villemoirieu",
   "end": null,
-  "description": "Venez écouter François Ménager le vendredi 4 septembre à partir de 19h lors de la soirée conte qui aura lieu au jardin de l’étang de Vaugelas à Villefontaine. Report au Centre Simone Signoret.",
+  "description": "Venez écouter François Ménager le vendredi 4 septembre à partir de 19h lors de la soirée conte au jardin de l'étang de Vaugelas à Villefontaine.",
   "tldr": null,
   "category": "spectacle",
   "tags": [],
   "audience": [
    "famille",
-   "tous"
+   "enfants"
   ],
   "commune": "Villefontaine",
-  "address": "jardin de l’étang de Vaugelas, Villefontaine",
+  "address": "Jardin de l'étang de Vaugelas, Villefontaine",
   "lat": 45.6161,
   "lon": 5.1549,
   "free": null,
@@ -981,7 +985,7 @@
   "source_id": "html-bourgoin",
   "sector": "villemoirieu",
   "end": null,
-  "description": "Nationale – Championnat 2026/27.",
+  "description": "Nationale - Championnat 2026/27.",
   "tldr": null,
   "category": "sport",
   "tags": [],
@@ -1027,12 +1031,11 @@
   "source_id": "html-bourgoin",
   "sector": "villemoirieu",
   "end": null,
-  "description": "Organisée par l’association de modélisme ferroviaire Omnibus.",
-  "tldr": null,
-  "category": "expo",
+  "description": "Organisée par l’association de modélisme ferroviaire « Omnibus ».",
+  "tldr": "Un marché où particuliers et collectionneurs échangent des modèles réduits de trains, voitures et jouets.",
+  "category": "autre",
   "tags": [],
   "audience": [
-   "famille",
    "tous"
   ],
   "commune": "Bourgoin-Jallieu",
@@ -1051,16 +1054,17 @@
   "source_id": "html-bourgoin",
   "sector": "villemoirieu",
   "end": null,
-  "description": "Les textiles se racontent : visite contée.",
-  "tldr": null,
+  "description": "Les textiles se racontent - Visite contée.",
+  "tldr": "Une visite interactive du musée spécialement conçue pour les familles avec enfants.",
   "category": "patrimoine",
   "tags": [],
   "audience": [
    "famille",
-   "enfants"
+   "enfants",
+   "tous"
   ],
   "commune": "Bourgoin-Jallieu",
-  "address": null,
+  "address": "Musée de Bourgoin-Jallieu",
   "lat": 45.6025,
   "lon": 5.2747,
   "free": null,
@@ -1070,29 +1074,27 @@
   "id": "musee-visite-en-famille-c1032f53"
  },
  {
-  "title": "Visite commentée : au fil de l’histoire",
+  "title": "Visite commentée : au fil de l'histoire",
   "start": "2026-09-06T00:00:00",
   "source_id": "html-bourgoin",
   "sector": "villemoirieu",
   "end": null,
   "description": "Visite commentée du parcours permanent textile.",
-  "tldr": null,
+  "tldr": "Une visite guidée approfondie sur l'histoire et les techniques textiles du musée.",
   "category": "patrimoine",
   "tags": [],
   "audience": [
-   "adultes",
-   "seniors",
    "tous"
   ],
   "commune": "Bourgoin-Jallieu",
-  "address": null,
+  "address": "Musée de Bourgoin-Jallieu",
   "lat": 45.6025,
   "lon": 5.2747,
   "free": null,
   "price_text": null,
   "url": "https://www.bourgoinjallieu.fr/agenda/1673-visite-commentee-au-fil-de-lhistoire",
   "image": null,
-  "id": "visite-commentee-au-fil-de-lhistoire-3011b888"
+  "id": "visite-commentee-au-fil-de-l-histoire-823a3b5b"
  },
  {
   "title": "Repair Café & Repair Linux",
@@ -1128,8 +1130,6 @@
   "category": "conference",
   "tags": [],
   "audience": [
-   "adultes",
-   "seniors",
    "tous"
   ],
   "commune": "Bourgoin-Jallieu",
@@ -1148,8 +1148,8 @@
   "source_id": "html-bourgoin",
   "sector": "villemoirieu",
   "end": null,
-  "description": "Une adaptation de la comédie musicale Notre Dame de Paris.",
-  "tldr": null,
+  "description": "Une adaptation de la comédie musicale « Notre Dame de Paris ».",
+  "tldr": "Un spectacle musical mettant en scène des chanteurs interprétant des titres de la comédie musicale 'Notre Dame de Paris'.",
   "category": "spectacle",
   "tags": [],
   "audience": [
@@ -1166,7 +1166,7 @@
   "id": "esmeralda-le-nouveau-spectacle-de-la-compagnie-vocale-ca0eb853"
  },
  {
-  "title": "Exposition d’Ali Benhamel",
+  "title": "Exposition d'Ali Benhamel",
   "start": "2026-09-14T00:00:00",
   "source_id": "html-bourgoin",
   "sector": "villemoirieu",
@@ -1186,7 +1186,7 @@
   "price_text": null,
   "url": "https://www.bourgoinjallieu.fr/agenda/735-exposition-dali-benhamel",
   "image": null,
-  "id": "exposition-dali-benhamel-f513c1ea"
+  "id": "exposition-d-ali-benhamel-f9ec28ef"
  },
  {
   "title": "Un mois une oeuvre : Les films Les héros de l’étoffe",
@@ -1199,8 +1199,7 @@
   "category": "conference",
   "tags": [],
   "audience": [
-   "adultes",
-   "seniors"
+   "tous"
   ],
   "commune": "Bourgoin-Jallieu",
   "address": null,
@@ -1218,13 +1217,11 @@
   "source_id": "html-bourgoin",
   "sector": "villemoirieu",
   "end": null,
-  "description": "Séance du conseil municipal.",
+  "description": "Réunion du conseil municipal.",
   "tldr": null,
   "category": "conference",
   "tags": [],
   "audience": [
-   "adultes",
-   "seniors",
    "tous"
   ],
   "commune": "Bourgoin-Jallieu",
@@ -1251,7 +1248,7 @@
    "tous"
   ],
   "commune": "Bourgoin-Jallieu",
-  "address": null,
+  "address": "Musée de Bourgoin-Jallieu",
   "lat": 45.6025,
   "lon": 5.2747,
   "free": null,
@@ -1271,7 +1268,7 @@
   "category": "cinema",
   "tags": [],
   "audience": [
-   "adultes"
+   "tous"
   ],
   "commune": "Bourgoin-Jallieu",
   "address": null,
@@ -1294,12 +1291,10 @@
   "category": "autre",
   "tags": [],
   "audience": [
-   "adultes",
-   "seniors",
    "tous"
   ],
   "commune": "Bourgoin-Jallieu",
-  "address": null,
+  "address": "Champaret",
   "lat": 45.6025,
   "lon": 5.2747,
   "free": null,
@@ -1314,15 +1309,15 @@
   "source_id": "html-bourgoin",
   "sector": "villemoirieu",
   "end": "2026-09-20",
-  "description": "Pour la 43ème édition des Journées européennes du patrimoine, le Musée de Bourgoin-Jallieu propose un programme.",
-  "tldr": null,
+  "description": "Pour la 43ème édition des Journées européennes du patrimoine, le Musée de Bourgoin-Jallieu ouvre ses portes.",
+  "tldr": "Un week-end d'ouverture exceptionnelle du musée avec des visites gratuites et des animations patrimoniales.",
   "category": "patrimoine",
   "tags": [],
   "audience": [
    "tous"
   ],
   "commune": "Bourgoin-Jallieu",
-  "address": null,
+  "address": "Musée de Bourgoin-Jallieu",
   "lat": 45.6025,
   "lon": 5.2747,
   "free": null,
@@ -1337,8 +1332,8 @@
   "source_id": "html-bourgoin",
   "sector": "villemoirieu",
   "end": null,
-  "description": "Avec la participation de l’association pour le don de sang bénévole.",
-  "tldr": null,
+  "description": "Avec la participation de votre association pour le don de sang bénévole.",
+  "tldr": "Une collecte de sang ouverte au public, organisée avec une association locale.",
   "category": "autre",
   "tags": [],
   "audience": [
@@ -1355,6 +1350,29 @@
   "id": "don-de-sang-bd9c8d99"
  },
  {
+  "title": "Restos du Coeur de l'Isère : rejoignez l'équipe du futur centre d'accueil de Bourgoin-Jallieu",
+  "start": "2026-09-22T00:00:00",
+  "source_id": "html-bourgoin",
+  "sector": "villemoirieu",
+  "end": null,
+  "description": "Ouverture cet automne.",
+  "tldr": "Une invitation à rejoindre l'équipe de bénévoles pour aider à la création et au fonctionnement d'un futur centre d'accueil.",
+  "category": "autre",
+  "tags": [],
+  "audience": [
+   "adultes"
+  ],
+  "commune": "Bourgoin-Jallieu",
+  "address": null,
+  "lat": 45.6025,
+  "lon": 5.2747,
+  "free": null,
+  "price_text": null,
+  "url": "https://www.bourgoinjallieu.fr/agenda/2959-restos-du-coeur-de-lisere-rejoignez-lequipe-du-futur-centre-daccueil-de-bourgoin-jallieu",
+  "image": null,
+  "id": "restos-du-coeur-de-l-isere-rejoignez-l-equipe-du-futur-centre-d-accueil-de-bourg-4449eaf5"
+ },
+ {
   "title": "Fête foraine",
   "start": "2026-09-23T00:00:00",
   "source_id": "html-bourgoin",
@@ -1365,9 +1383,29 @@
   "category": "fete",
   "tags": [],
   "audience": [
-   "famille",
-   "enfants",
-   "ados",
+   "tous"
+  ],
+  "commune": "Bourgoin-Jallieu",
+  "address": "Quai des Belges",
+  "lat": 45.6025,
+  "lon": 5.2747,
+  "free": null,
+  "price_text": null,
+  "url": "https://www.bourgoinjallieu.fr/agenda/684-fete-foraine",
+  "image": null,
+  "id": "fete-foraine-9ef4698b"
+ },
+ {
+  "title": "Journée Nationale Hommage aux Harkis et autres membres des formations supplétives",
+  "start": "2026-09-25T00:00:00",
+  "source_id": "html-bourgoin",
+  "sector": "villemoirieu",
+  "end": null,
+  "description": "Cérémonie d’hommage.",
+  "tldr": null,
+  "category": "atelier",
+  "tags": [],
+  "audience": [
    "tous"
   ],
   "commune": "Bourgoin-Jallieu",
@@ -1376,9 +1414,9 @@
   "lon": 5.2747,
   "free": null,
   "price_text": null,
-  "url": "https://www.bourgoinjallieu.fr/agenda/684-fete-foraine",
+  "url": "https://www.bourgoinjallieu.fr/agenda/1031-journee-nationale-hommage-aux-harkis-et-autres-membres-des-formations-suppletives",
   "image": null,
-  "id": "fete-foraine-9ef4698b"
+  "id": "journee-nationale-hommage-aux-harkis-et-autres-membres-des-formations-suppletive-c3b0d4a9"
  },
  {
   "title": "Abattoirs : Ouverture de la saison 2026/2027",
@@ -1391,11 +1429,10 @@
   "category": "concert",
   "tags": [],
   "audience": [
-   "adultes",
    "tous"
   ],
   "commune": "Bourgoin-Jallieu",
-  "address": null,
+  "address": "Les Abattoirs",
   "lat": 45.6025,
   "lon": 5.2747,
   "free": null,
@@ -1405,17 +1442,39 @@
   "id": "abattoirs-ouverture-de-la-saison-2026-2027-3cea9714"
  },
  {
+  "title": "Foire de la Saint-Michel",
+  "start": "2026-09-26T00:00:00",
+  "source_id": "html-bourgoin",
+  "sector": "villemoirieu",
+  "end": null,
+  "description": "Un rendez-vous convivial et incontournable qui permet à tous de se retrouver.",
+  "tldr": null,
+  "category": "fete",
+  "tags": [],
+  "audience": [
+   "tous"
+  ],
+  "commune": "Bourgoin-Jallieu",
+  "address": null,
+  "lat": 45.6025,
+  "lon": 5.2747,
+  "free": null,
+  "price_text": null,
+  "url": "https://www.bourgoinjallieu.fr/agenda/1295-foire-de-la-saint-michel",
+  "image": null,
+  "id": "foire-de-la-saint-michel-23908fd0"
+ },
+ {
   "title": "Replica 2026 : exposition maquettes et figurines",
   "start": "2026-09-26T00:00:00",
   "source_id": "html-bourgoin",
   "sector": "villemoirieu",
   "end": "2026-09-27",
-  "description": "Un événement organisé par le club Maquettiste Nord Dauphiné de Bourgoin-Jallieu.",
+  "description": "Un événement organisé par le club Maquettiste Nord Dauphiné (CMND) de Bourgoin-Jallieu.",
   "tldr": null,
   "category": "expo",
   "tags": [],
   "audience": [
-   "famille",
    "tous"
   ],
   "commune": "Bourgoin-Jallieu",
@@ -1434,16 +1493,15 @@
   "source_id": "html-bourgoin",
   "sector": "villemoirieu",
   "end": "2026-09-27",
-  "description": "Avec l’ensemble franco-suédois Sound Quarter.",
+  "description": "Avec l’ensemble franco-suédois « Sound Quarter ».",
   "tldr": null,
   "category": "concert",
   "tags": [],
   "audience": [
-   "adultes",
    "tous"
   ],
   "commune": "Bourgoin-Jallieu",
-  "address": null,
+  "address": "Musée de Bourgoin-Jallieu",
   "lat": 45.6025,
   "lon": 5.2747,
   "free": null,
@@ -1453,7 +1511,7 @@
   "id": "week-end-dimprovisation-musicale-au-musee-f7f19f44"
  },
  {
-  "title": "TJV 26-27 : Lever de rideau avec “ Secret(s) médical ” | Michel Cymes",
+  "title": "TJV 26-27 : Lever de rideau avec \"Secret(s) médical\" | Michel Cymes",
   "start": "2026-10-10T00:00:00",
   "source_id": "html-bourgoin",
   "sector": "villemoirieu",
@@ -1463,7 +1521,6 @@
   "category": "spectacle",
   "tags": [],
   "audience": [
-   "adultes",
    "tous"
   ],
   "commune": "Bourgoin-Jallieu",
@@ -1474,6 +1531,6 @@
   "price_text": null,
   "url": "https://www.bourgoinjallieu.fr/agenda/662-tjv-26-27-lever-de-rideau-avec-secret-s-medical-michel-cymes",
   "image": null,
-  "id": "tjv-26-27-lever-de-rideau-avec-secret-s-medical-michel-cymes-a9380bac"
+  "id": "tjv-26-27-lever-de-rideau-avec-secret-s-medical-michel-cymes-8ed6c004"
  }
 ]
