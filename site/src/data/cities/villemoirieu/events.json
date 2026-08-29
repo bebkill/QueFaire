@@ -28,7 +28,7 @@
   "source_id": "html-balcons-dauphine",
   "sector": "villemoirieu",
   "end": "2026-09-30",
-  "description": "Exposition archéologique au musée de Hières-sur-Amby. À partir de 2 €.",
+  "description": "Exposition au musée archéologique de Hières-sur-Amby autour des parures et des âmes révélées. Un regard sur les pratiques funéraires et symboliques.",
   "tldr": null,
   "category": "expo",
   "tags": [],
@@ -92,6 +92,52 @@
   "id": "cet-ete-faites-vous-une-terrasse-0d26212e"
  },
  {
+  "title": "Exposition temporaire à Brangues : Sèves, de l’ombre à la lumière, le chant des fleurs",
+  "start": "2026-05-09T10:00:00",
+  "source_id": "html-balcons-dauphine",
+  "sector": "villemoirieu",
+  "end": "2026-09-20",
+  "description": "Exposition temporaire à Brangues sur le thème des fleurs, de l’ombre à la lumière. Une invitation poétique au cœur de la nature.",
+  "tldr": null,
+  "category": "expo",
+  "tags": [],
+  "audience": [
+   "tous"
+  ],
+  "commune": "Brangues",
+  "address": null,
+  "lat": 45.6952,
+  "lon": 5.5422,
+  "free": true,
+  "price_text": "Gratuit",
+  "url": "https://www.balconsdudauphine-tourisme.com/manifestation/exposition-temporaire-a-brangues-seves-de-lombre-a-la-lumiere-le-chant-des-fleurs/",
+  "image": null,
+  "id": "exposition-temporaire-a-brangues-seves-de-lombre-a-la-lumiere-le-chant-des-fleur-ce26962c"
+ },
+ {
+  "title": "Exposition temporaire : Racines, de l’origine de la vie aux traces humaines de Brangues, une visite de nos racines",
+  "start": "2026-05-09T10:00:00",
+  "source_id": "html-balcons-dauphine",
+  "sector": "villemoirieu",
+  "end": "2026-09-20",
+  "description": "Exposition temporaire à Brangues explorant l’origine de la vie et les traces humaines. Une visite de nos racines entre science et patrimoine.",
+  "tldr": null,
+  "category": "expo",
+  "tags": [],
+  "audience": [
+   "tous"
+  ],
+  "commune": "Brangues",
+  "address": null,
+  "lat": 45.6952,
+  "lon": 5.5422,
+  "free": true,
+  "price_text": "Gratuit",
+  "url": "https://www.balconsdudauphine-tourisme.com/manifestation/exposition-temporaire-racines-de-lorigine-de-la-vie-aux-traces-humaines-de-brangues-une-visite-de-nos-racines/",
+  "image": null,
+  "id": "exposition-temporaire-racines-de-lorigine-de-la-vie-aux-traces-humaines-de-brang-2542bf65"
+ },
+ {
   "title": "Festiv'été : nouvelle édition",
   "start": "2026-06-16T00:00:00",
   "source_id": "html-bourgoin",
@@ -115,35 +161,12 @@
   "id": "festiv-ete-nouvelle-edition-16c36fcc"
  },
  {
-  "title": "Visite libre des jardins et de la chapelle du château Teyssier de Savy, à Saint-Chef",
-  "start": "2026-07-01T09:30:00",
-  "source_id": "html-balcons-dauphine",
-  "sector": "villemoirieu",
-  "end": "2026-08-28",
-  "description": "Visite libre des jardins et de la chapelle du château Teyssier de Savy. Découverte du patrimoine de Saint-Chef.",
-  "tldr": null,
-  "category": "patrimoine",
-  "tags": [],
-  "audience": [
-   "tous"
-  ],
-  "commune": "Saint-Chef",
-  "address": null,
-  "lat": 45.6401,
-  "lon": 5.3619,
-  "free": null,
-  "price_text": null,
-  "url": "https://www.balconsdudauphine-tourisme.com/manifestation/visite-libre-des-jardins-et-de-la-chapelle-du-chateau-teyssier-de-savy-a-saint-chef/",
-  "image": null,
-  "id": "visite-libre-des-jardins-et-de-la-chapelle-du-chateau-teyssier-de-savy-a-saint-c-f8e62515"
- },
- {
   "title": "Exposition temporaire : Vitis Vinifera, de la vigne au vin, au musée de Saint-Chef",
   "start": "2026-07-03T09:30:00",
   "source_id": "html-balcons-dauphine",
   "sector": "villemoirieu",
   "end": "2026-10-25",
-  "description": "Exposition consacrée à la vigne et au vin au musée de Saint-Chef. Gratuit.",
+  "description": "Exposition temporaire au musée de Saint-Chef consacrée à la vigne et au vin. Parcours sur l’histoire de la viticulture et du vin.",
   "tldr": null,
   "category": "expo",
   "tags": [],
@@ -155,24 +178,24 @@
   "lat": 45.6401,
   "lon": 5.3619,
   "free": true,
-  "price_text": null,
+  "price_text": "Gratuit",
   "url": "https://www.balconsdudauphine-tourisme.com/manifestation/exposition-temporaire-vitis-vinifera-de-la-vigne-au-vin-au-musee-de-saint-chef/",
   "image": null,
   "id": "exposition-temporaire-vitis-vinifera-de-la-vigne-au-vin-au-musee-de-saint-chef-a0af4f00"
  },
  {
-  "title": "L'enquête d'Archibalme : le détective c'est toi !",
+  "title": "L’enquête d’Archibalme : le détective c’est toi !",
   "start": "2026-07-04T10:30:00",
   "source_id": "html-balcons-dauphine",
   "sector": "villemoirieu",
   "end": "2026-08-31",
-  "description": "Jeu de piste immersif dans les Grottes de la Balme. Réservable en ligne, à partir de 1 €.",
-  "tldr": "Jeu de piste immersif dans les Grottes de la Balme où les participants incarnent des détectives pour résoudre une enquête.",
+  "description": "Enquête immersive aux Grottes de la Balme où l’enfant mène l’investigation. Une aventure familiale et ludique dans la peau d’un détective.",
+  "tldr": "Enquête familiale où les enfants résolvent une énigme dans les Grottes de la Balme.",
   "category": "jeunesse",
   "tags": [],
   "audience": [
-   "famille",
-   "enfants"
+   "enfants",
+   "famille"
   ],
   "commune": "La Balme-les-Grottes",
   "address": null,
@@ -182,7 +205,7 @@
   "price_text": "À partir de 1 €",
   "url": "https://www.balconsdudauphine-tourisme.com/manifestation/lenquete-darchibalme-le-detective-cest-toi/",
   "image": null,
-  "id": "l-enquete-d-archibalme-le-detective-c-est-toi-4dd8fa76"
+  "id": "lenquete-darchibalme-le-detective-cest-toi-9a795fc5"
  },
  {
   "title": "Les dimanches, c'est pique-nique !",
@@ -209,36 +232,12 @@
   "id": "les-dimanches-c-est-pique-nique-b4e2435b"
  },
  {
-  "title": "La nature en fête tout l'été, au parc LudOGaïa",
-  "start": "2026-07-06T10:00:00",
-  "source_id": "html-balcons-dauphine",
-  "sector": "villemoirieu",
-  "end": "2026-08-31",
-  "description": "Jeu de piste et animations nature au parc LudOGaïa. Une sortie ludique pour toute la famille.",
-  "tldr": null,
-  "category": "nature",
-  "tags": [],
-  "audience": [
-   "famille",
-   "enfants"
-  ],
-  "commune": "Vézeronce-Curtin",
-  "address": null,
-  "lat": 45.6534,
-  "lon": 5.469,
-  "free": null,
-  "price_text": null,
-  "url": "https://www.balconsdudauphine-tourisme.com/manifestation/la-nature-en-fete-tout-lete-au-parc-ludogaia/",
-  "image": null,
-  "id": "la-nature-en-fete-tout-l-ete-au-parc-ludogaia-08ab8f1e"
- },
- {
-  "title": "Exposition : Héroïnes d'opéra, costumes de scènes, à la Maison Ravier",
+  "title": "Exposition : Héroïnes d’opéra, costumes de scènes, à la Maison Ravier",
   "start": "2026-07-15T14:00:00",
   "source_id": "html-balcons-dauphine",
   "sector": "villemoirieu",
   "end": "2026-10-31",
-  "description": "Exposition de costumes d'opéra à la Maison Ravier. À partir de 6 €.",
+  "description": "Exposition à la Maison Ravier consacrée aux héroïnes d’opéra à travers des costumes de scène. Découverte de l’univers lyrique et de ses costumes.",
   "tldr": null,
   "category": "expo",
   "tags": [],
@@ -253,15 +252,15 @@
   "price_text": "À partir de 6 €",
   "url": "https://www.balconsdudauphine-tourisme.com/manifestation/exposition-heroines-dopera-costumes-de-scenes-a-la-maison-ravier/",
   "image": null,
-  "id": "exposition-heroines-d-opera-costumes-de-scenes-a-la-maison-ravier-7d5d4541"
+  "id": "exposition-heroines-dopera-costumes-de-scenes-a-la-maison-ravier-9ecec4d9"
  },
  {
-  "title": "Exposition : Mélanie Dunand, en résidence d'artiste, à la Maison Ravier",
+  "title": "Exposition : Mélanie Dunand, en résidence d’artiste, à la Maison Ravier",
   "start": "2026-07-15T14:00:00",
   "source_id": "html-balcons-dauphine",
   "sector": "villemoirieu",
   "end": "2026-10-31",
-  "description": "Exposition de Mélanie Dunand, artiste en résidence à la Maison Ravier. À partir de 6 €.",
+  "description": "Exposition de Mélanie Dunand, artiste en résidence à la Maison Ravier. Présentation de son travail et de ses créations.",
   "tldr": null,
   "category": "expo",
   "tags": [],
@@ -276,15 +275,15 @@
   "price_text": "À partir de 6 €",
   "url": "https://www.balconsdudauphine-tourisme.com/manifestation/exposition-melanie-dunand-en-residence-dartiste-a-la-maison-ravier/",
   "image": null,
-  "id": "exposition-melanie-dunand-en-residence-d-artiste-a-la-maison-ravier-26019aab"
+  "id": "exposition-melanie-dunand-en-residence-dartiste-a-la-maison-ravier-7e5e7ead"
  },
  {
-  "title": "Exposition : les estivales 2, à l'Espace Pictur'Halles",
+  "title": "Exposition : les estivales 2, à l’Espace Pictur’Halles",
   "start": "2026-07-24T14:30:00",
   "source_id": "html-balcons-dauphine",
   "sector": "villemoirieu",
   "end": "2026-09-06",
-  "description": "Exposition estivale à l'Espace Pictur'Halles. Gratuit.",
+  "description": "Exposition collective « Les Estivales 2 » à l’Espace Pictur’Halles. Découverte d’œuvres variées d’artistes contemporains.",
   "tldr": null,
   "category": "expo",
   "tags": [],
@@ -296,10 +295,10 @@
   "lat": 45.6812,
   "lon": 5.4716,
   "free": true,
-  "price_text": null,
+  "price_text": "Gratuit",
   "url": "https://www.balconsdudauphine-tourisme.com/manifestation/exposition-les-estivales-2-a-lespace-picturhalles/",
   "image": null,
-  "id": "exposition-les-estivales-2-a-l-espace-pictur-halles-5e395a47"
+  "id": "exposition-les-estivales-2-a-lespace-picturhalles-33142cef"
  },
  {
   "title": "Exposition : les estivales 2, à la tour médiévale",
@@ -307,7 +306,7 @@
   "source_id": "html-balcons-dauphine",
   "sector": "villemoirieu",
   "end": "2026-09-06",
-  "description": "Exposition estivale à la tour médiévale de Morestel. Gratuit.",
+  "description": "Exposition collective « Les Estivales 2 » à la tour médiévale. Découverte d’œuvres variées dans un cadre patrimonial.",
   "tldr": null,
   "category": "expo",
   "tags": [],
@@ -319,33 +318,10 @@
   "lat": 45.6812,
   "lon": 5.4716,
   "free": true,
-  "price_text": null,
+  "price_text": "Gratuit",
   "url": "https://www.balconsdudauphine-tourisme.com/manifestation/exposition-les-estivales-2-a-la-tour-medievale/",
   "image": null,
   "id": "exposition-les-estivales-2-a-la-tour-medievale-44648dd5"
- },
- {
-  "title": "Happy time : la pause gourmande au Elles Lunch Café",
-  "start": "2026-08-01T15:30:00",
-  "source_id": "html-balcons-dauphine",
-  "sector": "villemoirieu",
-  "end": "2026-08-30",
-  "description": "Pause gourmande et conviviale au Elles Lunch Café. Dégustation sucrée ou salée.",
-  "tldr": null,
-  "category": "marche",
-  "tags": [],
-  "audience": [
-   "tous"
-  ],
-  "commune": "Morestel",
-  "address": null,
-  "lat": 45.6812,
-  "lon": 5.4716,
-  "free": null,
-  "price_text": null,
-  "url": "https://www.balconsdudauphine-tourisme.com/manifestation/happy-time-la-pause-gourmande-au-elles-lunch-cafe/",
-  "image": null,
-  "id": "happy-time-la-pause-gourmande-au-elles-lunch-cafe-e79d3ec6"
  },
  {
   "title": "Musée Galerie Clauorum : Christian Chevallier photographies",
@@ -371,12 +347,12 @@
   "id": "musee-galerie-clauorum-christian-chevallier-photographies-6afeb7c3"
  },
  {
-  "title": "Concours photo : Crémieu dans l'objectif, et dans les pas du passé !",
+  "title": "Concours photo : Crémieu dans l’objectif, et dans les pas du passé !",
   "start": "2026-08-10T08:00:00",
   "source_id": "html-balcons-dauphine",
   "sector": "villemoirieu",
   "end": "2026-09-13",
-  "description": "Concours photo organisé à Crémieu sur le thème du patrimoine. Gratuit.",
+  "description": "Concours photo organisé par le Conseil Municipal des Jeunes de Crémieu. Les participants sont invités à mettre en valeur Crémieu et son patrimoine.",
   "tldr": null,
   "category": "patrimoine",
   "tags": [],
@@ -388,10 +364,10 @@
   "lat": 45.7314,
   "lon": 5.2635,
   "free": true,
-  "price_text": null,
+  "price_text": "Gratuit",
   "url": "https://www.balconsdudauphine-tourisme.com/manifestation/concours-photo-cremieu-dans-lobjectif-et-dans-les-pas-du-passe/",
   "image": null,
-  "id": "concours-photo-cremieu-dans-l-objectif-et-dans-les-pas-du-passe-9fe9f369"
+  "id": "concours-photo-cremieu-dans-lobjectif-et-dans-les-pas-du-passe-8e1d63cf"
  },
  {
   "title": "Exposition Hommage à Jacqueline Anselme",
@@ -440,18 +416,17 @@
   "id": "exposition-hommage-a-jacqueline-anselme-a30a4069"
  },
  {
-  "title": "L'Arche de Julie : visites et ateliers du mois d'août",
-  "start": "2026-08-24T08:30:00",
+  "title": "L’Arche de Julie : visites et ateliers du mois d’août",
+  "start": "2026-08-24T09:00:00",
   "source_id": "html-balcons-dauphine",
   "sector": "villemoirieu",
   "end": "2026-08-30",
-  "description": "Visites et ateliers proposés à L'Arche de Julie. Animations pour toute la famille.",
+  "description": "Visites et ateliers du mois d’août à l’Arche de Julie. Découverte du site et animations pour toute la famille.",
   "tldr": null,
   "category": "patrimoine",
   "tags": [],
   "audience": [
-   "famille",
-   "enfants"
+   "tous"
   ],
   "commune": "Vézeronce-Curtin",
   "address": null,
@@ -461,102 +436,7 @@
   "price_text": null,
   "url": "https://www.balconsdudauphine-tourisme.com/manifestation/larche-de-julie-visites-et-ateliers-du-mois-d-aout/",
   "image": null,
-  "id": "l-arche-de-julie-visites-et-ateliers-du-mois-d-aout-77d8c946"
- },
- {
-  "title": "Vente de livres à la médiathèque de Morestel",
-  "start": "2026-08-28T09:00:00",
-  "source_id": "html-balcons-dauphine",
-  "sector": "villemoirieu",
-  "end": null,
-  "description": "Vente de livres organisée à la médiathèque de Morestel. Gratuit.",
-  "tldr": null,
-  "category": "autre",
-  "tags": [],
-  "audience": [
-   "tous"
-  ],
-  "commune": "Morestel",
-  "address": null,
-  "lat": 45.6812,
-  "lon": 5.4716,
-  "free": true,
-  "price_text": null,
-  "url": "https://www.balconsdudauphine-tourisme.com/manifestation/vente-de-livres-a-la-mediatheque-de-morestel/",
-  "image": null,
-  "id": "vente-de-livres-a-la-mediatheque-de-morestel-7fa15f74"
- },
- {
-  "title": "Du rayonnement à la lumière, comprendre le solaire : visite guidée du parc photovoltaïque Renner Energies à Arandon",
-  "start": "2026-08-28T10:00:00",
-  "source_id": "html-balcons-dauphine",
-  "sector": "villemoirieu",
-  "end": null,
-  "description": "Visite guidée du parc photovoltaïque Renner Energies pour comprendre l'énergie solaire. Réservation en ligne.",
-  "tldr": null,
-  "category": "patrimoine",
-  "tags": [],
-  "audience": [
-   "ados",
-   "adultes"
-  ],
-  "commune": "Arandon-Passins",
-  "address": null,
-  "lat": 45.7064,
-  "lon": 5.4373,
-  "free": null,
-  "price_text": null,
-  "url": "https://www.balconsdudauphine-tourisme.com/manifestation/du-rayonnement-a-la-lumiere-comprendre-le-solaire-visite-guidee-du-parc-photovoltaique-renner-energies-a-arandon/",
-  "image": null,
-  "id": "du-rayonnement-a-la-lumiere-comprendre-le-solaire-visite-guidee-du-parc-photovol-47d0bbcd"
- },
- {
-  "title": "Animation à la Maison Ravier : un vendredi, une oeuvre",
-  "start": "2026-08-28T15:30:00",
-  "source_id": "html-balcons-dauphine",
-  "sector": "villemoirieu",
-  "end": null,
-  "description": "Animation autour d'une œuvre à la Maison Ravier. À partir de 6 €.",
-  "tldr": null,
-  "category": "patrimoine",
-  "tags": [],
-  "audience": [
-   "ados",
-   "adultes"
-  ],
-  "commune": "Morestel",
-  "address": null,
-  "lat": 45.6812,
-  "lon": 5.4716,
-  "free": false,
-  "price_text": "À partir de 6 €",
-  "url": "https://www.balconsdudauphine-tourisme.com/manifestation/animation-a-la-maison-ravier-un-vendredi-une-oeuvre/",
-  "image": null,
-  "id": "animation-a-la-maison-ravier-un-vendredi-une-oeuvre-de0b3382"
- },
- {
-  "title": "Tournois de padel au complexe sportif Fytarena à Arandon-Passins",
-  "start": "2026-08-28T18:00:00",
-  "source_id": "html-balcons-dauphine",
-  "sector": "villemoirieu",
-  "end": null,
-  "description": "Tournois de padel au complexe sportif Fytarena. Compétition sportive en soirée.",
-  "tldr": null,
-  "category": "sport",
-  "tags": [],
-  "audience": [
-   "ados",
-   "adultes"
-  ],
-  "commune": "Arandon-Passins",
-  "address": null,
-  "lat": 45.7064,
-  "lon": 5.4373,
-  "free": null,
-  "price_text": null,
-  "url": "https://www.balconsdudauphine-tourisme.com/manifestation/tournois-de-padel-au-complexe-sportif-fytarena-a-arandon-passins/",
-  "image": null,
-  "id": "tournois-de-padel-au-complexe-sportif-fytarena-a-arandon-passins-bf6054d9"
+  "id": "larche-de-julie-visites-et-ateliers-du-mois-daout-4e59203b"
  },
  {
   "title": "Forum des associations : édition 2026",
@@ -634,7 +514,7 @@
   "source_id": "html-weekend-capi",
   "sector": "villemoirieu",
   "end": null,
-  "description": "Partez à la découverte des rues et ruelles du Village de Saint Alban de Roche et venez découvrir les lieux et personnages qui ont marqué son histoire.",
+  "description": "Partez à la découverte des rues et ruelles du village de Saint Alban de Roche et venez découvrir les lieux et personnages qui ont marqué son histoire.",
   "tldr": null,
   "category": "patrimoine",
   "tags": [],
@@ -650,6 +530,99 @@
   "url": "https://www.monweekendalacapi.fr/agenda/evenements/visite-guidee-du-village-de-saint-alban-de-roche2",
   "image": null,
   "id": "visite-guidee-du-village-de-saint-alban-de-roche-fcd4acdc"
+ },
+ {
+  "title": "Sortie Lo Parvi : découverte des criquets, sauterelles et grillons",
+  "start": "2026-08-29T09:00:00",
+  "source_id": "html-balcons-dauphine",
+  "sector": "villemoirieu",
+  "end": null,
+  "description": "Sortie nature proposée par Lo Parvi pour découvrir les criquets, sauterelles et grillons. Animation gratuite ouverte à tous.",
+  "tldr": null,
+  "category": "nature",
+  "tags": [],
+  "audience": [
+   "tous"
+  ],
+  "commune": "Saint-Sorlin-de-Morestel",
+  "address": null,
+  "lat": 45.632,
+  "lon": 5.4716,
+  "free": true,
+  "price_text": "Gratuit",
+  "url": "https://www.balconsdudauphine-tourisme.com/manifestation/sortie-lo-parvi-decouverte-des-criquets-sauterelles-et-grillons/",
+  "image": null,
+  "id": "sortie-lo-parvi-decouverte-des-criquets-sauterelles-et-grillons-357a5f9d"
+ },
+ {
+  "title": "Vente de livres à la médiathèque de Morestel",
+  "start": "2026-08-29T09:00:00",
+  "source_id": "html-balcons-dauphine",
+  "sector": "villemoirieu",
+  "end": null,
+  "description": "Vente de livres à la médiathèque de Morestel. Une animation gratuite pour trouver des lectures.",
+  "tldr": null,
+  "category": "autre",
+  "tags": [],
+  "audience": [
+   "tous"
+  ],
+  "commune": "Morestel",
+  "address": null,
+  "lat": 45.6812,
+  "lon": 5.4716,
+  "free": true,
+  "price_text": "Gratuit",
+  "url": "https://www.balconsdudauphine-tourisme.com/manifestation/vente-de-livres-a-la-mediatheque-de-morestel/",
+  "image": null,
+  "id": "vente-de-livres-a-la-mediatheque-de-morestel-d733806e"
+ },
+ {
+  "title": "Stage de chants médiévaux du Café Crém’",
+  "start": "2026-08-29T09:30:00",
+  "source_id": "html-balcons-dauphine",
+  "sector": "villemoirieu",
+  "end": null,
+  "description": "Stage de chants médiévaux proposé par le Café Crém’. Initiation au répertoire vocal médiéval.",
+  "tldr": null,
+  "category": "atelier",
+  "tags": [],
+  "audience": [
+   "ados",
+   "adultes"
+  ],
+  "commune": "Crémieu",
+  "address": null,
+  "lat": 45.7314,
+  "lon": 5.2635,
+  "free": null,
+  "price_text": null,
+  "url": "https://www.balconsdudauphine-tourisme.com/activite/stage-de-chants-medievaux-du-cafe-crem/",
+  "image": null,
+  "id": "stage-de-chants-medievaux-du-cafe-crem-837e1c4d"
+ },
+ {
+  "title": "Mob’Fest à Brangues",
+  "start": "2026-08-29T09:30:00",
+  "source_id": "html-balcons-dauphine",
+  "sector": "villemoirieu",
+  "end": null,
+  "description": "Mob’Fest à Brangues, rassemblement festif autour des mobylettes. Animation gratuite en extérieur.",
+  "tldr": null,
+  "category": "fete",
+  "tags": [],
+  "audience": [
+   "tous"
+  ],
+  "commune": "Brangues",
+  "address": null,
+  "lat": 45.6952,
+  "lon": 5.5422,
+  "free": true,
+  "price_text": "Gratuit",
+  "url": "https://www.balconsdudauphine-tourisme.com/manifestation/mobfest-a-brangues/",
+  "image": null,
+  "id": "mobfest-a-brangues-73e4d6cc"
  },
  {
   "title": "Stage de chants médiévaux",
@@ -673,6 +646,29 @@
   "url": "https://cafe-crem.fr/programme#stage-de-chants-medievaux-1787986800000",
   "image": null,
   "id": "stage-de-chants-medievaux-867226e6"
+ },
+ {
+  "title": "Atelier parfum à la Maison Poloni",
+  "start": "2026-08-29T10:00:00",
+  "source_id": "html-balcons-dauphine",
+  "sector": "villemoirieu",
+  "end": null,
+  "description": "Atelier de création de parfum à la Maison Poloni. Découverte des matières premières et réalisation de son propre parfum.",
+  "tldr": null,
+  "category": "atelier",
+  "tags": [],
+  "audience": [
+   "adultes"
+  ],
+  "commune": "Crémieu",
+  "address": null,
+  "lat": 45.7314,
+  "lon": 5.2635,
+  "free": false,
+  "price_text": "À partir de 139 €",
+  "url": "https://www.balconsdudauphine-tourisme.com/activite/atelier-parfum-a-la-maison-poloni/",
+  "image": null,
+  "id": "atelier-parfum-a-la-maison-poloni-d0174a0e"
  },
  {
   "title": "Dimanche 30 août, c'est la fête des familles",
@@ -699,11 +695,34 @@
   "id": "dimanche-30-aout-c-est-la-fete-des-familles-9beedb41"
  },
  {
-  "title": "Fête des familles",
+  "title": "Les Vikings",
   "start": "2026-08-30T00:00:00",
   "source_id": "html-weekend-capi",
   "sector": "villemoirieu",
   "end": null,
+  "description": "L'association Hugin et Munin présente de façon ludique la civilisation des Vikings à travers leurs costumes, armes, techniques de combat, ou encore...",
+  "tldr": "Découverte interactive de l'histoire, de la culture et des techniques vikings pour tous les publics.",
+  "category": "spectacle",
+  "tags": [],
+  "audience": [
+   "tous"
+  ],
+  "commune": "Saint-Quentin-Fallavier",
+  "address": "4, chemin de Saint Pierre 38070 Saint-Quentin-Fallavier, France",
+  "lat": 45.6392,
+  "lon": 5.1128,
+  "free": null,
+  "price_text": null,
+  "url": "https://www.monweekendalacapi.fr/agenda/evenements/les-vikings",
+  "image": null,
+  "id": "les-vikings-550a923a"
+ },
+ {
+  "title": "Fête des familles",
+  "start": "2026-08-30T12:00:00",
+  "source_id": "html-weekend-capi",
+  "sector": "villemoirieu",
+  "end": "2026-08-30T18:00:00",
   "description": "Embarquez pour un voyage festif autour du monde ! De 12h à 18h, les aires de jeux des Lilattes, de la Grive, de Champaret et de Champfleuri accueillent les familles.",
   "tldr": null,
   "category": "fete",
@@ -721,29 +740,6 @@
   "url": "https://www.monweekendalacapi.fr/agenda/evenements/fete-des-familles",
   "image": null,
   "id": "fete-des-familles-015cd2c7"
- },
- {
-  "title": "Les Vikings",
-  "start": "2026-08-30T00:00:00",
-  "source_id": "html-weekend-capi",
-  "sector": "villemoirieu",
-  "end": null,
-  "description": "L'association Hugin et Munin présente de façon ludique la civilisation des Vikings à travers leurs costumes, armes, techniques de combat, ou encore.",
-  "tldr": null,
-  "category": "spectacle",
-  "tags": [],
-  "audience": [
-   "tous"
-  ],
-  "commune": "Saint-Quentin-Fallavier",
-  "address": "4, chemin de Saint Pierre 38070 Saint-Quentin-Fallavier, France",
-  "lat": 45.6392,
-  "lon": 5.1128,
-  "free": null,
-  "price_text": null,
-  "url": "https://www.monweekendalacapi.fr/agenda/evenements/les-vikings",
-  "image": null,
-  "id": "les-vikings-550a923a"
  },
  {
   "title": "Exposition de peintures",
