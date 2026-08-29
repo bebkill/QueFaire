@@ -509,29 +509,6 @@
   "id": "fete-du-skatepark-rendez-vous-au-parc-des-lilattes-adaa4920"
  },
  {
-  "title": "Visite guidée du village de Saint Alban de Roche",
-  "start": "2026-08-29T00:00:00",
-  "source_id": "html-weekend-capi",
-  "sector": "villemoirieu",
-  "end": null,
-  "description": "Partez à la découverte des rues et ruelles du village de Saint Alban de Roche et venez découvrir les lieux et personnages qui ont marqué son histoire.",
-  "tldr": null,
-  "category": "patrimoine",
-  "tags": [],
-  "audience": [
-   "tous"
-  ],
-  "commune": "Saint-Alban-de-Roche",
-  "address": "38080 Saint Alban de Roche, France",
-  "lat": 45.5889,
-  "lon": 5.2243,
-  "free": null,
-  "price_text": null,
-  "url": "https://www.monweekendalacapi.fr/agenda/evenements/visite-guidee-du-village-de-saint-alban-de-roche2",
-  "image": null,
-  "id": "visite-guidee-du-village-de-saint-alban-de-roche-fcd4acdc"
- },
- {
   "title": "Sortie Lo Parvi : découverte des criquets, sauterelles et grillons",
   "start": "2026-08-29T09:00:00",
   "source_id": "html-balcons-dauphine",
@@ -700,8 +677,8 @@
   "source_id": "html-weekend-capi",
   "sector": "villemoirieu",
   "end": null,
-  "description": "L'association Hugin et Munin présente de façon ludique la civilisation des Vikings à travers leurs costumes, armes, techniques de combat, ou encore...",
-  "tldr": "Découverte interactive de l'histoire, de la culture et des techniques vikings pour tous les publics.",
+  "description": "L'association Hugin et Munin présente de façon ludique la civilisation des Vikings à travers leurs costumes, armes, techniques de combat, et plus encore.",
+  "tldr": "Une présentation interactive avec des reconstitutions de costumes, d'armes et de techniques de combat pour découvrir la vie des Vikings.",
   "category": "spectacle",
   "tags": [],
   "audience": [
@@ -729,7 +706,7 @@
   "tags": [],
   "audience": [
    "famille",
-   "enfants"
+   "tous"
   ],
   "commune": "Bourgoin-Jallieu",
   "address": "38300 Bourgoin-Jallieu, France",
@@ -740,6 +717,30 @@
   "url": "https://www.monweekendalacapi.fr/agenda/evenements/fete-des-familles",
   "image": null,
   "id": "fete-des-familles-015cd2c7"
+ },
+ {
+  "title": "Avant-première L'Île des Souvenirs",
+  "start": "2026-08-30T15:00:00",
+  "source_id": "html-weekend-capi",
+  "sector": "villemoirieu",
+  "end": null,
+  "description": "Deux mois avant sa sortie, assistez à l'avant-première du nouveau film d'animation DreamWorks : L'Île Des Souvenirs, dimanche 30 août à 15h00 au cinéma.",
+  "tldr": null,
+  "category": "cinema",
+  "tags": [],
+  "audience": [
+   "famille",
+   "tous"
+  ],
+  "commune": "Villefontaine",
+  "address": "57 esplanade Auguste et Louis Lumière 38090 Villefontaine, France",
+  "lat": 45.6161,
+  "lon": 5.1549,
+  "free": null,
+  "price_text": null,
+  "url": "https://www.monweekendalacapi.fr/agenda/evenements/avant-premiere-l-ile-des-souvenirs",
+  "image": null,
+  "id": "avant-premiere-l-ile-des-souvenirs-bcfe1a45"
  },
  {
   "title": "Exposition de peintures",

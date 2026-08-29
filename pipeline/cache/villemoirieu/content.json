@@ -5,14 +5,13 @@
 "clarify:0d16b0b4fce07f64482568e5ab8e4336631a0fba6624497673c2e644b84c125c": "",
 "clarify:0fa8e09a1dbb51e8b046bc1cf2b084bab4024ebac9c71a65c2e9b84ff3522e5f": "",
 "clarify:12a8e4e5355963d14dae5d918d372f8a11aca349b8981954c36bc7ae8978d587": "",
-"clarify:197f7babc6561428dd853aa6c03022a03a00ab7af3f27f70d2e9906226908e8c": "Découverte interactive de l'histoire, de la culture et des techniques vikings pour tous les publics.",
 "clarify:1bcf7a75603bc14f4cd997a77baeac82e76043602bf71e82ccf88cc0fc5b3ae8": "",
 "clarify:1fc009e19d5ece6377f6bcd9119b75cea7a4288bac207b8cad122313c70a3173": "",
-"clarify:218b79ee9028439e27185541ec7c6e2476bd95db4882fe7ae7b3f2b8cefae294": "",
 "clarify:223f95f95e2b9c5c919a763c98e1204d332b87c2184d456e312ab33b353869c0": "",
 "clarify:22b7318f33a2442e32c6eb2a069b218aa41e3f8ad48ec82721130fac23c88c4c": "",
 "clarify:27ea2796132656a35753c6d1a35363a3034c02b1b8eddbc32abdf36ff290d2fb": "",
 "clarify:2f51e3d4afb8148fc09b2a922312e4f4af40441a0a6875a9e346a7b96e00e3e4": "",
+"clarify:358c924a8702e92365da4e884b46653af1840e7de1cf01f38954d70c4ff0155f": "Une présentation interactive avec des reconstitutions de costumes, d'armes et de techniques de combat pour découvrir la vie des Vikings.",
 "clarify:35ffc19451f8c48c5b851287a76e4d052624037ea75089692f63696e7a03b8a7": "",
 "clarify:394fc31d9f6955c839e2fff711cbabc30ffa23acdf533e65a3fb645189206d4c": "",
 "clarify:3e6f3c56b22c341840f72b60f9470538e470944050e76b201044357e13b26d92": "",
@@ -50,6 +49,7 @@
 "clarify:aa9c9a04a52970306850e8c0a15c3f923e74aada91a511e96e3e01fae541cdb9": "",
 "clarify:b0d0619a7dcf37c9f1591042e9971582474c1f4f42c1c1a9156c4a040f749079": "",
 "clarify:b1e2e371e5911ab4305bc61257b33866f06a2a16d1f4d90fa90ffedc1bcc5b61": "",
+"clarify:b36dd466f792d5c9f11ea90d4e03b1b95531448ab048198681de0aec43162be4": "",
 "clarify:b379df3bb130c353f9b2f549cda25d4dc302777d73b547d5f999f2353803f82f": "",
 "clarify:b6e874438e6989edbaa3c44ace9aa5b3250b789ae00afd2e084daa982bbcca95": "",
 "clarify:b72b3891037e4b5c5bc00609f235bccf22cda5e3c54ab684db9ce9b634dde8e3": "",
@@ -1049,6 +1049,79 @@
 "url": "https://www.bourgoinjallieu.fr/agenda/662-tjv-26-27-lever-de-rideau-avec-secret-s-medical-michel-cymes"
 }
 ],
+"extract:2e9d8394393e58abdbb9e3501454991b93efcea04d797e04be5036409e946453": [
+{
+"address": "38300 Bourgoin-Jallieu, France",
+"audience": [
+"famille",
+"tous"
+],
+"category": "fete",
+"commune": "Bourgoin-Jallieu",
+"description": "Embarquez pour un voyage festif autour du monde ! De 12h à 18h, les aires de jeux des Lilattes, de la Grive, de Champaret et de Champfleuri accueillent les familles.",
+"end": "2026-08-30T18:00:00",
+"free": null,
+"id": "fete-des-familles-015cd2c7",
+"image": null,
+"lat": null,
+"lon": null,
+"price_text": null,
+"sector": "villemoirieu",
+"source_id": "html-weekend-capi",
+"start": "2026-08-30T12:00:00",
+"tags": [],
+"title": "Fête des familles",
+"tldr": null,
+"url": "https://www.monweekendalacapi.fr/agenda/evenements/fete-des-familles"
+},
+{
+"address": "57 esplanade Auguste et Louis Lumière 38090 Villefontaine, France",
+"audience": [
+"famille",
+"tous"
+],
+"category": "cinema",
+"commune": "Villefontaine",
+"description": "Deux mois avant sa sortie, assistez à l'avant-première du nouveau film d'animation DreamWorks : L'Île Des Souvenirs, dimanche 30 août à 15h00 au cinéma.",
+"end": null,
+"free": null,
+"id": "avant-premiere-l-ile-des-souvenirs-bcfe1a45",
+"image": null,
+"lat": null,
+"lon": null,
+"price_text": null,
+"sector": "villemoirieu",
+"source_id": "html-weekend-capi",
+"start": "2026-08-30T15:00:00",
+"tags": [],
+"title": "Avant-première L'Île des Souvenirs",
+"tldr": null,
+"url": "https://www.monweekendalacapi.fr/agenda/evenements/avant-premiere-l-ile-des-souvenirs"
+},
+{
+"address": "4, chemin de Saint Pierre 38070 Saint-Quentin-Fallavier, France",
+"audience": [
+"tous"
+],
+"category": "spectacle",
+"commune": "Saint-Quentin-Fallavier",
+"description": "L'association Hugin et Munin présente de façon ludique la civilisation des Vikings à travers leurs costumes, armes, techniques de combat, et plus encore.",
+"end": null,
+"free": null,
+"id": "les-vikings-550a923a",
+"image": null,
+"lat": null,
+"lon": null,
+"price_text": null,
+"sector": "villemoirieu",
+"source_id": "html-weekend-capi",
+"start": "2026-08-30T00:00:00",
+"tags": [],
+"title": "Les Vikings",
+"tldr": null,
+"url": "https://www.monweekendalacapi.fr/agenda/evenements/les-vikings"
+}
+],
 "extract:70f16dece496f19e93e2ea4de2b11989eb9fa8cc5fd198a117eb0d7a03468f8a": [
 {
 "address": "Office de Tourisme CAPI - Espace Carnot",
@@ -1631,78 +1704,6 @@
 "title": "Exposition : les estivales 2, à la tour médiévale",
 "tldr": null,
 "url": "https://www.balconsdudauphine-tourisme.com/manifestation/exposition-les-estivales-2-a-la-tour-medievale/"
-}
-],
-"extract:f12bd50b3e1b9c09bb23f7771b3bf39b017eeb1ea73f156de3a1151de7c52204": [
-{
-"address": "38300 Bourgoin-Jallieu, France",
-"audience": [
-"famille",
-"enfants"
-],
-"category": "fete",
-"commune": "Bourgoin-Jallieu",
-"description": "Embarquez pour un voyage festif autour du monde ! De 12h à 18h, les aires de jeux des Lilattes, de la Grive, de Champaret et de Champfleuri accueillent les familles.",
-"end": "2026-08-30T18:00:00",
-"free": null,
-"id": "fete-des-familles-015cd2c7",
-"image": null,
-"lat": null,
-"lon": null,
-"price_text": null,
-"sector": "villemoirieu",
-"source_id": "html-weekend-capi",
-"start": "2026-08-30T12:00:00",
-"tags": [],
-"title": "Fête des familles",
-"tldr": null,
-"url": "https://www.monweekendalacapi.fr/agenda/evenements/fete-des-familles"
-},
-{
-"address": "38080 Saint Alban de Roche, France",
-"audience": [
-"tous"
-],
-"category": "patrimoine",
-"commune": "Saint Alban de Roche",
-"description": "Partez à la découverte des rues et ruelles du village de Saint Alban de Roche et venez découvrir les lieux et personnages qui ont marqué son histoire.",
-"end": null,
-"free": null,
-"id": "visite-guidee-du-village-de-saint-alban-de-roche-fcd4acdc",
-"image": null,
-"lat": null,
-"lon": null,
-"price_text": null,
-"sector": "villemoirieu",
-"source_id": "html-weekend-capi",
-"start": "2026-08-29T00:00:00",
-"tags": [],
-"title": "Visite guidée du village de Saint Alban de Roche",
-"tldr": null,
-"url": "https://www.monweekendalacapi.fr/agenda/evenements/visite-guidee-du-village-de-saint-alban-de-roche2"
-},
-{
-"address": "4, chemin de Saint Pierre 38070 Saint-Quentin-Fallavier, France",
-"audience": [
-"tous"
-],
-"category": "spectacle",
-"commune": "Saint-Quentin-Fallavier",
-"description": "L'association Hugin et Munin présente de façon ludique la civilisation des Vikings à travers leurs costumes, armes, techniques de combat, ou encore...",
-"end": null,
-"free": null,
-"id": "les-vikings-550a923a",
-"image": null,
-"lat": null,
-"lon": null,
-"price_text": null,
-"sector": "villemoirieu",
-"source_id": "html-weekend-capi",
-"start": "2026-08-30T00:00:00",
-"tags": [],
-"title": "Les Vikings",
-"tldr": null,
-"url": "https://www.monweekendalacapi.fr/agenda/evenements/les-vikings"
 }
 ]
 }
