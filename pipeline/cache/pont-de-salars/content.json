@@ -1,439 +1,45 @@
 {
-"clarify:0397cb19ae17867aa1140140a9662691f6df47d35165d8b6ee9af451d90df8bc": "",
-"clarify:1942cb4d3b56808505e32656a55ff318509f24eed40343dfcc61dc0354368712": "",
-"clarify:1da560cb3a50447041f7b3684e9f38d602aec0d6b184cef7cba89a1ae846e4fd": "",
-"clarify:22778f8e8a743aa3f4f2531cdd958a016b9dea4ece685b5bb8cd4ace1b1a3345": "",
-"clarify:314a585c6e2164d60462a0608a5ca409611b1e311146a4ac55d1511c0843da75": "",
-"clarify:37f1d3f35a8e97e2fb40f0a3c73d8af09a5c8c59cb158f9e20deeb1001a1941a": "",
-"clarify:383dc3329262df24ed8a3a2ace25a99e2ea38d42e9bc12adf00f0f29eb4fdd94": "",
-"clarify:5633e16d7397e394cacf85d939cec469d6dbfd98bf9638333f568f61cbc4e4bb": "",
-"clarify:71978aaee971c90ce1e986dec82c7fc958525d070af3af39d5bb08c83cc46971": "Atelier manuel pour créer un accessoire en macramé, ouvert à tous les niveaux, avec un porte-gourde comme projet concret.",
-"clarify:72750d4052e9a06d59236d449aaff0af670ef951731a726fe52c4cc953247706": "",
-"clarify:7434b176086d8a4ede96aaa327a0356144b9b22449fb116340ec2f9e97822d1a": "",
-"clarify:74cbe3418a64afae9fbb28430c925fcadb20522c616ef75c218ff527e3dea70f": "",
-"clarify:74dfc5989559f5c167a147c4ec66c7f42327d6cbe9c5087d60f20021915eaa6e": "Une visite guidée dans les rues de Rodez pour découvrir les lieux liés à l'artiste Pierre Soulages, suivie d'une dégustation de vins locaux.",
-"clarify:782bbde133e0c2676a6d7b3da6d5160fb7532ec049bf5ce5081d65ccffa4d359": "",
-"clarify:79a544e220d2b81519c832804ef270a68237a68a90256f50f7cfe5d9db3f9190": "",
-"clarify:96a65fecaae3e61175ff3b5664332b164db97da59243d354174bbbe233bff829": "",
-"clarify:aab9d65bba0e1de8d479632437301f13fe8c4073cf8853cf5a78effd207b8060": "",
-"clarify:ab6782fa5037aa473b478cfcdf312b12c59368c2968659a8bf81a5ddfbd229a3": "",
-"clarify:ad5ed497b2746bc986c6b91c0b29ddb0ad009cf514f1558f7c2b6ac9d713e439": "",
-"clarify:b602c894120c1685d91265c1a8692c22add0707120a6b0f7527b06d8f511a7b2": "",
-"clarify:c6596af66d05a2a1b81779c2c3d0d986f581d08db3679b679260b18000b4f687": "",
-"clarify:cee23b19aec1736984dd31b5714925391b2a27a8093f1a03a762b497eae42cf1": "",
-"clarify:d6ca2f1d7c4ebdde1cdb545a526f56f9613e2bb9d693496b335fd5535ea45261": "",
-"clarify:d9c245a2b63e1e50ea8e5e629ea704b4f039876cfbb6d32c66272c81a2a7fad2": "",
-"clarify:da9607272ad76aa200d6b66caeb0c1d4b5c63da268de315b0cba6894867802ac": "",
-"clarify:e168980390f1fc4d96371cabddbbbd5e8bf7df70143b42f8a09eb3bd448c0f56": "",
-"clarify:e97d2281980cd932548e0360bac3ac2c64a68a43140dcad780c2e2912ae32319": "",
-"clarify:ed83dbadd497f159851a88bc6535031b0948c316c614de89d5295417412b8894": "",
-"clarify:f7431dd294898e482c03b3addcaa24077259bfb9edb58c227b36a38a20da0664": "",
-"clarify:f874db59bded892ca8ea4a87f900fe6cc421cbc47fd7a7e9eb5b6f5931fa8d70": "Animation familiale combinant un repas convivial (brunch) et des jeux sportifs (olympiades) pour tous les âges.",
+"clarify:033ff14d76e63b533d35b522717ad39361a7d507c64ec2e188bd46ad0db12230": "",
+"clarify:15f4f0d21f6a54d80d46c5a2228bc30c10f327a3a172639731112d3bb518b784": "",
+"clarify:1ec460e7ed9bc2e9fd2935a7e92f912021d670ddafd0a62ff75635bfdbc11b11": "",
+"clarify:233e1adf90e8053aa2024215a4e85203c178002376a329fa361c6f3ae9467193": "",
+"clarify:2cc147e098854069e59142240c93730d536cdd422eab15e11ce3ea117f284de7": "",
+"clarify:3dd826fd504d05d652e3bf0ffde1b2d9a8a91ca222a29fa89f1e6568416e2a66": "",
+"clarify:4fecdbfca4c71c5c25ba145660be02dee43820835b3fd96f393ba8e3c68816f1": "",
+"clarify:67f002aa009caa339027e9a9f8d2c1bcc009a6c51b7affe474f07500472aacef": "",
+"clarify:6b252c08b0f8221b47cf81ceec91478c5845fbfac9e317b2dcfd6a981f39c95d": "",
+"clarify:6c6178f9237a6e431780de668f5d4165b96a09647352c83462f33afc08f26c82": "",
+"clarify:73d8de2945246e7740e4cb560cb649cd3cf8979eb03975f554da27e06955420e": "Concert de musique classique ou jazz interprété par un trio.",
+"clarify:779fd74f11e5c4547d529104dacef2c6688b3684378aaf11dfbe9d400c2dce1d": "",
+"clarify:851d0de1a364cb97fb917a66375a358f3a390b796f39a7ea947bf957d806dba4": "",
+"clarify:9a4690fb5135ea105fe85d894212f39e161614e56e35c4827b34e99559b1434e": "",
+"clarify:9d4aab0f9ca6c818d8202182828e224ffd80f981f54b5dc835d510a5181143e8": "",
+"clarify:a2562b497456bf7a5f8913ca714023e01874949fc7642e3e873b47f89947ef52": "",
+"clarify:a3d564969e1efa312d6521ab09f1515689fa7fb2faf2585053fc41e5e94ebaeb": "",
+"clarify:add69257d8e63dff3cdae494ac919de16ce5c0ff1c9042e4b372fbc468d27670": "",
+"clarify:b2032c48b70f5a083f5532f453833279d4e15daf8ecf87b3583654a111e57939": "",
+"clarify:bcfde36934799ce5ece70f957e3f42d142fcb7e570fc1c9c3d70223b06a186bb": "",
+"clarify:cbb794783908dd1daf27b2ae15e912412f1befd4e356e1ea015c20561e2e5314": "",
+"clarify:ce91267bfd232763c795f3b7cc5e690ca6e4e869d5df81db165fc5fd6c8b9553": "",
+"clarify:d8a4e4b341e8300aee556c7b8c953e9f1bc56457c78ac07de9299dface27d10b": "",
+"clarify:d9b1418783a7238b8d0333cbbf5dd529e7a72d600d9611af76ccd3c3ac7799db": "",
+"clarify:e9d8406be9c2b5db4d8505ed3a223424bdd52b54888d2c2ea0868473dcd62ad2": "",
+"clarify:e9f71bae9fc50cc8cb502efd1dc5ed7dc1c133067a6d024171fb509cdd461d6c": "Visite commentée des lieux emblématiques liés à l'artiste Pierre Soulages, suivie d'une dégustation de vins locaux.",
+"clarify:eb9c58fd8e93f0b81f7f72a4249e7b6bcc48d76528f180c194eadb3182151d3c": "",
+"clarify:ec45c6a1fe33ee5846c02f917238f3377d31432ef7176d0dbdf21db8a079a33c": "",
+"clarify:f5b6dcf4bcf65af9af9b79fb5addbe32829b8e55d519f1fbc94b73d47326d1b6": "",
+"clarify:fd24295b6c9d1e825ce27beab3fb40eac6a77e0ba715c577906f015152a9e709": "",
 "extract:00066ddb8546f99d895f01f214f99c32eb8c998bce41fb597fecc174ec3692c8": [],
-"extract:14b2b8c4f5bc60313c3fe45aaa7071328c458de0f20b4ef954fadd035d3fe7dd": [
-{
-"address": null,
-"audience": [
-"tous"
-],
-"category": "autre",
-"commune": "Le Monastère",
-"description": "Forum des associations au Monastère le 29 août 2026. L'occasion de découvrir la vie associative locale.",
-"end": null,
-"free": null,
-"id": "forum-des-associations-du-monastere-503d7434",
-"image": null,
-"lat": null,
-"lon": null,
-"price_text": null,
-"sector": "pont-de-salars",
-"source_id": "html-rodezagglo",
-"start": "2026-08-29T00:00:00",
-"tags": [],
-"title": "Forum des associations du Monastère",
-"tldr": null,
-"url": "https://www.rodezagglo.fr/fiche/agenda/forum-des-associations-du-monastere-le-monastere_TFO12146-FMA-20260731102141630"
-},
-{
-"address": null,
-"audience": [
-"tous"
-],
-"category": "atelier",
-"commune": "Rodez",
-"description": "Atelier de création d'un porte-gourde en macramé à Rodez le 29 août 2026. Les participants pourront découvrir cette technique et réaliser leur propre objet.",
-"end": null,
-"free": null,
-"id": "atelier-porte-gourde-en-macrame-6f451637",
-"image": null,
-"lat": null,
-"lon": null,
-"price_text": null,
-"sector": "pont-de-salars",
-"source_id": "html-rodezagglo",
-"start": "2026-08-29T00:00:00",
-"tags": [],
-"title": "ATELIER PORTE-GOURDE EN MACRAMÉ",
-"tldr": null,
-"url": "https://www.rodezagglo.fr/fiche/agenda/atelier-porte-gourde-en-macrame-rodez_TFO12202-FMA-20260808160905574"
-},
-{
-"address": null,
-"audience": [
-"tous"
-],
-"category": "sport",
-"commune": "Rodez",
-"description": "La fête du sport se déroule à Rodez le 29 août 2026. Une journée pour découvrir de nombreuses activités sportives.",
-"end": null,
-"free": null,
-"id": "la-fete-du-sport-293d34b2",
-"image": null,
-"lat": null,
-"lon": null,
-"price_text": null,
-"sector": "pont-de-salars",
-"source_id": "html-rodezagglo",
-"start": "2026-08-29T00:00:00",
-"tags": [],
-"title": "La fête du sport",
-"tldr": null,
-"url": "https://www.rodezagglo.fr/fiche/agenda/la-fete-du-sport-rodez_TFO12202-FMA-20260820101908866"
-},
-{
-"address": null,
-"audience": [
-"tous"
-],
-"category": "sport",
-"commune": "Le Monastère",
-"description": "Brunch et olympiades au Monastère le 30 août 2026. Une animation conviviale pour petits et grands.",
-"end": null,
-"free": null,
-"id": "los-domingos-de-combellas-brunch-et-olympiades-118b750c",
-"image": null,
-"lat": null,
-"lon": null,
-"price_text": null,
-"sector": "pont-de-salars",
-"source_id": "html-rodezagglo",
-"start": "2026-08-30T00:00:00",
-"tags": [],
-"title": "Los Domingos de Combellas : brunch et olympiades",
-"tldr": null,
-"url": "https://www.rodezagglo.fr/fiche/agenda/los-domingos-de-combellas-brunch-et-olympiades-le-monastere_TFO12146-FMA-20260627104048401"
-},
-{
-"address": null,
-"audience": [
-"tous"
-],
-"category": "sport",
-"commune": "Onet-le-Château",
-"description": "Tournoi de tennis de table à Onet-le-Château le 30 août 2026. Une compétition ouverte aux amateurs de ping-pong.",
-"end": null,
-"free": null,
-"id": "tournoi-tennis-de-table-1742e4e6",
-"image": null,
-"lat": null,
-"lon": null,
-"price_text": null,
-"sector": "pont-de-salars",
-"source_id": "html-rodezagglo",
-"start": "2026-08-30T00:00:00",
-"tags": [],
-"title": "Tournoi Tennis de table",
-"tldr": null,
-"url": "https://www.rodezagglo.fr/fiche/agenda/tournoi-tennis-de-table-onet-le-chateau_TFO12176-FMA-20260605105631705"
-},
-{
-"address": null,
-"audience": [
-"tous"
-],
-"category": "atelier",
-"commune": "Rodez",
-"description": "Atelier pour tous au Musée Soulages à Rodez le 30 août 2026. Une activité ouverte à tous les publics.",
-"end": null,
-"free": null,
-"id": "atelier-pour-tous-au-musee-soulages-7f9b90da",
-"image": null,
-"lat": null,
-"lon": null,
-"price_text": null,
-"sector": "pont-de-salars",
-"source_id": "html-rodezagglo",
-"start": "2026-08-30T00:00:00",
-"tags": [],
-"title": "ATELIER POUR TOUS AU MUSÉE SOULAGES",
-"tldr": null,
-"url": "https://www.rodezagglo.fr/fiche/agenda/atelier-pour-tous-au-musee-soulages-rodez_TFO12202-FMA-20260624153353503"
-},
-{
-"address": null,
-"audience": [
-"tous"
-],
-"category": "concert",
-"commune": "Rodez",
-"description": "Concert des Dimanches du Kiosque à Rodez le 30 août 2026. Un rendez-vous musical en plein air.",
-"end": null,
-"free": null,
-"id": "les-dimanches-du-kiosque-66fed1e5",
-"image": null,
-"lat": null,
-"lon": null,
-"price_text": null,
-"sector": "pont-de-salars",
-"source_id": "html-rodezagglo",
-"start": "2026-08-30T00:00:00",
-"tags": [],
-"title": "Les Dimanches du Kiosque",
-"tldr": null,
-"url": "https://www.rodezagglo.fr/fiche/agenda/les-dimanches-du-kiosque-rodez_TFO12202-FMA-20260708162850952"
-},
-{
-"address": null,
-"audience": [
-"tous"
-],
-"category": "concert",
-"commune": "Rodez",
-"description": "Concert du groupe Le i Trio à Rodez le 30 août 2026. Une représentation musicale à découvrir.",
-"end": null,
-"free": null,
-"id": "concert-le-i-trio-b9ceddaa",
-"image": null,
-"lat": null,
-"lon": null,
-"price_text": null,
-"sector": "pont-de-salars",
-"source_id": "html-rodezagglo",
-"start": "2026-08-30T00:00:00",
-"tags": [],
-"title": "Concert : Le i Trio",
-"tldr": null,
-"url": "https://www.rodezagglo.fr/fiche/agenda/concert-le-i-trio-rodez_TFO12202-FMA-20260825120452438"
-},
-{
-"address": null,
-"audience": [
-"tous"
-],
-"category": "concert",
-"commune": "Sébazac-Concourès",
-"description": "Concert gospel à Sébazac-Concourès le 30 août 2026. Un moment musical plein d'énergie.",
-"end": null,
-"free": null,
-"id": "concert-gospel-6fb5b21e",
-"image": null,
-"lat": null,
-"lon": null,
-"price_text": null,
-"sector": "pont-de-salars",
-"source_id": "html-rodezagglo",
-"start": "2026-08-30T00:00:00",
-"tags": [],
-"title": "Concert Gospel",
-"tldr": null,
-"url": "https://www.rodezagglo.fr/fiche/agenda/concert-gospel-sebazac-concoures_TFO12264-FMA-20260702110246785"
-},
-{
-"address": null,
-"audience": [
-"tous"
-],
-"category": "fete",
-"commune": "Druelle Balsac",
-"description": "Fête de Druelle du 29 au 30 août 2026 à Druelle Balsac. Des animations festives pour tous les habitants.",
-"end": "2026-08-30",
-"free": null,
-"id": "fete-de-druelle-92b6bfe5",
-"image": null,
-"lat": null,
-"lon": null,
-"price_text": null,
-"sector": "pont-de-salars",
-"source_id": "html-rodezagglo",
-"start": "2026-08-29T00:00:00",
-"tags": [],
-"title": "Fête de Druelle",
-"tldr": null,
-"url": "https://www.rodezagglo.fr/fiche/agenda/fete-de-druelle-druelle-balsac_TFO518018323388"
-},
-{
-"address": null,
-"audience": [
-"tous"
-],
-"category": "fete",
-"commune": "Le Monastère",
-"description": "Bal et thé dansant Le Bouquet de la Prairie au Monastère du 28 au 30 août 2026. Un rendez-vous convivial autour de la danse.",
-"end": "2026-08-30",
-"free": null,
-"id": "le-bouquet-de-la-prairie-eb5bdbfe",
-"image": null,
-"lat": null,
-"lon": null,
-"price_text": null,
-"sector": "pont-de-salars",
-"source_id": "html-rodezagglo",
-"start": "2026-08-28T00:00:00",
-"tags": [],
-"title": "Le Bouquet de la Prairie",
-"tldr": null,
-"url": "https://www.rodezagglo.fr/fiche/agenda/le-bouquet-de-la-prairie-le-monastere_TFO12146-FMA-20250717164307102"
-},
-{
-"address": null,
-"audience": [
-"tous"
-],
-"category": "festival",
-"commune": "Sébazac-Concourès",
-"description": "Festival de tango argentin à Sébazac-Concourès du 27 au 30 août 2026. Un événement consacré à cette danse.",
-"end": "2026-08-30",
-"free": null,
-"id": "festival-de-tango-argentin-a4b95d67",
-"image": null,
-"lat": null,
-"lon": null,
-"price_text": null,
-"sector": "pont-de-salars",
-"source_id": "html-rodezagglo",
-"start": "2026-08-27T00:00:00",
-"tags": [],
-"title": "Festival de Tango Argentin",
-"tldr": null,
-"url": "https://www.rodezagglo.fr/fiche/agenda/festival-de-tango-argentin-sebazac-concoures_TFO12264-FMA-20260529155318396"
-},
-{
-"address": null,
-"audience": [
-"tous"
-],
-"category": "autre",
-"commune": "Olemps",
-"description": "Opération Cet été je lis à la médiathèque d'Olemps du 24 juin au 30 août 2026. Des lots de livres surprises sont proposés en prêt pour lire tout l'été.",
-"end": "2026-08-30",
-"free": null,
-"id": "cet-ete-je-lis-des-lots-de-livres-surprises-en-pret-a-la-mediatheque-pour-lire-t-89cd80de",
-"image": null,
-"lat": null,
-"lon": null,
-"price_text": null,
-"sector": "pont-de-salars",
-"source_id": "html-rodezagglo",
-"start": "2026-06-24T00:00:00",
-"tags": [],
-"title": "\"Cet été je lis\" : Des lots de livres surprises en prêt à la médiathèque pour lire tout l’été !",
-"tldr": null,
-"url": "https://www.rodezagglo.fr/fiche/agenda/cet-ete-je-lis-des-lots-de-livres-surprises-en-pret-a-la-mediatheque-pour-lire-tout-l-ete-olemps_TFO12174-FMA-20260616115746557"
-},
-{
-"address": null,
-"audience": [
-"tous"
-],
-"category": "expo",
-"commune": "Rodez",
-"description": "Exposition d'arts graphiques contemporains à Rodez du 1er juillet au 31 août 2026. Une découverte des créations graphiques actuelles.",
-"end": "2026-08-31",
-"free": null,
-"id": "exposition-arts-graphiques-contemporains-1585faf6",
-"image": null,
-"lat": null,
-"lon": null,
-"price_text": null,
-"sector": "pont-de-salars",
-"source_id": "html-rodezagglo",
-"start": "2026-07-01T00:00:00",
-"tags": [],
-"title": "Exposition : Arts graphiques contemporains",
-"tldr": null,
-"url": "https://www.rodezagglo.fr/fiche/agenda/exposition-arts-graphiques-contemporains-rodez_TFO12202-FMA-20260324155931956"
-},
-{
-"address": null,
-"audience": [
-"tous"
-],
-"category": "patrimoine",
-"commune": "Rodez",
-"description": "Visite urbaine sur les pas de Pierre Soulages suivie d'une dégustation de vins à Rodez du 1er juillet au 31 août 2026. Un parcours mêlant patrimoine et gastronomie.",
-"end": "2026-08-31",
-"free": null,
-"id": "visite-urbaine-sur-les-pas-de-pierre-soulages-suivie-d-une-degustation-de-vins-43dad6ee",
-"image": null,
-"lat": null,
-"lon": null,
-"price_text": null,
-"sector": "pont-de-salars",
-"source_id": "html-rodezagglo",
-"start": "2026-07-01T00:00:00",
-"tags": [],
-"title": "VISITE URBAINE SUR LES PAS DE PIERRE SOULAGES SUIVIE D'UNE DÉGUSTATION DE VINS",
-"tldr": null,
-"url": "https://www.rodezagglo.fr/fiche/agenda/visite-urbaine-sur-les-pas-de-pierre-soulages-suivie-d-une-degustation-de-vins-rodez_TFO12202-FMA-20260702152559656"
-}
-],
 "extract:32232c1918a47d2f9bc7ff43954cb8d779b56897b51f152b3d1bcc3886393479": [],
-"extract:b8119ceabebf75059ec14546390d460e018a9ff1a3815cdaf08cec1041d337bd": [
+"extract:79f17a8b743a7f6f8f5c0a7c8337862b284300ddc5814bf391aeb19330021ff2": [
 {
-"address": null,
+"address": "Plage des Vernhes 1, lac de Pareloup, Salles-Curan",
 "audience": [
-"enfants",
-"ados"
-],
-"category": "sport",
-"commune": "Viala-du-Tarn",
-"description": "Perfectionne-toi et découvre de nombreuses techniques de pêche.",
-"end": "2026-08-29",
-"free": null,
-"id": "stage-de-peche-ete-f628409e",
-"image": null,
-"lat": null,
-"lon": null,
-"price_text": null,
-"sector": "pont-de-salars",
-"source_id": "html-levezou-pontsalars",
-"start": "2026-08-26T00:00:00",
-"tags": [],
-"title": "Stage de pêche été",
-"tldr": null,
-"url": "https://www.tourisme-aveyron.com/fr/diffusio/agenda/stage-de-peche-ete-viala-du-tarn_TFO458067031587"
-},
-{
-"address": "salle des fêtes d'Agen d'Aveyron",
-"audience": [
-"tous"
-],
-"category": "sport",
-"commune": "Agen-d'Aveyron",
-"description": "Samedi 29 août, salle des fêtes d'Agen d'Aveyron, organisée par le football club Agen.",
-"end": null,
-"free": null,
-"id": "fete-du-foot-55499df8",
-"image": null,
-"lat": null,
-"lon": null,
-"price_text": null,
-"sector": "pont-de-salars",
-"source_id": "html-levezou-pontsalars",
-"start": "2026-08-29T00:00:00",
-"tags": [],
-"title": "Fête du foot",
-"tldr": null,
-"url": "https://www.tourisme-aveyron.com/fr/diffusio/agenda/fete-du-foot-agen-d-aveyron_TFO12001-FMA-20260526105345451"
-},
-{
-"address": "plage des Vernhes 1, lac de Pareloup",
-"audience": [
-"tous"
+"adultes"
 ],
 "category": "sport",
 "commune": "Salles-Curan",
-"description": "Journée découverte de la marche aquatique à la plage des Vernhes 1, lac de Pareloup, Salles-Curan.",
+"description": "Journée découverte de la marche aquatique sur la plage des Vernhes 1, au lac de Pareloup. Initiation à Salles-Curan.",
 "end": null,
 "free": null,
 "id": "initiation-a-la-marche-aquatique-58f458e1",
@@ -450,13 +56,13 @@
 "url": "https://www.tourisme-aveyron.com/fr/diffusio/agenda/initiation-a-la-marche-aquatique-salles-curan_TFO12253-FMA-20260226154043693"
 },
 {
-"address": "lac de Pareloup, plage des Vernhes 1",
+"address": "Lac de Pareloup, plage des Vernhes 1, Salles-Curan",
 "audience": [
-"tous"
+"adultes"
 ],
 "category": "sport",
 "commune": "Salles-Curan",
-"description": "Journée découverte de la marche aquatique au lac de Pareloup, plage des Vernhes 1.",
+"description": "Découverte de la marche aquatique au lac de Pareloup, plage des Vernhes 1. Rendez-vous à Salles-Curan.",
 "end": null,
 "free": null,
 "id": "journee-decouverte-de-la-marche-aquatique-cdf3073e",
@@ -473,13 +79,13 @@
 "url": "https://www.tourisme-aveyron.com/fr/diffusio/agenda/journee-decouverte-de-la-marche-aquatique-salles-curan_TFO12253-FMA-20260612133446825"
 },
 {
-"address": "Terrain de pétanque, place de la Rivière",
+"address": "Terrain de pétanque, place de la Rivière, Pont-de-Salars",
 "audience": [
 "tous"
 ],
 "category": "sport",
 "commune": "Pont-de-Salars",
-"description": "Concours de pétanque en doublette en 3 parties, ouvert à tous, à partir de 20h30. Organisé par la Boule Joyeuse, inscriptions sur place.",
+"description": "Concours de pétanque en doublette en 3 parties, ouvert à tous. Inscriptions sur place, organisé par la Boule Joyeuse.",
 "end": null,
 "free": null,
 "id": "concours-de-petanque-a637618a",
@@ -496,13 +102,13 @@
 "url": "https://www.tourisme-aveyron.com/fr/diffusio/agenda/concours-de-petanque-pont-de-salars_TFO12185-FMA-20260407115804148"
 },
 {
-"address": "Camping le Caussanel",
+"address": "Camping le Caussanel, Canet-de-Salars",
 "audience": [
 "tous"
 ],
 "category": "fete",
 "commune": "Canet-de-Salars",
-"description": "Thé dansant de 14h30 à 19h30 au camping le Caussanel, ouvert à tous sans réservation. 11€ avec pâtisserie offerte.",
+"description": "Thé dansant à la Guinguette du Caussanel, ouvert à tous sans réservation. 11€ avec pâtisserie offerte, repas possible sur réservation.",
 "end": "2026-09-01T19:30:00",
 "free": false,
 "id": "the-dansant-guinguette-du-caussanel-f3660ee9",
@@ -521,11 +127,11 @@
 {
 "address": null,
 "audience": [
-"tous"
+"adultes"
 ],
 "category": "atelier",
 "commune": "Le Vibal",
-"description": "Séance de sophrologie animée par Coralie. Tarif 15€ par personne, inscription au 06 50 54 63 88.",
+"description": "Séance de sophrologie animée par Coralie au Vibal. Tarif 15€ par personne, inscription au 06 50 54 63 88.",
 "end": null,
 "free": false,
 "id": "sophro-etoilee-19072e29",
@@ -544,11 +150,11 @@
 {
 "address": null,
 "audience": [
-"adultes"
+"tous"
 ],
 "category": "sport",
 "commune": "Flavin",
-"description": "Tous les vendredis soirs à 21h, concours de pétanque en doublette : 3 parties, 8€ par équipe. Lots en nature.",
+"description": "Concours de pétanque en doublette en 3 parties, tous les vendredis soirs à 21h. 8€ par équipe, lots en nature.",
 "end": null,
 "free": false,
 "id": "concours-de-petanque-4344fcec",
@@ -571,7 +177,7 @@
 ],
 "category": "sport",
 "commune": "Canet-de-Salars",
-"description": "Clôture de la saison avec un repas suivi d'un concours en doublette le dimanche 6 septembre.",
+"description": "Repas et concours de pétanque en doublette pour clôturer la saison. Rendez-vous le dimanche 6 septembre à Canet-de-Salars.",
 "end": null,
 "free": null,
 "id": "repas-et-concours-de-petanque-10f3c23c",
@@ -588,13 +194,13 @@
 "url": "https://www.tourisme-aveyron.com/fr/diffusio/agenda/repas-et-concours-de-petanque-canet-de-salars_TFO12050-FMA-20260825164503325"
 },
 {
-"address": "Terrain de pétanque, place de la Rivière",
+"address": "Terrain de pétanque, place de la Rivière, Pont-de-Salars",
 "audience": [
 "tous"
 ],
 "category": "sport",
 "commune": "Pont-de-Salars",
-"description": "Concours de pétanque en doublette en 3 parties, ouvert à tous, à partir de 20h30. Organisé par la Boule Joyeuse, inscriptions sur place.",
+"description": "Concours de pétanque en doublette en 3 parties, ouvert à tous. Inscriptions sur place, organisé par la Boule Joyeuse.",
 "end": null,
 "free": null,
 "id": "concours-de-petanque-3a10c0d0",
@@ -611,13 +217,13 @@
 "url": "https://www.tourisme-aveyron.com/fr/diffusio/agenda/concours-de-petanque-pont-de-salars_TFO12185-FMA-20260407115804148"
 },
 {
-"address": "Camping le Caussanel",
+"address": "Camping le Caussanel, Canet-de-Salars",
 "audience": [
 "tous"
 ],
 "category": "fete",
 "commune": "Canet-de-Salars",
-"description": "Thé dansant de 14h30 à 19h30 au camping le Caussanel, ouvert à tous sans réservation. 11€ avec pâtisserie offerte.",
+"description": "Thé dansant à la Guinguette du Caussanel, ouvert à tous sans réservation. 11€ avec pâtisserie offerte, repas possible sur réservation.",
 "end": "2026-09-08T19:30:00",
 "free": false,
 "id": "the-dansant-guinguette-du-caussanel-313e25d5",
@@ -636,11 +242,11 @@
 {
 "address": null,
 "audience": [
-"adultes"
+"tous"
 ],
 "category": "sport",
 "commune": "Flavin",
-"description": "Tous les vendredis soirs à 21h, concours de pétanque en doublette : 3 parties, 8€ par équipe. Lots en nature.",
+"description": "Concours de pétanque en doublette en 3 parties, tous les vendredis soirs à 21h. 8€ par équipe, lots en nature.",
 "end": null,
 "free": false,
 "id": "concours-de-petanque-281a51ef",
@@ -657,13 +263,13 @@
 "url": "https://www.tourisme-aveyron.com/fr/diffusio/agenda/concours-de-petanque-flavin_TFO12102-FMA-20260522093058081"
 },
 {
-"address": "salle des fêtes, Pont-de-Salars",
+"address": "Salle des fêtes, Pont-de-Salars",
 "audience": [
 "tous"
 ],
 "category": "autre",
 "commune": "Pont-de-Salars",
-"description": "De 10h à 17h à la salle des fêtes, présentation des différentes associations sportives et culturelles de la commune.",
+"description": "Présentation des différentes associations sportives et culturelles de la commune. De 10h à 17h à la salle des fêtes.",
 "end": "2026-09-12T17:00:00",
 "free": null,
 "id": "forum-des-associations-f48c9a5c",
@@ -682,11 +288,11 @@
 {
 "address": null,
 "audience": [
-"tous"
+"adultes"
 ],
 "category": "atelier",
 "commune": "Le Vibal",
-"description": "Séance de sophrologie animée par Coralie. Tarif 20€ par personne, inscription au 06 50 54 63 88.",
+"description": "Séance de sophrologie suivie d'un brunch, animée par Coralie. Tarif 20€ par personne, inscription au 06 50 54 63 88.",
 "end": null,
 "free": false,
 "id": "sophro-brunch-4c9fc982",
@@ -703,13 +309,13 @@
 "url": "https://www.tourisme-aveyron.com/fr/diffusio/agenda/sophro-brunch-le-vibal_TFO12297-FMA-20260706165748233"
 },
 {
-"address": "Terrain de pétanque, place de la Rivière",
+"address": "Terrain de pétanque, place de la Rivière, Pont-de-Salars",
 "audience": [
 "tous"
 ],
 "category": "sport",
 "commune": "Pont-de-Salars",
-"description": "Concours de pétanque en doublette en 3 parties, ouvert à tous, à partir de 20h30. Organisé par la Boule Joyeuse, inscriptions sur place.",
+"description": "Concours de pétanque en doublette en 3 parties, ouvert à tous. Inscriptions sur place, organisé par la Boule Joyeuse.",
 "end": null,
 "free": null,
 "id": "concours-de-petanque-653a58c3",
@@ -726,13 +332,13 @@
 "url": "https://www.tourisme-aveyron.com/fr/diffusio/agenda/concours-de-petanque-pont-de-salars_TFO12185-FMA-20260407115804148"
 },
 {
-"address": "Camping le Caussanel",
+"address": "Camping le Caussanel, Canet-de-Salars",
 "audience": [
 "tous"
 ],
 "category": "fete",
 "commune": "Canet-de-Salars",
-"description": "Thé dansant de 14h30 à 19h30 au camping le Caussanel, ouvert à tous sans réservation. 11€ avec pâtisserie offerte.",
+"description": "Thé dansant à la Guinguette du Caussanel, ouvert à tous sans réservation. 11€ avec pâtisserie offerte, repas possible sur réservation.",
 "end": "2026-09-15T19:30:00",
 "free": false,
 "id": "the-dansant-guinguette-du-caussanel-781029ff",
@@ -749,13 +355,13 @@
 "url": "https://www.tourisme-aveyron.com/fr/diffusio/agenda/the-dansant-guinguette-du-caussanel-canet-de-salars_TFO12050-FMA-20260415121120726"
 },
 {
-"address": null,
+"address": "Village de Pont-de-Salars",
 "audience": [
 "tous"
 ],
-"category": "fete",
+"category": "autre",
 "commune": "Pont-de-Salars",
-"description": "Tous les 3èmes jeudis du mois, une foire se tient dans le village. Fruits, légumes, volailles, charcutier...",
+"description": "Foire mensuelle dans le village avec fruits, légumes, volailles et charcutier. Elle se tient tous les 3ème jeudis du mois.",
 "end": null,
 "free": null,
 "id": "foire-mensuelle-c4b3d715",
@@ -774,11 +380,11 @@
 {
 "address": null,
 "audience": [
-"adultes"
+"tous"
 ],
 "category": "sport",
 "commune": "Flavin",
-"description": "Tous les vendredis soirs à 21h, concours de pétanque en doublette : 3 parties, 8€ par équipe. Lots en nature.",
+"description": "Concours de pétanque en doublette en 3 parties, tous les vendredis soirs à 21h. 8€ par équipe, lots en nature.",
 "end": null,
 "free": false,
 "id": "concours-de-petanque-eff0f341",
@@ -795,13 +401,15 @@
 "url": "https://www.tourisme-aveyron.com/fr/diffusio/agenda/concours-de-petanque-flavin_TFO12102-FMA-20260522093058081"
 },
 {
-"address": "salle des fêtes, Pont-de-Salars",
+"address": "Salle des fêtes, Pont-de-Salars",
 "audience": [
-"famille"
+"tous",
+"famille",
+"enfants"
 ],
 "category": "spectacle",
 "commune": "Pont-de-Salars",
-"description": "Pièce de théâtre le samedi 19 septembre 2026 à 20h30 à la salle des fêtes. 10€ par adulte et 6€ pour les moins de 12 ans, sans réservation.",
+"description": "Pièce de théâtre Aurélia par les Cinq Jasmins Company à la salle des fêtes. 10€ par adulte et 6€ pour les moins de 12 ans, sans réservation.",
 "end": null,
 "free": false,
 "id": "piece-de-theatre-aurelia-par-les-cinq-jasmin-company-ddee200a",
@@ -820,11 +428,13 @@
 {
 "address": null,
 "audience": [
-"tous"
+"tous",
+"famille",
+"enfants"
 ],
 "category": "autre",
 "commune": "Pont-de-Salars",
-"description": "Journée portes ouvertes du Conservatoire de l'Aveyron à Pont-de-Salars.",
+"description": "Journée portes ouvertes du Conservatoire de l'Aveyron à Pont-de-Salars. Rendez-vous le 19 septembre 2026.",
 "end": null,
 "free": null,
 "id": "journee-portes-ouvertes-du-conservatoire-de-l-aveyron-a-pont-de-salars-4f55cece",
@@ -841,16 +451,16 @@
 "url": "https://www.tourisme-aveyron.com/fr/diffusio/agenda/journee-portes-ouvertes-du-conservatoire-de-l-aveyron-a-pont-de-salars-pont-de-salars_TFO12185-FMA-20260827140747701"
 },
 {
-"address": "Eglise St Jean Baptiste du Poujol",
+"address": "Église St Jean Baptiste du Poujol, Pont-de-Salars",
 "audience": [
 "tous"
 ],
 "category": "expo",
 "commune": "Pont-de-Salars",
-"description": "Exposition de photos du Lévézou et d'ailleurs dans le cadre des Journées européennes du patrimoine. Ouvert de 10h à 12h et de 14h à 18h à l'église Saint-Jean-Baptiste du Poujol.",
+"description": "Exposition de photos sur le Lévézou et d'ailleurs à l'église St Jean Baptiste du Poujol. De 10h à 12h et de 14h à 18h.",
 "end": "2026-09-20T18:00:00",
 "free": null,
-"id": "exposition-photos-du-levezou-et-d-ailleurs-df5270bc",
+"id": "exposition-photos-du-levezou-et-dailleurs-8caf8f76",
 "image": null,
 "lat": null,
 "lon": null,
@@ -859,9 +469,402 @@
 "source_id": "html-levezou-pontsalars",
 "start": "2026-09-20T10:00:00",
 "tags": [],
-"title": "Exposition photos du Lévézou et d'ailleurs",
+"title": "Exposition photos du Lévézou et d’ailleurs",
 "tldr": null,
 "url": "https://www.tourisme-aveyron.com/fr/diffusio/agenda/exposition-photos-du-levezou-et-d-ailleurs-pont-de-salars_TFO12185-FMA-20260713150401123"
+},
+{
+"address": "Église St Georges de Camboulas, Pont-de-Salars",
+"audience": [
+"tous"
+],
+"category": "patrimoine",
+"commune": "Pont-de-Salars",
+"description": "Expositions de photos anciennes et visites guidées en l'église St Georges de Camboulas. Visites guidées de 10h à 17h30.",
+"end": "2026-09-20T17:30:00",
+"free": null,
+"id": "expositions-de-photos-anciennes-et-visites-guidees-en-l-eglise-st-georges-de-cam-6ecd1a82",
+"image": null,
+"lat": null,
+"lon": null,
+"price_text": null,
+"sector": "pont-de-salars",
+"source_id": "html-levezou-pontsalars",
+"start": "2026-09-20T10:00:00",
+"tags": [],
+"title": "Expositions de photos anciennes et visites guidées en l'église St Georges de Camboulas",
+"tldr": null,
+"url": "https://www.tourisme-aveyron.com/fr/diffusio/agenda/expositions-de-photos-anciennes-et-visites-guidees-en-l-eglise-st-georges-de-camboulas-pont-de-salars_TFO12185-FMA-20260828143434534"
+},
+{
+"address": "Église St Georges de Camboulas, Pont-de-Salars",
+"audience": [
+"tous"
+],
+"category": "patrimoine",
+"commune": "Pont-de-Salars",
+"description": "Expositions de photos anciennes et visites guidées en l'église St Georges de Camboulas. Dimanche 20 septembre, de 10h à 17h30.",
+"end": "2026-09-20T17:30:00",
+"free": null,
+"id": "exposition-photos-et-visites-guidees-en-l-eglise-st-georges-de-camboulas-dc0181bd",
+"image": null,
+"lat": null,
+"lon": null,
+"price_text": null,
+"sector": "pont-de-salars",
+"source_id": "html-levezou-pontsalars",
+"start": "2026-09-20T10:00:00",
+"tags": [],
+"title": "Exposition photos et visites guidées en l'église St Georges de Camboulas",
+"tldr": null,
+"url": "https://www.tourisme-aveyron.com/fr/diffusio/agenda/exposition-photos-et-visites-guidees-en-l-eglise-st-georges-de-camboulas-pont-de-salars_TFO12185-FMA-20260827092820129"
+}
+],
+"extract:7a8fe35a37ee8e9e0bc72953fa91e3b8ad2322726214b8243b18931c578ca371": [
+{
+"address": null,
+"audience": [
+"tous"
+],
+"category": "sport",
+"commune": "Le Monastère",
+"description": "Brunch et olympiades proposés dans le cadre des Dimanches de Combellas. Événement à Le Monastère.",
+"end": null,
+"free": null,
+"id": "los-domingos-de-combellas-brunch-et-olympiades-118b750c",
+"image": null,
+"lat": null,
+"lon": null,
+"price_text": null,
+"sector": "pont-de-salars",
+"source_id": "html-rodezagglo",
+"start": "2026-08-30T00:00:00",
+"tags": [],
+"title": "Los Domingos de Combellas : brunch et olympiades",
+"tldr": null,
+"url": "https://www.rodezagglo.fr/fiche/agenda/los-domingos-de-combellas-brunch-et-olympiades-le-monastere_TFO12146-FMA-20260627104048401"
+},
+{
+"address": null,
+"audience": [
+"tous"
+],
+"category": "sport",
+"commune": "Onet-le-Château",
+"description": "Compétition de tennis de table. Événement à Onet-le-Château.",
+"end": null,
+"free": null,
+"id": "tournoi-tennis-de-table-1742e4e6",
+"image": null,
+"lat": null,
+"lon": null,
+"price_text": null,
+"sector": "pont-de-salars",
+"source_id": "html-rodezagglo",
+"start": "2026-08-30T00:00:00",
+"tags": [],
+"title": "Tournoi Tennis de table",
+"tldr": null,
+"url": "https://www.rodezagglo.fr/fiche/agenda/tournoi-tennis-de-table-onet-le-chateau_TFO12176-FMA-20260605105631705"
+},
+{
+"address": null,
+"audience": [
+"tous"
+],
+"category": "atelier",
+"commune": "Rodez",
+"description": "Atelier ouvert à tous au Musée Soulages. Événement à Rodez.",
+"end": null,
+"free": null,
+"id": "atelier-pour-tous-au-musee-soulages-7f9b90da",
+"image": null,
+"lat": null,
+"lon": null,
+"price_text": null,
+"sector": "pont-de-salars",
+"source_id": "html-rodezagglo",
+"start": "2026-08-30T00:00:00",
+"tags": [],
+"title": "ATELIER POUR TOUS AU MUSÉE SOULAGES",
+"tldr": null,
+"url": "https://www.rodezagglo.fr/fiche/agenda/atelier-pour-tous-au-musee-soulages-rodez_TFO12202-FMA-20260624153353503"
+},
+{
+"address": null,
+"audience": [
+"tous"
+],
+"category": "concert",
+"commune": "Rodez",
+"description": "Concert dans le cadre des Dimanches du Kiosque. Événement à Rodez.",
+"end": null,
+"free": null,
+"id": "les-dimanches-du-kiosque-66fed1e5",
+"image": null,
+"lat": null,
+"lon": null,
+"price_text": null,
+"sector": "pont-de-salars",
+"source_id": "html-rodezagglo",
+"start": "2026-08-30T00:00:00",
+"tags": [],
+"title": "Les Dimanches du Kiosque",
+"tldr": null,
+"url": "https://www.rodezagglo.fr/fiche/agenda/les-dimanches-du-kiosque-rodez_TFO12202-FMA-20260708162850952"
+},
+{
+"address": null,
+"audience": [
+"tous"
+],
+"category": "concert",
+"commune": "Rodez",
+"description": "Concert du groupe Le i Trio. Événement à Rodez.",
+"end": null,
+"free": null,
+"id": "concert-le-i-trio-b9ceddaa",
+"image": null,
+"lat": null,
+"lon": null,
+"price_text": null,
+"sector": "pont-de-salars",
+"source_id": "html-rodezagglo",
+"start": "2026-08-30T00:00:00",
+"tags": [],
+"title": "Concert : Le i Trio",
+"tldr": null,
+"url": "https://www.rodezagglo.fr/fiche/agenda/concert-le-i-trio-rodez_TFO12202-FMA-20260825120452438"
+},
+{
+"address": null,
+"audience": [
+"tous"
+],
+"category": "concert",
+"commune": "Sébazac-Concourès",
+"description": "Concert de musique gospel. Événement à Sébazac-Concourès.",
+"end": null,
+"free": null,
+"id": "concert-gospel-6fb5b21e",
+"image": null,
+"lat": null,
+"lon": null,
+"price_text": null,
+"sector": "pont-de-salars",
+"source_id": "html-rodezagglo",
+"start": "2026-08-30T00:00:00",
+"tags": [],
+"title": "Concert Gospel",
+"tldr": null,
+"url": "https://www.rodezagglo.fr/fiche/agenda/concert-gospel-sebazac-concoures_TFO12264-FMA-20260702110246785"
+},
+{
+"address": null,
+"audience": [
+"tous"
+],
+"category": "fete",
+"commune": "Druelle Balsac",
+"description": "Fête locale sur la commune de Druelle Balsac.",
+"end": "2026-08-30",
+"free": null,
+"id": "fete-de-druelle-92b6bfe5",
+"image": null,
+"lat": null,
+"lon": null,
+"price_text": null,
+"sector": "pont-de-salars",
+"source_id": "html-rodezagglo",
+"start": "2026-08-29T00:00:00",
+"tags": [],
+"title": "Fête de Druelle",
+"tldr": null,
+"url": "https://www.rodezagglo.fr/fiche/agenda/fete-de-druelle-druelle-balsac_TFO518018323388"
+},
+{
+"address": null,
+"audience": [
+"tous"
+],
+"category": "fete",
+"commune": "Le Monastère",
+"description": "Bal et thé dansant. Événement à Le Monastère.",
+"end": "2026-08-30",
+"free": null,
+"id": "le-bouquet-de-la-prairie-eb5bdbfe",
+"image": null,
+"lat": null,
+"lon": null,
+"price_text": null,
+"sector": "pont-de-salars",
+"source_id": "html-rodezagglo",
+"start": "2026-08-28T00:00:00",
+"tags": [],
+"title": "Le Bouquet de la Prairie",
+"tldr": null,
+"url": "https://www.rodezagglo.fr/fiche/agenda/le-bouquet-de-la-prairie-le-monastere_TFO12146-FMA-20250717164307102"
+},
+{
+"address": null,
+"audience": [
+"tous"
+],
+"category": "festival",
+"commune": "Sébazac-Concourès",
+"description": "Festival consacré au tango argentin. Événement à Sébazac-Concourès.",
+"end": "2026-08-30",
+"free": null,
+"id": "festival-de-tango-argentin-a4b95d67",
+"image": null,
+"lat": null,
+"lon": null,
+"price_text": null,
+"sector": "pont-de-salars",
+"source_id": "html-rodezagglo",
+"start": "2026-08-27T00:00:00",
+"tags": [],
+"title": "Festival de Tango Argentin",
+"tldr": null,
+"url": "https://www.rodezagglo.fr/fiche/agenda/festival-de-tango-argentin-sebazac-concoures_TFO12264-FMA-20260529155318396"
+},
+{
+"address": null,
+"audience": [
+"tous"
+],
+"category": "autre",
+"commune": "Olemps",
+"description": "Des lots de livres surprises sont proposés en prêt à la médiathèque. Événement à Olemps.",
+"end": "2026-08-30",
+"free": null,
+"id": "cet-ete-je-lis-des-lots-de-livres-surprises-en-pret-a-la-mediatheque-pour-lire-t-89cd80de",
+"image": null,
+"lat": null,
+"lon": null,
+"price_text": null,
+"sector": "pont-de-salars",
+"source_id": "html-rodezagglo",
+"start": "2026-06-24T00:00:00",
+"tags": [],
+"title": "\"Cet été je lis\" : Des lots de livres surprises en prêt à la médiathèque pour lire tout l’été !",
+"tldr": null,
+"url": "https://www.rodezagglo.fr/fiche/agenda/cet-ete-je-lis-des-lots-de-livres-surprises-en-pret-a-la-mediatheque-pour-lire-tout-l-ete-olemps_TFO12174-FMA-20260616115746557"
+},
+{
+"address": null,
+"audience": [
+"tous"
+],
+"category": "expo",
+"commune": "Rodez",
+"description": "Exposition consacrée aux arts graphiques contemporains. Événement à Rodez.",
+"end": "2026-08-31",
+"free": null,
+"id": "exposition-arts-graphiques-contemporains-1585faf6",
+"image": null,
+"lat": null,
+"lon": null,
+"price_text": null,
+"sector": "pont-de-salars",
+"source_id": "html-rodezagglo",
+"start": "2026-07-01T00:00:00",
+"tags": [],
+"title": "Exposition : Arts graphiques contemporains",
+"tldr": null,
+"url": "https://www.rodezagglo.fr/fiche/agenda/exposition-arts-graphiques-contemporains-rodez_TFO12202-FMA-20260324155931956"
+},
+{
+"address": null,
+"audience": [
+"tous"
+],
+"category": "patrimoine",
+"commune": "Rodez",
+"description": "Visite urbaine sur les pas de Pierre Soulages, suivie d'une dégustation de vins. Événement à Rodez.",
+"end": "2026-08-31",
+"free": null,
+"id": "visite-urbaine-sur-les-pas-de-pierre-soulages-suivie-d-une-degustation-de-vins-43dad6ee",
+"image": null,
+"lat": null,
+"lon": null,
+"price_text": null,
+"sector": "pont-de-salars",
+"source_id": "html-rodezagglo",
+"start": "2026-07-01T00:00:00",
+"tags": [],
+"title": "VISITE URBAINE SUR LES PAS DE PIERRE SOULAGES SUIVIE D'UNE DÉGUSTATION DE VINS",
+"tldr": null,
+"url": "https://www.rodezagglo.fr/fiche/agenda/visite-urbaine-sur-les-pas-de-pierre-soulages-suivie-d-une-degustation-de-vins-rodez_TFO12202-FMA-20260702152559656"
+},
+{
+"address": null,
+"audience": [
+"tous"
+],
+"category": "patrimoine",
+"commune": "Rodez",
+"description": "Mise en lumière artistique du clocher de la cathédrale pour ses 500 ans. Événement à Rodez.",
+"end": "2026-08-31",
+"free": null,
+"id": "500-ans-clocher-cathedrale-mise-en-lumiere-artistique-du-clocher-c03dddd9",
+"image": null,
+"lat": null,
+"lon": null,
+"price_text": null,
+"sector": "pont-de-salars",
+"source_id": "html-rodezagglo",
+"start": "2026-06-19T00:00:00",
+"tags": [],
+"title": "500 ANS CLOCHER CATHÉDRALE - Mise en lumière artistique du clocher",
+"tldr": null,
+"url": "https://www.rodezagglo.fr/fiche/agenda/500-ans-clocher-cathedrale-mise-en-lumiere-artistique-du-clocher-rodez_TFO12202-FMA-20260309162722450"
+},
+{
+"address": null,
+"audience": [
+"tous"
+],
+"category": "patrimoine",
+"commune": "Rodez",
+"description": "Visite guidée du centre historique et de la cathédrale. Événement à Rodez.",
+"end": null,
+"free": null,
+"id": "visite-guidee-du-centre-historique-et-de-la-cathedrale-hors-clocher-juillet-a-se-be233479",
+"image": null,
+"lat": null,
+"lon": null,
+"price_text": null,
+"sector": "pont-de-salars",
+"source_id": "html-rodezagglo",
+"start": "2026-09-01T00:00:00",
+"tags": [],
+"title": "Visite guidée du centre historique et de la cathédrale (hors clocher) - JUILLET A SEPTEMBRE 2026",
+"tldr": null,
+"url": "https://www.rodezagglo.fr/fiche/agenda/visite-guidee-du-centre-historique-et-de-la-cathedrale-hors-clocher-juillet-a-septembre-2026-rodez_TFO12202-FMA-20260319164625396"
+},
+{
+"address": null,
+"audience": [
+"tous"
+],
+"category": "expo",
+"commune": "Rodez",
+"description": "Exposition solo intitulée CORPUS. Événement à Rodez.",
+"end": "2026-09-01",
+"free": null,
+"id": "exposition-solo-corpus-be57d935",
+"image": null,
+"lat": null,
+"lon": null,
+"price_text": null,
+"sector": "pont-de-salars",
+"source_id": "html-rodezagglo",
+"start": "2026-06-19T00:00:00",
+"tags": [],
+"title": "Exposition solo “CORPUS”",
+"tldr": null,
+"url": "https://www.rodezagglo.fr/fiche/agenda/exposition-solo-corpus-rodez_TFO12202-FMA-20260703104049651"
 }
 ]
 }
