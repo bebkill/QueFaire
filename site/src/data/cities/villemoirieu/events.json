@@ -1,11 +1,11 @@
 [
  {
-  "title": "Concours photo de Lo Parvi : les paysages de l’Isle Crémieu",
+  "title": "Concours photo de Lo Parvi : les paysages de l'Isle Crémieu",
   "start": "2026-01-01T00:00:00",
   "source_id": "html-balcons-dauphine",
   "sector": "villemoirieu",
   "end": "2027-08-31",
-  "description": "Concours photo de Lo Parvi sur les paysages de l’Isle Crémieu. Gratuit.",
+  "description": "Concours photo de Lo Parvi sur les paysages de l'Isle Crémieu. Gratuit.",
   "tldr": null,
   "category": "autre",
   "tags": [],
@@ -20,15 +20,15 @@
   "price_text": "Gratuit",
   "url": "https://www.balconsdudauphine-tourisme.com/manifestation/concours-photo-de-lo-parvi-les-paysages-de-lisle-cremieu/",
   "image": null,
-  "id": "concours-photo-de-lo-parvi-les-paysages-de-lisle-cremieu-67211fdd"
+  "id": "concours-photo-de-lo-parvi-les-paysages-de-l-isle-cremieu-34eed55c"
  },
  {
   "title": "Exposition : Corps parés, âmes révélées, au musée archéologique de Hières-sur-Amby",
-  "start": "2026-04-01T00:00:00",
+  "start": "2026-04-01T14:00:00",
   "source_id": "html-balcons-dauphine",
   "sector": "villemoirieu",
   "end": "2026-09-30",
-  "description": "Exposition Corps parés, âmes révélées au musée archéologique de Hières-sur-Amby. À partir de 2 €.",
+  "description": "Exposition présentée au musée archéologique de Hières-sur-Amby. À partir de 2 €.",
   "tldr": null,
   "category": "expo",
   "tags": [],
@@ -46,11 +46,34 @@
   "id": "exposition-corps-pares-ames-revelees-au-musee-archeologique-de-hieres-sur-amby-d894b716"
  },
  {
+  "title": "Faune berjalienne au parc des mûriers",
+  "start": "2026-04-04T00:00:00",
+  "source_id": "html-bourgoin",
+  "sector": "villemoirieu",
+  "end": "2026-09-30",
+  "description": "À l'occasion du bicentenaire de la photographie, le musée de Bourgoin-Jallieu propose cette exposition.",
+  "tldr": null,
+  "category": "expo",
+  "tags": [],
+  "audience": [
+   "tous"
+  ],
+  "commune": "Bourgoin-Jallieu",
+  "address": "Parc des Mûriers",
+  "lat": 45.6025,
+  "lon": 5.2747,
+  "free": null,
+  "price_text": null,
+  "url": "https://www.bourgoinjallieu.fr/agenda/2777-faune-berjalienne-au-parc-des-muriers",
+  "image": null,
+  "id": "faune-berjalienne-au-parc-des-muriers-471969a8"
+ },
+ {
   "title": "Cet été, faites-vous une terrasse !",
   "start": "2026-05-01T00:00:00",
   "source_id": "html-bourgoin",
   "sector": "villemoirieu",
-  "end": "2026-09-26T00:00:00",
+  "end": "2026-09-26",
   "description": "Du 1er mai au 26 septembre 2026.",
   "tldr": null,
   "category": "autre",
@@ -73,8 +96,8 @@
   "start": "2026-06-16T00:00:00",
   "source_id": "html-bourgoin",
   "sector": "villemoirieu",
-  "end": "2026-09-13T00:00:00",
-  "description": "Du 16 juin au 13 septembre 2026, la Ville de Bourgoin-Jallieu propose plus de 100 animations.",
+  "end": "2026-09-13",
+  "description": "Du 16 juin au 13 septembre 2026, la Ville de Bourgoin-Jallieu vous propose plus...",
   "tldr": null,
   "category": "festival",
   "tags": [],
@@ -92,12 +115,12 @@
   "id": "festiv-ete-nouvelle-edition-16c36fcc"
  },
  {
-  "title": "Visites flash des vacances à la Maison d’Izieu",
+  "title": "Visites flash des vacances à la Maison d'Izieu",
   "start": "2026-07-01T00:00:00",
   "source_id": "html-balcons-dauphine",
   "sector": "villemoirieu",
   "end": "2026-08-31",
-  "description": "Visites flash des vacances à la Maison d’Izieu. Réservable en ligne.",
+  "description": "Visites flash des vacances proposées à la Maison d'Izieu. Réservable en ligne.",
   "tldr": null,
   "category": "patrimoine",
   "tags": [],
@@ -112,15 +135,15 @@
   "price_text": null,
   "url": "https://www.balconsdudauphine-tourisme.com/activite/visites-flash-des-vacances-a-la-maison-dizieu/",
   "image": null,
-  "id": "visites-flash-des-vacances-a-la-maison-dizieu-9ae38960"
+  "id": "visites-flash-des-vacances-a-la-maison-d-izieu-f4cc1dee"
  },
  {
-  "title": "Exposition : Papivores ! Soif de s’exprimer à la Maison d’Izieu",
+  "title": "Exposition : Papivores ! Soif de s'exprimer à la Maison d'Izieu",
   "start": "2026-07-02T00:00:00",
   "source_id": "html-balcons-dauphine",
   "sector": "villemoirieu",
   "end": "2026-11-02",
-  "description": "Exposition Papivores ! Soif de s’exprimer à la Maison d’Izieu. À partir de 7 €.",
+  "description": "Exposition « Papivores ! Soif de s'exprimer » à la Maison d'Izieu. Réservable en ligne, à partir de 7 €.",
   "tldr": null,
   "category": "expo",
   "tags": [],
@@ -135,15 +158,15 @@
   "price_text": "À partir de 7 €",
   "url": "https://www.balconsdudauphine-tourisme.com/manifestation/exposition-papivores-soif-de-sexprimer-a-la-maison-dizieu/",
   "image": null,
-  "id": "exposition-papivores-soif-de-sexprimer-a-la-maison-dizieu-fafe5d9f"
+  "id": "exposition-papivores-soif-de-s-exprimer-a-la-maison-d-izieu-deaf1c1a"
  },
  {
   "title": "Exposition temporaire : Vitis Vinifera, de la vigne au vin, au musée de Saint-Chef",
-  "start": "2026-07-03T00:00:00",
+  "start": "2026-07-03T14:00:00",
   "source_id": "html-balcons-dauphine",
   "sector": "villemoirieu",
   "end": "2026-10-25",
-  "description": "Exposition temporaire Vitis Vinifera, de la vigne au vin, au musée de Saint-Chef. Gratuit.",
+  "description": "Exposition temporaire « Vitis Vinifera, de la vigne au vin » au musée de Saint-Chef. Gratuit.",
   "tldr": null,
   "category": "expo",
   "tags": [],
@@ -161,13 +184,13 @@
   "id": "exposition-temporaire-vitis-vinifera-de-la-vigne-au-vin-au-musee-de-saint-chef-a0af4f00"
  },
  {
-  "title": "L’enquête d’Archibalme : le détective c’est toi !",
+  "title": "L'enquête d'Archibalme : le détective c'est toi !",
   "start": "2026-07-04T10:30:00",
   "source_id": "html-balcons-dauphine",
   "sector": "villemoirieu",
   "end": "2026-08-31",
-  "description": "Enquête ludique aux Grottes de la Balme. À partir de 1 €.",
-  "tldr": "Jeu d'enquête interactive où les participants résolvent une énigme dans les grottes de la Balme.",
+  "description": "Jeu de piste et chasse au trésor proposé aux Grottes de la Balme. Réservable en ligne à partir de 1 €.",
+  "tldr": "Jeu de piste et chasse au trésor dans les Grottes de la Balme pour résoudre une enquête historique.",
   "category": "jeunesse",
   "tags": [],
   "audience": [
@@ -182,17 +205,17 @@
   "price_text": "À partir de 1 €",
   "url": "https://www.balconsdudauphine-tourisme.com/manifestation/lenquete-darchibalme-le-detective-cest-toi/",
   "image": null,
-  "id": "lenquete-darchibalme-le-detective-cest-toi-9a795fc5"
+  "id": "l-enquete-d-archibalme-le-detective-c-est-toi-4dd8fa76"
  },
  {
   "title": "Les dimanches, c'est pique-nique !",
   "start": "2026-07-05T00:00:00",
   "source_id": "html-bourgoin",
   "sector": "villemoirieu",
-  "end": "2026-09-13T00:00:00",
+  "end": "2026-09-13",
   "description": "Proposés par l'association \"Vibrations Mystiques\" et la ville de Bourgoin-Jallieu.",
   "tldr": null,
-  "category": "fete",
+  "category": "nature",
   "tags": [],
   "audience": [
    "tous"
@@ -208,12 +231,12 @@
   "id": "les-dimanches-c-est-pique-nique-b4e2435b"
  },
  {
-  "title": "Exposition : l’école lyonnaise au féminin, dans la cité de Quirieu",
+  "title": "Exposition : l'école lyonnaise au féminin, dans la cité de Quirieu",
   "start": "2026-07-05T00:00:00",
   "source_id": "html-balcons-dauphine",
   "sector": "villemoirieu",
   "end": "2027-06-30",
-  "description": "Exposition sur l’école lyonnaise au féminin dans la cité de Quirieu. Gratuit.",
+  "description": "Exposition « L'école lyonnaise au féminin » dans la cité de Quirieu. Gratuit.",
   "tldr": null,
   "category": "expo",
   "tags": [],
@@ -228,60 +251,14 @@
   "price_text": "Gratuit",
   "url": "https://www.balconsdudauphine-tourisme.com/manifestation/exposition-lecole-lyonnaise-au-feminin-dans-la-cite-de-quirieu/",
   "image": null,
-  "id": "exposition-lecole-lyonnaise-au-feminin-dans-la-cite-de-quirieu-16cdffbc"
- },
- {
-  "title": "Faune berjalienne au parc des mûriers",
-  "start": "2026-08-04T00:00:00",
-  "source_id": "html-bourgoin",
-  "sector": "villemoirieu",
-  "end": "2026-09-30T00:00:00",
-  "description": "À l’occasion du bicentenaire de la photographie, le musée de Bourgoin-Jallieu présente une exposition.",
-  "tldr": null,
-  "category": "expo",
-  "tags": [],
-  "audience": [
-   "tous"
-  ],
-  "commune": "Bourgoin-Jallieu",
-  "address": null,
-  "lat": 45.6025,
-  "lon": 5.2747,
-  "free": null,
-  "price_text": null,
-  "url": "https://www.bourgoinjallieu.fr/agenda/2777-faune-berjalienne-au-parc-des-muriers",
-  "image": null,
-  "id": "faune-berjalienne-au-parc-des-muriers-16424b9a"
- },
- {
-  "title": "Musée : \" Au fil de l’eau \"",
-  "start": "2026-08-07T00:00:00",
-  "source_id": "html-bourgoin",
-  "sector": "villemoirieu",
-  "end": "2026-08-31T00:00:00",
-  "description": "Une exposition inscrite dans la saison culturelle du Département de l’Isère.",
-  "tldr": null,
-  "category": "expo",
-  "tags": [],
-  "audience": [
-   "tous"
-  ],
-  "commune": "Bourgoin-Jallieu",
-  "address": null,
-  "lat": 45.6025,
-  "lon": 5.2747,
-  "free": null,
-  "price_text": null,
-  "url": "https://www.bourgoinjallieu.fr/agenda/2645-musee-au-fil-de-l-eau",
-  "image": null,
-  "id": "musee-au-fil-de-leau-c846aa04"
+  "id": "exposition-l-ecole-lyonnaise-au-feminin-dans-la-cite-de-quirieu-b2e2c0b2"
  },
  {
   "title": "Musée Galerie Clauorum : Christian Chevallier photographies",
   "start": "2026-08-07T00:00:00",
   "source_id": "html-bourgoin",
   "sector": "villemoirieu",
-  "end": "2026-09-22T00:00:00",
+  "end": "2026-09-22",
   "description": "L'exposition photographique est présentée au sein du musée Clauorum de Bourgoin-Jallieu.",
   "tldr": null,
   "category": "expo",
@@ -290,7 +267,7 @@
    "tous"
   ],
   "commune": "Bourgoin-Jallieu",
-  "address": null,
+  "address": "Musée Galerie Clauorum",
   "lat": 45.6025,
   "lon": 5.2747,
   "free": null,
@@ -300,12 +277,12 @@
   "id": "musee-galerie-clauorum-christian-chevallier-photographies-6afeb7c3"
  },
  {
-  "title": "Concours photo : Crémieu dans l’objectif, et dans les pas du passé !",
-  "start": "2026-08-10T00:00:00",
+  "title": "Concours photo : Crémieu dans l'objectif, et dans les pas du passé !",
+  "start": "2026-08-10T08:00:00",
   "source_id": "html-balcons-dauphine",
   "sector": "villemoirieu",
   "end": "2026-09-13",
-  "description": "Concours photo sur le thème de Crémieu. Gratuit.",
+  "description": "Concours photo organisé par le Conseil Municipal des Jeunes de la ville de Crémieu. Gratuit.",
   "tldr": null,
   "category": "autre",
   "tags": [],
@@ -320,15 +297,15 @@
   "price_text": "Gratuit",
   "url": "https://www.balconsdudauphine-tourisme.com/manifestation/concours-photo-cremieu-dans-lobjectif-et-dans-les-pas-du-passe/",
   "image": null,
-  "id": "concours-photo-cremieu-dans-lobjectif-et-dans-les-pas-du-passe-8e1d63cf"
+  "id": "concours-photo-cremieu-dans-l-objectif-et-dans-les-pas-du-passe-9fe9f369"
  },
  {
   "title": "Cinéma Hors Pistes",
   "start": "2026-08-26T00:00:00",
   "source_id": "html-bourgoin",
   "sector": "villemoirieu",
-  "end": "2026-09-08T00:00:00",
-  "description": "",
+  "end": "2026-09-08",
+  "description": "Cinéma Hors Pistes.",
   "tldr": null,
   "category": "cinema",
   "tags": [],
@@ -351,8 +328,8 @@
   "source_id": "html-balcons-dauphine",
   "sector": "villemoirieu",
   "end": "2026-08-31",
-  "description": "Vogue des conscrits à Courtenay. Animation gratuite.",
-  "tldr": null,
+  "description": "Vogue des conscrits à Courtenay. Gratuit.",
+  "tldr": "Fête traditionnelle avec défilé et animations pour célébrer les conscrits de Courtenay.",
   "category": "fete",
   "tags": [],
   "audience": [
@@ -374,9 +351,9 @@
   "source_id": "html-balcons-dauphine",
   "sector": "villemoirieu",
   "end": null,
-  "description": "Foire aux dindes à Frontonas. Entrée gratuite.",
+  "description": "Foire aux dindes organisée par l'Association Frontonienne pour le Développement Rural. Marché gratuit dès 7h à Frontonas.",
   "tldr": null,
-  "category": "marche",
+  "category": "fete",
   "tags": [],
   "audience": [
    "tous"
@@ -392,18 +369,17 @@
   "id": "foire-aux-dindes-a-frontonas-0fbcdec5"
  },
  {
-  "title": "Stage d’initiation à la marqueterie de paille avec Art’Majic",
+  "title": "Stage d'initiation à la marqueterie de paille avec Art'Majic",
   "start": "2026-08-31T09:00:00",
   "source_id": "html-balcons-dauphine",
   "sector": "villemoirieu",
   "end": null,
-  "description": "Stage d’initiation à la marqueterie de paille avec Art’Majic. À partir de 65 €.",
+  "description": "Stage d'initiation à la marqueterie de paille avec Art'Majic. À partir de 65 €.",
   "tldr": null,
   "category": "atelier",
   "tags": [],
   "audience": [
-   "adultes",
-   "ados"
+   "adultes"
   ],
   "commune": "Crémieu",
   "address": null,
@@ -413,7 +389,7 @@
   "price_text": "À partir de 65 €",
   "url": "https://www.balconsdudauphine-tourisme.com/activite/stage-dinitiation-a-la-marqueterie-de-paille-avec-artmajic/",
   "image": null,
-  "id": "stage-dinitiation-a-la-marqueterie-de-paille-avec-artmajic-acad306c"
+  "id": "stage-d-initiation-a-la-marqueterie-de-paille-avec-art-majic-9512988b"
  },
  {
   "title": "Summer mix party avec Dj Mademoisel au restaurant The Lake",
@@ -421,7 +397,7 @@
   "source_id": "html-balcons-dauphine",
   "sector": "villemoirieu",
   "end": null,
-  "description": "Soirée Summer mix party avec DJ Mademoisel au restaurant The Lake. Réservable en ligne.",
+  "description": "Soirée concert avec DJ Mademoisel au restaurant The Lake à Trept. Réservable en ligne.",
   "tldr": null,
   "category": "concert",
   "tags": [],
@@ -489,7 +465,7 @@
   "start": "2026-09-01T00:00:00",
   "source_id": "html-bourgoin",
   "sector": "villemoirieu",
-  "end": "2026-09-12T00:00:00",
+  "end": "2026-09-12",
   "description": "L'espace Carnot accueillera 2 artistes peintres, Sylvia Bielsa Allagnat et...",
   "tldr": null,
   "category": "expo",
@@ -498,7 +474,7 @@
    "tous"
   ],
   "commune": "Bourgoin-Jallieu",
-  "address": null,
+  "address": "Espace Carnot",
   "lat": 45.6025,
   "lon": 5.2747,
   "free": null,
@@ -508,7 +484,7 @@
   "id": "exposition-peintures-544943a5"
  },
  {
-  "title": "Ciné-été à Champfleuri : \" Super Mario Galaxy \"",
+  "title": "Ciné-été à Champfleuri : \"Super Mario Galaxy\"",
   "start": "2026-09-01T00:00:00",
   "source_id": "html-bourgoin",
   "sector": "villemoirieu",
@@ -518,19 +494,18 @@
   "category": "cinema",
   "tags": [],
   "audience": [
-   "enfants",
-   "ados",
-   "famille"
+   "famille",
+   "enfants"
   ],
   "commune": "Bourgoin-Jallieu",
-  "address": null,
+  "address": "Champfleuri",
   "lat": 45.6025,
   "lon": 5.2747,
   "free": null,
   "price_text": null,
   "url": "https://www.bourgoinjallieu.fr/agenda/1746-cine-ete-a-champfleuri-super-mario-galaxy",
   "image": null,
-  "id": "cine-ete-a-champfleuri-super-mario-galaxy-f6cc3e5c"
+  "id": "cine-ete-a-champfleuri-super-mario-galaxy-84dffdbc"
  },
  {
   "title": "Festival Belles Journées",
@@ -560,8 +535,8 @@
   "start": "2026-09-04T00:00:00",
   "source_id": "html-bourgoin",
   "sector": "villemoirieu",
-  "end": "2026-09-05T00:00:00",
-  "description": "C'est officiel : le Festival Les Belles Journées est COMPLET ! Merci à toute...",
+  "end": "2026-09-05",
+  "description": "C'est officiel : le Festival Les Belles Journées est COMPLET !",
   "tldr": null,
   "category": "festival",
   "tags": [],
@@ -579,12 +554,12 @@
   "id": "les-belles-journees-12-365c3101"
  },
  {
-  "title": "4ème Biennale de sculptures d’art contemporain : Au fil du Bion",
+  "title": "4ème Biennale de sculptures d'art contemporain : Au fil du Bion",
   "start": "2026-09-04T00:00:00",
   "source_id": "html-bourgoin",
   "sector": "villemoirieu",
-  "end": "2026-09-27T00:00:00",
-  "description": "Organisée par le Collectif aRt’c.",
+  "end": "2026-09-27",
+  "description": "Organisée par le Collectif aRt'c.",
   "tldr": null,
   "category": "expo",
   "tags": [],
@@ -599,30 +574,7 @@
   "price_text": null,
   "url": "https://www.bourgoinjallieu.fr/agenda/2926-4eme-biennale-de-sculptures-dart-contemporain",
   "image": null,
-  "id": "4eme-biennale-de-sculptures-dart-contemporain-au-fil-du-bion-69c3ab61"
- },
- {
-  "title": "Visite guidée – randonnée du village de Vertrieu",
-  "start": "2026-09-04T14:00:00",
-  "source_id": "html-balcons-dauphine",
-  "sector": "villemoirieu",
-  "end": null,
-  "description": "Des bords du Rhône au bois du Serverin, visite guidée de Vertrieu, le village aux deux châteaux. Inscription obligatoire.",
-  "tldr": null,
-  "category": "patrimoine",
-  "tags": [],
-  "audience": [
-   "tous"
-  ],
-  "commune": "Vertrieu",
-  "address": null,
-  "lat": 45.8692,
-  "lon": 5.3703,
-  "free": null,
-  "price_text": null,
-  "url": "https://www.balconsdudauphine-tourisme.com/manifestation/des-bords-du-rhone-au-bois-du-serverin-visite-guidee-de-vertrieu-le-village-aux-deux-chateaux/",
-  "image": null,
-  "id": "visite-guidee-randonnee-du-village-de-vertrieu-63670319"
+  "id": "4eme-biennale-de-sculptures-d-art-contemporain-au-fil-du-bion-610ebad3"
  },
  {
   "title": "Soirée conte au jardin",
@@ -659,8 +611,7 @@
   "category": "sport",
   "tags": [],
   "audience": [
-   "ados",
-   "adultes"
+   "tous"
   ],
   "commune": "Bourgoin-Jallieu",
   "address": null,
@@ -696,12 +647,12 @@
   "id": "rencontre-autour-du-livre-15bba864"
  },
  {
-  "title": "Bourse d’échanges trains, autos, jouets",
+  "title": "Bourse d'échanges trains, autos, jouets",
   "start": "2026-09-06T00:00:00",
   "source_id": "html-bourgoin",
   "sector": "villemoirieu",
   "end": null,
-  "description": "Organisée par l'association de modélisme ferroviaire \" Omnibus \".",
+  "description": "Organisée par l'association de modélisme ferroviaire \"Omnibus\".",
   "tldr": null,
   "category": "autre",
   "tags": [],
@@ -716,7 +667,7 @@
   "price_text": null,
   "url": "https://www.bourgoinjallieu.fr/agenda/1299-bourse-d-echanges-trains-autos-jouets",
   "image": null,
-  "id": "bourse-dechanges-trains-autos-jouets-177a8d14"
+  "id": "bourse-d-echanges-trains-autos-jouets-114923a7"
  },
  {
   "title": "Musée : visite en famille",
@@ -733,7 +684,7 @@
    "enfants"
   ],
   "commune": "Bourgoin-Jallieu",
-  "address": null,
+  "address": "Musée de Bourgoin-Jallieu",
   "lat": 45.6025,
   "lon": 5.2747,
   "free": null,
@@ -756,7 +707,7 @@
    "tous"
   ],
   "commune": "Bourgoin-Jallieu",
-  "address": null,
+  "address": "Musée de Bourgoin-Jallieu",
   "lat": 45.6025,
   "lon": 5.2747,
   "free": null,
@@ -794,13 +745,12 @@
   "source_id": "html-bourgoin",
   "sector": "villemoirieu",
   "end": null,
-  "description": "Pour tout savoir de la nouvelle organisation de la démocratie participative, une...",
+  "description": "Pour tout savoir de la nouvelle organisation de la démocratie participative.",
   "tldr": null,
-  "category": "autre",
+  "category": "conference",
   "tags": [],
   "audience": [
-   "adultes",
-   "seniors"
+   "tous"
   ],
   "commune": "Bourgoin-Jallieu",
   "address": null,
@@ -818,7 +768,7 @@
   "source_id": "html-bourgoin",
   "sector": "villemoirieu",
   "end": null,
-  "description": "Une adaptation de la comédie musicale \" Notre Dame de Paris \".",
+  "description": "Une adaptation de la comédie musicale \"Notre Dame de Paris\".",
   "tldr": null,
   "category": "spectacle",
   "tags": [],
@@ -840,8 +790,8 @@
   "start": "2026-09-14T00:00:00",
   "source_id": "html-bourgoin",
   "sector": "villemoirieu",
-  "end": "2026-09-26T00:00:00",
-  "description": "Venez découvrir l'exposition de peintures d'Ali Benhamel qui e...",
+  "end": "2026-09-26",
+  "description": "Venez découvrir l'exposition de peintures d'Ali Benhamel.",
   "tldr": null,
   "category": "expo",
   "tags": [],
@@ -882,12 +832,12 @@
   "id": "exposition-d-ali-benhamel-6b6edaca"
  },
  {
-  "title": "Un mois une oeuvre : Les films Les héros de l’étoffe",
+  "title": "Un mois une oeuvre : Les héros de l'étoffe",
   "start": "2026-09-15T00:00:00",
   "source_id": "html-bourgoin",
   "sector": "villemoirieu",
   "end": null,
-  "description": "Et si vous preniez le temps d’une pause culturelle ? Un mardi par mois, sur la p...",
+  "description": "Et si vous preniez le temps d'une pause culturelle ?",
   "tldr": null,
   "category": "conference",
   "tags": [],
@@ -900,9 +850,9 @@
   "lon": 5.2747,
   "free": null,
   "price_text": null,
-  "url": "https://www.bourgoinjallieu.fr/agenda/1321-un-mois-une-oeuvre-les-films-les-heros-de-letoffe",
+  "url": "https://www.bourgoinjallieu.fr/agenda/1321-un-mois-une-oeuvre-les-heros-de-letoffe",
   "image": null,
-  "id": "un-mois-une-oeuvre-les-films-les-heros-de-letoffe-b275e374"
+  "id": "un-mois-une-oeuvre-les-heros-de-l-etoffe-c22ed49c"
  },
  {
   "title": "Sortie nature au Vallon du Layet",
@@ -933,12 +883,12 @@
   "source_id": "html-bourgoin",
   "sector": "villemoirieu",
   "end": null,
-  "description": "",
+  "description": "Séance du conseil municipal.",
   "tldr": null,
   "category": "autre",
   "tags": [],
   "audience": [
-   "adultes"
+   "tous"
   ],
   "commune": "Bourgoin-Jallieu",
   "address": null,
@@ -955,8 +905,8 @@
   "start": "2026-09-18T00:00:00",
   "source_id": "html-bourgoin",
   "sector": "villemoirieu",
-  "end": "2026-10-18T00:00:00",
-  "description": "Présentée du 18 septembre au 18 octobre 2026, dans le cadre de la programmation...",
+  "end": "2026-10-18",
+  "description": "Présentée du 18 septembre au 18 octobre 2026, dans le cadre de la programmation du musée.",
   "tldr": null,
   "category": "expo",
   "tags": [],
@@ -964,7 +914,7 @@
    "tous"
   ],
   "commune": "Bourgoin-Jallieu",
-  "address": null,
+  "address": "Musée de Bourgoin-Jallieu",
   "lat": 45.6025,
   "lon": 5.2747,
   "free": null,
@@ -979,9 +929,9 @@
   "source_id": "html-bourgoin",
   "sector": "villemoirieu",
   "end": null,
-  "description": "En présence de l’équipe de C’Pluriel, association œuvrant pour des habitats sing...",
+  "description": "En présence de l'équipe de C'Pluriel, association œuvrant pour des habitats singuliers.",
   "tldr": null,
-  "category": "conference",
+  "category": "cinema",
   "tags": [],
   "audience": [
    "adultes"
@@ -1002,15 +952,15 @@
   "source_id": "html-bourgoin",
   "sector": "villemoirieu",
   "end": null,
-  "description": "La Ville poursuit sa collecte d’encombrants dans les différents quartiers de l...",
+  "description": "La Ville poursuit sa collecte d'encombrants dans les différents quartiers.",
   "tldr": null,
   "category": "autre",
   "tags": [],
   "audience": [
-   "tous"
+   "adultes"
   ],
   "commune": "Bourgoin-Jallieu",
-  "address": null,
+  "address": "Champaret",
   "lat": 45.6025,
   "lon": 5.2747,
   "free": null,
@@ -1024,8 +974,8 @@
   "start": "2026-09-19T00:00:00",
   "source_id": "html-bourgoin",
   "sector": "villemoirieu",
-  "end": "2026-09-20T00:00:00",
-  "description": "Pour la 43 ème édition des Journées européennes du patrimoine, le Musée de Bourg...",
+  "end": "2026-09-20",
+  "description": "Pour la 43ème édition des Journées européennes du patrimoine, le Musée de Bourgoin-Jallieu ouvre ses portes.",
   "tldr": null,
   "category": "patrimoine",
   "tags": [],
@@ -1033,7 +983,7 @@
    "tous"
   ],
   "commune": "Bourgoin-Jallieu",
-  "address": null,
+  "address": "Musée de Bourgoin-Jallieu",
   "lat": 45.6025,
   "lon": 5.2747,
   "free": null,
@@ -1048,7 +998,7 @@
   "source_id": "html-bourgoin",
   "sector": "villemoirieu",
   "end": null,
-  "description": "",
+  "description": "Le Temple protestant ouvre ses portes à l'occasion des Journées du patrimoine.",
   "tldr": null,
   "category": "patrimoine",
   "tags": [],
@@ -1056,7 +1006,7 @@
    "tous"
   ],
   "commune": "Bourgoin-Jallieu",
-  "address": null,
+  "address": "Temple protestant",
   "lat": 45.6025,
   "lon": 5.2747,
   "free": null,
@@ -1094,9 +1044,9 @@
   "source_id": "html-bourgoin",
   "sector": "villemoirieu",
   "end": null,
-  "description": "",
+  "description": "Soirée de découverte de la Jeune Chambre Economique de Bourgoin-Jallieu et sa Région.",
   "tldr": null,
-  "category": "autre",
+  "category": "conference",
   "tags": [],
   "audience": [
    "adultes"
@@ -1117,12 +1067,12 @@
   "source_id": "html-bourgoin",
   "sector": "villemoirieu",
   "end": null,
-  "description": "Ouverture cet automne.",
+  "description": "Rejoignez l'équipe du futur centre d'accueil de Bourgoin-Jallieu. Ouverture cet automne.",
   "tldr": null,
-  "category": "autre",
+  "category": "conference",
   "tags": [],
   "audience": [
-   "tous"
+   "adultes"
   ],
   "commune": "Bourgoin-Jallieu",
   "address": null,
@@ -1139,16 +1089,17 @@
   "start": "2026-09-23T00:00:00",
   "source_id": "html-bourgoin",
   "sector": "villemoirieu",
-  "end": "2026-10-07T00:00:00",
+  "end": "2026-10-07",
   "description": "A l'occasion de la Foire Saint-Michel, rendez-vous quai des Belges.",
   "tldr": null,
   "category": "fete",
   "tags": [],
   "audience": [
-   "tous"
+   "famille",
+   "enfants"
   ],
   "commune": "Bourgoin-Jallieu",
-  "address": null,
+  "address": "Quai des Belges",
   "lat": 45.6025,
   "lon": 5.2747,
   "free": null,
@@ -1163,7 +1114,7 @@
   "source_id": "html-bourgoin",
   "sector": "villemoirieu",
   "end": null,
-  "description": "",
+  "description": "Cérémonie d'hommage aux Harkis et aux membres des formations supplétives.",
   "tldr": null,
   "category": "atelier",
   "tags": [],
@@ -1186,7 +1137,7 @@
   "source_id": "html-bourgoin",
   "sector": "villemoirieu",
   "end": null,
-  "description": "Au programme Shubiao Quartet + Bilqîs + Bonjour Madame.",
+  "description": "Au programme Shubiao Quartet, Bilqîs et Bonjour Madame.",
   "tldr": null,
   "category": "concert",
   "tags": [],
@@ -1194,7 +1145,7 @@
    "tous"
   ],
   "commune": "Bourgoin-Jallieu",
-  "address": null,
+  "address": "Les Abattoirs",
   "lat": 45.6025,
   "lon": 5.2747,
   "free": null,
@@ -1211,7 +1162,7 @@
   "end": null,
   "description": "Un rendez-vous convivial et incontournable qui permet à tous de se retrouver.",
   "tldr": null,
-  "category": "marche",
+  "category": "fete",
   "tags": [],
   "audience": [
    "tous"
@@ -1231,8 +1182,8 @@
   "start": "2026-09-26T00:00:00",
   "source_id": "html-bourgoin",
   "sector": "villemoirieu",
-  "end": "2026-09-27T00:00:00",
-  "description": "Un événement organisé par le le club Maquettiste Nord Dauphiné CMND de Bourgoin-...",
+  "end": "2026-09-27",
+  "description": "Un événement organisé par le club Maquettiste Nord Dauphiné CMND de Bourgoin-Jallieu.",
   "tldr": null,
   "category": "expo",
   "tags": [],
@@ -1250,12 +1201,12 @@
   "id": "replica-2026-exposition-maquettes-et-figurines-10934e96"
  },
  {
-  "title": "Week-end d’improvisation musicale au Musée",
+  "title": "Week-end d'improvisation musicale au Musée",
   "start": "2026-09-26T00:00:00",
   "source_id": "html-bourgoin",
   "sector": "villemoirieu",
-  "end": "2026-09-27T00:00:00",
-  "description": "Avec l’ensemble franco-suédois \"Sound Quarter\". Le projet Sound Quarter propose...",
+  "end": "2026-09-27",
+  "description": "Avec l'ensemble franco-suédois \"Sound Quarter\".",
   "tldr": null,
   "category": "concert",
   "tags": [],
@@ -1263,14 +1214,14 @@
    "tous"
   ],
   "commune": "Bourgoin-Jallieu",
-  "address": null,
+  "address": "Musée de Bourgoin-Jallieu",
   "lat": 45.6025,
   "lon": 5.2747,
   "free": null,
   "price_text": null,
   "url": "https://www.bourgoinjallieu.fr/agenda/2938-week-end-dimprovisation-musicale-au-musee",
   "image": null,
-  "id": "week-end-dimprovisation-musicale-au-musee-f7f19f44"
+  "id": "week-end-d-improvisation-musicale-au-musee-1795e0cf"
  },
  {
   "title": "20 ans à deux",
@@ -1278,9 +1229,9 @@
   "source_id": "html-bourgoin",
   "sector": "villemoirieu",
   "end": null,
-  "description": "",
-  "tldr": "Célébration des deux décennies de vie commune d'un couple.",
-  "category": "autre",
+  "description": "Spectacle \"20 ans à deux\".",
+  "tldr": null,
+  "category": "spectacle",
   "tags": [],
   "audience": [
    "adultes"
@@ -1301,15 +1252,15 @@
   "source_id": "html-bourgoin",
   "sector": "villemoirieu",
   "end": null,
-  "description": "Dimanche 27 septembre, le parc des Lilattes accueillera la 25e édition des Virad...",
+  "description": "Le parc des Lilattes accueille la 25e édition des Virades de l'Espoir.",
   "tldr": null,
-  "category": "autre",
+  "category": "sport",
   "tags": [],
   "audience": [
    "tous"
   ],
   "commune": "Bourgoin-Jallieu",
-  "address": null,
+  "address": "Parc des Lilattes",
   "lat": 45.6025,
   "lon": 5.2747,
   "free": null,
@@ -1323,8 +1274,8 @@
   "start": "2026-09-29T00:00:00",
   "source_id": "html-bourgoin",
   "sector": "villemoirieu",
-  "end": "2026-10-10T00:00:00",
-  "description": "Venez découvrir une exposition réunissant 4 artistes : Céline Goncalves, Bastien...",
+  "end": "2026-10-10",
+  "description": "Une exposition réunissant 4 artistes : Céline Goncalves, Bastien...",
   "tldr": null,
   "category": "expo",
   "tags": [],
@@ -1347,9 +1298,32 @@
   "source_id": "html-bourgoin",
   "sector": "villemoirieu",
   "end": null,
-  "description": "A l'occasion de l'exposition \"La Mare\" visible au musée du 18 septembre au 18 oc...",
-  "tldr": null,
-  "category": "expo",
+  "description": "À l'occasion de l'exposition \"La Mare\" visible au musée du 18 septembre au 18 octobre.",
+  "tldr": "Rencontre avec l'artiste Michaël Cailloux autour de son exposition 'La Mare' au musée.",
+  "category": "conference",
+  "tags": [],
+  "audience": [
+   "tous"
+  ],
+  "commune": "Bourgoin-Jallieu",
+  "address": "Musée de Bourgoin-Jallieu",
+  "lat": 45.6025,
+  "lon": 5.2747,
+  "free": null,
+  "price_text": null,
+  "url": "https://www.bourgoinjallieu.fr/agenda/2939-une-journee-avec-michael-cailloux",
+  "image": null,
+  "id": "une-journee-avec-michael-cailloux-7fc8fc8d"
+ },
+ {
+  "title": "TJV 26-27 : Lever de rideau avec \"Secret(s) médical\" | Michel Cymes",
+  "start": "2026-10-10T00:00:00",
+  "source_id": "html-bourgoin",
+  "sector": "villemoirieu",
+  "end": null,
+  "description": "Lever de rideau avec \"Secret(s) médical\" de Michel Cymes.",
+  "tldr": "Spectacle humoristique et médical animé par Michel Cymes sur les secrets du corps humain.",
+  "category": "spectacle",
   "tags": [],
   "audience": [
    "tous"
@@ -1360,31 +1334,8 @@
   "lon": 5.2747,
   "free": null,
   "price_text": null,
-  "url": "https://www.bourgoinjallieu.fr/agenda/2939-une-journee-avec-michael-cailloux",
-  "image": null,
-  "id": "une-journee-avec-michael-cailloux-7fc8fc8d"
- },
- {
-  "title": "TJV 26-27 : Lever de rideau avec \" Secret(s) médical \" | Michel Cymes",
-  "start": "2026-10-10T00:00:00",
-  "source_id": "html-bourgoin",
-  "sector": "villemoirieu",
-  "end": null,
-  "description": "Théâtre.",
-  "tldr": null,
-  "category": "spectacle",
-  "tags": [],
-  "audience": [
-   "adultes"
-  ],
-  "commune": "Bourgoin-Jallieu",
-  "address": null,
-  "lat": 45.6025,
-  "lon": 5.2747,
-  "free": null,
-  "price_text": null,
   "url": "https://www.bourgoinjallieu.fr/agenda/662-tjv-26-27-lever-de-rideau-avec-secret-s-medical-michel-cymes",
   "image": null,
-  "id": "tjv-26-27-lever-de-rideau-avec-secret-s-medical-michel-cymes-cae55556"
+  "id": "tjv-26-27-lever-de-rideau-avec-secret-s-medical-michel-cymes-8ed6c004"
  }
 ]
