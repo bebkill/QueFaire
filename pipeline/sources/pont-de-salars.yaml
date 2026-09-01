@@ -55,7 +55,7 @@ sources:
     type: html
     url: https://aveyron.fr/agenda
     commune: Rodez
-    enabled: true
+    enabled: false
 
   # --- Millau / Grands Causses : en limite de rayon (~50 min), à tester -----
   - id: html-millau

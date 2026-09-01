@@ -1,19 +1,19 @@
 {
 "html-balcons-dauphine": {
 "first_seen_day": "2026-07-24",
-"last_event_day": "2026-08-31"
+"last_event_day": "2026-09-01"
 },
 "html-bourgoin": {
 "first_seen_day": "2026-07-24",
-"last_event_day": "2026-08-31"
+"last_event_day": "2026-09-01"
 },
 "html-cafe-crem": {
 "first_seen_day": "2026-07-24",
-"last_event_day": "2026-08-31"
+"last_event_day": "2026-09-01"
 },
 "html-capi": {
 "first_seen_day": "2026-07-24",
-"last_event_day": "2026-08-31"
+"last_event_day": "2026-09-01"
 },
 "html-cremieu": {
 "first_seen_day": "2026-08-09",
@@ -21,6 +21,6 @@
 },
 "html-weekend-capi": {
 "first_seen_day": "2026-07-24",
-"last_event_day": "2026-08-30"
+"last_event_day": "2026-09-01"
 }
 }
