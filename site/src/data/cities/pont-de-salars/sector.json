@@ -1508,14 +1508,8 @@
    "name": "Office de tourisme de Rodez — agenda",
    "type": "html",
    "url": "https://www.rodez-tourisme.fr/agenda/"
-  },
-  {
-   "id": "html-aveyron-dept",
-   "name": "Département de l'Aveyron — agenda",
-   "type": "html",
-   "url": "https://aveyron.fr/agenda"
   }
  ],
- "generated_at": "2026-09-01T08:30:52",
+ "generated_at": "2026-09-01T09:04:03",
  "event_count": 36
 }
