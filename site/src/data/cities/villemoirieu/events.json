@@ -4,14 +4,15 @@
   "start": "2026-01-01T00:00:00",
   "source_id": "html-balcons-dauphine",
   "sector": "villemoirieu",
-  "end": "2027-08-31T23:59:59",
-  "description": "Concours photo organisé par Lo Parvi pour immortaliser les paysages de l’Isle Crémieu.",
+  "end": "2027-08-31T00:00:00",
+  "description": "Concours photo organisé par Lo Parvi. Capturez les paysages de l’Isle Crémieu.",
   "tldr": null,
   "category": "autre",
   "tags": [],
   "audience": [
    "ados",
-   "adultes"
+   "adultes",
+   "tous"
   ],
   "commune": "Trept",
   "address": null,
@@ -28,14 +29,15 @@
   "start": "2026-04-01T14:00:00",
   "source_id": "html-balcons-dauphine",
   "sector": "villemoirieu",
-  "end": "2026-09-30T18:00:00",
-  "description": "Exposition sur les parures et leur signification dans l’histoire. À découvrir au musée.",
-  "tldr": null,
+  "end": "2026-09-30T14:00:00",
+  "description": "Exposition au musée archéologique de Hières-sur-Amby. Découvrez des parures et des âmes révélées.",
+  "tldr": "Exposition présentant des parures archéologiques et des objets symboliques pour comprendre les croyances et pratiques funéraires anciennes.",
   "category": "expo",
   "tags": [],
   "audience": [
    "adultes",
-   "seniors"
+   "seniors",
+   "tous"
   ],
   "commune": "Hières-sur-Amby",
   "address": null,
@@ -75,8 +77,8 @@
   "start": "2026-05-09T10:00:00",
   "source_id": "html-balcons-dauphine",
   "sector": "villemoirieu",
-  "end": "2026-09-20T18:00:00",
-  "description": "Exposition artistique mettant en valeur les fleurs et leur symbolique. À voir à Brangues.",
+  "end": "2026-09-20T10:00:00",
+  "description": "Exposition temporaire à Brangues. Plongez dans l’univers des fleurs et de la lumière.",
   "tldr": null,
   "category": "expo",
   "tags": [],
@@ -98,8 +100,8 @@
   "start": "2026-05-09T10:00:00",
   "source_id": "html-balcons-dauphine",
   "sector": "villemoirieu",
-  "end": "2026-09-20T18:00:00",
-  "description": "Exposition sur l’évolution des traces humaines à Brangues. Une plongée dans le passé.",
+  "end": "2026-09-20T10:00:00",
+  "description": "Exposition temporaire à Brangues. Explorez les origines de la vie et les traces humaines.",
   "tldr": null,
   "category": "expo",
   "tags": [],
@@ -144,8 +146,8 @@
   "start": "2026-07-02T00:00:00",
   "source_id": "html-balcons-dauphine",
   "sector": "villemoirieu",
-  "end": "2026-11-02T23:59:59",
-  "description": "Exposition artistique à la Maison d’Izieu. Réservation en ligne possible.",
+  "end": "2026-11-02T00:00:00",
+  "description": "Exposition à la Maison d’Izieu. Découvrez les œuvres des Papivores.",
   "tldr": null,
   "category": "expo",
   "tags": [],
@@ -167,12 +169,14 @@
   "start": "2026-07-03T09:30:00",
   "source_id": "html-balcons-dauphine",
   "sector": "villemoirieu",
-  "end": "2026-10-25T18:00:00",
-  "description": "Exposition sur l’histoire de la vigne et du vin. À découvrir au musée de Saint-Chef.",
+  "end": "2026-10-25T09:30:00",
+  "description": "Exposition temporaire au musée de Saint-Chef. Découvrez l’histoire de la vigne et du vin.",
   "tldr": null,
   "category": "expo",
   "tags": [],
   "audience": [
+   "adultes",
+   "seniors",
    "tous"
   ],
   "commune": "Saint-Chef",
@@ -213,8 +217,8 @@
   "start": "2026-07-05T00:00:00",
   "source_id": "html-balcons-dauphine",
   "sector": "villemoirieu",
-  "end": "2027-06-30T23:59:59",
-  "description": "Exposition sur l’histoire de l’école lyonnaise au féminin. À Bouvesse-Quirieu.",
+  "end": "2027-06-30T00:00:00",
+  "description": "Exposition à Bouvesse-Quirieu. Découvrez l’école lyonnaise au féminin.",
   "tldr": null,
   "category": "expo",
   "tags": [],
@@ -236,12 +240,14 @@
   "start": "2026-07-15T14:00:00",
   "source_id": "html-balcons-dauphine",
   "sector": "villemoirieu",
-  "end": "2026-10-31T18:00:00",
-  "description": "Exposition de costumes d’opéra mettant en valeur des héroïnes célèbres. À Morestel.",
+  "end": "2026-10-31T14:00:00",
+  "description": "Exposition à la Maison Ravier. Découvrez les costumes d’héroïnes d’opéra.",
   "tldr": null,
   "category": "expo",
   "tags": [],
   "audience": [
+   "adultes",
+   "seniors",
    "tous"
   ],
   "commune": "Morestel",
@@ -259,12 +265,14 @@
   "start": "2026-07-15T14:00:00",
   "source_id": "html-balcons-dauphine",
   "sector": "villemoirieu",
-  "end": "2026-10-31T18:00:00",
-  "description": "Découvrez les œuvres de Mélanie Dunand lors de sa résidence à la Maison Ravier.",
+  "end": "2026-10-31T14:00:00",
+  "description": "Exposition à la Maison Ravier. Découvrez le travail de l’artiste Mélanie Dunand.",
   "tldr": null,
   "category": "expo",
   "tags": [],
   "audience": [
+   "adultes",
+   "seniors",
    "tous"
   ],
   "commune": "Morestel",
@@ -398,14 +406,15 @@
   "start": "2026-09-01T00:00:00",
   "source_id": "html-balcons-dauphine",
   "sector": "villemoirieu",
-  "end": "2026-10-16T23:59:59",
-  "description": "Découvrez la ferme pédagogique du Père Louis à Vézeronce-Curtin.",
+  "end": "2026-10-16T00:00:00",
+  "description": "Visite guidée de la ferme pédagogique du Père Louis. Découvrez la vie à la ferme.",
   "tldr": null,
-  "category": "autre",
+  "category": "nature",
   "tags": [],
   "audience": [
    "famille",
-   "enfants"
+   "enfants",
+   "ados"
   ],
   "commune": "Vézeronce-Curtin",
   "address": null,
@@ -429,7 +438,8 @@
   "tags": [],
   "audience": [
    "adultes",
-   "ados"
+   "seniors",
+   "tous"
   ],
   "commune": "Morestel",
   "address": null,
@@ -452,6 +462,8 @@
   "category": "cinema",
   "tags": [],
   "audience": [
+   "adultes",
+   "seniors",
    "tous"
   ],
   "commune": "Morestel",
@@ -475,6 +487,8 @@
   "category": "cinema",
   "tags": [],
   "audience": [
+   "adultes",
+   "seniors",
    "tous"
   ],
   "commune": "Morestel",
@@ -493,13 +507,14 @@
   "source_id": "html-balcons-dauphine",
   "sector": "villemoirieu",
   "end": null,
-  "description": "Concours photo organisé par le Conseil Municipal des Jeunes de Crémieu. Participez pour immortaliser le patrimoine local.",
+  "description": "Concours photo organisé par le Conseil Municipal des Jeunes de la ville de Crémieu. Participez pour immortaliser le patrimoine local.",
   "tldr": null,
   "category": "patrimoine",
   "tags": [],
   "audience": [
    "ados",
-   "adultes"
+   "adultes",
+   "tous"
   ],
   "commune": "Crémieu",
   "address": null,
@@ -516,9 +531,9 @@
   "start": "2026-09-02T09:00:00",
   "source_id": "html-balcons-dauphine",
   "sector": "villemoirieu",
-  "end": null,
-  "description": "Visites guidées et ateliers proposés par L’Arche de Julie. Découvrez leur programmation du mois.",
-  "tldr": null,
+  "end": "2026-09-06T09:00:00",
+  "description": "Visites guidées et ateliers proposés par L’Arche de Julie. Découvrez leur programme du mois.",
+  "tldr": "Visites guidées et ateliers pour enfants et adultes sur des thèmes variés proposés par l'association L’Arche de Julie.",
   "category": "atelier",
   "tags": [],
   "audience": [
@@ -539,15 +554,15 @@
   "start": "2026-09-02T13:30:00",
   "source_id": "html-balcons-dauphine",
   "sector": "villemoirieu",
-  "end": "2026-10-27T18:00:00",
-  "description": "Jeu de piste ludique pour découvrir La Balme-les-Grottes. Réservation en ligne possible.",
-  "tldr": null,
-  "category": "autre",
+  "end": "2026-10-27T13:30:00",
+  "description": "Jeu de piste à La Balme-les-Grottes. Résolvez l’enquête en famille ou entre amis.",
+  "tldr": "Jeu de piste familial où les participants, guidés par des indices, explorent La Balme-les-Grottes pour résoudre une énigme ensemble.",
+  "category": "atelier",
   "tags": [],
   "audience": [
+   "famille",
    "enfants",
-   "ados",
-   "famille"
+   "ados"
   ],
   "commune": "La Balme-les-Grottes",
   "address": null,
@@ -650,29 +665,6 @@
   "url": "https://www.bourgoinjallieu.fr/agenda/2926-4eme-biennale-de-sculptures-dart-contemporain",
   "image": null,
   "id": "4eme-biennale-de-sculptures-dart-contemporain-au-fil-du-bion-69c3ab61"
- },
- {
-  "title": "Visite guidée – randonnée du village de Vertrieu : vendredi 4 septembre à 14h",
-  "start": "2026-09-04T14:00:00",
-  "source_id": "html-balcons-dauphine",
-  "sector": "villemoirieu",
-  "end": null,
-  "description": "Visite guidée de Vertrieu, village aux deux châteaux. Inscription obligatoire.",
-  "tldr": null,
-  "category": "nature",
-  "tags": [],
-  "audience": [
-   "tous"
-  ],
-  "commune": "Vertrieu",
-  "address": null,
-  "lat": 45.8692,
-  "lon": 5.3703,
-  "free": null,
-  "price_text": null,
-  "url": "https://www.balconsdudauphine-tourisme.com/manifestation/des-bords-du-rhone-au-bois-du-serverin-visite-guidee-de-vertrieu-le-village-aux-deux-chateaux/",
-  "image": null,
-  "id": "visite-guidee-randonnee-du-village-de-vertrieu-vendredi-4-septembre-a-14h-e0b7e768"
  },
  {
   "title": "Soirée conte au jardin",
