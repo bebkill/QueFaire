@@ -1,97 +1,5 @@
 [
  {
-  "title": "Ateliers Initiation Couture - Aubéria l'Atelier",
-  "start": "2026-09-02T00:00:00",
-  "source_id": "html-rodezagglo",
-  "sector": "pont-de-salars",
-  "end": null,
-  "description": "Atelier d'initiation à la couture. Activité manuelle pour découvrir les bases.",
-  "tldr": null,
-  "category": "atelier",
-  "tags": [],
-  "audience": [
-   "adultes"
-  ],
-  "commune": "Rodez",
-  "address": null,
-  "lat": 44.3591,
-  "lon": 2.5699,
-  "free": null,
-  "price_text": null,
-  "url": "https://www.rodezagglo.fr/fiche/agenda/ateliers-initiation-couture-auberia-l-atelier-rodez_TFO12202-FMA-20260828102422252",
-  "image": null,
-  "id": "ateliers-initiation-couture-auberia-l-atelier-cb285419"
- },
- {
-  "title": "Cours de Pâtisserie",
-  "start": "2026-09-02T00:00:00",
-  "source_id": "html-rodezagglo",
-  "sector": "pont-de-salars",
-  "end": null,
-  "description": "Cours de pâtisserie pour apprendre à réaliser des desserts. Réservé aux adultes.",
-  "tldr": null,
-  "category": "atelier",
-  "tags": [],
-  "audience": [
-   "adultes"
-  ],
-  "commune": "Rodez",
-  "address": null,
-  "lat": 44.3591,
-  "lon": 2.5699,
-  "free": null,
-  "price_text": null,
-  "url": "https://www.rodezagglo.fr/fiche/agenda/cours-de-patisserie-rodez_TFO515685777382",
-  "image": null,
-  "id": "cours-de-patisserie-0a366d4b"
- },
- {
-  "title": "Visite guidée du centre historique et de la cathédrale (hors clocher) - JUILLET A SEPTEMBRE 2026",
-  "start": "2026-09-03T00:00:00",
-  "source_id": "html-rodezagglo",
-  "sector": "pont-de-salars",
-  "end": null,
-  "description": "Visite guidée du patrimoine historique de Rodez. Découverte de la cathédrale.",
-  "tldr": null,
-  "category": "patrimoine",
-  "tags": [],
-  "audience": [
-   "tous"
-  ],
-  "commune": "Rodez",
-  "address": null,
-  "lat": 44.3591,
-  "lon": 2.5699,
-  "free": null,
-  "price_text": null,
-  "url": "https://www.rodezagglo.fr/fiche/agenda/visite-guidee-du-centre-historique-et-de-la-cathedrale-hors-clocher-juillet-a-septembre-2026-rodez_TFO12202-FMA-20260319164625396",
-  "image": null,
-  "id": "visite-guidee-du-centre-historique-et-de-la-cathedrale-hors-clocher-juillet-a-se-fa16448a"
- },
- {
-  "title": "Rencontre, lectures, échange avec Charles d'Estève",
-  "start": "2026-09-03T00:00:00",
-  "source_id": "html-rodezagglo",
-  "sector": "pont-de-salars",
-  "end": null,
-  "description": "Dédicace et rencontre avec l'artiste Charles d'Estève. Échanges autour de ses œuvres.",
-  "tldr": null,
-  "category": "conference",
-  "tags": [],
-  "audience": [
-   "tous"
-  ],
-  "commune": "Sainte-Radegonde",
-  "address": null,
-  "lat": 44.3297,
-  "lon": 2.6333,
-  "free": null,
-  "price_text": null,
-  "url": "https://www.rodezagglo.fr/fiche/agenda/rencontre-lectures-echange-avec-charles-d-esteve-sainte-radegonde_TFO12241-FMA-20260818171016175",
-  "image": null,
-  "id": "rencontre-lectures-echange-avec-charles-d-esteve-0a3f9692"
- },
- {
   "title": "Sophro étoilée",
   "start": "2026-09-04T00:00:00",
   "source_id": "html-levezou-pontsalars",
@@ -99,7 +7,7 @@
   "end": null,
   "description": "Séance de sophrologie animée par Coralie. Tarif 15€ par personne.",
   "tldr": null,
-  "category": "atelier",
+  "category": "autre",
   "tags": [],
   "audience": [
    "adultes"
@@ -113,145 +21,6 @@
   "url": "https://www.tourisme-aveyron.com/fr/diffusio/agenda/sophro-etoilee-le-vibal_TFO12297-FMA-20260706164842529",
   "image": null,
   "id": "sophro-etoilee-19072e29"
- },
- {
-  "title": "Concert avec Berzinc",
-  "start": "2026-09-04T00:00:00",
-  "source_id": "html-rodezagglo",
-  "sector": "pont-de-salars",
-  "end": null,
-  "description": "Concert musical avec l'artiste Berzinc. Ambiance garantie.",
-  "tldr": null,
-  "category": "concert",
-  "tags": [],
-  "audience": [
-   "tous"
-  ],
-  "commune": "Le Monastère",
-  "address": null,
-  "lat": 44.3315,
-  "lon": 2.59,
-  "free": null,
-  "price_text": null,
-  "url": "https://www.rodezagglo.fr/fiche/agenda/concert-avec-berzinc-le-monastere_TFO12146-FMA-20260627113632013",
-  "image": null,
-  "id": "concert-avec-berzinc-6783cf91"
- },
- {
-  "title": "Anim&Vous",
-  "start": "2026-09-04T00:00:00",
-  "source_id": "html-rodezagglo",
-  "sector": "pont-de-salars",
-  "end": null,
-  "description": "Festival d'animations variées pour tous les publics. Découverte d'activités ludiques.",
-  "tldr": null,
-  "category": "festival",
-  "tags": [],
-  "audience": [
-   "tous"
-  ],
-  "commune": "Onet-le-Château",
-  "address": null,
-  "lat": 44.3824,
-  "lon": 2.5614,
-  "free": null,
-  "price_text": null,
-  "url": "https://www.rodezagglo.fr/fiche/agenda/animvous-onet-le-chateau_TFO12176-FMA-20260605100233589",
-  "image": null,
-  "id": "anim-vous-b687d1b7"
- },
- {
-  "title": "Terrasses en fête - Brasserie Gustave",
-  "start": "2026-09-04T00:00:00",
-  "source_id": "html-rodezagglo",
-  "sector": "pont-de-salars",
-  "end": null,
-  "description": "Soirée musicale et festive à la Brasserie Gustave. Ambiance conviviale.",
-  "tldr": null,
-  "category": "concert",
-  "tags": [],
-  "audience": [
-   "adultes"
-  ],
-  "commune": "Rodez",
-  "address": null,
-  "lat": 44.3591,
-  "lon": 2.5699,
-  "free": null,
-  "price_text": null,
-  "url": "https://www.rodezagglo.fr/fiche/agenda/terrasses-en-fete-brasserie-gustave-rodez_TFO12202-FMA-20260717120723660",
-  "image": null,
-  "id": "terrasses-en-fete-brasserie-gustave-0839283c"
- },
- {
-  "title": "Activités parents & enfants (0-5 ans)",
-  "start": "2026-09-04T00:00:00",
-  "source_id": "html-rodezagglo",
-  "sector": "pont-de-salars",
-  "end": null,
-  "description": "Ateliers ludiques pour les tout-petits et leurs parents. Découverte sensorielle.",
-  "tldr": null,
-  "category": "atelier",
-  "tags": [],
-  "audience": [
-   "enfants",
-   "famille"
-  ],
-  "commune": "Rodez",
-  "address": null,
-  "lat": 44.3591,
-  "lon": 2.5699,
-  "free": null,
-  "price_text": null,
-  "url": "https://www.rodezagglo.fr/fiche/agenda/activites-parents--enfants-0-5-ans-rodez_TFO12202-FMA-20260826160742011",
-  "image": null,
-  "id": "activites-parents-enfants-0-5-ans-568e1cf8"
- },
- {
-  "title": "Ateliers Confection de Cosmétiques Naturels - Aubéria l'Atelier",
-  "start": "2026-09-04T00:00:00",
-  "source_id": "html-rodezagglo",
-  "sector": "pont-de-salars",
-  "end": null,
-  "description": "Atelier pour fabriquer des cosmétiques naturels. Activité créative et écologique.",
-  "tldr": null,
-  "category": "atelier",
-  "tags": [],
-  "audience": [
-   "adultes"
-  ],
-  "commune": "Rodez",
-  "address": null,
-  "lat": 44.3591,
-  "lon": 2.5699,
-  "free": null,
-  "price_text": null,
-  "url": "https://www.rodezagglo.fr/fiche/agenda/ateliers-confection-de-cosmetiques-naturels-auberia-l-atelier-rodez_TFO12202-FMA-20260828103119461",
-  "image": null,
-  "id": "ateliers-confection-de-cosmetiques-naturels-auberia-l-atelier-0db516c7"
- },
- {
-  "title": "Fête des associations",
-  "start": "2026-09-04T00:00:00",
-  "source_id": "html-rodezagglo",
-  "sector": "pont-de-salars",
-  "end": null,
-  "description": "Rencontre avec les associations locales. Découverte d'activités variées.",
-  "tldr": null,
-  "category": "fete",
-  "tags": [],
-  "audience": [
-   "tous"
-  ],
-  "commune": "Sébazac-Concourès",
-  "address": null,
-  "lat": 44.4236,
-  "lon": 2.6156,
-  "free": null,
-  "price_text": null,
-  "url": "https://www.rodezagglo.fr/fiche/agenda/fete-des-associations-sebazac-concoures_TFO518887504444",
-  "image": null,
-  "id": "fete-des-associations-e0c3af8f"
  },
  {
   "title": "Concours de pétanque",
@@ -277,123 +46,6 @@
   "id": "concours-de-petanque-4344fcec"
  },
  {
-  "title": "Forum des associations",
-  "start": "2026-09-05T00:00:00",
-  "source_id": "html-rodezagglo",
-  "sector": "pont-de-salars",
-  "end": null,
-  "description": "Forum pour découvrir les associations de Luc-la-Primaube. Échanges et inscriptions.",
-  "tldr": null,
-  "category": "fete",
-  "tags": [],
-  "audience": [
-   "tous"
-  ],
-  "commune": "Luc-la-Primaube",
-  "address": null,
-  "lat": 44.3046,
-  "lon": 2.5379,
-  "free": null,
-  "price_text": null,
-  "url": "https://www.rodezagglo.fr/fiche/agenda/forum-des-associations-luc-la-primaube_TFO12133-FMA-20260707115321261",
-  "image": null,
-  "id": "forum-des-associations-195a83e7"
- },
- {
-  "title": "Asso’lempiades : les associations d’Olemps vous donnent rendez-vous !",
-  "start": "2026-09-05T00:00:00",
-  "source_id": "html-rodezagglo",
-  "sector": "pont-de-salars",
-  "end": null,
-  "description": "Événement sportif et ludique organisé par les associations d'Olemps. Activités variées.",
-  "tldr": null,
-  "category": "sport",
-  "tags": [],
-  "audience": [
-   "tous"
-  ],
-  "commune": "Olemps",
-  "address": null,
-  "lat": 44.3391,
-  "lon": 2.5504,
-  "free": null,
-  "price_text": null,
-  "url": "https://www.rodezagglo.fr/fiche/agenda/asso-lempiades-les-associations-d-olemps-vous-donnent-rendez-vous-olemps_TFO12174-FMA-20260723101022868",
-  "image": null,
-  "id": "assolempiades-les-associations-dolemps-vous-donnent-rendez-vous-617e8467"
- },
- {
-  "title": "Terrasses en fête - Coq de la Place",
-  "start": "2026-09-05T00:00:00",
-  "source_id": "html-rodezagglo",
-  "sector": "pont-de-salars",
-  "end": null,
-  "description": "Soirée musicale et festive au Coq de la Place. Ambiance conviviale.",
-  "tldr": null,
-  "category": "concert",
-  "tags": [],
-  "audience": [
-   "adultes"
-  ],
-  "commune": "Rodez",
-  "address": null,
-  "lat": 44.3591,
-  "lon": 2.5699,
-  "free": null,
-  "price_text": null,
-  "url": "https://www.rodezagglo.fr/fiche/agenda/terrasses-en-fete-coq-de-la-place-rodez_TFO12202-FMA-20260717123622015",
-  "image": null,
-  "id": "terrasses-en-fete-coq-de-la-place-5636ae07"
- },
- {
-  "title": "Bal des sapeurs-pompiers du Grand Rodez",
-  "start": "2026-09-05T00:00:00",
-  "source_id": "html-rodezagglo",
-  "sector": "pont-de-salars",
-  "end": null,
-  "description": "Bal et thé dansant organisé par les sapeurs-pompiers. Soirée conviviale.",
-  "tldr": null,
-  "category": "fete",
-  "tags": [],
-  "audience": [
-   "adultes",
-   "seniors"
-  ],
-  "commune": "Rodez",
-  "address": null,
-  "lat": 44.3591,
-  "lon": 2.5699,
-  "free": null,
-  "price_text": null,
-  "url": "https://www.rodezagglo.fr/fiche/agenda/bal-des-sapeurs-pompiers-du-grand-rodez-rodez_TFO12202-FMA-20260828101005233",
-  "image": null,
-  "id": "bal-des-sapeurs-pompiers-du-grand-rodez-ba739463"
- },
- {
-  "title": "Ateliers Initiation Linogravure - Aubéria l'Atelier",
-  "start": "2026-09-05T00:00:00",
-  "source_id": "html-rodezagglo",
-  "sector": "pont-de-salars",
-  "end": null,
-  "description": "Atelier d'initiation à la linogravure. Découverte de la gravure sur linoléum.",
-  "tldr": null,
-  "category": "atelier",
-  "tags": [],
-  "audience": [
-   "ados",
-   "adultes"
-  ],
-  "commune": "Rodez",
-  "address": null,
-  "lat": 44.3591,
-  "lon": 2.5699,
-  "free": null,
-  "price_text": null,
-  "url": "https://www.rodezagglo.fr/fiche/agenda/ateliers-initiation-linogravure-auberia-l-atelier-rodez_TFO12202-FMA-20260828103454932",
-  "image": null,
-  "id": "ateliers-initiation-linogravure-auberia-l-atelier-134f4c09"
- },
- {
   "title": "Repas et concours de pétanque",
   "start": "2026-09-06T00:00:00",
   "source_id": "html-levezou-pontsalars",
@@ -401,7 +53,7 @@
   "end": null,
   "description": "Clôture de la saison avec un repas + concours en doublette le dimanche 6 septembre.",
   "tldr": null,
-  "category": "fete",
+  "category": "sport",
   "tags": [],
   "audience": [
    "tous"
@@ -445,7 +97,7 @@
   "source_id": "html-levezou-pontsalars",
   "sector": "pont-de-salars",
   "end": null,
-  "description": "Concours de pétanque en doublette en 3 parties, ouvert à tous. Inscriptions sur place. Organisé par la Boule Joyeuse.",
+  "description": "Les lundis à partir de 20h30 (sauf le lundi 13 juillet, fête du village) - Terrain de pétanque, place de la Rivière. Concours de pétanque en doublette en 3 parties, ouvert à tous.",
   "tldr": null,
   "category": "sport",
   "tags": [],
@@ -453,7 +105,7 @@
    "tous"
   ],
   "commune": "Pont-de-Salars",
-  "address": "Terrain de pétanque, place de la Rivière",
+  "address": "place de la Rivière",
   "lat": 44.2771,
   "lon": 2.7171,
   "free": null,
@@ -473,7 +125,7 @@
   "category": "fete",
   "tags": [],
   "audience": [
-   "adultes"
+   "tous"
   ],
   "commune": "Canet-de-Salars",
   "address": "Camping le Caussanel",
@@ -514,7 +166,7 @@
   "source_id": "html-levezou-pontsalars",
   "sector": "pont-de-salars",
   "end": "2026-09-12T17:00:00",
-  "description": "Présentation des différentes associations sportives et culturelles de la commune.",
+  "description": "De 10h à 17h à la salle des fêtes, présentation des différentes associations sportives et culturelles de la commune.",
   "tldr": null,
   "category": "autre",
   "tags": [],
@@ -522,7 +174,7 @@
    "tous"
   ],
   "commune": "Pont-de-Salars",
-  "address": "Salle des fêtes",
+  "address": "salle des fêtes",
   "lat": 44.2771,
   "lon": 2.7171,
   "free": null,
@@ -539,7 +191,7 @@
   "end": null,
   "description": "Séance de sophrologie animée par Coralie. Tarif 20€ par personne.",
   "tldr": null,
-  "category": "atelier",
+  "category": "autre",
   "tags": [],
   "audience": [
    "adultes"
@@ -560,7 +212,7 @@
   "source_id": "html-levezou-pontsalars",
   "sector": "pont-de-salars",
   "end": null,
-  "description": "Concours de pétanque en doublette en 3 parties, ouvert à tous. Inscriptions sur place. Organisé par la Boule Joyeuse.",
+  "description": "Les lundis à partir de 20h30 (sauf le lundi 13 juillet, fête du village) - Terrain de pétanque, place de la Rivière. Concours de pétanque en doublette en 3 parties, ouvert à tous.",
   "tldr": null,
   "category": "sport",
   "tags": [],
@@ -568,7 +220,7 @@
    "tous"
   ],
   "commune": "Pont-de-Salars",
-  "address": "Terrain de pétanque, place de la Rivière",
+  "address": "place de la Rivière",
   "lat": 44.2771,
   "lon": 2.7171,
   "free": null,
@@ -588,7 +240,7 @@
   "category": "fete",
   "tags": [],
   "audience": [
-   "adultes"
+   "tous"
   ],
   "commune": "Canet-de-Salars",
   "address": "Camping le Caussanel",
@@ -652,8 +304,8 @@
   "source_id": "html-levezou-pontsalars",
   "sector": "pont-de-salars",
   "end": null,
-  "description": "",
-  "tldr": null,
+  "description": "Découvrez les activités du conservatoire.",
+  "tldr": "Il s'agit d'une journée où le public peut visiter les locaux, assister à des démonstrations et découvrir les cours proposés en musique, danse ou art dramatique.",
   "category": "autre",
   "tags": [],
   "audience": [
@@ -683,7 +335,7 @@
    "tous"
   ],
   "commune": "Pont-de-Salars",
-  "address": "Salle des fêtes",
+  "address": "salle des fêtes",
   "lat": 44.2771,
   "lon": 2.7171,
   "free": false,
@@ -729,7 +381,7 @@
    "tous"
   ],
   "commune": "Pont-de-Salars",
-  "address": "Eglise St Georges de Camboulas",
+  "address": "église St Georges de Camboulas",
   "lat": 44.2771,
   "lon": 2.7171,
   "free": null,
@@ -752,7 +404,7 @@
    "tous"
   ],
   "commune": "Pont-de-Salars",
-  "address": "Eglise St Georges de Camboulas",
+  "address": "église St Georges de Camboulas",
   "lat": 44.2771,
   "lon": 2.7171,
   "free": null,
@@ -772,7 +424,7 @@
   "category": "fete",
   "tags": [],
   "audience": [
-   "adultes"
+   "tous"
   ],
   "commune": "Canet-de-Salars",
   "address": "Camping le Caussanel",
@@ -814,7 +466,7 @@
   "source_id": "html-levezou-pontsalars",
   "sector": "pont-de-salars",
   "end": "2026-09-23T17:00:00",
-  "description": "Atelier pour adulte. L'atelier est gratuit pour les adhérents et 2.00 euros pour les non adhérents.",
+  "description": "L'atelier est gratuit pour les adhérents et 2.00 euros pour les non adhérents.",
   "tldr": null,
   "category": "atelier",
   "tags": [],
@@ -826,7 +478,7 @@
   "lat": 44.2771,
   "lon": 2.7171,
   "free": false,
-  "price_text": "Gratuit (adhérents) / 2€ (non-adhérents)",
+  "price_text": "2€ (non-adhérents)",
   "url": "https://www.tourisme-aveyron.com/fr/diffusio/agenda/fabrication-cahier-de-lecture-pont-de-salars_TFO12185-FMA-20260817140259851",
   "image": null,
   "id": "fabrication-cahier-de-lecture-8b420de8"
