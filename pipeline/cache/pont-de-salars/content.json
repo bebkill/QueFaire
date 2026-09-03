@@ -1,21 +1,37 @@
 {
-"clarify:18795137bad779d84f6e852f7570d6f61967d8b135a18e91fc2b65fdd1bdbeb2": "",
+"clarify:078beb6777479210913f8f587c211dd97f66a0ebcbd774309ba5afad02462b6e": "",
+"clarify:085695ff6e883082a9c5e4f06885e492f0a34de3b7ae3db9c18fca65d38dcf09": "",
+"clarify:0f396e9fd5872395038fb9a0b4e884b19243f0c9ae6e76ab8e7aaf70703f9bfb": "",
 "clarify:200abfb0a3383f071b50d2a57bece10d0e32a46c68e0b81e4cbab9de3982e4a2": "",
-"clarify:2465bffbb24e67cea71add5212d8570aadff4af3c2ab92e807aac1edb4547977": "",
+"clarify:21b4658c2309526f39731c3b12625f38bb2de5f100fe1e5b3c8b874c9fc8d0b5": "",
+"clarify:22dae148c8406e838b24bf2e5287a6c394552b813531e7269cc2735c904371c4": "",
+"clarify:2b192961a0179bb09809ba9872629a60ddb2e5c8bdcdbd4f6b3c09f7e5b6cb61": "",
+"clarify:340fa3c4121e937c19680c0083ced4a391c6414ee9ca59327bdcab0f627b98cc": "",
 "clarify:3752b6137a966022de9ce3613acda8f27048e86b58b456a3708ca672fa594b5d": "",
+"clarify:40b3eb20c02537c6d569130097f6a8422d26178b297c7458cf09a89039b60568": "",
 "clarify:44b4f66a4674722c2142016ac1f784186da5f399cfa4f7231e4f0b74e6c5d210": "",
+"clarify:4fd38b4582d464c7e5bada384a8200d39301d170cb5c2ae6ce00514265323ab3": "",
 "clarify:51896f4158b52a8d8261797eca4fe8d4e6d8af398230af8f7a6d50ab56de5006": "",
-"clarify:621c5ffdc72db20bb0512087113551005556ebe0293f61994ffc23f53c4b681d": "",
-"clarify:72750d4052e9a06d59236d449aaff0af670ef951731a726fe52c4cc953247706": "",
+"clarify:5d41fa27b227f0e204032c057aa90b56f7a7e67dd6f9dcd5d8726f4ecaa58b10": "",
+"clarify:8c9ad0ee821e0fdfab5f43788fe8956bf38978695df01fddfae32d4497666191": "",
+"clarify:8e592c05a49ea6690e8c9da96b6ec00a7f2f87e99b7a499940a1cfec427cff1d": "",
 "clarify:91eba6964669fdea2d5d52ed5c6838d07d935ca4557fdba59f282651ad5e1eb2": "",
 "clarify:973df4cef28374ec5e4d9774dcb990737949a3381d0e4f5ef6547edfcf9dff24": "",
-"clarify:97c90a508967a268887c164d4915de3faf1c563b1273e0c17a09f2b8b7b07286": "Il s'agit d'une journée où le public peut visiter les locaux, assister à des démonstrations et découvrir les cours proposés en musique, danse ou art dramatique.",
-"clarify:ae97d97be3eec46d118c327153bea2cc4b1c602503c3f082f8d2ca02b5df7ca8": "",
+"clarify:9e0a715048f5739e2d357b147fea9f96272f12729938a8074ac031863f6321ac": "",
+"clarify:a520991c04e08cf157bae96a046069018d4fdc4f803ab70be0430fc1f9582557": "",
+"clarify:b7048fc802f0cf32daefea03a10048444d376dcd460684231141cd51c669d003": "",
+"clarify:b986f1090db17accdb8f294f5249b5bcc05a6038bbd9c85c5d18a2f92991a646": "",
 "clarify:c317cffdf15158335889224fe0d56b5339fad4e83d06184bac8c283a6b37e23d": "",
+"clarify:c49fef650ca626c476d0067b7a2534f7a07c1fb97ca2d1e582c1ba670414e167": "",
 "clarify:d5fb33c73dda032cce02f6bc81eaa9d43259bfadf0306f627d4c80652f6d5f74": "",
+"clarify:e5571b132c618cd8b1c74d5d9f38993872c1e2029fc12331a34051c7d748a9aa": "",
+"clarify:e7fb9c2c07dfe093144fbf12a3a9e3c1992d001cb9a43a26021cc1656a579132": "",
+"clarify:e9be70442c59db728f1fa8a5d7d3fd16f13cc802463b8ce8e217a03afad78c3d": "",
 "clarify:ee833c4d395d2de1b0b9a32c7f1a797a9b0f7450a52c38d168ded222b3eb522f": "",
+"clarify:ee91158b2a180456bc264af8e28dc5ad0b54e8942e220b0feb47cf06e8f59463": "",
 "clarify:f80d4eccbbf4a14d5a319bfca73a338079878faf53c176d02c566048dcb5ea09": "",
-"extract:07cf066246fe27f46c8c673653d3c330731d58938765fea4f2982ea5e9cfe4ea": [
+"extract:105b76d86321c6310a0eb8e099e05b0c71e14cea1292c346025c94f476565d00": [],
+"extract:6152f45a1649b0129ab42e8b4d361abcd9bf02091074eefbb70534d31e8d4c58": [
 {
 "address": null,
 "audience": [
@@ -86,13 +102,13 @@
 "url": "https://www.tourisme-aveyron.com/fr/diffusio/agenda/repas-et-concours-de-petanque-canet-de-salars_TFO12050-FMA-20260825164503325"
 },
 {
-"address": "place de la Rivière",
+"address": "Terrain de pétanque, place de la Rivière",
 "audience": [
 "tous"
 ],
 "category": "sport",
 "commune": "Pont-de-Salars",
-"description": "Les lundis à partir de 20h30 (sauf le lundi 13 juillet, fête du village) - Terrain de pétanque, place de la Rivière. Concours de pétanque en doublette en 3 parties, ouvert à tous.",
+"description": "Concours de pétanque en doublette en 3 parties, ouvert à tous. Inscriptions sur place. Organisé par la Boule Joyeuse.",
 "end": null,
 "free": null,
 "id": "concours-de-petanque-3a10c0d0",
@@ -155,13 +171,13 @@
 "url": "https://www.tourisme-aveyron.com/fr/diffusio/agenda/concours-de-petanque-flavin_TFO12102-FMA-20260522093058081"
 },
 {
-"address": "salle des fêtes",
+"address": "Salle des fêtes",
 "audience": [
 "tous"
 ],
 "category": "autre",
 "commune": "Pont-de-Salars",
-"description": "De 10h à 17h à la salle des fêtes, présentation des différentes associations sportives et culturelles de la commune.",
+"description": "Présentation des différentes associations sportives et culturelles de la commune.",
 "end": "2026-09-12T17:00:00",
 "free": null,
 "id": "forum-des-associations-f48c9a5c",
@@ -224,13 +240,13 @@
 "url": "https://www.tourisme-aveyron.com/fr/diffusio/agenda/sophro-brunch-le-vibal_TFO12297-FMA-20260706165748233"
 },
 {
-"address": "place de la Rivière",
+"address": "Terrain de pétanque, place de la Rivière",
 "audience": [
 "tous"
 ],
 "category": "sport",
 "commune": "Pont-de-Salars",
-"description": "Les lundis à partir de 20h30 (sauf le lundi 13 juillet, fête du village) - Terrain de pétanque, place de la Rivière. Concours de pétanque en doublette en 3 parties, ouvert à tous.",
+"description": "Concours de pétanque en doublette en 3 parties, ouvert à tous. Inscriptions sur place. Organisé par la Boule Joyeuse.",
 "end": null,
 "free": null,
 "id": "concours-de-petanque-653a58c3",
@@ -316,7 +332,7 @@
 "url": "https://www.tourisme-aveyron.com/fr/diffusio/agenda/concours-de-petanque-flavin_TFO12102-FMA-20260522093058081"
 },
 {
-"address": "salle des fêtes",
+"address": "Salle des fêtes",
 "audience": [
 "tous"
 ],
@@ -345,7 +361,7 @@
 ],
 "category": "autre",
 "commune": "Pont-de-Salars",
-"description": "Découvrez les activités du conservatoire.",
+"description": "Journée Portes Ouvertes du Conservatoire de l'Aveyron à Pont de Salars.",
 "end": null,
 "free": null,
 "id": "journee-portes-ouvertes-du-conservatoire-de-l-aveyron-a-pont-de-salars-4f55cece",
@@ -385,7 +401,7 @@
 "url": "https://www.tourisme-aveyron.com/fr/diffusio/agenda/exposition-photos-du-levezou-et-d-ailleurs-pont-de-salars_TFO12185-FMA-20260713150401123"
 },
 {
-"address": "église St Georges de Camboulas",
+"address": "Eglise St Georges de Camboulas",
 "audience": [
 "tous"
 ],
@@ -408,13 +424,13 @@
 "url": "https://www.tourisme-aveyron.com/fr/diffusio/agenda/expositions-de-photos-anciennes-et-visites-guidees-en-l-eglise-st-georges-de-camboulas-pont-de-salars_TFO12185-FMA-20260828143434534"
 },
 {
-"address": "église St Georges de Camboulas",
+"address": "Eglise St Georges de Camboulas",
 "audience": [
 "tous"
 ],
 "category": "patrimoine",
 "commune": "Pont-de-Salars",
-"description": "Découvrez l'église de St Georges de Camboulas. Expositions de photos anciennes et visites guidées de 10h à 17h30.",
+"description": "Découvrez l'église de St Georges de Camboulas. Expositions de photos anciennes et visites guidées.",
 "end": "2026-09-20T17:30:00",
 "free": null,
 "id": "exposition-photos-et-visites-guidees-en-l-eglise-st-georges-de-camboulas-dc0181bd",
@@ -456,12 +472,11 @@
 {
 "address": null,
 "audience": [
-"ados",
-"adultes"
+"tous"
 ],
 "category": "atelier",
 "commune": "Pont-de-Salars",
-"description": "Initiation aux techniques de pêches et découverte des milieux aquatiques.",
+"description": "Initiation aux techniques de pêche et découverte des milieux aquatiques.",
 "end": null,
 "free": null,
 "id": "atelier-peche-nature-e5f0c3db",
@@ -484,14 +499,14 @@
 ],
 "category": "atelier",
 "commune": "Pont-de-Salars",
-"description": "L'atelier est gratuit pour les adhérents et 2.00 euros pour les non adhérents.",
+"description": "Atelier \"fabrication cahier de lecture\" pour adulte. L'atelier est gratuit pour les adhérents et 2.00 euros pour les non adhérents.",
 "end": "2026-09-23T17:00:00",
 "free": false,
 "id": "fabrication-cahier-de-lecture-8b420de8",
 "image": null,
 "lat": null,
 "lon": null,
-"price_text": "2€ (non-adhérents)",
+"price_text": "Gratuit (adhérents) / 2€ (non-adhérents)",
 "sector": "pont-de-salars",
 "source_id": "html-levezou-pontsalars",
 "start": "2026-09-23T14:00:00",
@@ -501,5 +516,355 @@
 "url": "https://www.tourisme-aveyron.com/fr/diffusio/agenda/fabrication-cahier-de-lecture-pont-de-salars_TFO12185-FMA-20260817140259851"
 }
 ],
-"extract:105b76d86321c6310a0eb8e099e05b0c71e14cea1292c346025c94f476565d00": []
+"extract:e9f5cb371f07d8624b6590b59c19a602f50951cf2a5aa70c53652489e7f562a9": [
+{
+"address": null,
+"audience": [
+"tous"
+],
+"category": "patrimoine",
+"commune": "Rodez",
+"description": "Découverte du patrimoine historique de Rodez. Visite guidée du centre-ville et de la cathédrale.",
+"end": null,
+"free": null,
+"id": "visite-guidee-du-centre-historique-et-de-la-cathedrale-hors-clocher-a3306210",
+"image": null,
+"lat": null,
+"lon": null,
+"price_text": null,
+"sector": "pont-de-salars",
+"source_id": "html-rodezagglo",
+"start": "2026-09-03T00:00:00",
+"tags": [],
+"title": "Visite guidée du centre historique et de la cathédrale (hors clocher)",
+"tldr": null,
+"url": "https://www.rodezagglo.fr/fiche/agenda/visite-guidee-du-centre-historique-et-de-la-cathedrale-hors-clocher-juillet-a-septembre-2026-rodez_TFO12202-FMA-20260319164625396"
+},
+{
+"address": null,
+"audience": [
+"tous"
+],
+"category": "autre",
+"commune": "Sainte-Radegonde",
+"description": "Dédicace et rencontre avec l'artiste Charles d'Estève. Échanges autour de ses œuvres.",
+"end": null,
+"free": null,
+"id": "rencontre-lectures-echange-avec-charles-d-esteve-0a3f9692",
+"image": null,
+"lat": null,
+"lon": null,
+"price_text": null,
+"sector": "pont-de-salars",
+"source_id": "html-rodezagglo",
+"start": "2026-09-03T00:00:00",
+"tags": [],
+"title": "Rencontre, lectures, échange avec Charles d'Estève",
+"tldr": null,
+"url": "https://www.rodezagglo.fr/fiche/agenda/rencontre-lectures-echange-avec-charles-d-esteve-sainte-radegonde_TFO12241-FMA-20260818171016175"
+},
+{
+"address": null,
+"audience": [
+"tous"
+],
+"category": "concert",
+"commune": "Le Monastère",
+"description": "Concert musical avec l'artiste Berzinc. Ambiance garantie au Monastère.",
+"end": null,
+"free": null,
+"id": "concert-avec-berzinc-6783cf91",
+"image": null,
+"lat": null,
+"lon": null,
+"price_text": null,
+"sector": "pont-de-salars",
+"source_id": "html-rodezagglo",
+"start": "2026-09-04T00:00:00",
+"tags": [],
+"title": "Concert avec Berzinc",
+"tldr": null,
+"url": "https://www.rodezagglo.fr/fiche/agenda/concert-avec-berzinc-le-monastere_TFO12146-FMA-20260627113632013"
+},
+{
+"address": null,
+"audience": [
+"tous"
+],
+"category": "festival",
+"commune": "Onet-le-Château",
+"description": "Festival festif et varié à Onet-le-Château. Animations pour tous les âges.",
+"end": null,
+"free": null,
+"id": "anim-vous-b687d1b7",
+"image": null,
+"lat": null,
+"lon": null,
+"price_text": null,
+"sector": "pont-de-salars",
+"source_id": "html-rodezagglo",
+"start": "2026-09-04T00:00:00",
+"tags": [],
+"title": "Anim&Vous",
+"tldr": null,
+"url": "https://www.rodezagglo.fr/fiche/agenda/animvous-onet-le-chateau_TFO12176-FMA-20260605100233589"
+},
+{
+"address": null,
+"audience": [
+"adultes"
+],
+"category": "concert",
+"commune": "Rodez",
+"description": "Soirée musicale et conviviale à Rodez. Ambiance festive en terrasse.",
+"end": null,
+"free": null,
+"id": "terrasses-en-fete-brasserie-gustave-0839283c",
+"image": null,
+"lat": null,
+"lon": null,
+"price_text": null,
+"sector": "pont-de-salars",
+"source_id": "html-rodezagglo",
+"start": "2026-09-04T00:00:00",
+"tags": [],
+"title": "Terrasses en fête - Brasserie Gustave",
+"tldr": null,
+"url": "https://www.rodezagglo.fr/fiche/agenda/terrasses-en-fete-brasserie-gustave-rodez_TFO12202-FMA-20260717120723660"
+},
+{
+"address": null,
+"audience": [
+"enfants",
+"famille"
+],
+"category": "atelier",
+"commune": "Rodez",
+"description": "Ateliers ludiques pour les tout-petits et leurs parents. Activités adaptées aux 0-5 ans.",
+"end": null,
+"free": null,
+"id": "activites-parents-enfants-0-5-ans-568e1cf8",
+"image": null,
+"lat": null,
+"lon": null,
+"price_text": null,
+"sector": "pont-de-salars",
+"source_id": "html-rodezagglo",
+"start": "2026-09-04T00:00:00",
+"tags": [],
+"title": "Activités parents & enfants (0-5 ans)",
+"tldr": null,
+"url": "https://www.rodezagglo.fr/fiche/agenda/activites-parents--enfants-0-5-ans-rodez_TFO12202-FMA-20260826160742011"
+},
+{
+"address": null,
+"audience": [
+"adultes"
+],
+"category": "atelier",
+"commune": "Rodez",
+"description": "Ateliers créatifs pour fabriquer des cosmétiques naturels. Découverte des bienfaits des plantes.",
+"end": null,
+"free": null,
+"id": "ateliers-confection-de-cosmetiques-naturels-auberia-l-atelier-0db516c7",
+"image": null,
+"lat": null,
+"lon": null,
+"price_text": null,
+"sector": "pont-de-salars",
+"source_id": "html-rodezagglo",
+"start": "2026-09-04T00:00:00",
+"tags": [],
+"title": "Ateliers Confection de Cosmétiques Naturels - Aubéria l'Atelier",
+"tldr": null,
+"url": "https://www.rodezagglo.fr/fiche/agenda/ateliers-confection-de-cosmetiques-naturels-auberia-l-atelier-rodez_TFO12202-FMA-20260828103119461"
+},
+{
+"address": null,
+"audience": [
+"tous"
+],
+"category": "fete",
+"commune": "Sébazac-Concourès",
+"description": "Rencontres avec les associations locales de Sébazac-Concourès. Découverte des activités proposées.",
+"end": null,
+"free": null,
+"id": "fete-des-associations-e0c3af8f",
+"image": null,
+"lat": null,
+"lon": null,
+"price_text": null,
+"sector": "pont-de-salars",
+"source_id": "html-rodezagglo",
+"start": "2026-09-04T00:00:00",
+"tags": [],
+"title": "Fête des associations",
+"tldr": null,
+"url": "https://www.rodezagglo.fr/fiche/agenda/fete-des-associations-sebazac-concoures_TFO518887504444"
+},
+{
+"address": null,
+"audience": [
+"tous"
+],
+"category": "fete",
+"commune": "Luc-la-Primaube",
+"description": "Forum pour découvrir les associations de Luc-la-Primaube. Inscriptions et échanges.",
+"end": null,
+"free": null,
+"id": "forum-des-associations-195a83e7",
+"image": null,
+"lat": null,
+"lon": null,
+"price_text": null,
+"sector": "pont-de-salars",
+"source_id": "html-rodezagglo",
+"start": "2026-09-05T00:00:00",
+"tags": [],
+"title": "Forum des associations",
+"tldr": null,
+"url": "https://www.rodezagglo.fr/fiche/agenda/forum-des-associations-luc-la-primaube_TFO12133-FMA-20260707115321261"
+},
+{
+"address": null,
+"audience": [
+"tous"
+],
+"category": "fete",
+"commune": "Olemps",
+"description": "Compétitions et animations entre associations d’Olemps. Un événement sportif et festif.",
+"end": null,
+"free": null,
+"id": "assolempiades-les-associations-dolemps-vous-donnent-rendez-vous-617e8467",
+"image": null,
+"lat": null,
+"lon": null,
+"price_text": null,
+"sector": "pont-de-salars",
+"source_id": "html-rodezagglo",
+"start": "2026-09-05T00:00:00",
+"tags": [],
+"title": "Asso’lempiades : les associations d’Olemps vous donnent rendez-vous !",
+"tldr": null,
+"url": "https://www.rodezagglo.fr/fiche/agenda/asso-lempiades-les-associations-d-olemps-vous-donnent-rendez-vous-olemps_TFO12174-FMA-20260723101022868"
+},
+{
+"address": null,
+"audience": [
+"adultes"
+],
+"category": "concert",
+"commune": "Rodez",
+"description": "Soirée musicale et festive à Rodez. Ambiance conviviale en terrasse.",
+"end": null,
+"free": null,
+"id": "terrasses-en-fete-coq-de-la-place-5636ae07",
+"image": null,
+"lat": null,
+"lon": null,
+"price_text": null,
+"sector": "pont-de-salars",
+"source_id": "html-rodezagglo",
+"start": "2026-09-05T00:00:00",
+"tags": [],
+"title": "Terrasses en fête - Coq de la Place",
+"tldr": null,
+"url": "https://www.rodezagglo.fr/fiche/agenda/terrasses-en-fete-coq-de-la-place-rodez_TFO12202-FMA-20260717123622015"
+},
+{
+"address": null,
+"audience": [
+"adultes",
+"seniors"
+],
+"category": "fete",
+"commune": "Rodez",
+"description": "Bal traditionnel organisé par les sapeurs-pompiers. Soirée dansante pour tous.",
+"end": null,
+"free": null,
+"id": "bal-des-sapeurs-pompiers-du-grand-rodez-ba739463",
+"image": null,
+"lat": null,
+"lon": null,
+"price_text": null,
+"sector": "pont-de-salars",
+"source_id": "html-rodezagglo",
+"start": "2026-09-05T00:00:00",
+"tags": [],
+"title": "Bal des sapeurs-pompiers du Grand Rodez",
+"tldr": null,
+"url": "https://www.rodezagglo.fr/fiche/agenda/bal-des-sapeurs-pompiers-du-grand-rodez-rodez_TFO12202-FMA-20260828101005233"
+},
+{
+"address": null,
+"audience": [
+"ados",
+"adultes"
+],
+"category": "atelier",
+"commune": "Rodez",
+"description": "Ateliers pour découvrir la linogravure. Créations artistiques pour tous niveaux.",
+"end": null,
+"free": null,
+"id": "ateliers-initiation-linogravure-auberia-l-atelier-134f4c09",
+"image": null,
+"lat": null,
+"lon": null,
+"price_text": null,
+"sector": "pont-de-salars",
+"source_id": "html-rodezagglo",
+"start": "2026-09-05T00:00:00",
+"tags": [],
+"title": "Ateliers Initiation Linogravure - Aubéria l'Atelier",
+"tldr": null,
+"url": "https://www.rodezagglo.fr/fiche/agenda/ateliers-initiation-linogravure-auberia-l-atelier-rodez_TFO12202-FMA-20260828103454932"
+},
+{
+"address": null,
+"audience": [
+"tous"
+],
+"category": "expo",
+"commune": "Rodez",
+"description": "Exposition d'art contemporain à Rodez. Œuvres de street art, peinture et sculpture.",
+"end": null,
+"free": null,
+"id": "exposition-fragments-street-art-peinture-sculpture-b85b77b9",
+"image": null,
+"lat": null,
+"lon": null,
+"price_text": null,
+"sector": "pont-de-salars",
+"source_id": "html-rodezagglo",
+"start": "2026-09-05T00:00:00",
+"tags": [],
+"title": "Exposition \" Fragments \" - Street Art, Peinture, Sculpture",
+"tldr": null,
+"url": "https://www.rodezagglo.fr/fiche/agenda/exposition-fragments-street-art-peinture-sculpture-rodez_TFO12202-FMA-20260901163249906"
+},
+{
+"address": null,
+"audience": [
+"ados",
+"adultes"
+],
+"category": "sport",
+"commune": "Sainte-Radegonde",
+"description": "Compétition multisports à Sainte-Radegonde. Défis pour les sportifs.",
+"end": null,
+"free": null,
+"id": "raid2gonde-raid-multisports-672c5637",
+"image": null,
+"lat": null,
+"lon": null,
+"price_text": null,
+"sector": "pont-de-salars",
+"source_id": "html-rodezagglo",
+"start": "2026-09-05T00:00:00",
+"tags": [],
+"title": "Raid2Gonde Raid Multisports",
+"tldr": null,
+"url": "https://www.rodezagglo.fr/fiche/agenda/raid2gonde-raid-multisports-sainte-radegonde_TFO12241-FMA-20260716113518114"
+}
+]
 }
