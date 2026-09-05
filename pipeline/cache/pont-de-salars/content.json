@@ -1,5 +1,5 @@
 {
-"extract:01a152923ef1bd9a840cb4b8916044ece83fa2d413444c02aea63d0d9426b4a0": [
+"extract:620570e3cd24a439aa35e77e25fe208404c9fc4077a4fd5b462ec2ca7c30a2dc": [
 {
 "address": null,
 "audience": [
@@ -7,7 +7,7 @@
 ],
 "category": "sport",
 "commune": "Canet-de-Salars",
-"description": "Cette année nous avons décidé de clôturer la saison avec un repas + concours en doublette le dimanche 6 septembre.",
+"description": "Repas et concours de pétanque en doublette pour clôturer la saison.",
 "end": null,
 "free": null,
 "id": "repas-et-concours-de-petanque-10f3c23c",
@@ -30,7 +30,7 @@
 ],
 "category": "sport",
 "commune": "Pont-de-Salars",
-"description": "Concours de pétanque en doublette en 3 parties, ouvert à tous. Inscriptions sur place, organisé par la Boule Joyeuse.",
+"description": "Concours de pétanque en doublette en 3 parties, ouvert à tous. Inscriptions sur place.",
 "end": null,
 "free": null,
 "id": "concours-de-petanque-3a10c0d0",
@@ -53,7 +53,7 @@
 ],
 "category": "fete",
 "commune": "Canet-de-Salars",
-"description": "Thé dansant ouvert à tous, sans réservation, avec pâtisserie offerte. Possibilité de repas sur place le midi ou le soir sur réservation.",
+"description": "Thé dansant ouvert à tous, sans réservation, au Camping le Caussanel. Possibilité de repas sur place le midi ou le soir sur réservation.",
 "end": "2026-09-08T19:30:00",
 "free": false,
 "id": "the-dansant-guinguette-du-caussanel-313e25d5",
@@ -70,13 +70,13 @@
 "url": "https://www.tourisme-aveyron.com/fr/diffusio/agenda/the-dansant-guinguette-du-caussanel-canet-de-salars_TFO12050-FMA-20260415121120726"
 },
 {
-"address": "Salles des fêtes du Vibal",
+"address": "Salle des fêtes du Vibal",
 "audience": [
 "enfants"
 ],
 "category": "sport",
 "commune": "Le Vibal",
-"description": "Cours d'essais d'activités sportives réservés aux enfants de 4 à 7 ans.",
+"description": "Cours d'essai d'activités sportives pour les enfants de 4 à 7 ans.",
 "end": "2026-09-09T11:45:00",
 "free": null,
 "id": "activites-sportives-cours-d-essais-enfants-de-4-a-7-ans-febf6876",
@@ -99,7 +99,7 @@
 ],
 "category": "sport",
 "commune": "Le Vibal",
-"description": "Cours d'essai d'activités sportives pour adultes.",
+"description": "Cours d'essai d'activités sportives pour adultes à la salle des fêtes.",
 "end": null,
 "free": null,
 "id": "activites-sportives-cours-d-essai-pour-adultes-f415c807",
@@ -122,7 +122,7 @@
 ],
 "category": "sport",
 "commune": "Flavin",
-"description": "Tous les vendredis soirs concours de pétanque en doublette en 3 parties avec lots en nature.",
+"description": "Concours de pétanque en doublette en 3 parties, tous les vendredis soirs.",
 "end": null,
 "free": false,
 "id": "concours-de-petanque-281a51ef",
@@ -139,7 +139,7 @@
 "url": "https://www.tourisme-aveyron.com/fr/diffusio/agenda/concours-de-petanque-flavin_TFO12102-FMA-20260522093058081"
 },
 {
-"address": "salle des fêtes",
+"address": "Salle des fêtes",
 "audience": [
 "tous"
 ],
@@ -164,11 +164,11 @@
 {
 "address": null,
 "audience": [
-"adultes"
+"tous"
 ],
 "category": "sport",
 "commune": "Trémouilles",
-"description": "Rando du tour des lacs du Lévézou en itinérance avec hébergement et pension complète pour cavaliers aguerris. 6 jours à cheval du dimanche 6 au vendredi 11 septembre.",
+"description": "Randonnée équestre itinérante autour des lacs du Lévézou avec hébergement et pension complète pour cavaliers aguerris.",
 "end": "2026-09-12",
 "free": null,
 "id": "rando-du-tour-des-lacs-du-levezou-en-itinerance-avec-hebergement-90a4be73",
@@ -191,7 +191,7 @@
 ],
 "category": "atelier",
 "commune": "Le Vibal",
-"description": "Séance de sophrologie animée par Coralie. Inscription au 06 50 54 63 88.",
+"description": "Séance de sophrologie animée par Coralie suivie d'un brunch.",
 "end": null,
 "free": false,
 "id": "sophro-brunch-4c9fc982",
@@ -214,7 +214,7 @@
 ],
 "category": "sport",
 "commune": "Pont-de-Salars",
-"description": "Concours de pétanque en doublette en 3 parties, ouvert à tous. Inscriptions sur place, organisé par la Boule Joyeuse.",
+"description": "Concours de pétanque en doublette en 3 parties, ouvert à tous. Inscriptions sur place.",
 "end": null,
 "free": null,
 "id": "concours-de-petanque-653a58c3",
@@ -237,7 +237,7 @@
 ],
 "category": "fete",
 "commune": "Canet-de-Salars",
-"description": "Thé dansant ouvert à tous, sans réservation, avec pâtisserie offerte. Possibilité de repas sur place le midi ou le soir sur réservation.",
+"description": "Thé dansant ouvert à tous, sans réservation, au Camping le Caussanel.",
 "end": "2026-09-15T19:30:00",
 "free": false,
 "id": "the-dansant-guinguette-du-caussanel-781029ff",
@@ -254,13 +254,13 @@
 "url": "https://www.tourisme-aveyron.com/fr/diffusio/agenda/the-dansant-guinguette-du-caussanel-canet-de-salars_TFO12050-FMA-20260415121120726"
 },
 {
-"address": "Salles des fêtes du Vibal",
+"address": "Salle des fêtes du Vibal",
 "audience": [
 "enfants"
 ],
 "category": "sport",
 "commune": "Le Vibal",
-"description": "Cours d'essais d'activités sportives réservés aux enfants de 4 à 7 ans.",
+"description": "Cours d'essai d'activités sportives pour les enfants de 4 à 7 ans.",
 "end": "2026-09-16T11:45:00",
 "free": null,
 "id": "activites-sportives-cours-d-essais-enfants-de-4-a-7-ans-e4ac22b9",
@@ -283,7 +283,7 @@
 ],
 "category": "sport",
 "commune": "Le Vibal",
-"description": "Cours d'essai d'activités sportives pour adultes.",
+"description": "Cours d'essai d'activités sportives pour adultes à la salle des fêtes.",
 "end": null,
 "free": null,
 "id": "activites-sportives-cours-d-essai-pour-adultes-7b5aeb9a",
@@ -306,7 +306,7 @@
 ],
 "category": "marche",
 "commune": "Pont-de-Salars",
-"description": "Tous les 3ème jeudis du mois, une foire se tient dans le village (fruits, légumes, volailles, charcutier...).",
+"description": "Foire mensuelle du village réunissant producteurs et commerçants (fruits, légumes, volailles, charcuterie).",
 "end": null,
 "free": null,
 "id": "foire-mensuelle-c4b3d715",
@@ -329,7 +329,7 @@
 ],
 "category": "sport",
 "commune": "Flavin",
-"description": "Tous les vendredis soirs concours de pétanque en doublette en 3 parties avec lots en nature.",
+"description": "Concours de pétanque en doublette en 3 parties, tous les vendredis soirs.",
 "end": null,
 "free": false,
 "id": "concours-de-petanque-eff0f341",
@@ -346,13 +346,13 @@
 "url": "https://www.tourisme-aveyron.com/fr/diffusio/agenda/concours-de-petanque-flavin_TFO12102-FMA-20260522093058081"
 },
 {
-"address": "salle des fêtes",
+"address": "Salle des fêtes",
 "audience": [
 "tous"
 ],
 "category": "spectacle",
 "commune": "Pont-de-Salars",
-"description": "Représentation théâtrale à la salle des fêtes. Entrée sans réservation.",
+"description": "Représentation théâtrale de la pièce Aurélia par les Cinq Jasmins Company à la salle des fêtes.",
 "end": null,
 "free": false,
 "id": "piece-de-theatre-aurelia-par-les-cinq-jasmin-company-ddee200a",
@@ -398,7 +398,7 @@
 ],
 "category": "expo",
 "commune": "Pont-de-Salars",
-"description": "Pour les Journées Européennes du Patrimoine, exposition photos organisée par l’Association pour la sauvegarde et la vie du Poujol Camboulas.",
+"description": "Exposition photos organisée à l'occasion des Journées Européennes du Patrimoine par l'Association pour la sauvegarde et la vie du Poujol Camboulas.",
 "end": "2026-09-20T18:00:00",
 "free": null,
 "id": "exposition-photos-du-levezou-et-dailleurs-8caf8f76",
@@ -421,7 +421,7 @@
 ],
 "category": "patrimoine",
 "commune": "Pont-de-Salars",
-"description": "Visites guidées et expositions de photos anciennes à l'occasion des Journées Européennes du Patrimoine.",
+"description": "Visites guidées et expositions de photos anciennes en l'église St Georges de Camboulas.",
 "end": "2026-09-20T17:30:00",
 "free": null,
 "id": "expositions-de-photos-anciennes-et-visites-guidees-en-l-eglise-st-georges-de-cam-6ecd1a82",
@@ -444,7 +444,7 @@
 ],
 "category": "patrimoine",
 "commune": "Pont-de-Salars",
-"description": "À l'occasion des Journées Européennes du Patrimoine, découvrez l'église de St Georges de Camboulas. Expositions de photos anciennes et visites guidées.",
+"description": "À l'occasion des Journées Européennes du Patrimoine, expositions de photos anciennes et visites guidées de l'église St Georges de Camboulas.",
 "end": "2026-09-20T17:30:00",
 "free": null,
 "id": "exposition-photos-et-visites-guidees-en-l-eglise-st-georges-de-camboulas-dc0181bd",
@@ -467,7 +467,7 @@
 ],
 "category": "fete",
 "commune": "Canet-de-Salars",
-"description": "Thé dansant ouvert à tous, sans réservation, avec pâtisserie offerte. Possibilité de repas sur place le midi ou le soir sur réservation.",
+"description": "Thé dansant ouvert à tous, sans réservation, au Camping le Caussanel.",
 "end": "2026-09-22T19:30:00",
 "free": false,
 "id": "the-dansant-guinguette-du-caussanel-d898edd3",
