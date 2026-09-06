@@ -1,4 +1,242 @@
 {
+"extract:2207f3e750712cdc5c5b62aa97ce5015c0e1ef9cc6d1c3493dbb005e24654ad0": [
+{
+"address": null,
+"audience": [
+"famille",
+"enfants",
+"tous"
+],
+"category": "patrimoine",
+"commune": "Bourgoin-Jallieu",
+"description": "À votre agenda ce dimanche, le Musée de Bourgoin-Jallieu vous attend nombreux, petits et grands !",
+"end": null,
+"free": null,
+"id": "rendez-vous-au-musee-de-bourgoin-jallieu-ce-week-end-1a5d2828",
+"image": null,
+"lat": null,
+"lon": null,
+"price_text": null,
+"sector": "villemoirieu",
+"source_id": "html-weekend-capi",
+"start": "2026-09-06T00:00:00",
+"tags": [],
+"title": "Rendez-vous au Musée de Bourgoin-Jallieu ce week-end!",
+"tldr": null,
+"url": "https://www.monweekendalacapi.fr/nos-bons-plans/rendez-vous-au-musee-de-bourgoin-jallieu-ce-week-end"
+},
+{
+"address": "Avenue du professeur Tixier 38300 Bourgoin-Jallieu, France",
+"audience": [
+"tous"
+],
+"category": "sport",
+"commune": "Bourgoin-Jallieu",
+"description": "Pour le compte de la troisième journée du championnat de France de Nationale, le CSBJ reçoit Chambéry pour un gros derby à Pierre Rajon !",
+"end": null,
+"free": null,
+"id": "csbj-rugby-vs-chambery-j3-nationale-5397a503",
+"image": null,
+"lat": null,
+"lon": null,
+"price_text": null,
+"sector": "villemoirieu",
+"source_id": "html-weekend-capi",
+"start": "2026-09-06T00:00:00",
+"tags": [],
+"title": "CSBJ Rugby vs Chambéry - J3 Nationale",
+"tldr": null,
+"url": "https://www.monweekendalacapi.fr/agenda/evenements/csbj-rugby-vs-chambery-j3-nationale"
+},
+{
+"address": "Champ de Foire 38300 Ruy-Montceau, France",
+"audience": [
+"tous"
+],
+"category": "marche",
+"commune": "Ruy-Montceau",
+"description": "L'AS Randonneurs de Ruy-Montceau organise la traditionnelle Berruyenne le Dimanche 6 Septembre 2026. Au programme : trail et marches.",
+"end": null,
+"free": null,
+"id": "randonnee-la-berruyenne-4d73c3ae",
+"image": null,
+"lat": null,
+"lon": null,
+"price_text": null,
+"sector": "villemoirieu",
+"source_id": "html-weekend-capi",
+"start": "2026-09-06T00:00:00",
+"tags": [],
+"title": "Randonnée La Berruyenne",
+"tldr": null,
+"url": "https://www.monweekendalacapi.fr/agenda/evenements/randonnee-la-berruyenne"
+},
+{
+"address": null,
+"audience": [
+"tous"
+],
+"category": "patrimoine",
+"commune": "Villefontaine",
+"description": "Les Journées Européennes du Patrimoine approchent ! Ne manquez pas le rendez-vous culturel de la rentrée les 19 et 20 septembre.",
+"end": "2026-09-20",
+"free": null,
+"id": "on-fete-le-patrimoine-a-la-capi-5eb4ed18",
+"image": null,
+"lat": null,
+"lon": null,
+"price_text": null,
+"sector": "villemoirieu",
+"source_id": "html-weekend-capi",
+"start": "2026-09-19T00:00:00",
+"tags": [],
+"title": "On fête le patrimoine à la CAPI !",
+"tldr": null,
+"url": "https://www.monweekendalacapi.fr/nos-bons-plans/on-fete-le-patrimoine-a-la-capi"
+}
+],
+"extract:8f7dd3e6fd9f674223eb6cc1a8aa68eb3ff3d9f8b0f572487fc4a2a16d03c598": [
+{
+"address": "Office de Tourisme CAPI - Espace Carnot",
+"audience": [
+"tous"
+],
+"category": "expo",
+"commune": "L'Isle-d'Abeau",
+"description": "Venez découvrir une exposition réunissant 2 artistes peintres, Sylvia Bielsa Allagnat et Frédéric Bernard.",
+"end": "2026-09-12",
+"free": null,
+"id": "exposition-de-peintures-bb31db63",
+"image": null,
+"lat": null,
+"lon": null,
+"price_text": null,
+"sector": "villemoirieu",
+"source_id": "html-capi",
+"start": "2026-09-01T00:00:00",
+"tags": [],
+"title": "Exposition de peintures",
+"tldr": null,
+"url": "https://capi-agglo.fr/agenda/exposition-de-peintures-4/"
+},
+{
+"address": "Médiathèques",
+"audience": [
+"tous"
+],
+"category": "expo",
+"commune": "L'Isle-d'Abeau",
+"description": "Rêver Alice : les illustrations d’Alice au pays des merveilles. Et si vous tombiez, vous aussi, dans le terrier du lapin ?",
+"end": "2026-11-30",
+"free": null,
+"id": "exposition-rever-alice-86807452",
+"image": null,
+"lat": null,
+"lon": null,
+"price_text": null,
+"sector": "villemoirieu",
+"source_id": "html-capi",
+"start": "2026-09-01T00:00:00",
+"tags": [],
+"title": "Exposition “Rêver Alice”",
+"tldr": null,
+"url": "https://capi-agglo.fr/agenda/exposition/"
+},
+{
+"address": "Office de Tourisme CAPI - Espace Carnot",
+"audience": [
+"tous"
+],
+"category": "expo",
+"commune": "L'Isle-d'Abeau",
+"description": "Venez découvrir l’exposition de peintures d’Ali Benhamel qui exposera pour la première fois à l’espace Carnot.",
+"end": "2026-09-26",
+"free": null,
+"id": "exposition-dali-benhamel-b5c5a67b",
+"image": null,
+"lat": null,
+"lon": null,
+"price_text": null,
+"sector": "villemoirieu",
+"source_id": "html-capi",
+"start": "2026-09-15T00:00:00",
+"tags": [],
+"title": "Exposition d’Ali Benhamel",
+"tldr": null,
+"url": "https://capi-agglo.fr/agenda/exposition-dali-benhamel/"
+},
+{
+"address": "Vallon du Layet",
+"audience": [
+"tous"
+],
+"category": "nature",
+"commune": "Saint-Quentin-Fallavier",
+"description": "Les feuilles tombent, les animaux se préparent à l’hiver et les températures baissent… Pas de doute, l’automne est bien installé sur le territoire de la CAPI !",
+"end": null,
+"free": null,
+"id": "sortie-nature-au-vallon-du-layet-d0dd3d4c",
+"image": null,
+"lat": null,
+"lon": null,
+"price_text": null,
+"sector": "villemoirieu",
+"source_id": "html-capi",
+"start": "2026-09-16T00:00:00",
+"tags": [],
+"title": "Sortie nature au Vallon du Layet",
+"tldr": null,
+"url": "https://capi-agglo.fr/agenda/sortie-nature-au-vallon-du-layet/"
+},
+{
+"address": "Parc Saint-Hubert",
+"audience": [
+"famille",
+"tous"
+],
+"category": "fete",
+"commune": "L'Isle-d'Abeau",
+"description": "Venez profiter de la 8e édition de la Fête du vélo CAPI au Parc Saint-Hubert à L’Isle d’Abeau. En selle pour une après-midi d'animations.",
+"end": "2026-09-19T18:00:00",
+"free": null,
+"id": "fete-du-velo-capi-0e51ab0e",
+"image": null,
+"lat": null,
+"lon": null,
+"price_text": null,
+"sector": "villemoirieu",
+"source_id": "html-capi",
+"start": "2026-09-19T14:00:00",
+"tags": [],
+"title": "Fête du vélo CAPI",
+"tldr": null,
+"url": "https://capi-agglo.fr/agenda/fete-du-velo/"
+},
+{
+"address": "Auditorium Centre administratif CAPI",
+"audience": [
+"adultes",
+"tous"
+],
+"category": "autre",
+"commune": "L'Isle-d'Abeau",
+"description": "Lors du Conseil Communautaire, les membres du Conseil débattent et votent les projets communautaires selon un ordre du jour.",
+"end": null,
+"free": null,
+"id": "conseil-communautaire-0aa832c2",
+"image": null,
+"lat": null,
+"lon": null,
+"price_text": null,
+"sector": "villemoirieu",
+"source_id": "html-capi",
+"start": "2026-09-24T00:00:00",
+"tags": [],
+"title": "Conseil communautaire",
+"tldr": null,
+"url": "https://capi-agglo.fr/agenda/conseil-communautaire-40/"
+}
+],
 "extract:9f984b3812a6f3a8af93288c83189a9bca1f4c9bbc985381b851079b55b1b9b7": [
 {
 "address": "1 Parc d'activités du Buisson Rond",
@@ -68,102 +306,6 @@
 "title": "Atelier écriture de Catherine",
 "tldr": null,
 "url": "https://cafe-crem.fr/programme#atelier-ecriture-de-catherine-1789196400000"
-}
-],
-"extract:fc8cf158191978dbeecdc63c54ca8185c5931c8b7fdc9f4211abfa995f3f2221": [
-{
-"address": "Avenue du professeur Tixier 38300 Bourgoin-Jallieu, France",
-"audience": [
-"tous"
-],
-"category": "sport",
-"commune": "Bourgoin-Jallieu",
-"description": "Pour le compte de la troisième journée du championnat de France de Nationale, le CSBJ reçoit Chambéry pour un gros derby à Pierre Rajon !",
-"end": null,
-"free": null,
-"id": "csbj-rugby-vs-chambery-j3-nationale-1182d6ca",
-"image": null,
-"lat": null,
-"lon": null,
-"price_text": null,
-"sector": "villemoirieu",
-"source_id": "html-weekend-capi",
-"start": "2026-09-05T00:00:00",
-"tags": [],
-"title": "CSBJ Rugby vs Chambéry - J3 Nationale",
-"tldr": null,
-"url": "https://www.monweekendalacapi.fr/agenda/evenements/csbj-rugby-vs-chambery-j3-nationale"
-},
-{
-"address": "Champ de Foire 38300 Ruy-Montceau, France",
-"audience": [
-"tous"
-],
-"category": "marche",
-"commune": "Ruy-Montceau",
-"description": "L'AS Randonneurs de Ruy-Montceau organise la traditionnelle Berruyenne le Dimanche 6 Septembre 2026. Au programme : trail et marches.",
-"end": null,
-"free": null,
-"id": "randonnee-la-berruyenne-4d73c3ae",
-"image": null,
-"lat": null,
-"lon": null,
-"price_text": null,
-"sector": "villemoirieu",
-"source_id": "html-weekend-capi",
-"start": "2026-09-06T00:00:00",
-"tags": [],
-"title": "Randonnée La Berruyenne",
-"tldr": null,
-"url": "https://www.monweekendalacapi.fr/agenda/evenements/randonnee-la-berruyenne"
-},
-{
-"address": null,
-"audience": [
-"famille",
-"enfants",
-"tous"
-],
-"category": "expo",
-"commune": "Bourgoin-Jallieu",
-"description": "À votre agenda ce dimanche. Le Musée de Bourgoin-Jallieu vous attend nombreux petits et grands !",
-"end": null,
-"free": null,
-"id": "rendez-vous-au-musee-de-bourgoin-jallieu-ce-week-end-1a5d2828",
-"image": null,
-"lat": null,
-"lon": null,
-"price_text": null,
-"sector": "villemoirieu",
-"source_id": "html-weekend-capi",
-"start": "2026-09-06T00:00:00",
-"tags": [],
-"title": "Rendez-vous au Musée de Bourgoin-Jallieu ce week-end!",
-"tldr": null,
-"url": "https://www.monweekendalacapi.fr/nos-bons-plans/rendez-vous-au-musee-de-bourgoin-jallieu-ce-week-end"
-},
-{
-"address": null,
-"audience": [
-"tous"
-],
-"category": "patrimoine",
-"commune": "Villefontaine",
-"description": "Les Journées Européennes du Patrimoine approchent. Ne manquez pas le rendez-vous culturel de la rentrée les 19 et 20 septembre.",
-"end": "2026-09-20",
-"free": null,
-"id": "on-fete-le-patrimoine-a-la-capi-5eb4ed18",
-"image": null,
-"lat": null,
-"lon": null,
-"price_text": null,
-"sector": "villemoirieu",
-"source_id": "html-weekend-capi",
-"start": "2026-09-19T00:00:00",
-"tags": [],
-"title": "On fête le patrimoine à la CAPI !",
-"tldr": null,
-"url": "https://www.monweekendalacapi.fr/nos-bons-plans/on-fete-le-patrimoine-a-la-capi"
 }
 ]
 }
