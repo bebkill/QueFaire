@@ -1,3 +1,237 @@
 {
-"extract:380a915dfe76268e4a17094bc8622385836f98da3a80fc8b48f685e4693e378d": []
+"extract:7d6236db070dbaca08433eb2b77949385dd89494f349e1120e3a32c875f82856": [],
+"extract:b16934541aa9e7378c91afb42a2d5f304a1e577791dfd0449f11a97ce14f5f12": [
+{
+"address": "Place du Bourg",
+"audience": [
+"tous"
+],
+"category": "marche",
+"commune": "Rodez",
+"description": "Brocante d'été organisée sur la Place du Bourg à Rodez.",
+"end": null,
+"free": null,
+"id": "les-vendredis-a-la-place-du-bourg-brocante-de-lete-55e32252",
+"image": null,
+"lat": null,
+"lon": null,
+"price_text": null,
+"sector": "pont-de-salars",
+"source_id": "html-rodezagglo",
+"start": "2026-09-11T00:00:00",
+"tags": [],
+"title": "Les Vendredis à la Place du Bourg: Brocante de l’Été",
+"tldr": null,
+"url": "https://www.rodezagglo.fr/fiche/agenda/les-vendredis-a-la-place-du-bourg-brocante-de-l-ete-rodez_TFO12202-FMA-20260610165820250"
+},
+{
+"address": null,
+"audience": [
+"tous"
+],
+"category": "concert",
+"commune": "Rodez",
+"description": "Concert dans le cadre des animations Terrasses en fête au bar O P'tit Bonheur.",
+"end": null,
+"free": null,
+"id": "terrasses-en-fete-o-p-tit-bonheur-f34d7ac3",
+"image": null,
+"lat": null,
+"lon": null,
+"price_text": null,
+"sector": "pont-de-salars",
+"source_id": "html-rodezagglo",
+"start": "2026-09-11T00:00:00",
+"tags": [],
+"title": "Terrasses en fête - O P'tit Bonheur",
+"tldr": null,
+"url": "https://www.rodezagglo.fr/fiche/agenda/terrasses-en-fete-o-p-tit-bonheur-rodez_TFO12202-FMA-20260717143221288"
+},
+{
+"address": null,
+"audience": [
+"tous"
+],
+"category": "sport",
+"commune": "Rodez",
+"description": "Rencontre de football du championnat de Ligue 2 entre Rodez et Grenoble.",
+"end": null,
+"free": null,
+"id": "match-foot-ligue-2-rodez-grenoble-4d6b25dd",
+"image": null,
+"lat": null,
+"lon": null,
+"price_text": null,
+"sector": "pont-de-salars",
+"source_id": "html-rodezagglo",
+"start": "2026-09-11T00:00:00",
+"tags": [],
+"title": "Match foot Ligue 2 RODEZ - GRENOBLE",
+"tldr": null,
+"url": "https://www.rodezagglo.fr/fiche/agenda/match-foot-ligue-2-rodez-grenoble-rodez_TFO12202-FMA-20260825151926422"
+},
+{
+"address": null,
+"audience": [
+"famille",
+"enfants"
+],
+"category": "atelier",
+"commune": "Rodez",
+"description": "Atelier d'activités partagées pour les tout-petits de 0 à 5 ans et leurs parents.",
+"end": null,
+"free": null,
+"id": "activites-parents-enfants-0-5-ans-1b748cc2",
+"image": null,
+"lat": null,
+"lon": null,
+"price_text": null,
+"sector": "pont-de-salars",
+"source_id": "html-rodezagglo",
+"start": "2026-09-11T00:00:00",
+"tags": [],
+"title": "Activités parents & enfants (0-5 ans)",
+"tldr": null,
+"url": "https://www.rodezagglo.fr/fiche/agenda/activites-parents--enfants-0-5-ans-rodez_TFO12202-FMA-20260826160742011"
+},
+{
+"address": null,
+"audience": [
+"tous"
+],
+"category": "atelier",
+"commune": "Rodez",
+"description": "Atelier manuel d'initiation à la confection de porte-clés au crochet.",
+"end": null,
+"free": null,
+"id": "ateliers-initiation-porte-cle-au-crochet-auberia-l-atelier-aa7ce5d6",
+"image": null,
+"lat": null,
+"lon": null,
+"price_text": null,
+"sector": "pont-de-salars",
+"source_id": "html-rodezagglo",
+"start": "2026-09-11T00:00:00",
+"tags": [],
+"title": "Ateliers Initiation porte clé au crochet - Aubéria l'Atelier",
+"tldr": null,
+"url": "https://www.rodezagglo.fr/fiche/agenda/ateliers-initiation-porte-cle-au-crochet-auberia-l-atelier-rodez_TFO12202-FMA-20260828105100630"
+},
+{
+"address": null,
+"audience": [
+"tous"
+],
+"category": "atelier",
+"commune": "Rodez",
+"description": "Atelier créatif de fabrication de bijoux pour composer une box de 3 pampilles.",
+"end": null,
+"free": null,
+"id": "atelier-bijoux-creer-ta-box-de-3-pampilles-auberia-l-atelier-b0bd60ea",
+"image": null,
+"lat": null,
+"lon": null,
+"price_text": null,
+"sector": "pont-de-salars",
+"source_id": "html-rodezagglo",
+"start": "2026-09-11T00:00:00",
+"tags": [],
+"title": "Atelier Bijoux - créer ta box de 3 pampilles - Aubéria l'Atelier",
+"tldr": null,
+"url": "https://www.rodezagglo.fr/fiche/agenda/atelier-bijoux-creer-ta-box-de-3-pampilles-auberia-l-atelier-rodez_TFO12202-FMA-20260828105456209"
+},
+{
+"address": null,
+"audience": [
+"tous"
+],
+"category": "atelier",
+"commune": "Luc-la-Primaube",
+"description": "Atelier d'apprentissage et de pratique de la danse du Quadrille Français.",
+"end": null,
+"free": null,
+"id": "quadrille-francais-8756fecb",
+"image": null,
+"lat": null,
+"lon": null,
+"price_text": null,
+"sector": "pont-de-salars",
+"source_id": "html-rodezagglo",
+"start": "2026-09-12T00:00:00",
+"tags": [],
+"title": "Quadrille Français",
+"tldr": null,
+"url": "https://www.rodezagglo.fr/fiche/agenda/quadrille-francais-luc-la-primaube_TFO12133-FMA-20260905161106464"
+},
+{
+"address": null,
+"audience": [
+"ados",
+"adultes"
+],
+"category": "concert",
+"commune": "Olemps",
+"description": "Tremplin musical destiné à faire découvrir les jeunes talents locaux.",
+"end": null,
+"free": null,
+"id": "salut-les-jeunes-talents-appel-a-candidatures-3d05976f",
+"image": null,
+"lat": null,
+"lon": null,
+"price_text": null,
+"sector": "pont-de-salars",
+"source_id": "html-rodezagglo",
+"start": "2026-09-12T00:00:00",
+"tags": [],
+"title": "Salut les jeunes talents : appel à candidatures",
+"tldr": null,
+"url": "https://www.rodezagglo.fr/fiche/agenda/salut-les-jeunes-talents-appel-a-candidatures-olemps_TFO12174-FMA-20260721110125441"
+},
+{
+"address": null,
+"audience": [
+"tous"
+],
+"category": "atelier",
+"commune": "Rodez",
+"description": "Atelier d'art floral pour apprendre à confectionner une demi-couronne végétale.",
+"end": null,
+"free": null,
+"id": "atelier-art-floral-demi-couronne-6de88878",
+"image": null,
+"lat": null,
+"lon": null,
+"price_text": null,
+"sector": "pont-de-salars",
+"source_id": "html-rodezagglo",
+"start": "2026-09-12T00:00:00",
+"tags": [],
+"title": "Atelier Art Floral : Demi-Couronne",
+"tldr": null,
+"url": "https://www.rodezagglo.fr/fiche/agenda/atelier-art-floral-demi-couronne-rodez_TFO12202-FMA-20250912115237609"
+},
+{
+"address": null,
+"audience": [
+"tous"
+],
+"category": "concert",
+"commune": "Rodez",
+"description": "Concert proposé dans le cadre des soirées Terrasses en fête au Bec Verseur.",
+"end": null,
+"free": null,
+"id": "terrasses-en-fete-bec-verseur-7f11d83c",
+"image": null,
+"lat": null,
+"lon": null,
+"price_text": null,
+"sector": "pont-de-salars",
+"source_id": "html-rodezagglo",
+"start": "2026-09-12T00:00:00",
+"tags": [],
+"title": "Terrasses en fête - Bec Verseur",
+"tldr": null,
+"url": "https://www.rodezagglo.fr/fiche/agenda/terrasses-en-fete-bec-verseur-rodez_TFO12202-FMA-20260717122411890"
+}
+]
 }
