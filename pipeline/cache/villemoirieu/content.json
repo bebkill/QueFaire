@@ -1,4 +1,75 @@
 {
+"extract:122a5862b22c3dfe97cf296ba316785774ac22d4981721139c05a970bbea07f4": [
+{
+"address": "125 Rue du 19 Mars 1962 38300 Eclose-Badinières, France",
+"audience": [
+"tous"
+],
+"category": "concert",
+"commune": "Eclose-Badinières",
+"description": "Soirée avec animation musicale par un groupe folklorique de musique et chants traditionnels irlandais et écossais. Elle est suivie d'un repas choucroute sur réservation.",
+"end": null,
+"free": null,
+"id": "soiree-celtique-ac7de98c",
+"image": null,
+"lat": null,
+"lon": null,
+"price_text": null,
+"sector": "villemoirieu",
+"source_id": "html-weekend-capi",
+"start": "2026-09-12T00:00:00",
+"tags": [],
+"title": "Soirée Celtique",
+"tldr": null,
+"url": "https://www.monweekendalacapi.fr/agenda/evenements/soiree-celtique"
+},
+{
+"address": "Place de la fontaine 38080 Saint Alban de Roche, France",
+"audience": [
+"tous"
+],
+"category": "fete",
+"commune": "Saint Alban de Roche",
+"description": "Venez nous retrouver pour déguster nos pizzas, flammekuche et tartes au sucre préparées par nos soins et cuites dans le four à bois.",
+"end": "2026-09-13",
+"free": null,
+"id": "fete-du-four-a-bois-62a91530",
+"image": null,
+"lat": null,
+"lon": null,
+"price_text": null,
+"sector": "villemoirieu",
+"source_id": "html-weekend-capi",
+"start": "2026-09-12T00:00:00",
+"tags": [],
+"title": "Fête du four à bois",
+"tldr": null,
+"url": "https://www.monweekendalacapi.fr/agenda/evenements/fete-du-four-a-bois"
+},
+{
+"address": "RUE DU STADE 38090 Vaulx-Milieu, France",
+"audience": [
+"tous"
+],
+"category": "fete",
+"commune": "Vaulx-Milieu",
+"description": "Fête des classes en 6 avec repas uniquement sur réservation, bal et feu d'artifice.",
+"end": null,
+"free": null,
+"id": "fete-des-classes-en-6-bal-feu-d-artifice-65a61462",
+"image": null,
+"lat": null,
+"lon": null,
+"price_text": null,
+"sector": "villemoirieu",
+"source_id": "html-weekend-capi",
+"start": "2026-09-12T00:00:00",
+"tags": [],
+"title": "FETE DES CLASSES EN 6 - BAL - FEU D'ARTIFICE",
+"tldr": null,
+"url": "https://www.monweekendalacapi.fr/agenda/evenements/fete-des-classes-en-6-bal-feu-d-artifice"
+}
+],
 "extract:9f984b3812a6f3a8af93288c83189a9bca1f4c9bbc985381b851079b55b1b9b7": [
 {
 "address": "1 Parc d'activités du Buisson Rond",
@@ -70,9 +141,9 @@
 "url": "https://cafe-crem.fr/programme#atelier-ecriture-de-catherine-1789196400000"
 }
 ],
-"extract:bcf3fbe589ad3e24bdcde264bfbd6aaa8fb1cecb3af577216f514068d5a3251f": [
+"extract:d75546e3011430904eceb7e18834172e80dc618169b8abbe32f2fc4adc240198": [
 {
-"address": "Médiathèques",
+"address": null,
 "audience": [
 "tous"
 ],
@@ -95,13 +166,36 @@
 "url": "https://capi-agglo.fr/agenda/exposition/"
 },
 {
-"address": null,
+"address": "Espace Carnot",
+"audience": [
+"tous"
+],
+"category": "expo",
+"commune": "L'Isle-d'Abeau",
+"description": "Venez découvrir l'exposition de peintures d'Ali Benhamel qui exposera pour la première fois à l'espace Carnot. L’exposition sera ouverte du 15 au 26 septembre 2026.",
+"end": "2026-09-26",
+"free": null,
+"id": "exposition-d-ali-benhamel-6b6edaca",
+"image": null,
+"lat": null,
+"lon": null,
+"price_text": null,
+"sector": "villemoirieu",
+"source_id": "html-capi",
+"start": "2026-09-15T00:00:00",
+"tags": [],
+"title": "Exposition d'Ali Benhamel",
+"tldr": null,
+"url": "https://capi-agglo.fr/agenda/exposition-dali-benhamel-2/"
+},
+{
+"address": "Vallon du Layet",
 "audience": [
 "tous"
 ],
 "category": "nature",
 "commune": "Saint-Quentin-Fallavier",
-"description": "Les feuilles tombent, les animaux se préparent à l’hiver et les températures baissent… Pas de doute, l’automne est bien installé sur le territoire de la CAPI !",
+"description": "Les feuilles tombent, les animaux se préparent à l’hiver et les températures baissent… Pas de doute, l’automne est bien installé sur le territoire de la CAPI et signe le retour des sorties nature.",
 "end": null,
 "free": null,
 "id": "sortie-nature-au-vallon-du-layet-d0dd3d4c",
@@ -120,11 +214,12 @@
 {
 "address": "Parc Saint-Hubert",
 "audience": [
+"famille",
 "tous"
 ],
 "category": "fete",
 "commune": "L'Isle-d'Abeau",
-"description": "Venez profiter de la 8e édition de la Fête du vélo CAPI, le samedi 19 septembre 2026, de 14h à 18h, au Parc Saint-Hubert à L’Isle d’Abeau. En selle pour une après-midi festive !",
+"description": "Venez profiter de la 8e édition de la Fête du vélo CAPI au Parc Saint-Hubert à L’Isle d’Abeau. En selle pour une après-midi festive et animée.",
 "end": "2026-09-19T18:00:00",
 "free": null,
 "id": "fete-du-velo-capi-0e51ab0e",
@@ -143,7 +238,7 @@
 {
 "address": "Auditorium Centre administratif CAPI",
 "audience": [
-"tous"
+"adultes"
 ],
 "category": "autre",
 "commune": "L'Isle-d'Abeau",
@@ -164,13 +259,13 @@
 "url": "https://capi-agglo.fr/agenda/conseil-communautaire-40/"
 },
 {
-"address": "Office de Tourisme CAPI - Espace Carnot",
+"address": "Espace Carnot",
 "audience": [
 "tous"
 ],
 "category": "expo",
 "commune": "L'Isle-d'Abeau",
-"description": "Venez découvrir une exposition réunissant 4 artistes : Céline Goncalves, Bastien Peyron, Dominique Ciamarone et Rafa ! Un espace, plusieurs disciplines, une même passion pour la création.",
+"description": "Venez découvrir une exposition réunissant 4 artistes : Céline Goncalves, Bastien Peyron, Dominique Ciamarone et Rafa! Un espace, plusieurs disciplines, une même passion pour la création.",
 "end": "2026-10-10",
 "free": null,
 "id": "exposition-de-peintures-4853a950",
@@ -185,29 +280,6 @@
 "title": "Exposition de peintures",
 "tldr": null,
 "url": "https://capi-agglo.fr/agenda/exposition-de-peintures-5/"
-},
-{
-"address": null,
-"audience": [
-"tous"
-],
-"category": "nature",
-"commune": "Saint-Savin",
-"description": "Les feuilles tombent, les animaux se préparent à l’hiver et les températures baissent… Pas de doute, l’automne est bien installé sur le territoire de la CAPI !",
-"end": null,
-"free": null,
-"id": "sortie-nature-au-ruisseau-cb7300b2",
-"image": null,
-"lat": null,
-"lon": null,
-"price_text": null,
-"sector": "villemoirieu",
-"source_id": "html-capi",
-"start": "2026-09-30T00:00:00",
-"tags": [],
-"title": "Sortie nature au Ruisseau",
-"tldr": null,
-"url": "https://capi-agglo.fr/agenda/sortie-nature-au-ruisseau/"
 }
 ]
 }
