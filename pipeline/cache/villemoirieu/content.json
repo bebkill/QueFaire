@@ -1,5 +1,99 @@
 {
 "extract:0551b8a8b941c48538f41b6c43e9320287aadbf374e05566dfe50e7f634399f4": [],
+"extract:6c7b40d974dd901b68f573d58c41e1b328696c8168e3896109701e9c09d1a741": [
+{
+"address": "125 Rue du 19 Mars 1962 38300 Eclose-Badinières, France",
+"audience": [
+"tous"
+],
+"category": "concert",
+"commune": "Eclose-Badinières",
+"description": "Soirée avec animation musicale par un groupe folklorique de musique et chants traditionnels irlandais et écossais. Suivie d'un repas choucroute à réserver.",
+"end": null,
+"free": null,
+"id": "soiree-celtique-fd8887fe",
+"image": null,
+"lat": null,
+"lon": null,
+"price_text": null,
+"sector": "villemoirieu",
+"source_id": "html-weekend-capi",
+"start": "2026-09-17T00:00:00",
+"tags": [],
+"title": "Soirée Celtique",
+"tldr": null,
+"url": "https://www.monweekendalacapi.fr/agenda/evenements/soiree-celtique"
+},
+{
+"address": "Place de la fontaine 38080 Saint Alban de Roche, France",
+"audience": [
+"tous"
+],
+"category": "fete",
+"commune": "Saint Alban de Roche",
+"description": "Venez déguster des pizzas, flammekuche et tartes au sucre préparées sur place et cuites au four à bois. Sur réservation.",
+"end": null,
+"free": null,
+"id": "fete-du-four-a-bois-eaf2c8cc",
+"image": null,
+"lat": null,
+"lon": null,
+"price_text": null,
+"sector": "villemoirieu",
+"source_id": "html-weekend-capi",
+"start": "2026-09-17T00:00:00",
+"tags": [],
+"title": "Fête du four à bois",
+"tldr": null,
+"url": "https://www.monweekendalacapi.fr/agenda/evenements/fete-du-four-a-bois"
+},
+{
+"address": "RUE DU STADE 38090 Vaulx-Milieu, France",
+"audience": [
+"tous"
+],
+"category": "fete",
+"commune": "Vaulx-Milieu",
+"description": "Fête des classes en 6 avec repas uniquement sur réservation, bal et feu d'artifice.",
+"end": null,
+"free": null,
+"id": "fete-des-classes-en-6-bal-feu-d-artifice-95f74c75",
+"image": null,
+"lat": null,
+"lon": null,
+"price_text": null,
+"sector": "villemoirieu",
+"source_id": "html-weekend-capi",
+"start": "2026-09-17T00:00:00",
+"tags": [],
+"title": "FETE DES CLASSES EN 6 - BAL - FEU D'ARTIFICE",
+"tldr": null,
+"url": "https://www.monweekendalacapi.fr/agenda/evenements/fete-des-classes-en-6-bal-feu-d-artifice"
+},
+{
+"address": null,
+"audience": [
+"tous"
+],
+"category": "patrimoine",
+"commune": "Villefontaine",
+"description": "Les Journées Européennes du Patrimoine approchent pour le rendez-vous culturel de la rentrée.",
+"end": "2026-09-20",
+"free": null,
+"id": "on-fete-le-patrimoine-a-la-capi-5eb4ed18",
+"image": null,
+"lat": null,
+"lon": null,
+"price_text": null,
+"sector": "villemoirieu",
+"source_id": "html-weekend-capi",
+"start": "2026-09-19T00:00:00",
+"tags": [],
+"title": "On fête le patrimoine à la CAPI !",
+"tldr": null,
+"url": "https://www.monweekendalacapi.fr/nos-bons-plans/on-fete-le-patrimoine-a-la-capi"
+}
+],
 "extract:9f984b3812a6f3a8af93288c83189a9bca1f4c9bbc985381b851079b55b1b9b7": [
 {
 "address": "1 Parc d'activités du Buisson Rond",
