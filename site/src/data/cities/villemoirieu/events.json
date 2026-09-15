@@ -69,6 +69,29 @@
   "id": "sortie-nature-au-vallon-du-layet-d0dd3d4c"
  },
  {
+  "title": "Fête du Vélo",
+  "start": "2026-09-19T00:00:00",
+  "source_id": "html-weekend-capi",
+  "sector": "villemoirieu",
+  "end": null,
+  "description": "La Fête du vélo est un événement gratuit et ouvert à tous, qui vise à célébrer le vélo et ses bienfaits en partageant un après-midi festif et convivial.",
+  "tldr": null,
+  "category": "fete",
+  "tags": [],
+  "audience": [
+   "tous"
+  ],
+  "commune": "L'Isle-d'Abeau",
+  "address": "38080 L'Isle d'Abeau, France",
+  "lat": 45.6153,
+  "lon": 5.2234,
+  "free": true,
+  "price_text": null,
+  "url": "https://www.monweekendalacapi.fr/agenda/evenements/fete-du-velo",
+  "image": null,
+  "id": "fete-du-velo-acc43181"
+ },
+ {
   "title": "Fête du vélo CAPI",
   "start": "2026-09-19T14:00:00",
   "source_id": "html-capi",
@@ -90,6 +113,29 @@
   "url": "https://capi-agglo.fr/agenda/fete-du-velo/",
   "image": null,
   "id": "fete-du-velo-capi-0e51ab0e"
+ },
+ {
+  "title": "La Randonnées des voies cyclables",
+  "start": "2026-09-20T00:00:00",
+  "source_id": "html-weekend-capi",
+  "sector": "villemoirieu",
+  "end": null,
+  "description": "L'association vous donne rendez-vous pour la Rando des Voies Cyclables, une randonnée cycliste en groupe, sécurisée et conviviale.",
+  "tldr": null,
+  "category": "sport",
+  "tags": [],
+  "audience": [
+   "tous"
+  ],
+  "commune": "Bourgoin-Jallieu",
+  "address": "Atelier Osez l'Vélo 27 place de l'Echiquier - Villefontaine 38300 Bourgoin-Jallieu, France",
+  "lat": 45.6025,
+  "lon": 5.2747,
+  "free": null,
+  "price_text": null,
+  "url": "https://www.monweekendalacapi.fr/agenda/evenements/la-randonnees-des-voies-cyclables",
+  "image": null,
+  "id": "la-randonnees-des-voies-cyclables-5f015d3f"
  },
  {
   "title": "Conseil communautaire",
