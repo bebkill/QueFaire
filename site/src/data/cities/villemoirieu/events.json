@@ -1,1 +1,140 @@
-[]
+[
+ {
+  "title": "Exposition \"Rêver Alice\"",
+  "start": "2026-09-01T00:00:00",
+  "source_id": "html-capi",
+  "sector": "villemoirieu",
+  "end": "2026-11-30",
+  "description": "Rêver Alice : les illustrations d’Alice au pays des merveilles. Et si vous tombiez, vous aussi, dans le terrier du lapin ?",
+  "tldr": null,
+  "category": "expo",
+  "tags": [],
+  "audience": [
+   "tous"
+  ],
+  "commune": "L'Isle-d'Abeau",
+  "address": "Médiathèques",
+  "lat": 45.6153,
+  "lon": 5.2234,
+  "free": null,
+  "price_text": null,
+  "url": "https://capi-agglo.fr/agenda/exposition/",
+  "image": null,
+  "id": "exposition-rever-alice-decba5f5"
+ },
+ {
+  "title": "Exposition d’Ali Benhamel",
+  "start": "2026-09-15T00:00:00",
+  "source_id": "html-capi",
+  "sector": "villemoirieu",
+  "end": "2026-09-26",
+  "description": "Venez découvrir l’exposition de peintures d’Ali Benhamel qui exposera pour la première fois à l’espace Carnot. Plus d’infos sur monweekendalacapi.fr.",
+  "tldr": null,
+  "category": "expo",
+  "tags": [],
+  "audience": [
+   "tous"
+  ],
+  "commune": "L'Isle-d'Abeau",
+  "address": "Office de Tourisme CAPI - Espace Carnot",
+  "lat": 45.6153,
+  "lon": 5.2234,
+  "free": null,
+  "price_text": null,
+  "url": "https://capi-agglo.fr/agenda/exposition-dali-benhamel-2/",
+  "image": null,
+  "id": "exposition-dali-benhamel-b5c5a67b"
+ },
+ {
+  "title": "Sortie nature au Vallon du Layet",
+  "start": "2026-09-16T00:00:00",
+  "source_id": "html-capi",
+  "sector": "villemoirieu",
+  "end": null,
+  "description": "Les feuilles tombent, les animaux se préparent à l’hiver et les températures baissent… Pas de doute, l’automne est bien installé sur le territoire de la CAPI !",
+  "tldr": null,
+  "category": "nature",
+  "tags": [],
+  "audience": [
+   "tous"
+  ],
+  "commune": "Saint-Quentin-Fallavier",
+  "address": "Vallon du Layet",
+  "lat": 45.6392,
+  "lon": 5.1128,
+  "free": null,
+  "price_text": null,
+  "url": "https://capi-agglo.fr/agenda/sortie-nature-au-vallon-du-layet/",
+  "image": null,
+  "id": "sortie-nature-au-vallon-du-layet-d0dd3d4c"
+ },
+ {
+  "title": "Fête du vélo CAPI",
+  "start": "2026-09-19T14:00:00",
+  "source_id": "html-capi",
+  "sector": "villemoirieu",
+  "end": "2026-09-19T18:00:00",
+  "description": "Venez profiter de la 8e édition de la Fête du vélo CAPI, le samedi 19 septembre 2026, de 14h à 18h, au Parc Saint-Hubert à L’Isle d’Abeau. En selle pour une après-midi festive !",
+  "tldr": null,
+  "category": "fete",
+  "tags": [],
+  "audience": [
+   "tous"
+  ],
+  "commune": "L'Isle-d'Abeau",
+  "address": "Parc Saint-Hubert",
+  "lat": 45.6153,
+  "lon": 5.2234,
+  "free": null,
+  "price_text": null,
+  "url": "https://capi-agglo.fr/agenda/fete-du-velo/",
+  "image": null,
+  "id": "fete-du-velo-capi-0e51ab0e"
+ },
+ {
+  "title": "Conseil communautaire",
+  "start": "2026-09-24T00:00:00",
+  "source_id": "html-capi",
+  "sector": "villemoirieu",
+  "end": null,
+  "description": "Lors du Conseil Communautaire, les membres du Conseil débattent et votent les projets communautaires selon un ordre du jour. Pour en savoir plus sur cette instance, rendez-vous sur le site de la CAPI.",
+  "tldr": null,
+  "category": "conference",
+  "tags": [],
+  "audience": [
+   "tous"
+  ],
+  "commune": "L'Isle-d'Abeau",
+  "address": "Auditorium Centre administratif CAPI",
+  "lat": 45.6153,
+  "lon": 5.2234,
+  "free": null,
+  "price_text": null,
+  "url": "https://capi-agglo.fr/agenda/conseil-communautaire-40/",
+  "image": null,
+  "id": "conseil-communautaire-0aa832c2"
+ },
+ {
+  "title": "Exposition de peintures",
+  "start": "2026-09-29T00:00:00",
+  "source_id": "html-capi",
+  "sector": "villemoirieu",
+  "end": "2026-10-10",
+  "description": "Venez découvrir une exposition réunissant 4 artistes : Céline Goncalves, Bastien Peyron, Dominique Ciamarone et Rafa ! Un espace, plusieurs disciplines, une même passion pour la création.",
+  "tldr": null,
+  "category": "expo",
+  "tags": [],
+  "audience": [
+   "tous"
+  ],
+  "commune": "L'Isle-d'Abeau",
+  "address": "Office de Tourisme CAPI - Espace Carnot",
+  "lat": 45.6153,
+  "lon": 5.2234,
+  "free": null,
+  "price_text": null,
+  "url": "https://capi-agglo.fr/agenda/exposition-de-peintures-5/",
+  "image": null,
+  "id": "exposition-de-peintures-4853a950"
+ }
+]
