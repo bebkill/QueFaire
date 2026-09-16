@@ -1,6 +1,6 @@
 {
 "extract:0551b8a8b941c48538f41b6c43e9320287aadbf374e05566dfe50e7f634399f4": [],
-"extract:46c460a3c144fa3cbf93d1fb295102170dcfc9fd5482f99f6be179fe92f9bd28": [
+"extract:8429d078b4315d59ed1357537f8a747cf1e145209b4fadf6ff929848ef9f05fe": [
 {
 "address": "38080 L'Isle d'Abeau, France",
 "audience": [
@@ -30,11 +30,11 @@
 "tous"
 ],
 "category": "sport",
-"commune": "Bourgoin-Jallieu",
-"description": "L'association vous donne rendez-vous pour la Rando des Voies Cyclables, une randonnée cycliste en groupe, sécurisée et conviviale.",
+"commune": "Villefontaine",
+"description": "L’association vous donne rendez-vous le dimanche 20 septembre pour la Rando des Voies Cyclables, une randonnée cycliste en groupe, sécurisée et conviviale.",
 "end": null,
 "free": null,
-"id": "la-randonnees-des-voies-cyclables-5f015d3f",
+"id": "la-randonnees-des-voies-cyclables-7fba7b3d",
 "image": null,
 "lat": null,
 "lon": null,
@@ -46,6 +46,29 @@
 "title": "La Randonnées des voies cyclables",
 "tldr": null,
 "url": "https://www.monweekendalacapi.fr/agenda/evenements/la-randonnees-des-voies-cyclables"
+},
+{
+"address": null,
+"audience": [
+"tous"
+],
+"category": "patrimoine",
+"commune": "Villefontaine",
+"description": "Les Journées Européennes du Patrimoine approchent ! Ne manquez pas le rendez-vous culturel de la rentrée les 19 et 20 septembre.",
+"end": "2026-09-20",
+"free": null,
+"id": "on-fete-le-patrimoine-a-la-capi-5eb4ed18",
+"image": null,
+"lat": null,
+"lon": null,
+"price_text": null,
+"sector": "villemoirieu",
+"source_id": "html-weekend-capi",
+"start": "2026-09-19T00:00:00",
+"tags": [],
+"title": "On fête le patrimoine à la CAPI !",
+"tldr": null,
+"url": "https://www.monweekendalacapi.fr/nos-bons-plans/on-fete-le-patrimoine-a-la-capi"
 }
 ],
 "extract:9f984b3812a6f3a8af93288c83189a9bca1f4c9bbc985381b851079b55b1b9b7": [
