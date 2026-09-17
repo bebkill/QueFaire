@@ -1,6 +1,6 @@
 [
  {
-  "title": "Exposition \"Rêver Alice\"",
+  "title": "Exposition “Rêver Alice”",
   "start": "2026-09-01T00:00:00",
   "source_id": "html-capi",
   "sector": "villemoirieu",
@@ -20,7 +20,7 @@
   "price_text": null,
   "url": "https://capi-agglo.fr/agenda/exposition/",
   "image": null,
-  "id": "exposition-rever-alice-decba5f5"
+  "id": "exposition-rever-alice-86807452"
  },
  {
   "title": "Exposition d’Ali Benhamel",
@@ -28,7 +28,7 @@
   "source_id": "html-capi",
   "sector": "villemoirieu",
   "end": "2026-09-26",
-  "description": "Venez découvrir l’exposition de peintures d’Ali Benhamel qui exposera pour la première fois à l’espace Carnot. Plus d’infos sur monweekendalacapi.fr.",
+  "description": "Venez découvrir l’exposition de peintures d’Ali Benhamel qui exposera pour la première fois à l’espace Carnot.",
   "tldr": null,
   "category": "expo",
   "tags": [],
@@ -44,29 +44,6 @@
   "url": "https://capi-agglo.fr/agenda/exposition-dali-benhamel-2/",
   "image": null,
   "id": "exposition-dali-benhamel-b5c5a67b"
- },
- {
-  "title": "Sortie nature au Vallon du Layet",
-  "start": "2026-09-16T00:00:00",
-  "source_id": "html-capi",
-  "sector": "villemoirieu",
-  "end": null,
-  "description": "Les feuilles tombent, les animaux se préparent à l’hiver et les températures baissent… Pas de doute, l’automne est bien installé sur le territoire de la CAPI !",
-  "tldr": null,
-  "category": "nature",
-  "tags": [],
-  "audience": [
-   "tous"
-  ],
-  "commune": "Saint-Quentin-Fallavier",
-  "address": "Vallon du Layet",
-  "lat": 45.6392,
-  "lon": 5.1128,
-  "free": null,
-  "price_text": null,
-  "url": "https://capi-agglo.fr/agenda/sortie-nature-au-vallon-du-layet/",
-  "image": null,
-  "id": "sortie-nature-au-vallon-du-layet-d0dd3d4c"
  },
  {
   "title": "Fête du Vélo",
@@ -92,40 +69,18 @@
   "id": "fete-du-velo-acc43181"
  },
  {
-  "title": "On fête le patrimoine à la CAPI !",
-  "start": "2026-09-19T00:00:00",
-  "source_id": "html-weekend-capi",
-  "sector": "villemoirieu",
-  "end": "2026-09-20",
-  "description": "Les Journées Européennes du Patrimoine approchent ! Ne manquez pas le rendez-vous culturel de la rentrée les 19 et 20 septembre.",
-  "tldr": null,
-  "category": "patrimoine",
-  "tags": [],
-  "audience": [
-   "tous"
-  ],
-  "commune": "Villefontaine",
-  "address": null,
-  "lat": 45.6161,
-  "lon": 5.1549,
-  "free": null,
-  "price_text": null,
-  "url": "https://www.monweekendalacapi.fr/nos-bons-plans/on-fete-le-patrimoine-a-la-capi",
-  "image": null,
-  "id": "on-fete-le-patrimoine-a-la-capi-5eb4ed18"
- },
- {
   "title": "Fête du vélo CAPI",
   "start": "2026-09-19T14:00:00",
   "source_id": "html-capi",
   "sector": "villemoirieu",
   "end": "2026-09-19T18:00:00",
-  "description": "Venez profiter de la 8e édition de la Fête du vélo CAPI, le samedi 19 septembre 2026, de 14h à 18h, au Parc Saint-Hubert à L’Isle d’Abeau. En selle pour une après-midi festive !",
+  "description": "Venez profiter de la 8e édition de la Fête du vélo CAPI, le samedi 19 septembre 2026, de 14h à 18h, au Parc Saint-Hubert à L’Isle d’Abeau.",
   "tldr": null,
   "category": "fete",
   "tags": [],
   "audience": [
-   "tous"
+   "tous",
+   "famille"
   ],
   "commune": "L'Isle-d'Abeau",
   "address": "Parc Saint-Hubert",
@@ -143,22 +98,22 @@
   "source_id": "html-weekend-capi",
   "sector": "villemoirieu",
   "end": null,
-  "description": "L’association vous donne rendez-vous le dimanche 20 septembre pour la Rando des Voies Cyclables, une randonnée cycliste en groupe, sécurisée et conviviale.",
+  "description": "L’association vous donne rendez-vous le dimanche 20 septembre pour la Rando des Voies Cyclables, une randonnée cycliste en groupe, sécurisée, conviviale.",
   "tldr": null,
   "category": "sport",
   "tags": [],
   "audience": [
    "tous"
   ],
-  "commune": "Villefontaine",
+  "commune": "Bourgoin-Jallieu",
   "address": "Atelier Osez l'Vélo 27 place de l'Echiquier - Villefontaine 38300 Bourgoin-Jallieu, France",
-  "lat": 45.6161,
-  "lon": 5.1549,
+  "lat": 45.6025,
+  "lon": 5.2747,
   "free": null,
   "price_text": null,
   "url": "https://www.monweekendalacapi.fr/agenda/evenements/la-randonnees-des-voies-cyclables",
   "image": null,
-  "id": "la-randonnees-des-voies-cyclables-7fba7b3d"
+  "id": "la-randonnees-des-voies-cyclables-5f015d3f"
  },
  {
   "title": "Conseil communautaire",
@@ -166,7 +121,7 @@
   "source_id": "html-capi",
   "sector": "villemoirieu",
   "end": null,
-  "description": "Lors du Conseil Communautaire, les membres du Conseil débattent et votent les projets communautaires selon un ordre du jour. Pour en savoir plus sur cette instance, rendez-vous sur le site de la CAPI.",
+  "description": "Lors du Conseil Communautaire, les membres du Conseil débattent et votent les projets communautaires selon un ordre du jour.",
   "tldr": null,
   "category": "conference",
   "tags": [],
@@ -189,7 +144,7 @@
   "source_id": "html-capi",
   "sector": "villemoirieu",
   "end": "2026-10-10",
-  "description": "Venez découvrir une exposition réunissant 4 artistes : Céline Goncalves, Bastien Peyron, Dominique Ciamarone et Rafa ! Un espace, plusieurs disciplines, une même passion pour la création.",
+  "description": "Venez découvrir une exposition réunissant 4 artistes : Céline Goncalves, Bastien Peyron, Dominique Ciamarone et Rafa! Un espace, plusieurs disciplines, une même passion pour la création.",
   "tldr": null,
   "category": "expo",
   "tags": [],
@@ -205,5 +160,29 @@
   "url": "https://capi-agglo.fr/agenda/exposition-de-peintures-5/",
   "image": null,
   "id": "exposition-de-peintures-4853a950"
+ },
+ {
+  "title": "Atelier attrape-rêves",
+  "start": "2026-09-30T14:30:00",
+  "source_id": "html-capi",
+  "sector": "villemoirieu",
+  "end": null,
+  "description": "Fabrique ton attrape-rêves avec de la laine, des rubans, des perles, des plumes, des cercles, des pompons… L'animation aura lieu le mercredi 30 septembre 2026 à 14h30.",
+  "tldr": null,
+  "category": "atelier",
+  "tags": [],
+  "audience": [
+   "enfants",
+   "famille"
+  ],
+  "commune": "La Verpillière",
+  "address": null,
+  "lat": 45.6376,
+  "lon": 5.1494,
+  "free": null,
+  "price_text": null,
+  "url": "https://capi-agglo.fr/agenda/atelier-attrape-reves-4/",
+  "image": null,
+  "id": "atelier-attrape-reves-fe12e67d"
  }
 ]

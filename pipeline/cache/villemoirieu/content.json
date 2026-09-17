@@ -1,6 +1,6 @@
 {
 "extract:0551b8a8b941c48538f41b6c43e9320287aadbf374e05566dfe50e7f634399f4": [],
-"extract:8429d078b4315d59ed1357537f8a747cf1e145209b4fadf6ff929848ef9f05fe": [
+"extract:4fb910f22692dfc5b319b8479c37d49aebfa4602cc9a4c999c2ca649d403e453": [
 {
 "address": "38080 L'Isle d'Abeau, France",
 "audience": [
@@ -30,11 +30,11 @@
 "tous"
 ],
 "category": "sport",
-"commune": "Villefontaine",
-"description": "L’association vous donne rendez-vous le dimanche 20 septembre pour la Rando des Voies Cyclables, une randonnée cycliste en groupe, sécurisée et conviviale.",
+"commune": "Bourgoin-Jallieu",
+"description": "L’association vous donne rendez-vous le dimanche 20 septembre pour la Rando des Voies Cyclables, une randonnée cycliste en groupe, sécurisée, conviviale.",
 "end": null,
 "free": null,
-"id": "la-randonnees-des-voies-cyclables-7fba7b3d",
+"id": "la-randonnees-des-voies-cyclables-5f015d3f",
 "image": null,
 "lat": null,
 "lon": null,
@@ -46,29 +46,148 @@
 "title": "La Randonnées des voies cyclables",
 "tldr": null,
 "url": "https://www.monweekendalacapi.fr/agenda/evenements/la-randonnees-des-voies-cyclables"
-},
+}
+],
+"extract:7368af5a67f90ccd25d1937c0ad41953270bf3a79acea45d846efcacd82e16f1": [
 {
-"address": null,
+"address": "Médiathèques",
 "audience": [
 "tous"
 ],
-"category": "patrimoine",
-"commune": "Villefontaine",
-"description": "Les Journées Européennes du Patrimoine approchent ! Ne manquez pas le rendez-vous culturel de la rentrée les 19 et 20 septembre.",
-"end": "2026-09-20",
+"category": "expo",
+"commune": "L'Isle-d'Abeau",
+"description": "Rêver Alice : les illustrations d’Alice au pays des merveilles. Et si vous tombiez, vous aussi, dans le terrier du lapin ?",
+"end": "2026-11-30",
 "free": null,
-"id": "on-fete-le-patrimoine-a-la-capi-5eb4ed18",
+"id": "exposition-rever-alice-86807452",
 "image": null,
 "lat": null,
 "lon": null,
 "price_text": null,
 "sector": "villemoirieu",
-"source_id": "html-weekend-capi",
-"start": "2026-09-19T00:00:00",
+"source_id": "html-capi",
+"start": "2026-09-01T00:00:00",
 "tags": [],
-"title": "On fête le patrimoine à la CAPI !",
+"title": "Exposition “Rêver Alice”",
 "tldr": null,
-"url": "https://www.monweekendalacapi.fr/nos-bons-plans/on-fete-le-patrimoine-a-la-capi"
+"url": "https://capi-agglo.fr/agenda/exposition/"
+},
+{
+"address": "Office de Tourisme CAPI - Espace Carnot",
+"audience": [
+"tous"
+],
+"category": "expo",
+"commune": "L'Isle-d'Abeau",
+"description": "Venez découvrir l’exposition de peintures d’Ali Benhamel qui exposera pour la première fois à l’espace Carnot.",
+"end": "2026-09-26",
+"free": null,
+"id": "exposition-dali-benhamel-b5c5a67b",
+"image": null,
+"lat": null,
+"lon": null,
+"price_text": null,
+"sector": "villemoirieu",
+"source_id": "html-capi",
+"start": "2026-09-15T00:00:00",
+"tags": [],
+"title": "Exposition d’Ali Benhamel",
+"tldr": null,
+"url": "https://capi-agglo.fr/agenda/exposition-dali-benhamel-2/"
+},
+{
+"address": "Parc Saint-Hubert",
+"audience": [
+"tous",
+"famille"
+],
+"category": "fete",
+"commune": "L'Isle-d'Abeau",
+"description": "Venez profiter de la 8e édition de la Fête du vélo CAPI, le samedi 19 septembre 2026, de 14h à 18h, au Parc Saint-Hubert à L’Isle d’Abeau.",
+"end": "2026-09-19T18:00:00",
+"free": null,
+"id": "fete-du-velo-capi-0e51ab0e",
+"image": null,
+"lat": null,
+"lon": null,
+"price_text": null,
+"sector": "villemoirieu",
+"source_id": "html-capi",
+"start": "2026-09-19T14:00:00",
+"tags": [],
+"title": "Fête du vélo CAPI",
+"tldr": null,
+"url": "https://capi-agglo.fr/agenda/fete-du-velo/"
+},
+{
+"address": "Auditorium Centre administratif CAPI",
+"audience": [
+"tous"
+],
+"category": "autre",
+"commune": "L'Isle-d'Abeau",
+"description": "Lors du Conseil Communautaire, les membres du Conseil débattent et votent les projets communautaires selon un ordre du jour.",
+"end": null,
+"free": null,
+"id": "conseil-communautaire-0aa832c2",
+"image": null,
+"lat": null,
+"lon": null,
+"price_text": null,
+"sector": "villemoirieu",
+"source_id": "html-capi",
+"start": "2026-09-24T00:00:00",
+"tags": [],
+"title": "Conseil communautaire",
+"tldr": null,
+"url": "https://capi-agglo.fr/agenda/conseil-communautaire-40/"
+},
+{
+"address": "Office de Tourisme CAPI - Espace Carnot",
+"audience": [
+"tous"
+],
+"category": "expo",
+"commune": "L'Isle-d'Abeau",
+"description": "Venez découvrir une exposition réunissant 4 artistes : Céline Goncalves, Bastien Peyron, Dominique Ciamarone et Rafa! Un espace, plusieurs disciplines, une même passion pour la création.",
+"end": "2026-10-10",
+"free": null,
+"id": "exposition-de-peintures-4853a950",
+"image": null,
+"lat": null,
+"lon": null,
+"price_text": null,
+"sector": "villemoirieu",
+"source_id": "html-capi",
+"start": "2026-09-29T00:00:00",
+"tags": [],
+"title": "Exposition de peintures",
+"tldr": null,
+"url": "https://capi-agglo.fr/agenda/exposition-de-peintures-5/"
+},
+{
+"address": null,
+"audience": [
+"enfants",
+"famille"
+],
+"category": "atelier",
+"commune": "La Verpillière",
+"description": "Fabrique ton attrape-rêves avec de la laine, des rubans, des perles, des plumes, des cercles, des pompons… L'animation aura lieu le mercredi 30 septembre 2026 à 14h30.",
+"end": null,
+"free": null,
+"id": "atelier-attrape-reves-fe12e67d",
+"image": null,
+"lat": null,
+"lon": null,
+"price_text": null,
+"sector": "villemoirieu",
+"source_id": "html-capi",
+"start": "2026-09-30T14:30:00",
+"tags": [],
+"title": "Atelier attrape-rêves",
+"tldr": null,
+"url": "https://capi-agglo.fr/agenda/atelier-attrape-reves-4/"
 }
 ],
 "extract:9f984b3812a6f3a8af93288c83189a9bca1f4c9bbc985381b851079b55b1b9b7": [
@@ -140,146 +259,6 @@
 "title": "Atelier écriture de Catherine",
 "tldr": null,
 "url": "https://cafe-crem.fr/programme#atelier-ecriture-de-catherine-1789196400000"
-}
-],
-"extract:d75546e3011430904eceb7e18834172e80dc618169b8abbe32f2fc4adc240198": [
-{
-"address": "Médiathèques",
-"audience": [
-"tous"
-],
-"category": "expo",
-"commune": "L'Isle-d'Abeau",
-"description": "Rêver Alice : les illustrations d’Alice au pays des merveilles. Et si vous tombiez, vous aussi, dans le terrier du lapin ?",
-"end": "2026-11-30",
-"free": null,
-"id": "exposition-rever-alice-decba5f5",
-"image": null,
-"lat": null,
-"lon": null,
-"price_text": null,
-"sector": "villemoirieu",
-"source_id": "html-capi",
-"start": "2026-09-01T00:00:00",
-"tags": [],
-"title": "Exposition \"Rêver Alice\"",
-"tldr": null,
-"url": "https://capi-agglo.fr/agenda/exposition/"
-},
-{
-"address": "Office de Tourisme CAPI - Espace Carnot",
-"audience": [
-"tous"
-],
-"category": "expo",
-"commune": "L'Isle-d'Abeau",
-"description": "Venez découvrir l’exposition de peintures d’Ali Benhamel qui exposera pour la première fois à l’espace Carnot. Plus d’infos sur monweekendalacapi.fr.",
-"end": "2026-09-26",
-"free": null,
-"id": "exposition-dali-benhamel-b5c5a67b",
-"image": null,
-"lat": null,
-"lon": null,
-"price_text": null,
-"sector": "villemoirieu",
-"source_id": "html-capi",
-"start": "2026-09-15T00:00:00",
-"tags": [],
-"title": "Exposition d’Ali Benhamel",
-"tldr": null,
-"url": "https://capi-agglo.fr/agenda/exposition-dali-benhamel-2/"
-},
-{
-"address": "Vallon du Layet",
-"audience": [
-"tous"
-],
-"category": "nature",
-"commune": "Saint-Quentin-Fallavier",
-"description": "Les feuilles tombent, les animaux se préparent à l’hiver et les températures baissent… Pas de doute, l’automne est bien installé sur le territoire de la CAPI !",
-"end": null,
-"free": null,
-"id": "sortie-nature-au-vallon-du-layet-d0dd3d4c",
-"image": null,
-"lat": null,
-"lon": null,
-"price_text": null,
-"sector": "villemoirieu",
-"source_id": "html-capi",
-"start": "2026-09-16T00:00:00",
-"tags": [],
-"title": "Sortie nature au Vallon du Layet",
-"tldr": null,
-"url": "https://capi-agglo.fr/agenda/sortie-nature-au-vallon-du-layet/"
-},
-{
-"address": "Parc Saint-Hubert",
-"audience": [
-"tous"
-],
-"category": "fete",
-"commune": "L'Isle-d'Abeau",
-"description": "Venez profiter de la 8e édition de la Fête du vélo CAPI, le samedi 19 septembre 2026, de 14h à 18h, au Parc Saint-Hubert à L’Isle d’Abeau. En selle pour une après-midi festive !",
-"end": "2026-09-19T18:00:00",
-"free": null,
-"id": "fete-du-velo-capi-0e51ab0e",
-"image": null,
-"lat": null,
-"lon": null,
-"price_text": null,
-"sector": "villemoirieu",
-"source_id": "html-capi",
-"start": "2026-09-19T14:00:00",
-"tags": [],
-"title": "Fête du vélo CAPI",
-"tldr": null,
-"url": "https://capi-agglo.fr/agenda/fete-du-velo/"
-},
-{
-"address": "Auditorium Centre administratif CAPI",
-"audience": [
-"tous"
-],
-"category": "autre",
-"commune": "L'Isle-d'Abeau",
-"description": "Lors du Conseil Communautaire, les membres du Conseil débattent et votent les projets communautaires selon un ordre du jour. Pour en savoir plus sur cette instance, rendez-vous sur le site de la CAPI.",
-"end": null,
-"free": null,
-"id": "conseil-communautaire-0aa832c2",
-"image": null,
-"lat": null,
-"lon": null,
-"price_text": null,
-"sector": "villemoirieu",
-"source_id": "html-capi",
-"start": "2026-09-24T00:00:00",
-"tags": [],
-"title": "Conseil communautaire",
-"tldr": null,
-"url": "https://capi-agglo.fr/agenda/conseil-communautaire-40/"
-},
-{
-"address": "Office de Tourisme CAPI - Espace Carnot",
-"audience": [
-"tous"
-],
-"category": "expo",
-"commune": "L'Isle-d'Abeau",
-"description": "Venez découvrir une exposition réunissant 4 artistes : Céline Goncalves, Bastien Peyron, Dominique Ciamarone et Rafa ! Un espace, plusieurs disciplines, une même passion pour la création.",
-"end": "2026-10-10",
-"free": null,
-"id": "exposition-de-peintures-4853a950",
-"image": null,
-"lat": null,
-"lon": null,
-"price_text": null,
-"sector": "villemoirieu",
-"source_id": "html-capi",
-"start": "2026-09-29T00:00:00",
-"tags": [],
-"title": "Exposition de peintures",
-"tldr": null,
-"url": "https://capi-agglo.fr/agenda/exposition-de-peintures-5/"
 }
 ]
 }
