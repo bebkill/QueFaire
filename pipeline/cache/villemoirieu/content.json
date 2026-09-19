@@ -1,5 +1,53 @@
 {
 "extract:0551b8a8b941c48538f41b6c43e9320287aadbf374e05566dfe50e7f634399f4": [],
+"extract:58958c810cb456cbd71f553b16ed9537bdfef2aabb4045c1550ac4428af0ecc8": [
+{
+"address": "38080 L'Isle d'Abeau, France",
+"audience": [
+"tous"
+],
+"category": "fete",
+"commune": "L'Isle d'Abeau",
+"description": "La Fête du vélo est un événement gratuit et ouvert à tous, qui vise à célébrer le vélo et ses bienfaits en partageant un après-midi festif et convivial.",
+"end": null,
+"free": true,
+"id": "fete-du-velo-acc43181",
+"image": null,
+"lat": null,
+"lon": null,
+"price_text": null,
+"sector": "villemoirieu",
+"source_id": "html-weekend-capi",
+"start": "2026-09-19T00:00:00",
+"tags": [],
+"title": "Fête du Vélo",
+"tldr": null,
+"url": "https://www.monweekendalacapi.fr/agenda/evenements/fete-du-velo"
+},
+{
+"address": "Atelier Osez l'Vélo 27 place de l'Echiquier - Villefontaine 38300 Bourgoin-Jallieu, France",
+"audience": [
+"tous"
+],
+"category": "sport",
+"commune": "Bourgoin-Jallieu",
+"description": "L’association vous donne rendez-vous pour la Rando des Voies Cyclables, une randonnée cycliste en groupe, sécurisée et conviviale.",
+"end": null,
+"free": null,
+"id": "la-randonnees-des-voies-cyclables-5f015d3f",
+"image": null,
+"lat": null,
+"lon": null,
+"price_text": null,
+"sector": "villemoirieu",
+"source_id": "html-weekend-capi",
+"start": "2026-09-20T00:00:00",
+"tags": [],
+"title": "La Randonnées des voies cyclables",
+"tldr": null,
+"url": "https://www.monweekendalacapi.fr/agenda/evenements/la-randonnees-des-voies-cyclables"
+}
+],
 "extract:9f984b3812a6f3a8af93288c83189a9bca1f4c9bbc985381b851079b55b1b9b7": [
 {
 "address": "1 Parc d'activités du Buisson Rond",
@@ -69,54 +117,6 @@
 "title": "Atelier écriture de Catherine",
 "tldr": null,
 "url": "https://cafe-crem.fr/programme#atelier-ecriture-de-catherine-1789196400000"
-}
-],
-"extract:d61279ef1c9582474b909773ead660ad822f97e9daebea81db5d99fe3b8407d1": [
-{
-"address": "38080 L'Isle d'Abeau, France",
-"audience": [
-"tous"
-],
-"category": "fete",
-"commune": "L'Isle d'Abeau",
-"description": "La Fête du vélo est un événement gratuit et ouvert à tous, qui vise à célébrer le vélo et ses bienfaits en partageant un après-midi festif et convivial.",
-"end": null,
-"free": true,
-"id": "fete-du-velo-acc43181",
-"image": null,
-"lat": null,
-"lon": null,
-"price_text": null,
-"sector": "villemoirieu",
-"source_id": "html-weekend-capi",
-"start": "2026-09-19T00:00:00",
-"tags": [],
-"title": "Fête du Vélo",
-"tldr": null,
-"url": "https://www.monweekendalacapi.fr/agenda/evenements/fete-du-velo"
-},
-{
-"address": "Atelier Osez l'Vélo 27 place de l'Echiquier - Villefontaine 38300 Bourgoin-Jallieu, France",
-"audience": [
-"tous"
-],
-"category": "sport",
-"commune": "Bourgoin-Jallieu",
-"description": "L’association vous donne rendez-vous le dimanche 20 septembre pour la Rando des Voies Cyclables, une randonnée cycliste en groupe, sécurisée et conviviale.",
-"end": null,
-"free": null,
-"id": "la-randonnees-des-voies-cyclables-5f015d3f",
-"image": null,
-"lat": null,
-"lon": null,
-"price_text": null,
-"sector": "villemoirieu",
-"source_id": "html-weekend-capi",
-"start": "2026-09-20T00:00:00",
-"tags": [],
-"title": "La Randonnées des voies cyclables",
-"tldr": null,
-"url": "https://www.monweekendalacapi.fr/agenda/evenements/la-randonnees-des-voies-cyclables"
 }
 ]
 }
