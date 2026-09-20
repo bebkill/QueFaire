@@ -1,29 +1,6 @@
 {
 "extract:0551b8a8b941c48538f41b6c43e9320287aadbf374e05566dfe50e7f634399f4": [],
-"extract:58958c810cb456cbd71f553b16ed9537bdfef2aabb4045c1550ac4428af0ecc8": [
-{
-"address": "38080 L'Isle d'Abeau, France",
-"audience": [
-"tous"
-],
-"category": "fete",
-"commune": "L'Isle d'Abeau",
-"description": "La Fête du vélo est un événement gratuit et ouvert à tous, qui vise à célébrer le vélo et ses bienfaits en partageant un après-midi festif et convivial.",
-"end": null,
-"free": true,
-"id": "fete-du-velo-acc43181",
-"image": null,
-"lat": null,
-"lon": null,
-"price_text": null,
-"sector": "villemoirieu",
-"source_id": "html-weekend-capi",
-"start": "2026-09-19T00:00:00",
-"tags": [],
-"title": "Fête du Vélo",
-"tldr": null,
-"url": "https://www.monweekendalacapi.fr/agenda/evenements/fete-du-velo"
-},
+"extract:32628207726b44fddfa46a3dd2b957c76c29423006048b0472b2d7de632e486c": [
 {
 "address": "Atelier Osez l'Vélo 27 place de l'Echiquier - Villefontaine 38300 Bourgoin-Jallieu, France",
 "audience": [
@@ -31,7 +8,7 @@
 ],
 "category": "sport",
 "commune": "Bourgoin-Jallieu",
-"description": "L’association vous donne rendez-vous pour la Rando des Voies Cyclables, une randonnée cycliste en groupe, sécurisée et conviviale.",
+"description": "L'association vous donne rendez-vous le dimanche 20 septembre pour la Rando des Voies Cyclables, une randonnée cycliste en groupe, sécurisée et conviviale.",
 "end": null,
 "free": null,
 "id": "la-randonnees-des-voies-cyclables-5f015d3f",
@@ -46,77 +23,100 @@
 "title": "La Randonnées des voies cyclables",
 "tldr": null,
 "url": "https://www.monweekendalacapi.fr/agenda/evenements/la-randonnees-des-voies-cyclables"
+},
+{
+"address": "Place Carnot et Place Jean Vilar 38300 Bourgoin-Jallieu, France",
+"audience": [
+"tous"
+],
+"category": "expo",
+"commune": "Bourgoin-Jallieu",
+"description": "Onze artistes présentent une soixantaine d'oeuvres exposées dans le parc d'une propriété privée ainsi que dans le centre ville de Bourgoin-Jallieu.",
+"end": "2026-09-27",
+"free": null,
+"id": "4eme-biennale-de-sculptures-au-fil-du-bion-3cee33f2",
+"image": null,
+"lat": null,
+"lon": null,
+"price_text": null,
+"sector": "villemoirieu",
+"source_id": "html-weekend-capi",
+"start": "2026-09-04T00:00:00",
+"tags": [],
+"title": "4ème biennale de sculptures \"Au fil du Bion\"",
+"tldr": null,
+"url": "https://www.monweekendalacapi.fr/agenda/evenements/4eme-biennale-de-sculptures-au-fil-du-bion"
+},
+{
+"address": "Foyer municipal 38300 Nivolas-Vermelle, France",
+"audience": [
+"tous"
+],
+"category": "sport",
+"commune": "Nivolas-Vermelle",
+"description": "Randonnée cyclo ouverte à tous, VTT-Route-Gravel, que ce soit en musculaire ou en assistance électrique. Ravitaillement sur parcours.",
+"end": null,
+"free": null,
+"id": "randonnee-cyclo-a-nivolas-vermelle-a2c1485d",
+"image": null,
+"lat": null,
+"lon": null,
+"price_text": null,
+"sector": "villemoirieu",
+"source_id": "html-weekend-capi",
+"start": "2026-09-20T00:00:00",
+"tags": [],
+"title": "Randonnée cyclo à Nivolas-vermelle",
+"tldr": null,
+"url": "https://www.monweekendalacapi.fr/agenda/evenements/randonnee-cyclo-a-nivolas-vermelle"
 }
 ],
-"extract:9f984b3812a6f3a8af93288c83189a9bca1f4c9bbc985381b851079b55b1b9b7": [
+"extract:707aa32f816819c073ce8b1b2c64ebf074cf5c9b7f3e12b3e8449db357f0f7f3": [
 {
-"address": "1 Parc d'activités du Buisson Rond",
+"address": "1 Parc d'activités du Buisson Rond, 38460 Villemoirieu",
 "audience": [
 "tous"
 ],
 "category": "atelier",
 "commune": "Villemoirieu",
-"description": "Atelier de réparation d'objets et d'aide sur Linux proposé par l'association CAFÉ CRÈM'.",
-"end": "2026-09-06T12:00:00",
+"description": "Atelier créatif de couture et petites fabrications proposé par l'association CAFÉ CRÈM'.",
+"end": "2026-09-24T20:30:00",
 "free": null,
-"id": "repair-cafe-repair-linux-a98817bd",
+"id": "couture-et-petites-fabrications-de-brigitte-7dfab6a7",
 "image": null,
 "lat": null,
 "lon": null,
-"price_text": null,
+"price_text": "Gratuit pour une première découverte (adhésion à prix libre par foyer pour participer régulièrement)",
 "sector": "villemoirieu",
 "source_id": "html-cafe-crem",
-"start": "2026-09-06T09:00:00",
+"start": "2026-09-24T18:30:00",
 "tags": [],
-"title": "Repair Café & Repair Linux",
+"title": "Couture et petites fabrications de Brigitte",
 "tldr": null,
-"url": "https://cafe-crem.fr/programme#repair-cafe-repair-linux-1788678000000"
+"url": "https://cafe-crem.fr/programme#couture-et-petites-fabrications-de-brigitte-1790233200000"
 },
 {
-"address": "1 Parc d'activités du Buisson Rond",
+"address": "1 Parc d'activités du Buisson Rond, 38460 Villemoirieu",
 "audience": [
 "tous"
 ],
 "category": "atelier",
 "commune": "Villemoirieu",
-"description": "Atelier pratique pour se familiariser avec l'utilisation de son smartphone.",
-"end": "2026-09-06T12:00:00",
+"description": "Atelier d'initiation pratique à la création de site Web.",
+"end": "2026-09-26T12:00:00",
 "free": null,
-"id": "apprivoisez-votre-smartphone-04115351",
+"id": "atelier-initiation-a-la-creation-de-site-web-3daa162b",
 "image": null,
 "lat": null,
 "lon": null,
-"price_text": null,
+"price_text": "Gratuit pour une première découverte (adhésion à prix libre par foyer pour participer régulièrement)",
 "sector": "villemoirieu",
 "source_id": "html-cafe-crem",
-"start": "2026-09-06T09:00:00",
+"start": "2026-09-26T10:00:00",
 "tags": [],
-"title": "Apprivoisez votre Smartphone",
+"title": "Atelier initiation à la création de site Web",
 "tldr": null,
-"url": "https://cafe-crem.fr/programme#apprivoisez-votre-smartphone-1788678000000"
-},
-{
-"address": "1 Parc d'activités du Buisson Rond",
-"audience": [
-"tous"
-],
-"category": "atelier",
-"commune": "Villemoirieu",
-"description": "Atelier d'écriture animé par Catherine au CAFÉ CRÈM'.",
-"end": "2026-09-12T12:00:00",
-"free": null,
-"id": "atelier-ecriture-de-catherine-204943e6",
-"image": null,
-"lat": null,
-"lon": null,
-"price_text": null,
-"sector": "villemoirieu",
-"source_id": "html-cafe-crem",
-"start": "2026-09-12T10:00:00",
-"tags": [],
-"title": "Atelier écriture de Catherine",
-"tldr": null,
-"url": "https://cafe-crem.fr/programme#atelier-ecriture-de-catherine-1789196400000"
+"url": "https://cafe-crem.fr/programme#atelier-initiation-a-la-creation-de-site-web-1790406000000"
 }
 ]
 }
