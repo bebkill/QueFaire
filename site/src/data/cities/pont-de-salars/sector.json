@@ -1502,14 +1502,8 @@
    "name": "Rodez Agglomération — agenda des manifestations",
    "type": "html",
    "url": "https://www.rodezagglo.fr/informations-pratiques/agenda-des-manifestations/"
-  },
-  {
-   "id": "html-rodez-tourisme",
-   "name": "Office de tourisme de Rodez — agenda",
-   "type": "html",
-   "url": "https://www.rodez-tourisme.fr/agenda/"
   }
  ],
- "generated_at": "2026-09-22T08:25:56",
+ "generated_at": "2026-09-22T08:56:53",
  "event_count": 0
 }
