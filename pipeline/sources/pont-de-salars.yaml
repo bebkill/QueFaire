@@ -47,7 +47,7 @@ sources:
     type: html
     url: https://www.rodez-tourisme.fr/agenda/
     commune: Rodez
-    enabled: true
+    enabled: false
 
   # --- Département (le filtre de rayon écarte ce qui est à plus d'1 h) -------
   - id: html-aveyron-dept

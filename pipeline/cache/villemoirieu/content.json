@@ -1,77 +1,6 @@
 {
 "extract:0551b8a8b941c48538f41b6c43e9320287aadbf374e05566dfe50e7f634399f4": [],
-"extract:32628207726b44fddfa46a3dd2b957c76c29423006048b0472b2d7de632e486c": [
-{
-"address": "Atelier Osez l'Vélo 27 place de l'Echiquier - Villefontaine 38300 Bourgoin-Jallieu, France",
-"audience": [
-"tous"
-],
-"category": "sport",
-"commune": "Bourgoin-Jallieu",
-"description": "L'association vous donne rendez-vous le dimanche 20 septembre pour la Rando des Voies Cyclables, une randonnée cycliste en groupe, sécurisée et conviviale.",
-"end": null,
-"free": null,
-"id": "la-randonnees-des-voies-cyclables-5f015d3f",
-"image": null,
-"lat": null,
-"lon": null,
-"price_text": null,
-"sector": "villemoirieu",
-"source_id": "html-weekend-capi",
-"start": "2026-09-20T00:00:00",
-"tags": [],
-"title": "La Randonnées des voies cyclables",
-"tldr": null,
-"url": "https://www.monweekendalacapi.fr/agenda/evenements/la-randonnees-des-voies-cyclables"
-},
-{
-"address": "Place Carnot et Place Jean Vilar 38300 Bourgoin-Jallieu, France",
-"audience": [
-"tous"
-],
-"category": "expo",
-"commune": "Bourgoin-Jallieu",
-"description": "Onze artistes présentent une soixantaine d'oeuvres exposées dans le parc d'une propriété privée ainsi que dans le centre ville de Bourgoin-Jallieu.",
-"end": "2026-09-27",
-"free": null,
-"id": "4eme-biennale-de-sculptures-au-fil-du-bion-3cee33f2",
-"image": null,
-"lat": null,
-"lon": null,
-"price_text": null,
-"sector": "villemoirieu",
-"source_id": "html-weekend-capi",
-"start": "2026-09-04T00:00:00",
-"tags": [],
-"title": "4ème biennale de sculptures \"Au fil du Bion\"",
-"tldr": null,
-"url": "https://www.monweekendalacapi.fr/agenda/evenements/4eme-biennale-de-sculptures-au-fil-du-bion"
-},
-{
-"address": "Foyer municipal 38300 Nivolas-Vermelle, France",
-"audience": [
-"tous"
-],
-"category": "sport",
-"commune": "Nivolas-Vermelle",
-"description": "Randonnée cyclo ouverte à tous, VTT-Route-Gravel, que ce soit en musculaire ou en assistance électrique. Ravitaillement sur parcours.",
-"end": null,
-"free": null,
-"id": "randonnee-cyclo-a-nivolas-vermelle-a2c1485d",
-"image": null,
-"lat": null,
-"lon": null,
-"price_text": null,
-"sector": "villemoirieu",
-"source_id": "html-weekend-capi",
-"start": "2026-09-20T00:00:00",
-"tags": [],
-"title": "Randonnée cyclo à Nivolas-vermelle",
-"tldr": null,
-"url": "https://www.monweekendalacapi.fr/agenda/evenements/randonnee-cyclo-a-nivolas-vermelle"
-}
-],
-"extract:707aa32f816819c073ce8b1b2c64ebf074cf5c9b7f3e12b3e8449db357f0f7f3": [
+"extract:eb8d2d2ff32bda59686e99971bb922b9064f76847668713b724a0599f4e20842": [
 {
 "address": "1 Parc d'activités du Buisson Rond, 38460 Villemoirieu",
 "audience": [
@@ -79,14 +8,14 @@
 ],
 "category": "atelier",
 "commune": "Villemoirieu",
-"description": "Atelier créatif de couture et petites fabrications proposé par l'association CAFÉ CRÈM'.",
+"description": "Atelier de couture et de petites fabrications manuelles.",
 "end": "2026-09-24T20:30:00",
-"free": null,
+"free": true,
 "id": "couture-et-petites-fabrications-de-brigitte-7dfab6a7",
 "image": null,
 "lat": null,
 "lon": null,
-"price_text": "Gratuit pour une première découverte (adhésion à prix libre par foyer pour participer régulièrement)",
+"price_text": "Gratuit pour une première découverte, adhésion ensuite",
 "sector": "villemoirieu",
 "source_id": "html-cafe-crem",
 "start": "2026-09-24T18:30:00",
@@ -102,14 +31,14 @@
 ],
 "category": "atelier",
 "commune": "Villemoirieu",
-"description": "Atelier d'initiation pratique à la création de site Web.",
+"description": "Atelier d'initiation aux bases de la création de sites web.",
 "end": "2026-09-26T12:00:00",
-"free": null,
+"free": true,
 "id": "atelier-initiation-a-la-creation-de-site-web-3daa162b",
 "image": null,
 "lat": null,
 "lon": null,
-"price_text": "Gratuit pour une première découverte (adhésion à prix libre par foyer pour participer régulièrement)",
+"price_text": "Gratuit pour une première découverte, adhésion ensuite",
 "sector": "villemoirieu",
 "source_id": "html-cafe-crem",
 "start": "2026-09-26T10:00:00",
@@ -117,6 +46,29 @@
 "title": "Atelier initiation à la création de site Web",
 "tldr": null,
 "url": "https://cafe-crem.fr/programme#atelier-initiation-a-la-creation-de-site-web-1790406000000"
+},
+{
+"address": "1 Parc d'activités du Buisson Rond, 38460 Villemoirieu",
+"audience": [
+"tous"
+],
+"category": "autre",
+"commune": "Villemoirieu",
+"description": "Temps d'échange et de partage autour de la lecture et des livres.",
+"end": "2026-10-03T18:30:00",
+"free": true,
+"id": "rencontre-autour-du-livre-f5ab9df0",
+"image": null,
+"lat": null,
+"lon": null,
+"price_text": "Gratuit pour une première découverte, adhésion ensuite",
+"sector": "villemoirieu",
+"source_id": "html-cafe-crem",
+"start": "2026-10-03T16:30:00",
+"tags": [],
+"title": "Rencontre autour du livre",
+"tldr": null,
+"url": "https://cafe-crem.fr/programme#rencontre-autour-du-livre-1791010800000"
 }
 ]
 }
