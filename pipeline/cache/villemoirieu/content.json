@@ -1,5 +1,77 @@
 {
 "extract:0551b8a8b941c48538f41b6c43e9320287aadbf374e05566dfe50e7f634399f4": [],
+"extract:68b310add0d2164a6f8656246255525049b68670d276862cd2bc8d942da78067": [
+{
+"address": "Avenue Professeur Tixier 38300 Bourgoin-Jallieu, France",
+"audience": [
+"famille",
+"tous"
+],
+"category": "fete",
+"commune": "Bourgoin-Jallieu",
+"description": "La Foire de la Saint-Michel revient le samedi 26 septembre pour une journée festive et conviviale à partager en famille ou entre amis.",
+"end": null,
+"free": null,
+"id": "foire-st-michel-2d961956",
+"image": null,
+"lat": null,
+"lon": null,
+"price_text": null,
+"sector": "villemoirieu",
+"source_id": "html-weekend-capi",
+"start": "2026-09-26T00:00:00",
+"tags": [],
+"title": "FOIRE ST MICHEL",
+"tldr": null,
+"url": "https://www.monweekendalacapi.fr/agenda/evenements/foire-st-michel"
+},
+{
+"address": "38300 Bourgoin-Jallieu, France",
+"audience": [
+"tous"
+],
+"category": "autre",
+"commune": "Bourgoin-Jallieu",
+"description": "Les Virades de l'Espoir sont une manifestation nationale organisée par l'association Vaincre la Mucoviscidose pour informer sur la maladie.",
+"end": null,
+"free": null,
+"id": "virades-de-l-espoir-41151896",
+"image": null,
+"lat": null,
+"lon": null,
+"price_text": null,
+"sector": "villemoirieu",
+"source_id": "html-weekend-capi",
+"start": "2026-09-27T00:00:00",
+"tags": [],
+"title": "Virades de l'Espoir",
+"tldr": null,
+"url": "https://www.monweekendalacapi.fr/agenda/evenements/virades-de-l-espoir"
+},
+{
+"address": "63 - 65 rue de la Liberté 38300 Bourgoin-Jallieu, France",
+"audience": [
+"tous"
+],
+"category": "sport",
+"commune": "Bourgoin-Jallieu",
+"description": "Essai gratuit de vélos électriques Ruban ! Samedi 26 septembre, 9h-11h, agence Ruban de Bourgoin-Jallieu.",
+"end": "2026-09-26T11:00:00",
+"free": true,
+"id": "balade-a-velo-ruban-88f466c2",
+"image": null,
+"lat": null,
+"lon": null,
+"price_text": "Gratuit",
+"sector": "villemoirieu",
+"source_id": "html-weekend-capi",
+"start": "2026-09-26T09:00:00",
+"tags": [],
+"title": "Balade à vélo Ruban",
+"tldr": null,
+"url": "https://www.monweekendalacapi.fr/agenda/evenements/balade-a-velo-ruban"
+}
+],
 "extract:eb8d2d2ff32bda59686e99971bb922b9064f76847668713b724a0599f4e20842": [
 {
 "address": "1 Parc d'activités du Buisson Rond, 38460 Villemoirieu",
