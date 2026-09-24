@@ -23,53 +23,6 @@
   "id": "couture-et-petites-fabrications-de-brigitte-7dfab6a7"
  },
  {
-  "title": "FOIRE ST MICHEL",
-  "start": "2026-09-26T00:00:00",
-  "source_id": "html-weekend-capi",
-  "sector": "villemoirieu",
-  "end": null,
-  "description": "La Foire de la Saint-Michel revient le samedi 26 septembre pour une journée festive et conviviale à partager en famille ou entre amis.",
-  "tldr": null,
-  "category": "fete",
-  "tags": [],
-  "audience": [
-   "famille",
-   "tous"
-  ],
-  "commune": "Bourgoin-Jallieu",
-  "address": "Avenue Professeur Tixier 38300 Bourgoin-Jallieu, France",
-  "lat": 45.6025,
-  "lon": 5.2747,
-  "free": null,
-  "price_text": null,
-  "url": "https://www.monweekendalacapi.fr/agenda/evenements/foire-st-michel",
-  "image": null,
-  "id": "foire-st-michel-2d961956"
- },
- {
-  "title": "Balade à vélo Ruban",
-  "start": "2026-09-26T09:00:00",
-  "source_id": "html-weekend-capi",
-  "sector": "villemoirieu",
-  "end": "2026-09-26T11:00:00",
-  "description": "Essai gratuit de vélos électriques Ruban ! Samedi 26 septembre, 9h-11h, agence Ruban de Bourgoin-Jallieu.",
-  "tldr": null,
-  "category": "sport",
-  "tags": [],
-  "audience": [
-   "tous"
-  ],
-  "commune": "Bourgoin-Jallieu",
-  "address": "63 - 65 rue de la Liberté 38300 Bourgoin-Jallieu, France",
-  "lat": 45.6025,
-  "lon": 5.2747,
-  "free": true,
-  "price_text": "Gratuit",
-  "url": "https://www.monweekendalacapi.fr/agenda/evenements/balade-a-velo-ruban",
-  "image": null,
-  "id": "balade-a-velo-ruban-88f466c2"
- },
- {
   "title": "Atelier initiation à la création de site Web",
   "start": "2026-09-26T10:00:00",
   "source_id": "html-cafe-crem",
@@ -91,29 +44,6 @@
   "url": "https://cafe-crem.fr/programme#atelier-initiation-a-la-creation-de-site-web-1790406000000",
   "image": null,
   "id": "atelier-initiation-a-la-creation-de-site-web-3daa162b"
- },
- {
-  "title": "Virades de l'Espoir",
-  "start": "2026-09-27T00:00:00",
-  "source_id": "html-weekend-capi",
-  "sector": "villemoirieu",
-  "end": null,
-  "description": "Les Virades de l'Espoir sont une manifestation nationale organisée par l'association Vaincre la Mucoviscidose pour informer sur la maladie.",
-  "tldr": null,
-  "category": "autre",
-  "tags": [],
-  "audience": [
-   "tous"
-  ],
-  "commune": "Bourgoin-Jallieu",
-  "address": "38300 Bourgoin-Jallieu, France",
-  "lat": 45.6025,
-  "lon": 5.2747,
-  "free": null,
-  "price_text": null,
-  "url": "https://www.monweekendalacapi.fr/agenda/evenements/virades-de-l-espoir",
-  "image": null,
-  "id": "virades-de-l-espoir-41151896"
  },
  {
   "title": "Rencontre autour du livre",
