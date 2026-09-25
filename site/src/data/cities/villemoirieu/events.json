@@ -1,28 +1,5 @@
 [
  {
-  "title": "Couture et petites fabrications de Brigitte",
-  "start": "2026-09-24T18:30:00",
-  "source_id": "html-cafe-crem",
-  "sector": "villemoirieu",
-  "end": "2026-09-24T20:30:00",
-  "description": "Atelier de couture et de petites fabrications manuelles.",
-  "tldr": null,
-  "category": "atelier",
-  "tags": [],
-  "audience": [
-   "tous"
-  ],
-  "commune": "Villemoirieu",
-  "address": "1 Parc d'activités du Buisson Rond, 38460 Villemoirieu",
-  "lat": 45.7138,
-  "lon": 5.2348,
-  "free": true,
-  "price_text": "Gratuit pour une première découverte, adhésion ensuite",
-  "url": "https://cafe-crem.fr/programme#couture-et-petites-fabrications-de-brigitte-1790233200000",
-  "image": null,
-  "id": "couture-et-petites-fabrications-de-brigitte-7dfab6a7"
- },
- {
   "title": "Atelier initiation à la création de site Web",
   "start": "2026-09-26T10:00:00",
   "source_id": "html-cafe-crem",
