@@ -160,6 +160,48 @@
   "id": "les-conserves-traditionnelles-canards-d657a613"
  },
  {
+  "name": "\"Tribunal des arts",
+  "category": "musee",
+  "source_id": "osm",
+  "sector": "pont-de-salars",
+  "external_id": "node/6376346063",
+  "description": "",
+  "tldr": null,
+  "tldr_key": "place:186f8a29300cd6ae1bc4ff291fcba322eb9ae2ed8dd6bd9d4494db788e856313",
+  "commune": null,
+  "address": null,
+  "lat": 43.9568088,
+  "lon": 2.8820778,
+  "url": null,
+  "phone": "+33 4 73 72 74 59",
+  "opening_hours": null,
+  "fee": null,
+  "rating": null,
+  "rating_count": null,
+  "rating_source": null,
+  "rating_url": null,
+  "unusual": false,
+  "unusual_hint": true,
+  "quality": [],
+  "providers": [
+   "osm",
+   "datatourisme"
+  ],
+  "image_url": "https://medias.hit.enaveyron.fr/fiches/12035/images/412682_f0e9091e-2f4e-49eb-bc65-c1ef5eeb185c/600.webp",
+  "image_credit": "Mairie de Saint-Affrique",
+  "image_page": "https://data.datatourisme.fr/31/9f5b83a8-10ca-3166-b0aa-11f672be1c6c",
+  "tags": [
+   "osm:tourism=museum",
+   "dt:Museum"
+  ],
+  "audience": [
+   "tous"
+  ],
+  "first_seen": "2026-08-02",
+  "last_seen": "2026-09-29",
+  "id": "tribunal-des-arts-f0ede663"
+ },
+ {
   "name": "\"Trophée Cabanac\" 2026",
   "category": "ludotheque",
   "source_id": "datatourisme",
@@ -236,7 +278,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "1789-arbres-de-la-liberte-088f3ade"
  },
  {
@@ -645,15 +687,15 @@
   "source_id": "osm",
   "sector": "pont-de-salars",
   "external_id": "node/2246640950",
-  "description": "L'Abbaye de Bonneval, datant du XIIe siècle, fut d'abord un monastère de moines cisterciens, puis abandonné à la révolution, les ruines sont relevées en 1875 par une communauté de cisterciennes.",
-  "tldr": "Visitez les ruines d’une abbaye cistercienne du XIIe siècle au Cayrol.",
+  "description": "",
+  "tldr": null,
   "tldr_key": "place:41c42b96367a985a78fe864a5ab5cc803b6d31bbb14aacfc018e8a8e5b1b1415",
-  "commune": "Le Cayrol",
-  "address": "Bonneval",
-  "lat": 44.56151204,
-  "lon": 2.79349049,
-  "url": "https://www.abbaye-bonneval.com/",
-  "phone": "+33 5 65 44 24 49",
+  "commune": null,
+  "address": null,
+  "lat": 44.5625233,
+  "lon": 2.7931381,
+  "url": null,
+  "phone": null,
   "opening_hours": null,
   "fee": null,
   "rating": null,
@@ -664,21 +706,21 @@
   "unusual_hint": true,
   "quality": [],
   "providers": [
-   "datatourisme",
-   "osm"
+   "osm",
+   "datatourisme"
   ],
   "image_url": "https://medias.hit.enaveyron.fr/fiches/17856/images/235729_2b0940c3-8913-4c25-8855-16a5dea0be9b/600.webp",
   "image_credit": "OFFICE DE TOURISME DU CANTON D'ESPALION",
   "image_page": "https://data.datatourisme.fr/31/ae8ec96e-1958-3235-8dca-9a6683e294b4",
   "tags": [
-   "dt:Church",
-   "osm:historic=monument"
+   "osm:historic=monument",
+   "dt:Church"
   ],
   "audience": [
    "tous"
   ],
   "first_seen": "2026-08-03",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "abbaye-de-bonneval-7b74a0e0"
  },
  {
@@ -3003,46 +3045,6 @@
   "id": "alavostra-artisan-de-l-apero-c46be6b6"
  },
  {
-  "name": "ALSH Réquista - Séjour nautique au lac du Val de Lenne",
-  "category": "nature",
-  "source_id": "datatourisme",
-  "sector": "pont-de-salars",
-  "external_id": "https://data.datatourisme.fr/31/f3280b17-44b0-3dc9-9225-0edddf01cee5",
-  "description": "5 jours d’aventure, de glisse et de nature au bord du lac !",
-  "tldr": "5 jours d’aventure nautique et de glisse au bord du lac du Val de Lenne.",
-  "tldr_key": "place:4b2fe1bdb105cd42f199ccda0c90dee136ff1e7debf5be398da91165497d1d4c",
-  "commune": "Réquista",
-  "address": null,
-  "lat": 44.03332339,
-  "lon": 2.53901122,
-  "url": null,
-  "phone": "+33 5 65 46 17 98",
-  "opening_hours": null,
-  "fee": null,
-  "rating": null,
-  "rating_count": null,
-  "rating_source": null,
-  "rating_url": null,
-  "unusual": false,
-  "unusual_hint": false,
-  "quality": [],
-  "providers": [
-   "datatourisme"
-  ],
-  "image_url": "https://medias.hit.enaveyron.fr/fiches/91545/images/1306770_7b778f09-a654-4e52-ada4-2210a856f17a/600.webp",
-  "image_credit": "Centre de loisirs du Réquistanais",
-  "image_page": "https://data.datatourisme.fr/31/f3280b17-44b0-3dc9-9225-0edddf01cee5",
-  "tags": [
-   "dt:Lake"
-  ],
-  "audience": [
-   "tous"
-  ],
-  "first_seen": "2026-08-02",
-  "last_seen": "2026-09-08",
-  "id": "alsh-requista-sejour-nautique-au-lac-du-val-de-lenne-57c770e5"
- },
- {
   "name": "Alzias et le Trésor de Belcastel",
   "category": "prestation",
   "source_id": "datatourisme",
@@ -3161,7 +3163,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "amphitheatre-de-rodez-d1bc32bb"
  },
  {
@@ -3281,7 +3283,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "ancien-four-a-pain-9f4c8a27"
  },
  {
@@ -3324,7 +3326,7 @@
    "tous"
   ],
   "first_seen": "2026-08-05",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "ancien-haras-national-de-rodez-8230a824"
  },
  {
@@ -3367,7 +3369,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "ancien-prieure-du-sauvage-cc7324d9"
  },
  {
@@ -3447,7 +3449,7 @@
    "tous"
   ],
   "first_seen": "2026-08-03",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "ange-de-la-resurrection-af1520d3"
  },
  {
@@ -4224,7 +4226,7 @@
    "tous"
   ],
   "first_seen": "2026-08-25",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "aqua-park-a743cfd5"
  },
  {
@@ -4544,7 +4546,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "arbre-de-vie-f73c2ecb"
  },
  {
@@ -9031,46 +9033,6 @@
   "id": "belote-3d2570e9"
  },
  {
-  "name": "Belote ESGM",
-  "category": "ludotheque",
-  "source_id": "datatourisme",
-  "sector": "pont-de-salars",
-  "external_id": "https://data.datatourisme.fr/31/87db8be0-dd68-3b52-a523-274b99120104",
-  "description": "A 20h30 à la salle des fêtes des Janenques.",
-  "tldr": null,
-  "tldr_key": null,
-  "commune": "Mayran",
-  "address": "14, chemin du Pommier roux",
-  "lat": 44.38724354,
-  "lon": 2.36959042,
-  "url": null,
-  "phone": null,
-  "opening_hours": null,
-  "fee": null,
-  "rating": null,
-  "rating_count": null,
-  "rating_source": null,
-  "rating_url": null,
-  "unusual": false,
-  "unusual_hint": false,
-  "quality": [],
-  "providers": [
-   "datatourisme"
-  ],
-  "image_url": "https://medias.hit.enaveyron.fr/fiches/22321/images/356394_53209ae7-c84c-4d16-99dd-6ae8dfb980b7/600.webp",
-  "image_credit": null,
-  "image_page": "https://data.datatourisme.fr/31/87db8be0-dd68-3b52-a523-274b99120104",
-  "tags": [
-   "dt:Game"
-  ],
-  "audience": [
-   "tous"
-  ],
-  "first_seen": "2026-08-04",
-  "last_seen": "2026-09-08",
-  "id": "belote-esgm-150dc4c9"
- },
- {
   "name": "Berges de Layoule",
   "category": "prestation",
   "source_id": "datatourisme",
@@ -9709,7 +9671,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "bowling-de-millau-88a61256"
  },
  {
@@ -10109,7 +10071,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "bshop-122b5ecc"
  },
  {
@@ -10909,7 +10871,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "buron-de-latreille-a5dd7c81"
  },
  {
@@ -11389,7 +11351,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "capueval-academie-equestre-0f99c7f0"
  },
  {
@@ -11471,7 +11433,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "caracals-21bbdff1"
  },
  {
@@ -11754,7 +11716,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "case-des-geants-ab1e729d"
  },
  {
@@ -11957,7 +11919,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "cathedrale-notre-dame-de-rodez-dfe01794"
  },
  {
@@ -12400,7 +12362,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "caves-roquefort-societe-3e99ed16"
  },
  {
@@ -12720,7 +12682,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "centre-culturel-aveyron-segala-viaur-e508606a"
  },
  {
@@ -13163,7 +13125,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "centre-equestre-du-moulinou-35cbb789"
  },
  {
@@ -13283,7 +13245,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "centre-equestre-municipal-de-saint-affrique-3a0dd832"
  },
  {
@@ -13565,7 +13527,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "cgr-rodez-8420970f"
  },
  {
@@ -13647,7 +13609,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "chaos-de-montpellier-le-vieux-7c38591f"
  },
  {
@@ -13850,7 +13812,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "chapelle-de-luzencon-831a7a0f"
  },
  {
@@ -14171,7 +14133,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "chapelle-du-saint-sacrement-b223086e"
  },
  {
@@ -14656,7 +14618,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "chapelle-saint-laurent-c1c1dbee"
  },
  {
@@ -15060,7 +15022,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "chateau-bas-de-montjaux-1b517e29"
  },
  {
@@ -15103,7 +15065,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "chateau-d-engayresque-b11e26fb"
  },
  {
@@ -15145,24 +15107,24 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "chateau-d-entraygues-38843b1e"
  },
  {
-  "name": "Château d'Estaing (groupes)",
+  "name": "Château d'Estaing",
   "category": "patrimoine",
   "source_id": "osm",
   "sector": "pont-de-salars",
   "external_id": "way/152361747",
-  "description": "Découverte du Château construit par les générations successives des Comtes d'Estaing (XIème-XVIIIème siècle) et exposition  « Valéry Giscard d'Estaing, un homme au service de la France et de l'Europe ».",
+  "description": "",
   "tldr": null,
   "tldr_key": null,
-  "commune": "Estaing",
-  "address": "Place François Annat",
-  "lat": 44.55390928,
-  "lon": 2.6725,
-  "url": "https://chateaudestaing.org/",
-  "phone": "+33 5 65 44 72 24",
+  "commune": null,
+  "address": null,
+  "lat": 44.5538077,
+  "lon": 2.672773,
+  "url": null,
+  "phone": null,
   "opening_hours": null,
   "fee": null,
   "rating": null,
@@ -15176,21 +15138,22 @@
    "notoriete"
   ],
   "providers": [
-   "datatourisme",
-   "osm"
+   "osm",
+   "datatourisme"
   ],
   "image_url": "https://medias.hit.enaveyron.fr/fiches/19329/images/282679_d2b2a7bd-3a72-433b-bb3e-85bd95394063/600.webp",
   "image_credit": "CHATEAU D'ESTAING",
   "image_page": "https://data.datatourisme.fr/31/543053fa-0275-3379-9e56-e3169bcfe33c",
   "tags": [
+   "osm:historic=castle",
    "dt:Castle"
   ],
   "audience": [
    "tous"
   ],
   "first_seen": "2026-08-03",
-  "last_seen": "2026-09-22",
-  "id": "chateau-d-estaing-groupes-7eaf1c27"
+  "last_seen": "2026-09-29",
+  "id": "chateau-d-estaing-7eaf1c27"
  },
  {
   "name": "Château d'Estaing - #JEP2026",
@@ -15271,7 +15234,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "chateau-d-is-ecd9d191"
  },
  {
@@ -15314,7 +15277,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "chateau-d-onet-le-chateau-3d7a3382"
  },
  {
@@ -15357,7 +15320,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "chateau-d-oustrac-604f8b16"
  },
  {
@@ -15400,7 +15363,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "chateau-de-balsac-03847e77"
  },
  {
@@ -15440,7 +15403,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "chateau-de-beaucaire-c66b8258"
  },
  {
@@ -15484,20 +15447,20 @@
   "id": "chateau-de-belcastel-19309f39"
  },
  {
-  "name": "CHATEAU DE BELCASTEL (groupes)",
+  "name": "Château de Belcastel",
   "category": "patrimoine",
   "source_id": "osm",
   "sector": "pont-de-salars",
   "external_id": "way/312417109",
-  "description": "Château médiéval du 11° Siècle : Joyau de pierre où l'art rencontre l'histoire.",
-  "tldr": "Découvrez un joyau médiéval du XIe siècle où l'art et l'histoire se rencontrent.",
+  "description": "",
+  "tldr": null,
   "tldr_key": "place:2fe7fccbb0828757d3a6eabfe80cbc3625e7ad771d988d0aaa2d6f7889472ccd",
-  "commune": "Belcastel",
-  "address": "Château de Belcastel",
-  "lat": 44.38884316,
-  "lon": 2.33596163,
+  "commune": null,
+  "address": null,
+  "lat": 44.3889448,
+  "lon": 2.3359889,
   "url": "http://www.chateaubelcastel.com/",
-  "phone": "+33 5 65 64 42 16",
+  "phone": null,
   "opening_hours": null,
   "fee": null,
   "rating": null,
@@ -15511,22 +15474,22 @@
    "notoriete"
   ],
   "providers": [
-   "datatourisme",
-   "osm"
+   "osm",
+   "datatourisme"
   ],
   "image_url": "https://medias.hit.enaveyron.fr/fiches/16393/images/823782_2a8de6c2-3eb3-49d8-8aa0-c0f7d35c1fbc/600.webp",
   "image_credit": "Château de Belcastel",
   "image_page": "https://data.datatourisme.fr/31/afd3c27b-fadf-3fdd-9e5c-e35a58758205",
   "tags": [
-   "dt:Castle",
-   "osm:historic=castle"
+   "osm:historic=castle",
+   "dt:Castle"
   ],
   "audience": [
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
-  "id": "chateau-de-belcastel-groupes-bb74d66d"
+  "last_seen": "2026-09-29",
+  "id": "chateau-de-belcastel-bb74d66d"
  },
  {
   "name": "Château de Bertholène",
@@ -15534,15 +15497,15 @@
   "source_id": "osm",
   "sector": "pont-de-salars",
   "external_id": "way/125631286",
-  "description": "Connu par les textes depuis le début du 12ème siècle, le château de Bertholène eut une position stratégique importante. Visite libre de la cour, tous les jours en été de 10h à 18h.",
-  "tldr": "Visitez librement la cour du château de Bertholène, témoin de 9 siècles d'histoire.",
+  "description": "",
+  "tldr": null,
   "tldr_key": "place:3e38cfeb9a29f08a16eda6d8fb37ec5a85b307dd7339192607c23cc3977b8cbf",
-  "commune": "Bertholène",
+  "commune": null,
   "address": null,
-  "lat": 44.3943,
-  "lon": 2.77912917,
-  "url": "https://www.causses-aubrac-tourisme.com/",
-  "phone": "+33 5 65 70 71 30",
+  "lat": 44.3954106,
+  "lon": 2.7793484,
+  "url": null,
+  "phone": null,
   "opening_hours": null,
   "fee": null,
   "rating": null,
@@ -15555,20 +15518,21 @@
    "notoriete"
   ],
   "providers": [
-   "datatourisme",
-   "osm"
+   "osm",
+   "datatourisme"
   ],
   "image_url": "https://medias.hit.enaveyron.fr/fiches/6332/images/69092_74f3cfc9-c905-41d3-b07f-ba897a004ccb/600.webp",
   "image_credit": "Office de Tourisme Des Causses à l'Aubrac",
   "image_page": "https://data.datatourisme.fr/31/4f0faf65-0c0f-3064-92e7-45f3bf607e07",
   "tags": [
+   "osm:historic=ruins",
    "dt:ArcheologicalSite"
   ],
   "audience": [
    "tous"
   ],
   "first_seen": "2026-08-25",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "chateau-de-bertholene-97bc90e6"
  },
  {
@@ -15611,25 +15575,25 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "chateau-de-bournazel-f79dce22"
  },
  {
-  "name": "Château de Brousse-le-Château",
+  "name": "Château de Brousse",
   "category": "patrimoine",
   "source_id": "osm",
   "sector": "pont-de-salars",
   "external_id": "way/980237998",
-  "description": "Véritable forteresse dont l’architecture défensive est clairement lisible : un donjon, une succession de tours incluses dans des remparts couronnés de mâchicoulis et percés de nombreuses meurtrières.",
-  "tldr": "Explorez une forteresse médiévale intacte avec donjon, remparts et mâchicoulis offrant une vue imprenable sur la vallée.",
+  "description": "",
+  "tldr": null,
   "tldr_key": "place:6c034a69fcfdc6a178be44ef2d638209f8bf1395bf5000d759e2f9ca2714bcc1",
-  "commune": "Brousse-le-Château",
-  "address": "Le Bourg",
-  "lat": 43.996666,
-  "lon": 2.62495,
-  "url": "http://www.brousselechateau.net/le-chateau-commune-de-brousse-le-chateau_fr.html",
+  "commune": null,
+  "address": null,
+  "lat": 43.9966751,
+  "lon": 2.6248791,
+  "url": "https://www.brousselechateau.net/le-chateau-commune-de-brousse-le-chateau_fr.html",
   "phone": "+33 5 65 99 45 40",
-  "opening_hours": "14:00-18:00 · 10:00-19:00 · 10:00-18:00 · 14:00-17:00",
+  "opening_hours": "Feb-Mar We-Su 14:00-17:00;Apr We-Su 14:00-18:00;May-Jun Mo-Su 14:00-18:00;Jul-Aug Mo-Su 10:00-19:00;Sep Mo-Su 14:00-18:00;Oct We-Su 14:00-18:00;Nov We-Su 14:00-17:00;Dec off",
   "fee": true,
   "rating": null,
   "rating_count": null,
@@ -15642,23 +15606,23 @@
    "notoriete"
   ],
   "providers": [
-   "datatourisme",
-   "osm"
+   "osm",
+   "datatourisme"
   ],
   "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Brousse_Le_Ch%C3%A2teau.jpg?width=960",
   "image_credit": "Wikimedia Commons",
   "image_page": "https://commons.wikimedia.org/wiki/File%3ABrousse_Le_Ch%C3%A2teau.jpg",
   "tags": [
+   "osm:historic=castle",
    "dt:Castle",
-   "dt:RemarkableBuilding",
-   "osm:historic=castle"
+   "dt:RemarkableBuilding"
   ],
   "audience": [
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
-  "id": "chateau-de-brousse-le-chateau-85b66f54"
+  "last_seen": "2026-09-29",
+  "id": "chateau-de-brousse-85b66f54"
  },
  {
   "name": "Château de Buzareingues",
@@ -15699,7 +15663,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "chateau-de-buzareingues-8e8b5a0c"
  },
  {
@@ -15708,15 +15672,15 @@
   "source_id": "osm",
   "sector": "pont-de-salars",
   "external_id": "node/4748575643",
-  "description": "Visite accompagnée du Château de Cabrespines.",
+  "description": "",
   "tldr": null,
   "tldr_key": null,
-  "commune": "Coubisou",
-  "address": "Cabrespines",
-  "lat": 44.58387309,
-  "lon": 2.71816662,
-  "url": "https://www.facebook.com/Coubisou",
-  "phone": "+33 5 65 44 40 11",
+  "commune": null,
+  "address": null,
+  "lat": 44.5838166,
+  "lon": 2.7181415,
+  "url": null,
+  "phone": null,
   "opening_hours": null,
   "fee": null,
   "rating": null,
@@ -15730,13 +15694,14 @@
    "notoriete"
   ],
   "providers": [
-   "datatourisme",
-   "osm"
+   "osm",
+   "datatourisme"
   ],
   "image_url": "https://medias.hit.enaveyron.fr/fiches/17363/images/217980_c8aa0e11-fe6f-4f03-a8aa-4ebba1310f52/600.webp",
   "image_credit": "OFFICE DE TOURISME DU CANTON D'ESTAING",
   "image_page": "https://data.datatourisme.fr/31/6302345c-e1c1-3afb-b743-95197bc0dfec",
   "tags": [
+   "osm:historic=castle",
    "dt:Castle",
    "dt:RemarkableBuilding"
   ],
@@ -15744,24 +15709,24 @@
    "tous"
   ],
   "first_seen": "2026-08-03",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "chateau-de-cabrespines-3f3f5221"
  },
  {
-  "name": "Château de Calmont d'Olt",
+  "name": "Château de Calmont-d'Olt",
   "category": "patrimoine",
   "source_id": "osm",
   "sector": "pont-de-salars",
   "external_id": "way/1469586823",
-  "description": "Le château fort de Calmont d'Olt domine de son sommet la ville d'Espalion et la vallée du Lot. En plus des nombreux jeux médiévaux et de la visite libre, le château propose des animations et spectacles adaptés aux petits comme aux grands !",
-  "tldr": "Visitez un château fort dominant Espalion, avec jeux médiévaux et animations pour plonger dans l’histoire vivante.",
+  "description": "",
+  "tldr": null,
   "tldr_key": "place:de36b3c3e9a6b445ae6de4a91de8a30de99b7f2c8e99ad2471398e9e262e4e6f",
-  "commune": "Espalion",
+  "commune": null,
   "address": null,
-  "lat": 44.5174,
-  "lon": 2.7527,
-  "url": "https://www.chateaucalmont.org/",
-  "phone": "+33 7 75 75 09 71",
+  "lat": 44.5178569,
+  "lon": 2.752718,
+  "url": "https://www.chateaucalmont.org",
+  "phone": null,
   "opening_hours": null,
   "fee": null,
   "rating": null,
@@ -15775,22 +15740,22 @@
    "notoriete"
   ],
   "providers": [
-   "datatourisme",
-   "osm"
+   "osm",
+   "datatourisme"
   ],
   "image_url": "https://medias.hit.enaveyron.fr/fiches/19997/images/300220_8565d206-81a8-44d8-a7db-ad0a2fb4ee28/600.webp",
   "image_credit": "Château de Calmont d'Olt",
   "image_page": "https://data.datatourisme.fr/31/09df7efa-1390-3d7d-8bee-2f5795547232",
   "tags": [
+   "osm:historic=castle",
    "dt:ArcheologicalSite",
-   "dt:DefenceSite",
-   "osm:historic=castle"
+   "dt:DefenceSite"
   ],
   "audience": [
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "chateau-de-calmont-d-olt-1c8f693b"
  },
  {
@@ -15832,7 +15797,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "chateau-de-camboulas-67c53af3"
  },
  {
@@ -15875,7 +15840,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "chateau-de-castelnau-pegayrols-39bf4639"
  },
  {
@@ -15917,7 +15882,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "chateau-de-combret-0796d24e"
  },
  {
@@ -15926,16 +15891,16 @@
   "source_id": "osm",
   "sector": "pont-de-salars",
   "external_id": "way/187544270",
-  "description": "Découvrez le château de Coupiac niché dans son écrin de verdure ! En Occitanie, dans le Sud Aveyron, Coupiac abrite un imposant château résidentiel à l’allure de forteresse médiévale qui date, pour l’essentiel, de la seconde moitié du 15e siècle.",
-  "tldr": "Admirez un château résidentiel médiéval niché dans un écrin de verdure, alliant allure de forteresse et charme paisible.",
+  "description": "",
+  "tldr": null,
   "tldr_key": "place:c4e11fa7a76cd58e3989dd33a40160329e74e2a3fb28a5af9d429c165d088d71",
-  "commune": "Coupiac",
-  "address": "6 place du Manège",
-  "lat": 43.95403,
-  "lon": 2.581211,
-  "url": "http://chateaudecoupiac.com/",
-  "phone": "+33 5 65 99 79 45",
-  "opening_hours": "14:00-18:00",
+  "commune": null,
+  "address": null,
+  "lat": 43.954119,
+  "lon": 2.5813252,
+  "url": null,
+  "phone": null,
+  "opening_hours": null,
   "fee": null,
   "rating": null,
   "rating_count": null,
@@ -15948,13 +15913,14 @@
    "notoriete"
   ],
   "providers": [
-   "datatourisme",
-   "osm"
+   "osm",
+   "datatourisme"
   ],
   "image_url": null,
   "image_credit": null,
   "image_page": null,
   "tags": [
+   "osm:historic=castle",
    "dt:Castle",
    "dt:RemarkableBuilding"
   ],
@@ -15962,7 +15928,7 @@
    "tous"
   ],
   "first_seen": "2026-08-03",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "chateau-de-coupiac-de37e4d2"
  },
  {
@@ -16045,7 +16011,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "chateau-de-creissels-3692543c"
  },
  {
@@ -16088,7 +16054,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "chateau-de-curieres-de-castelnau-781c4bb1"
  },
  {
@@ -16131,7 +16097,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "chateau-de-galinieres-8a4e6d32"
  },
  {
@@ -16176,20 +16142,20 @@
   "id": "chateau-de-galinieres-9c7d7352"
  },
  {
-  "name": "Château de La Boissonnade",
+  "name": "Château de la Boissonnade",
   "category": "patrimoine",
   "source_id": "osm",
   "sector": "pont-de-salars",
   "external_id": "way/179972165",
-  "description": "Monument historique privé. Des visites sont organisées en saison estivale. Vous aurez ainsi l'occasion de découvrir le château dans son contexte familial, régional et historique.",
-  "tldr": "Découvrez un château historique privé à Laguiole, ouvert en été pour des visites familiales et régionales.",
+  "description": "",
+  "tldr": null,
   "tldr_key": "place:ad24ecb769fb6583d3688ac446fc952c1248d9dc6be003fa758a096528515825",
-  "commune": "Laguiole",
-  "address": "Route de Cassuéjouls",
-  "lat": 44.7002,
-  "lon": 2.8331,
-  "url": "http://www.laboissonnade.com/",
-  "phone": "+33 6 16 54 63 69",
+  "commune": null,
+  "address": null,
+  "lat": 44.700202,
+  "lon": 2.833057,
+  "url": null,
+  "phone": null,
   "opening_hours": null,
   "fee": null,
   "rating": null,
@@ -16203,20 +16169,21 @@
    "notoriete"
   ],
   "providers": [
-   "datatourisme",
-   "osm"
+   "osm",
+   "datatourisme"
   ],
   "image_url": "https://medias.hit.enaveyron.fr/fiches/16913/images/454811_f1717960-9558-46c7-a585-1ad0cf1faf6d/600.webp",
   "image_credit": "Château de la Boissonnade",
   "image_page": "https://data.datatourisme.fr/31/12d19729-8855-3252-88c4-f282371d60ad",
   "tags": [
+   "osm:historic=castle",
    "dt:Castle"
   ],
   "audience": [
    "tous"
   ],
   "first_seen": "2026-08-03",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "chateau-de-la-boissonnade-802619f8"
  },
  {
@@ -16259,7 +16226,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "chateau-de-la-garde-ec5f6e08"
  },
  {
@@ -16301,7 +16268,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "chateau-de-la-servayrie-9d833d3a"
  },
  {
@@ -16310,15 +16277,15 @@
   "source_id": "osm",
   "sector": "pont-de-salars",
   "external_id": "way/121154573",
-  "description": "14h-18h Visite guidée de l'extérieur du château construit au début du XVIème siècle et du jardin, parc extérieur (durée environ 45 mn). Le château est inscrit sur l'Inventaire Supplémentaire des Monuments Historiques. Groupes sur rdv le matin.",
-  "tldr": "Explorez un château Renaissance et son jardin, inscrit à l’inventaire des monuments historiques.",
+  "description": "",
+  "tldr": null,
   "tldr_key": "place:3b5a16635a6d44c2fbd2ffff574b7a93cd0b498419c43684cf6bfbe7a6da7106",
-  "commune": "Salles-Curan",
-  "address": "Larguiès",
-  "lat": 44.19379004,
-  "lon": 2.80056154,
+  "commune": null,
+  "address": null,
+  "lat": 44.1937645,
+  "lon": 2.800596,
   "url": null,
-  "phone": "+33 6 62 42 08 76",
+  "phone": null,
   "opening_hours": null,
   "fee": null,
   "rating": null,
@@ -16332,20 +16299,21 @@
    "notoriete"
   ],
   "providers": [
-   "datatourisme",
-   "osm"
+   "osm",
+   "datatourisme"
   ],
   "image_url": "https://medias.hit.enaveyron.fr/fiches/20192/images/308415_b69cc1b1-428a-4b5e-8b9a-a668ea687826/600.webp",
   "image_credit": "OFFICE DE TOURISME DE PARELOUP LEVEZOU",
   "image_page": "https://data.datatourisme.fr/31/0eb6ff2c-3edf-31af-8a46-c2ebfb76c462",
   "tags": [
+   "osm:historic=castle",
    "dt:Castle"
   ],
   "audience": [
    "tous"
   ],
   "first_seen": "2026-08-03",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "chateau-de-larguies-99d6a6aa"
  },
  {
@@ -16385,7 +16353,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "chateau-de-lincou-beb0b982"
  },
  {
@@ -16428,7 +16396,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "chateau-de-loupiac-67e2db77"
  },
  {
@@ -16471,7 +16439,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "chateau-de-lugans-946b0f62"
  },
  {
@@ -16514,7 +16482,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "chateau-de-mas-rougier-88b0c002"
  },
  {
@@ -16557,7 +16525,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "chateau-de-masse-83cbeebe"
  },
  {
@@ -16566,15 +16534,15 @@
   "source_id": "osm",
   "sector": "pont-de-salars",
   "external_id": "relation/1687568",
-  "description": "Rare repaire (maison noble) du sud Rouergue du 14e s., évoluant au cours des 15e et 16e s.. Avec 4 corps de logis reliés entre eux par des tours (Tour Renaissance) formant une exceptionnelle cour intérieure à arcades. Visite de 17 pièces meublées.",
-  "tldr": "Admirez un rare repaire médiéval du Rouergue, avec sa cour intérieure exceptionnelle et ses tours Renaissance.",
+  "description": "",
+  "tldr": null,
   "tldr_key": "place:6bc7d4f5f58b040e1a11dbf5d2820c338b03dc080fd6b51ab3b7ceb3e2dc5f06",
-  "commune": "Saint-Rome-de-Cernon",
-  "address": "Mélac",
-  "lat": 44.0157305,
-  "lon": 3.00738574,
-  "url": "https://www.chateau-de-melac.com/",
-  "phone": "+33 5 65 62 31 38",
+  "commune": null,
+  "address": null,
+  "lat": 44.0157171,
+  "lon": 3.007239,
+  "url": null,
+  "phone": null,
   "opening_hours": null,
   "fee": null,
   "rating": null,
@@ -16588,20 +16556,21 @@
    "notoriete"
   ],
   "providers": [
-   "datatourisme",
-   "osm"
+   "osm",
+   "datatourisme"
   ],
   "image_url": "https://medias.hit.enaveyron.fr/fiches/20424/images/316937_a8b9d08a-b572-41df-94bf-8abd74c8a91b/600.webp",
   "image_credit": "château de Mélac",
   "image_page": "https://data.datatourisme.fr/31/66276f61-c5c8-3087-9c41-47ae70f81768",
   "tags": [
+   "osm:historic=castle",
    "dt:Castle"
   ],
   "audience": [
    "tous"
   ],
   "first_seen": "2026-08-03",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "chateau-de-melac-7facaa15"
  },
  {
@@ -16610,15 +16579,15 @@
   "source_id": "osm",
   "sector": "pont-de-salars",
   "external_id": "node/1409176052",
-  "description": "Plongez dans l'histoire en visitant ce château médiéval dominant le Rougier de Camarès et son paysage atypique. Découvrez son ancien village écomusée et vivez un moment de partage authentique en famille (Jeux et déguisements pour petits et grands)",
-  "tldr": "Visitez un château médiéval dominant un paysage atypique, accompagné de son village écomusée pour une immersion authentique.",
+  "description": "",
+  "tldr": null,
   "tldr_key": "place:31ba977fd39ca04491cb235e904af94fa7b977f2c065393f5a8582dc9904b64a",
-  "commune": "Gissac",
-  "address": "Montégut",
-  "lat": 43.88582916,
-  "lon": 2.88007885,
-  "url": "https://www.chateau-de-montaigut.com/",
-  "phone": "+33 5 65 99 81 50",
+  "commune": null,
+  "address": null,
+  "lat": 43.8859431,
+  "lon": 2.8799966,
+  "url": null,
+  "phone": null,
   "opening_hours": null,
   "fee": null,
   "rating": null,
@@ -16631,13 +16600,14 @@
    "notoriete"
   ],
   "providers": [
-   "datatourisme",
-   "osm"
+   "osm",
+   "datatourisme"
   ],
   "image_url": "https://medias.hit.enaveyron.fr/fiches/18015/images/239131_7ab8e7eb-1278-4121-9184-9bbca3a657ac/600.webp",
   "image_credit": "Foehn Photographie",
   "image_page": "https://data.datatourisme.fr/31/85250af0-f2ae-355d-b1f0-cca4e682de6a",
   "tags": [
+   "osm:historic=castle",
    "dt:DefenceSite",
    "dt:RemarkableBuilding"
   ],
@@ -16645,7 +16615,7 @@
    "tous"
   ],
   "first_seen": "2026-08-03",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "chateau-de-montaigut-cedb30eb"
  },
  {
@@ -16688,7 +16658,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "chateau-de-montalegre-80ae7b5d"
  },
  {
@@ -16730,7 +16700,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "chateau-de-montferrand-5592c23c"
  },
  {
@@ -16775,7 +16745,7 @@
    "tous"
   ],
   "first_seen": "2026-08-03",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "chateau-de-montjezieu-3852b594"
  },
  {
@@ -16818,7 +16788,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "chateau-de-montrozier-7a529982"
  },
  {
@@ -16861,7 +16831,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "chateau-de-mostuejouls-2f9139a9"
  },
  {
@@ -16904,24 +16874,24 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "chateau-de-panat-965d8656"
  },
  {
-  "name": "Château de Peyrelade (groupes)",
+  "name": "Château de Peyrelade",
   "category": "patrimoine",
   "source_id": "osm",
   "sector": "pont-de-salars",
   "external_id": "way/403581350",
-  "description": "Groupes, amis, associations, club et autres, le château de Peyrelade vous accueille pour  une visite guidée, libre ou en activité  !",
+  "description": "",
   "tldr": null,
   "tldr_key": null,
-  "commune": "Rivière-sur-Tarn",
-  "address": "Peyrelade",
-  "lat": 44.19497694,
-  "lon": 3.14842549,
+  "commune": null,
+  "address": null,
+  "lat": 44.194926,
+  "lon": 3.1479538,
   "url": null,
-  "phone": "+33 5 65 59 74 28",
+  "phone": null,
   "opening_hours": null,
   "fee": null,
   "rating": null,
@@ -16935,21 +16905,22 @@
    "notoriete"
   ],
   "providers": [
-   "datatourisme",
-   "osm"
+   "osm",
+   "datatourisme"
   ],
   "image_url": "https://medias.hit.enaveyron.fr/fiches/17427/images/808911_d1515830-088e-4cca-ae3b-f67cd4eea8de/600.webp",
   "image_credit": "Enzo Planes",
   "image_page": "https://data.datatourisme.fr/31/502122b5-0884-3880-a70f-d5eb99608118",
   "tags": [
+   "osm:historic=castle",
    "dt:Castle"
   ],
   "audience": [
    "tous"
   ],
   "first_seen": "2026-08-03",
-  "last_seen": "2026-09-22",
-  "id": "chateau-de-peyrelade-groupes-a5610d52"
+  "last_seen": "2026-09-29",
+  "id": "chateau-de-peyrelade-a5610d52"
  },
  {
   "name": "Château de Planèzes",
@@ -16991,7 +16962,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "chateau-de-planezes-2dbd7fc4"
  },
  {
@@ -17033,7 +17004,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "chateau-de-pomayrols-16ff3966"
  },
  {
@@ -17075,7 +17046,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "chateau-de-pruines-89841b7f"
  },
  {
@@ -17118,7 +17089,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "chateau-de-requista-34067eef"
  },
  {
@@ -17161,7 +17132,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "chateau-de-saint-beauzely-d7a81ab2"
  },
  {
@@ -17204,7 +17175,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "chateau-de-saint-geniez-de-bertrand-607d9fec"
  },
  {
@@ -17247,7 +17218,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "chateau-de-saint-izaire-1f5ca862"
  },
  {
@@ -17330,7 +17301,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "chateau-de-saint-saturnin-7ed042e2"
  },
  {
@@ -17339,15 +17310,15 @@
   "source_id": "osm",
   "sector": "pont-de-salars",
   "external_id": "relation/3139617",
-  "description": "Un site exceptionnel à découvrir à deux pas de l'A75, des gorges du Tarn et du Viaduc de Millau ! Entrez dans sa cour d'honneur, découvrez les vestiges des remparts et les remaniements de la Renaissance et émerveillez-vous devant le panorama unique.",
-  "tldr": "Explorez un site médiéval exceptionnel près du Viaduc de Millau, entre remparts et vestiges de la Renaissance.",
+  "description": "",
+  "tldr": null,
   "tldr_key": "place:c171931f42c349e468866e42998fa5c27446846eb3bd266d491b5a2f0b59ee02",
-  "commune": "Sévérac d'Aveyron",
+  "commune": null,
   "address": null,
-  "lat": 44.32289446,
-  "lon": 3.06876215,
-  "url": "https://www.severacdaveyron.fr/",
-  "phone": "+33 5 65 71 66 84",
+  "lat": 44.3228449,
+  "lon": 3.0685493,
+  "url": null,
+  "phone": null,
   "opening_hours": null,
   "fee": null,
   "rating": null,
@@ -17361,20 +17332,21 @@
    "notoriete"
   ],
   "providers": [
-   "datatourisme",
-   "osm"
+   "osm",
+   "datatourisme"
   ],
   "image_url": "https://medias.hit.enaveyron.fr/fiches/6020/images/66161_0f8e4dca-1fd4-4167-9109-da1cf9e288d5/600.webp",
   "image_credit": "Office de Tourisme des Causses à l'Aubrac",
   "image_page": "https://data.datatourisme.fr/31/5fc8341c-1355-304e-88bb-f5ccc0f9e05c",
   "tags": [
+   "osm:historic=castle",
    "dt:Castle"
   ],
   "audience": [
    "tous"
   ],
   "first_seen": "2026-08-03",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "chateau-de-severac-4743fc93"
  },
  {
@@ -17423,13 +17395,13 @@
   "source_id": "osm",
   "sector": "pont-de-salars",
   "external_id": "node/1918557461",
-  "description": "Château de Tholet : authenticité d'un héritage multiple : donjon, manoir et ferme.",
-  "tldr": "Visitez un château authentique mêlant donjon, manoir et ferme, reflet d’un héritage architectural multiple.",
+  "description": "",
+  "tldr": null,
   "tldr_key": "place:1ad1dd0fe5d18949a30c6cd475e30af9f9c702be98ecd245cd33b8d5035e5a02",
-  "commune": "Gabriac",
-  "address": "Tholet",
-  "lat": 44.45153,
-  "lon": 2.7783,
+  "commune": null,
+  "address": null,
+  "lat": 44.4515302,
+  "lon": 2.778355,
   "url": null,
   "phone": null,
   "opening_hours": null,
@@ -17445,13 +17417,14 @@
    "notoriete"
   ],
   "providers": [
-   "datatourisme",
-   "osm"
+   "osm",
+   "datatourisme"
   ],
   "image_url": "https://medias.hit.enaveyron.fr/fiches/5818/images/61097_e6d984ac-ef8b-4c26-ae98-5d2d39f34ab2/600.webp",
   "image_credit": "OFFICE DE TOURISME DE BOZOULS",
   "image_page": "https://data.datatourisme.fr/31/089caf7e-26e0-32e0-bbdd-1e6c76593658",
   "tags": [
+   "osm:historic=castle",
    "dt:Castle",
    "dt:RemarkableBuilding"
   ],
@@ -17459,7 +17432,7 @@
    "tous"
   ],
   "first_seen": "2026-08-03",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "chateau-de-tholet-6d0712b6"
  },
  {
@@ -17502,7 +17475,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "chateau-de-thuries-restes-du-b8e4b29c"
  },
  {
@@ -17545,7 +17518,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "chateau-de-triadou-48581403"
  },
  {
@@ -17587,7 +17560,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "chateau-de-vareilles-e0576bc7"
  },
  {
@@ -17629,7 +17602,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "chateau-de-verrieres-68ef9b1e"
  },
  {
@@ -17672,7 +17645,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "chateau-de-versols-d708ec97"
  },
  {
@@ -17756,7 +17729,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "chateau-de-vezins-de-levezou-fe1c18fd"
  },
  {
@@ -17801,7 +17774,7 @@
    "tous"
   ],
   "first_seen": "2026-08-03",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "chateau-de-vieillevie-32fe58f2"
  },
  {
@@ -17810,15 +17783,15 @@
   "source_id": "osm",
   "sector": "pont-de-salars",
   "external_id": "way/173689811",
-  "description": "Partez à la découverte du Domaine des Bourines, et de son château, vaste domaine agricole dont les premières constructions datent du XIIème siècle. Des visites guidées auront lieu l'été (renseignements au 05 65 70 71 30).",
-  "tldr": "Parcourez un domaine agricole médiéval de 800 ans, avec château et visites guidées pour plonger dans le passé.",
+  "description": "",
+  "tldr": null,
   "tldr_key": "place:7668b4f2aedd8cecd5a516e93225756df3a564a84cba2268294c118ba566fa68",
-  "commune": "Bertholène",
-  "address": "Les Bourines",
-  "lat": 44.41894626,
-  "lon": 2.80922657,
-  "url": "https://www.causses-aubrac-tourisme.com/",
-  "phone": "+33 5 65 70 71 30",
+  "commune": null,
+  "address": null,
+  "lat": 44.4187894,
+  "lon": 2.8095398,
+  "url": "http://www.chateaudesbourines.com/",
+  "phone": null,
   "opening_hours": null,
   "fee": null,
   "rating": null,
@@ -17832,20 +17805,21 @@
    "notoriete"
   ],
   "providers": [
-   "datatourisme",
-   "osm"
+   "osm",
+   "datatourisme"
   ],
   "image_url": "https://medias.hit.enaveyron.fr/fiches/19606/images/287974_a8d4e69b-cf68-4cf3-ab13-d2f5045c91cf/600.webp",
   "image_credit": "Office de Tourisme des Causses à l'Aubrac - A.Méravilles",
   "image_page": "https://data.datatourisme.fr/31/1faa2d5e-8c05-3afb-ae60-49bf70d602f8",
   "tags": [
+   "osm:historic=castle",
    "dt:Castle"
   ],
   "audience": [
    "tous"
   ],
   "first_seen": "2026-08-03",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "chateau-des-bourines-d0ea66b3"
  },
  {
@@ -17967,7 +17941,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "chateau-des-vernhettes-1c945a2d"
  },
  {
@@ -18010,7 +17984,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "chateau-du-bosc-3accb2bf"
  },
  {
@@ -18095,7 +18069,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "chateau-du-bousquet-a7e8ffbb"
  },
  {
@@ -18138,7 +18112,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "chateau-du-colombier-9f8c9334"
  },
  {
@@ -18181,7 +18155,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "chateau-du-mejanel-42bfb74c"
  },
  {
@@ -18348,7 +18322,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "chevaux-au-vent-f26100b8"
  },
  {
@@ -18390,7 +18364,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "chevres-girgentana-24d2224d"
  },
  {
@@ -18472,7 +18446,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "cimetiere-de-mauriac-ad8494dc"
  },
  {
@@ -18514,7 +18488,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "cinema-de-requista-f74ceef1"
  },
  {
@@ -18554,7 +18528,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "cinema-de-salles-curan-ee6ad900"
  },
  {
@@ -18716,7 +18690,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "cinema-pour-tous-1b7e501b"
  },
  {
@@ -18756,7 +18730,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "cinemillau-644e9c7d"
  },
  {
@@ -23560,7 +23534,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "clapas-de-thubies-e10692e6"
  },
  {
@@ -23722,7 +23696,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "coatis-roux-654b9530"
  },
  {
@@ -24202,7 +24176,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "commanderie-templiere-et-hospitaliere-1e26d81d"
  },
  {
@@ -24802,7 +24776,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "conservatoire-regional-du-chataignier-bdf603c6"
  },
  {
@@ -24884,7 +24858,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "cooperative-fromagere-jeune-montagne-e1f2d93d"
  },
  {
@@ -27924,7 +27898,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "dolmen-ef22d3df"
  },
  {
@@ -27964,7 +27938,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "dolmen-e29883fe"
  },
  {
@@ -28006,7 +27980,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "dolmen-d-agastous-8444fb62"
  },
  {
@@ -28048,7 +28022,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "dolmen-d-hermilix-02314dbb"
  },
  {
@@ -28090,7 +28064,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "dolmen-de-becours-880ab6bc"
  },
  {
@@ -28132,7 +28106,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "dolmen-de-betpaumes-0cb1872a"
  },
  {
@@ -28172,7 +28146,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "dolmen-de-bezonnes-b-b77717bd"
  },
  {
@@ -28214,7 +28188,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "dolmen-de-boussac-ouest-2028242d"
  },
  {
@@ -28256,7 +28230,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "dolmen-de-bouzinhac-d2da6880"
  },
  {
@@ -28296,7 +28270,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "dolmen-de-buzareingues-fbd63f54"
  },
  {
@@ -28338,7 +28312,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "dolmen-de-campeyroux-8d75e829"
  },
  {
@@ -28380,7 +28354,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "dolmen-de-combuejouls-55d7a3cf"
  },
  {
@@ -28423,7 +28397,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "dolmen-de-concoules-a-a66eaab0"
  },
  {
@@ -28465,7 +28439,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "dolmen-de-concoules-b-5b59a590"
  },
  {
@@ -28507,7 +28481,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "dolmen-de-coste-plane-ea8facc6"
  },
  {
@@ -28549,7 +28523,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "dolmen-de-crassous-0c0802c9"
  },
  {
@@ -28589,7 +28563,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "dolmen-de-gagnac-a-aef1e13c"
  },
  {
@@ -28631,7 +28605,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "dolmen-de-gaoudaret-fd0a67ea"
  },
  {
@@ -28671,7 +28645,7 @@
    "tous"
   ],
   "first_seen": "2026-08-25",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "dolmen-de-grioudas-f-4e637a7b"
  },
  {
@@ -28714,7 +28688,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "dolmen-de-la-fabiere-20904b4f"
  },
  {
@@ -28754,7 +28728,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "dolmen-de-la-jasse-rouge-c305ce2a"
  },
  {
@@ -28796,7 +28770,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "dolmen-de-la-plaine-28e4f02e"
  },
  {
@@ -28838,7 +28812,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "dolmen-de-la-tacherie-2ecc2433"
  },
  {
@@ -28881,7 +28855,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "dolmen-de-la-vitarelle-iii-41a81c7b"
  },
  {
@@ -28923,7 +28897,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "dolmen-de-la-vitarelle-iv-e80c5c7a"
  },
  {
@@ -28963,7 +28937,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "dolmen-de-lugans-a-c7c7984f"
  },
  {
@@ -29003,7 +28977,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "dolmen-de-lugans-b-a60d1090"
  },
  {
@@ -29046,7 +29020,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "dolmen-de-perignagol-a-3b00f1c8"
  },
  {
@@ -29089,7 +29063,7 @@
    "tous"
   ],
   "first_seen": "2026-08-25",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "dolmen-de-peyrelebade-b-1f313f7c"
  },
  {
@@ -29171,7 +29145,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "dolmen-de-pinsac-5507159d"
  },
  {
@@ -29213,7 +29187,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "dolmen-de-recoules-de-l-hom-02eea560"
  },
  {
@@ -29253,7 +29227,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "dolmen-de-saint-antonin-66ca71fe"
  },
  {
@@ -29296,7 +29270,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "dolmen-de-saint-antonin-ou-de-farrals-f3345032"
  },
  {
@@ -29338,7 +29312,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "dolmen-de-saint-martin-du-larzac-abdfdc0d"
  },
  {
@@ -29381,7 +29355,7 @@
    "tous"
   ],
   "first_seen": "2026-08-25",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "dolmen-de-saplous-a-1e75fdef"
  },
  {
@@ -29423,7 +29397,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "dolmen-de-sermeillets-24570a7a"
  },
  {
@@ -29466,7 +29440,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "dolmen-de-seveyrac-89630cde"
  },
  {
@@ -29506,7 +29480,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "dolmen-de-sirandels-0de21f8e"
  },
  {
@@ -29548,7 +29522,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "dolmen-de-sonnac-939a4ebf"
  },
  {
@@ -29591,7 +29565,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "dolmen-de-surguieres-a-13bedc63"
  },
  {
@@ -29631,7 +29605,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "dolmen-de-surguieres-c-bcdfc4ea"
  },
  {
@@ -29673,7 +29647,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "dolmen-de-taurine-64bbe317"
  },
  {
@@ -29716,7 +29690,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "dolmen-de-tiergues-ed7ce049"
  },
  {
@@ -29758,7 +29732,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "dolmen-de-vitarelle-b-70e37c3d"
  },
  {
@@ -29798,7 +29772,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "dolmen-des-cayroules-b-5ceefb04"
  },
  {
@@ -29840,7 +29814,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "dolmen-des-fadarelles-97c2327e"
  },
  {
@@ -29880,7 +29854,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "dolmen-des-vayssettes-d-150f4066"
  },
  {
@@ -29923,7 +29897,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "dolmen-du-genevrier-66f392d4"
  },
  {
@@ -29965,7 +29939,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "dolmen-du-planard-556ada0a"
  },
  {
@@ -30008,7 +29982,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "dolmen-du-puech-de-la-serre-9297b01a"
  },
  {
@@ -30050,7 +30024,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "dolmen-du-roc-de-la-francoune-dolmen-de-bezonnes-a-7adb3dc3"
  },
  {
@@ -30092,7 +30066,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "dolmen-du-sot-89dc44ea"
  },
  {
@@ -30413,7 +30387,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "domaine-de-mezeyrac-c42fd415"
  },
  {
@@ -30573,7 +30547,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "domaine-de-puech-maynade-e76fc848"
  },
  {
@@ -31014,7 +30988,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "double-don-du-rosaire-9ab7add2"
  },
  {
@@ -31174,7 +31148,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "duologue-e1ca49fe"
  },
  {
@@ -31574,7 +31548,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "ecuries-de-briounas-c63586a2"
  },
  {
@@ -32061,7 +32035,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "eglise-de-la-cene-ou-saint-amans-533a77e0"
  },
  {
@@ -33037,7 +33011,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "eglise-du-gua-64b7570b"
  },
  {
@@ -34984,7 +34958,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "eglise-troglodyte-4448e128"
  },
  {
@@ -35666,7 +35640,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "ermitage-saint-pierre-8ab9e23c"
  },
  {
@@ -36028,7 +36002,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "escape-occitanie-a4ba773d"
  },
  {
@@ -36152,6 +36126,49 @@
   "id": "espace-archeologique-departemental-de-montrozier-1bd41159"
  },
  {
+  "name": "Espace botanique Hippolyte Coste",
+  "category": "musee",
+  "source_id": "osm",
+  "sector": "pont-de-salars",
+  "external_id": "node/4325011568",
+  "description": "",
+  "tldr": null,
+  "tldr_key": "place:3e7cbab42f877459c752d79a9692c734beb37f5a686444b20cb87bcddedda9a7",
+  "commune": null,
+  "address": null,
+  "lat": 43.9311977,
+  "lon": 3.0707454,
+  "url": "https://www.tourisme-stjeanstpaul.com/l-espace-coste/",
+  "phone": null,
+  "opening_hours": null,
+  "fee": null,
+  "rating": null,
+  "rating_count": null,
+  "rating_source": null,
+  "rating_url": null,
+  "unusual": false,
+  "unusual_hint": true,
+  "quality": [],
+  "providers": [
+   "osm",
+   "datatourisme"
+  ],
+  "image_url": "https://medias.hit.enaveyron.fr/fiches/19276/images/282268_07dbc34a-b42b-4053-9a93-00058d440680/600.webp",
+  "image_credit": "OFFICE DE TOURISME LARZAC VALLEES",
+  "image_page": "https://data.datatourisme.fr/31/bb71cfb3-e5a0-328e-b64a-c484324b7a43",
+  "tags": [
+   "osm:tourism=museum",
+   "dt:InterpretationCentre",
+   "dt:Museum"
+  ],
+  "audience": [
+   "tous"
+  ],
+  "first_seen": "2026-08-02",
+  "last_seen": "2026-09-29",
+  "id": "espace-botanique-hippolyte-coste-af925183"
+ },
+ {
   "name": "Espace Charles de Louvrié",
   "category": "musee",
   "source_id": "osm",
@@ -36188,7 +36205,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "espace-charles-de-louvrie-3bbe4e32"
  },
  {
@@ -36353,20 +36370,20 @@
   "id": "espace-edf-truyere-de-couesques-groupes-285c114e"
  },
  {
-  "name": "ESPACE GEORGES ROUQUIER",
+  "name": "Espace Georges Rouquier",
   "category": "musee",
   "source_id": "osm",
   "sector": "pont-de-salars",
   "external_id": "way/193857832",
-  "description": "Un musée dédié à un cinéaste, unique en France.",
-  "tldr": "Plongez dans l'univers unique du cinéaste Georges Rouquier, seul musée dédié en France.",
+  "description": "",
+  "tldr": null,
   "tldr_key": "place:c0056ac8ec93733ed442e025541907e2cabd8655ff3e1dcc9933abb710d426c1",
-  "commune": "Goutrens",
-  "address": "62 Place de l'église St Amans",
-  "lat": 44.44234083,
-  "lon": 2.37104952,
-  "url": "http://www.espacegeorgesrouquier.fr/",
-  "phone": "+33 5 65 42 19 89",
+  "commune": null,
+  "address": null,
+  "lat": 44.4421844,
+  "lon": 2.3710997,
+  "url": "https://www.espacegeorgesrouquier.fr/",
+  "phone": null,
   "opening_hours": null,
   "fee": null,
   "rating": null,
@@ -36377,20 +36394,21 @@
   "unusual_hint": true,
   "quality": [],
   "providers": [
-   "datatourisme",
-   "osm"
+   "osm",
+   "datatourisme"
   ],
   "image_url": "https://medias.hit.enaveyron.fr/fiches/22169/images/354831_bd326418-8055-4661-998e-12d5c5772f0a/600.webp",
   "image_credit": null,
   "image_page": "https://data.datatourisme.fr/31/d01c780c-9cad-3ac9-a1e1-b30ab9630bab",
   "tags": [
+   "osm:tourism=museum",
    "dt:Museum"
   ],
   "audience": [
    "tous"
   ],
   "first_seen": "2026-08-03",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "espace-georges-rouquier-09776ddb"
  },
  {
@@ -36470,7 +36488,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "espace-marcelle-cayron-7f19d853"
  },
  {
@@ -37110,7 +37128,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "eugene-viala-b85fdeb1"
  },
  {
@@ -37150,7 +37168,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "eulalie-d-art-1a145c7e"
  },
  {
@@ -37674,46 +37692,6 @@
   "id": "explonature-via-ferrata-f40d1527"
  },
  {
-  "name": "EXPO AU MUSÉE SOULAGES : HIROSHI SUGIMOTO. REPRENDRE LA MÉLODIE",
-  "category": "visite",
-  "source_id": "datatourisme",
-  "sector": "pont-de-salars",
-  "external_id": "https://data.datatourisme.fr/31/29eccead-7fa9-364f-b248-28799a007e4a",
-  "description": "Le musée Soulages expose l’un des photographes majeurs de notre époque, Hiroshi Sugimoto, né en 1948 à Tokyo.\nL’œuvre photographique d’Hiroshi Sugimoto, débutée dans les années 1970 aux États-Unis où il s’installe, est portée par une approche philosophique du temps, immémorial et millénaire, ainsi que par une quête des origines qui nourrit également la création de Pierre Soulages.\nAu-delà de cette conception commune, Soulages et Sugimoto partagent une même préoccupation pour la lumière et les ombres, un intérêt formel pour la ligne d’horizon, l’espace et le déploiement de l’œuvre, ainsi qu’un ",
-  "tldr": "Admirez les photographies contemplatives de Hiroshi Sugimoto, maître de la lumière et du temps.",
-  "tldr_key": "place:376bab8f521f2a2c538b4de44a091820426444fe054acde0b3335adb685d6e61",
-  "commune": "Rodez",
-  "address": "Jardin du Foirail",
-  "lat": 44.3519,
-  "lon": 2.5681,
-  "url": "https://www.facebook.com/museesoulages",
-  "phone": null,
-  "opening_hours": null,
-  "fee": null,
-  "rating": null,
-  "rating_count": null,
-  "rating_source": null,
-  "rating_url": null,
-  "unusual": false,
-  "unusual_hint": false,
-  "quality": [],
-  "providers": [
-   "datatourisme"
-  ],
-  "image_url": "https://medias.hit.enaveyron.fr/fiches/53150/images/1272024_32b1e682-994a-4037-bcd1-f29f1a645e54/600.webp",
-  "image_credit": "Hiroshi Sugimoto",
-  "image_page": "https://data.datatourisme.fr/31/29eccead-7fa9-364f-b248-28799a007e4a",
-  "tags": [
-   "dt:Visit"
-  ],
-  "audience": [
-   "tous"
-  ],
-  "first_seen": "2026-08-04",
-  "last_seen": "2026-09-08",
-  "id": "expo-au-musee-soulages-hiroshi-sugimoto-reprendre-la-melodie-030400b3"
- },
- {
   "name": "Exposition \" Mirages et miracles \", Musée de Millau, MUMIG",
   "category": "visite",
   "source_id": "datatourisme",
@@ -37752,46 +37730,6 @@
   "first_seen": "2026-08-04",
   "last_seen": "2026-09-22",
   "id": "exposition-mirages-et-miracles-musee-de-millau-mumig-d8f1e59a"
- },
- {
-  "name": "Exposition \"Les Moss People explorent le monde de l'art !\"",
-  "category": "visite",
-  "source_id": "datatourisme",
-  "sector": "pont-de-salars",
-  "external_id": "https://data.datatourisme.fr/31/9ca4a9bf-170f-36e9-9be6-f1614495f068",
-  "description": "Artiste Kim Simonsson",
-  "tldr": "Admirez les sculptures de Kim Simonsson et explorez un univers artistique décalé et poétique.",
-  "tldr_key": "place:9ebdffda4e29a3da42c784ff7008d195aa47a2c93e0c7fb0140cdd641aea898b",
-  "commune": "Le Fel",
-  "address": "Poterie du Don",
-  "lat": 44.67169723,
-  "lon": 2.51558483,
-  "url": null,
-  "phone": null,
-  "opening_hours": null,
-  "fee": null,
-  "rating": null,
-  "rating_count": null,
-  "rating_source": null,
-  "rating_url": null,
-  "unusual": true,
-  "unusual_hint": false,
-  "quality": [],
-  "providers": [
-   "datatourisme"
-  ],
-  "image_url": "https://medias.hit.enaveyron.fr/fiches/41549/images/872168_a1cfb436-3915-4fc1-8152-cd7b6818e29f/600.webp",
-  "image_credit": "moss people",
-  "image_page": "https://data.datatourisme.fr/31/9ca4a9bf-170f-36e9-9be6-f1614495f068",
-  "tags": [
-   "dt:Visit"
-  ],
-  "audience": [
-   "tous"
-  ],
-  "first_seen": "2026-08-04",
-  "last_seen": "2026-09-08",
-  "id": "exposition-les-moss-people-explorent-le-monde-de-l-art-538c0301"
  },
  {
   "name": "Exposition : Arts graphiques contemporains",
@@ -38316,6 +38254,49 @@
   "id": "ferme-de-la-borde-fd3c229c"
  },
  {
+  "name": "Ferme de la Borie Haute",
+  "category": "ferme",
+  "source_id": "osm",
+  "sector": "pont-de-salars",
+  "external_id": "node/14122397669",
+  "description": "",
+  "tldr": null,
+  "tldr_key": "place:083515332e361c797e2e4be81bca556a7d56d29ae7c3f99a58f28ab2c1969abc",
+  "commune": null,
+  "address": null,
+  "lat": 44.7017984,
+  "lon": 2.7047704,
+  "url": null,
+  "phone": null,
+  "opening_hours": "Mo,Fr 09:15-12:30",
+  "fee": null,
+  "rating": null,
+  "rating_count": null,
+  "rating_source": null,
+  "rating_url": null,
+  "unusual": false,
+  "unusual_hint": true,
+  "quality": [],
+  "providers": [
+   "osm",
+   "datatourisme"
+  ],
+  "image_url": "https://medias.hit.enaveyron.fr/fiches/19567/images/287758_c8cc3923-9dd1-41a0-b8f4-fad05d1b9d0e/600.webp",
+  "image_credit": "Office de Tourisme en Aubrac",
+  "image_page": "https://data.datatourisme.fr/31/ad0a3558-cda6-3c07-a11c-f71473e32014",
+  "tags": [
+   "osm:shop=farm",
+   "dt:Farm",
+   "dt:Producer"
+  ],
+  "audience": [
+   "tous"
+  ],
+  "first_seen": "2026-08-02",
+  "last_seen": "2026-09-29",
+  "id": "ferme-de-la-borie-haute-24d65770"
+ },
+ {
   "name": "Ferme de Mayrinhac",
   "category": "ferme",
   "source_id": "datatourisme",
@@ -38593,7 +38574,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "ferme-du-mulet-a8cba7a5"
  },
  {
@@ -38842,15 +38823,15 @@
   "source_id": "osm",
   "sector": "pont-de-salars",
   "external_id": "node/6396177256",
-  "description": "Vente directe à la ferme de viande de bœuf (race Aubrac) au détail ou en colis. Livraison de colis à domicile dans toute la France. Voir horaires d'ouverture sur notre site ou nous contacter.",
-  "tldr": "Achetez ou faites livrer de la viande de bœuf Aubrac directement à la ferme, en colis ou au détail.",
+  "description": "Vente directe au détail de bœuf et veaux Aubrac",
+  "tldr": null,
   "tldr_key": "place:7b184b3f06524662b82e78044832e6d3e71d25796b4038ce1a308aab16970f7e",
-  "commune": "Laguiole",
-  "address": "Les Clauzades",
-  "lat": 44.70456843,
-  "lon": 2.84064158,
-  "url": "https://www.facebook.com/montagnette.aubrac",
-  "phone": "+33 6 38 74 75 89",
+  "commune": null,
+  "address": null,
+  "lat": 44.7045752,
+  "lon": 2.8406309,
+  "url": null,
+  "phone": "+33638747589",
   "opening_hours": null,
   "fee": null,
   "rating": null,
@@ -38861,21 +38842,21 @@
   "unusual_hint": true,
   "quality": [],
   "providers": [
-   "datatourisme",
-   "osm"
+   "osm",
+   "datatourisme"
   ],
   "image_url": "https://medias.hit.enaveyron.fr/fiches/23635/images/559844_ee625b1d-cfc2-4ede-88bd-90fc3723b3ea/600.webp",
   "image_credit": "FermeLaMontagnette",
   "image_page": "https://data.datatourisme.fr/31/b69c814b-a3c2-3701-b647-92cc4ab9bdc7",
   "tags": [
-   "dt:Producer",
-   "osm:shop=farm"
+   "osm:shop=farm",
+   "dt:Producer"
   ],
   "audience": [
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "ferme-la-montagnette-8041e006"
  },
  {
@@ -38955,7 +38936,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "ferme-moulini-28c45cfd"
  },
  {
@@ -39076,7 +39057,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "ferme-seguin-342e616e"
  },
  {
@@ -39441,46 +39422,6 @@
   "id": "fete-des-chataignes-0a814dd2"
  },
  {
-  "name": "Fête du sport",
-  "category": "sport-loisir",
-  "source_id": "datatourisme",
-  "sector": "pont-de-salars",
-  "external_id": "https://data.datatourisme.fr/31/12c58e8a-5b54-35c8-8bad-99c0ff82919c",
-  "description": "31ème fête du sport et de la famille. Activités pour toute la famille au Hall Polyvalent et au stade. Au programme\n13 h 30 randonnée VTT, départ au Hall Polyvalent. 12 et 20 km. Port du caque obligatoire pour les enfants jusqu’à 12 ans et vivement conseillé pour tous.\n14 h randonnée pédestre et trail en joëlettes, départ du Hall Polyvalent pour 6 ou 12 km.\nTout enfant doit être accompagné par un adulte qui en est responsable. Ouverture des inscriptions 15 min avant le départ. \nDe 15 h 30 à 17 h 30 ateliers découverte : aïkido, baby gym, badminton, cirque, foot, cécifoot, judo, méditation, pila",
-  "tldr": null,
-  "tldr_key": null,
-  "commune": "Lanuéjouls",
-  "address": null,
-  "lat": 44.4248,
-  "lon": 2.1611,
-  "url": null,
-  "phone": "+33 5 65 80 45 47",
-  "opening_hours": null,
-  "fee": null,
-  "rating": null,
-  "rating_count": null,
-  "rating_source": null,
-  "rating_url": null,
-  "unusual": false,
-  "unusual_hint": false,
-  "quality": [],
-  "providers": [
-   "datatourisme"
-  ],
-  "image_url": "https://medias.hit.enaveyron.fr/fiches/93302/images/1332945_9d0e6bf4-e2da-47ac-a632-d693a0c00d07/600.webp",
-  "image_credit": "CSPM",
-  "image_page": "https://data.datatourisme.fr/31/12c58e8a-5b54-35c8-8bad-99c0ff82919c",
-  "tags": [
-   "dt:Rambling"
-  ],
-  "audience": [
-   "tous"
-  ],
-  "first_seen": "2026-08-11",
-  "last_seen": "2026-09-08",
-  "id": "fete-du-sport-28bb96b9"
- },
- {
   "name": "Fly Millau Parapente",
   "category": "prestation",
   "source_id": "datatourisme",
@@ -39557,7 +39498,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "foirail-aux-brebis-d05c6536"
  },
  {
@@ -39959,46 +39900,6 @@
   "first_seen": "2026-08-04",
   "last_seen": "2026-09-22",
   "id": "foire-mensuelle-7b6d4e81"
- },
- {
-  "name": "Foire Mensuelle à Réquista",
-  "category": "marche",
-  "source_id": "datatourisme",
-  "sector": "pont-de-salars",
-  "external_id": "https://data.datatourisme.fr/31/19ec27ae-bac8-3867-bc69-52b902bdfb9f",
-  "description": "Un RDV  incontournable !",
-  "tldr": "Rendez-vous incontournable chaque mois à Réquista pour un marché riche en produits et rencontres.",
-  "tldr_key": "place:6556e672e89b8f7c82ebf52571b978288d32ca815e9292376a40283fe5237363",
-  "commune": "Réquista",
-  "address": null,
-  "lat": 44.03199361,
-  "lon": 2.53558736,
-  "url": "https://www.requista.fr/",
-  "phone": "+33 5 65 74 02 39",
-  "opening_hours": null,
-  "fee": null,
-  "rating": null,
-  "rating_count": null,
-  "rating_source": null,
-  "rating_url": null,
-  "unusual": false,
-  "unusual_hint": false,
-  "quality": [],
-  "providers": [
-   "datatourisme"
-  ],
-  "image_url": "https://medias.hit.enaveyron.fr/fiches/4482/images/38484_8013ac7a-a25a-4e46-bc64-8326647ea92a/600.webp",
-  "image_credit": "OFFICE DE TOURISME DU REQUISTANAIS",
-  "image_page": "https://data.datatourisme.fr/31/19ec27ae-bac8-3867-bc69-52b902bdfb9f",
-  "tags": [
-   "dt:Market"
-  ],
-  "audience": [
-   "tous"
-  ],
-  "first_seen": "2026-08-04",
-  "last_seen": "2026-09-08",
-  "id": "foire-mensuelle-a-requista-6c2bf308"
  },
  {
   "name": "Foire mensuelle St Cyprien",
@@ -40917,7 +40818,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "gaec-de-montredon-2dfd6597"
  },
  {
@@ -41397,7 +41298,7 @@
    "tous"
   ],
   "first_seen": "2026-09-01",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "galerie-le-taureau-f99f19c1"
  },
  {
@@ -41519,7 +41420,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "galerie-sainte-catherine-ba584092"
  },
  {
@@ -41679,7 +41580,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "general-jean-joseph-tarayre-9819a74e"
  },
  {
@@ -41719,7 +41620,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "general-san-martin-e859c900"
  },
  {
@@ -42122,7 +42023,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "gisement-prehistorique-du-rescoundudou-0968f467"
  },
  {
@@ -42204,7 +42105,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "golf-des-gorges-du-tarn-6b6703ac"
  },
  {
@@ -42246,7 +42147,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "golf-du-grand-rodez-2c445998"
  },
  {
@@ -42488,7 +42389,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "grands-corbeaux-222621c6"
  },
  {
@@ -42531,7 +42432,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "grange-monastique-de-seveyrac-d002fae6"
  },
  {
@@ -43097,7 +42998,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "halle-de-millau-383c266d"
  },
  {
@@ -43501,46 +43402,6 @@
   "id": "horizon-millau-parapente-970bc6ab"
  },
  {
-  "name": "Hortilocal : visite d’un maraîchage et pépinière dans un arboretum",
-  "category": "visite",
-  "source_id": "datatourisme",
-  "sector": "pont-de-salars",
-  "external_id": "https://data.datatourisme.fr/31/3fac3845-b106-3734-bbaa-2f911b6d5866",
-  "description": "RDV 886 route des Clots – Cransac-Les-Thermes – 15h\nDécouvertes de légumes, aromatiques, petits fruits, arbres fruitiers et plantes horticoles, ainsi que des arbres ornementaux ; se finissant par une dégustation selon la saison, et autres dans le magasin qui permet d’acheter des produits locaux.\nRéservation obligatoire jusqu’à la veille. Gratuit.\nOffice de Tourisme et du Thermalisme 05 65 63 06 80",
-  "tldr": "Visitez un maraîchage et pépinière dans un arboretum, avec dégustation de légumes et plantes rares.",
-  "tldr_key": "place:157f9c15baae48010d5e75a29c3c4357e26ceeabd1f21bd53ed45aad35175302",
-  "commune": "Cransac-les-Thermes",
-  "address": "886 route des Clots",
-  "lat": 44.51508338,
-  "lon": 2.27354088,
-  "url": null,
-  "phone": null,
-  "opening_hours": null,
-  "fee": null,
-  "rating": null,
-  "rating_count": null,
-  "rating_source": null,
-  "rating_url": null,
-  "unusual": false,
-  "unusual_hint": false,
-  "quality": [],
-  "providers": [
-   "datatourisme"
-  ],
-  "image_url": "https://medias.hit.enaveyron.fr/fiches/93779/images/1333605_8a8614bd-df94-411f-982b-c362aba81f16/600.webp",
-  "image_credit": "hortilocal",
-  "image_page": "https://data.datatourisme.fr/31/3fac3845-b106-3734-bbaa-2f911b6d5866",
-  "tags": [
-   "dt:Visit"
-  ],
-  "audience": [
-   "tous"
-  ],
-  "first_seen": "2026-08-04",
-  "last_seen": "2026-09-08",
-  "id": "hortilocal-visite-dun-maraichage-et-pepiniere-dans-un-arboretum-56749872"
- },
- {
   "name": "Hôtel de Bonald",
   "category": "patrimoine",
   "source_id": "datatourisme",
@@ -43779,7 +43640,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "hotel-de-ricard-e07d081f"
  },
  {
@@ -43822,7 +43683,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "hotel-de-sambucy-de-sorgues-3b14cb76"
  },
  {
@@ -43905,7 +43766,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "hotel-de-ville-5e64e188"
  },
  {
@@ -44425,7 +44286,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "jardin-botanique-3b4afdba"
  },
  {
@@ -44708,7 +44569,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "jardin-du-chateau-de-bournazel-eb884202"
  },
  {
@@ -44750,7 +44611,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "jardin-du-foirail-b937732a"
  },
  {
@@ -46831,7 +46692,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "joueur-de-quilles-de-8-5f85952f"
  },
  {
@@ -47953,46 +47814,6 @@
   "first_seen": "2026-09-01",
   "last_seen": "2026-09-15",
   "id": "journees-europeennes-du-patrimoine-visite-de-la-mediatheque-de-rodez-9f1f1d6a"
- },
- {
-  "name": "Journées Européennes du Patrimoine : Visite guidée du Château de Galinières",
-  "category": "visite",
-  "source_id": "datatourisme",
-  "sector": "pont-de-salars",
-  "external_id": "https://data.datatourisme.fr/31/bedc1d8e-096d-36ed-8275-8853d5a413ef",
-  "description": "A l'occasion des Journées Européennes du patrimoine: visite guidée par les propriétaires du Château de Galinières, Dimanche à 10h30. \nEntrée à 4€. Gratuit pour les enfants. Sur réservation au 05 65 70 71 30.",
-  "tldr": "Explorez un château privé avec ses propriétaires, un voyage dans l'histoire et l'architecture médiévale.",
-  "tldr_key": "place:7a72e182506f9311140daba4ec4fd8d8486e64b550fc71b76eb6b62f783ab715",
-  "commune": "Pierrefiche",
-  "address": null,
-  "lat": 44.4438,
-  "lon": 2.94832917,
-  "url": "https://www.facebook.com/LaissacInfosLocales",
-  "phone": "+33 5 65 70 71 30",
-  "opening_hours": null,
-  "fee": null,
-  "rating": null,
-  "rating_count": null,
-  "rating_source": null,
-  "rating_url": null,
-  "unusual": true,
-  "unusual_hint": false,
-  "quality": [],
-  "providers": [
-   "datatourisme"
-  ],
-  "image_url": "https://medias.hit.enaveyron.fr/fiches/15884/images/1331973_2b547176-cbde-48ac-9f92-7c5a8b0d90d7/600.webp",
-  "image_credit": "Journées Européennes du Patrimoine",
-  "image_page": "https://data.datatourisme.fr/31/bedc1d8e-096d-36ed-8275-8853d5a413ef",
-  "tags": [
-   "dt:Visit"
-  ],
-  "audience": [
-   "tous"
-  ],
-  "first_seen": "2026-08-04",
-  "last_seen": "2026-09-08",
-  "id": "journees-europeennes-du-patrimoine-visite-guidee-du-chateau-de-galinieres-3eaf3af4"
  },
  {
   "name": "Journées européennes du Patrimoine : Visite guidée du village fortifié de Vimenet",
@@ -49431,7 +49252,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "l-enlevement-0c272406"
  },
  {
@@ -49516,49 +49337,6 @@
   "id": "l-escargoterie-aveyronnaise-34555e3a"
  },
  {
-  "name": "L'Espace botanique Hippolyte Coste",
-  "category": "musee",
-  "source_id": "osm",
-  "sector": "pont-de-salars",
-  "external_id": "node/4325011568",
-  "description": "L'espace botanique Hippolyte COSTE, labellisée \"Maison d'Illustre\" depuis janvier 2022 . Situé à Saint-Paul des Fonts, vous y découvrirez la vie et à l’œuvre du chanoine Hippolyte Coste, nommé \"le curé des fleurs\".",
-  "tldr": "Plongez dans l'univers du chanoine Coste, botaniste passionné, à travers des collections et des paysages préservés.",
-  "tldr_key": "place:3e7cbab42f877459c752d79a9692c734beb37f5a686444b20cb87bcddedda9a7",
-  "commune": "Saint-Jean-et-Saint-Paul",
-  "address": "Saint-Paul-des-Fonts",
-  "lat": 43.9311,
-  "lon": 3.0709,
-  "url": "https://lesjourneescoste.wixsite.com/ljcoste",
-  "phone": "+33 5 65 97 61 07",
-  "opening_hours": null,
-  "fee": null,
-  "rating": null,
-  "rating_count": null,
-  "rating_source": null,
-  "rating_url": null,
-  "unusual": false,
-  "unusual_hint": true,
-  "quality": [],
-  "providers": [
-   "datatourisme",
-   "osm"
-  ],
-  "image_url": "https://medias.hit.enaveyron.fr/fiches/19276/images/282268_07dbc34a-b42b-4053-9a93-00058d440680/600.webp",
-  "image_credit": "OFFICE DE TOURISME LARZAC VALLEES",
-  "image_page": "https://data.datatourisme.fr/31/bb71cfb3-e5a0-328e-b64a-c484324b7a43",
-  "tags": [
-   "dt:InterpretationCentre",
-   "osm:tourism=museum",
-   "dt:Museum"
-  ],
-  "audience": [
-   "tous"
-  ],
-  "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
-  "id": "l-espace-botanique-hippolyte-coste-af925183"
- },
- {
   "name": "L'Eveil",
   "category": "cinema",
   "source_id": "osm",
@@ -49597,7 +49375,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "l-eveil-efe4fa2c"
  },
  {
@@ -49757,7 +49535,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "la-baleine-ce1f934b"
  },
  {
@@ -50046,15 +49824,15 @@
   "source_id": "osm",
   "sector": "pont-de-salars",
   "external_id": "node/7113108615",
-  "description": "Vente directe de fruits et de légumes biologiques",
-  "tldr": "Achetez des fruits et légumes bio directement à la ferme, cultivés sans pesticides ni engrais chimiques.",
+  "description": "",
+  "tldr": null,
   "tldr_key": "place:ce1d06a465a773c26f65422c772548b46ba2b3b10d963a963ca4ebc4627dc895",
-  "commune": "Le Vibal",
-  "address": "378 rue des Berges du lac",
-  "lat": 44.31387108,
-  "lon": 2.75196336,
-  "url": "https://www.boxaqui.fr/",
-  "phone": "+33 7 66 05 02 45",
+  "commune": null,
+  "address": null,
+  "lat": 44.3141451,
+  "lon": 2.7518813,
+  "url": null,
+  "phone": null,
   "opening_hours": null,
   "fee": null,
   "rating": null,
@@ -50065,20 +49843,21 @@
   "unusual_hint": true,
   "quality": [],
   "providers": [
-   "datatourisme",
-   "osm"
+   "osm",
+   "datatourisme"
   ],
   "image_url": "https://medias.hit.enaveyron.fr/fiches/19516/images/286348_5fd40356-2b93-4d05-9dc9-5c576b7efe23/600.webp",
   "image_credit": "OFFICE DE TOURISME DE PARELOUP LEVEZOU",
   "image_page": "https://data.datatourisme.fr/31/e40d74eb-bbcf-3bc7-9398-4bcd86447c37",
   "tags": [
+   "osm:shop=farm",
    "dt:Producer"
   ],
   "audience": [
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "la-belle-verte-138ad371"
  },
  {
@@ -50358,7 +50137,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "la-cite-de-pierres-24151db8"
  },
  {
@@ -50558,7 +50337,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "la-corrida-2845183a"
  },
  {
@@ -50678,7 +50457,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "la-decouverte-e2f6066a"
  },
  {
@@ -50838,7 +50617,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "la-dragonniere-db9242f3"
  },
  {
@@ -51042,7 +50821,7 @@
    "tous"
   ],
   "first_seen": "2026-08-03",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "la-ferme-caussenarde-d-autrefois-5bd47785"
  },
  {
@@ -51082,7 +50861,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "la-ferme-d-agen-2bd471ed"
  },
  {
@@ -51162,7 +50941,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "la-ferme-d-ambias-84b8a433"
  },
  {
@@ -51527,48 +51306,6 @@
   "id": "la-ferme-de-la-borderie-de-soulages-fromages-de-chevre-et-viande-28f4118d"
  },
  {
-  "name": "La Ferme de la Borie Haute",
-  "category": "ferme",
-  "source_id": "osm",
-  "sector": "pont-de-salars",
-  "external_id": "node/14122397669",
-  "description": "Vente de Laguiole fermier AOP (fromage au lait de vache, cru et entier) produit et affiné sur place dans une cave naturelle creusée sous la roche et autres produits issus de la ferme. \nVente à la ferme le lundi matin et le vendredi matin.",
-  "tldr": "Dégustez un vrai Laguiole AOP affiné dans une cave creusée sous la roche, à la source du fromage.",
-  "tldr_key": "place:083515332e361c797e2e4be81bca556a7d56d29ae7c3f99a58f28ab2c1969abc",
-  "commune": "Saint-Amans-des-Cots",
-  "address": null,
-  "lat": 44.7026,
-  "lon": 2.7056,
-  "url": "https://www.bienvenue-a-la-ferme.com/fr/occitanie/aveyron/st-amans-des-cots/ferme/ferme-de-la-borie-haute/285495",
-  "phone": "+33 6 31 07 03 14",
-  "opening_hours": "Mo,Fr 09:15-12:30",
-  "fee": null,
-  "rating": null,
-  "rating_count": null,
-  "rating_source": null,
-  "rating_url": null,
-  "unusual": false,
-  "unusual_hint": true,
-  "quality": [],
-  "providers": [
-   "datatourisme",
-   "osm"
-  ],
-  "image_url": "https://medias.hit.enaveyron.fr/fiches/19567/images/287758_c8cc3923-9dd1-41a0-b8f4-fad05d1b9d0e/600.webp",
-  "image_credit": "Office de Tourisme en Aubrac",
-  "image_page": "https://data.datatourisme.fr/31/ad0a3558-cda6-3c07-a11c-f71473e32014",
-  "tags": [
-   "dt:Farm",
-   "dt:Producer"
-  ],
-  "audience": [
-   "tous"
-  ],
-  "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
-  "id": "la-ferme-de-la-borie-haute-24d65770"
- },
- {
   "name": "La ferme de la Fage",
   "category": "ferme",
   "source_id": "datatourisme",
@@ -51766,7 +51503,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "la-ferme-de-pinet-03564bbf"
  },
  {
@@ -51850,18 +51587,18 @@
   "id": "la-ferme-de-solville-d466de7f"
  },
  {
-  "name": "La ferme de Tessi",
+  "name": "La Ferme de Tessi",
   "category": "ferme",
   "source_id": "osm",
   "sector": "pont-de-salars",
   "external_id": "node/11499431823",
-  "description": "Ferme en agriculture biologique. Production: viande de veau et boeuf, châtaigne, oeufs et jus de pomme. Boutique à la ferme . Restauration possible sur réservation à l'auberge paysanne",
-  "tldr": "Dégustez viande bio, châtaignes et jus de pomme, avec repas à l'auberge sur réservation.",
+  "description": "",
+  "tldr": null,
   "tldr_key": "place:101fe3c71ddbf7ef7f672330e25d48ad60a8575f49049d70e2d94370382eb5bc",
-  "commune": "Rignac",
-  "address": "Regardet",
-  "lat": 44.3795,
-  "lon": 2.2612,
+  "commune": null,
+  "address": null,
+  "lat": 44.3773454,
+  "lon": 2.2643101,
   "url": null,
   "phone": "+33 6 83 11 76 73",
   "opening_hours": null,
@@ -51874,20 +51611,21 @@
   "unusual_hint": true,
   "quality": [],
   "providers": [
-   "datatourisme",
-   "osm"
+   "osm",
+   "datatourisme"
   ],
   "image_url": "https://medias.hit.enaveyron.fr/fiches/22298/images/356264_de1b1a75-328f-41dc-ab7b-755135aa0694/600.webp",
   "image_credit": "OFFICE DE TOURISME DU PAYS RIGNACOIS",
   "image_page": "https://data.datatourisme.fr/31/5f83c598-d258-3dff-8f8c-1b8e2b419a8a",
   "tags": [
+   "osm:shop=farm",
    "dt:Farm"
   ],
   "audience": [
    "tous"
   ],
   "first_seen": "2026-08-03",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "la-ferme-de-tessi-3959f278"
  },
  {
@@ -52249,7 +51987,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "la-ferme-du-levezou-4a736c99"
  },
  {
@@ -52580,15 +52318,15 @@
   "source_id": "osm",
   "sector": "pont-de-salars",
   "external_id": "node/9809514389",
-  "description": "La Galerie est un lieu situé au coeur de Bozouls dédié aux expositions artistiques et culturelles, aux conférences, aux animations...",
-  "tldr": "Découvrez des expositions artistiques et culturelles variées au cœur de Bozouls.",
+  "description": "",
+  "tldr": null,
   "tldr_key": "place:e25204d48e4aa0cf822cea631964d4ae523bbe8e84f9bdcf451d4ac6b065db38",
-  "commune": "Bozouls",
-  "address": "8, allée Paul Causse",
-  "lat": 44.47019862,
-  "lon": 2.72097744,
+  "commune": null,
+  "address": null,
+  "lat": 44.4702107,
+  "lon": 2.7209742,
   "url": null,
-  "phone": "+33 5 65 48 51 52",
+  "phone": null,
   "opening_hours": null,
   "fee": false,
   "rating": null,
@@ -52599,20 +52337,21 @@
   "unusual_hint": true,
   "quality": [],
   "providers": [
-   "datatourisme",
-   "osm"
+   "osm",
+   "datatourisme"
   ],
   "image_url": "https://medias.hit.enaveyron.fr/fiches/34102/images/645686_2578af5a-c439-4b4b-8961-6f069a2dd556/600.webp",
   "image_credit": "Commune de Bozouls",
   "image_page": "https://data.datatourisme.fr/31/114bfa4b-b017-30ed-baa6-ed4108e9eefe",
   "tags": [
+   "osm:tourism=gallery",
    "dt:Museum"
   ],
   "audience": [
    "tous"
   ],
   "first_seen": "2026-08-03",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "la-galerie-78f460ff"
  },
  {
@@ -52661,15 +52400,15 @@
   "source_id": "osm",
   "sector": "pont-de-salars",
   "external_id": "node/12849688896",
-  "description": "La Jasse Maison du Larzac a une longue histoire liée à l'APAL. Aujourd'hui boutique de paysans et d'artisans locaux, elle est gérée par les producteur-ices eux-mêmes.",
-  "tldr": "Dégustez et achetez des produits fermiers locaux gérés par les producteurs eux-mêmes.",
+  "description": "",
+  "tldr": null,
   "tldr_key": "place:b8e03a3c2faf721b4605551d3d4434caf21ffda829c194a0cc46770ca55e3b29",
-  "commune": "Millau",
-  "address": "D809",
-  "lat": 44.0686,
-  "lon": 3.1132,
-  "url": "https://www.facebook.com/lajassemaisondularzac",
-  "phone": "+33 6 49 50 97 10",
+  "commune": null,
+  "address": null,
+  "lat": 44.0699969,
+  "lon": 3.113472,
+  "url": null,
+  "phone": null,
   "opening_hours": "Jun 28-Sep 28: 09:30-19:00",
   "fee": null,
   "rating": null,
@@ -52680,21 +52419,21 @@
   "unusual_hint": true,
   "quality": [],
   "providers": [
-   "datatourisme",
-   "osm"
+   "osm",
+   "datatourisme"
   ],
   "image_url": "https://medias.hit.enaveyron.fr/fiches/11063/images/638675_63cd89b9-5f69-4439-99c2-a2911f43f25e/600.webp",
   "image_credit": null,
   "image_page": "https://data.datatourisme.fr/31/e6298665-69e9-3446-80b7-5ba8fcdd759c",
   "tags": [
-   "dt:Producer",
-   "osm:shop=farm"
+   "osm:shop=farm",
+   "dt:Producer"
   ],
   "audience": [
    "tous"
   ],
   "first_seen": "2026-08-03",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "la-jasse-maison-du-larzac-4ad46f3d"
  },
  {
@@ -52778,48 +52517,6 @@
   "id": "la-ligne-verte-d289677a"
  },
  {
-  "name": "La Maison de la Cerise (groupes)",
-  "category": "musee",
-  "source_id": "osm",
-  "sector": "pont-de-salars",
-  "external_id": "node/13511744934",
-  "description": "Au coeur de la vallée du Tarn, à quelques minutes de Millau, venez découvrir les secrets de la cerise \"L'Or Rouge\" de Paulhe et 200 ans de tradition et de savoir-faire aveyronnais. La Maison de la Cerise est installée dans les murs d'une ancienne demeure paysanne, au coeur du village de Paulhe. Elle comporte au rez-de-chaussée un musée consacré à la culture de la cerise à travers les âges et au premier étage une expo-vente de produits régionaux. Cette maison témoigne de l'économie de la Vallée des Gorges du Tarn liée à la culture de \"l'or rouge\" comme disent certains des 170 producteurs qui ex",
-  "tldr": "Plongez dans l'histoire de la cerise 'L'Or Rouge' et ses 200 ans de savoir-faire local.",
-  "tldr_key": "place:66fc895067cf72a234dc3f51a76cb9514b2bedcb1cba9bbea464348781d1d768",
-  "commune": "Paulhe",
-  "address": "Place de l'Escaras",
-  "lat": 44.15254448,
-  "lon": 3.1036835,
-  "url": "http://maisondelacerise.com/",
-  "phone": "+33 5 65 59 00 98",
-  "opening_hours": null,
-  "fee": null,
-  "rating": null,
-  "rating_count": null,
-  "rating_source": null,
-  "rating_url": null,
-  "unusual": false,
-  "unusual_hint": true,
-  "quality": [],
-  "providers": [
-   "datatourisme",
-   "osm"
-  ],
-  "image_url": "https://medias.hit.enaveyron.fr/fiches/18367/images/251036_f47e8aa3-6124-4a10-83b7-bac9b7f62833/600.webp",
-  "image_credit": "Maison de la Cerise",
-  "image_page": "https://data.datatourisme.fr/31/9490fc29-d6f0-3ad1-8097-4bd021d7b642",
-  "tags": [
-   "dt:Museum",
-   "dt:InterpretationCentre"
-  ],
-  "audience": [
-   "tous"
-  ],
-  "first_seen": "2026-08-03",
-  "last_seen": "2026-09-22",
-  "id": "la-maison-de-la-cerise-groupes-bc632d0f"
- },
- {
   "name": "La Maison de la Mémoire",
   "category": "musee",
   "source_id": "osm",
@@ -52856,7 +52553,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "la-maison-de-la-memoire-79112896"
  },
  {
@@ -53020,20 +52717,20 @@
   "id": "la-maison-des-accompagnateurs-raquette-e7c3d16d"
  },
  {
-  "name": "La Maison des Dolmens (groupes)",
+  "name": "La maison des Dolmens",
   "category": "musee",
   "source_id": "osm",
   "sector": "pont-de-salars",
   "external_id": "way/197658960",
-  "description": "Située à l'étage de la salle des fêtes de Buzeins, la Maison des Dolmens est un Site de Découverte du Parc Naturel Régional des Grands Causses : vous y trouverez une exposition sur la construction et les fonctions de ces \"tables de pierre\".",
-  "tldr": "Découvrez l'histoire des dolmens et leur construction dans une exposition interactive.",
+  "description": "",
+  "tldr": null,
   "tldr_key": "place:319fc43efdc40fa261564d5a4f4dda402a35c5de4a5b627958ca1d97898267a2",
-  "commune": "Sévérac d'Aveyron",
-  "address": "Route du Paouzadou, Buzeins",
-  "lat": 44.36790555,
-  "lon": 2.96992974,
+  "commune": null,
+  "address": null,
+  "lat": 44.367887,
+  "lon": 2.9698115,
   "url": "http://www.aveyron-tourisme.fr/Index/Fiche/tabid/72/ProdID/459/language/fr-FR/Default.aspx",
-  "phone": "+33 5 65 47 62 78",
+  "phone": null,
   "opening_hours": null,
   "fee": false,
   "rating": null,
@@ -53044,13 +52741,14 @@
   "unusual_hint": true,
   "quality": [],
   "providers": [
-   "datatourisme",
-   "osm"
+   "osm",
+   "datatourisme"
   ],
   "image_url": "https://medias.hit.enaveyron.fr/fiches/6779/images/75945_e40607ea-8551-4803-83d9-1cf0db525b14/600.webp",
   "image_credit": "Office de Tourisme des Causses à l'Aubrac",
   "image_page": "https://data.datatourisme.fr/31/33a7754e-3b7d-3879-9878-707e43c5e6e7",
   "tags": [
+   "osm:tourism=museum",
    "dt:InterpretationCentre",
    "dt:Museum"
   ],
@@ -53058,8 +52756,8 @@
    "tous"
   ],
   "first_seen": "2026-08-03",
-  "last_seen": "2026-09-22",
-  "id": "la-maison-des-dolmens-groupes-75dcb3d0"
+  "last_seen": "2026-09-29",
+  "id": "la-maison-des-dolmens-75dcb3d0"
  },
  {
   "name": "La Maison Montarnal",
@@ -53098,7 +52796,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "la-maison-montarnal-1e2d4311"
  },
  {
@@ -53138,7 +52836,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "la-maison-rurale-de-1914-693836af"
  },
  {
@@ -53178,7 +52876,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "la-menuiserie-10934444"
  },
  {
@@ -53658,48 +53356,8 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "la-roselle-e9a5e2c3"
- },
- {
-  "name": "La Roue de la Chance de la rentrée",
-  "category": "ludotheque",
-  "source_id": "datatourisme",
-  "sector": "pont-de-salars",
-  "external_id": "https://data.datatourisme.fr/31/8673ca3d-f3c3-336e-90f7-d1a3cae62d5b",
-  "description": "Tentez votre chance et repartez peut-être avec l’un des nombreux lots offerts par les commerçants du Réquistanais !",
-  "tldr": null,
-  "tldr_key": null,
-  "commune": "Réquista",
-  "address": null,
-  "lat": 44.03294236,
-  "lon": 2.53679818,
-  "url": null,
-  "phone": null,
-  "opening_hours": null,
-  "fee": null,
-  "rating": null,
-  "rating_count": null,
-  "rating_source": null,
-  "rating_url": null,
-  "unusual": false,
-  "unusual_hint": false,
-  "quality": [],
-  "providers": [
-   "datatourisme"
-  ],
-  "image_url": "https://medias.hit.enaveyron.fr/fiches/94793/images/1344243_16795d4a-001c-46a6-b5c9-d152a5cc9469/600.webp",
-  "image_credit": "UCAR",
-  "image_page": "https://data.datatourisme.fr/31/8673ca3d-f3c3-336e-90f7-d1a3cae62d5b",
-  "tags": [
-   "dt:Game"
-  ],
-  "audience": [
-   "tous"
-  ],
-  "first_seen": "2026-09-08",
-  "last_seen": "2026-09-08",
-  "id": "la-roue-de-la-chance-de-la-rentree-c888f26d"
  },
  {
   "name": "La Route des sports (laser game)",
@@ -54018,7 +53676,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "la-v-r-a-c-1c0a3434"
  },
  {
@@ -55102,46 +54760,6 @@
   "id": "landa-s-distillerie-1e954485"
  },
  {
-  "name": "Lax en fête",
-  "category": "ludotheque",
-  "source_id": "datatourisme",
-  "sector": "pont-de-salars",
-  "external_id": "https://data.datatourisme.fr/31/6e54b4cb-033d-3af8-859f-f409f9334f02",
-  "description": "Un évènement festif et convivial, pensé pour les grands et les petits !",
-  "tldr": null,
-  "tldr_key": null,
-  "commune": "Baraqueville",
-  "address": "Lax",
-  "lat": 44.316,
-  "lon": 2.4927,
-  "url": "https://www.facebook.com/profile.php?id=100057090264252",
-  "phone": null,
-  "opening_hours": null,
-  "fee": null,
-  "rating": null,
-  "rating_count": null,
-  "rating_source": null,
-  "rating_url": null,
-  "unusual": false,
-  "unusual_hint": false,
-  "quality": [],
-  "providers": [
-   "datatourisme"
-  ],
-  "image_url": "https://medias.hit.enaveyron.fr/fiches/15173/images/1333751_ce0e2c9f-85d6-4433-afbc-3758b78e5ecf/600.webp",
-  "image_credit": "comité des fêtes de Lax",
-  "image_page": "https://data.datatourisme.fr/31/6e54b4cb-033d-3af8-859f-f409f9334f02",
-  "tags": [
-   "dt:Game"
-  ],
-  "audience": [
-   "tous"
-  ],
-  "first_seen": "2026-08-04",
-  "last_seen": "2026-09-08",
-  "id": "lax-en-fete-9e4181c3"
- },
- {
   "name": "Le Baron des Jeux",
   "category": "prestation",
   "source_id": "datatourisme",
@@ -55380,7 +54998,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "le-chateau-du-cayla-f9894990"
  },
  {
@@ -56021,7 +55639,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "le-club-92722a37"
  },
  {
@@ -56301,7 +55919,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "le-faon-et-lenfant-bef23d56"
  },
  {
@@ -56343,7 +55961,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "le-fauteuil-rouge-ad5cd76d"
  },
  {
@@ -56792,15 +56410,15 @@
   "source_id": "osm",
   "sector": "pont-de-salars",
   "external_id": "node/12953422941",
-  "description": "Pour un moment insolite, le Grenier de Capou vous propose une exposition sur la vie et le patrimoine de l’Aubrac, offrant des échanges autour de thématiques variées selon vos centres d’intérêt. Visite sur réservation 06.13.12.31.71.",
-  "tldr": "Découvrez un grenier transformé en musée vivant, patrimoine et traditions de l'Aubrac.",
+  "description": "",
+  "tldr": null,
   "tldr_key": "place:32fe29a51bf61d70f3852c55c7207f20319611a953a42b8f0f8f72557a32c804",
-  "commune": "Soulages-Bonneval",
+  "commune": null,
   "address": "La Crestilie",
-  "lat": 44.68036401,
-  "lon": 2.78514148,
-  "url": "https://www.facebook.com/search/top?q=le%20grenier%20de%20capou",
-  "phone": "+33 5 65 44 31 63",
+  "lat": 44.6803627,
+  "lon": 2.785141,
+  "url": "https://www.tripadvisor.fr/Attraction_Review-g196624-d10236689-Reviews-Le_Grenier_De_Capou-Laguiole_Aveyron_Occitanie.html",
+  "phone": "+33565443163",
   "opening_hours": null,
   "fee": null,
   "rating": null,
@@ -56811,20 +56429,21 @@
   "unusual_hint": true,
   "quality": [],
   "providers": [
-   "datatourisme",
-   "osm"
+   "osm",
+   "datatourisme"
   ],
   "image_url": "https://medias.hit.enaveyron.fr/fiches/19768/images/293931_ef46aaed-6103-4ba5-beda-47166f4048cd/600.webp",
   "image_credit": "Association Memoire de Capou",
   "image_page": "https://data.datatourisme.fr/31/899a2e1c-7aaa-386e-8695-86141eca098b",
   "tags": [
+   "osm:tourism=museum",
    "dt:Museum"
   ],
   "audience": [
    "tous"
   ],
   "first_seen": "2026-08-03",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "le-grenier-de-capou-ce0e20b6"
  },
  {
@@ -56944,7 +56563,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "le-jardin-darvieu-66ef42dc"
  },
  {
@@ -57024,7 +56643,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "le-jardin-des-betes-6fe8e852"
  },
  {
@@ -57828,7 +57447,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "le-moderne-3aae992b"
  },
  {
@@ -58072,7 +57691,7 @@
    "tous"
   ],
   "first_seen": "2026-08-03",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "le-point-sublime-16058786"
  },
  {
@@ -58953,7 +58572,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "le-temps-des-cerises-4f498dee"
  },
  {
@@ -59714,7 +59333,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "les-bateliers-des-gorges-du-tarn-991689b4"
  },
  {
@@ -59996,7 +59615,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "les-chevaux-du-rajal-6c135862"
  },
  {
@@ -60077,7 +59696,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "les-debris-de-debru-fecba110"
  },
  {
@@ -60238,7 +59857,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "les-ecuries-de-la-brianelle-a647ff54"
  },
  {
@@ -60918,7 +60537,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "les-igues-de-rouffies-et-du-py-21cc3636"
  },
  {
@@ -61318,7 +60937,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "les-licornes-d-aphrosy-d1cf92bc"
  },
  {
@@ -61358,7 +60977,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "les-loco-motives-053230ce"
  },
  {
@@ -61438,7 +61057,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "les-memoires-de-cransac-b6e6ab68"
  },
  {
@@ -61518,7 +61137,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "les-oeufs-des-poul-inoches-1a3f0562"
  },
  {
@@ -62038,7 +61657,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "les-vergers-de-trebas-18cf8f73"
  },
  {
@@ -62478,7 +62097,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "lo-majoral-josep-vaylet-df6a75e1"
  },
  {
@@ -62521,7 +62140,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "lo-portal-bas-18da4742"
  },
  {
@@ -63401,7 +63020,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "lou-pitchooland-79d98d20"
  },
  {
@@ -63601,7 +63220,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "ludotheque-b54a7707"
  },
  {
@@ -63843,7 +63462,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "magots-7e2af077"
  },
  {
@@ -64167,20 +63786,63 @@
   "id": "maison-de-l-ecrivain-jean-boudou-ostal-joan-bodon-ea9d4020"
  },
  {
-  "name": "Maison de la Châtaigne/Musée des Arts Religieux",
+  "name": "Maison de la Cerise",
+  "category": "musee",
+  "source_id": "osm",
+  "sector": "pont-de-salars",
+  "external_id": "node/13511744934",
+  "description": "",
+  "tldr": null,
+  "tldr_key": "place:66fc895067cf72a234dc3f51a76cb9514b2bedcb1cba9bbea464348781d1d768",
+  "commune": "Paulhe",
+  "address": "Place de l’escaras",
+  "lat": 44.1526218,
+  "lon": 3.1034684,
+  "url": "https://maisondelacerise.com/",
+  "phone": null,
+  "opening_hours": null,
+  "fee": null,
+  "rating": null,
+  "rating_count": null,
+  "rating_source": null,
+  "rating_url": null,
+  "unusual": false,
+  "unusual_hint": true,
+  "quality": [],
+  "providers": [
+   "osm",
+   "datatourisme"
+  ],
+  "image_url": "https://medias.hit.enaveyron.fr/fiches/18367/images/251036_f47e8aa3-6124-4a10-83b7-bac9b7f62833/600.webp",
+  "image_credit": "Maison de la Cerise",
+  "image_page": "https://data.datatourisme.fr/31/9490fc29-d6f0-3ad1-8097-4bd021d7b642",
+  "tags": [
+   "osm:tourism=museum",
+   "dt:Museum",
+   "dt:InterpretationCentre"
+  ],
+  "audience": [
+   "tous"
+  ],
+  "first_seen": "2026-08-03",
+  "last_seen": "2026-09-29",
+  "id": "maison-de-la-cerise-bc632d0f"
+ },
+ {
+  "name": "Maison de la Châtaigne - Musée des arts religieux",
   "category": "musee",
   "source_id": "osm",
   "sector": "pont-de-salars",
   "external_id": "node/3068409173",
-  "description": "140 m2 d'exposition avec salle vidéo et bornes interactives pour les enfants. Vente de produits du terroir à base de châtaigne. Visite gratuite",
-  "tldr": "Explorez 140 m² d'expositions interactives sur la châtaigne et ses usages, avec vente de produits locaux.",
+  "description": "",
+  "tldr": null,
   "tldr_key": "place:395a9bd86c4426a6abe6dcfcc24b3cc64ca3dff8a2a618ff0b05895954a6ff64",
-  "commune": "Ayssènes",
-  "address": "Place des écoles",
-  "lat": 44.0682,
-  "lon": 2.7799,
+  "commune": null,
+  "address": null,
+  "lat": 44.0682844,
+  "lon": 2.7798893,
   "url": null,
-  "phone": "+33 6 70 13 78 07",
+  "phone": "+33565464876;+33670137807",
   "opening_hours": "Apr 16-Jun 18,Sep 17-Nov 01 Su 14:00-18:00; Jun 19-Jul 01,Sep 04-16 14:00-19:00; Jul 02-Sep 03 10:30-12:30,15:00-19:00",
   "fee": null,
   "rating": null,
@@ -64191,21 +63853,21 @@
   "unusual_hint": true,
   "quality": [],
   "providers": [
-   "datatourisme",
-   "osm"
+   "osm",
+   "datatourisme"
   ],
   "image_url": "https://medias.hit.enaveyron.fr/fiches/21377/images/341497_0b704151-c3e0-4e3b-8884-453f3c0edc56/600.webp",
   "image_credit": "MAISON DE LA CHATAIGNE - Les Amis du Patrimoine Ayssenol",
   "image_page": "https://data.datatourisme.fr/31/cf7d93ec-03ed-3b07-8aa7-43e4c3d4e5a5",
   "tags": [
-   "dt:Museum",
-   "osm:tourism=museum"
+   "osm:tourism=museum",
+   "dt:Museum"
   ],
   "audience": [
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "maison-de-la-chataigne-musee-des-arts-religieux-602a7851"
  },
  {
@@ -64525,7 +64187,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "maison-des-vautours-ede6ba9c"
  },
  {
@@ -64565,7 +64227,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "maison-des-vieux-metiers-et-de-la-forge-96cdcc42"
  },
  {
@@ -64605,7 +64267,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "maison-du-peuple-e68530f4"
  },
  {
@@ -64645,24 +64307,24 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "maison-du-pleisiosaure-7e74ebbd"
  },
  {
-  "name": "Maison Natale de Jean-Henri FABRE",
+  "name": "Maison natale de Jean-Henri Fabre",
   "category": "musee",
   "source_id": "osm",
   "sector": "pont-de-salars",
   "external_id": "node/12488673701",
-  "description": "Partez sur les traces du père de l'entomologie moderne et découvrez le cadre de vie de son enfance, ses observations sur les insectes et ses fabuleuses inventions... Consultez le calendrier d'ouverture sur www.micropolis-aveyron.com",
-  "tldr": "Retracez les pas de Jean-Henri Fabre, pionnier de l'entomologie, dans sa maison natale et ses inventions.",
+  "description": "",
+  "tldr": null,
   "tldr_key": "place:623175b14e5e4b5ebd7f92b668874909147791ff07ec931d4037390626df5bd7",
-  "commune": "Saint-Léons",
-  "address": "3, Rue du Château Saint-Martin",
-  "lat": 44.21599587,
-  "lon": 2.98598735,
-  "url": "https://www.micropolis-aveyron.com/",
-  "phone": "+33 5 65 58 50 50",
+  "commune": null,
+  "address": null,
+  "lat": 44.2159257,
+  "lon": 2.9859084,
+  "url": null,
+  "phone": null,
   "opening_hours": null,
   "fee": null,
   "rating": null,
@@ -64673,20 +64335,21 @@
   "unusual_hint": true,
   "quality": [],
   "providers": [
-   "datatourisme",
-   "osm"
+   "osm",
+   "datatourisme"
   ],
   "image_url": "https://medias.hit.enaveyron.fr/fiches/1823/images/12416_b420114e-73e9-409d-8e10-dde697a44a38/600.webp",
   "image_credit": "Gilles Tordjeman",
   "image_page": "https://data.datatourisme.fr/31/4abf46db-f4b3-366d-9681-28799e8f312c",
   "tags": [
+   "osm:tourism=museum",
    "dt:Museum"
   ],
   "audience": [
    "tous"
   ],
   "first_seen": "2026-08-03",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "maison-natale-de-jean-henri-fabre-be94dc80"
  },
  {
@@ -64769,7 +64432,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "manoir-de-curlande-930c31d1"
  },
  {
@@ -64809,7 +64472,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "manoir-de-la-fabregues-4ba7534b"
  },
  {
@@ -64931,46 +64594,6 @@
   "first_seen": "2026-08-04",
   "last_seen": "2026-09-22",
   "id": "marche-alimentaire-de-producteurs-le-pic-vert-du-jeudi-soir-9349822e"
- },
- {
-  "name": "Marché de créateurs",
-  "category": "marche",
-  "source_id": "datatourisme",
-  "sector": "pont-de-salars",
-  "external_id": "https://data.datatourisme.fr/31/7f0945fd-5775-3a58-b6b3-17aa091da77c",
-  "description": "En mémoire de nos petits anges, nous organisons une grande action dans le cadre de \"Septembre en Or\" afin de soutenir la recherche contre les cancers pédiatriques.",
-  "tldr": "Marché de créateurs pour soutenir la recherche contre les cancers pédiatriques, ambiance solidaire et artisanale.",
-  "tldr_key": "place:247141c109baebcd32346f02671e8eb80ba155f2ae5addf1150d689542989255",
-  "commune": "Saint-Rome-de-Cernon",
-  "address": null,
-  "lat": 44.01281777,
-  "lon": 2.96526248,
-  "url": null,
-  "phone": null,
-  "opening_hours": null,
-  "fee": null,
-  "rating": null,
-  "rating_count": null,
-  "rating_source": null,
-  "rating_url": null,
-  "unusual": false,
-  "unusual_hint": false,
-  "quality": [],
-  "providers": [
-   "datatourisme"
-  ],
-  "image_url": "https://medias.hit.enaveyron.fr/fiches/94254/images/1338126_c942e860-2ace-479e-b1dc-36d4aa11f8fc/600.webp",
-  "image_credit": "Etoile Guerrière",
-  "image_page": "https://data.datatourisme.fr/31/7f0945fd-5775-3a58-b6b3-17aa091da77c",
-  "tags": [
-   "dt:Market"
-  ],
-  "audience": [
-   "tous"
-  ],
-  "first_seen": "2026-08-25",
-  "last_seen": "2026-09-08",
-  "id": "marche-de-createurs-5afde1cf"
  },
  {
   "name": "Marché de Noël",
@@ -65493,46 +65116,6 @@
   "id": "marche-du-vendredi-matin-b7873b78"
  },
  {
-  "name": "Marché Gourmand de l'association Olemps Sourire",
-  "category": "marche",
-  "source_id": "datatourisme",
-  "sector": "pont-de-salars",
-  "external_id": "https://data.datatourisme.fr/31/2f36f1c0-8756-3800-804d-4853584b1f34",
-  "description": "L'association Olemps Sourire organise son traditionnel marché gourmand le jeudi 10 septembre de 19h à 23h devant la salle 7-77 d'Olemps.",
-  "tldr": "Dégustez des produits locaux au marché gourmand d'Olemps Sourire, ambiance conviviale garantie.",
-  "tldr_key": "place:733549bb83433a70660a0cdec32d24be9167b3cb14487e68b0cbd73822a3d020",
-  "commune": "Olemps",
-  "address": "salle 7-77, rue de la 7-77",
-  "lat": 44.340617,
-  "lon": 2.553625,
-  "url": "https://www.olemps.fr/",
-  "phone": "+33 5 65 75 51 00",
-  "opening_hours": null,
-  "fee": null,
-  "rating": null,
-  "rating_count": null,
-  "rating_source": null,
-  "rating_url": null,
-  "unusual": false,
-  "unusual_hint": false,
-  "quality": [],
-  "providers": [
-   "datatourisme"
-  ],
-  "image_url": "https://medias.hit.enaveyron.fr/fiches/88401/images/1342424_a357001b-0c08-43d8-811d-db55f907f319/600.webp",
-  "image_credit": "Olemps Sourire",
-  "image_page": "https://data.datatourisme.fr/31/2f36f1c0-8756-3800-804d-4853584b1f34",
-  "tags": [
-   "dt:Market"
-  ],
-  "audience": [
-   "tous"
-  ],
-  "first_seen": "2026-09-01",
-  "last_seen": "2026-09-08",
-  "id": "marche-gourmand-de-l-association-olemps-sourire-c91b698d"
- },
- {
   "name": "Marché hebdomadaire",
   "category": "marche",
   "source_id": "datatourisme",
@@ -65731,46 +65314,6 @@
   "first_seen": "2026-08-04",
   "last_seen": "2026-09-22",
   "id": "marche-traditionnel-a-clairvaux-aaec763b"
- },
- {
-  "name": "Marchés de producteurs de pays",
-  "category": "marche",
-  "source_id": "datatourisme",
-  "sector": "pont-de-salars",
-  "external_id": "https://data.datatourisme.fr/31/f3f94dbd-cfdd-3abb-b350-312a8e986244",
-  "description": "Un marché de produits locaux vous attend tous les dimanches matins de mi-juin à mi-septembre sur le parking du cinéma",
-  "tldr": "Dimanches matins à Rieupeyroux, marché de producteurs locaux sous le soleil du cinéma.",
-  "tldr_key": "place:c7c37ca8ab3bf5c5d806ed25be710fb4682b26e1ebca50410b183776ddf7b66b",
-  "commune": "Rieupeyroux",
-  "address": null,
-  "lat": 44.3076,
-  "lon": 2.2378,
-  "url": "https://www.rieupeyroux.fr/",
-  "phone": "+33 5 65 65 51 12",
-  "opening_hours": null,
-  "fee": null,
-  "rating": null,
-  "rating_count": null,
-  "rating_source": null,
-  "rating_url": null,
-  "unusual": false,
-  "unusual_hint": false,
-  "quality": [],
-  "providers": [
-   "datatourisme"
-  ],
-  "image_url": "https://medias.hit.enaveyron.fr/fiches/15488/images/175488_92d50694-a695-4698-aef8-4d327883d6bb/600.webp",
-  "image_credit": "OFFICE DE TOURISME AVEYRON SEGALA",
-  "image_page": "https://data.datatourisme.fr/31/f3f94dbd-cfdd-3abb-b350-312a8e986244",
-  "tags": [
-   "dt:Market"
-  ],
-  "audience": [
-   "tous"
-  ],
-  "first_seen": "2026-08-04",
-  "last_seen": "2026-09-08",
-  "id": "marches-de-producteurs-de-pays-7b9e3e1c"
  },
  {
   "name": "Marchés de producteurs de pays du mardi",
@@ -66091,7 +65634,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "menhir-de-peyre-fioc-b27a030c"
  },
  {
@@ -66293,7 +65836,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "micropolis-989fafd6"
  },
  {
@@ -67498,7 +67041,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "monument-talabot-ddb86929"
  },
  {
@@ -67540,7 +67083,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "motte-castrale-ixieme-siecle-e39decca"
  },
  {
@@ -67744,7 +67287,7 @@
    "tous"
   ],
   "first_seen": "2026-08-03",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "musee-archeologique-de-banassac-8f4932b3"
  },
  {
@@ -67993,14 +67536,14 @@
   "source_id": "osm",
   "sector": "pont-de-salars",
   "external_id": "node/4176493151",
-  "description": "Histoire des mines et de l'industrie du bassin houiller, documentation, maquette, outils, collection de lampes de mineurs. Galerie de mine reconstituée avec des scènes de la vie des mineurs et simulation d'un coup de grisou...Saisissant!",
-  "tldr": "Plongez dans l'histoire minière avec des maquettes, outils et une galerie reconstituée à Aubin.",
+  "description": "",
+  "tldr": null,
   "tldr_key": "place:12a593712a42ee43bf12e30bc15cc6dce33526f13bec09bd570a6996ac776169",
-  "commune": "Aubin",
-  "address": "Place Jean-Jaurès",
-  "lat": 44.52668045,
-  "lon": 2.24634454,
-  "url": "https://www.museedelamine-lucienmazars.fr/",
+  "commune": null,
+  "address": null,
+  "lat": 44.5266723,
+  "lon": 2.2463522,
+  "url": "http://www.museedelamine-lucienmazars.com/",
   "phone": "+33 5 65 43 58 00",
   "opening_hours": null,
   "fee": null,
@@ -68014,21 +67557,21 @@
    "notoriete"
   ],
   "providers": [
-   "datatourisme",
-   "osm"
+   "osm",
+   "datatourisme"
   ],
   "image_url": "https://medias.hit.enaveyron.fr/fiches/17487/images/222048_3bd3f388-93fe-4240-94ff-2126036dbd89/600.webp",
   "image_credit": "Aveyron sur Lot Jacques David",
   "image_page": "https://data.datatourisme.fr/31/cd368cee-f783-3d0a-a79a-68fe0e601e41",
   "tags": [
-   "dt:Museum",
-   "osm:tourism=museum"
+   "osm:tourism=museum",
+   "dt:Museum"
   ],
   "audience": [
    "tous"
   ],
   "first_seen": "2026-08-03",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "musee-de-la-mine-lucien-mazars-eb617199"
  },
  {
@@ -68068,24 +67611,24 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "musee-de-la-resistance-622c8745"
  },
  {
-  "name": "Musée de la vigne et de la mine",
+  "name": "Musée de la Vigne et de la Mine",
   "category": "musee",
   "source_id": "osm",
   "sector": "pont-de-salars",
   "external_id": "node/14042399701",
-  "description": "Ultime visite estivale au musée de la vigne et de la mine",
-  "tldr": "Découvrez l'histoire de la vigne et de l'exploitation minière dans ce musée rural du Tarn.",
+  "description": "",
+  "tldr": null,
   "tldr_key": "place:5aa9226177b89b32cb9f007b3d5a787a32d2aae9de315f58c42a87cd7b2cb501",
-  "commune": "Saint-Rome-de-Tarn",
+  "commune": null,
   "address": null,
-  "lat": 44.0487,
-  "lon": 2.89702917,
+  "lat": 44.0485103,
+  "lon": 2.8978645,
   "url": null,
-  "phone": "+33 6 12 35 11 64",
+  "phone": null,
   "opening_hours": null,
   "fee": null,
   "rating": null,
@@ -68096,20 +67639,21 @@
   "unusual_hint": true,
   "quality": [],
   "providers": [
-   "datatourisme",
-   "osm"
+   "osm",
+   "datatourisme"
   ],
   "image_url": "https://medias.hit.enaveyron.fr/fiches/21380/images/341518_bf57d2c1-aec1-4d82-b416-7a1d953cc3ef/600.webp",
   "image_credit": "OFFICE TOURISME DU PAYS DE LA MUSE ET RASPES DU TARN",
   "image_page": "https://data.datatourisme.fr/31/2cb284fa-a554-3120-970b-ffd07d88f2d3",
   "tags": [
+   "osm:tourism=museum",
    "dt:Museum"
   ],
   "audience": [
    "tous"
   ],
   "first_seen": "2026-08-03",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "musee-de-la-vigne-et-de-la-mine-520e5eca"
  },
  {
@@ -68153,19 +67697,19 @@
   "id": "musee-de-lincou-c6e7156d"
  },
  {
-  "name": "Musée de Millau Grands Causses",
+  "name": "Musée de Millau et des Grands Causses",
   "category": "musee",
   "source_id": "osm",
   "sector": "pont-de-salars",
   "external_id": "way/68652358",
-  "description": "Le musée de Millau et des Grands Causses est un musée de territoire installé en plein cœur de ville, dans un ancien hôtel particulier du XVIIIe siècle. Diverses collections y sont présentées.",
+  "description": "",
   "tldr": null,
   "tldr_key": null,
-  "commune": "Millau",
-  "address": "Musée de Millau et des Grands Causses",
-  "lat": 44.0975,
-  "lon": 3.0811,
-  "url": "https://mumig.fr/accueil",
+  "commune": null,
+  "address": "Place Maréchal Foch",
+  "lat": 44.0975352,
+  "lon": 3.0810793,
+  "url": "http://www.museedemillau.fr",
   "phone": "+33 5 65 59 01 08",
   "opening_hours": "Mo-Sa 10:00-12:00,14:00-18:00; Oct-Apr: Su off; Oct-Apr: PH off; May-Jun Su off; May 01 off; Jul-Aug: Mo-Su 10:00-18:00; Sep Mo-Su 10:00-12:00,14:00-18:00",
   "fee": false,
@@ -68180,22 +67724,22 @@
    "notoriete"
   ],
   "providers": [
-   "datatourisme",
-   "osm"
+   "osm",
+   "datatourisme"
   ],
   "image_url": "https://medias.hit.enaveyron.fr/fiches/19944/images/299817_ab45a0b2-d6ef-44ba-a4de-8c6ecb9af883/600.webp",
   "image_credit": "MUMIG",
   "image_page": "https://data.datatourisme.fr/31/c54682b0-bb56-3c7f-a156-e0e918237714",
   "tags": [
-   "dt:Museum",
-   "osm:tourism=museum"
+   "osm:tourism=museum",
+   "dt:Museum"
   ],
   "audience": [
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
-  "id": "musee-de-millau-grands-causses-20749390"
+  "last_seen": "2026-09-29",
+  "id": "musee-de-millau-et-des-grands-causses-20749390"
  },
  {
   "name": "Musée de Millau Grands Causses - MUMIG (Groupes)",
@@ -68356,24 +67900,24 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "musee-des-arts-et-metiers-traditionnels-90506063"
  },
  {
-  "name": "Musée des Beaux Arts Denys-Puech",
+  "name": "Musée des Beaux-Arts Denys-Puech",
   "category": "musee",
   "source_id": "osm",
   "sector": "pont-de-salars",
   "external_id": "way/124625419",
-  "description": "Le musée présente les oeuvres du sculpteur Aveyronnais Denys-Puech (1854-1942), célèbre pour ses portraits féminins de mélancolie, ainsi que celles d'Eugène Viala et Maurice Bompard.",
-  "tldr": "Admirez les sculptures de Denys-Puech et les œuvres d'Eugène Viala dans ce musée ruthénois.",
+  "description": "",
+  "tldr": null,
   "tldr_key": "place:3022dd36510bde9147e5d609623bec78d6781daf3b40032530065d210b04dc25",
-  "commune": "Rodez",
-  "address": "Place Georges Clémenceau",
-  "lat": 44.34892836,
-  "lon": 2.57825703,
-  "url": "https://www.facebook.com/denyspuechrodez/",
-  "phone": "+33 5 65 73 82 20",
+  "commune": null,
+  "address": "Place Clemenceau",
+  "lat": 44.3488931,
+  "lon": 2.5783252,
+  "url": "https://musee-denys-puech.rodezagglo.fr/",
+  "phone": "+33 5 65 77 89 60",
   "opening_hours": null,
   "fee": null,
   "rating": null,
@@ -68386,21 +67930,21 @@
    "notoriete"
   ],
   "providers": [
-   "datatourisme",
-   "osm"
+   "osm",
+   "datatourisme"
   ],
   "image_url": "https://medias.hit.enaveyron.fr/fiches/5097/images/45871_1868d0aa-cad9-4836-a629-e1da34c7af1b/600.webp",
   "image_credit": "MUSEE DENYS PUECH",
   "image_page": "https://data.datatourisme.fr/31/078b9673-23db-3cb3-a53b-96b3b0eb27a4",
   "tags": [
-   "dt:Museum",
-   "osm:tourism=museum"
+   "osm:tourism=museum",
+   "dt:Museum"
   ],
   "audience": [
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "musee-des-beaux-arts-denys-puech-5d964740"
  },
  {
@@ -68442,7 +67986,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "musee-des-metiers-de-la-pierre-et-de-la-vie-rurale-4485ceeb"
  },
  {
@@ -68482,7 +68026,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "musee-des-traditions-agricoles-afd71bce"
  },
  {
@@ -68566,20 +68110,20 @@
   "id": "musee-des-traditions-populaires-du-fel-espace-marcelle-cayron-ec1b5d63"
  },
  {
-  "name": "MUSÉE DU CHARROI RURAL",
+  "name": "Musée du charroi rural",
   "category": "musee",
   "source_id": "osm",
   "sector": "pont-de-salars",
   "external_id": "way/132379474",
-  "description": "Ce musée est installé dans une ancienne église non consacrée bâtie au XIXème siècle sur les ruines d'un château du Moyen-Age. Il présente les outils, moyens de locomotion et objets agricoles utilisés dans nos campagnes avant l'ère de la motorisation",
-  "tldr": "Découvrez des outils agricoles et des moyens de locomotion anciens dans une ancienne église du XIXe siècle.",
+  "description": "",
+  "tldr": null,
   "tldr_key": "place:217a92b71a844a4ab22c348a0f6bde77f6ec5425044e44f8e7babc06d460f773",
-  "commune": "Salmiech",
-  "address": "111 place du placet",
-  "lat": 44.17992282,
-  "lon": 2.57029878,
-  "url": "https://www.musee-charroi-rural-salmiech.fr/",
-  "phone": "+33 5 65 74 23 55",
+  "commune": null,
+  "address": null,
+  "lat": 44.1796957,
+  "lon": 2.5702985,
+  "url": "http://www.musee-charroi-rural-salmiech.fr/",
+  "phone": null,
   "opening_hours": null,
   "fee": null,
   "rating": null,
@@ -68592,20 +68136,21 @@
    "notoriete"
   ],
   "providers": [
-   "datatourisme",
-   "osm"
+   "osm",
+   "datatourisme"
   ],
   "image_url": "https://medias.hit.enaveyron.fr/fiches/17146/images/210442_165da37e-2bae-41a0-bcc1-b4567e63baf4/600.webp",
   "image_credit": "Richard Storchi tous droits réservés",
   "image_page": "https://data.datatourisme.fr/31/6b0e7318-9405-3965-8e97-c9517c6e3436",
   "tags": [
+   "osm:tourism=museum",
    "dt:Museum"
   ],
   "audience": [
    "tous"
   ],
   "first_seen": "2026-08-03",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "musee-du-charroi-rural-fdcfa077"
  },
  {
@@ -68645,7 +68190,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "musee-du-couteau-b8bfca99"
  },
  {
@@ -68767,7 +68312,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "musee-du-rouergue-e5df87ba"
  },
  {
@@ -68810,7 +68355,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "musee-du-scaphandre-fb08a6bb"
  },
  {
@@ -68859,15 +68404,15 @@
   "source_id": "osm",
   "sector": "pont-de-salars",
   "external_id": "way/124625026",
-  "description": "Musée d'histoire et d'archéologie présentant une collection exceptionnelle de statues-menhirs unique en Europe.",
-  "tldr": "Admirez la plus grande collection de statues-menhirs d'Europe, témoins uniques de la préhistoire aveyronnaise.",
+  "description": "",
+  "tldr": null,
   "tldr_key": "place:81587db8944c4d718ca8c348b1c47483223349c4e2e396cbb34161b5b88c1cb3",
   "commune": "Rodez",
-  "address": "14 Place Raynaldy",
-  "lat": 44.3491,
-  "lon": 2.5766,
-  "url": "https://www.rodezagglo.fr/",
-  "phone": "+33 5 65 73 83 00",
+  "address": "14 Place Eugène Raynaldy",
+  "lat": 44.3490838,
+  "lon": 2.5765957,
+  "url": "https://musee-fenaille.rodezagglo.fr",
+  "phone": "+33 5 65 73 84 30",
   "opening_hours": null,
   "fee": true,
   "rating": null,
@@ -68881,21 +68426,21 @@
    "notoriete"
   ],
   "providers": [
-   "datatourisme",
-   "osm"
+   "osm",
+   "datatourisme"
   ],
   "image_url": "https://medias.hit.enaveyron.fr/fiches/5095/images/45855_1ae8d163-c8eb-46a1-9d0b-8e88c89bd554/600.webp",
   "image_credit": null,
   "image_page": "https://data.datatourisme.fr/31/c9bd5b68-c5c7-3bd8-bad5-341d4306572e",
   "tags": [
-   "dt:Museum",
-   "osm:tourism=museum"
+   "osm:tourism=museum",
+   "dt:Museum"
   ],
   "audience": [
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "musee-fenaille-139f7d0e"
  },
  {
@@ -68904,11 +68449,11 @@
   "source_id": "osm",
   "sector": "pont-de-salars",
   "external_id": "node/1785106487",
-  "description": "Ce musée, au coeur du village de St Laurent d'Olt, renferme des documents sur les oeuvres de Jean Boudou, écrivain occitan.",
-  "tldr": "Plongez dans l'univers de Jean Boudou, écrivain occitan, à travers documents et archives au cœur d'un village authentique.",
+  "description": "",
+  "tldr": null,
   "tldr_key": "place:e698d4c88083c57b73359f776eb106f25d61e0a42692a4e1a4e2e4c14a89bb5c",
-  "commune": "Saint-Laurent-d'Olt",
-  "address": "Le Bourg",
+  "commune": null,
+  "address": null,
   "lat": 44.4458496,
   "lon": 3.110983,
   "url": "https://www.saintlaurentdolt.fr/fiche/patrimoine-culturel-visites/musee-jean-boudou-saint-laurent-d-olt_TFO027167839155/",
@@ -68937,7 +68482,7 @@
    "tous"
   ],
   "first_seen": "2026-08-03",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "musee-jean-boudou-ffb8cab4"
  },
  {
@@ -69059,7 +68604,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "musee-joseph-fau-f94e3d9b"
  },
  {
@@ -69139,7 +68684,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "musee-marcel-boudou-659f669e"
  },
  {
@@ -69181,7 +68726,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "musee-montrozier-espace-archeologique-91889233"
  },
  {
@@ -69190,15 +68735,15 @@
   "source_id": "osm",
   "sector": "pont-de-salars",
   "external_id": "way/228699419",
-  "description": "Pierre Soulages, peintre et graveur né à Rodez en 1919, est décédé en 2022. Un musée dédié à cet artiste de notoriété internationale voit le jour en 2014 dans sa ville natale. Il abrite des oeuvres de l'artiste et de grandes expositions temporaires.",
-  "tldr": "Contemplez les œuvres de Pierre Soulages, maître de l'Outrenoir, dans un écrin architectural conçu pour ses toiles.",
+  "description": "",
+  "tldr": null,
   "tldr_key": "place:3d4b4040e3fceccf23692fc9e3fe49c14483c04777b4308bca08b06f46a40c4f",
-  "commune": "Rodez",
-  "address": "Avenue Victor Hugo",
-  "lat": 44.35224029,
-  "lon": 2.56775937,
-  "url": "http://musee-soulages-rodez.fr/",
-  "phone": "+33 5 65 73 82 60",
+  "commune": null,
+  "address": null,
+  "lat": 44.3521813,
+  "lon": 2.5679254,
+  "url": "http://musee-soulages.grand-rodez.com/",
+  "phone": null,
   "opening_hours": null,
   "fee": true,
   "rating": null,
@@ -69211,21 +68756,21 @@
    "notoriete"
   ],
   "providers": [
-   "datatourisme",
-   "osm"
+   "osm",
+   "datatourisme"
   ],
   "image_url": "https://medias.hit.enaveyron.fr/fiches/7189/images/82374_98ea3792-5fa7-4c51-aa35-b31c33cd931d/600.webp",
   "image_credit": "OFFICE DE TOURISME DU GRAND RODEZ",
   "image_page": "https://data.datatourisme.fr/31/ae1a0bb9-1a89-3624-904c-45c52824cbf3",
   "tags": [
-   "dt:Museum",
-   "osm:tourism=museum"
+   "osm:tourism=museum",
+   "dt:Museum"
   ],
   "audience": [
    "tous"
   ],
   "first_seen": "2026-08-03",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "musee-soulages-4b5d0495"
  },
  {
@@ -70147,7 +69692,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "naiade-de-vors-df819db8"
  },
  {
@@ -70951,7 +70496,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "notre-dame-des-mines-d2f8b727"
  },
  {
@@ -71873,7 +71418,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "orgues-basaltiques-c064d578"
  },
  {
@@ -71953,7 +71498,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "ostal-joan-bodon-81683beb"
  },
  {
@@ -72835,24 +72380,24 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "parc-animalier-de-pradinas-a3ee05e5"
  },
  {
-  "name": "Parc animalier Le Saint Hubert",
+  "name": "Parc Animalier Le Saint-Hubert",
   "category": "parc-attraction",
   "source_id": "osm",
   "sector": "pont-de-salars",
   "external_id": "node/4125493305",
-  "description": "Entrez en immersion dans le parc animalier à bord d'une roulotte pour découvrir plus de 150 animaux de faune sauvage (cerfs d'Europe, cerf du Japon, daims d'Asie, mouflons de Corse, sangliers...) tous en semi-liberté dans près de 28 hectares.",
-  "tldr": "Immersion en roulotte pour observer 150 animaux sauvages (cerfs, daims, mouflons...) dans un cadre naturel.",
+  "description": "",
+  "tldr": null,
   "tldr_key": "place:43756bdbc1f5cbe42f1e6b2dfdf280463dfb8fcffa510eb80cc75991b33cac98",
-  "commune": "Montrozier",
-  "address": "Lussagues",
-  "lat": 44.3792,
-  "lon": 2.7059,
-  "url": "https://www.facebook.com/Hubert.Parc",
-  "phone": "+33 6 33 30 79 76",
+  "commune": null,
+  "address": null,
+  "lat": 44.3791186,
+  "lon": 2.7052857,
+  "url": "http://parc-animalier-auberge.fr/",
+  "phone": null,
   "opening_hours": null,
   "fee": null,
   "rating": null,
@@ -72863,22 +72408,22 @@
   "unusual_hint": false,
   "quality": [],
   "providers": [
-   "datatourisme",
-   "osm"
+   "osm",
+   "datatourisme"
   ],
   "image_url": "https://medias.hit.enaveyron.fr/fiches/20588/images/323624_11cef9e9-dd3e-4a44-bc0f-2132ba0e8d5a/600.webp",
   "image_credit": "Parc animalier Saint Hubert",
   "image_page": "https://data.datatourisme.fr/31/aa4a9919-e1a2-3d94-a365-8074e42c74da",
   "tags": [
-   "dt:ThemePark",
    "osm:tourism=zoo",
+   "dt:ThemePark",
    "dt:AmusementPark"
   ],
   "audience": [
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "parc-animalier-le-saint-hubert-4b5aeb6f"
  },
  {
@@ -75200,7 +74745,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "passage-a-lart-e17eaafb"
  },
  {
@@ -75360,7 +74905,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "pays-en-direct-190ffe53"
  },
  {
@@ -75882,7 +75427,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "pigeonnier-7e0fde5e"
  },
  {
@@ -76762,7 +76307,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "place-du-foirail-f7d58a7d"
  },
  {
@@ -76811,15 +76356,15 @@
   "source_id": "osm",
   "sector": "pont-de-salars",
   "external_id": "way/317944549",
-  "description": "Plage municipale gratuite surveillée en juillet et août.",
-  "tldr": "Plage gratuite et tranquille au bord du lac, idéale pour une baignade ou un pique-nique en famille.",
+  "description": "",
+  "tldr": null,
   "tldr_key": "place:1f86f13bacbbf39470382c9b5458168ceeac0cabc300369b7d6bded384f47961",
-  "commune": "Villefranche-de-Panat",
-  "address": "Route de Granouillac",
-  "lat": 44.09746387,
-  "lon": 2.7038915,
+  "commune": null,
+  "address": null,
+  "lat": 44.0973104,
+  "lon": 2.7041633,
   "url": null,
-  "phone": "+33 5 65 46 48 13",
+  "phone": null,
   "opening_hours": null,
   "fee": null,
   "rating": null,
@@ -76830,21 +76375,21 @@
   "unusual_hint": false,
   "quality": [],
   "providers": [
-   "datatourisme",
-   "osm"
+   "osm",
+   "datatourisme"
   ],
   "image_url": "https://medias.hit.enaveyron.fr/fiches/6816/images/76089_a02b3251-eb2e-4bfe-8033-d88d22992488/600.webp",
   "image_credit": "OFFICE DE TOURISME DE PARELOUP LEVEZOU",
   "image_page": "https://data.datatourisme.fr/31/bdd7b796-becf-3818-a4bf-5f2b69802278",
   "tags": [
-   "dt:Beach",
-   "osm:leisure=beach_resort"
+   "osm:leisure=beach_resort",
+   "dt:Beach"
   ],
   "audience": [
    "tous"
   ],
   "first_seen": "2026-08-03",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "plage-de-granouillac-e60b2c5e"
  },
  {
@@ -77965,7 +77510,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "pole-des-metiers-d-art-du-pays-segali-8ed66dea"
  },
  {
@@ -78085,7 +77630,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "poney-club-du-conemara-de-ferrals-0cdcf0a2"
  },
  {
@@ -78165,7 +77710,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "poney-club-lillhipus-a4917829"
  },
  {
@@ -78205,7 +77750,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "poney-village-4422f93d"
  },
  {
@@ -78408,7 +77953,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "pont-vieux-fbfcf6a9"
  },
  {
@@ -78448,7 +77993,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "pop-corn-labyrinthe-dd7fbae5"
  },
  {
@@ -78528,7 +78073,7 @@
    "tous"
   ],
   "first_seen": "2026-08-03",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "portal-del-riou-b7f330e2"
  },
  {
@@ -78568,7 +78113,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "porte-0b58a9b7"
  },
  {
@@ -78610,7 +78155,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "porte-de-la-vinzelle-9a8d0ed2"
  },
  {
@@ -78653,7 +78198,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "porte-des-anglais-e85c865a"
  },
  {
@@ -78816,7 +78361,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "prieure-de-saint-jean-de-balmes-8e5492ce"
  },
  {
@@ -78856,7 +78401,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "prieure-du-lugagnac-a5cc3e8c"
  },
  {
@@ -80179,46 +79724,6 @@
   "first_seen": "2026-09-01",
   "last_seen": "2026-09-22",
   "id": "rando-gourmande-8140fb6c"
- },
- {
-  "name": "Rando VTT",
-  "category": "sport-loisir",
-  "source_id": "datatourisme",
-  "sector": "pont-de-salars",
-  "external_id": "https://data.datatourisme.fr/31/3a8ea44f-dec1-341d-8821-fd428f5dec7c",
-  "description": "Plusieurs boucles avec ravitaillement offert par les chausseurs.",
-  "tldr": "Trois boucles VTT avec ravitaillement offert par les chausseurs, pour pédaler en toute convivialité.",
-  "tldr_key": "place:bda98eeee08b50952bdd1ea003cf45ad4adb9c95dd65ecaec3858f6bdcba2c5e",
-  "commune": "Baraqueville",
-  "address": "Lax",
-  "lat": 44.3146566,
-  "lon": 2.4928987,
-  "url": null,
-  "phone": "+33 7 86 16 57 56",
-  "opening_hours": null,
-  "fee": null,
-  "rating": null,
-  "rating_count": null,
-  "rating_source": null,
-  "rating_url": null,
-  "unusual": false,
-  "unusual_hint": false,
-  "quality": [],
-  "providers": [
-   "datatourisme"
-  ],
-  "image_url": "https://medias.hit.enaveyron.fr/fiches/93789/images/1333748_9a227b93-c765-42f7-9d42-6179e85d4844/600.webp",
-  "image_credit": "0",
-  "image_page": "https://data.datatourisme.fr/31/3a8ea44f-dec1-341d-8821-fd428f5dec7c",
-  "tags": [
-   "dt:Rambling"
-  ],
-  "audience": [
-   "tous"
-  ],
-  "first_seen": "2026-08-04",
-  "last_seen": "2026-09-08",
-  "id": "rando-vtt-1d4e3afe"
  },
  {
   "name": "Rando VTT pédestre \"Autour du vin\"",
@@ -83461,46 +82966,6 @@
   "id": "randonnee-conques-le-chemin-de-dadon-749bc6cb"
  },
  {
-  "name": "Randonnée de la fête du cheval",
-  "category": "sport-loisir",
-  "source_id": "datatourisme",
-  "sector": "pont-de-salars",
-  "external_id": "https://data.datatourisme.fr/31/36d592e0-f5ec-397c-9ef4-e5c376d8d43d",
-  "description": "Départ 14h aux combes de la Valette, retour prévu vers 18h. 5€/personne. Collation offerte au retour\nAstres, Bois du Four, Bramarigues, le Vialaret sur 8 km.",
-  "tldr": null,
-  "tldr_key": null,
-  "commune": "Saint-Léons",
-  "address": "aux Combes de la Valette",
-  "lat": 44.216,
-  "lon": 2.9869,
-  "url": null,
-  "phone": null,
-  "opening_hours": null,
-  "fee": null,
-  "rating": null,
-  "rating_count": null,
-  "rating_source": null,
-  "rating_url": null,
-  "unusual": false,
-  "unusual_hint": false,
-  "quality": [],
-  "providers": [
-   "datatourisme"
-  ],
-  "image_url": "https://medias.hit.enaveyron.fr/fiches/95129/images/1348049_60c5c435-c76e-49c0-916f-3adb3cc5ce3a/600.webp",
-  "image_credit": "Léons bouge",
-  "image_page": "https://data.datatourisme.fr/31/36d592e0-f5ec-397c-9ef4-e5c376d8d43d",
-  "tags": [
-   "dt:Rambling"
-  ],
-  "audience": [
-   "tous"
-  ],
-  "first_seen": "2026-09-08",
-  "last_seen": "2026-09-08",
-  "id": "randonnee-de-la-fete-du-cheval-840de038"
- },
- {
   "name": "Randonnée de la Table d'orientation",
   "category": "visite",
   "source_id": "datatourisme",
@@ -84139,46 +83604,6 @@
   "first_seen": "2026-08-05",
   "last_seen": "2026-09-22",
   "id": "randonnee-marcillac-autour-de-saint-jean-le-froid-3bdec9cd"
- },
- {
-  "name": "Randonnée militante",
-  "category": "sport-loisir",
-  "source_id": "datatourisme",
-  "sector": "pont-de-salars",
-  "external_id": "https://data.datatourisme.fr/31/a035e822-fbee-34b0-b526-40ac221f5960",
-  "description": "Journée de randonnée ouverte à tous pour sensibiliser et partager la beauté du cirque de St-Paul des Fonts qui est concerné par un projet d'implantation de 80 poteaux pour la fibre.",
-  "tldr": "Marchez pour défendre un site naturel menacé et profitez d'un cadre préservé.",
-  "tldr_key": "place:51fe318d14489cb28cfdde6102f5bdff7229f2e19fc22d8e9cbd2a307a9a7d88",
-  "commune": "Viala-du-Pas-de-Jaux",
-  "address": null,
-  "lat": 43.9422515,
-  "lon": 3.06276187,
-  "url": null,
-  "phone": null,
-  "opening_hours": null,
-  "fee": null,
-  "rating": null,
-  "rating_count": null,
-  "rating_source": null,
-  "rating_url": null,
-  "unusual": false,
-  "unusual_hint": false,
-  "quality": [],
-  "providers": [
-   "datatourisme"
-  ],
-  "image_url": "https://medias.hit.enaveyron.fr/fiches/94440/images/1340778_243e48eb-401c-49f0-833b-105edbf49744/600.webp",
-  "image_credit": "Le collectif du Viala du Pas de Jaux",
-  "image_page": "https://data.datatourisme.fr/31/a035e822-fbee-34b0-b526-40ac221f5960",
-  "tags": [
-   "dt:Rambling"
-  ],
-  "audience": [
-   "tous"
-  ],
-  "first_seen": "2026-09-01",
-  "last_seen": "2026-09-08",
-  "id": "randonnee-militante-fe4d6bc9"
  },
  {
   "name": "Randonnée Mouret - Entre Causse et Rougier",
@@ -85897,7 +85322,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "reptilarium-du-larzac-9f845421"
  },
  {
@@ -85939,7 +85364,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "reserve-biologique-integrale-du-cirque-de-madasse-048eeff0"
  },
  {
@@ -85981,7 +85406,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "reserve-naturelle-des-coteaux-du-fel-a32ac460"
  },
  {
@@ -86061,7 +85486,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "retable-de-l-ange-gardien-e45a453e"
  },
  {
@@ -86183,7 +85608,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "rex-c2e6b018"
  },
  {
@@ -86345,7 +85770,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "roc-de-campiels-890fc36c"
  },
  {
@@ -87107,7 +86532,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "ruine-du-forteresse-ayssenes-9b303980"
  },
  {
@@ -87149,7 +86574,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "ruines-de-l-ancienne-eglise-saint-barthelemy-puy-saint-georges-d04ec977"
  },
  {
@@ -87352,7 +86777,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "saint-antoine-bcd7bcc3"
  },
  {
@@ -87394,7 +86819,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "saint-christophe-49ba9609"
  },
  {
@@ -87474,24 +86899,24 @@
    "tous"
   ],
   "first_seen": "2026-08-05",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "saint-rome-plage-ae7875a3"
  },
  {
-  "name": "Saint-Rome-Plage",
+  "name": "Saint-Rome Plage",
   "category": "parc-aquatique",
   "source_id": "osm",
   "sector": "pont-de-salars",
   "external_id": "way/175791525",
-  "description": "Une plage de sable fin qui coule lentement dans les eaux pures du Tarn? Un restaurant les pieds dans l'eau? Des pédalos? Des canoés? Une magnifique cascade? C'est ici : Bienvenue à Saint-Rome-Plage !",
-  "tldr": "Baignade, pédalos et canoës au bord du Tarn, avec en toile de fond une cascade et le viaduc de Millau.",
+  "description": "",
+  "tldr": null,
   "tldr_key": "place:32900653294d335afc3787b0d4ca3a8ef72612a969609eb238eaaf3de8abce97",
-  "commune": "Saint-Rome-de-Tarn",
+  "commune": null,
   "address": null,
-  "lat": 44.0474,
-  "lon": 2.8872,
-  "url": "https://www.facebook.com/pages/Saint-Rome-Plage",
-  "phone": "+33 5 65 58 14 69",
+  "lat": 44.0474106,
+  "lon": 2.886484,
+  "url": "https://saintromeplage.fr/la-plage",
+  "phone": null,
   "opening_hours": null,
   "fee": null,
   "rating": null,
@@ -87502,20 +86927,21 @@
   "unusual_hint": false,
   "quality": [],
   "providers": [
-   "datatourisme",
-   "osm"
+   "osm",
+   "datatourisme"
   ],
   "image_url": "https://medias.hit.enaveyron.fr/fiches/21373/images/950935_5f49ef76-4eb4-4034-b2a2-2adf978374f5/600.webp",
   "image_credit": "Saint Rome Plage",
   "image_page": "https://data.datatourisme.fr/31/55bfc382-598f-3ff1-8dc0-8d0f48289308",
   "tags": [
+   "osm:natural=beach",
    "dt:Beach"
   ],
   "audience": [
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "saint-rome-plage-8d89e074"
  },
  {
@@ -87597,7 +87023,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "sainte-madeleine-6bbc7b39"
  },
  {
@@ -87679,7 +87105,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "sanctuaire-heroique-des-touries-c42d33d4"
  },
  {
@@ -87722,7 +87148,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "sanctuaires-antiques-des-basiols-43d0d8b1"
  },
  {
@@ -87962,7 +87388,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "saut-a-l-elastique-rodez-88c698f4"
  },
  {
@@ -89246,7 +88672,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "site-archeologique-de-la-graufesenque-ae147fdc"
  },
  {
@@ -89329,7 +88755,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "site-archeologique-du-dolmen-1-des-bourines-a349283a"
  },
  {
@@ -89372,7 +88798,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "site-archeologique-du-dolmen-d-agen-d-aveyron-d19b0a19"
  },
  {
@@ -89415,7 +88841,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "site-archeologique-du-dolmen-de-cazarede-5435d8e5"
  },
  {
@@ -89458,7 +88884,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "site-archeologique-du-dolmen-de-la-fontaine-aux-chiens-68d14f31"
  },
  {
@@ -89501,7 +88927,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "site-archeologique-du-dolmen-des-cayroules-1-b3a58de0"
  },
  {
@@ -89544,7 +88970,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "site-archeologique-du-dolmen-iii-des-vezinies-ed549ae5"
  },
  {
@@ -91270,7 +90696,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "square-etienne-fabre-44e09b77"
  },
  {
@@ -91434,46 +90860,6 @@
   "id": "stage-potager-permacole-c452430d"
  },
  {
-  "name": "Stages découverte apiculture",
-  "category": "visite",
-  "source_id": "datatourisme",
-  "sector": "pont-de-salars",
-  "external_id": "https://data.datatourisme.fr/31/36ea8f00-513e-3ad3-b8e3-e1e151c42beb",
-  "description": "Vivez, le temps d’un week-end, l’expérience fascinante de l'apiculture.\nDeux jours pour comprendre, pratiquer et apprendre une apiculture écologique, dans des milieux naturels préservés.",
-  "tldr": "Découvrez l'apiculture écologique en pleine nature lors d'un week-end immersif.",
-  "tldr_key": "place:d4b3bb9219956bdbfe62cf84c9f82a04dbf23a979cf64431c4483211537d21db",
-  "commune": "Saint-Affrique",
-  "address": "633 Chemin du Mas de Rouby",
-  "lat": 43.9440244,
-  "lon": 2.87456096,
-  "url": "https://www.facebook.com/Larcenmiel",
-  "phone": "+33 6 29 78 03 00",
-  "opening_hours": null,
-  "fee": null,
-  "rating": null,
-  "rating_count": null,
-  "rating_source": null,
-  "rating_url": null,
-  "unusual": false,
-  "unusual_hint": false,
-  "quality": [],
-  "providers": [
-   "datatourisme"
-  ],
-  "image_url": "https://medias.hit.enaveyron.fr/fiches/50687/images/911025_0a538217-4a85-490b-bdd6-561cd8aaf383/600.webp",
-  "image_credit": "Arnaud Cailoou",
-  "image_page": "https://data.datatourisme.fr/31/36ea8f00-513e-3ad3-b8e3-e1e151c42beb",
-  "tags": [
-   "dt:Visit"
-  ],
-  "audience": [
-   "tous"
-  ],
-  "first_seen": "2026-08-04",
-  "last_seen": "2026-09-08",
-  "id": "stages-decouverte-apiculture-e96146ef"
- },
- {
   "name": "Stand de tir de Naulas",
   "category": "prestation",
   "source_id": "datatourisme",
@@ -91632,7 +91018,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "station-romaine-ad-silanum-8f538d20"
  },
  {
@@ -91672,7 +91058,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "statue-de-la-liberte-cd12f761"
  },
  {
@@ -91714,7 +91100,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "statue-des-marmots-562dcb06"
  },
  {
@@ -92038,46 +91424,6 @@
   "id": "suivez-la-guide-a-la-decouverte-du-street-art-en-vallee-du-lot-b68734b8"
  },
  {
-  "name": "Suivez la guide : Au sommet du Fort",
-  "category": "visite",
-  "source_id": "datatourisme",
-  "sector": "pont-de-salars",
-  "external_id": "https://data.datatourisme.fr/31/7c7194d0-9b96-340f-b2b8-4439944da02c",
-  "description": "Suivez notre guide et partez à la découverte du patrimoine de la Destination Pays Decazevillois - Vallée du Lot !",
-  "tldr": "Visitez le Fort d'Aubin et son panorama sur la Vallée du Lot avec un guide passionné.",
-  "tldr_key": "place:493d6e8d013269aeb42e8865edcf5a25403c6ced04eaba4d553e77bbab93e293",
-  "commune": "Aubin",
-  "address": null,
-  "lat": 44.52891361,
-  "lon": 2.25048059,
-  "url": null,
-  "phone": null,
-  "opening_hours": null,
-  "fee": null,
-  "rating": null,
-  "rating_count": null,
-  "rating_source": null,
-  "rating_url": null,
-  "unusual": false,
-  "unusual_hint": false,
-  "quality": [],
-  "providers": [
-   "datatourisme"
-  ],
-  "image_url": "https://medias.hit.enaveyron.fr/fiches/50682/images/910942_1defc3e9-7898-424d-9717-ddd140fb3f83/600.webp",
-  "image_credit": "Vin's Film Maker",
-  "image_page": "https://data.datatourisme.fr/31/7c7194d0-9b96-340f-b2b8-4439944da02c",
-  "tags": [
-   "dt:Visit"
-  ],
-  "audience": [
-   "tous"
-  ],
-  "first_seen": "2026-09-01",
-  "last_seen": "2026-09-08",
-  "id": "suivez-la-guide-au-sommet-du-fort-68d8b084"
- },
- {
   "name": "Suivez la guide : découvrez Cransac-les-Thermes, la singulière",
   "category": "visite",
   "source_id": "datatourisme",
@@ -92196,46 +91542,6 @@
   "first_seen": "2026-08-04",
   "last_seen": "2026-09-22",
   "id": "suivez-la-guide-decouvrez-les-forges-du-gua-5148e7a4"
- },
- {
-  "name": "Suivez la guide : randonnez à la découverte des petites histoires des sentiers d’Artémis",
-  "category": "visite",
-  "source_id": "datatourisme",
-  "sector": "pont-de-salars",
-  "external_id": "https://data.datatourisme.fr/31/90ebb228-598d-36d9-b0ba-3e02dbc2e8ba",
-  "description": "Suivez notre guide et partez à la découverte du patrimoine de la Destination Pays Decazevillois - Vallée du Lot !",
-  "tldr": "Découvrez les anecdotes méconnues des sentiers d’Artémis avec un guide local passionné.",
-  "tldr_key": "place:8e6e2ff5caa0190d2fe5640b923a789c92df927c68b73a70b9e64edde3560427",
-  "commune": "Cransac-les-Thermes",
-  "address": null,
-  "lat": 44.53018325,
-  "lon": 2.27717568,
-  "url": "https://www.facebook.com/OTTDecazevilleCommunaute",
-  "phone": "+33 5 65 63 06 80",
-  "opening_hours": null,
-  "fee": null,
-  "rating": null,
-  "rating_count": null,
-  "rating_source": null,
-  "rating_url": null,
-  "unusual": false,
-  "unusual_hint": false,
-  "quality": [],
-  "providers": [
-   "datatourisme"
-  ],
-  "image_url": "https://medias.hit.enaveyron.fr/fiches/50701/images/911197_c14ecd87-3265-4bbb-bd78-429c865195c9/600.webp",
-  "image_credit": "Vincent Christophoul",
-  "image_page": "https://data.datatourisme.fr/31/90ebb228-598d-36d9-b0ba-3e02dbc2e8ba",
-  "tags": [
-   "dt:Visit"
-  ],
-  "audience": [
-   "tous"
-  ],
-  "first_seen": "2026-08-04",
-  "last_seen": "2026-09-08",
-  "id": "suivez-la-guide-randonnez-a-la-decouverte-des-petites-histoires-des-sentiers-dar-42314983"
  },
  {
   "name": "Sur la route des matières",
@@ -92758,20 +92064,20 @@
   "id": "tartinette-des-aveyronnais-souyris-5a254d1a"
  },
  {
-  "name": "Terra Memoria (groupes)",
+  "name": "Terra Memoria",
   "category": "musee",
   "source_id": "osm",
   "sector": "pont-de-salars",
   "external_id": "node/4736673584",
-  "description": "Suivez le guide à la découverte des paysages Aveyronnais, de Bozouls et de son fameux canyon !",
-  "tldr": "Plongez dans l’histoire géologique de l’Aveyron et admirez le canyon de Bozouls.",
+  "description": "",
+  "tldr": null,
   "tldr_key": "place:936737eeb2ae6095af8e2688dfbc05c7a5921d5529591c2ce153b4dca79cd2e9",
-  "commune": "Bozouls",
-  "address": "Allée Paul Causse",
-  "lat": 44.47,
-  "lon": 2.7206,
+  "commune": null,
+  "address": null,
+  "lat": 44.47016,
+  "lon": 2.7204266,
   "url": "http://www.terramemoria.fr/",
-  "phone": "+33 5 65 44 10 63",
+  "phone": null,
   "opening_hours": null,
   "fee": null,
   "rating": null,
@@ -92782,22 +92088,22 @@
   "unusual_hint": true,
   "quality": [],
   "providers": [
-   "datatourisme",
-   "osm"
+   "osm",
+   "datatourisme"
   ],
   "image_url": "https://medias.hit.enaveyron.fr/fiches/10660/images/650338_ab6ba958-3072-4388-a60b-80f9e9bd3cd3/600.webp",
   "image_credit": "AST",
   "image_page": "https://data.datatourisme.fr/31/6fa746c2-8bc4-3801-946a-d40cf4762b2d",
   "tags": [
-   "dt:Museum",
-   "osm:tourism=museum"
+   "osm:tourism=museum",
+   "dt:Museum"
   ],
   "audience": [
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
-  "id": "terra-memoria-groupes-1e7a9b9f"
+  "last_seen": "2026-09-29",
+  "id": "terra-memoria-1e7a9b9f"
  },
  {
   "name": "Terre Ségala - Magasin de producteurs",
@@ -92956,7 +92262,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "thermes-3f330cb8"
  },
  {
@@ -93036,7 +92342,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "tombe-de-l-antechrist-1128895e"
  },
  {
@@ -93277,7 +92583,7 @@
    "tous"
   ],
   "first_seen": "2026-08-03",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "tour-de-l-horloge-156ee299"
  },
  {
@@ -93320,7 +92626,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "tour-de-la-vayssiere-2a820a95"
  },
  {
@@ -93329,15 +92635,15 @@
   "source_id": "osm",
   "sector": "pont-de-salars",
   "external_id": "way/63314936",
-  "description": "La tour millénaire domine fièrement la Vallée de l'Alrance et son lac du haut de son puech (913 m). Entourée de blocs de granit et de grands espaces, elle se visite et offre un cadre sympathique pour une sortie.",
-  "tldr": "Montez à la tour de Peyrebrune pour une vue imprenable sur la vallée et le lac, dans un cadre naturel préservé.",
+  "description": "",
+  "tldr": null,
   "tldr_key": "place:cd1ebe744fef002e0922c49bc6196e17b08934287d8a6e78e32244a8035453e9",
-  "commune": "Alrance",
+  "commune": null,
   "address": null,
-  "lat": 44.13165236,
-  "lon": 2.69943416,
-  "url": "http://lesamisdepeyrebrune.free.fr/",
-  "phone": "+33 5 65 46 56 46",
+  "lat": 44.1317247,
+  "lon": 2.6993852,
+  "url": null,
+  "phone": null,
   "opening_hours": null,
   "fee": null,
   "rating": null,
@@ -93350,21 +92656,21 @@
    "notoriete"
   ],
   "providers": [
-   "datatourisme",
-   "osm"
+   "osm",
+   "datatourisme"
   ],
   "image_url": "https://medias.hit.enaveyron.fr/fiches/16595/images/191885_4187e6cf-1ddd-48ea-a4a1-91b8574af0d6/600.webp",
   "image_credit": "Gilles Guillot tous droits réservés",
   "image_page": "https://data.datatourisme.fr/31/fb9c4054-c91a-356f-9988-bf41817a64e2",
   "tags": [
-   "dt:RemarkableBuilding",
-   "osm:historic=castle"
+   "osm:historic=castle",
+   "dt:RemarkableBuilding"
   ],
   "audience": [
    "tous"
   ],
   "first_seen": "2026-08-03",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "tour-de-peyrebrune-2d127047"
  },
  {
@@ -93407,7 +92713,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "tour-du-beffroi-3178e2ac"
  },
  {
@@ -93571,7 +92877,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "tour-hospitaliere-f57457fa"
  },
  {
@@ -94975,47 +94281,6 @@
   "id": "train-touristique-de-bozouls-groupes-8eaf4469"
  },
  {
-  "name": "Tribunal des Arts",
-  "category": "musee",
-  "source_id": "osm",
-  "sector": "pont-de-salars",
-  "external_id": "node/6376346063",
-  "description": "Le Tribunal des Arts vous accueille pour vous faire découvrir l'univers artistique,de professionnels et d'amateurs, qui s'offre à vous !",
-  "tldr": "Plongez dans l'univers artistique de Saint-Affrique, entre professionnels et amateurs passionnés.",
-  "tldr_key": "place:186f8a29300cd6ae1bc4ff291fcba322eb9ae2ed8dd6bd9d4494db788e856313",
-  "commune": "Saint-Affrique",
-  "address": "8B, Boulevard Aristide Briand",
-  "lat": 43.9567306,
-  "lon": 2.8820711,
-  "url": "https://ville-saintaffrique.fr/vie-culturelle/tribunal-des-arts/",
-  "phone": "+33 9 64 10 52 90",
-  "opening_hours": null,
-  "fee": null,
-  "rating": null,
-  "rating_count": null,
-  "rating_source": null,
-  "rating_url": null,
-  "unusual": false,
-  "unusual_hint": true,
-  "quality": [],
-  "providers": [
-   "datatourisme",
-   "osm"
-  ],
-  "image_url": "https://medias.hit.enaveyron.fr/fiches/12035/images/412682_f0e9091e-2f4e-49eb-bc65-c1ef5eeb185c/600.webp",
-  "image_credit": "Mairie de Saint-Affrique",
-  "image_page": "https://data.datatourisme.fr/31/9f5b83a8-10ca-3166-b0aa-11f672be1c6c",
-  "tags": [
-   "dt:Museum"
-  ],
-  "audience": [
-   "tous"
-  ],
-  "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
-  "id": "tribunal-des-arts-f0ede663"
- },
- {
   "name": "Tumulus des Barracs",
   "category": "patrimoine",
   "source_id": "osm",
@@ -95052,7 +94317,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "tumulus-des-barracs-0a5c442e"
  },
  {
@@ -95454,7 +94719,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "vaches-naines-dexter-0b130ffe"
  },
  {
@@ -95734,7 +94999,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "velo-rail-du-larzac-6897376e"
  },
  {
@@ -95894,7 +95159,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "vergers-d-olt-68e22283"
  },
  {
@@ -96698,7 +95963,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "viaduc-de-millau-expo-afdcc21f"
  },
  {
@@ -96859,7 +96124,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "viaduc-ferroviaire-du-viaur-408ead0c"
  },
  {
@@ -96901,7 +96166,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "vierge-a-lenfant-660e78fe"
  },
  {
@@ -96941,7 +96206,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "vierge-en-bronze-d20d418c"
  },
  {
@@ -96984,7 +96249,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "vieux-palais-47ba9b81"
  },
  {
@@ -97027,7 +96292,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "vieux-pont-dd24c850"
  },
  {
@@ -100494,46 +99759,6 @@
   "id": "visites-de-fermes-avec-jeune-montagne-426c4b8c"
  },
  {
-  "name": "Visites du Conservatoire du châtaignier",
-  "category": "visite",
-  "source_id": "datatourisme",
-  "sector": "pont-de-salars",
-  "external_id": "https://data.datatourisme.fr/31/d17c2f9f-6e4e-3f1a-9982-6b18056c42d7",
-  "description": "De 14h à 16h30 au Conservatoire du châtaignier. Attention toutes les animations sont sur inscription obligatoire au 05 65 64 47 29 et elle peuvent être annulées en fonction de la météo et du nombre de visiteurs.",
-  "tldr": "Explorez le Conservatoire du châtaignier et ses variétés rares, sur inscription.",
-  "tldr_key": "place:1974b69095f6d8949884262657e5b34b90edc91725e218ae0bd9129df79ee67f",
-  "commune": "Rignac",
-  "address": "431 route de la châtaigne",
-  "lat": 44.38761156,
-  "lon": 2.26567483,
-  "url": "https://www.chataignier-conservatoire.com/",
-  "phone": "+33 5 65 64 47 29",
-  "opening_hours": null,
-  "fee": null,
-  "rating": null,
-  "rating_count": null,
-  "rating_source": null,
-  "rating_url": null,
-  "unusual": false,
-  "unusual_hint": false,
-  "quality": [],
-  "providers": [
-   "datatourisme"
-  ],
-  "image_url": "https://medias.hit.enaveyron.fr/fiches/15258/images/173194_1b74f331-76bf-414a-a4a5-93e7b8db2206/600.webp",
-  "image_credit": "OFFICE DE TOURISME DU PAYS RIGNACOIS",
-  "image_page": "https://data.datatourisme.fr/31/d17c2f9f-6e4e-3f1a-9982-6b18056c42d7",
-  "tags": [
-   "dt:Visit"
-  ],
-  "audience": [
-   "tous"
-  ],
-  "first_seen": "2026-08-04",
-  "last_seen": "2026-09-08",
-  "id": "visites-du-conservatoire-du-chataignier-c407ad4e"
- },
- {
   "name": "Visites guidées du Musée du Scaphandre - Musée Joseph Vaylet",
   "category": "musee",
   "source_id": "datatourisme",
@@ -102217,7 +101442,7 @@
    "tous"
   ],
   "first_seen": "2026-08-03",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "vue-d-en-haut-af474f07"
  },
  {
@@ -102418,7 +101643,7 @@
    "tous"
   ],
   "first_seen": "2026-08-02",
-  "last_seen": "2026-09-22",
+  "last_seen": "2026-09-29",
   "id": "zone-occupation-ancienne-villa-gallo-romaine-e4fdb665"
  }
 ]
