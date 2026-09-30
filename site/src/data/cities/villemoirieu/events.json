@@ -1,5 +1,75 @@
 [
  {
+  "title": "Loto Karaoké dansant",
+  "start": "2026-10-02T00:00:00",
+  "source_id": "html-weekend-capi",
+  "sector": "villemoirieu",
+  "end": null,
+  "description": "Passion Commerces Bourgoin-Jallieu vous invite à une soirée pas comme les autres : un Loto Karaoké convivial et festif, à vivre en famille ou entre amis.",
+  "tldr": null,
+  "category": "fete",
+  "tags": [],
+  "audience": [
+   "famille",
+   "tous"
+  ],
+  "commune": "Bourgoin-Jallieu",
+  "address": "92, Avenue Professeur Tixier 38300 Bourgoin-Jallieu, France",
+  "lat": 45.6025,
+  "lon": 5.2747,
+  "free": null,
+  "price_text": null,
+  "url": "https://www.monweekendalacapi.fr/agenda/evenements/loto-karaoke-dansant",
+  "image": null,
+  "id": "loto-karaoke-dansant-64c08b84"
+ },
+ {
+  "title": "Marché de Producteurs et artisans locaux",
+  "start": "2026-10-02T17:00:00",
+  "source_id": "html-weekend-capi",
+  "sector": "villemoirieu",
+  "end": null,
+  "description": "Plus 30 producteurs et artisans locaux à votre disposition pour remplir votre panier de produits de qualité le vendredi 2 octobre dès 17h à Succieu.",
+  "tldr": null,
+  "category": "marche",
+  "tags": [],
+  "audience": [
+   "tous"
+  ],
+  "commune": "Succieu",
+  "address": "925 ROUTE DU VILLAGE 38300 Succieu, France",
+  "lat": 45.5285,
+  "lon": 5.3416,
+  "free": null,
+  "price_text": null,
+  "url": "https://www.monweekendalacapi.fr/deguster/marches/marche-de-producteurs-et-artisans-locaux",
+  "image": null,
+  "id": "marche-de-producteurs-et-artisans-locaux-ddaf1221"
+ },
+ {
+  "title": "L'Art Mot Thérapie Festival",
+  "start": "2026-10-03T00:00:00",
+  "source_id": "html-weekend-capi",
+  "sector": "villemoirieu",
+  "end": "2026-10-04",
+  "description": "Découvrez l'Art Thérapie à travers des ateliers créatifs animés par des professionnels du mieux-être !",
+  "tldr": null,
+  "category": "festival",
+  "tags": [],
+  "audience": [
+   "tous"
+  ],
+  "commune": "Four",
+  "address": "5 Rue de la luminière 38080 Four, France",
+  "lat": 45.5726,
+  "lon": 5.196,
+  "free": null,
+  "price_text": null,
+  "url": "https://www.monweekendalacapi.fr/agenda/evenements/l-art-mot-therapie-festival",
+  "image": null,
+  "id": "l-art-mot-therapie-festival-276bc416"
+ },
+ {
   "title": "Rencontre autour du livre",
   "start": "2026-10-03T16:30:00",
   "source_id": "html-cafe-crem",
