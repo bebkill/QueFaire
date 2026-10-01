@@ -1,6 +1,6 @@
 {
 "extract:0551b8a8b941c48538f41b6c43e9320287aadbf374e05566dfe50e7f634399f4": [],
-"extract:c6cfe0f0e41406d2e4275d94532783467df98c2c20925ed94432f3bba5aab61f": [
+"extract:8976894072627b228b1d064ce0a533dca2a375e733b258de8daeab3f1a092f74": [
 {
 "address": "5 Rue de la luminière 38080 Four, France",
 "audience": [
@@ -8,7 +8,7 @@
 ],
 "category": "festival",
 "commune": "Four",
-"description": "Découvrez l'Art Thérapie à travers des ateliers créatifs animés par des professionnels du mieux-être !",
+"description": "Découvrez l'Art Thérapie à travers des ateliers créatifs animés par des professionnels du mieux-être!",
 "end": "2026-10-04",
 "free": null,
 "id": "l-art-mot-therapie-festival-276bc416",
@@ -27,12 +27,11 @@
 {
 "address": "92, Avenue Professeur Tixier 38300 Bourgoin-Jallieu, France",
 "audience": [
-"famille",
-"tous"
+"famille"
 ],
 "category": "fete",
 "commune": "Bourgoin-Jallieu",
-"description": "Passion Commerces Bourgoin-Jallieu vous invite à une soirée pas comme les autres : un Loto Karaoké convivial et festif, à vivre en famille ou entre amis.",
+"description": "Passion Commerces Bourgoin-Jallieu vous invite à une soirée pas comme les autres : un Loto Karaoké convivial et festif, à vivre en famille ou entre...",
 "end": null,
 "free": null,
 "id": "loto-karaoke-dansant-64c08b84",
