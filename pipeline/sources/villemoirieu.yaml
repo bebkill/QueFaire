@@ -42,7 +42,7 @@ sources:
     type: html
     url: https://www.bourgoinjallieu.fr/agenda
     commune: Bourgoin-Jallieu
-    enabled: true
+    enabled: false
 
   - id: html-weekend-capi
     name: Mon week-end à la CAPI
