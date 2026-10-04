@@ -3574,12 +3574,6 @@
    "url": "https://capi-agglo.fr/tout-lagenda/"
   },
   {
-   "id": "html-bourgoin",
-   "name": "Ville de Bourgoin-Jallieu — agenda",
-   "type": "html",
-   "url": "https://www.bourgoinjallieu.fr/agenda"
-  },
-  {
    "id": "html-weekend-capi",
    "name": "Mon week-end à la CAPI",
    "type": "html",
@@ -3598,6 +3592,6 @@
    "url": "https://cafe-crem.fr/"
   }
  ],
- "generated_at": "2026-10-04T10:23:15",
+ "generated_at": "2026-10-04T18:27:27",
  "event_count": 3
 }
