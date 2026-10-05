@@ -1,51 +1,5 @@
 [
  {
-  "title": "Repair Café & Repair Linux",
-  "start": "2026-10-04T09:00:00",
-  "source_id": "html-cafe-crem",
-  "sector": "villemoirieu",
-  "end": "2026-10-04T12:00:00",
-  "description": "Atelier de réparation d'objets et d'entraide autour du système Linux.",
-  "tldr": null,
-  "category": "atelier",
-  "tags": [],
-  "audience": [
-   "tous"
-  ],
-  "commune": "Villemoirieu",
-  "address": "1 Parc d'activités du Buisson Rond, 38460 Villemoirieu",
-  "lat": 45.7138,
-  "lon": 5.2348,
-  "free": true,
-  "price_text": "Gratuit pour une première découverte, adhésion annuelle requise ensuite.",
-  "url": "https://cafe-crem.fr/programme#repair-cafe-repair-linux-1791097200000",
-  "image": null,
-  "id": "repair-cafe-repair-linux-6bc6d681"
- },
- {
-  "title": "Apprivoisez votre Smartphone",
-  "start": "2026-10-04T09:00:00",
-  "source_id": "html-cafe-crem",
-  "sector": "villemoirieu",
-  "end": "2026-10-04T12:00:00",
-  "description": "Atelier pratique d'accompagnement à la prise en main et à l'utilisation de son smartphone.",
-  "tldr": null,
-  "category": "atelier",
-  "tags": [],
-  "audience": [
-   "tous"
-  ],
-  "commune": "Villemoirieu",
-  "address": "1 Parc d'activités du Buisson Rond, 38460 Villemoirieu",
-  "lat": 45.7138,
-  "lon": 5.2348,
-  "free": true,
-  "price_text": "Gratuit pour une première découverte, adhésion annuelle requise ensuite.",
-  "url": "https://cafe-crem.fr/programme#apprivoisez-votre-smartphone-1791097200000",
-  "image": null,
-  "id": "apprivoisez-votre-smartphone-c86fb129"
- },
- {
   "title": "Couture et petites fabrications",
   "start": "2026-10-06T18:30:00",
   "source_id": "html-cafe-crem",
