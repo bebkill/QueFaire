@@ -21,5 +21,28 @@
   "url": "https://cafe-crem.fr/programme#couture-et-petites-fabrications-1791270000000",
   "image": null,
   "id": "couture-et-petites-fabrications-9960bfa4"
+ },
+ {
+  "title": "Dernière vie du spot",
+  "start": "2026-10-10T00:00:00",
+  "source_id": "html-weekend-capi",
+  "sector": "villemoirieu",
+  "end": null,
+  "description": "Samedi 10 octobre, la Ville de Bourgoin-Jallieu ouvre les Magasins généraux une dernière fois pour une journée exceptionnelle.",
+  "tldr": null,
+  "category": "patrimoine",
+  "tags": [],
+  "audience": [
+   "tous"
+  ],
+  "commune": "Bourgoin-Jallieu",
+  "address": "Magasins généraux",
+  "lat": 45.6025,
+  "lon": 5.2747,
+  "free": null,
+  "price_text": null,
+  "url": "https://www.monweekendalacapi.fr/nos-bons-plans/derniere-vie-du-spot",
+  "image": null,
+  "id": "derniere-vie-du-spot-6cd26e30"
  }
 ]

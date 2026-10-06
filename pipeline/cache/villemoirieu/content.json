@@ -1,4 +1,29 @@
 {
+"extract:3d5cf20faf5643ce3a7c8303f816af3ed964df04087cd84e329d02c3ad6bc506": [
+{
+"address": "Magasins généraux",
+"audience": [
+"tous"
+],
+"category": "patrimoine",
+"commune": "Bourgoin-Jallieu",
+"description": "Samedi 10 octobre, la Ville de Bourgoin-Jallieu ouvre les Magasins généraux une dernière fois pour une journée exceptionnelle.",
+"end": null,
+"free": null,
+"id": "derniere-vie-du-spot-6cd26e30",
+"image": null,
+"lat": null,
+"lon": null,
+"price_text": null,
+"sector": "villemoirieu",
+"source_id": "html-weekend-capi",
+"start": "2026-10-10T00:00:00",
+"tags": [],
+"title": "Dernière vie du spot",
+"tldr": null,
+"url": "https://www.monweekendalacapi.fr/nos-bons-plans/derniere-vie-du-spot"
+}
+],
 "extract:4d008b7090126243d3a0eda30835b60b680fae62b1bb28e756e44b1b48e0872c": [
 {
 "address": "1 Parc d'activités du Buisson Rond, 38460 Villemoirieu",

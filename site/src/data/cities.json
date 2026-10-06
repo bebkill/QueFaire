@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-10-05T21:43:13",
+ "generated_at": "2026-10-06T11:00:07",
  "cities": [
   {
    "id": "pont-de-salars",
@@ -9,12 +9,12 @@
     "lon": 2.73
    },
    "radius_minutes": 60.0,
-   "event_count": 0,
+   "event_count": 21,
    "place_count": 2456,
    "unusual_count": 226,
    "notable_count": 113,
    "photo_count": 2139,
-   "generated_at": "2026-10-05T21:42:50",
+   "generated_at": "2026-10-06T10:58:56",
    "url": "pont-de-salars/"
   },
   {
@@ -25,12 +25,12 @@
     "lon": 5.2431
    },
    "radius_minutes": 60.0,
-   "event_count": 1,
+   "event_count": 2,
    "place_count": 3328,
    "unusual_count": 206,
    "notable_count": 246,
    "photo_count": 56,
-   "generated_at": "2026-10-05T21:43:13",
+   "generated_at": "2026-10-06T11:00:07",
    "url": "villemoirieu/"
   }
  ]
