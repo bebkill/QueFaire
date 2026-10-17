@@ -99,6 +99,13 @@ sources:
   # et l'Ain, donc la découverte ramènera les agendas de l'est lyonnais et de
   # l'ouest de l'Ain. Les entrées ci-dessous étaient dormantes (0 événement à
   # venir au dernier discover-oa) — laissées désactivées.
+  - id: oa-CafeCrem
+    name: Association Cafe-Crem (OpenAgenda)
+    type: openagenda
+    url: "5105644"
+    commune: Villemoirieu
+    enabled: true
+  
   - id: oa-bourgoin-jallieu
     name: Ville de Bourgoin-Jallieu (OpenAgenda)
     type: openagenda
