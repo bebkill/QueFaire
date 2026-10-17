@@ -141,7 +141,6 @@
   "Champagne-en-Valromey",
   "Champagneux",
   "Champdor-Corcelles",
-  "Champfleuri",
   "Champier",
   "Chanaz",
   "Chaponnay",
@@ -3591,8 +3590,14 @@
    "name": "OT Café-Crém'",
    "type": "html",
    "url": "https://cafe-crem.fr/"
+  },
+  {
+   "id": "oa-CafeCrem",
+   "name": "Association Cafe-Crem (OpenAgenda)",
+   "type": "openagenda",
+   "url": "5105644"
   }
  ],
- "generated_at": "2026-10-17T07:40:40",
- "event_count": 30
+ "generated_at": "2026-10-17T07:50:57",
+ "event_count": 31
 }
