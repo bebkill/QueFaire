@@ -1179,6 +1179,53 @@ def test_datatourisme_external_id_from_api_shape():
     assert place.external_id == "https://data.datatourisme.fr/42"
 
 
+def test_datatourisme_lit_la_forme_reelle_de_l_api():
+    """Forme relevée sur l'API v1 (run 39056161713, dump Museum) : les textes
+    multilingues sont des dictionnaires à clés `@fr`/`@en`, pas `fr`. Comme
+    `_texts` écarte les clés `@…` (pour ne jamais rendre `@id`), aucun nom n'était
+    lu : 2501 fiches reçues, 0 retenue."""
+    from quefaire.datatourisme import _to_place
+
+    node = {
+        "uri": "https://data.datatourisme.fr/31/078b9673-23db-3cb3-a53b-96b3b0eb27a4",
+        "uuid": "05fe160a-0032-3688-a70f-b899ed3a0044",
+        "type": ["PointOfInterest", "CulturalSite", "LocalBusiness", "Museum"],
+        "label": {"@fr": "Musée des Beaux Arts Denys-Puech", "@en": "Denys-Puech Fine Arts Museum"},
+        "hasDescription": [{
+            "description": {"@fr": "L'art contemporain s'intègre dans l'architecture du musée."},
+            "shortDescription": {"@fr": "Le musée présente les oeuvres du sculpteur Denys-Puech."},
+        }],
+        "isLocatedAt": [{
+            "geo": {"latitude": 44.34892836, "longitude": 2.57825703},
+            "address": [{"streetAddress": ["Place Clémenceau"], "postalCode": "12000",
+                         "addressLocality": "Rodez"}],
+        }],
+        "hasContact": [{"telephone": ["+33 5 65 73 82 20"],
+                        "homepage": ["https://www.musee-denys-puech.rodezagglo.fr/"]}],
+        "hasMainRepresentation": [{
+            "hasAnnotation": [{"credits": ["Ville de Rodez"], "title": {"@fr": "Façade"}}],
+            "hasRelatedResource": [{"locator": ["https://img.test/denys-puech.jpg"]}],
+        }],
+    }
+    place = _to_place(node, "pont-de-salars", "2026-10-17")
+    assert place is not None
+    assert place.name == "Musée des Beaux Arts Denys-Puech"      # le français, pas l'anglais
+    assert place.category == "musee"
+    assert place.description.startswith("Le musée présente")
+    assert (place.commune, place.lat) == ("Rodez", 44.34892836)
+    assert place.image_url == "https://img.test/denys-puech.jpg"
+    assert place.image_credit == "Ville de Rodez"
+
+
+def test_texts_langue_a_cle_arobase_sans_rendre_les_mots_cles():
+    """`@en` seul reste lisible (repli), mais `@id` n'est jamais du texte."""
+    from quefaire.datatourisme import _texts
+
+    assert _texts({"@en": "Museum"}) == ["Museum"]
+    assert _texts({"@id": "https://data.datatourisme.fr/1", "@fr": "Musée"}) == ["Musée"]
+    assert _texts({"@id": "https://data.datatourisme.fr/1"}) == []
+
+
 def test_datatourisme_image_page_from_api_uri():
     """La page de vérification des droits d'une photo est la fiche elle-même :
     en mode API, sans `@id`, elle s'obtient par `uri` — sinon le crédit perd son lien."""

@@ -37,6 +37,7 @@ from __future__ import annotations
 import itertools
 import logging
 import os
+import re
 from collections import Counter
 from datetime import date
 
@@ -368,6 +369,13 @@ def available() -> bool:
 
 # --- Extraction JSON-LD défensive --------------------------------------------
 
+# Clé de langue façon API v1 (`@fr`, `@en`, `@pt-BR`). `@id` a la même forme et
+# n'est pas une langue : les mots-clés JSON-LD sont exclus explicitement.
+_LANGUE_AROBASE = re.compile(r"^@[a-z]{2}(-[A-Za-z]{2,4})?$")
+_MOTS_CLES_JSONLD = frozenset({"@id", "@type", "@value", "@language", "@graph", "@context",
+                               "@list", "@set", "@index", "@base", "@vocab", "@reverse"})
+
+
 def _texts(node) -> list[str]:
     """Aplatit une valeur JSON-LD en liste de chaînes.
 
@@ -400,9 +408,15 @@ def _texts(node) -> list[str]:
         if "@value" in node:
             return _texts(node["@value"])
         # Dictionnaire de langues : le français d'abord, sinon n'importe quoi.
-        for key in ("fr", "fr-FR"):
+        # Le flux écrit `fr`, l'API v1 écrit `@fr` (relevé au premier run en mode
+        # API : 2501 fiches reçues, 0 retenue, faute de nom lisible).
+        for key in ("fr", "fr-FR", "@fr", "@fr-FR"):
             if key in node:
                 return _texts(node[key])
+        # Autre langue étiquetée `@xx` : repli, mais jamais un mot-clé JSON-LD.
+        for cle, value in node.items():
+            if isinstance(cle, str) and _LANGUE_AROBASE.match(cle) and cle not in _MOTS_CLES_JSONLD:
+                return _texts(value)
         for cle, value in node.items():
             # Les mots-clés JSON-LD ne sont JAMAIS du texte affichable. `@value`
             # est traité au-dessus ; `@id`, `@type`, `@language` sont des
