@@ -98,7 +98,9 @@ class OpenAgendaFetcher:
                         address=loc.get("address"),
                         lat=loc.get("latitude"),
                         lon=loc.get("longitude"),
-                        url=f"https://openagenda.com/agendas/{source.url}/events/{ev.get('slug')}",
+                        # Par UID : /agendas/{agenda}/events/{slug} répond 400, l'UID
+                        # redirige vers la page canonique /{slug-agenda}/events/{uid}_{slug}.
+                        url=f"https://openagenda.com/agendas/{source.url}/events/{ev.get('uid') or ev.get('slug')}",
                         image=(ev.get("image") or {}).get("base")
                         and (ev["image"]["base"] + (ev["image"].get("filename") or ""))
                         or None,

@@ -95,6 +95,28 @@ def test_discover_oa_dedupes_and_ranks(monkeypatch):
     assert [e["url"] for e in strict] == [1, 3]  # strict : titre doit citer la commune
 
 
+def test_openagenda_event_url_uses_event_uid(monkeypatch):
+    """openagenda.com répond 400 sur /agendas/{agenda}/events/{slug} ; avec l'UID
+    de l'événement, il redirige vers la page canonique /{slug-agenda}/events/{uid}_{slug}."""
+    from quefaire.fetchers import openagenda
+    from quefaire.models import Source
+
+    payload = {
+        "events": [
+            {"uid": 41439769, "slug": "decouverte-musicale-des-andes",
+             "title": {"fr": "Découverte musicale des Andes"},
+             "nextTiming": {"begin": "2026-10-20T18:00:00+02:00", "end": "2026-10-20T20:00:00+02:00"}},
+        ],
+    }
+    monkeypatch.setenv("OPENAGENDA_KEY", "k")
+    monkeypatch.setattr(
+        openagenda, "http_get", lambda *a, **kw: types.SimpleNamespace(json=lambda: payload)
+    )
+    src = Source(id="oa-CafeCrem", name="Café-Crem", type="openagenda", url="5105644", commune="Villemoirieu")
+    [ev] = openagenda.OpenAgendaFetcher().fetch(src, "villemoirieu")
+    assert ev.url == "https://openagenda.com/agendas/5105644/events/41439769"
+
+
 def test_nord_isere_communes_geocoded():
     for commune in ("Crémieu", "Morestel", "Saint-Chef", "La Verpillière", "Tignieu-Jameyzieu"):
         ev = geocode(make(commune=commune), "villemoirieu")
