@@ -143,29 +143,27 @@ qui ouvre une issue pré-remplie, traitée par le même circuit de validation.
 
 ### DATAtourisme (recommandé, gratuit)
 
-Deux modes d'accès, au choix — sans l'un ni l'autre, la découverte fonctionne
-avec OpenStreetMap seul :
+Accès par l'API, avec le secret `DATATOURISME_API_KEY` (clé gratuite à
+demander sur [datatourisme.fr/utiliser-les-donnees](https://www.datatourisme.fr/utiliser-les-donnees/)).
+Sans clé, la découverte fonctionne avec OpenStreetMap seul. L'ancien mode
+« flux » (`DATATOURISME_FLUX_URL`) a été retiré : la plateforme Diffuseur qui le
+sert ne crée plus de flux depuis octobre 2026 et ferme en octobre 2027.
 
-| Mode | Secret | Coût en requêtes | Quand l'utiliser |
-|---|---|---|---|
-| **Flux** (« API locale ») | `DATATOURISME_FLUX_URL` | **1 par ville** | À privilégier : un flux créé dans le diffuseur est déjà filtré sur votre territoire |
-| **API temps réel** | `DATATOURISME_API_KEY` | 1 par page de catalogue | Quand on ne dispose que d'une clé |
-
-En mode API, le catalogue est parcouru en suivant `meta.next` (méthode
+Le catalogue est parcouru en suivant `meta.next` (méthode
 recommandée par DATAtourisme, la seule qui garantisse de ne rater aucun
-résultat), avec `page_size=250` (le maximum autorisé) pour limiter le nombre de
+résultat), avec `page_size=100` (le maximum autorisé depuis le 15/07/2026) pour limiter le nombre de
 pages.
 
-**Le mode API ne demande aucune configuration** : la clé suffit. Le pipeline
-appelle `/v1/placeOfInterest` (raccourci vers `/catalog` avec le filtre de type
-déjà appliqué) et dérive le périmètre de l'épicentre —
+**Aucune configuration n'est nécessaire** : la clé suffit. Le pipeline
+appelle `/v1/catalog`, filtré sur les types exploités (le raccourci
+`/placeOfInterest` écarterait itinéraires et événements), et dérive le périmètre de l'épicentre —
 `geo_distance=<lat>,<lon>,<rayon>km`, le rayon suivant `radius_minutes`. Ni
 liste de communes, ni code départemental à maintenir : le filtre géographique
 de l'API épouse exactement le modèle du projet.
 
 La clé part en en-tête `X-API-Key` (méthode recommandée) plutôt qu'en paramètre
 d'URL, ce qui lui évite d'apparaître dans les journaux de requêtes. Les pages
-sont demandées à `page_size=250` (le maximum) et parcourues en suivant
+sont demandées à `page_size=100` (le maximum) et parcourues en suivant
 `meta.next`.
 
 Réglages facultatifs :
@@ -173,11 +171,11 @@ Réglages facultatifs :
 | Réglage | Rôle |
 |---|---|
 | `datatourisme_filters` (registre du secteur) | expression `filters` pour affiner, ex. `hasReview.hasReviewValue[gte]=3` |
-| `DATATOURISME_API_URL` | changer d'endpoint (`…/v1/catalog` pour tout inclure) |
+| `DATATOURISME_API_URL` | changer d'endpoint (défaut `…/v1/catalog`) |
 | `DATATOURISME_API_FILTERS` | expression de repli si le secteur n'en déclare pas |
 | `DATATOURISME_API_PARAMS` | échappatoire brute pour un paramètre d'URL non modélisé (`sort`…). **À laisser vide** en temps normal : le contenu est collé tel quel à chaque requête. Ne pas y mettre `lang`, le code le fixe déjà à `fr` |
 
-La pagination est plafonnée à 60 pages (15 000 activités) et **toute troncature
+La pagination est plafonnée à 150 pages (15 000 activités) et **toute troncature
 est signalée par un warning explicite** dans les logs, jamais silencieuse.
 
 Licence Ouverte Etalab : réutilisation libre, y compris commerciale, **à
@@ -185,11 +183,9 @@ condition de citer la source et la date de mise à jour** — l'attribution est
 affichée sur la page « à propos » de chaque ville.
 
 **Budget de requêtes.** DATAtourisme annonce 20–30 requêtes concurrentes,
-~10 req/s en régime prolongé et 1000 req/heure. En mode flux, le coût est d'une
-requête par ville et par passage hebdomadaire : on pourrait rafraîchir ~1000
-villes en une heure avant d'approcher le plafond. En mode API avec un catalogue
-correctement filtré, quelques pages par ville — soit encore une centaine de
-villes par heure. Les villes sont traitées en séquence, avec un intervalle
+~10 req/s en régime prolongé et 1000 req/heure. Une ville coûte ~26 pages par
+passage hebdomadaire (mesuré en octobre 2026, ~2 500 fiches dans le rayon) :
+une trentaine de villes par heure avant d'approcher le plafond. Les villes sont traitées en séquence, avec un intervalle
 minimal entre requêtes, un rejeu respectant `Retry-After` en cas de 429, et un
 coupe-circuit à 1000 requêtes par run.
 

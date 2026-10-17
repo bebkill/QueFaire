@@ -69,12 +69,10 @@ jobs:
           GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
           MISTRAL_API_KEY: ${{ secrets.MISTRAL_API_KEY }}
           # DATAtourisme : complète OpenStreetMap (descriptions, horaires,
-          # labels). Deux modes, le FLUX est préféré (1 requête au lieu d'une par
-          # page). Sans l'un ni l'autre, la découverte tourne avec OSM seul.
-          DATATOURISME_FLUX_URL: ${{ secrets.DATATOURISME_FLUX_URL }}
+          # labels), lu par l'API. Sans clé, la découverte tourne avec OSM seul.
           DATATOURISME_API_KEY: ${{ secrets.DATATOURISME_API_KEY }}
-          # Filtres serveur du catalogue (ex. « department=12 ») : indispensables
-          # en mode API pour ne pas parcourir les 530 000 fiches nationales.
+          # Paramètre d'URL brut non modélisé (`sort`…). Vide en temps normal :
+          # le périmètre vient déjà de geo_distance, dérivé de l'épicentre.
           DATATOURISME_API_PARAMS: ${{ vars.DATATOURISME_API_PARAMS }}
           # Notes d'avis — collectées seulement si une clé existe, mais NON
           # affichées : conditions d'utilisation des fournisseurs (voir ratings.py).
@@ -83,7 +81,7 @@ jobs:
           CITY: ${{ inputs.city }}
           LIMIT: ${{ inputs.limit }}
           # Inspection de la source, à la demande : la seule façon de VOIR la forme
-          # d'un type DATAtourisme non encore exploité, le flux n'étant atteignable
+          # d'un type DATAtourisme non encore exploité, l'API n'étant atteignable
           # que d'ici. Vide en fonctionnement normal.
           QUEFAIRE_DUMP_TYPE: ${{ inputs.dump_type }}
         run: |

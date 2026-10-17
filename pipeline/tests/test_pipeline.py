@@ -989,19 +989,14 @@ OVERPASS_SAMPLE = {
 
 
 class _FakeResp:
-    def __init__(self, payload, content=None):
+    def __init__(self, payload):
         self._payload = payload
-        # `content` sert au mode FLUX, qui lit les octets bruts pour reconnaître
-        # l'emballage (ZIP, gzip, JSON nu) au lieu de supposer du JSON.
-        self._content = content
 
     def json(self):
         return self._payload
 
     @property
     def content(self):
-        if self._content is not None:
-            return self._content
         import json as _json
 
         return _json.dumps(self._payload).encode("utf-8")
@@ -1179,6 +1174,74 @@ def test_datatourisme_external_id_from_api_shape():
     assert place.external_id == "https://data.datatourisme.fr/42"
 
 
+def test_datatourisme_lit_la_forme_reelle_de_l_api():
+    """Forme relevée sur l'API v1 (run 39056161713, dump Museum) : les textes
+    multilingues sont des dictionnaires à clés `@fr`/`@en`, pas `fr`. Comme
+    `_texts` écarte les clés `@…` (pour ne jamais rendre `@id`), aucun nom n'était
+    lu : 2501 fiches reçues, 0 retenue."""
+    from quefaire.datatourisme import _to_place
+
+    node = {
+        "uri": "https://data.datatourisme.fr/31/078b9673-23db-3cb3-a53b-96b3b0eb27a4",
+        "uuid": "05fe160a-0032-3688-a70f-b899ed3a0044",
+        "type": ["PointOfInterest", "CulturalSite", "LocalBusiness", "Museum"],
+        "label": {"@fr": "Musée des Beaux Arts Denys-Puech", "@en": "Denys-Puech Fine Arts Museum"},
+        "hasDescription": [{
+            "description": {"@fr": "L'art contemporain s'intègre dans l'architecture du musée."},
+            "shortDescription": {"@fr": "Le musée présente les oeuvres du sculpteur Denys-Puech."},
+        }],
+        "isLocatedAt": [{
+            "geo": {"latitude": 44.34892836, "longitude": 2.57825703},
+            "address": [{"streetAddress": ["Place Clémenceau"], "postalCode": "12000",
+                         "addressLocality": "Rodez"}],
+        }],
+        "hasContact": [{"telephone": ["+33 5 65 73 82 20"],
+                        "homepage": ["https://www.musee-denys-puech.rodezagglo.fr/"]}],
+        "hasMainRepresentation": [{
+            "hasAnnotation": [{"credits": ["Ville de Rodez"], "title": {"@fr": "Façade"}}],
+            "hasRelatedResource": [{"locator": ["https://img.test/denys-puech.jpg"]}],
+        }],
+    }
+    place = _to_place(node, "pont-de-salars", "2026-10-17")
+    assert place is not None
+    assert place.name == "Musée des Beaux Arts Denys-Puech"      # le français, pas l'anglais
+    assert place.category == "musee"
+    assert place.description.startswith("Le musée présente")
+    assert (place.commune, place.lat) == ("Rodez", 44.34892836)
+    assert place.image_url == "https://img.test/denys-puech.jpg"
+    assert place.image_credit == "Ville de Rodez"
+
+
+def test_texts_langue_a_cle_arobase_sans_rendre_les_mots_cles():
+    """`@en` seul reste lisible (repli), mais `@id` n'est jamais du texte."""
+    from quefaire.datatourisme import _texts
+
+    assert _texts({"@en": "Museum"}) == ["Museum"]
+    assert _texts({"@id": "https://data.datatourisme.fr/1", "@fr": "Musée"}) == ["Musée"]
+    assert _texts({"@id": "https://data.datatourisme.fr/1"}) == []
+
+
+def test_datatourisme_image_page_from_api_uri():
+    """La page de vérification des droits d'une photo est la fiche elle-même :
+    en mode API, sans `@id`, elle s'obtient par `uri` — sinon le crédit perd son lien."""
+    from quefaire.datatourisme import _to_place
+
+    node = {
+        "uri": "https://data.datatourisme.fr/43",
+        "@type": ["Museum"],
+        "rdfs:label": {"fr": ["Musée"]},
+        "isLocatedAt": {"schema:geo": {"schema:latitude": "44.2", "schema:longitude": "2.7"}},
+        "hasMainRepresentation": [{"ebucore:hasRelatedResource": [{
+            "ebucore:locator": ["https://img.test/a.jpg"],
+        }]}],
+    }
+    place = _to_place(node, "s", "2026-10-17")
+    assert place.image_url == "https://img.test/a.jpg"
+    assert place.image_page == "https://data.datatourisme.fr/43"
+
+
+
+
 def test_datatourisme_reads_image_and_credit():
     """Chaîne image de l'ontologie §8.9 : locator = l'URL, crédits à côté."""
     from quefaire.datatourisme import _image_of
@@ -1211,263 +1274,6 @@ def test_osm_image_only_from_commons():
     assert _image_of({}) == (None, None, None)
 
 
-def _zip_flux(fichiers: dict) -> bytes:
-    """Archive ZIP en mémoire, comme celle que livre le diffuseur DATAtourisme."""
-    import io
-    import json as _json
-    import zipfile
-
-    tampon = io.BytesIO()
-    with zipfile.ZipFile(tampon, "w") as zf:
-        for nom, contenu in fichiers.items():
-            zf.writestr(nom, contenu if isinstance(contenu, str) else _json.dumps(contenu))
-    return tampon.getvalue()
-
-
-def test_flux_lit_une_archive_zip(monkeypatch):
-    """Un flux DATAtourisme est livré en ZIP, pas en JSON nu.
-
-    Le premier vrai passage en mode flux a échoué sur
-    « Expecting value: line 1 column 1 » : le téléchargement réussissait et
-    `.json()` recevait du binaire. La disposition interne de l'archive n'est pas
-    devinée — on lit tout membre JSON et on garde ce qui se lit.
-    """
-    from quefaire import datatourisme as dt
-    from quefaire.cli import load_sector
-
-    musee = {
-        "@id": "https://data.datatourisme.fr/9",
-        "@type": ["Museum"],
-        "rdfs:label": {"fr": ["Musée du flux"]},
-        "isLocatedAt": {"schema:geo": {"schema:latitude": 44.28, "schema:longitude": 2.74}},
-    }
-    archive = _zip_flux({
-        "index.json": ["objects/9.json"],       # index de chemins : aucune fiche
-        "objects/9.json": musee,                # un fichier PAR fiche, sans enveloppe
-        "LISEZ-MOI.txt": "pas du json",         # membre non JSON : ignoré
-    })
-
-    monkeypatch.setenv(dt.FLUX_ENV, "https://flux.test/export.zip")
-    monkeypatch.setattr(
-        "quefaire.fetchers.base.http_get", lambda *a, **k: _FakeResp(None, content=archive)
-    )
-    found = dt.fetch(load_sector("pont-de-salars"))
-    assert [p.name for p in found] == ["Musée du flux"]
-
-
-def test_flux_manifeste_ni_converti_ni_muet(monkeypatch, caplog):
-    """Le manifeste de l'archive sert de témoin de complétude, pas de fiche.
-
-    L'archive du diffuseur contient un fichier par fiche PLUS un index de
-    23 541 entrées `{label, lastUpdateDatatourisme, file}`. Ces entrées n'ont ni
-    `@type` ni `@id` : les convertir échouait d'avance, et le nombre qu'elles
-    annoncent est la seule chose qui permette de dire qu'une archive est amputée —
-    sans quoi une perte de fiches ne se voit que des semaines plus tard, quand la
-    rétention lâche.
-    """
-    import logging
-
-    from quefaire import datatourisme as dt
-    from quefaire.cli import load_sector
-
-    def fiche(n):
-        return {
-            "@id": f"https://data.datatourisme.fr/{n}",
-            "@type": ["Museum"],
-            "rdfs:label": {"fr": [f"Musée {n}"]},
-            "isLocatedAt": {"schema:geo": {"schema:latitude": 44.28, "schema:longitude": 2.74}},
-        }
-
-    # Le manifeste annonce TROIS fiches, l'archive n'en contient que deux.
-    archive = _zip_flux({
-        "index.json": [
-            {"label": "Musée 1", "lastUpdateDatatourisme": "2026-08-05", "file": "objects/1.json"},
-            {"label": "Musée 2", "lastUpdateDatatourisme": "2026-08-05", "file": "objects/2.json"},
-            {"label": "Musée 3", "lastUpdateDatatourisme": "2026-08-05", "file": "objects/3.json"},
-        ],
-        "objects/1.json": fiche(1),
-        "objects/2.json": fiche(2),
-    })
-
-    monkeypatch.setenv(dt.FLUX_ENV, "https://flux.test/export.zip")
-    monkeypatch.setattr(
-        "quefaire.fetchers.base.http_get", lambda *a, **k: _FakeResp(None, content=archive)
-    )
-    with caplog.at_level(logging.WARNING):
-        found = dt.fetch(load_sector("pont-de-salars"))
-
-    # Les entrées d'index ne deviennent pas des activités.
-    assert sorted(p.name for p in found) == ["Musée 1", "Musée 2"]
-    manque = [r.getMessage() for r in caplog.records if "manifeste annonce" in r.getMessage()]
-    assert manque, "un écart entre fiches annoncées et fiches lues doit être DIT"
-    assert "3 fiches, 2 lues" in manque[0]
-
-
-def test_flux_ne_tronque_pas_une_archive_volumineuse(monkeypatch, caplog):
-    """Le garde-fou d'archive borne le PIC, pas le cumul décompressé.
-
-    Le garde-fou d'origine coupait au-delà de 500 Mo **cumulés** : il a tronqué un
-    flux parfaitement légitime (19 685 fiches), dont des centaines n'ont survécu
-    au run que par la rétention. Le cumul ne mesurait rien de réel — les membres
-    sont lus et libérés un par un. Ici, trois fiches dont le cumul dépasse
-    largement la limite par membre doivent TOUTES passer, et seule celle qui
-    excède `MAX_MEMBER_BYTES` à elle seule doit être écartée, avec un log.
-    """
-    import logging
-
-    from quefaire import datatourisme as dt
-    from quefaire.cli import load_sector
-
-    def fiche(n, bourre=0):
-        return {
-            "@id": f"https://data.datatourisme.fr/{n}",
-            "@type": ["Museum"],
-            "rdfs:label": {"fr": [f"Musée {n}"]},
-            "isLocatedAt": {"schema:geo": {"schema:latitude": 44.28, "schema:longitude": 2.74}},
-            "rdfs:comment": {"fr": ["x" * bourre]} if bourre else {},
-        }
-
-    monkeypatch.setattr(dt, "MAX_MEMBER_BYTES", 20_000)
-    archive = _zip_flux({
-        "objects/1.json": fiche(1, 15_000),   # gros mais admissible
-        "objects/2.json": fiche(2, 15_000),   # le CUMUL dépasse : ne doit rien couper
-        "objects/3.json": fiche(3, 30_000),   # trop gros à lui seul : écarté
-    })
-
-    monkeypatch.setenv(dt.FLUX_ENV, "https://flux.test/export.zip")
-    monkeypatch.setattr(
-        "quefaire.fetchers.base.http_get", lambda *a, **k: _FakeResp(None, content=archive)
-    )
-    with caplog.at_level(logging.WARNING):
-        found = dt.fetch(load_sector("pont-de-salars"))
-
-    assert sorted(p.name for p in found) == ["Musée 1", "Musée 2"]
-    assert any("objects/3.json" in r.getMessage() for r in caplog.records), (
-        "un membre écarté doit se DIRE : sinon la fiche passe pour absente du flux"
-    )
-
-
-def test_flux_accepte_graph_et_json_nu(monkeypatch):
-    """Les autres emballages restent acceptés : le mode flux ne doit pas casser
-    si le diffuseur change de format."""
-    from quefaire import datatourisme as dt
-    from quefaire.cli import load_sector
-
-    fiche = {
-        "@id": "https://data.datatourisme.fr/10",
-        "@type": ["Museum"],
-        "rdfs:label": {"fr": ["Musée enveloppé"]},
-        "isLocatedAt": {"schema:geo": {"schema:latitude": 44.28, "schema:longitude": 2.74}},
-    }
-    monkeypatch.setenv(dt.FLUX_ENV, "https://flux.test/x")
-
-    # a) ZIP contenant un seul gros JSON-LD sous @graph
-    archive = _zip_flux({"flux.jsonld": {"@graph": [fiche]}})
-    monkeypatch.setattr(
-        "quefaire.fetchers.base.http_get", lambda *a, **k: _FakeResp(None, content=archive)
-    )
-    assert [p.name for p in dt.fetch(load_sector("pont-de-salars"))] == ["Musée enveloppé"]
-
-    # b) JSON nu, sans archive (comportement d'origine)
-    monkeypatch.setattr(
-        "quefaire.fetchers.base.http_get", lambda *a, **k: _FakeResp({"@graph": [fiche]})
-    )
-    assert [p.name for p in dt.fetch(load_sector("pont-de-salars"))] == ["Musée enveloppé"]
-
-
-def test_flux_paresseux_declenche_quand_meme_le_repli(monkeypatch):
-    """Le parcours du flux est paresseux, le TÉLÉCHARGEMENT doit rester immédiat.
-
-    Piège évité de justesse : dans un générateur pur, l'erreur HTTP ne survient
-    qu'à la première itération — donc après le `try` de `fetch()`, et le repli sur
-    l'API ne jouerait plus. Ce test laisse tourner le VRAI `_nodes_from_flux`,
-    contrairement au test suivant qui le remplace.
-    """
-    import requests
-
-    from quefaire import datatourisme as dt
-    from quefaire.cli import load_sector
-
-    monkeypatch.setenv(dt.FLUX_ENV, "https://flux.test/x")
-    monkeypatch.setenv(dt.API_KEY_ENV, "K")
-    monkeypatch.delenv(dt.API_PARAMS_ENV, raising=False)
-    monkeypatch.delenv(dt.API_FILTERS_ENV, raising=False)
-
-    def http(url, **k):
-        if "flux.test" in url:
-            raise requests.HTTPError("504 Gateway Timeout")
-        return _FakeResp({"objects": [{
-            "uri": "https://data.datatourisme.fr/11",
-            "@type": ["Museum"],
-            "rdfs:label": {"fr": ["Musée de repli"]},
-            "isLocatedAt": {"schema:geo": {"schema:latitude": "44.28", "schema:longitude": "2.74"}},
-        }], "meta": {"next": None}})
-
-    monkeypatch.setattr("quefaire.fetchers.base.http_get", http)
-    assert [p.name for p in dt.fetch(load_sector("pont-de-salars"))] == ["Musée de repli"]
-
-
-def test_flux_vide_declenche_le_repli(monkeypatch):
-    """Une archive qui ne rend aucune fiche doit basculer sur l'API, pas publier
-    un jeu vide. Le flot paresseux doit donc être testé AVANT d'être consommé."""
-    from quefaire import datatourisme as dt
-    from quefaire.cli import load_sector
-
-    monkeypatch.setenv(dt.FLUX_ENV, "https://flux.test/vide.zip")
-    monkeypatch.setenv(dt.API_KEY_ENV, "K")
-    monkeypatch.delenv(dt.API_PARAMS_ENV, raising=False)
-    monkeypatch.delenv(dt.API_FILTERS_ENV, raising=False)
-
-    vide = _zip_flux({"LISEZ-MOI.txt": "aucun json ici"})
-
-    def http(url, **k):
-        if "flux.test" in url:
-            return _FakeResp(None, content=vide)
-        return _FakeResp({"objects": [{
-            "uri": "https://data.datatourisme.fr/12",
-            "@type": ["Museum"],
-            "rdfs:label": {"fr": ["Musée de repli"]},
-            "isLocatedAt": {"schema:geo": {"schema:latitude": "44.28", "schema:longitude": "2.74"}},
-        }], "meta": {"next": None}})
-
-    monkeypatch.setattr("quefaire.fetchers.base.http_get", http)
-    assert [p.name for p in dt.fetch(load_sector("pont-de-salars"))] == ["Musée de repli"]
-
-
-def test_datatourisme_falls_back_to_api_when_flux_refused(monkeypatch):
-    """Un flux dépublié rend 403 : la clé d'API doit prendre le relais.
-
-    Sans ce repli, le run publiait un jeu OSM seul — amputé du tiers de ses
-    fiches — sans autre signe qu'un warning noyé dans le log.
-    """
-    from quefaire import datatourisme as dt
-    from quefaire.cli import load_sector
-
-    monkeypatch.setenv(dt.FLUX_ENV, "https://flux.test/refuse")
-    monkeypatch.setenv(dt.API_KEY_ENV, "K")
-    monkeypatch.delenv(dt.API_PARAMS_ENV, raising=False)
-    monkeypatch.delenv(dt.API_FILTERS_ENV, raising=False)
-
-    def flux_refuse(_url):
-        raise RuntimeError("403 Client Error: Forbidden")
-
-    appels = []
-
-    def api(key, sector, filters=""):
-        appels.append(key)
-        return [{
-            "uri": "https://data.datatourisme.fr/7",
-            "@type": ["Museum"],
-            "rdfs:label": {"fr": ["Musée de secours"]},
-            "isLocatedAt": {"schema:geo": {"schema:latitude": "44.19", "schema:longitude": "2.68"}},
-        }]
-
-    monkeypatch.setattr(dt, "_nodes_from_flux", flux_refuse)
-    monkeypatch.setattr(dt, "_nodes_from_api", api)
-
-    found = dt.fetch(load_sector("pont-de-salars"))
-    assert appels == ["K"]                       # le repli a bien été emprunté
-    assert [p.name for p in found] == ["Musée de secours"]
 
 
 def test_dedupe_after_merge_absorbs_retained_duplicates():
@@ -1687,9 +1493,12 @@ DT_SAMPLE = {
 def test_datatourisme_parses_heterogeneous_jsonld(monkeypatch):
     from quefaire import datatourisme
 
-    monkeypatch.setenv(datatourisme.FLUX_ENV, "https://flux.test/x")
+    monkeypatch.setenv(datatourisme.API_KEY_ENV, "K")
+    monkeypatch.setattr(datatourisme, "MIN_INTERVAL_S", 0)
+    monkeypatch.setattr(datatourisme, "_requests_made", 0)
     monkeypatch.setattr(
-        "quefaire.fetchers.base.http_get", lambda *a, **k: _FakeResp(DT_SAMPLE)
+        "quefaire.fetchers.base.http_get",
+        lambda *a, **k: _FakeResp({"objects": DT_SAMPLE["@graph"], "meta": {"next": None}}),
     )
     found = datatourisme.fetch(load_sector("pont-de-salars"))
     by_name = {p.name: p for p in found}
@@ -1710,10 +1519,10 @@ def test_datatourisme_parses_heterogeneous_jsonld(monkeypatch):
     assert by_name["Accrobranche du Lévézou"].category == "sport-loisir"
 
 
-def test_datatourisme_skipped_without_flux(monkeypatch):
+def test_datatourisme_skipped_without_key(monkeypatch):
     from quefaire import datatourisme
 
-    monkeypatch.delenv(datatourisme.FLUX_ENV, raising=False)
+    monkeypatch.delenv(datatourisme.API_KEY_ENV, raising=False)
     assert datatourisme.available() is False
     assert datatourisme.fetch(load_sector("pont-de-salars")) == []  # complément absent ≠ échec
 
@@ -1843,7 +1652,7 @@ def test_datatourisme_respects_quota_guard(monkeypatch):
         return _FakeResp(DT_SAMPLE)
 
     monkeypatch.setattr("quefaire.fetchers.base.http_get", flaky)
-    assert dt._request("https://flux.test/x").json() == DT_SAMPLE
+    assert dt._request("https://api.test/x").json() == DT_SAMPLE
     assert calls["n"] == 2       # rejoué une fois
     assert 7 in slept            # Retry-After honoré plutôt qu'un délai arbitraire
 
@@ -1854,14 +1663,13 @@ def test_datatourisme_stops_before_quota(monkeypatch):
 
     monkeypatch.setattr(dt, "_requests_made", dt.MAX_REQUESTS_PER_HOUR)
     with pytest.raises(RuntimeError, match="plafond de sécurité"):
-        dt._request("https://flux.test/x")
+        dt._request("https://api.test/x")
 
 
 def test_datatourisme_api_follows_next_url(monkeypatch):
     """Mode API : on suit meta.next (méthode recommandée), pas un compteur de pages."""
     from quefaire import datatourisme as dt
 
-    monkeypatch.delenv(dt.FLUX_ENV, raising=False)
     monkeypatch.setenv(dt.API_KEY_ENV, "K")
     monkeypatch.setattr(dt, "MIN_INTERVAL_S", 0)
     monkeypatch.setattr(dt, "_requests_made", 0)
@@ -1892,7 +1700,6 @@ def test_datatourisme_api_extra_filters(monkeypatch):
     """Les filtres serveur sont configurables sans toucher au code."""
     from quefaire import datatourisme as dt
 
-    monkeypatch.delenv(dt.FLUX_ENV, raising=False)
     monkeypatch.setenv(dt.API_KEY_ENV, "K")
     monkeypatch.delenv(dt.API_PARAMS_ENV, raising=False)
     monkeypatch.delenv(dt.API_FILTERS_ENV, raising=False)
@@ -1911,9 +1718,13 @@ def test_datatourisme_api_extra_filters(monkeypatch):
     # Filtre de type côté serveur : on ne rapatrie pas ce qu'on jetterait.
     assert "filters=type%5Bin%5D=" in seen[0] or "filters=type%5Bin%5D%3D" in seen[0]
     assert "Museum" in seen[0]
-    assert f"page_size={dt.MAX_PAGE_SIZE}" in seen[0]       # 250 = maximum autorisé
+    assert f"page_size={dt.MAX_PAGE_SIZE}" in seen[0]       # 100 = maximum autorisé
     assert "fields=" in seen[0]                             # réponse allégée
-    assert dt.MAX_PAGE_SIZE == 250                          # plafond imposé par l'API
+    # Plafond imposé par l'API depuis le 2026-07-15 (changelog) : 250 rend un 400.
+    assert dt.MAX_PAGE_SIZE == 100
+    # /catalog et non /placeOfInterest : ce dernier écarte itinéraires (Tour →
+    # « visite ») et événements, que le flux fournissait. Le type passe par filters.
+    assert seen[0].startswith("https://api.datatourisme.fr/v1/catalog?")
 
     # Rayon plus court → cercle plus petit, sans rien changer d'autre.
     seen.clear()
@@ -1962,7 +1773,7 @@ def test_datatourisme_description_du_flux_n_est_pas_une_uri():
         "@id": "https://data.datatourisme.fr/13/4187ca4f",
         "@type": ["Museum", "PlaceOfInterest"],
         "rdfs:label": {"fr": ["Musée de la Bachasse"]},
-        # Forme FLUX : une liste, et `@id` avant les textes.
+        # Forme JSON-LD complète : une liste, et `@id` avant les textes.
         "hasDescription": [{
             "@id": "https://data.datatourisme.fr/61ff269d",
             "@type": ["Description"],
@@ -2061,7 +1872,6 @@ def test_datatourisme_api_caps_pagination(monkeypatch, caplog):
     """Un catalogue non filtré est tronqué — mais bruyamment, jamais en silence."""
     from quefaire import datatourisme as dt
 
-    monkeypatch.delenv(dt.FLUX_ENV, raising=False)
     monkeypatch.setenv(dt.API_KEY_ENV, "K")
     monkeypatch.delenv(dt.API_PARAMS_ENV, raising=False)
     monkeypatch.setattr(dt, "MIN_INTERVAL_S", 0)
@@ -2080,21 +1890,6 @@ def test_datatourisme_api_caps_pagination(monkeypatch, caplog):
     assert "TRONQUÉ" in caplog.text                          # et signalé
 
 
-def test_datatourisme_flux_preferred_over_api(monkeypatch):
-    """Le flux coûte une requête là où l'API en coûte une par page : il prime."""
-    from quefaire import datatourisme as dt
-
-    monkeypatch.setenv(dt.FLUX_ENV, "https://flux.test/x")
-    monkeypatch.setenv(dt.API_KEY_ENV, "K")
-    monkeypatch.setattr(dt, "MIN_INTERVAL_S", 0)
-    monkeypatch.setattr(dt, "_requests_made", 0)
-    seen: list[str] = []
-    monkeypatch.setattr(
-        "quefaire.fetchers.base.http_get",
-        lambda url, **k: (seen.append(url), _FakeResp(DT_SAMPLE))[1],
-    )
-    dt.fetch(load_sector("pont-de-salars"))
-    assert seen == ["https://flux.test/x"]   # l'API n'est pas sollicitée
 
 
 def test_cache_partitioned_per_cycle(tmp_path, monkeypatch):
@@ -2165,7 +1960,6 @@ def test_discover_places_survives_osm_outage(monkeypatch, tmp_path):
     from quefaire import cli, datatourisme, places
 
     monkeypatch.setenv(datatourisme.API_KEY_ENV, "K")
-    monkeypatch.delenv(datatourisme.FLUX_ENV, raising=False)
     monkeypatch.setattr(datatourisme, "MIN_INTERVAL_S", 0)
     monkeypatch.setattr(datatourisme, "_requests_made", 0)
     monkeypatch.setattr(places, "fetch_osm", lambda *a, **k: (_ for _ in ()).throw(RuntimeError("504")))
@@ -2190,7 +1984,6 @@ def test_discover_places_keeps_file_when_all_providers_down(monkeypatch, tmp_pat
     places.save(existing, "pont-de-salars", tmp_path)
 
     monkeypatch.delenv(datatourisme.API_KEY_ENV, raising=False)
-    monkeypatch.delenv(datatourisme.FLUX_ENV, raising=False)
     monkeypatch.setattr(places, "fetch_osm", lambda *a, **k: (_ for _ in ()).throw(RuntimeError("504")))
 
     assert cli.discover_places("pont-de-salars", tmp_path, use_llm=False, use_ratings=False) == 1

@@ -227,28 +227,30 @@ conservées d'un fournisseur muet — un flux refusé avait ainsi publié
 #### Accès DATAtourisme et quotas
 
 La plateforme annonce 20–30 requêtes concurrentes, ~10 req/s en régime prolongé
-et **1000 requêtes/heure**. Deux modes d'accès, et le choix pèse directement sur
-ce budget :
+et **1000 requêtes/heure**. Accès par l'API (`DATATOURISME_API_KEY`) : une
+ville coûte ~26 requêtes par passage hebdomadaire (mesuré en octobre 2026).
 
-- **flux** (`DATATOURISME_FLUX_URL`, « API locale ») — une requête ramène tout
-  le jeu d'une ville. Mode préféré : ~1000 villes rafraîchissables en une heure.
-  Le fichier est livré en **archive ZIP**, reconnue aux octets de tête et non à
-  l'extension ni au `Content-Type` (ni l'un ni l'autre fiables sur un lien signé) ;
-  sa disposition interne n'est pas devinée — un seul JSON-LD sous `@graph` ou un
-  fichier par fiche, on lit tout membre JSON et on garde ce qui se lit. Deux
-  réserves : le flux ignore `fields` **et** `lang`, donc son contenu est celui que
-  l'export du diffuseur embarque, et la préférence français repose alors
-  uniquement sur le parseur ;
-- **API temps réel** (`DATATOURISME_API_KEY`) — `GET /v1/placeOfInterest`,
+- `GET /v1/catalog` filtré sur
+  les types exploités (`/placeOfInterest` écarterait itinéraires et événements),
   parcouru en suivant `meta.next` plutôt qu'en incrémentant un numéro de page
   (méthode recommandée, et au-delà de 10 000 résultats l'accès par numéro n'est
   plus possible). Le périmètre vient du paramètre **`geo_distance`**, dérivé de
   l'épicentre : `lat,lon,<radius_km>km`. Le filtre géographique de l'API épouse
   exactement le modèle du projet, donc **aucune configuration manuelle** — ni
-  liste de communes, ni code départemental. Pages de 250 fiches (le maximum),
+  liste de communes, ni code départemental. Pages de 100 fiches (le maximum depuis le 15/07/2026, 400 au-delà),
   clé en en-tête `X-API-Key` pour qu'elle n'apparaisse pas dans les journaux.
   La pagination est plafonnée (`MAX_PAGES`) et toute troncature **journalisée en
   warning** — jamais silencieuse.
+
+> **Fin du flux** : l'ancien mode « flux » de la plateforme Diffuseur
+> (`DATATOURISME_FLUX_URL`, archive ZIP du territoire du diffuseur) a été retiré
+> en octobre 2026. La plateforme ne crée plus de flux depuis le 1er octobre 2026
+> et ferme en octobre 2027 ([annonce](https://www.datatourisme.fr/2026/10/02/fermeture-progressive-de-la-plateforme-diffuseur/)).
+> Comparée avant retrait, l'API rendait plus de fiches (2477 contre 2257 à
+> Pont-de-Salars, 2087 contre 1998 à Villemoirieu), lisait `lang=fr` que le
+> flux ignorait, et téléchargeait 26 pages au lieu d'une archive de 118 Mo.
+> Piège relevé à la bascule : l'API écrit les textes `{"@fr": …}`, le flux
+> `{"fr": …}`.
 
 Garde-fous communs : intervalle minimal entre requêtes (≤ 5 req/s, moitié du
 régime toléré), rejeu sur 429/503 en respectant `Retry-After`, et coupe-circuit
