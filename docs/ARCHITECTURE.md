@@ -239,16 +239,24 @@ ce budget :
   réserves : le flux ignore `fields` **et** `lang`, donc son contenu est celui que
   l'export du diffuseur embarque, et la préférence français repose alors
   uniquement sur le parseur ;
-- **API temps réel** (`DATATOURISME_API_KEY`) — `GET /v1/placeOfInterest`,
+- **API temps réel** (`DATATOURISME_API_KEY`) — `GET /v1/catalog` filtré sur
+  les types exploités (`/placeOfInterest` écarterait itinéraires et événements),
   parcouru en suivant `meta.next` plutôt qu'en incrémentant un numéro de page
   (méthode recommandée, et au-delà de 10 000 résultats l'accès par numéro n'est
   plus possible). Le périmètre vient du paramètre **`geo_distance`**, dérivé de
   l'épicentre : `lat,lon,<radius_km>km`. Le filtre géographique de l'API épouse
   exactement le modèle du projet, donc **aucune configuration manuelle** — ni
-  liste de communes, ni code départemental. Pages de 250 fiches (le maximum),
+  liste de communes, ni code départemental. Pages de 100 fiches (le maximum depuis le 15/07/2026, 400 au-delà),
   clé en en-tête `X-API-Key` pour qu'elle n'apparaisse pas dans les journaux.
   La pagination est plafonnée (`MAX_PAGES`) et toute troncature **journalisée en
   warning** — jamais silencieuse.
+
+> **Fin du flux** : la plateforme Diffuseur, qui sert les flux, ne crée plus de
+> nouveau flux depuis le 1er octobre 2026 et ferme en octobre 2027 ; l'API
+> devient le mode d'accès privilégié ([annonce](https://www.datatourisme.fr/2026/10/02/fermeture-progressive-de-la-plateforme-diffuseur/)).
+> La clé d'un flux ne vaut pas clé d'API. L'entrée `datatourisme_mode: api` du
+> workflow `places.yml` (`DATATOURISME_MODE=api`) saute le flux pour comparer
+> les deux voies avant la bascule.
 
 Garde-fous communs : intervalle minimal entre requêtes (≤ 5 req/s, moitié du
 régime toléré), rejeu sur 429/503 en respectant `Retry-After`, et coupe-circuit

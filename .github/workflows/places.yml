@@ -26,6 +26,10 @@ on:
         description: "Recopier dans le log les 2 premières fiches brutes de ce type DATAtourisme (ex. EntertainmentAndEvent)"
         required: false
         default: ""
+      datatourisme_mode:
+        description: "« api » : ignorer le flux DATAtourisme et passer par l'API (comparaison avant fermeture du Diffuseur, oct. 2027)"
+        required: false
+        default: ""
 
 permissions:
   contents: write
@@ -76,6 +80,9 @@ jobs:
           # Filtres serveur du catalogue (ex. « department=12 ») : indispensables
           # en mode API pour ne pas parcourir les 530 000 fiches nationales.
           DATATOURISME_API_PARAMS: ${{ vars.DATATOURISME_API_PARAMS }}
+          # « api » à la demande : le flux est sauté même configuré. Vide en
+          # fonctionnement normal (flux puis repli API).
+          DATATOURISME_MODE: ${{ inputs.datatourisme_mode }}
           # Notes d'avis — collectées seulement si une clé existe, mais NON
           # affichées : conditions d'utilisation des fournisseurs (voir ratings.py).
           GOOGLE_PLACES_KEY: ${{ secrets.GOOGLE_PLACES_KEY }}
@@ -102,6 +109,9 @@ jobs:
           done
 
       - name: Commit places
+        # Un run de comparaison (datatourisme_mode renseigné) se lit dans le log :
+        # il ne doit pas remplacer le catalogue publié.
+        if: inputs.datatourisme_mode == ''
         run: |
           git config user.name "quefaire-bot"
           git config user.email "actions@users.noreply.github.com"

@@ -17,8 +17,10 @@ Deux accès possibles, et le choix pèse sur le quota (1000 requêtes/heure) :
 
 - **flux** (`DATATOURISME_FLUX_URL`) — une seule requête ramène tout le jeu
   d'une ville. À privilégier ;
-- **API temps réel** (`DATATOURISME_API_KEY`) — `GET /v1/placeOfInterest`,
-  paginé. Le périmètre est dérivé automatiquement de l'épicentre via le
+- **API temps réel** (`DATATOURISME_API_KEY`) — `GET /v1/catalog` filtré sur
+  les types exploités, paginé. C'est la voie d'avenir : la plateforme Diffuseur,
+  qui sert les flux, ferme en octobre 2027 (`DATATOURISME_MODE=api` force ce mode
+  pour comparer). Le périmètre est dérivé automatiquement de l'épicentre via le
   paramètre `geo_distance` : aucune liste de communes ni code départemental à
   maintenir, le rayon suit `radius_minutes` du secteur.
 
@@ -45,6 +47,10 @@ log = logging.getLogger("quefaire")
 
 FLUX_ENV = "DATATOURISME_FLUX_URL"
 API_KEY_ENV = "DATATOURISME_API_KEY"
+# `api` saute le flux même s'il est configuré. La plateforme Diffuseur, qui sert
+# les flux, ferme en octobre 2027 : ce mode permet un run de comparaison flux/API
+# avant la bascule, sans retirer le secret du flux.
+MODE_ENV = "DATATOURISME_MODE"
 
 # Inspecteur de source, à la demande : `QUEFAIRE_DUMP_TYPE=EntertainmentAndEvent`
 # fait recopier dans le log les premières fiches brutes portant ce type.
@@ -106,8 +112,8 @@ API_PARAMS_ENV = "DATATOURISME_API_PARAMS"
 # Expression `filters` optionnelle, syntaxe de l'API :
 #     type=PlaceOfInterest AND isLocatedAt.address.hasAddressCity.insee=35238
 # Opérateurs entre crochets ([in], [ne], [gte]…), combinables par AND/OR et
-# parenthèses. Inutile ici par défaut : l'endpoint /placeOfInterest applique
-# déjà le filtre de type, et le périmètre passe par geo_distance.
+# parenthèses. Inutile ici par défaut : le filtre de type est déjà posé par le
+# code (`type[in]`), et le périmètre passe par geo_distance.
 API_FILTERS_ENV = "DATATOURISME_API_FILTERS"
 # Champs demandés : inutile de rapatrier toute l'ontologie pour chaque fiche.
 #
@@ -126,23 +132,26 @@ DEFAULT_FIELDS = (
     "uuid,uri,label,type,hasDescription,hasContact,hasReview,isLocatedAt,"
     "hasMainRepresentation"
 )
-# Endpoint par défaut : `/placeOfInterest` est un raccourci vers `/catalog` avec
-# le filtre de type déjà appliqué — il ne rend que les lieux, sans les
-# événements (que le crawl collecte par ailleurs), produits ni itinéraires. Il
-# accepte exactement les mêmes paramètres.
+# Endpoint par défaut : `/catalog`, et non le raccourci `/placeOfInterest` qui
+# écarte itinéraires et événements. Le flux, lui, les fournit : 529 des 588
+# fiches « visite » de Pont-de-Salars sont des `Tour`, et des marchés arrivent
+# typés événement. Le filtre `type[in]` (plus bas) borne déjà la réponse à ce
+# qu'on sait classer, l'endpoint n'a donc pas à le faire.
 API_URL_ENV = "DATATOURISME_API_URL"
-API_URL = "https://api.datatourisme.fr/v1/placeOfInterest"
-# Pagination : défaut 20, **maximum 250** côté API. On demande le maximum, c'est
-# le levier le plus direct sur le quota (250 fiches par requête au lieu de 20).
-MAX_PAGE_SIZE = 250
+API_URL = "https://api.datatourisme.fr/v1/catalog"
+# Pagination : défaut 20, **maximum 100** côté API depuis le 2026-07-15 (il était
+# de 250 ; au-delà, l'API rend un 400). On demande le maximum, c'est le levier le
+# plus direct sur le quota.
+MAX_PAGE_SIZE = 100
 DEFAULT_PAGE_SIZE = MAX_PAGE_SIZE
 TIMEOUT = 120
 
 # Garde-fou de pagination. Avec geo_distance le volume est déjà borné au rayon
 # de l'épicentre, mais un territoire très dense pourrait surprendre : on plafonne
 # et on le DIT dans les logs plutôt que de tronquer en silence.
-# 60 pages × 250 fiches = 15 000 activités, largement au-delà du réaliste.
-MAX_PAGES = 60
+# 150 pages × 100 fiches = 15 000 activités, largement au-delà du réaliste
+# (le flux en retient ~2 300 par ville).
+MAX_PAGES = 150
 
 # Garde-fous de décompression du flux.
 #
@@ -707,7 +716,8 @@ def _to_place(node: dict, sector_id: str, today: str) -> Place | None:
         image_credit=image_credit,
         # La fiche DATAtourisme elle-même sert de page de vérification : c'est
         # là que le producteur déclare la photo et ses droits.
-        image_page=str(node.get("@id") or "") or None if image_url else None,
+        # En mode API, pas d'`@id` : la même URI arrive sous `uri`.
+        image_page=str(node.get("@id") or node.get("uri") or "") or None if image_url else None,
         # Provenance du classement, conservée pour pouvoir auditer les règles
         # sur les données publiées sans relancer une découverte.
         tags=[f"dt:{raw_type}"] if raw_type else [],
@@ -957,7 +967,7 @@ def _nodes_from_api(key: str, sector, filters: str = "") -> list[dict]:
     secteur. Aucune configuration manuelle n'est donc nécessaire.
 
     `filters` reste disponible pour affiner (syntaxe d'expression de l'API), mais
-    n'est pas requis : l'endpoint /placeOfInterest applique déjà le type.
+    n'est pas requis : le filtre de type est déjà posé ici.
     """
     from urllib.parse import urlencode
 
@@ -1048,6 +1058,9 @@ def fetch(sector, limit: int | None = None, refuses: set[str] | None = None) -> 
     """
     flux = os.environ.get(FLUX_ENV)
     key = os.environ.get(API_KEY_ENV)
+    if flux and (os.environ.get(MODE_ENV) or "").strip().lower() == "api":
+        log.info("[datatourisme] %s=api — flux ignoré", MODE_ENV)
+        flux = None
     if not flux and not key:
         log.info(
             "[datatourisme] ni %s ni %s — fournisseur sauté (OSM seul)", FLUX_ENV, API_KEY_ENV

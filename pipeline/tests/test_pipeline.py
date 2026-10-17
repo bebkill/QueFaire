@@ -1179,6 +1179,48 @@ def test_datatourisme_external_id_from_api_shape():
     assert place.external_id == "https://data.datatourisme.fr/42"
 
 
+def test_datatourisme_image_page_from_api_uri():
+    """La page de vérification des droits d'une photo est la fiche elle-même :
+    en mode API, sans `@id`, elle s'obtient par `uri` — sinon le crédit perd son lien."""
+    from quefaire.datatourisme import _to_place
+
+    node = {
+        "uri": "https://data.datatourisme.fr/43",
+        "@type": ["Museum"],
+        "rdfs:label": {"fr": ["Musée"]},
+        "isLocatedAt": {"schema:geo": {"schema:latitude": "44.2", "schema:longitude": "2.7"}},
+        "hasMainRepresentation": [{"ebucore:hasRelatedResource": [{
+            "ebucore:locator": ["https://img.test/a.jpg"],
+        }]}],
+    }
+    place = _to_place(node, "s", "2026-10-17")
+    assert place.image_url == "https://img.test/a.jpg"
+    assert place.image_page == "https://data.datatourisme.fr/43"
+
+
+def test_datatourisme_mode_api_ignore_le_flux(monkeypatch):
+    """DATATOURISME_MODE=api saute le flux même configuré : c'est le run de
+    comparaison avant la fermeture de la plateforme Diffuseur (octobre 2027)."""
+    from quefaire import datatourisme as dt
+    from quefaire.cli import load_sector
+
+    monkeypatch.setenv(dt.FLUX_ENV, "https://flux.test/x")
+    monkeypatch.setenv(dt.API_KEY_ENV, "K")
+    monkeypatch.setenv(dt.MODE_ENV, "api")
+
+    def flux(_url):
+        raise AssertionError("le flux ne doit pas être lu en mode api")
+
+    monkeypatch.setattr(dt, "_nodes_from_flux", flux)
+    monkeypatch.setattr(dt, "_nodes_from_api", lambda key, sector, filters="": [{
+        "uri": "https://data.datatourisme.fr/8",
+        "@type": ["Museum"],
+        "rdfs:label": {"fr": ["Musée par l'API"]},
+        "isLocatedAt": {"schema:geo": {"schema:latitude": "44.19", "schema:longitude": "2.68"}},
+    }])
+    assert [p.name for p in dt.fetch(load_sector("pont-de-salars"))] == ["Musée par l'API"]
+
+
 def test_datatourisme_reads_image_and_credit():
     """Chaîne image de l'ontologie §8.9 : locator = l'URL, crédits à côté."""
     from quefaire.datatourisme import _image_of
@@ -1911,9 +1953,13 @@ def test_datatourisme_api_extra_filters(monkeypatch):
     # Filtre de type côté serveur : on ne rapatrie pas ce qu'on jetterait.
     assert "filters=type%5Bin%5D=" in seen[0] or "filters=type%5Bin%5D%3D" in seen[0]
     assert "Museum" in seen[0]
-    assert f"page_size={dt.MAX_PAGE_SIZE}" in seen[0]       # 250 = maximum autorisé
+    assert f"page_size={dt.MAX_PAGE_SIZE}" in seen[0]       # 100 = maximum autorisé
     assert "fields=" in seen[0]                             # réponse allégée
-    assert dt.MAX_PAGE_SIZE == 250                          # plafond imposé par l'API
+    # Plafond imposé par l'API depuis le 2026-07-15 (changelog) : 250 rend un 400.
+    assert dt.MAX_PAGE_SIZE == 100
+    # /catalog et non /placeOfInterest : ce dernier écarte itinéraires (Tour →
+    # « visite ») et événements, que le flux fournissait. Le type passe par filters.
+    assert seen[0].startswith("https://api.datatourisme.fr/v1/catalog?")
 
     # Rayon plus court → cercle plus petit, sans rien changer d'autre.
     seen.clear()

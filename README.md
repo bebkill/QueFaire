@@ -153,19 +153,19 @@ avec OpenStreetMap seul :
 
 En mode API, le catalogue est parcouru en suivant `meta.next` (méthode
 recommandée par DATAtourisme, la seule qui garantisse de ne rater aucun
-résultat), avec `page_size=250` (le maximum autorisé) pour limiter le nombre de
+résultat), avec `page_size=100` (le maximum autorisé depuis le 15/07/2026) pour limiter le nombre de
 pages.
 
 **Le mode API ne demande aucune configuration** : la clé suffit. Le pipeline
-appelle `/v1/placeOfInterest` (raccourci vers `/catalog` avec le filtre de type
-déjà appliqué) et dérive le périmètre de l'épicentre —
+appelle `/v1/catalog`, filtré sur les types exploités (le raccourci
+`/placeOfInterest` écarterait itinéraires et événements), et dérive le périmètre de l'épicentre —
 `geo_distance=<lat>,<lon>,<rayon>km`, le rayon suivant `radius_minutes`. Ni
 liste de communes, ni code départemental à maintenir : le filtre géographique
 de l'API épouse exactement le modèle du projet.
 
 La clé part en en-tête `X-API-Key` (méthode recommandée) plutôt qu'en paramètre
 d'URL, ce qui lui évite d'apparaître dans les journaux de requêtes. Les pages
-sont demandées à `page_size=250` (le maximum) et parcourues en suivant
+sont demandées à `page_size=100` (le maximum) et parcourues en suivant
 `meta.next`.
 
 Réglages facultatifs :
