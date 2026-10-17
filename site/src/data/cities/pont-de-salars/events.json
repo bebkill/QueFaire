@@ -328,27 +328,27 @@
   "id": "bal-traditionnel-bal-trad-fe0c670d"
  },
  {
-  "title": "Théâtre 'Le Technicien' : Le Vibal",
+  "title": "Théâtre : Le Technicien",
   "start": "2026-10-17T20:30:00",
   "source_id": "html-levezou-pontsalars",
   "sector": "pont-de-salars",
   "end": null,
-  "description": "Spectacle à la salle des fêtes du Vibal. Programme non précisé.",
-  "tldr": "Ce spectacle est une pièce de théâtre inspirée des légendes locales du Vibal, sans programme détaillé.",
+  "description": "Spectacle au Vibal. À 4.5 km de Pont-de-Salars.",
+  "tldr": null,
   "category": "spectacle",
   "tags": [],
   "audience": [
    "tous"
   ],
   "commune": "Pont-de-Salars",
-  "address": "Salle des fêtes du Vibal (4.5 km de Pont-de-Salars)",
+  "address": "Salle des fêtes du Vibal",
   "lat": 44.2771,
   "lon": 2.7171,
   "free": null,
   "price_text": null,
   "url": "https://www.tourisme-aveyron.com/fr/diffusio/agenda/theatre-le-technicien-le-vibal_TFO12297-FMA-20261006124546673",
   "image": null,
-  "id": "theatre-le-technicien-le-vibal-674a79ce"
+  "id": "theatre-le-technicien-be61b5bd"
  },
  {
   "title": "Quine de l'APE",
@@ -356,15 +356,15 @@
   "source_id": "html-levezou-pontsalars",
   "sector": "pont-de-salars",
   "end": null,
-  "description": "Quine organisé par l'APE à la salle des fêtes de Ségur. Programme non précisé.",
-  "tldr": "Un quine (soirée de jeux) organisé par l'association des Petits Écoliers (APE) pour les enfants et leurs parents.",
+  "description": "Quine organisé par l'APE à la salle des fêtes de Ségur. À 8.5 km de Pont-de-Salars.",
+  "tldr": null,
   "category": "autre",
   "tags": [],
   "audience": [
    "tous"
   ],
   "commune": "Ségur",
-  "address": "Salle des fêtes (8.5 km de Pont-de-Salars)",
+  "address": "Salle des fêtes de Ségur",
   "lat": 44.2879,
   "lon": 2.834,
   "free": null,
@@ -397,35 +397,36 @@
   "id": "match-rugby-rodez-decazeville-57c3fd16"
  },
  {
-  "title": "FESTIVAL D’AUTOMNE #4 : Contes d'aici, contes d'aila",
+  "title": "Festival d'Automne #4 : Contes d'aici, contes d'aila",
   "start": "2026-10-20T00:00:00",
   "source_id": "html-levezou-pontsalars",
   "sector": "pont-de-salars",
   "end": null,
-  "description": "Conte animé pour un public à partir de 6 ans. Festival d'automne avec thème 'Légendes, magie et chocolat chaud'.",
+  "description": "Conte animé pour un public à partir de 6 ans. Festival d'automne #4.",
   "tldr": null,
   "category": "festival",
   "tags": [],
   "audience": [
-   "enfants"
+   "enfants",
+   "ados"
   ],
   "commune": "Ségur",
-  "address": "8.5 km de Pont-de-Salars",
+  "address": "À 8.5 km de Pont-de-Salars",
   "lat": 44.2879,
   "lon": 2.834,
   "free": null,
   "price_text": null,
   "url": "https://www.tourisme-aveyron.com/fr/diffusio/agenda/festival-d-automne-4-contes-d-aici-contes-d-aila-de-malika-verlaguet-segur_TFO12266-FMA-20260915115903457",
   "image": null,
-  "id": "festival-dautomne-4-contes-d-aici-contes-d-aila-ef99ba67"
+  "id": "festival-d-automne-4-contes-d-aici-contes-d-aila-6303e636"
  },
  {
-  "title": "FESTIVAL D’AUTOMNE #4 : Jeux de plateau",
+  "title": "Festival d'Automne #4 : Jeux de plateau",
   "start": "2026-10-21T00:00:00",
   "source_id": "html-levezou-pontsalars",
   "sector": "pont-de-salars",
   "end": null,
-  "description": "Après-midi escape game : légendes et mythologie. Festival d'automne avec thème 'Légendes, magie et chocolat chaud'.",
+  "description": "Après-midi escape game : légendes et mythologie. Festival d'automne #4.",
   "tldr": null,
   "category": "festival",
   "tags": [],
@@ -440,7 +441,7 @@
   "price_text": null,
   "url": "https://www.tourisme-aveyron.com/fr/diffusio/agenda/festival-d-automne-4-jeux-de-plateau-pont-de-salars_TFO12185-FMA-20260915142919905",
   "image": null,
-  "id": "festival-dautomne-4-jeux-de-plateau-bf0642cc"
+  "id": "festival-d-automne-4-jeux-de-plateau-7db06a01"
  },
  {
   "title": "Stage pêche automne - Carnassiers (Viala-du-Tarn)",
@@ -448,23 +449,23 @@
   "source_id": "html-levezou-pontsalars",
   "sector": "pont-de-salars",
   "end": "2026-10-27T00:00:00",
-  "description": "Découverte de la pêche aux carnassiers avec l'association des petits pêcheurs. Pour enfants et familles.",
+  "description": "Découverte de la pêche avec l'association des petits pêcheurs. À 8 km de Pont-de-Salars.",
   "tldr": null,
   "category": "sport",
   "tags": [],
   "audience": [
-   "famille",
-   "enfants"
+   "enfants",
+   "famille"
   ],
-  "commune": "Viala-du-Tarn",
-  "address": "8 km de Pont-de-Salars",
-  "lat": 44.0893,
-  "lon": 2.8437,
+  "commune": "Pont-de-Salars",
+  "address": "Viala-du-Tarn",
+  "lat": 44.2771,
+  "lon": 2.7171,
   "free": false,
   "price_text": null,
-  "url": "https://www.tourisme-aveyron.com/fr/diffusio/agenda/stage-peche-automne-carnassiers-viala-du-tarn_TFO434877461781",
+  "url": "https://www.tourisme-aveyron.com/fr/diffusio/agenda/stage-peche-automne-carnassiers-viala-du-tarn_TFO434877461781#dsio-detail_contactResa",
   "image": null,
-  "id": "stage-peche-automne-carnassiers-viala-du-tarn-7af8468e"
+  "id": "stage-peche-automne-carnassiers-viala-du-tarn-2ab13593"
  },
  {
   "title": "Soirée repas et bal traditionnel à la Ferme du Vialaret",
@@ -472,7 +473,7 @@
   "source_id": "html-levezou-pontsalars",
   "sector": "pont-de-salars",
   "end": null,
-  "description": "Repas (8€) + bal traditionnel avec jongleurs et accordéon. Frites, crème caramel et feu de bois inclus.",
+  "description": "Repas (8€) + bal traditionnel animé par les Jongleurs d'accordéon et Astragale. À 10 km de Pont-de-Salars.",
   "tldr": null,
   "category": "fete",
   "tags": [],
@@ -480,23 +481,23 @@
    "tous"
   ],
   "commune": "Ségur",
-  "address": "10 km de Pont-de-Salars",
+  "address": "Ferme du Vialaret",
   "lat": 44.2879,
   "lon": 2.834,
   "free": false,
-  "price_text": "8€ repas + 14€ (procélet au feu de bois)",
+  "price_text": "8€ (repas) + 14€ (procélet)",
   "url": "https://www.tourisme-aveyron.com/fr/diffusio/agenda/soiree-repas-et-bal-trad-a-la-ferme-du-vialaret-segur_TFO12266-FMA-20260916153012028",
   "image": null,
   "id": "soiree-repas-et-bal-traditionnel-a-la-ferme-du-vialaret-176c96b7"
  },
  {
-  "title": "FESTIVAL D’AUTOMNE #4 : Initiation à la magie (Pont-de-Salars)",
+  "title": "Festival d'Automne #4 : Initiation à la magie avec Loktan (Pont-de-Salars)",
   "start": "2026-10-27T00:00:00",
   "source_id": "html-levezou-pontsalars",
   "sector": "pont-de-salars",
   "end": null,
-  "description": "Atelier d'initiation à la magie avec Loktan. Festival d'automne avec thème 'Légendes, magie et chocolat chaud'.",
-  "tldr": "Atelier où Loktan enseigne des techniques de magie basées sur des illusions et des tours de cartes.",
+  "description": "Atelier d'initiation à la magie. Festival d'automne #4.",
+  "tldr": null,
   "category": "atelier",
   "tags": [],
   "audience": [
@@ -510,30 +511,30 @@
   "price_text": null,
   "url": "https://www.tourisme-aveyron.com/fr/diffusio/agenda/festival-d-automne-4-initiation-a-la-magie-avec-loktan-pont-de-salars_TFO12185-FMA-20260928150156224",
   "image": null,
-  "id": "festival-dautomne-4-initiation-a-la-magie-pont-de-salars-ff85bbb6"
+  "id": "festival-d-automne-4-initiation-a-la-magie-avec-loktan-pont-de-salars-7e5d5d0d"
  },
  {
-  "title": "FESTIVAL D’AUTOMNE #4 : Initiation à la magie (Ségur)",
+  "title": "Festival d'Automne #4 : Initiation à la magie avec Loktan (Ségur)",
   "start": "2026-10-27T00:00:00",
   "source_id": "html-levezou-pontsalars",
   "sector": "pont-de-salars",
   "end": null,
-  "description": "Atelier d'initiation à la magie avec Loktan. Festival d'automne avec thème 'Légendes, magie et chocolat chaud'.",
-  "tldr": "Atelier d'initiation à la magie avec Loktan, mais à Ségur (différent du précédent à Pont-de-Salars).",
+  "description": "Atelier d'initiation à la magie. Festival d'automne #4.",
+  "tldr": null,
   "category": "atelier",
   "tags": [],
   "audience": [
    "tous"
   ],
   "commune": "Ségur",
-  "address": "9 km de Pont-de-Salars",
+  "address": "À 9 km de Pont-de-Salars",
   "lat": 44.2879,
   "lon": 2.834,
   "free": null,
   "price_text": null,
   "url": "https://www.tourisme-aveyron.com/fr/diffusio/agenda/festival-d-automne-4-initiation-a-la-magie-avec-loktan-segur_TFO12266-FMA-20260915153423151",
   "image": null,
-  "id": "festival-dautomne-4-initiation-a-la-magie-segur-427f6af6"
+  "id": "festival-d-automne-4-initiation-a-la-magie-avec-loktan-segur-d84860c3"
  },
  {
   "title": "Atelier Pêche & Nature",
@@ -546,10 +547,7 @@
   "category": "atelier",
   "tags": [],
   "audience": [
-   "famille",
-   "enfants",
-   "ados",
-   "adultes"
+   "tous"
   ],
   "commune": "Pont-de-Salars",
   "address": null,
@@ -557,17 +555,17 @@
   "lon": 2.7171,
   "free": false,
   "price_text": null,
-  "url": "https://www.tourisme-aveyron.com/fr/diffusio/agenda/atelier-peche--nature-pont-de-salars_TFO12185-FMA-20260123102733835",
+  "url": "https://www.tourisme-aveyron.com/fr/diffusio/agenda/atelier-peche--nature-pont-de-salars_TFO12185-FMA-20260123102733835#dsio-detail_contactResa",
   "image": null,
   "id": "atelier-peche-nature-190caa3f"
  },
  {
-  "title": "FESTIVAL D’AUTOMNE #4 : Atelier créatif",
+  "title": "Festival d'Automne #4 : Atelier créatif",
   "start": "2026-10-30T00:00:00",
   "source_id": "html-levezou-pontsalars",
   "sector": "pont-de-salars",
   "end": null,
-  "description": "Fabrique ton animal fantastique et chimérique. Festival d'automne avec thème 'Légendes, magie et chocolat chaud'.",
+  "description": "Fabrique ton animal fantastique et chimérique.",
   "tldr": null,
   "category": "atelier",
   "tags": [],
@@ -582,7 +580,7 @@
   "price_text": null,
   "url": "https://www.tourisme-aveyron.com/fr/diffusio/agenda/festival-d-automne-4-atelier-creatif-pont-de-salars_TFO12185-FMA-20260915144217605",
   "image": null,
-  "id": "festival-dautomne-4-atelier-creatif-69af93c1"
+  "id": "festival-d-automne-4-atelier-creatif-128e3ed6"
  },
  {
   "title": "Danses Folkloriques et musettes (Canet-de-Salars)",
@@ -590,7 +588,7 @@
   "source_id": "html-levezou-pontsalars",
   "sector": "pont-de-salars",
   "end": null,
-  "description": "Reprise des danses folkloriques avec la Canétoise. Ouvert à tous.",
+  "description": "Reprise en septembre, une fois tous les 15 jours. À 5.5 km de Pont-de-Salars.",
   "tldr": null,
   "category": "marche",
   "tags": [],
@@ -598,7 +596,7 @@
    "tous"
   ],
   "commune": "Canet-de-Salars",
-  "address": "5.5 km de Pont-de-Salars",
+  "address": null,
   "lat": 44.2392,
   "lon": 2.7379,
   "free": null,
@@ -608,13 +606,13 @@
   "id": "danses-folkloriques-et-musettes-canet-de-salars-8d093c3c"
  },
  {
-  "title": "ATELIER NUMERIQUE : Temps d'échange - Recueil des attentes",
+  "title": "Atelier Numérique : Temps d'échange - Recueil des attentes",
   "start": "2026-11-05T10:00:00",
   "source_id": "html-levezou-pontsalars",
   "sector": "pont-de-salars",
   "end": "2026-11-05T11:30:00",
-  "description": "Rencontre pour définir les besoins et attentes pour un programme personnalisé. Gratuit.",
-  "tldr": "Ce n'est pas un atelier technique, mais une rencontre pour recueillir les attentes des participants afin d'adapter un futur programme.",
+  "description": "Rencontre pour adapter le programme aux besoins des participants. Gratuit.",
+  "tldr": null,
   "category": "atelier",
   "tags": [],
   "audience": [
@@ -626,32 +624,32 @@
   "lon": 2.7171,
   "free": true,
   "price_text": null,
-  "url": "https://www.tourisme-aveyron.com/fr/diffusio/agenda/atelier-numerique-temps-d-echange-recueil-des-attentes-pont-de-salars_TFO12185-FMA-20261014093907865",
+  "url": "https://www.tourisme-aveyron.com/fr/decouvrir/villes-et-villages/pont-salars/sortir",
   "image": null,
-  "id": "atelier-numerique-temps-d-echange-recueil-des-attentes-eac1457f"
+  "id": "atelier-numerique-temps-d-echange-recueil-des-attentes-b6a2f7b6"
  },
  {
-  "title": "FESTIVAL D’AUTOMNE #4 : 'La forêt enchantée'",
+  "title": "Festival d'Automne #4 : « La forêt enchantée »",
   "start": "2026-11-07T00:00:00",
   "source_id": "html-levezou-pontsalars",
   "sector": "pont-de-salars",
   "end": null,
-  "description": "Lectures et atelier créatif sur la forêt enchantée. Festival d'automne avec thème 'Légendes, magie et chocolat chaud'.",
-  "tldr": "Lecture de contes inspirés de la forêt (pas forcément 'enchantée' au sens magique, mais évoquant des légendes locales) + atelier créatif pour dessiner ou inventer des créatures inspirées par ce thème.",
+  "description": "Lectures et atelier créatif sur la forêt enchantée. Festival d'automne #4.",
+  "tldr": null,
   "category": "festival",
   "tags": [],
   "audience": [
    "tous"
   ],
   "commune": "Ségur",
-  "address": "9 km de Pont-de-Salars",
+  "address": "À 9 km de Pont-de-Salars",
   "lat": 44.2879,
   "lon": 2.834,
   "free": null,
   "price_text": null,
   "url": "https://www.tourisme-aveyron.com/fr/diffusio/agenda/festival-d-automne-4-la-foret-enchantee-lectures-et-atelier-creatif-par-alice-et-marcel-segur_TFO12266-FMA-20260915154753742",
   "image": null,
-  "id": "festival-dautomne-4-la-foret-enchantee-09168ff2"
+  "id": "festival-d-automne-4-la-foret-enchantee-89aa0711"
  },
  {
   "title": "Matinée connective en nature (Agen-d'Aveyron)",
@@ -659,7 +657,7 @@
   "source_id": "html-levezou-pontsalars",
   "sector": "pont-de-salars",
   "end": "2026-11-07T12:00:00",
-  "description": "Atelier d'écothérapie pour retrouver clarté et sérénité. Sur réservation.",
+  "description": "Atelier d'écothérapie pour retrouver clarté et sérénité. À 7 km de Pont-de-Salars.",
   "tldr": null,
   "category": "nature",
   "tags": [],
@@ -667,7 +665,7 @@
    "tous"
   ],
   "commune": "Agen-d'Aveyron",
-  "address": "7 km de Pont-de-Salars",
+  "address": null,
   "lat": 44.3509,
   "lon": 2.6915,
   "free": false,
@@ -682,36 +680,35 @@
   "source_id": "html-levezou-pontsalars",
   "sector": "pont-de-salars",
   "end": null,
-  "description": "Quine avec nombreux lots, dont un bon d'achat de 200€. À Canet-de-Salars.",
-  "tldr": null,
-  "category": "autre",
+  "description": "Vide-greniers avec nombreux lots, dont un bon d'achat de 200€. À 5.5 km de Pont-de-Salars.",
+  "tldr": "Un **vide-greniers** organisé par le club des Aines « Les Chênes », avec des lots variés, dont un **bon d'achat de 200€** à gagner parmi les participants.",
+  "category": "fete",
   "tags": [],
   "audience": [
    "tous"
   ],
   "commune": "Canet-de-Salars",
-  "address": "5.5 km de Pont-de-Salars",
+  "address": "Salle des fêtes de Canet-de-Salars",
   "lat": 44.2392,
   "lon": 2.7379,
   "free": false,
-  "price_text": "200 €",
+  "price_text": null,
   "url": "https://www.tourisme-aveyron.com/fr/diffusio/agenda/quine-du-club-des-aines-les-chenes-canet-de-salars_TFO12050-FMA-20261005114401641",
   "image": null,
   "id": "quine-du-club-des-aines-les-chenes-bc020d0c"
  },
  {
-  "title": "Atelier Numérique - Environnement de travail",
+  "title": "Atelier Numérique : Environnement de travail",
   "start": "2026-11-12T10:00:00",
   "source_id": "html-levezou-pontsalars",
   "sector": "pont-de-salars",
   "end": "2026-11-12T11:30:00",
-  "description": "Découverte pour mieux gérer les applications et organiser fichiers/dossiers. Tarif : 7,50€.",
+  "description": "Gestion des dossiers et fichiers sur ordinateur. À Pont-de-Salars.",
   "tldr": null,
   "category": "atelier",
   "tags": [],
   "audience": [
-   "adultes",
-   "ados"
+   "tous"
   ],
   "commune": "Pont-de-Salars",
   "address": null,
@@ -721,7 +718,7 @@
   "price_text": "7,50€",
   "url": "https://www.tourisme-aveyron.com/fr/diffusio/agenda/atelier-numerique-environnement-de-travail-dossiersfichiers-pont-de-salars_TFO12185-FMA-20261014100906144",
   "image": null,
-  "id": "atelier-numerique-environnement-de-travail-d2352dcb"
+  "id": "atelier-numerique-environnement-de-travail-cc1d492d"
  },
  {
   "title": "Foire Mensuelle",
@@ -729,7 +726,7 @@
   "source_id": "html-levezou-pontsalars",
   "sector": "pont-de-salars",
   "end": null,
-  "description": "Foire tous les 3ème jeudis du mois avec produits locaux (fruits/légumes, volailles, charcuterie).",
+  "description": "Tous les 3ème jeudis du mois : fruits, légumes, volailles, charcuterie.",
   "tldr": null,
   "category": "fete",
   "tags": [],
@@ -747,18 +744,17 @@
   "id": "foire-mensuelle-9fe3aebc"
  },
  {
-  "title": "Atelier Numérique - Intelligence Artificielle (IA)",
+  "title": "Atelier Numérique : Intelligence Artificielle (IA)",
   "start": "2026-11-19T10:00:00",
   "source_id": "html-levezou-pontsalars",
   "sector": "pont-de-salars",
   "end": "2026-11-19T11:30:00",
-  "description": "Comprendre et utiliser l'IA. Tarif : 7,50€.",
+  "description": "Comprendre et utiliser l'IA. À Pont-de-Salars.",
   "tldr": null,
   "category": "atelier",
   "tags": [],
   "audience": [
-   "adultes",
-   "ados"
+   "tous"
   ],
   "commune": "Pont-de-Salars",
   "address": null,
@@ -768,6 +764,6 @@
   "price_text": "7,50€",
   "url": "https://www.tourisme-aveyron.com/fr/diffusio/agenda/atelier-numerique-comprendre-et-utiliser-l-intelligence-artificielle-ia-pont-de-salars_TFO12185-FMA-20261014101248256",
   "image": null,
-  "id": "atelier-numerique-intelligence-artificielle-ia-6e0ae88a"
+  "id": "atelier-numerique-intelligence-artificielle-ia-bff1b3bb"
  }
 ]

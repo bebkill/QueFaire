@@ -1,12 +1,12 @@
 [
  {
-  "title": "Exposition « Rêver Alice »",
+  "title": "Exposition 'Rêver Alice'",
   "start": "2026-09-01T00:00:00",
   "source_id": "html-capi",
   "sector": "villemoirieu",
   "end": "2026-11-30",
-  "description": "Découvrez les illustrations d'Alice au pays des merveilles depuis 1865, inspirées par des artistes contemporains.",
-  "tldr": null,
+  "description": "Plongez dans l’univers d’Alice au pays des merveilles avec des illustrations de nombreux artistes depuis 1865.",
+  "tldr": "Cette exposition met en lumière des œuvres inspirées par le roman d'Alice Liddell (1865) et ses adaptations artistiques, mais aussi des créations originales autour de l'univers onirique et des thèmes de la folie, de l'identité et de la quête de sens.",
   "category": "expo",
   "tags": [],
   "audience": [
@@ -20,16 +20,16 @@
   "price_text": null,
   "url": "https://capi-agglo.fr/agenda/exposition/",
   "image": null,
-  "id": "exposition-rever-alice-de4eddea"
+  "id": "exposition-rever-alice-11aaec93"
  },
  {
-  "title": "Exposition « Le 9ème art s’expose à Bourgoin-Jallieu »",
+  "title": "Exposition 'Le 9ème art s’expose à Bourgoin-Jallieu'",
   "start": "2026-10-13T00:00:00",
   "source_id": "html-capi",
   "sector": "villemoirieu",
   "end": "2026-10-24",
-  "description": "Découverte de la bande dessinée et des arts graphiques dans une exposition dédiée.",
-  "tldr": "Cette exposition met en lumière des œuvres de bande dessinée et d'art graphique, incluant des créations originales et des classiques, dans une ville connue pour son patrimoine industriel et culturel.",
+  "description": "Découvrez la bande dessinée et les arts graphiques dans cette exposition dédiée à la BD et aux illustrations.",
+  "tldr": null,
   "category": "expo",
   "tags": [],
   "audience": [
@@ -43,7 +43,33 @@
   "price_text": null,
   "url": "https://capi-agglo.fr/agenda/exposition-le-9eme-art-sexpose-a-bourgoin-jallieu/",
   "image": null,
-  "id": "exposition-le-9eme-art-sexpose-a-bourgoin-jallieu-9b4362a0"
+  "id": "exposition-le-9eme-art-sexpose-a-bourgoin-jallieu-e0e064cd"
+ },
+ {
+  "title": "Sortie nature à Vaulx-Milieu",
+  "start": "2026-10-17T00:00:00",
+  "source_id": "html-capi",
+  "sector": "villemoirieu",
+  "end": null,
+  "description": "Profitez d’une balade en automne pour observer les changements saisonniers et la faune locale.",
+  "tldr": null,
+  "category": "nature",
+  "tags": [],
+  "audience": [
+   "famille",
+   "enfants",
+   "ados",
+   "adultes"
+  ],
+  "commune": "Vaulx-Milieu",
+  "address": null,
+  "lat": 45.6174,
+  "lon": 5.1868,
+  "free": true,
+  "price_text": null,
+  "url": "https://capi-agglo.fr/agenda/sortie-nature-a-vaulx-milieu/",
+  "image": null,
+  "id": "sortie-nature-a-vaulx-milieu-148d584b"
  },
  {
   "title": "Atelier d’écriture sur le rêve",
@@ -51,7 +77,7 @@
   "source_id": "html-capi",
   "sector": "villemoirieu",
   "end": null,
-  "description": "Laissez libre cours à votre imagination lors d’un atelier d’écriture autour du thème du rêve.",
+  "description": "Immergez-vous dans l’univers créatif avec des ateliers d’écriture inspirés par le rêve.",
   "tldr": null,
   "category": "atelier",
   "tags": [],
@@ -60,7 +86,7 @@
    "adultes"
   ],
   "commune": "L'Isle-d'Abeau",
-  "address": "Médiathèque CAPI à L'Isle-d'Abeau",
+  "address": "Médiathèque CAPI",
   "lat": 45.6153,
   "lon": 5.2234,
   "free": null,
@@ -68,31 +94,6 @@
   "url": "https://capi-agglo.fr/agenda/atelier-decriture-sur-le-reve-3/",
   "image": null,
   "id": "atelier-decriture-sur-le-reve-a90e2730"
- },
- {
-  "title": "Sortie nature à Vaulx-Milieu",
-  "start": "2026-10-17T00:00:00",
-  "source_id": "html-capi",
-  "sector": "villemoirieu",
-  "end": null,
-  "description": "Découverte des paysages automnaux avec des activités adaptées pour observer la nature en transition.",
-  "tldr": null,
-  "category": "nature",
-  "tags": [],
-  "audience": [
-   "famille",
-   "enfants",
-   "ados"
-  ],
-  "commune": "L'Isle-d'Abeau",
-  "address": "Vaulx-Milieu",
-  "lat": 45.6153,
-  "lon": 5.2234,
-  "free": null,
-  "price_text": null,
-  "url": "https://capi-agglo.fr/agenda/sortie-nature-a-vaulx-milieu/",
-  "image": null,
-  "id": "sortie-nature-a-vaulx-milieu-437a5ffd"
  },
  {
   "title": "Salon des 1000 Saveurs",
@@ -519,27 +520,27 @@
   "id": "cochonailles-a-la-grappe-93c6fec3"
  },
  {
-  "title": "École de natation (vacances d’automne)",
+  "title": "École de natation",
   "start": "2026-10-19T00:00:00",
   "source_id": "html-capi",
   "sector": "villemoirieu",
   "end": "2026-10-30",
-  "description": "Semaine dédiée à l’apprentissage de la natation pour les enfants de plus de 6 ans.",
+  "description": "Apprenez ou perfectionnez votre natation pendant les vacances d’automne pour les enfants de plus de 6 ans.",
   "tldr": null,
   "category": "sport",
   "tags": [],
   "audience": [
    "enfants"
   ],
-  "commune": "L'Isle-d'Abeau",
-  "address": "Villefontaine",
-  "lat": 45.6153,
-  "lon": 5.2234,
+  "commune": "Villefontaine",
+  "address": null,
+  "lat": 45.6161,
+  "lon": 5.1549,
   "free": null,
   "price_text": null,
   "url": "https://capi-agglo.fr/agenda/ecole-de-natation-3/",
   "image": null,
-  "id": "ecole-de-natation-vacances-dautomne-370adbb7"
+  "id": "ecole-de-natation-81386e21"
  },
  {
   "title": "Les jardins sonores",
@@ -547,17 +548,15 @@
   "source_id": "html-capi",
   "sector": "villemoirieu",
   "end": null,
-  "description": "Spectacle immersif où l’oreille est invitée à explorer les sons des jardins créés par Chloé Rimbaud.",
-  "tldr": null,
+  "description": "Spectacle immersif où l’audition est mise en scène à travers des jardins sonores créés par Chloé Rimbaud.",
+  "tldr": "Ce spectacle transforme les espaces verts en paysages sonores, où les visiteurs explorent les émotions et les paysages à travers des instruments, des chants et des installations immersives (ex. : jardins à vent, sons de plantes).",
   "category": "spectacle",
   "tags": [],
   "audience": [
-   "famille",
-   "ados",
-   "adultes"
+   "tous"
   ],
   "commune": "L'Isle-d'Abeau",
-  "address": "Médiathèque CAPI à L'Isle-d'Abeau",
+  "address": "Médiathèque CAPI",
   "lat": 45.6153,
   "lon": 5.2234,
   "free": null,
@@ -584,7 +583,7 @@
   "free": true,
   "price_text": null,
   "url": "https://openagenda.com/agendas/5105644/events/88449664",
-  "image": "https://img.openagenda.com/main/695057b94fcd43b1b9af8b7db8c4c6db.base.image.jpg",
+  "image": "https://img.openagenda.com/main/e7f40bd9f6e6471f9171e76b660da1b7.base.image.jpg",
   "id": "couture-et-petites-fabrications-4bbc4d70"
  },
  {
@@ -605,7 +604,7 @@
   "free": true,
   "price_text": null,
   "url": "https://openagenda.com/agendas/5105644/events/66173203",
-  "image": "https://img.openagenda.com/main/2a3d662645674de0abea6d95b74e08bd.base.image.jpg",
+  "image": "https://img.openagenda.com/main/94fd39f873d64e32a6ab230082ab5d70.base.image.jpg",
   "id": "atelier-dessin-rapide-3ccedb9b"
  },
  {
@@ -626,7 +625,7 @@
   "free": true,
   "price_text": null,
   "url": "https://openagenda.com/agendas/5105644/events/55778509",
-  "image": "https://img.openagenda.com/main/92e5d06e3f1144e886a135cfde498753.base.image.jpg",
+  "image": "https://img.openagenda.com/main/10438c35c9cb4598a76d2cb0e1bd6069.base.image.jpg",
   "id": "atelier-ecriture-27fccfd3"
  },
  {
@@ -647,7 +646,7 @@
   "free": true,
   "price_text": null,
   "url": "https://openagenda.com/agendas/5105644/events/45828598",
-  "image": "https://img.openagenda.com/main/4d678d710e064212b7ce1e97f06a7f78.base.image.jpg",
+  "image": "https://img.openagenda.com/main/7ec81194ed9c45419ef77dd7cb2a36fc.base.image.jpg",
   "id": "decouvrir-les-jeux-de-societe-de-kojak-accf781c"
  },
  {
@@ -668,7 +667,7 @@
   "free": true,
   "price_text": null,
   "url": "https://openagenda.com/agendas/5105644/events/41439769",
-  "image": "https://img.openagenda.com/main/d5d52f41d4a742f48d1ac0627313af31.base.image.jpg",
+  "image": "https://img.openagenda.com/main/bfed50bb8f1f46e4b2fe97fcbbc33614.base.image.jpg",
   "id": "decouverte-musicale-des-andes-51c61d6d"
  },
  {
@@ -689,7 +688,7 @@
   "free": true,
   "price_text": null,
   "url": "https://openagenda.com/agendas/5105644/events/94821079",
-  "image": null,
+  "image": "https://img.openagenda.com/main/2ef0696eea9b4be6b955467c861827ac.base.image.jpg",
   "id": "atelier-ecriture-b678f13f"
  },
  {
@@ -715,51 +714,44 @@
  },
  {
   "title": "La parentalité : un vaste sujet",
-  "start": "2026-11-07T10:00:00",
-  "source_id": "html-cafe-crem",
+  "start": "2026-11-07T10:00:00+01:00",
+  "source_id": "oa-CafeCrem",
   "sector": "villemoirieu",
-  "end": "2026-11-07T12:00:00",
-  "description": "Atelier ou discussion sur les défis de la parentalité et les ressources pour les parents.",
+  "end": "2026-11-07T12:00:00+01:00",
+  "description": "Animation : Anny Barreau (Coach certifiée ACC)",
   "tldr": null,
-  "category": "atelier",
+  "category": "autre",
   "tags": [],
-  "audience": [
-   "famille",
-   "ados",
-   "adultes"
-  ],
+  "audience": [],
   "commune": "Villemoirieu",
-  "address": "1 Parc d'activités du Buisson Rond, 38460 Villemoirieu",
-  "lat": 45.7138,
-  "lon": 5.2348,
+  "address": "Chemin de Buisson Rond, 38460 Villemoirieu",
+  "lat": 45.72803,
+  "lon": 5.23163,
   "free": true,
   "price_text": null,
-  "url": "https://cafe-crem.fr/programme#la-parentalite-un-vaste-sujet-1794038400000",
-  "image": null,
+  "url": "https://openagenda.com/agendas/5105644/events/27387495",
+  "image": "https://img.openagenda.com/main/cb5fa2a95ab44a6298453dba3fc4ab96.base.image.jpg",
   "id": "la-parentalite-un-vaste-sujet-5a08040c"
  },
  {
   "title": "Rencontre autour du livre",
-  "start": "2026-11-07T16:30:00",
-  "source_id": "html-cafe-crem",
+  "start": "2026-11-07T16:30:00+01:00",
+  "source_id": "oa-CafeCrem",
   "sector": "villemoirieu",
-  "end": "2026-11-07T18:30:00",
-  "description": "Échange autour de livres récents avec des auteurs ou participants.",
+  "end": "2026-11-07T18:30:00+01:00",
+  "description": "Avec comme invitée : Lili Plume, autrice et voyageuse",
   "tldr": null,
-  "category": "jeunesse",
+  "category": "autre",
   "tags": [],
-  "audience": [
-   "ados",
-   "adultes"
-  ],
+  "audience": [],
   "commune": "Villemoirieu",
-  "address": "1 Parc d'activités du Buisson Rond, 38460 Villemoirieu",
-  "lat": 45.7138,
-  "lon": 5.2348,
+  "address": "Chemin de Buisson Rond, 38460 Villemoirieu",
+  "lat": 45.72803,
+  "lon": 5.23163,
   "free": true,
   "price_text": null,
-  "url": "https://cafe-crem.fr/programme#rencontre-autour-du-livre-1794038400000",
-  "image": null,
+  "url": "https://openagenda.com/agendas/5105644/events/14846819",
+  "image": "https://img.openagenda.com/main/bef61baef90d479e8b0a71e92f387b8a.base.image.jpg",
   "id": "rencontre-autour-du-livre-0de70d80"
  },
  {
@@ -780,31 +772,28 @@
   "free": true,
   "price_text": null,
   "url": "https://openagenda.com/agendas/5105644/events/5096311",
-  "image": null,
+  "image": "https://img.openagenda.com/main/6845dff5bac24706838799e9d74648db.base.image.jpg",
   "id": "conferences-ecologie-territoire-9f5c234d"
  },
  {
   "title": "Repair Café & Repair Linux",
-  "start": "2026-11-08T09:00:00",
-  "source_id": "html-cafe-crem",
+  "start": "2026-11-08T09:00:00+01:00",
+  "source_id": "oa-CafeCrem",
   "sector": "villemoirieu",
-  "end": "2026-11-08T12:00:00",
-  "description": "Atelier pour réparer des objets et apprendre à utiliser Linux.",
-  "tldr": null,
-  "category": "atelier",
+  "end": "2026-11-08T12:00:00+01:00",
+  "description": "Ne jetez plus, essayons de réparer",
+  "tldr": "Ce Repair Café propose des ateliers pour réparer des objets électroniques (smartphones, ordinateurs) et des logiciels Linux, avec des bénévoles formés à la maintenance et à la réparation.",
+  "category": "autre",
   "tags": [],
-  "audience": [
-   "adultes",
-   "seniors"
-  ],
+  "audience": [],
   "commune": "Villemoirieu",
-  "address": "1 Parc d'activités du Buisson Rond, 38460 Villemoirieu",
-  "lat": 45.7138,
-  "lon": 5.2348,
+  "address": "Chemin de Buisson Rond, 38460 Villemoirieu",
+  "lat": 45.72803,
+  "lon": 5.23163,
   "free": true,
   "price_text": null,
-  "url": "https://cafe-crem.fr/programme#repair-cafe-repair-linux-1794124800000",
-  "image": null,
+  "url": "https://openagenda.com/agendas/5105644/events/32601729",
+  "image": "https://img.openagenda.com/main/455361dc813a43988e8edc7d25aa8174.base.image.jpg",
   "id": "repair-cafe-repair-linux-f7d4c801"
  },
  {
@@ -825,7 +814,7 @@
   "free": true,
   "price_text": null,
   "url": "https://openagenda.com/agendas/5105644/events/94320024",
-  "image": null,
+  "image": "https://img.openagenda.com/main/823182df0adf4db785e61eea588e12a3.base.image.jpg",
   "id": "apprivoisez-votre-smartphone-48dbbc4e"
  },
  {
@@ -846,31 +835,28 @@
   "free": true,
   "price_text": null,
   "url": "https://openagenda.com/agendas/5105644/events/721951",
-  "image": null,
+  "image": "https://img.openagenda.com/main/6c115e159c29418ba9236a22552ea368.base.image.jpg",
   "id": "couture-et-petites-fabrications-13c371fa"
  },
  {
   "title": "L'envers de Wikipedia",
-  "start": "2026-11-10T18:00:00",
-  "source_id": "html-cafe-crem",
+  "start": "2026-11-10T18:00:00+01:00",
+  "source_id": "oa-CafeCrem",
   "sector": "villemoirieu",
-  "end": "2026-11-10T20:00:00",
-  "description": "Atelier explorant les aspects méconnus et collaboratifs de Wikipedia.",
-  "tldr": "C'est un atelier pour comprendre comment Wikipedia fonctionne en réalité : ses contributeurs bénévoles, ses règles de collaboration et ses mécanismes de vérification des informations.",
-  "category": "conference",
+  "end": "2026-11-10T20:00:00+01:00",
+  "description": "Dans les coulisses de la plus grande encyclopédie participative",
+  "tldr": "Découverte des mécanismes techniques, des algorithmes et des contributions anonymes qui façonnent Wikipedia, ainsi que des débats sur la neutralité et la gouvernance de cette plateforme.",
+  "category": "sport",
   "tags": [],
-  "audience": [
-   "ados",
-   "adultes"
-  ],
+  "audience": [],
   "commune": "Villemoirieu",
-  "address": "1 Parc d'activités du Buisson Rond, 38460 Villemoirieu",
-  "lat": 45.7138,
-  "lon": 5.2348,
+  "address": "Chemin de Buisson Rond, 38460 Villemoirieu",
+  "lat": 45.72803,
+  "lon": 5.23163,
   "free": true,
   "price_text": null,
-  "url": "https://cafe-crem.fr/programme#l-envers-de-wikipedia-1794297600000",
-  "image": null,
+  "url": "https://openagenda.com/agendas/5105644/events/70645662",
+  "image": "https://img.openagenda.com/main/7a1f7c27b57446a786712fa9134612dc.base.image.jpg",
   "id": "l-envers-de-wikipedia-b4f81bfe"
  },
  {
@@ -891,7 +877,7 @@
   "free": true,
   "price_text": null,
   "url": "https://openagenda.com/agendas/5105644/events/95487770",
-  "image": null,
+  "image": "https://img.openagenda.com/main/6d0bb388604c413799b74ab7d5c7578c.base.image.jpg",
   "id": "atelier-ecriture-4ac7ba8f"
  },
  {
@@ -912,7 +898,7 @@
   "free": true,
   "price_text": null,
   "url": "https://openagenda.com/agendas/5105644/events/69758267",
-  "image": null,
+  "image": "https://img.openagenda.com/main/6999b994952f4eb1841da5e422110c2a.base.image.jpg",
   "id": "atelier-dessin-rapide-82cfedf7"
  },
  {
@@ -933,7 +919,7 @@
   "free": true,
   "price_text": null,
   "url": "https://openagenda.com/agendas/5105644/events/20811022",
-  "image": null,
+  "image": "https://img.openagenda.com/main/0eab1626a00d4b08aa4c707d49a0e45b.base.image.jpg",
   "id": "atelier-ecriture-33942d69"
  },
  {
@@ -954,32 +940,8 @@
   "free": true,
   "price_text": null,
   "url": "https://openagenda.com/agendas/5105644/events/6163811",
-  "image": null,
+  "image": "https://img.openagenda.com/main/6401b22f14f3407cbb9ec68775398a34.base.image.jpg",
   "id": "couture-et-petites-fabrications-3b1428f1"
- },
- {
-  "title": "Conférence découverte de la diététique chinoise",
-  "start": "2026-11-21T10:00:00",
-  "source_id": "html-cafe-crem",
-  "sector": "villemoirieu",
-  "end": "2026-11-21T12:00:00",
-  "description": "Atelier ou conférence sur les principes de la diététique chinoise.",
-  "tldr": "C'est un atelier ou une conférence sur les aliments spécifiques de la cuisine chinoise traditionnelle, adaptés aux principes de santé et d'équilibre selon la médecine chinoise.",
-  "category": "conference",
-  "tags": [],
-  "audience": [
-   "adultes",
-   "seniors"
-  ],
-  "commune": "Villemoirieu",
-  "address": "1 Parc d'activités du Buisson Rond, 38460 Villemoirieu",
-  "lat": 45.7138,
-  "lon": 5.2348,
-  "free": true,
-  "price_text": null,
-  "url": "https://cafe-crem.fr/programme#conference-decouverte-de-la-dietetique-chinoise-1795248000000",
-  "image": null,
-  "id": "conference-decouverte-de-la-dietetique-chinoise-b851aee0"
  },
  {
   "title": "Atelier initiation à la création de site Web",
@@ -999,30 +961,49 @@
   "free": true,
   "price_text": null,
   "url": "https://openagenda.com/agendas/5105644/events/22004257",
-  "image": null,
+  "image": "https://img.openagenda.com/main/647ae9e733bf4b41ac01b445a0685f81.base.image.jpg",
   "id": "atelier-initiation-a-la-creation-de-site-web-52cbf983"
  },
  {
-  "title": "Découvrir les jeux de société de Kojak",
-  "start": "2026-11-21T16:00:00",
-  "source_id": "html-cafe-crem",
+  "title": "Conférence découverte de la diététique Chinoise",
+  "start": "2026-11-21T10:00:00+01:00",
+  "source_id": "oa-CafeCrem",
   "sector": "villemoirieu",
-  "end": "2026-11-21T19:00:00",
-  "description": "Jeu et découverte de jeux de société inspirés de l'univers de Kojak.",
-  "tldr": "C'est un atelier de jeu où vous testez des jeux de société basés sur l'univers du détective Kojak, avec des énigmes et des défis inspirés de ses aventures.",
-  "category": "sport",
+  "end": "2026-11-21T12:00:00+01:00",
+  "description": "Animation : Maud Le DEUC spécialiste en Shiatsu",
+  "tldr": "Atelier pratique pour comprendre les principes de la médecine traditionnelle chinoise (acupuncture, alimentation adaptée, énergie Qi), avec des démonstrations de techniques de Shiatsu.",
+  "category": "conference",
   "tags": [],
-  "audience": [
-   "tous"
-  ],
+  "audience": [],
   "commune": "Villemoirieu",
-  "address": "1 Parc d'activités du Buisson Rond, 38460 Villemoirieu",
-  "lat": 45.7138,
-  "lon": 5.2348,
+  "address": "Chemin de Buisson Rond, 38460 Villemoirieu",
+  "lat": 45.72803,
+  "lon": 5.23163,
   "free": true,
   "price_text": null,
-  "url": "https://cafe-crem.fr/programme#decouvrir-les-jeux-de-societe-de-kojak-1795248000000",
-  "image": null,
+  "url": "https://openagenda.com/agendas/5105644/events/21555053",
+  "image": "https://img.openagenda.com/main/845a9e7fabd34daa805e281636cdfc27.base.image.jpg",
+  "id": "conference-decouverte-de-la-dietetique-chinoise-b851aee0"
+ },
+ {
+  "title": "Découvrir les jeux de société de Kojak",
+  "start": "2026-11-21T16:00:00+01:00",
+  "source_id": "oa-CafeCrem",
+  "sector": "villemoirieu",
+  "end": "2026-11-21T19:00:00+01:00",
+  "description": "\"Jeux Joue au Crémolan\"",
+  "tldr": "Jeux de société inspirés par la série policière américaine des années 70, mais aussi des jeux créatifs où l'on explore des thèmes comme la collaboration, la stratégie ou l'humour absurde.",
+  "category": "autre",
+  "tags": [],
+  "audience": [],
+  "commune": "Villemoirieu",
+  "address": "Chemin de Buisson Rond, 38460 Villemoirieu",
+  "lat": 45.72803,
+  "lon": 5.23163,
+  "free": true,
+  "price_text": null,
+  "url": "https://openagenda.com/agendas/5105644/events/64923004",
+  "image": "https://img.openagenda.com/main/990d1e55652e483e97d41dc0c9cfc7dd.base.image.jpg",
   "id": "decouvrir-les-jeux-de-societe-de-kojak-0a994d75"
  },
  {
@@ -1043,7 +1024,7 @@
   "free": true,
   "price_text": null,
   "url": "https://openagenda.com/agendas/5105644/events/32091755",
-  "image": null,
+  "image": "https://img.openagenda.com/main/17b071f92b384947beea927dfbee6cd9.base.image.jpg",
   "id": "atelier-tricot-et-crochet-22f3fc2a"
  },
  {
@@ -1064,30 +1045,28 @@
   "free": true,
   "price_text": null,
   "url": "https://openagenda.com/agendas/5105644/events/85237361",
-  "image": null,
+  "image": "https://img.openagenda.com/main/fef704b1bd5b4fcb87c0def225bbdfac.base.image.jpg",
   "id": "communication-non-violente-0eb99a2a"
  },
  {
   "title": "Découvrir les jeux de société de Kojak",
-  "start": "2026-11-28T15:00:00",
-  "source_id": "html-cafe-crem",
+  "start": "2026-11-28T15:00:00+01:00",
+  "source_id": "oa-CafeCrem",
   "sector": "villemoirieu",
-  "end": "2026-11-28T19:00:00",
-  "description": "Jeu et découverte de jeux de société inspirés de l'univers de Kojak.",
-  "tldr": "C'est un atelier de jeu où vous testez des jeux de société basés sur l'univers du détective Kojak, avec des énigmes et des défis inspirés de ses aventures.",
-  "category": "sport",
+  "end": "2026-11-28T19:00:00+01:00",
+  "description": "\"JOUER N'est pas TUER\"",
+  "tldr": "Jeux de société axés sur la violence et la mort, avec des règles souvent violentes ou macabres, comme des jeux de tir ou de combat (ex. : *Crémolan* = jeu de guerre fictif).",
+  "category": "autre",
   "tags": [],
-  "audience": [
-   "tous"
-  ],
+  "audience": [],
   "commune": "Villemoirieu",
-  "address": "1 Parc d'activités du Buisson Rond, 38460 Villemoirieu",
-  "lat": 45.7138,
-  "lon": 5.2348,
+  "address": "Chemin de Buisson Rond, 38460 Villemoirieu",
+  "lat": 45.72803,
+  "lon": 5.23163,
   "free": true,
   "price_text": null,
-  "url": "https://cafe-crem.fr/programme#decouvrir-les-jeux-de-societe-de-kojak-1795852800000",
-  "image": null,
+  "url": "https://openagenda.com/agendas/5105644/events/20327533",
+  "image": "https://img.openagenda.com/main/d2982bf9c03c4ac395b28f60e46a37f1.base.image.jpg",
   "id": "decouvrir-les-jeux-de-societe-de-kojak-b0415e4d"
  }
 ]
